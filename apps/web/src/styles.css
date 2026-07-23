@@ -179,19 +179,23 @@ h2 { font-size: 18px; }
 .window-row { position: absolute; z-index: 2; top: 1.9%; left: 9%; right: 8%; display: flex; justify-content: space-around; }
 .window-row span { width: 15%; aspect-ratio: 2.8; border: 3px solid #415651; background: linear-gradient(#93bdc0 0 55%,#d7e8dc 56%); box-shadow: inset 0 0 0 2px #e6d5ae; }
 
-.world-object { position: absolute; z-index: 3; height: auto; transform: translate(-50%,-50%); filter: drop-shadow(0 4px 1px rgba(67,44,29,.18)); }
+.world-object { position: absolute; height: auto; filter: drop-shadow(0 4px 1px rgba(67,44,29,.18)); image-rendering: pixelated; pointer-events: none; }
+.world-object-center, .world-object-wall-center { transform: translate(-50%,-50%); }
+.world-object-bottom-center { transform: translate(-50%,-100%); }
+.world-layer-wall { filter: drop-shadow(0 2px 1px rgba(67,44,29,.12)); }
+.world-layer-equipment, .world-layer-decor { filter: drop-shadow(0 3px 1px rgba(67,44,29,.16)); }
 .workstation-desk {
   position: absolute;
-  width: 11%;
   height: auto;
   transform: translate(-50%,-50%);
   filter: drop-shadow(0 3px 1px rgba(65,42,26,.2));
+  image-rendering: pixelated;
   pointer-events: none;
 }
 .agent-entity {
   position: absolute;
-  width: 76px;
-  height: 92px;
+  width: 8.5%;
+  height: 15%;
   padding: 0;
   border: 0;
   background: transparent;
@@ -201,11 +205,11 @@ h2 { font-size: 18px; }
 .agent-entity::after {
   position: absolute;
   z-index: -1;
-  right: 9px;
+  right: 11%;
   bottom: 2px;
   left: 50%;
-  width: 48px;
-  height: 14px;
+  width: 64%;
+  height: 14%;
   border: 2px solid transparent;
   border-radius: 50%;
   background: rgba(31,55,48,.12);
@@ -219,10 +223,10 @@ h2 { font-size: 18px; }
   bottom: 0;
   left: 50%;
   display: block;
-  width: 96px;
-  height: 104px;
+  width: 100%;
+  height: 100%;
   background-repeat: no-repeat;
-  background-size: 768px 936px;
+  background-size: 800% 900%;
   image-rendering: pixelated;
   transform: translateX(-50%) scale(var(--character-scale, .58));
   transform-origin: center bottom;
@@ -232,8 +236,8 @@ h2 { font-size: 18px; }
 .agent-nameplate { position: absolute; z-index: 900; display: flex; align-items: center; gap: 4px; padding: 3px 6px; border: 1px solid rgba(20,45,39,.23); border-radius: 5px; color: #203a35; background: rgba(255,253,240,.94); font: 600 clamp(6px,.57vw,9px)/1 "IBM Plex Mono",monospace; white-space: nowrap; transform: translate(-50%,-50%); box-shadow: 0 2px 4px rgba(32,50,43,.12); pointer-events: none; }
 .status-dot { display: inline-block; width: 8px; height: 8px; flex: 0 0 auto; border-radius: 50%; background: #7a8990; }
 .status-working { background: #55a36a; box-shadow: 0 0 0 3px rgba(85,163,106,.14); }.status-review { background: #d39c41; }.status-waiting { background: #82919d; }.status-offline { background: #b06c62; }
-.petdex-mascot { position: absolute; z-index: 530; left: 24%; bottom: 3%; width: 96px; height: 104px; background-repeat: no-repeat; background-size: 768px 936px; image-rendering: pixelated; transform: translateX(-50%) scale(.58); transform-origin: center bottom; filter: drop-shadow(0 3px 1px rgba(47,38,25,.2)); animation: companion-idle 1.5s steps(6) infinite; }
-@keyframes companion-idle { from { background-position: 0 0; } to { background-position: -576px 0; } }
+.petdex-mascot { position: absolute; z-index: 560; left: 24%; bottom: 3%; width: 8.5%; height: 15%; background-repeat: no-repeat; background-size: 800% 900%; image-rendering: pixelated; transform: translateX(-50%) scale(.58); transform-origin: center bottom; filter: drop-shadow(0 3px 1px rgba(47,38,25,.2)); animation: companion-idle 1.5s steps(6) infinite; }
+@keyframes companion-idle { from { background-position: 0 0; } to { background-position: 85.714% 0; } }
 
 .task-panel { padding: 18px; }
 .panel-heading { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 16px; border-bottom: 1px solid var(--line); }

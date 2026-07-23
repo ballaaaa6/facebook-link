@@ -3,14 +3,17 @@
   "$id": "office-map.schema.json",
   "title": "Office map",
   "type": "object",
-  "required": ["id", "gridSize", "width", "height", "zones", "workstations", "sharedObjects"],
+  "required": ["id", "gridSize", "width", "height", "zones", "workstations", "objects"],
   "properties": {
     "id": { "type": "string" },
     "gridSize": { "type": "integer", "minimum": 8 },
     "width": { "type": "number", "exclusiveMinimum": 0 },
     "height": { "type": "number", "exclusiveMinimum": 0 },
     "zones": { "type": "array" },
-    "sharedObjects": { "type": "array" },
+    "objects": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/object" }
+    },
     "workstations": {
       "type": "array",
       "items": {
@@ -46,6 +49,19 @@
         "y": { "type": "number" },
         "width": { "type": "number", "exclusiveMinimum": 0 },
         "height": { "type": "number", "exclusiveMinimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "object": {
+      "type": "object",
+      "required": ["id", "asset", "x", "y", "layer", "anchor"],
+      "properties": {
+        "id": { "type": "string" },
+        "asset": { "type": "string" },
+        "x": { "type": "number" },
+        "y": { "type": "number" },
+        "layer": { "enum": ["wall", "furniture", "equipment", "decor"] },
+        "anchor": { "enum": ["center", "bottom-center", "wall-center"] }
       },
       "additionalProperties": false
     }

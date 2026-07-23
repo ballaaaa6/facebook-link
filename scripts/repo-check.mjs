@@ -68,11 +68,29 @@ if (attribution.dimensions.length !== 5) failures.push("Attribution must define 
 const officeMap = JSON.parse(readFileSync(join(root, "assets/game/maps/office-c-v1.json"), "utf8"));
 const characterRegistry = JSON.parse(readFileSync(join(root, "assets/game/characters/registry.json"), "utf8"));
 const agentIds = new Set(agents.map((agent) => agent.id));
+const officeAssetIds = new Set(
+  ["core-furniture-sheet.json", "decor-mechanical-sheet.json", "equipment-sheet.json"]
+    .flatMap((manifest) => JSON.parse(readFileSync(join(root, "assets/game/manifests", manifest), "utf8")).cells)
+    .map((cell) => cell.id),
+);
 if (officeMap.workstations.length !== agents.length) failures.push("Office map must provide one workstation per pilot agent");
 if (Object.keys(characterRegistry.agents).length !== agents.length) failures.push("Character registry must provide one character per pilot agent");
+if (!Array.isArray(officeMap.objects) || officeMap.objects.length < 20) failures.push("Office map must provide a populated objects layer");
+const officeObjectIds = new Set();
+for (const object of officeMap.objects ?? []) {
+  if (officeObjectIds.has(object.id)) failures.push(`Duplicate office object ID: ${object.id}`);
+  officeObjectIds.add(object.id);
+  if (!officeAssetIds.has(object.asset)) failures.push(`Unknown office object asset: ${object.asset}`);
+  if (!["wall", "furniture", "equipment", "decor"].includes(object.layer)) failures.push(`Invalid office object layer: ${object.id}`);
+  if (!["center", "bottom-center", "wall-center"].includes(object.anchor)) failures.push(`Invalid office object anchor: ${object.id}`);
+  if (object.x < 0 || object.x > officeMap.width || object.y < 0 || object.y > officeMap.height) {
+    failures.push(`Office object outside map bounds: ${object.id}`);
+  }
+}
 for (const station of officeMap.workstations) {
   if (!agentIds.has(station.id)) failures.push(`Unknown office workstation agent: ${station.id}`);
   if (!characterRegistry.agents[station.id]) failures.push(`Missing runtime character mapping: ${station.id}`);
+  if (!officeAssetIds.has(station.desk)) failures.push(`Unknown workstation desk asset: ${station.desk}`);
   for (const anchorName of ["seat", "stand"]) {
     const point = station[anchorName];
     if (!point || point.x < 0 || point.x > officeMap.width || point.y < 0 || point.y > officeMap.height) {

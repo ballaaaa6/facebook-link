@@ -2,7 +2,7 @@
 
 ## Production Rule
 
-Only assets referenced by `assets/game/maps/office-c-v1.json` are produced for the first vertical slice. Extra catalog variants are deferred until a real layout requires them.
+Only assets referenced by `assets/game/maps/office-c-v1.json` are rendered for the first vertical slice. Extra catalog variants remain deferred until a real layout requires them.
 
 ## Core Furniture
 
@@ -22,13 +22,17 @@ Only assets referenced by `assets/game/maps/office-c-v1.json` are produced for t
 
 ## Equipment Overlay Targets
 
-- Standard single-monitor workstation.
-- Dual-monitor analytics workstation.
-- Creative drawing-tablet workstation.
-- Visual production monitor and camera station.
-- Multi-device publishing preview station.
-- NOC multi-monitor console.
-- Server rack, router, UPS, printer, coffee machine, water dispenser, CCTV, and studio light.
+- Standard single-monitor workstation (4).
+- Dual-monitor analytics workstation (1).
+- Creative drawing-tablet workstation (1).
+- Visual production monitor and camera station (1).
+- Multi-device publishing preview station (1).
+- NOC multi-monitor console (1).
+- Server racks, network stack, printer, coffee machine, water dispenser, CCTV, and studio light.
+
+## Rendered Scene Layers
+
+The map's `objects` array is the source of truth for the visible office scene. Each object has a logical grid position, a rendering layer, and an anchor. The web renderer resolves its image and tile width through the office asset registry so furniture, equipment, and decor keep one scale across responsive viewports.
 
 ## Code-Generated Assets
 

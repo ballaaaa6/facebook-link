@@ -20,7 +20,7 @@ export function AnimatedAgent({ agentId, name, state = "working" }: { agentId: s
       data-character={character.sourceSlug}
       style={{
         backgroundImage: `url(${character.sheet})`,
-        backgroundPosition: `${-frame * 96}px ${-config.row * 104}px`,
+        backgroundPosition: `${(frame / 7) * 100}% ${(config.row / 8) * 100}%`,
         "--character-scale": character.scale,
       } as React.CSSProperties}
     />
