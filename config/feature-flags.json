@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "flags": {
+    "shopeeDiscovery": false,
+    "shopeeLinkCreation": false,
+    "geminiBrowser": false,
+    "flowBrowser": false,
+    "metaPublishing": false,
+    "browserPublishingFallback": false,
+    "discordCommands": false,
+    "automaticStrategyActivation": false
+  }
+}

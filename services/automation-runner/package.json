@@ -1,0 +1,19 @@
+{
+  "name": "@affiliate-ops/automation-runner",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": "./src/index.ts",
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.json",
+    "test": "node --test test/*.test.ts"
+  },
+  "dependencies": {
+    "@affiliate-ops/agent-catalog": "0.1.0",
+    "@affiliate-ops/contracts": "0.1.0",
+    "@affiliate-ops/database": "0.1.0",
+    "@affiliate-ops/storage": "0.1.0",
+    "@affiliate-ops/workflows": "0.1.0"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "name": "affiliate-operations-hq",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Control plane and automation runner for multi-channel affiliate operations.",
+  "packageManager": "npm@11.16.0",
+  "engines": {
+    "node": ">=24"
+  },
+  "workspaces": [
+    "apps/*",
+    "services/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace @affiliate-ops/web",
+    "dev:web": "npm run dev --workspace @affiliate-ops/web",
+    "build": "npm run build --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "repo:check": "node scripts/repo-check.mjs",
+    "architecture:check": "node scripts/architecture-check.mjs",
+    "code:health": "node scripts/code-health.mjs",
+    "duplicate:check": "node scripts/duplicate-check.mjs",
+    "code:map": "node scripts/code-map.mjs",
+    "pilot:simulate": "node services/automation-runner/src/simulation/cli.ts",
+    "deploy:dry-run": "npm run build --workspace @affiliate-ops/web && npx --yes wrangler@4.113.0 deploy --dry-run --config wrangler.jsonc",
+    "deploy:cloudflare": "npm run build --workspace @affiliate-ops/web && npx --yes wrangler@4.113.0 deploy --config wrangler.jsonc",
+    "check": "npm run repo:check && npm run architecture:check && npm run code:health && npm run duplicate:check && npm run code:map && npm run typecheck && npm run test && npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0"
+  }
+}

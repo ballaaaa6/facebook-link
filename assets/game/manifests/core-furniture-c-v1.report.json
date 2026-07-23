@@ -1,0 +1,532 @@
+{
+  "sheetId": "core-furniture-c-v1",
+  "source": "assets/game/processed/core-furniture-c-v1-alpha.png",
+  "sourceSize": [
+    1254,
+    1254
+  ],
+  "grid": [
+    4,
+    4
+  ],
+  "summary": {
+    "total": 16,
+    "passed": 16,
+    "warned": 0,
+    "failed": 0
+  },
+  "assets": [
+    {
+      "id": "desk.standard.up",
+      "status": "passed",
+      "file": "assets/game/processed/core-furniture-c-v1/desk.standard.up.png",
+      "sourceCell": {
+        "row": 0,
+        "column": 0,
+        "bounds": [
+          0,
+          0,
+          314,
+          314
+        ]
+      },
+      "trimBox": [
+        84,
+        98,
+        282,
+        245
+      ],
+      "size": [
+        214,
+        163
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.8289,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "desk.standard.side",
+      "status": "passed",
+      "file": "assets/game/processed/core-furniture-c-v1/desk.standard.side.png",
+      "sourceCell": {
+        "row": 0,
+        "column": 1,
+        "bounds": [
+          314,
+          0,
+          627,
+          314
+        ]
+      },
+      "trimBox": [
+        390,
+        93,
+        532,
+        245
+      ],
+      "size": [
+        158,
+        168
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.8015,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "desk.creative.up",
+      "status": "passed",
+      "file": "assets/game/processed/core-furniture-c-v1/desk.creative.up.png",
+      "sourceCell": {
+        "row": 0,
+        "column": 2,
+        "bounds": [
+          627,
+          0,
+          940,
+          314
+        ]
+      },
+      "trimBox": [
+        657,
+        82,
+        894,
+        246
+      ],
+      "size": [
+        253,
+        180
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.8442,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "desk.noc.up",
+      "status": "passed",
+      "file": "assets/game/processed/core-furniture-c-v1/desk.noc.up.png",
+      "sourceCell": {
+        "row": 0,
+        "column": 3,
+        "bounds": [
+          940,
+          0,
+          1254,
+          314
+        ]
+      },
+      "trimBox": [
+        972,
+        98,
+        1163,
+        251
+      ],
+      "size": [
+        207,
+        169
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.8278,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "chair.office.up",
+      "status": "passed",
+      "file": "assets/game/processed/core-furniture-c-v1/chair.office.up.png",
+      "sourceCell": {
+        "row": 1,
+        "column": 0,
+        "bounds": [
+          0,
+          314,
+          314,
+          627
+        ]
+      },
+      "trimBox": [
+        113,
+        373,
+        222,
+        530
+      ],
+      "size": [
+        125,
+        173
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.6098,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "chair.office.side",
+      "status": "passed",
+      "file": "assets/game/processed/core-furniture-c-v1/chair.office.side.png",
+      "sourceCell": {
+        "row": 1,
+        "column": 1,
+        "bounds": [
+          314,
+          314,
+          627,
+          627
+        ]
+      },
+      "trimBox": [
+        411,
+        365,
+        512,
+        529
+      ],
+      "size": [
+        117,
+        180
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.5052,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "chair.studio.up",
+      "status": "passed",
+      "file": "assets/game/processed/core-furniture-c-v1/chair.studio.up.png",
+      "sourceCell": {
+        "row": 1,
+        "column": 2,
+        "bounds": [
+          627,
+          314,
+          940,
+          627
+        ]
+      },
+      "trimBox": [
+        707,
+        376,
+        818,
+        534
+      ],
+      "size": [
+        127,
+        174
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.6444,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "stool.lounge",
+      "status": "passed",
+      "file": "assets/game/processed/core-furniture-c-v1/stool.lounge.png",
+      "sourceCell": {
+        "row": 1,
+        "column": 3,
+        "bounds": [
+          940,
+          314,
+          1254,
+          627
+        ]
+      },
+      "trimBox": [
+        1022,
+        401,
+        1109,
+        516
+      ],
+      "size": [
+        103,
+        131
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.6322,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "table.mission",
+      "status": "passed",
+      "file": "assets/game/processed/core-furniture-c-v1/table.mission.png",
+      "sourceCell": {
+        "row": 2,
+        "column": 0,
+        "bounds": [
+          0,
+          627,
+          314,
+          940
+        ]
+      },
+      "trimBox": [
+        48,
+        640,
+        310,
+        829
+      ],
+      "size": [
+        278,
+        205
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.7057,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "table.coffee",
+      "status": "passed",
+      "file": "assets/game/processed/core-furniture-c-v1/table.coffee.png",
+      "sourceCell": {
+        "row": 2,
+        "column": 1,
+        "bounds": [
+          314,
+          627,
+          627,
+          940
+        ]
+      },
+      "trimBox": [
+        400,
+        691,
+        536,
+        798
+      ],
+      "size": [
+        152,
+        123
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.7636,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "sofa.sectional",
+      "status": "passed",
+      "file": "assets/game/processed/core-furniture-c-v1/sofa.sectional.png",
+      "sourceCell": {
+        "row": 2,
+        "column": 2,
+        "bounds": [
+          627,
+          627,
+          940,
+          940
+        ]
+      },
+      "trimBox": [
+        660,
+        639,
+        864,
+        851
+      ],
+      "size": [
+        220,
+        228
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.6501,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "counter.coffee",
+      "status": "passed",
+      "file": "assets/game/processed/core-furniture-c-v1/counter.coffee.png",
+      "sourceCell": {
+        "row": 2,
+        "column": 3,
+        "bounds": [
+          940,
+          627,
+          1254,
+          940
+        ]
+      },
+      "trimBox": [
+        946,
+        677,
+        1200,
+        819
+      ],
+      "size": [
+        270,
+        158
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.7606,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "bookshelf.low",
+      "status": "passed",
+      "file": "assets/game/processed/core-furniture-c-v1/bookshelf.low.png",
+      "sourceCell": {
+        "row": 3,
+        "column": 0,
+        "bounds": [
+          0,
+          940,
+          314,
+          1254
+        ]
+      },
+      "trimBox": [
+        82,
+        978,
+        275,
+        1104
+      ],
+      "size": [
+        209,
+        142
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.8173,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "cabinet.filing",
+      "status": "passed",
+      "file": "assets/game/processed/core-furniture-c-v1/cabinet.filing.png",
+      "sourceCell": {
+        "row": 3,
+        "column": 1,
+        "bounds": [
+          314,
+          940,
+          627,
+          1254
+        ]
+      },
+      "trimBox": [
+        418,
+        950,
+        499,
+        1123
+      ],
+      "size": [
+        97,
+        189
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.7521,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "divider.planter",
+      "status": "passed",
+      "file": "assets/game/processed/core-furniture-c-v1/divider.planter.png",
+      "sourceCell": {
+        "row": 3,
+        "column": 2,
+        "bounds": [
+          627,
+          940,
+          940,
+          1254
+        ]
+      },
+      "trimBox": [
+        647,
+        976,
+        867,
+        1123
+      ],
+      "size": [
+        236,
+        163
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.7677,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "pet-bed.round",
+      "status": "passed",
+      "file": "assets/game/processed/core-furniture-c-v1/pet-bed.round.png",
+      "sourceCell": {
+        "row": 3,
+        "column": 3,
+        "bounds": [
+          940,
+          940,
+          1254,
+          1254
+        ]
+      },
+      "trimBox": [
+        986,
+        977,
+        1137,
+        1119
+      ],
+      "size": [
+        167,
+        158
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.6704,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    }
+  ]
+}

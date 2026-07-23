@@ -1,0 +1,26 @@
+{
+  "id": "core-furniture-c-v1",
+  "theme": "warm-studio",
+  "sourceConcept": "../../art/style-concepts/office-concept-c-warm-studio.png",
+  "backgroundKey": "#ff00ff",
+  "rows": 4,
+  "columns": 4,
+  "cells": [
+    { "row": 0, "column": 0, "id": "desk.standard.up" },
+    { "row": 0, "column": 1, "id": "desk.standard.side" },
+    { "row": 0, "column": 2, "id": "desk.creative.up" },
+    { "row": 0, "column": 3, "id": "desk.noc.up" },
+    { "row": 1, "column": 0, "id": "chair.office.up" },
+    { "row": 1, "column": 1, "id": "chair.office.side" },
+    { "row": 1, "column": 2, "id": "chair.studio.up" },
+    { "row": 1, "column": 3, "id": "stool.lounge" },
+    { "row": 2, "column": 0, "id": "table.mission" },
+    { "row": 2, "column": 1, "id": "table.coffee" },
+    { "row": 2, "column": 2, "id": "sofa.sectional" },
+    { "row": 2, "column": 3, "id": "counter.coffee" },
+    { "row": 3, "column": 0, "id": "bookshelf.low" },
+    { "row": 3, "column": 1, "id": "cabinet.filing" },
+    { "row": 3, "column": 2, "id": "divider.planter" },
+    { "row": 3, "column": 3, "id": "pet-bed.round" }
+  ]
+}

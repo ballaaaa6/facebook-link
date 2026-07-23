@@ -1,0 +1,26 @@
+{
+  "id": "equipment-c-v1",
+  "theme": "warm-studio",
+  "sourceConcept": "../../art/style-concepts/office-concept-c-warm-studio.png",
+  "backgroundKey": "#ff00ff",
+  "rows": 4,
+  "columns": 4,
+  "cells": [
+    { "row": 0, "column": 0, "id": "monitor.front.off" },
+    { "row": 0, "column": 1, "id": "monitor.front.active" },
+    { "row": 0, "column": 2, "id": "monitor.dual.active" },
+    { "row": 0, "column": 3, "id": "laptop.open" },
+    { "row": 1, "column": 0, "id": "keyboard.mouse" },
+    { "row": 1, "column": 1, "id": "printer.desktop" },
+    { "row": 1, "column": 2, "id": "tablet.drawing" },
+    { "row": 1, "column": 3, "id": "phone.preview" },
+    { "row": 2, "column": 0, "id": "camera.tripod" },
+    { "row": 2, "column": 1, "id": "light.studio" },
+    { "row": 2, "column": 2, "id": "server.rack" },
+    { "row": 2, "column": 3, "id": "network.stack" },
+    { "row": 3, "column": 0, "id": "camera.cctv" },
+    { "row": 3, "column": 1, "id": "dispenser.water" },
+    { "row": 3, "column": 2, "id": "machine.coffee" },
+    { "row": 3, "column": 3, "id": "station.multidevice" }
+  ]
+}

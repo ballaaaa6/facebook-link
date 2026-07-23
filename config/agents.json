@@ -1,0 +1,16 @@
+{
+  "$schema": "./schemas/agents.schema.json",
+  "version": 1,
+  "agents": [
+    { "id": "market-scout", "enabled": true, "concurrency": 1, "timeoutSeconds": 900 },
+    { "id": "product-ranker", "enabled": true, "concurrency": 1, "timeoutSeconds": 300 },
+    { "id": "growth-strategist", "enabled": true, "concurrency": 1, "timeoutSeconds": 300 },
+    { "id": "performance-analyst", "enabled": true, "concurrency": 1, "timeoutSeconds": 600 },
+    { "id": "gemini-copywriter", "enabled": false, "concurrency": 1, "timeoutSeconds": 900 },
+    { "id": "flow-visual-producer", "enabled": false, "concurrency": 1, "timeoutSeconds": 1800 },
+    { "id": "link-attribution", "enabled": false, "concurrency": 1, "timeoutSeconds": 600 },
+    { "id": "qa-editor", "enabled": true, "concurrency": 1, "timeoutSeconds": 300 },
+    { "id": "publisher", "enabled": false, "concurrency": 1, "timeoutSeconds": 600 },
+    { "id": "session-keeper", "enabled": true, "concurrency": 1, "timeoutSeconds": 300 }
+  ]
+}

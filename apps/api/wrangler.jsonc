@@ -1,0 +1,10 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "affiliate-ops-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-07-23",
+  "observability": { "enabled": true },
+  "vars": {
+    "APP_ENV": "development"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "allowedCharacters": "a-zA-Z0-9",
+  "dimensions": [
+    { "index": 1, "key": "platform", "examples": ["fb", "ig", "x", "tt"] },
+    { "index": 2, "key": "account", "examples": ["page01", "page02", "ig01"] },
+    { "index": 3, "key": "placement", "examples": ["feed", "reel", "story", "comment"] },
+    { "index": 4, "key": "campaign", "examples": ["morning", "lunch", "evening", "testA"] },
+    { "index": 5, "key": "creative", "examples": ["p123c01", "p123c02"] }
+  ]
+}

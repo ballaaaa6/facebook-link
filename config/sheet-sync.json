@@ -1,0 +1,7 @@
+{
+  "enabled": true,
+  "spreadsheetId": "1iIF2Pb9THDMLIJz66JgjxKIW6f0j_b-f_2aB2jhZo1s",
+  "timezone": "Asia/Bangkok",
+  "mode": "mirror",
+  "sourceOfTruth": "sqlite"
+}

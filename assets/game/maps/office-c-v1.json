@@ -1,0 +1,37 @@
+{
+  "$schema": "../manifests/office-map.schema.json",
+  "id": "office-c-v1",
+  "name": "Warm Studio Headquarters",
+  "theme": "warm-studio",
+  "gridSize": 32,
+  "width": 40,
+  "height": 22,
+  "zones": [
+    { "id": "research-growth", "x": 2, "y": 2, "width": 12, "height": 8, "capacity": 4 },
+    { "id": "creative-studio", "x": 15, "y": 2, "width": 10, "height": 8, "capacity": 2 },
+    { "id": "release", "x": 27, "y": 2, "width": 11, "height": 8, "capacity": 3 },
+    { "id": "mission-handoff", "x": 15, "y": 11, "width": 10, "height": 5, "capacity": 6 },
+    { "id": "lounge", "x": 2, "y": 12, "width": 11, "height": 8, "capacity": 6 },
+    { "id": "systems-noc", "x": 28, "y": 12, "width": 10, "height": 8, "capacity": 1 }
+  ],
+  "workstations": [
+    { "id": "market-scout", "zone": "research-growth", "desk": "desk.standard.up", "x": 4, "y": 4, "facing": "up" },
+    { "id": "product-ranker", "zone": "research-growth", "desk": "desk.standard.up", "x": 9, "y": 4, "facing": "up" },
+    { "id": "growth-strategist", "zone": "research-growth", "desk": "desk.standard.up", "x": 4, "y": 7, "facing": "up" },
+    { "id": "performance-analyst", "zone": "research-growth", "desk": "desk.standard.up", "x": 9, "y": 7, "facing": "up" },
+    { "id": "gemini-copywriter", "zone": "creative-studio", "desk": "desk.creative.up", "x": 18, "y": 5, "facing": "up" },
+    { "id": "flow-visual-producer", "zone": "creative-studio", "desk": "desk.creative.up", "x": 22, "y": 5, "facing": "up" },
+    { "id": "link-attribution", "zone": "release", "desk": "desk.standard.up", "x": 29, "y": 5, "facing": "up" },
+    { "id": "qa-editor", "zone": "release", "desk": "desk.standard.up", "x": 33, "y": 5, "facing": "up" },
+    { "id": "publisher", "zone": "release", "desk": "desk.standard.up", "x": 36, "y": 5, "facing": "up" },
+    { "id": "session-keeper", "zone": "systems-noc", "desk": "desk.noc.up", "x": 31, "y": 16, "facing": "up" }
+  ],
+  "sharedObjects": [
+    { "id": "mission-table", "asset": "table.mission", "x": 18, "y": 12 },
+    { "id": "lounge-sofa", "asset": "sofa.sectional", "x": 4, "y": 15 },
+    { "id": "coffee-counter", "asset": "counter.coffee", "x": 9, "y": 13 },
+    { "id": "mascot-bed", "asset": "pet-bed.round", "x": 10, "y": 18 },
+    { "id": "noc-server-a", "asset": "server.rack", "x": 34, "y": 14 },
+    { "id": "noc-server-b", "asset": "server.rack", "x": 36, "y": 14 }
+  ]
+}

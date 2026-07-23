@@ -1,0 +1,34 @@
+{
+  "id": "tian-zekun-2",
+  "displayName": "Tian Zekun 2",
+  "role": "performance-analyst",
+  "source": {
+    "provider": "Petdex",
+    "url": "https://petdex.dev/pets/tian-zekun-2",
+    "installedWith": "npx petdex install tian-zekun-2",
+    "licenseStatus": "pending-commercial-review",
+    "allowedScope": "internal-prototype"
+  },
+  "sheet": {
+    "file": "spritesheet.webp",
+    "width": 1536,
+    "height": 1872,
+    "columns": 8,
+    "rows": 9,
+    "frameWidth": 192,
+    "frameHeight": 208
+  },
+  "states": {
+    "idle": { "row": 0, "frames": 6, "fps": 4, "loop": true },
+    "runRight": { "row": 1, "frames": 8, "fps": 9, "loop": true },
+    "runLeft": { "row": 2, "frames": 8, "fps": 9, "loop": true },
+    "waving": { "row": 3, "frames": 4, "fps": 5, "loop": true },
+    "jumping": { "row": 4, "frames": 5, "fps": 7, "loop": false },
+    "failed": { "row": 5, "frames": 8, "fps": 6, "loop": false },
+    "waiting": { "row": 6, "frames": 6, "fps": 4, "loop": true },
+    "working": { "row": 7, "frames": 6, "fps": 7, "loop": true },
+    "review": { "row": 8, "frames": 6, "fps": 5, "loop": true }
+  },
+  "defaultState": "working",
+  "anchor": [0.5, 0.94]
+}

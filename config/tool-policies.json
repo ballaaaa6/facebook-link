@@ -1,0 +1,15 @@
+{
+  "defaultConfirmationRisks": ["external_side_effect", "sensitive"],
+  "agents": {
+    "market-scout": ["products.read", "products.discover"],
+    "product-ranker": ["products.read"],
+    "growth-strategist": ["products.read", "metrics.read"],
+    "performance-analyst": ["metrics.read", "sheets.sync", "exports.create"],
+    "gemini-copywriter": ["content.create"],
+    "flow-visual-producer": ["content.create"],
+    "link-attribution": ["links.create"],
+    "qa-editor": ["content.review"],
+    "publisher": ["publications.schedule", "publications.publish"],
+    "session-keeper": ["sessions.manage"]
+  }
+}

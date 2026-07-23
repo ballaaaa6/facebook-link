@@ -1,0 +1,8 @@
+{
+  "timezone": "Asia/Bangkok",
+  "dailyDiscovery": "05:30",
+  "dailyMetrics": "04:30",
+  "publishSlots": ["07:30", "12:15", "18:30", "21:15"],
+  "jitterMinutes": 10,
+  "maxPostsPerAccountPerDay": 4
+}

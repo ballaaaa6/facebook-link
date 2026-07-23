@@ -1,0 +1,14 @@
+{
+  "name": "@affiliate-ops/brain",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": "./src/index.ts",
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "node --test test/*.test.ts"
+  },
+  "dependencies": {
+    "@affiliate-ops/contracts": "0.1.0"
+  }
+}

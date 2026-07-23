@@ -1,0 +1,532 @@
+{
+  "sheetId": "decor-mechanical-c-v1",
+  "source": "assets/game/processed/decor-mechanical-c-v1-alpha.png",
+  "sourceSize": [
+    1254,
+    1254
+  ],
+  "grid": [
+    4,
+    4
+  ],
+  "summary": {
+    "total": 16,
+    "passed": 16,
+    "warned": 0,
+    "failed": 0
+  },
+  "assets": [
+    {
+      "id": "plant.small",
+      "status": "passed",
+      "file": "assets/game/processed/decor-mechanical-c-v1/plant.small.png",
+      "sourceCell": {
+        "row": 0,
+        "column": 0,
+        "bounds": [
+          0,
+          0,
+          314,
+          314
+        ]
+      },
+      "trimBox": [
+        85,
+        80,
+        232,
+        266
+      ],
+      "size": [
+        163,
+        202
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.5363,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "plant.tall",
+      "status": "passed",
+      "file": "assets/game/processed/decor-mechanical-c-v1/plant.tall.png",
+      "sourceCell": {
+        "row": 0,
+        "column": 1,
+        "bounds": [
+          314,
+          0,
+          627,
+          314
+        ]
+      },
+      "trimBox": [
+        369,
+        25,
+        556,
+        284
+      ],
+      "size": [
+        203,
+        275
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.4817,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "cup.coffee",
+      "status": "passed",
+      "file": "assets/game/processed/decor-mechanical-c-v1/cup.coffee.png",
+      "sourceCell": {
+        "row": 0,
+        "column": 2,
+        "bounds": [
+          627,
+          0,
+          940,
+          314
+        ]
+      },
+      "trimBox": [
+        704,
+        88,
+        863,
+        259
+      ],
+      "size": [
+        175,
+        187
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.6303,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "papers.stack",
+      "status": "passed",
+      "file": "assets/game/processed/decor-mechanical-c-v1/papers.stack.png",
+      "sourceCell": {
+        "row": 0,
+        "column": 3,
+        "bounds": [
+          940,
+          0,
+          1254,
+          314
+        ]
+      },
+      "trimBox": [
+        977,
+        88,
+        1188,
+        272
+      ],
+      "size": [
+        227,
+        200
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.6125,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "box.parcel",
+      "status": "passed",
+      "file": "assets/game/processed/decor-mechanical-c-v1/box.parcel.png",
+      "sourceCell": {
+        "row": 1,
+        "column": 0,
+        "bounds": [
+          0,
+          314,
+          314,
+          627
+        ]
+      },
+      "trimBox": [
+        52,
+        375,
+        244,
+        576
+      ],
+      "size": [
+        208,
+        217
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.6403,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "bin.waste",
+      "status": "passed",
+      "file": "assets/game/processed/decor-mechanical-c-v1/bin.waste.png",
+      "sourceCell": {
+        "row": 1,
+        "column": 1,
+        "bounds": [
+          314,
+          314,
+          627,
+          627
+        ]
+      },
+      "trimBox": [
+        389,
+        377,
+        535,
+        567
+      ],
+      "size": [
+        162,
+        206
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.6612,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "lamp.desk",
+      "status": "passed",
+      "file": "assets/game/processed/decor-mechanical-c-v1/lamp.desk.png",
+      "sourceCell": {
+        "row": 1,
+        "column": 2,
+        "bounds": [
+          627,
+          314,
+          940,
+          627
+        ]
+      },
+      "trimBox": [
+        666,
+        342,
+        862,
+        579
+      ],
+      "size": [
+        212,
+        253
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.3787,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "clock.wall",
+      "status": "passed",
+      "file": "assets/game/processed/decor-mechanical-c-v1/clock.wall.png",
+      "sourceCell": {
+        "row": 1,
+        "column": 3,
+        "bounds": [
+          940,
+          314,
+          1254,
+          627
+        ]
+      },
+      "trimBox": [
+        980,
+        369,
+        1177,
+        564
+      ],
+      "size": [
+        213,
+        211
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.672,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "door.closed",
+      "status": "passed",
+      "file": "assets/game/processed/decor-mechanical-c-v1/door.closed.png",
+      "sourceCell": {
+        "row": 2,
+        "column": 0,
+        "bounds": [
+          0,
+          627,
+          314,
+          940
+        ]
+      },
+      "trimBox": [
+        77,
+        653,
+        232,
+        874
+      ],
+      "size": [
+        171,
+        237
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.8259,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "door.open",
+      "status": "passed",
+      "file": "assets/game/processed/decor-mechanical-c-v1/door.open.png",
+      "sourceCell": {
+        "row": 2,
+        "column": 1,
+        "bounds": [
+          314,
+          627,
+          627,
+          940
+        ]
+      },
+      "trimBox": [
+        381,
+        653,
+        531,
+        903
+      ],
+      "size": [
+        166,
+        266
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.762,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "sign.exit",
+      "status": "passed",
+      "file": "assets/game/processed/decor-mechanical-c-v1/sign.exit.png",
+      "sourceCell": {
+        "row": 2,
+        "column": 2,
+        "bounds": [
+          627,
+          627,
+          940,
+          940
+        ]
+      },
+      "trimBox": [
+        666,
+        697,
+        886,
+        844
+      ],
+      "size": [
+        236,
+        163
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.8351,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "extinguisher.wall",
+      "status": "passed",
+      "file": "assets/game/processed/decor-mechanical-c-v1/extinguisher.wall.png",
+      "sourceCell": {
+        "row": 2,
+        "column": 3,
+        "bounds": [
+          940,
+          627,
+          1254,
+          940
+        ]
+      },
+      "trimBox": [
+        1011,
+        649,
+        1146,
+        876
+      ],
+      "size": [
+        151,
+        243
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.6014,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "panel.server.off",
+      "status": "passed",
+      "file": "assets/game/processed/decor-mechanical-c-v1/panel.server.off.png",
+      "sourceCell": {
+        "row": 3,
+        "column": 0,
+        "bounds": [
+          0,
+          940,
+          314,
+          1254
+        ]
+      },
+      "trimBox": [
+        73,
+        963,
+        254,
+        1192
+      ],
+      "size": [
+        197,
+        245
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.8534,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "panel.server.active",
+      "status": "passed",
+      "file": "assets/game/processed/decor-mechanical-c-v1/panel.server.active.png",
+      "sourceCell": {
+        "row": 3,
+        "column": 1,
+        "bounds": [
+          314,
+          940,
+          627,
+          1254
+        ]
+      },
+      "trimBox": [
+        371,
+        963,
+        554,
+        1192
+      ],
+      "size": [
+        199,
+        245
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.8541,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "panel.server.error",
+      "status": "passed",
+      "file": "assets/game/processed/decor-mechanical-c-v1/panel.server.error.png",
+      "sourceCell": {
+        "row": 3,
+        "column": 2,
+        "bounds": [
+          627,
+          940,
+          940,
+          1254
+        ]
+      },
+      "trimBox": [
+        674,
+        963,
+        845,
+        1192
+      ],
+      "size": [
+        187,
+        245
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.8492,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "mascot.robot",
+      "status": "passed",
+      "file": "assets/game/processed/decor-mechanical-c-v1/mascot.robot.png",
+      "sourceCell": {
+        "row": 3,
+        "column": 3,
+        "bounds": [
+          940,
+          940,
+          1254,
+          1254
+        ]
+      },
+      "trimBox": [
+        976,
+        938,
+        1176,
+        1207
+      ],
+      "size": [
+        216,
+        285
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.5813,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    }
+  ]
+}

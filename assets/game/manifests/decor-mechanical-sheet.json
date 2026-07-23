@@ -1,0 +1,26 @@
+{
+  "id": "decor-mechanical-c-v1",
+  "theme": "warm-studio",
+  "sourceConcept": "../../art/style-concepts/office-concept-c-warm-studio.png",
+  "backgroundKey": "#ff00ff",
+  "rows": 4,
+  "columns": 4,
+  "cells": [
+    { "row": 0, "column": 0, "id": "plant.small" },
+    { "row": 0, "column": 1, "id": "plant.tall" },
+    { "row": 0, "column": 2, "id": "cup.coffee" },
+    { "row": 0, "column": 3, "id": "papers.stack" },
+    { "row": 1, "column": 0, "id": "box.parcel" },
+    { "row": 1, "column": 1, "id": "bin.waste" },
+    { "row": 1, "column": 2, "id": "lamp.desk" },
+    { "row": 1, "column": 3, "id": "clock.wall" },
+    { "row": 2, "column": 0, "id": "door.closed" },
+    { "row": 2, "column": 1, "id": "door.open" },
+    { "row": 2, "column": 2, "id": "sign.exit" },
+    { "row": 2, "column": 3, "id": "extinguisher.wall" },
+    { "row": 3, "column": 0, "id": "panel.server.off" },
+    { "row": 3, "column": 1, "id": "panel.server.active" },
+    { "row": 3, "column": 2, "id": "panel.server.error" },
+    { "row": 3, "column": 3, "id": "mascot.robot" }
+  ]
+}

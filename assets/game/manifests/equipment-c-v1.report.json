@@ -1,0 +1,532 @@
+{
+  "sheetId": "equipment-c-v1",
+  "source": "assets/game/processed/equipment-c-v1-alpha.png",
+  "sourceSize": [
+    1254,
+    1254
+  ],
+  "grid": [
+    4,
+    4
+  ],
+  "summary": {
+    "total": 16,
+    "passed": 16,
+    "warned": 0,
+    "failed": 0
+  },
+  "assets": [
+    {
+      "id": "monitor.front.off",
+      "status": "passed",
+      "file": "assets/game/processed/equipment-c-v1/monitor.front.off.png",
+      "sourceCell": {
+        "row": 0,
+        "column": 0,
+        "bounds": [
+          0,
+          0,
+          314,
+          314
+        ]
+      },
+      "trimBox": [
+        71,
+        71,
+        256,
+        241
+      ],
+      "size": [
+        201,
+        186
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.7078,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "monitor.front.active",
+      "status": "passed",
+      "file": "assets/game/processed/equipment-c-v1/monitor.front.active.png",
+      "sourceCell": {
+        "row": 0,
+        "column": 1,
+        "bounds": [
+          314,
+          0,
+          627,
+          314
+        ]
+      },
+      "trimBox": [
+        370,
+        71,
+        556,
+        241
+      ],
+      "size": [
+        202,
+        186
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.7045,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "monitor.dual.active",
+      "status": "passed",
+      "file": "assets/game/processed/equipment-c-v1/monitor.dual.active.png",
+      "sourceCell": {
+        "row": 0,
+        "column": 2,
+        "bounds": [
+          627,
+          0,
+          940,
+          314
+        ]
+      },
+      "trimBox": [
+        640,
+        73,
+        929,
+        240
+      ],
+      "size": [
+        305,
+        183
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.6544,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "laptop.open",
+      "status": "passed",
+      "file": "assets/game/processed/equipment-c-v1/laptop.open.png",
+      "sourceCell": {
+        "row": 0,
+        "column": 3,
+        "bounds": [
+          940,
+          0,
+          1254,
+          314
+        ]
+      },
+      "trimBox": [
+        998,
+        68,
+        1174,
+        252
+      ],
+      "size": [
+        192,
+        200
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.7469,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "keyboard.mouse",
+      "status": "passed",
+      "file": "assets/game/processed/equipment-c-v1/keyboard.mouse.png",
+      "sourceCell": {
+        "row": 1,
+        "column": 0,
+        "bounds": [
+          0,
+          314,
+          314,
+          627
+        ]
+      },
+      "trimBox": [
+        50,
+        371,
+        279,
+        462
+      ],
+      "size": [
+        245,
+        107
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.7025,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "printer.desktop",
+      "status": "passed",
+      "file": "assets/game/processed/equipment-c-v1/printer.desktop.png",
+      "sourceCell": {
+        "row": 1,
+        "column": 1,
+        "bounds": [
+          314,
+          314,
+          627,
+          627
+        ]
+      },
+      "trimBox": [
+        368,
+        317,
+        551,
+        503
+      ],
+      "size": [
+        199,
+        202
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.7423,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "tablet.drawing",
+      "status": "passed",
+      "file": "assets/game/processed/equipment-c-v1/tablet.drawing.png",
+      "sourceCell": {
+        "row": 1,
+        "column": 2,
+        "bounds": [
+          627,
+          314,
+          940,
+          627
+        ]
+      },
+      "trimBox": [
+        674,
+        340,
+        880,
+        476
+      ],
+      "size": [
+        222,
+        152
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.7249,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "phone.preview",
+      "status": "passed",
+      "file": "assets/game/processed/equipment-c-v1/phone.preview.png",
+      "sourceCell": {
+        "row": 1,
+        "column": 3,
+        "bounds": [
+          940,
+          314,
+          1254,
+          627
+        ]
+      },
+      "trimBox": [
+        1017,
+        325,
+        1137,
+        488
+      ],
+      "size": [
+        136,
+        179
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.5803,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "camera.tripod",
+      "status": "passed",
+      "file": "assets/game/processed/equipment-c-v1/camera.tripod.png",
+      "sourceCell": {
+        "row": 2,
+        "column": 0,
+        "bounds": [
+          0,
+          627,
+          314,
+          940
+        ]
+      },
+      "trimBox": [
+        107,
+        573,
+        223,
+        778
+      ],
+      "size": [
+        132,
+        221
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.4685,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "light.studio",
+      "status": "passed",
+      "file": "assets/game/processed/equipment-c-v1/light.studio.png",
+      "sourceCell": {
+        "row": 2,
+        "column": 1,
+        "bounds": [
+          314,
+          627,
+          627,
+          940
+        ]
+      },
+      "trimBox": [
+        379,
+        553,
+        521,
+        796
+      ],
+      "size": [
+        158,
+        259
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.3453,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "server.rack",
+      "status": "passed",
+      "file": "assets/game/processed/equipment-c-v1/server.rack.png",
+      "sourceCell": {
+        "row": 2,
+        "column": 2,
+        "bounds": [
+          627,
+          627,
+          940,
+          940
+        ]
+      },
+      "trimBox": [
+        693,
+        564,
+        845,
+        795
+      ],
+      "size": [
+        168,
+        247
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.8284,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "network.stack",
+      "status": "passed",
+      "file": "assets/game/processed/equipment-c-v1/network.stack.png",
+      "sourceCell": {
+        "row": 2,
+        "column": 3,
+        "bounds": [
+          940,
+          627,
+          1254,
+          940
+        ]
+      },
+      "trimBox": [
+        964,
+        562,
+        1157,
+        795
+      ],
+      "size": [
+        209,
+        249
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.6233,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "camera.cctv",
+      "status": "passed",
+      "file": "assets/game/processed/equipment-c-v1/camera.cctv.png",
+      "sourceCell": {
+        "row": 3,
+        "column": 0,
+        "bounds": [
+          0,
+          940,
+          314,
+          1254
+        ]
+      },
+      "trimBox": [
+        60,
+        937,
+        241,
+        1086
+      ],
+      "size": [
+        197,
+        165
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.5108,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "dispenser.water",
+      "status": "passed",
+      "file": "assets/game/processed/equipment-c-v1/dispenser.water.png",
+      "sourceCell": {
+        "row": 3,
+        "column": 1,
+        "bounds": [
+          314,
+          940,
+          627,
+          1254
+        ]
+      },
+      "trimBox": [
+        383,
+        848,
+        504,
+        1138
+      ],
+      "size": [
+        137,
+        306
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.7728,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "machine.coffee",
+      "status": "passed",
+      "file": "assets/game/processed/equipment-c-v1/machine.coffee.png",
+      "sourceCell": {
+        "row": 3,
+        "column": 2,
+        "bounds": [
+          627,
+          940,
+          940,
+          1254
+        ]
+      },
+      "trimBox": [
+        662,
+        900,
+        842,
+        1134
+      ],
+      "size": [
+        196,
+        250
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.7239,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    },
+    {
+      "id": "station.multidevice",
+      "status": "passed",
+      "file": "assets/game/processed/equipment-c-v1/station.multidevice.png",
+      "sourceCell": {
+        "row": 3,
+        "column": 3,
+        "bounds": [
+          940,
+          940,
+          1254,
+          1254
+        ]
+      },
+      "trimBox": [
+        943,
+        959,
+        1190,
+        1107
+      ],
+      "size": [
+        263,
+        164
+      ],
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "alphaCoverage": 0.7424,
+      "magentaResiduePixels": 0,
+      "warnings": []
+    }
+  ]
+}

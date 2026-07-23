@@ -1,0 +1,7 @@
+{
+  "driver": "local-filesystem",
+  "dataRoot": "./runtime-data",
+  "objectsDirectory": "objects",
+  "databaseFile": "database/affiliate-ops.sqlite",
+  "futureOracleRoot": "/srv/affiliate-ops/runtime-data"
+}

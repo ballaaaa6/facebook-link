@@ -1,0 +1,12 @@
+{
+  "name": "@affiliate-ops/database",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": "./src/index.ts",
+  "files": ["migrations", "src"],
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "node --test test/*.test.ts"
+  }
+}

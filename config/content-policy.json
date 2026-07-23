@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "language": "th-TH",
+  "requireHumanReviewForFirstPost": true,
+  "requireLinkValidation": true,
+  "requireClaimEvidence": true,
+  "disallowInventedDiscounts": true,
+  "disallowInventedStockClaims": true,
+  "disallowSensitivePersonalization": true,
+  "maximumHashtags": 8,
+  "duplicateSimilarityThreshold": 0.85
+}
