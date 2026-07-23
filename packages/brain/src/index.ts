@@ -112,8 +112,6 @@ export class WorkersAiBrainProvider implements BrainProvider {
         ...history,
         { role: "user", content: request.message },
       ],
-      max_tokens: 700,
-      temperature: 0.35,
     });
     const message = readText(result);
     if (!asksForExternalAction(request.message)) return { type: "answer", agentId: role.agentId, message };
