@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "office-map.schema.json",
+  "title": "Office map",
+  "type": "object",
+  "required": ["id", "gridSize", "width", "height", "zones", "workstations", "sharedObjects"],
+  "properties": {
+    "id": { "type": "string" },
+    "gridSize": { "type": "integer", "minimum": 8 },
+    "width": { "type": "number", "exclusiveMinimum": 0 },
+    "height": { "type": "number", "exclusiveMinimum": 0 },
+    "zones": { "type": "array" },
+    "sharedObjects": { "type": "array" },
+    "workstations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "zone", "desk", "x", "y", "facing", "seat", "stand", "collision"],
+        "properties": {
+          "id": { "type": "string" },
+          "zone": { "type": "string" },
+          "desk": { "type": "string" },
+          "x": { "type": "number" },
+          "y": { "type": "number" },
+          "facing": { "enum": ["up", "down", "left", "right"] },
+          "seat": { "$ref": "#/$defs/point" },
+          "stand": { "$ref": "#/$defs/point" },
+          "collision": { "$ref": "#/$defs/rectangle" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "$defs": {
+    "point": {
+      "type": "object",
+      "required": ["x", "y"],
+      "properties": { "x": { "type": "number" }, "y": { "type": "number" } },
+      "additionalProperties": false
+    },
+    "rectangle": {
+      "type": "object",
+      "required": ["x", "y", "width", "height"],
+      "properties": {
+        "x": { "type": "number" },
+        "y": { "type": "number" },
+        "width": { "type": "number", "exclusiveMinimum": 0 },
+        "height": { "type": "number", "exclusiveMinimum": 0 }
+      },
+      "additionalProperties": false
+    }
+  }
+}

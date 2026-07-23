@@ -1,12 +1,28 @@
 import { useEffect, useState } from "react";
-import characterSheet from "../../../../../../assets/game/characters/tian-zekun-2/spritesheet.webp";
+import { characterRegistry, characterStates, type CharacterState } from "../characterRegistry";
 
-export function AnimatedAgent({ state = "working" }: { state?: "working" | "idle" }) {
-  const config = state === "working" ? { row: 7, frames: 6, fps: 7 } : { row: 0, frames: 6, fps: 4 };
+export function AnimatedAgent({ agentId, name, state = "working" }: { agentId: string; name: string; state?: CharacterState }) {
+  const character = characterRegistry[agentId];
+  const config = characterStates[state];
   const [frame, setFrame] = useState(0);
+
   useEffect(() => {
+    setFrame(0);
     const timer = window.setInterval(() => setFrame((value) => (value + 1) % config.frames), 1000 / config.fps);
     return () => window.clearInterval(timer);
   }, [config.fps, config.frames]);
-  return <span className="agent-sprite" aria-label={`Tian ${state}`} style={{ backgroundImage: `url(${characterSheet})`, backgroundPosition: `${-frame * 96}px ${-config.row * 104}px` }} />;
+
+  if (!character) return null;
+  return (
+    <span
+      className="agent-sprite"
+      aria-label={`${name} ${state}`}
+      data-character={character.sourceSlug}
+      style={{
+        backgroundImage: `url(${character.sheet})`,
+        backgroundPosition: `${-frame * 96}px ${-config.row * 104}px`,
+        "--character-scale": character.scale,
+      } as React.CSSProperties}
+    />
+  );
 }

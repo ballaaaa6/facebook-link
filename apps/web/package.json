@@ -9,7 +9,6 @@
     "typecheck": "tsc -b --pretty false"
   },
   "dependencies": {
-    "@affiliate-ops/brain": "0.1.0",
     "@affiliate-ops/contracts": "0.1.0",
     "react": "19.2.8",
     "react-dom": "19.2.8"

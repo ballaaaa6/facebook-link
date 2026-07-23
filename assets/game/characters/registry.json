@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "frame": { "width": 192, "height": 208, "columns": 8, "rows": 9 },
+  "runtimeScale": 0.5,
+  "licenseStatus": "pending-commercial-review",
+  "usage": "internal-prototype",
+  "agents": {
+    "market-scout": "noir-webling",
+    "product-ranker": "einstein",
+    "growth-strategist": "abg",
+    "performance-analyst": "tian-zekun-2",
+    "gemini-copywriter": "yinyue-2",
+    "flow-visual-producer": "taffy-2",
+    "link-attribution": "doraemon",
+    "qa-editor": "rem-xl",
+    "publisher": "luffy",
+    "session-keeper": "rx-78-2-gundam"
+  },
+  "companions": {
+    "office-mascot": "boba"
+  }
+}

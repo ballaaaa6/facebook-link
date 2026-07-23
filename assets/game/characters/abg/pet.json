@@ -1,0 +1,22 @@
+{
+  "id": "abg",
+  "displayName": "ABG",
+  "description": "ABG is a smart, pretty Bay Area founder-CMO Codex pet with polished style, confident charm, and helpful demo-day energy.",
+  "spritesheetPath": "spritesheet.webp",
+  "kind": "character",
+  "vibes": [
+    "CMO",
+    "founder",
+    "Bay Area",
+    "smart",
+    "pretty"
+  ],
+  "tags": [
+    "cmo",
+    "founder",
+    "bay-area",
+    "smart",
+    "pretty",
+    "startup"
+  ]
+}

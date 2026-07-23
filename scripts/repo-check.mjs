@@ -65,6 +65,33 @@ if (new Set(agents.map((agent) => agent.id)).size !== agents.length) failures.pu
 const attribution = JSON.parse(readFileSync(join(root, "config/attribution.json"), "utf8"));
 if (attribution.dimensions.length !== 5) failures.push("Attribution must define exactly five Sub ID dimensions");
 
+const officeMap = JSON.parse(readFileSync(join(root, "assets/game/maps/office-c-v1.json"), "utf8"));
+const characterRegistry = JSON.parse(readFileSync(join(root, "assets/game/characters/registry.json"), "utf8"));
+const agentIds = new Set(agents.map((agent) => agent.id));
+if (officeMap.workstations.length !== agents.length) failures.push("Office map must provide one workstation per pilot agent");
+if (Object.keys(characterRegistry.agents).length !== agents.length) failures.push("Character registry must provide one character per pilot agent");
+for (const station of officeMap.workstations) {
+  if (!agentIds.has(station.id)) failures.push(`Unknown office workstation agent: ${station.id}`);
+  if (!characterRegistry.agents[station.id]) failures.push(`Missing runtime character mapping: ${station.id}`);
+  for (const anchorName of ["seat", "stand"]) {
+    const point = station[anchorName];
+    if (!point || point.x < 0 || point.x > officeMap.width || point.y < 0 || point.y > officeMap.height) {
+      failures.push(`Invalid ${anchorName} anchor for ${station.id}`);
+      continue;
+    }
+    const hitbox = station.collision;
+    const collides = point.x >= hitbox.x
+      && point.x <= hitbox.x + hitbox.width
+      && point.y >= hitbox.y
+      && point.y <= hitbox.y + hitbox.height;
+    if (collides) failures.push(`${station.id} ${anchorName} anchor intersects its desk collision`);
+  }
+}
+for (const [agentId, slug] of Object.entries(characterRegistry.agents)) {
+  const sheetPath = join(root, "assets/game/characters", slug, "spritesheet.webp");
+  if (!existsSync(sheetPath)) failures.push(`Missing spritesheet for ${agentId}: ${slug}`);
+}
+
 const validationReports = files.filter((file) => file.endsWith(".report.json"));
 let validatedAssets = 0;
 for (const file of validationReports) {

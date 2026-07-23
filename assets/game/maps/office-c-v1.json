@@ -15,16 +15,16 @@
     { "id": "systems-noc", "x": 28, "y": 12, "width": 10, "height": 8, "capacity": 1 }
   ],
   "workstations": [
-    { "id": "market-scout", "zone": "research-growth", "desk": "desk.standard.up", "x": 4, "y": 4, "facing": "up" },
-    { "id": "product-ranker", "zone": "research-growth", "desk": "desk.standard.up", "x": 9, "y": 4, "facing": "up" },
-    { "id": "growth-strategist", "zone": "research-growth", "desk": "desk.standard.up", "x": 4, "y": 7, "facing": "up" },
-    { "id": "performance-analyst", "zone": "research-growth", "desk": "desk.standard.up", "x": 9, "y": 7, "facing": "up" },
-    { "id": "gemini-copywriter", "zone": "creative-studio", "desk": "desk.creative.up", "x": 18, "y": 5, "facing": "up" },
-    { "id": "flow-visual-producer", "zone": "creative-studio", "desk": "desk.creative.up", "x": 22, "y": 5, "facing": "up" },
-    { "id": "link-attribution", "zone": "release", "desk": "desk.standard.up", "x": 29, "y": 5, "facing": "up" },
-    { "id": "qa-editor", "zone": "release", "desk": "desk.standard.up", "x": 33, "y": 5, "facing": "up" },
-    { "id": "publisher", "zone": "release", "desk": "desk.standard.up", "x": 36, "y": 5, "facing": "up" },
-    { "id": "session-keeper", "zone": "systems-noc", "desk": "desk.noc.up", "x": 31, "y": 16, "facing": "up" }
+    { "id": "market-scout", "zone": "research-growth", "desk": "desk.standard.up", "x": 4, "y": 4, "facing": "up", "seat": { "x": 4, "y": 3.15 }, "stand": { "x": 2.8, "y": 5.7 }, "collision": { "x": 2.1, "y": 3.7, "width": 3.8, "height": 1.6 } },
+    { "id": "product-ranker", "zone": "research-growth", "desk": "desk.standard.up", "x": 9, "y": 4, "facing": "up", "seat": { "x": 9, "y": 3.15 }, "stand": { "x": 10.5, "y": 5.55 }, "collision": { "x": 7.1, "y": 3.7, "width": 3.8, "height": 1.6 } },
+    { "id": "growth-strategist", "zone": "research-growth", "desk": "desk.standard.up", "x": 4, "y": 7, "facing": "up", "seat": { "x": 4, "y": 6.15 }, "stand": { "x": 2.8, "y": 9.1 }, "collision": { "x": 2.1, "y": 6.7, "width": 3.8, "height": 1.6 } },
+    { "id": "performance-analyst", "zone": "research-growth", "desk": "desk.standard.up", "x": 9, "y": 7, "facing": "up", "seat": { "x": 9, "y": 6.15 }, "stand": { "x": 10.5, "y": 9.1 }, "collision": { "x": 7.1, "y": 6.7, "width": 3.8, "height": 1.6 } },
+    { "id": "gemini-copywriter", "zone": "creative-studio", "desk": "desk.creative.up", "x": 18, "y": 5, "facing": "up", "seat": { "x": 18, "y": 4.15 }, "stand": { "x": 17, "y": 7.5 }, "collision": { "x": 16.1, "y": 4.7, "width": 3.8, "height": 1.6 } },
+    { "id": "flow-visual-producer", "zone": "creative-studio", "desk": "desk.creative.up", "x": 22, "y": 5, "facing": "up", "seat": { "x": 22, "y": 4.15 }, "stand": { "x": 23, "y": 7.5 }, "collision": { "x": 20.1, "y": 4.7, "width": 3.8, "height": 1.6 } },
+    { "id": "link-attribution", "zone": "release", "desk": "desk.standard.up", "x": 29, "y": 5, "facing": "up", "seat": { "x": 29, "y": 4.15 }, "stand": { "x": 28, "y": 7.5 }, "collision": { "x": 27.1, "y": 4.7, "width": 3.8, "height": 1.6 } },
+    { "id": "qa-editor", "zone": "release", "desk": "desk.standard.up", "x": 33, "y": 5, "facing": "up", "seat": { "x": 33, "y": 4.15 }, "stand": { "x": 33, "y": 7.5 }, "collision": { "x": 31.1, "y": 4.7, "width": 3.8, "height": 1.6 } },
+    { "id": "publisher", "zone": "release", "desk": "desk.standard.up", "x": 36, "y": 5, "facing": "up", "seat": { "x": 36, "y": 4.15 }, "stand": { "x": 37.3, "y": 7.5 }, "collision": { "x": 34.1, "y": 4.7, "width": 3.8, "height": 1.6 } },
+    { "id": "session-keeper", "zone": "systems-noc", "desk": "desk.noc.up", "x": 31, "y": 16, "facing": "up", "seat": { "x": 31, "y": 15.15 }, "stand": { "x": 31, "y": 18.6 }, "collision": { "x": 29.1, "y": 15.7, "width": 3.8, "height": 1.6 } }
   ],
   "sharedObjects": [
     { "id": "mission-table", "asset": "table.mission", "x": 18, "y": 12 },
