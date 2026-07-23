@@ -40,6 +40,14 @@ npm run deploy:cloudflare
 
 Cloudflare Workers Builds connects the GitHub `main` branch using root directory `/`, build command `npm run check`, and deploy command `npx --yes wrangler@4.113.0 deploy --config wrangler.jsonc`. Non-production branches use `npx --yes wrangler@4.113.0 versions upload --config wrangler.jsonc` for preview versions. Wrangler stays outside the application dependency graph because it is deployment tooling, not runtime code.
 
+## Production endpoints
+
+- Application: `https://facebook-link.ballaaaa6.workers.dev`
+- Health check: `https://facebook-link.ballaaaa6.workers.dev/health`
+- Source repository: `https://github.com/ballaaaa6/facebook-link`
+
+Every push to `main` runs the full repository check before publishing the production Worker. Pushes to other branches run the same check and upload isolated preview versions instead of replacing production.
+
 ## Release order
 
 Database backup/migration -> API -> Discord worker -> web -> runner. Roll back the runner feature flags first if an external connector misbehaves.
