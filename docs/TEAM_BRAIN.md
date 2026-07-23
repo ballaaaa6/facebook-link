@@ -9,4 +9,4 @@ Responses have only two forms:
 
 The provider never calls connector tools directly. Requests that imply an external mutation are converted into an `action_proposal`; they are not executed by the model. A confirmed proposal must still pass API and job policy before a runner can act. The current confirmation button explicitly changes simulation UI state only.
 
-`MockBrainProvider` remains available for deterministic tests and offline development, but production reports `brain_unavailable` instead of pretending a mock response came from AI. Conversation history is bounded to the ten most recent messages; older turns can become a rolling summary to control storage and token cost.
+`MockBrainProvider` remains available for deterministic tests and offline development. If the Workers AI binding times out or returns an error, the API uses a clearly labelled safe-routing response rather than leaving the operator without feedback or pretending that a model answered. Conversation history is bounded to the ten most recent messages; older turns can become a rolling summary to control storage and token cost.

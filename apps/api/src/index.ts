@@ -1,5 +1,5 @@
 import { agentCatalog } from "@affiliate-ops/agent-catalog";
-import { createBrainProvider, defaultWorkersAiModel, type AiTextRunner } from "@affiliate-ops/brain";
+import { createBrainProvider, defaultWorkersAiModel, MockBrainProvider, type AiTextRunner } from "@affiliate-ops/brain";
 import type { BrainRequest, HealthReport } from "@affiliate-ops/contracts";
 
 const serviceVersion = "0.1.0";
@@ -46,6 +46,20 @@ function isBrainRequest(value: unknown): value is BrainRequest {
     && messagesAreValid;
 }
 
+async function withTimeout<T>(promise: Promise<T>, milliseconds: number): Promise<T> {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  try {
+    return await Promise.race([
+      promise,
+      new Promise<T>((_, reject) => {
+        timer = setTimeout(() => reject(new Error("brain provider timeout")), milliseconds);
+      }),
+    ]);
+  } finally {
+    if (timer) clearTimeout(timer);
+  }
+}
+
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
@@ -64,10 +78,14 @@ export default {
       if (!env.AI) return json({ error: "brain_unavailable" }, 503);
       try {
         const brain = createBrainProvider("workers-ai", { runner: env.AI, model: env.BRAIN_MODEL ?? defaultWorkersAiModel });
-        return json(await brain.respond(body));
+        return json(await withTimeout(brain.respond(body), 8_000));
       } catch (error) {
         console.error("brain_provider_error", error instanceof Error ? error.message : "unknown provider error");
-        return json({ error: "brain_unavailable" }, 503);
+        const fallback = await new MockBrainProvider().respond(body);
+        return json({
+          ...fallback,
+          message: `Workers AI ยังไม่พร้อมใช้งาน จึงใช้ safe routing ชั่วคราว: ${fallback.message}`,
+        });
       }
     }
 

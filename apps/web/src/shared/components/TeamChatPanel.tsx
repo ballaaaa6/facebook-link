@@ -37,7 +37,7 @@ export function TeamChatPanel() {
 
   return (
     <section className="team-chat card-surface">
-      <div className="section-heading"><div><span className="eyebrow">TeamBrain</span><h2>Command the team</h2></div><span className="mock-badge">Workers AI · safe</span></div>
+      <div className="section-heading"><div><span className="eyebrow">TeamBrain</span><h2>Command the team</h2></div><span className="mock-badge">AI + safe fallback</span></div>
       <div className="chat-log" aria-live="polite">{lines.map((line) => <article className={`chat-line ${line.author === "You" ? "is-user" : ""}`} key={line.id}><b>{line.author}</b><p>{line.content}</p>{line.proposal && <div className="proposal-card"><small>{line.proposal.capability} · external action</small><strong>{line.proposal.title}</strong>{line.decision ? <em>{line.decision === "confirmed" ? "Confirmed in simulation only" : "Rejected"}</em> : <div><button type="button" onClick={() => decide(line.id, "confirmed")}>Confirm simulation</button><button type="button" onClick={() => decide(line.id, "rejected")}>Reject</button></div>}</div>}</article>)}</div>
       <form className="chat-composer" onSubmit={submit}><select aria-label="Target agent" value={agentId} onChange={(event) => setAgentId(event.target.value)}><option value="">Auto-route</option>{agents.map((agent) => <option key={agent.id} value={agent.id}>{agent.name} · {agent.role}</option>)}</select><input value={draft} onChange={(event) => setDraft(event.target.value)} placeholder="Ask the team or prepare an action…" /><button type="submit" disabled={busy}>{busy ? "Thinking…" : "Send"}</button></form>
     </section>
