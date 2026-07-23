@@ -1,12 +1,16 @@
-import officeMap from "../../../../../../assets/game/maps/office-c-v1.json";
+import type { CSSProperties } from "react";
+import officeMapJson from "../../../../../../assets/game/maps/office-c-v1.json";
 import bobaSheet from "../../../../../../assets/game/characters/boba/spritesheet.webp";
 import { StatusDot } from "../../../shared/components/StatusDot";
 import { agents } from "../../../shared/data/agents";
+import { useOfficeSimulation } from "../officeSimulation";
+import type { OfficeMapDefinition } from "../officeTypes";
 import { officeAssetRegistry } from "./officeAssetRegistry";
 import { AnimatedAgent } from "./AnimatedAgent";
 import { WorldObject, type OfficeMapObject, type ResolvedOfficeObject } from "./WorldObject";
 
-const mapObjects = officeMap.objects as OfficeMapObject[];
+const officeMap = officeMapJson as unknown as OfficeMapDefinition & { objects: OfficeMapObject[] };
+const mapObjects = officeMap.objects;
 const attachmentSlots: Record<string, { x: number; y: number }> = {
   "desk-rear-center": { x: 0, y: -0.22 },
   "desk-rear-left": { x: -0.72, y: -0.18 },
@@ -22,7 +26,11 @@ const attachmentSlots: Record<string, { x: number; y: number }> = {
 
 const parentPositions = new Map<string, { x: number; y: number }>([
   ...officeMap.workstations.map((station) => [station.id, { x: station.x, y: station.y }] as const),
-  ...mapObjects.flatMap((object) => typeof object.x === "number" && typeof object.y === "number" ? [[object.id, { x: object.x, y: object.y }] as const] : []),
+  ...mapObjects.flatMap((object) => (
+    typeof object.x === "number" && typeof object.y === "number"
+      ? [[object.id, { x: object.x, y: object.y }] as const]
+      : []
+  )),
 ]);
 
 const resolvedMapObjects = mapObjects.flatMap((object): ResolvedOfficeObject[] => {
@@ -37,26 +45,63 @@ const resolvedMapObjects = mapObjects.flatMap((object): ResolvedOfficeObject[] =
 });
 
 export function OfficeCanvas({ selectedId, onSelect }: { selectedId: string; onSelect: (id: string) => void }) {
+  const simulation = useOfficeSimulation(officeMap, agents);
   const percentX = (x: number) => `${(x / officeMap.width) * 100}%`;
   const percentY = (y: number) => `${(y / officeMap.height) * 100}%`;
 
   return (
     <div className="office-frame">
       <div className="office-world" aria-label="Warm pixel operations office">
+        {officeMap.zones.map((zone) => (
+          <div
+            className={`office-zone office-zone-${zone.id}`}
+            key={zone.id}
+            style={{
+              left: percentX(zone.x),
+              top: percentY(zone.y),
+              width: percentX(zone.width),
+              height: percentY(zone.height),
+            }}
+          >
+            <span>{zone.label}</span>
+          </div>
+        ))}
         <div className="window-row" aria-hidden="true"><span /><span /><span /><span /></div>
-        {resolvedMapObjects.map((object) => <WorldObject key={object.id} object={object} worldWidth={officeMap.width} percentX={percentX} percentY={percentY} />)}
+        {resolvedMapObjects.map((object) => (
+          <WorldObject
+            key={object.id}
+            object={object}
+            worldWidth={officeMap.width}
+            percentX={percentX}
+            percentY={percentY}
+          />
+        ))}
         {officeMap.workstations.map((station) => {
           const agent = agents.find((item) => item.id === station.id);
           const desk = officeAssetRegistry[station.desk];
-          if (!agent || !desk) return null;
+          const chair = officeAssetRegistry[station.chair];
+          const presentation = simulation[station.id];
+          if (!agent || !desk || !chair || !presentation) return null;
 
-          const seated = agent.status === "working";
-          const position = seated ? station.seat : station.stand;
-          const state = agent.status === "working" ? "working" : agent.status === "review" ? "review" : "waiting";
-          const deskDepth = 300 + Math.round(station.y * 10);
-          const agentDepth = seated ? deskDepth + 1 : 600 + Math.round(position.y * 10);
+          const { position, seated, state, activityLabel } = presentation;
+          const deskDepth = 100 + Math.round(station.y * 20);
+          const agentDepth = seated ? deskDepth - 1 : 110 + Math.round(position.y * 20);
+          const nameY = seated ? station.y + 1.35 : position.y + 0.9;
+
           return (
-            <div key={station.id}>
+            <div className="workstation-rig" key={station.id}>
+              <img
+                className="workstation-chair"
+                src={chair.file}
+                alt=""
+                aria-hidden="true"
+                style={{
+                  left: percentX(station.seat.x),
+                  top: percentY(station.seat.y + 0.08),
+                  width: `${(chair.widthTiles / officeMap.width) * 100}%`,
+                  zIndex: deskDepth - 2,
+                }}
+              />
               <img
                 className="workstation-desk"
                 src={desk.file}
@@ -82,13 +127,33 @@ export function OfficeCanvas({ selectedId, onSelect }: { selectedId: string; onS
               >
                 <AnimatedAgent agentId={agent.id} name={agent.name} state={state} />
               </button>
-              <span className="agent-nameplate" style={{ left: percentX(seated ? station.x : position.x), top: percentY(seated ? station.y + 1.45 : position.y + 0.85) }}>
+              {activityLabel && !seated ? (
+                <span
+                  className="agent-activity-badge"
+                  style={{ left: percentX(position.x), top: percentY(position.y - 1.45), zIndex: agentDepth + 2 }}
+                >
+                  {activityLabel}
+                </span>
+              ) : null}
+              <span
+                className={`agent-nameplate ${seated ? "is-seated" : ""}`}
+                style={{ left: percentX(seated ? station.x : position.x), top: percentY(nameY) }}
+              >
                 <StatusDot status={agent.status} />{agent.name}
               </span>
             </div>
           );
         })}
-        <span className="petdex-mascot" aria-label="Boba, the office companion" style={{ backgroundImage: `url(${bobaSheet})` }} />
+        <span
+          className="petdex-mascot"
+          aria-label="Boba resting by the pet bed"
+          style={{
+            backgroundImage: `url(${bobaSheet})`,
+            left: percentX(10.1),
+            top: percentY(19),
+            zIndex: 475,
+          } as CSSProperties}
+        />
       </div>
     </div>
   );

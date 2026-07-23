@@ -1,5 +1,7 @@
 import bookshelfLow from "../../../../../../assets/game/processed/core-furniture-c-v1/bookshelf.low.png";
 import cabinetFiling from "../../../../../../assets/game/processed/core-furniture-c-v1/cabinet.filing.png";
+import chairOffice from "../../../../../../assets/game/processed/core-furniture-c-v1/chair.office.up.png";
+import chairStudio from "../../../../../../assets/game/processed/core-furniture-c-v1/chair.studio.up.png";
 import counterCoffee from "../../../../../../assets/game/processed/core-furniture-c-v1/counter.coffee.png";
 import deskCreative from "../../../../../../assets/game/processed/core-furniture-c-v1/desk.creative.up.png";
 import deskNoc from "../../../../../../assets/game/processed/core-furniture-c-v1/desk.noc.up.png";
@@ -8,10 +10,13 @@ import dividerPlanter from "../../../../../../assets/game/processed/core-furnitu
 import missionTable from "../../../../../../assets/game/processed/core-furniture-c-v1/table.mission.png";
 import petBed from "../../../../../../assets/game/processed/core-furniture-c-v1/pet-bed.round.png";
 import sectionalSofa from "../../../../../../assets/game/processed/core-furniture-c-v1/sofa.sectional.png";
+import stoolLounge from "../../../../../../assets/game/processed/core-furniture-c-v1/stool.lounge.png";
+import tableCoffee from "../../../../../../assets/game/processed/core-furniture-c-v1/table.coffee.png";
 import binWaste from "../../../../../../assets/game/processed/decor-mechanical-c-v1/bin.waste.png";
 import boxParcel from "../../../../../../assets/game/processed/decor-mechanical-c-v1/box.parcel.png";
 import clockWall from "../../../../../../assets/game/processed/decor-mechanical-c-v1/clock.wall.png";
 import cupCoffee from "../../../../../../assets/game/processed/decor-mechanical-c-v1/cup.coffee.png";
+import doorClosed from "../../../../../../assets/game/processed/decor-mechanical-c-v1/door.closed.png";
 import extinguisherWall from "../../../../../../assets/game/processed/decor-mechanical-c-v1/extinguisher.wall.png";
 import lampDesk from "../../../../../../assets/game/processed/decor-mechanical-c-v1/lamp.desk.png";
 import papersStack from "../../../../../../assets/game/processed/decor-mechanical-c-v1/papers.stack.png";
@@ -57,6 +62,8 @@ const wall = (file: string, widthTiles: number, anchor: OfficeAnchor = "wall-top
 export const officeAssetRegistry: Record<string, OfficeAssetDefinition> = {
   "bookshelf.low": furniture(bookshelfLow, 3.2),
   "cabinet.filing": furniture(cabinetFiling, 1.45),
+  "chair.office.up": furniture(chairOffice, 1.25),
+  "chair.studio.up": furniture(chairStudio, 1.25),
   "counter.coffee": furniture(counterCoffee, 5),
   "desk.creative.up": furniture(deskCreative, 4.1),
   "desk.noc.up": furniture(deskNoc, 4.1),
@@ -65,6 +72,8 @@ export const officeAssetRegistry: Record<string, OfficeAssetDefinition> = {
   "table.mission": furniture(missionTable, 5.8),
   "pet-bed.round": furniture(petBed, 2.2),
   "sofa.sectional": furniture(sectionalSofa, 4.5),
+  "stool.lounge": furniture(stoolLounge, 1.05),
+  "table.coffee": furniture(tableCoffee, 2.3),
   "bin.waste": floorDecor(binWaste, 0.7),
   "box.parcel": floorDecor(boxParcel, 0.9),
   "cup.coffee": surfaceDecor(cupCoffee, 0.35, "table-surface"),
@@ -73,6 +82,7 @@ export const officeAssetRegistry: Record<string, OfficeAssetDefinition> = {
   "plant.small": floorDecor(plantSmall, 1.05),
   "plant.tall": floorDecor(plantTall, 1.35),
   "clock.wall": wall(clockWall, 1.05),
+  "door.closed": wall(doorClosed, 1.5, "wall-right"),
   "extinguisher.wall": wall(extinguisherWall, 0.65),
   "sign.exit": wall(signExit, 1.4),
   "camera.cctv": wall(cameraCctv, 0.95, "wall-right"),

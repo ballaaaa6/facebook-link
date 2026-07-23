@@ -18,16 +18,19 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "zone", "desk", "x", "y", "facing", "seat", "stand", "collision"],
+        "required": ["id", "zone", "desk", "chair", "x", "y", "facing", "seat", "approach", "stand", "navNode", "collision"],
         "properties": {
           "id": { "type": "string" },
           "zone": { "type": "string" },
           "desk": { "type": "string" },
+          "chair": { "type": "string" },
           "x": { "type": "number" },
           "y": { "type": "number" },
           "facing": { "enum": ["up", "down", "left", "right"] },
           "seat": { "$ref": "#/$defs/point" },
+          "approach": { "$ref": "#/$defs/point" },
           "stand": { "$ref": "#/$defs/point" },
+          "navNode": { "type": "string" },
           "collision": { "$ref": "#/$defs/rectangle" }
         },
         "additionalProperties": false

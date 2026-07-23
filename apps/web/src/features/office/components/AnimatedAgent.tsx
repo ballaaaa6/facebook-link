@@ -18,6 +18,7 @@ export function AnimatedAgent({ agentId, name, state = "working" }: { agentId: s
       className="agent-sprite"
       aria-label={`${name} ${state}`}
       data-character={character.sourceSlug}
+      data-state={state}
       style={{
         backgroundImage: `url(${character.sheet})`,
         backgroundPosition: `${(frame / 7) * 100}% ${(config.row / 8) * 100}%`,

@@ -16,18 +16,17 @@ export interface ResolvedOfficeObject extends OfficeMapObject {
   y: number;
 }
 
-const layerDepth: Record<OfficeLayer, number> = {
-  wall: 40,
-  furniture: 220,
-  equipment: 380,
-  decor: 440,
-};
+const layerOffset: Record<OfficeLayer, number> = { wall: 0, furniture: 0, equipment: 6, decor: 8 };
 
 export function WorldObject({ object, worldWidth, percentX, percentY, className = "" }: { object: ResolvedOfficeObject; worldWidth: number; percentX: (value: number) => string; percentY: (value: number) => string; className?: string }) {
   const asset = officeAssetRegistry[object.asset];
   if (!asset) return null;
 
   const anchor = object.anchor ?? asset.anchor;
+  const surfaceObject = asset.support === "desk-surface" || asset.support === "table-surface";
+  const zIndex = object.layer === "wall"
+    ? 40
+    : 100 + Math.round(object.y * 20) + layerOffset[object.layer] + (surfaceObject ? 6 : 0);
   return (
     <img
       className={`world-object world-object-${anchor} world-layer-${object.layer} world-support-${asset.support} ${className}`.trim()}
@@ -38,7 +37,7 @@ export function WorldObject({ object, worldWidth, percentX, percentY, className 
         left: percentX(object.x),
         top: percentY(object.y),
         width: `${(asset.widthTiles / worldWidth) * 100}%`,
-        zIndex: layerDepth[object.layer] + Math.round(object.y * 10),
+        zIndex,
       }}
     />
   );

@@ -9,7 +9,7 @@ import taffySheet from "../../../../../assets/game/characters/taffy-2/spriteshee
 import tianSheet from "../../../../../assets/game/characters/tian-zekun-2/spritesheet.webp";
 import yinyueSheet from "../../../../../assets/game/characters/yinyue-2/spritesheet.webp";
 
-export type CharacterState = "failed" | "idle" | "review" | "waiting" | "waving" | "working";
+export type CharacterState = "failed" | "idle" | "review" | "waiting" | "walk-left" | "walk-right" | "waving" | "working";
 
 export interface CharacterDefinition {
   sheet: string;
@@ -19,6 +19,8 @@ export interface CharacterDefinition {
 
 export const characterStates: Record<CharacterState, { row: number; frames: number; fps: number }> = {
   idle: { row: 0, frames: 6, fps: 4 },
+  "walk-right": { row: 1, frames: 8, fps: 9 },
+  "walk-left": { row: 2, frames: 8, fps: 9 },
   waving: { row: 3, frames: 4, fps: 5 },
   failed: { row: 5, frames: 8, fps: 6 },
   waiting: { row: 6, frames: 6, fps: 4 },
