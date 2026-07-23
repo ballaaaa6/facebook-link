@@ -65,7 +65,8 @@ export default {
       try {
         const brain = createBrainProvider("workers-ai", { runner: env.AI, model: env.BRAIN_MODEL ?? defaultWorkersAiModel });
         return json(await brain.respond(body));
-      } catch {
+      } catch (error) {
+        console.error("brain_provider_error", error instanceof Error ? error.message : "unknown provider error");
         return json({ error: "brain_unavailable" }, 503);
       }
     }
