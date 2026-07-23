@@ -35,54 +35,59 @@ import stationMultidevice from "../../../../../../assets/game/processed/equipmen
 import tabletDrawing from "../../../../../../assets/game/processed/equipment-c-v1/tablet.drawing.png";
 
 export type OfficeLayer = "wall" | "furniture" | "equipment" | "decor";
-export type OfficeAnchor = "center" | "bottom-center" | "wall-center";
+export type OfficeAnchor = "center" | "bottom-center" | "wall-top" | "wall-right";
+export type OfficeSupport = "floor" | "desk-surface" | "table-surface" | "wall" | "ceiling";
 
 export interface OfficeAssetDefinition {
   file: string;
   widthTiles: number;
   layer: OfficeLayer;
   anchor: OfficeAnchor;
+  support: OfficeSupport;
 }
 
-const furniture = (file: string, widthTiles: number): OfficeAssetDefinition => ({ file, widthTiles, layer: "furniture", anchor: "center" });
-const equipment = (file: string, widthTiles: number): OfficeAssetDefinition => ({ file, widthTiles, layer: "equipment", anchor: "bottom-center" });
-const decor = (file: string, widthTiles: number, anchor: OfficeAnchor = "center"): OfficeAssetDefinition => ({ file, widthTiles, layer: "decor", anchor });
-const wall = (file: string, widthTiles: number): OfficeAssetDefinition => ({ file, widthTiles, layer: "wall", anchor: "wall-center" });
+const asset = (file: string, widthTiles: number, layer: OfficeLayer, anchor: OfficeAnchor, support: OfficeSupport): OfficeAssetDefinition => ({ file, widthTiles, layer, anchor, support });
+const furniture = (file: string, widthTiles: number): OfficeAssetDefinition => asset(file, widthTiles, "furniture", "center", "floor");
+const floorEquipment = (file: string, widthTiles: number): OfficeAssetDefinition => asset(file, widthTiles, "equipment", "bottom-center", "floor");
+const deskEquipment = (file: string, widthTiles: number): OfficeAssetDefinition => asset(file, widthTiles, "equipment", "bottom-center", "desk-surface");
+const floorDecor = (file: string, widthTiles: number): OfficeAssetDefinition => asset(file, widthTiles, "decor", "bottom-center", "floor");
+const surfaceDecor = (file: string, widthTiles: number, support: OfficeSupport = "desk-surface"): OfficeAssetDefinition => asset(file, widthTiles, "decor", "bottom-center", support);
+const wall = (file: string, widthTiles: number, anchor: OfficeAnchor = "wall-top"): OfficeAssetDefinition => asset(file, widthTiles, "wall", anchor, "wall");
 
 export const officeAssetRegistry: Record<string, OfficeAssetDefinition> = {
-  "bookshelf.low": furniture(bookshelfLow, 3.8),
-  "cabinet.filing": furniture(cabinetFiling, 2.8),
-  "counter.coffee": furniture(counterCoffee, 5.6),
-  "desk.creative.up": furniture(deskCreative, 4.4),
-  "desk.noc.up": furniture(deskNoc, 4.4),
-  "desk.standard.up": furniture(deskStandard, 4.4),
-  "divider.planter": furniture(dividerPlanter, 3.4),
-  "table.mission": furniture(missionTable, 6.4),
-  "pet-bed.round": furniture(petBed, 2.8),
-  "sofa.sectional": furniture(sectionalSofa, 5.2),
-  "bin.waste": decor(binWaste, 1.2),
-  "box.parcel": decor(boxParcel, 1.4),
-  "cup.coffee": decor(cupCoffee, 0.9, "bottom-center"),
-  "lamp.desk": decor(lampDesk, 1.15, "bottom-center"),
-  "papers.stack": decor(papersStack, 1.2, "bottom-center"),
-  "plant.small": decor(plantSmall, 1.65, "bottom-center"),
-  "plant.tall": decor(plantTall, 2.2, "bottom-center"),
-  "clock.wall": wall(clockWall, 1.8),
-  "extinguisher.wall": wall(extinguisherWall, 1.2),
-  "sign.exit": wall(signExit, 2.1),
-  "camera.cctv": equipment(cameraCctv, 1.5),
-  "camera.tripod": equipment(cameraTripod, 1.8),
-  "dispenser.water": equipment(dispenserWater, 1.8),
-  "keyboard.mouse": equipment(keyboardMouse, 1.7),
-  "laptop.open": equipment(laptopOpen, 1.8),
-  "light.studio": equipment(lightStudio, 1.45),
-  "machine.coffee": equipment(machineCoffee, 1.8),
-  "monitor.dual.active": equipment(monitorDualActive, 2.5),
-  "monitor.front.active": equipment(monitorFrontActive, 1.9),
-  "network.stack": equipment(networkStack, 1.8),
-  "phone.preview": equipment(phonePreview, 1.1),
-  "printer.desktop": equipment(printerDesktop, 1.55),
-  "server.rack": equipment(serverRack, 2),
-  "station.multidevice": equipment(stationMultidevice, 2.5),
-  "tablet.drawing": equipment(tabletDrawing, 1.7),
+  "bookshelf.low": furniture(bookshelfLow, 3.2),
+  "cabinet.filing": furniture(cabinetFiling, 1.45),
+  "counter.coffee": furniture(counterCoffee, 5),
+  "desk.creative.up": furniture(deskCreative, 4.1),
+  "desk.noc.up": furniture(deskNoc, 4.1),
+  "desk.standard.up": furniture(deskStandard, 4.1),
+  "divider.planter": furniture(dividerPlanter, 3),
+  "table.mission": furniture(missionTable, 5.8),
+  "pet-bed.round": furniture(petBed, 2.2),
+  "sofa.sectional": furniture(sectionalSofa, 4.5),
+  "bin.waste": floorDecor(binWaste, 0.7),
+  "box.parcel": floorDecor(boxParcel, 0.9),
+  "cup.coffee": surfaceDecor(cupCoffee, 0.35, "table-surface"),
+  "lamp.desk": surfaceDecor(lampDesk, 0.65),
+  "papers.stack": surfaceDecor(papersStack, 0.8, "table-surface"),
+  "plant.small": floorDecor(plantSmall, 1.05),
+  "plant.tall": floorDecor(plantTall, 1.35),
+  "clock.wall": wall(clockWall, 1.05),
+  "extinguisher.wall": wall(extinguisherWall, 0.65),
+  "sign.exit": wall(signExit, 1.4),
+  "camera.cctv": wall(cameraCctv, 0.95, "wall-right"),
+  "camera.tripod": floorEquipment(cameraTripod, 0.9),
+  "dispenser.water": floorEquipment(dispenserWater, 0.85),
+  "keyboard.mouse": deskEquipment(keyboardMouse, 0.95),
+  "laptop.open": deskEquipment(laptopOpen, 1.1),
+  "light.studio": floorEquipment(lightStudio, 0.8),
+  "machine.coffee": deskEquipment(machineCoffee, 0.9),
+  "monitor.dual.active": deskEquipment(monitorDualActive, 1.8),
+  "monitor.front.active": deskEquipment(monitorFrontActive, 1.35),
+  "network.stack": floorEquipment(networkStack, 1.15),
+  "phone.preview": deskEquipment(phonePreview, 0.6),
+  "printer.desktop": deskEquipment(printerDesktop, 1),
+  "server.rack": floorEquipment(serverRack, 1.8),
+  "station.multidevice": deskEquipment(stationMultidevice, 1.8),
+  "tablet.drawing": deskEquipment(tabletDrawing, 1.05),
 };

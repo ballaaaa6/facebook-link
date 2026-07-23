@@ -27,14 +27,14 @@ export const characterStates: Record<CharacterState, { row: number; frames: numb
 };
 
 export const characterRegistry: Record<string, CharacterDefinition> = {
-  "market-scout": { sheet: noirWeblingSheet, sourceSlug: "noir-webling", scale: 0.58 },
-  "product-ranker": { sheet: einsteinSheet, sourceSlug: "einstein", scale: 0.58 },
-  "growth-strategist": { sheet: abgSheet, sourceSlug: "abg", scale: 0.58 },
-  "performance-analyst": { sheet: tianSheet, sourceSlug: "tian-zekun-2", scale: 0.58 },
-  "gemini-copywriter": { sheet: yinyueSheet, sourceSlug: "yinyue-2", scale: 0.58 },
-  "flow-visual-producer": { sheet: taffySheet, sourceSlug: "taffy-2", scale: 0.58 },
-  "link-attribution": { sheet: doraemonSheet, sourceSlug: "doraemon", scale: 0.58 },
-  "qa-editor": { sheet: remSheet, sourceSlug: "rem-xl", scale: 0.58 },
-  publisher: { sheet: luffySheet, sourceSlug: "luffy", scale: 0.58 },
-  "session-keeper": { sheet: gundamSheet, sourceSlug: "rx-78-2-gundam", scale: 0.58 },
+  "market-scout": { sheet: noirWeblingSheet, sourceSlug: "noir-webling", scale: 0.72 },
+  "product-ranker": { sheet: einsteinSheet, sourceSlug: "einstein", scale: 0.7 },
+  "growth-strategist": { sheet: abgSheet, sourceSlug: "abg", scale: 0.75 },
+  "performance-analyst": { sheet: tianSheet, sourceSlug: "tian-zekun-2", scale: 0.75 },
+  "gemini-copywriter": { sheet: yinyueSheet, sourceSlug: "yinyue-2", scale: 0.73 },
+  "flow-visual-producer": { sheet: taffySheet, sourceSlug: "taffy-2", scale: 0.72 },
+  "link-attribution": { sheet: doraemonSheet, sourceSlug: "doraemon", scale: 0.7 },
+  "qa-editor": { sheet: remSheet, sourceSlug: "rem-xl", scale: 0.75 },
+  publisher: { sheet: luffySheet, sourceSlug: "luffy", scale: 0.73 },
+  "session-keeper": { sheet: gundamSheet, sourceSlug: "rx-78-2-gundam", scale: 0.68 },
 };

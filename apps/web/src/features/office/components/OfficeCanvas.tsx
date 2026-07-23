@@ -4,9 +4,37 @@ import { StatusDot } from "../../../shared/components/StatusDot";
 import { agents } from "../../../shared/data/agents";
 import { officeAssetRegistry } from "./officeAssetRegistry";
 import { AnimatedAgent } from "./AnimatedAgent";
-import { WorldObject, type OfficeMapObject } from "./WorldObject";
+import { WorldObject, type OfficeMapObject, type ResolvedOfficeObject } from "./WorldObject";
 
 const mapObjects = officeMap.objects as OfficeMapObject[];
+const attachmentSlots: Record<string, { x: number; y: number }> = {
+  "desk-rear-center": { x: 0, y: -0.22 },
+  "desk-rear-left": { x: -0.72, y: -0.18 },
+  "desk-rear-right": { x: 0.72, y: -0.18 },
+  "desk-front-center": { x: 0, y: 0.26 },
+  "desk-front-left": { x: -0.72, y: 0.18 },
+  "desk-front-right": { x: 0.72, y: 0.18 },
+  "table-left": { x: -0.9, y: -0.12 },
+  "table-right": { x: 0.9, y: -0.12 },
+  "counter-left": { x: -0.9, y: -0.1 },
+  "counter-right": { x: 0.9, y: -0.1 },
+};
+
+const parentPositions = new Map<string, { x: number; y: number }>([
+  ...officeMap.workstations.map((station) => [station.id, { x: station.x, y: station.y }] as const),
+  ...mapObjects.flatMap((object) => typeof object.x === "number" && typeof object.y === "number" ? [[object.id, { x: object.x, y: object.y }] as const] : []),
+]);
+
+const resolvedMapObjects = mapObjects.flatMap((object): ResolvedOfficeObject[] => {
+  if (object.parentId) {
+    const parent = parentPositions.get(object.parentId);
+    const offset = object.slot ? attachmentSlots[object.slot] : undefined;
+    if (!parent || !offset) return [];
+    return [{ ...object, x: parent.x + offset.x, y: parent.y + offset.y }];
+  }
+  if (typeof object.x !== "number" || typeof object.y !== "number") return [];
+  return [{ ...object, x: object.x, y: object.y }];
+});
 
 export function OfficeCanvas({ selectedId, onSelect }: { selectedId: string; onSelect: (id: string) => void }) {
   const percentX = (x: number) => `${(x / officeMap.width) * 100}%`;
@@ -16,7 +44,7 @@ export function OfficeCanvas({ selectedId, onSelect }: { selectedId: string; onS
     <div className="office-frame">
       <div className="office-world" aria-label="Warm pixel operations office">
         <div className="window-row" aria-hidden="true"><span /><span /><span /><span /></div>
-        {mapObjects.map((object) => <WorldObject key={object.id} object={object} worldWidth={officeMap.width} percentX={percentX} percentY={percentY} />)}
+        {resolvedMapObjects.map((object) => <WorldObject key={object.id} object={object} worldWidth={officeMap.width} percentX={percentX} percentY={percentY} />)}
         {officeMap.workstations.map((station) => {
           const agent = agents.find((item) => item.id === station.id);
           const desk = officeAssetRegistry[station.desk];

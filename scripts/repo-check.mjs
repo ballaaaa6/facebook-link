@@ -77,15 +77,31 @@ if (officeMap.workstations.length !== agents.length) failures.push("Office map m
 if (Object.keys(characterRegistry.agents).length !== agents.length) failures.push("Character registry must provide one character per pilot agent");
 if (!Array.isArray(officeMap.objects) || officeMap.objects.length < 20) failures.push("Office map must provide a populated objects layer");
 const officeObjectIds = new Set();
+const officeParentIds = new Set([
+  ...officeMap.workstations.map((station) => station.id),
+  ...(officeMap.objects ?? []).filter((object) => Number.isFinite(object.x) && Number.isFinite(object.y)).map((object) => object.id),
+]);
+const officeAttachmentSlots = new Set([
+  "desk-rear-center", "desk-rear-left", "desk-rear-right",
+  "desk-front-center", "desk-front-left", "desk-front-right",
+  "table-left", "table-right", "counter-left", "counter-right",
+]);
 for (const object of officeMap.objects ?? []) {
   if (officeObjectIds.has(object.id)) failures.push(`Duplicate office object ID: ${object.id}`);
   officeObjectIds.add(object.id);
   if (!officeAssetIds.has(object.asset)) failures.push(`Unknown office object asset: ${object.asset}`);
   if (!["wall", "furniture", "equipment", "decor"].includes(object.layer)) failures.push(`Invalid office object layer: ${object.id}`);
-  if (!["center", "bottom-center", "wall-center"].includes(object.anchor)) failures.push(`Invalid office object anchor: ${object.id}`);
-  if (object.x < 0 || object.x > officeMap.width || object.y < 0 || object.y > officeMap.height) {
+  if (!["center", "bottom-center", "wall-top", "wall-right"].includes(object.anchor)) failures.push(`Invalid office object anchor: ${object.id}`);
+  const hasPosition = Number.isFinite(object.x) && Number.isFinite(object.y);
+  const hasAttachment = typeof object.parentId === "string" && typeof object.slot === "string";
+  if (hasPosition === hasAttachment) failures.push(`Office object must use either coordinates or an attachment: ${object.id}`);
+  if (hasAttachment && !officeParentIds.has(object.parentId)) failures.push(`Unknown office object parent: ${object.id}`);
+  if (hasAttachment && !officeAttachmentSlots.has(object.slot)) failures.push(`Unknown office object slot: ${object.id}`);
+  if (hasPosition && (object.x < 0 || object.x > officeMap.width || object.y < 0 || object.y > officeMap.height)) {
     failures.push(`Office object outside map bounds: ${object.id}`);
   }
+  if (object.anchor === "wall-top" && (!hasPosition || object.y > 2.4)) failures.push(`Top-wall object is not attached to the wall: ${object.id}`);
+  if (object.anchor === "wall-right" && (!hasPosition || object.x < officeMap.width - 1.5)) failures.push(`Right-wall object is not attached to the wall: ${object.id}`);
 }
 for (const station of officeMap.workstations) {
   if (!agentIds.has(station.id)) failures.push(`Unknown office workstation agent: ${station.id}`);

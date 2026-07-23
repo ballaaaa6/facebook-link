@@ -54,14 +54,20 @@
     },
     "object": {
       "type": "object",
-      "required": ["id", "asset", "x", "y", "layer", "anchor"],
+      "required": ["id", "asset", "layer", "anchor"],
+      "oneOf": [
+        { "required": ["x", "y"] },
+        { "required": ["parentId", "slot"] }
+      ],
       "properties": {
         "id": { "type": "string" },
         "asset": { "type": "string" },
         "x": { "type": "number" },
         "y": { "type": "number" },
+        "parentId": { "type": "string" },
+        "slot": { "type": "string" },
         "layer": { "enum": ["wall", "furniture", "equipment", "decor"] },
-        "anchor": { "enum": ["center", "bottom-center", "wall-center"] }
+        "anchor": { "enum": ["center", "bottom-center", "wall-top", "wall-right"] }
       },
       "additionalProperties": false
     }

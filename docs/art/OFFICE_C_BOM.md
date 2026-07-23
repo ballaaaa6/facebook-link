@@ -32,7 +32,9 @@ Only assets referenced by `assets/game/maps/office-c-v1.json` are rendered for t
 
 ## Rendered Scene Layers
 
-The map's `objects` array is the source of truth for the visible office scene. Each object has a logical grid position, a rendering layer, and an anchor. The web renderer resolves its image and tile width through the office asset registry so furniture, equipment, and decor keep one scale across responsive viewports.
+The map's `objects` array is the source of truth for the visible office scene. Each object has either a logical grid position or a parent/slot attachment, plus a rendering layer and anchor. The web renderer resolves image scale and physical support (`floor`, `wall`, `desk-surface`, or `table-surface`) through the office asset registry so furniture, equipment, decor, and characters keep believable proportions across responsive viewports.
+
+Desk equipment must attach to its workstation rather than duplicate the desk coordinates. Wall equipment must use a wall anchor, and floor props must use a bottom contact point. Storage props stay at zone edges so the central mission and walking lanes remain clear.
 
 ## Code-Generated Assets
 

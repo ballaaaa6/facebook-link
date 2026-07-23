@@ -3,10 +3,17 @@ import { officeAssetRegistry, type OfficeAnchor, type OfficeLayer } from "./offi
 export interface OfficeMapObject {
   id: string;
   asset: string;
-  x: number;
-  y: number;
+  x?: number;
+  y?: number;
+  parentId?: string;
+  slot?: string;
   layer: OfficeLayer;
   anchor: OfficeAnchor;
+}
+
+export interface ResolvedOfficeObject extends OfficeMapObject {
+  x: number;
+  y: number;
 }
 
 const layerDepth: Record<OfficeLayer, number> = {
@@ -16,14 +23,14 @@ const layerDepth: Record<OfficeLayer, number> = {
   decor: 440,
 };
 
-export function WorldObject({ object, worldWidth, percentX, percentY, className = "" }: { object: OfficeMapObject; worldWidth: number; percentX: (value: number) => string; percentY: (value: number) => string; className?: string }) {
+export function WorldObject({ object, worldWidth, percentX, percentY, className = "" }: { object: ResolvedOfficeObject; worldWidth: number; percentX: (value: number) => string; percentY: (value: number) => string; className?: string }) {
   const asset = officeAssetRegistry[object.asset];
   if (!asset) return null;
 
   const anchor = object.anchor ?? asset.anchor;
   return (
     <img
-      className={`world-object world-object-${anchor} world-layer-${object.layer} ${className}`.trim()}
+      className={`world-object world-object-${anchor} world-layer-${object.layer} world-support-${asset.support} ${className}`.trim()}
       src={asset.file}
       alt=""
       aria-hidden="true"
