@@ -1,5 +1,8 @@
 # Agent Office
 
+The active spatial, facility-reservation, asset-addition, and layout delivery
+plan is documented in `docs/OFFICE_LAYOUT_REWORK_PLAN.md`.
+
 ## Purpose
 
 The Office is an operational read surface for workflow, agent-run, approval, connector, and runner state. It is not a second orchestration engine. The backend owns durable state; the web application maps that state onto the approved office layout.
