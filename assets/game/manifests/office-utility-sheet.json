@@ -1,0 +1,26 @@
+{
+  "id": "office-utility-c-v1",
+  "theme": "warm-studio",
+  "sourceConcept": "../../art/style-concepts/office-concept-c-warm-studio.png",
+  "backgroundKey": "none",
+  "rows": 4,
+  "columns": 4,
+  "cells": [
+    { "row": 0, "column": 0, "id": "chair.meeting" },
+    { "row": 0, "column": 1, "id": "chair.lounge" },
+    { "row": 0, "column": 2, "id": "refrigerator" },
+    { "row": 0, "column": 3, "id": "microwave" },
+    { "row": 1, "column": 0, "id": "sink" },
+    { "row": 1, "column": 1, "id": "pantry.shelf" },
+    { "row": 1, "column": 2, "id": "locker" },
+    { "row": 1, "column": 3, "id": "coat.rack" },
+    { "row": 2, "column": 0, "id": "whiteboard" },
+    { "row": 2, "column": 1, "id": "display.screen" },
+    { "row": 2, "column": 2, "id": "recycle.bin" },
+    { "row": 2, "column": 3, "id": "first.aid" },
+    { "row": 3, "column": 0, "id": "smoke.detector" },
+    { "row": 3, "column": 1, "id": "emergency.light" },
+    { "row": 3, "column": 2, "id": "ups" },
+    { "row": 3, "column": 3, "id": "cable.tray" }
+  ]
+}

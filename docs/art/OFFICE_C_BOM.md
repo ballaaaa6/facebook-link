@@ -13,11 +13,19 @@ Only assets referenced by `assets/game/maps/office-c-v1.json` are rendered for t
 | NOC desk, up-facing | 1 | Uses multi-monitor and network overlays. |
 | Office chair, up-facing | 10 | Seat point and foreground mask are shared. |
 | Mission table | 1 | Central handoff and review location. |
+| Meeting chair | 4 | Added around the mission table for handoff reviews. |
 | Sectional sofa | 1 | Lounge idle location. |
+| Lounge chair | 2 | Extends the lounge to five or more physical seats. |
 | Coffee counter | 1 | Shared interaction point. |
 | Low bookshelf | 4 | Zone boundaries and visual storage. |
-| Filing cabinet | 3 | Research, release, and NOC storage. |
+| Filing cabinet | 3 | Research, creative, and NOC storage. |
 | Planter divider | 4 | Soft zone separation without walls. |
+| Staff locker | 1 | Shared personal storage at the lounge entrance. |
+| Coat rack | 1 | Bags and outerwear by the entrance. |
+| Refrigerator | 1 | Pantry cold storage. |
+| Microwave | 1 | Pantry reheating point. |
+| Sink | 1 | Pantry cleanup point. |
+| Pantry shelf | 1 | Dry goods and cups. |
 | Round pet bed | 1 | Mascot idle location. |
 
 ## Equipment Overlay Targets
@@ -29,6 +37,9 @@ Only assets referenced by `assets/game/maps/office-c-v1.json` are rendered for t
 - Multi-device publishing preview station (1).
 - NOC multi-monitor console (1).
 - Server racks, network stack, printer, coffee machine, water dispenser, CCTV, and studio light.
+- UPS and cable trays for the NOC and publishing workstation.
+- Whiteboard and wall display for mission review.
+- First-aid kit, smoke detectors, and emergency lights.
 
 ## Rendered Scene Layers
 
@@ -41,3 +52,7 @@ Desk equipment must attach to its workstation rather than duplicate the desk coo
 - Floors, walls, rugs, glass partitions, collision geometry, and simple shadows.
 - Monitor content, charts, task status, server LEDs, alert glow, coffee steam, and camera rotation.
 - Theme A/B palette maps, lighting overlays, and UI color tokens.
+
+## Utility Additions
+
+The office utility sheet is a deterministic SVG asset batch for small, geometry-simple objects that do not require another raster generation pass. It adds meeting seating, pantry appliances, storage, presentation surfaces, recycling, and safety equipment while keeping the same warm-studio palette.

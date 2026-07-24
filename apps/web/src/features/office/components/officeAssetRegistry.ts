@@ -38,6 +38,22 @@ import printerDesktop from "../../../../../../assets/game/processed/equipment-c-
 import serverRack from "../../../../../../assets/game/processed/equipment-c-v1/server.rack.png";
 import stationMultidevice from "../../../../../../assets/game/processed/equipment-c-v1/station.multidevice.png";
 import tabletDrawing from "../../../../../../assets/game/processed/equipment-c-v1/tablet.drawing.png";
+import chairMeeting from "../../../../../../assets/game/processed/office-utility-c-v1/chair.meeting.svg";
+import chairLounge from "../../../../../../assets/game/processed/office-utility-c-v1/chair.lounge.svg";
+import refrigerator from "../../../../../../assets/game/processed/office-utility-c-v1/refrigerator.svg";
+import microwave from "../../../../../../assets/game/processed/office-utility-c-v1/microwave.svg";
+import sink from "../../../../../../assets/game/processed/office-utility-c-v1/sink.svg";
+import pantryShelf from "../../../../../../assets/game/processed/office-utility-c-v1/pantry.shelf.svg";
+import locker from "../../../../../../assets/game/processed/office-utility-c-v1/locker.svg";
+import coatRack from "../../../../../../assets/game/processed/office-utility-c-v1/coat.rack.svg";
+import whiteboard from "../../../../../../assets/game/processed/office-utility-c-v1/whiteboard.svg";
+import displayScreen from "../../../../../../assets/game/processed/office-utility-c-v1/display.screen.svg";
+import recycleBin from "../../../../../../assets/game/processed/office-utility-c-v1/recycle.bin.svg";
+import firstAid from "../../../../../../assets/game/processed/office-utility-c-v1/first.aid.svg";
+import smokeDetector from "../../../../../../assets/game/processed/office-utility-c-v1/smoke.detector.svg";
+import emergencyLight from "../../../../../../assets/game/processed/office-utility-c-v1/emergency.light.svg";
+import ups from "../../../../../../assets/game/processed/office-utility-c-v1/ups.svg";
+import cableTray from "../../../../../../assets/game/processed/office-utility-c-v1/cable.tray.svg";
 
 export type OfficeLayer = "wall" | "furniture" | "equipment" | "decor";
 export type OfficeAnchor = "center" | "bottom-center" | "wall-top" | "wall-right";
@@ -74,7 +90,16 @@ export const officeAssetRegistry: Record<string, OfficeAssetDefinition> = {
   "sofa.sectional": furniture(sectionalSofa, 4.5),
   "stool.lounge": furniture(stoolLounge, 1.05),
   "table.coffee": furniture(tableCoffee, 2.3),
+  "chair.meeting": furniture(chairMeeting, 1.35),
+  "chair.lounge": furniture(chairLounge, 1.65),
+  "refrigerator": furniture(refrigerator, 1.55),
+  "microwave": furniture(microwave, 1.55),
+  "sink": furniture(sink, 1.8),
+  "pantry.shelf": furniture(pantryShelf, 1.65),
+  "locker": furniture(locker, 2.1),
+  "coat.rack": furniture(coatRack, 1.35),
   "bin.waste": floorDecor(binWaste, 0.7),
+  "recycle.bin": floorDecor(recycleBin, 0.7),
   "box.parcel": floorDecor(boxParcel, 0.9),
   "cup.coffee": surfaceDecor(cupCoffee, 0.35, "table-surface"),
   "lamp.desk": surfaceDecor(lampDesk, 0.65),
@@ -85,6 +110,11 @@ export const officeAssetRegistry: Record<string, OfficeAssetDefinition> = {
   "door.closed": wall(doorClosed, 1.5, "wall-right"),
   "extinguisher.wall": wall(extinguisherWall, 0.65),
   "sign.exit": wall(signExit, 1.4),
+  "whiteboard": wall(whiteboard, 3.8),
+  "display.screen": wall(displayScreen, 3.8),
+  "first.aid": wall(firstAid, 1.05),
+  "smoke.detector": wall(smokeDetector, 0.75),
+  "emergency.light": wall(emergencyLight, 1.25),
   "camera.cctv": wall(cameraCctv, 0.95, "wall-right"),
   "camera.tripod": floorEquipment(cameraTripod, 0.9),
   "dispenser.water": floorEquipment(dispenserWater, 0.85),
@@ -98,6 +128,8 @@ export const officeAssetRegistry: Record<string, OfficeAssetDefinition> = {
   "phone.preview": deskEquipment(phonePreview, 0.6),
   "printer.desktop": deskEquipment(printerDesktop, 1),
   "server.rack": floorEquipment(serverRack, 1.8),
+  "ups": floorEquipment(ups, 1.1),
+  "cable.tray": deskEquipment(cableTray, 1.1),
   "station.multidevice": deskEquipment(stationMultidevice, 1.8),
   "tablet.drawing": deskEquipment(tabletDrawing, 1.05),
 };

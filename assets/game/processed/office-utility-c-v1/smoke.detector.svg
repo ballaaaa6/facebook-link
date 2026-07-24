@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <g shape-rendering="crispEdges">
+    <circle cx="64" cy="64" r="44" fill="#e7ece7" stroke="#637078" stroke-width="6"/>
+    <circle cx="64" cy="64" r="11" fill="#d56b58"/>
+    <path d="M35 48h18M75 48h18M35 80h18M75 80h18" stroke="#a8b7ae" stroke-width="5"/>
+  </g>
+</svg>

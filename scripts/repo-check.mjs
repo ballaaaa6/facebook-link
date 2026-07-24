@@ -69,7 +69,7 @@ const officeMap = JSON.parse(readFileSync(join(root, "assets/game/maps/office-c-
 const characterRegistry = JSON.parse(readFileSync(join(root, "assets/game/characters/registry.json"), "utf8"));
 const agentIds = new Set(agents.map((agent) => agent.id));
 const officeAssetIds = new Set(
-  ["core-furniture-sheet.json", "decor-mechanical-sheet.json", "equipment-sheet.json"]
+  ["core-furniture-sheet.json", "decor-mechanical-sheet.json", "equipment-sheet.json", "office-utility-sheet.json"]
     .flatMap((manifest) => JSON.parse(readFileSync(join(root, "assets/game/manifests", manifest), "utf8")).cells)
     .map((cell) => cell.id),
 );

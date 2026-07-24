@@ -1,0 +1,30 @@
+{
+  "sheetId": "office-utility-c-v1",
+  "source": "assets/game/processed/office-utility-c-v1",
+  "sourceSize": [128, 128],
+  "grid": [4, 4],
+  "summary": {
+    "total": 16,
+    "passed": 16,
+    "warned": 0,
+    "failed": 0
+  },
+  "assets": [
+    { "id": "chair.meeting", "status": "passed", "file": "assets/game/processed/office-utility-c-v1/chair.meeting.svg" },
+    { "id": "chair.lounge", "status": "passed", "file": "assets/game/processed/office-utility-c-v1/chair.lounge.svg" },
+    { "id": "refrigerator", "status": "passed", "file": "assets/game/processed/office-utility-c-v1/refrigerator.svg" },
+    { "id": "microwave", "status": "passed", "file": "assets/game/processed/office-utility-c-v1/microwave.svg" },
+    { "id": "sink", "status": "passed", "file": "assets/game/processed/office-utility-c-v1/sink.svg" },
+    { "id": "pantry.shelf", "status": "passed", "file": "assets/game/processed/office-utility-c-v1/pantry.shelf.svg" },
+    { "id": "locker", "status": "passed", "file": "assets/game/processed/office-utility-c-v1/locker.svg" },
+    { "id": "coat.rack", "status": "passed", "file": "assets/game/processed/office-utility-c-v1/coat.rack.svg" },
+    { "id": "whiteboard", "status": "passed", "file": "assets/game/processed/office-utility-c-v1/whiteboard.svg" },
+    { "id": "display.screen", "status": "passed", "file": "assets/game/processed/office-utility-c-v1/display.screen.svg" },
+    { "id": "recycle.bin", "status": "passed", "file": "assets/game/processed/office-utility-c-v1/recycle.bin.svg" },
+    { "id": "first.aid", "status": "passed", "file": "assets/game/processed/office-utility-c-v1/first.aid.svg" },
+    { "id": "smoke.detector", "status": "passed", "file": "assets/game/processed/office-utility-c-v1/smoke.detector.svg" },
+    { "id": "emergency.light", "status": "passed", "file": "assets/game/processed/office-utility-c-v1/emergency.light.svg" },
+    { "id": "ups", "status": "passed", "file": "assets/game/processed/office-utility-c-v1/ups.svg" },
+    { "id": "cable.tray", "status": "passed", "file": "assets/game/processed/office-utility-c-v1/cable.tray.svg" }
+  ]
+}
