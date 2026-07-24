@@ -1,17 +1,18 @@
 import bookshelfLow from "../../../../../../assets/game/processed/core-furniture-c-v1/bookshelf.low.png";
 import cabinetFiling from "../../../../../../assets/game/processed/core-furniture-c-v1/cabinet.filing.png";
 import chairOffice from "../../../../../../assets/game/processed/core-furniture-c-v1/chair.office.up.png";
+import chairOfficeSide from "../../../../../../assets/game/processed/core-furniture-c-v1/chair.office.side.png";
 import chairStudio from "../../../../../../assets/game/processed/core-furniture-c-v1/chair.studio.up.png";
 import counterCoffee from "../../../../../../assets/game/processed/core-furniture-c-v1/counter.coffee.png";
 import deskCreative from "../../../../../../assets/game/processed/core-furniture-c-v1/desk.creative.up.png";
 import deskNoc from "../../../../../../assets/game/processed/core-furniture-c-v1/desk.noc.up.png";
 import deskStandard from "../../../../../../assets/game/processed/core-furniture-c-v1/desk.standard.up.png";
 import dividerPlanter from "../../../../../../assets/game/processed/core-furniture-c-v1/divider.planter.png";
-import missionTable from "../../../../../../assets/game/processed/core-furniture-c-v1/table.mission.png";
 import petBed from "../../../../../../assets/game/processed/core-furniture-c-v1/pet-bed.round.png";
 import sectionalSofa from "../../../../../../assets/game/processed/core-furniture-c-v1/sofa.sectional.png";
 import stoolLounge from "../../../../../../assets/game/processed/core-furniture-c-v1/stool.lounge.png";
 import tableCoffee from "../../../../../../assets/game/processed/core-furniture-c-v1/table.coffee.png";
+import meetingTableEmpty from "../../../../../../assets/game/processed/core-furniture-c-v2/table.meeting.empty.png";
 import binWaste from "../../../../../../assets/game/processed/decor-mechanical-c-v1/bin.waste.png";
 import boxParcel from "../../../../../../assets/game/processed/decor-mechanical-c-v1/box.parcel.png";
 import clockWall from "../../../../../../assets/game/processed/decor-mechanical-c-v1/clock.wall.png";
@@ -38,22 +39,6 @@ import printerDesktop from "../../../../../../assets/game/processed/equipment-c-
 import serverRack from "../../../../../../assets/game/processed/equipment-c-v1/server.rack.png";
 import stationMultidevice from "../../../../../../assets/game/processed/equipment-c-v1/station.multidevice.png";
 import tabletDrawing from "../../../../../../assets/game/processed/equipment-c-v1/tablet.drawing.png";
-import chairMeeting from "../../../../../../assets/game/processed/office-utility-c-v1/chair.meeting.svg";
-import chairLounge from "../../../../../../assets/game/processed/office-utility-c-v1/chair.lounge.svg";
-import refrigerator from "../../../../../../assets/game/processed/office-utility-c-v1/refrigerator.svg";
-import microwave from "../../../../../../assets/game/processed/office-utility-c-v1/microwave.svg";
-import sink from "../../../../../../assets/game/processed/office-utility-c-v1/sink.svg";
-import pantryShelf from "../../../../../../assets/game/processed/office-utility-c-v1/pantry.shelf.svg";
-import locker from "../../../../../../assets/game/processed/office-utility-c-v1/locker.svg";
-import coatRack from "../../../../../../assets/game/processed/office-utility-c-v1/coat.rack.svg";
-import whiteboard from "../../../../../../assets/game/processed/office-utility-c-v1/whiteboard.svg";
-import displayScreen from "../../../../../../assets/game/processed/office-utility-c-v1/display.screen.svg";
-import recycleBin from "../../../../../../assets/game/processed/office-utility-c-v1/recycle.bin.svg";
-import firstAid from "../../../../../../assets/game/processed/office-utility-c-v1/first.aid.svg";
-import smokeDetector from "../../../../../../assets/game/processed/office-utility-c-v1/smoke.detector.svg";
-import emergencyLight from "../../../../../../assets/game/processed/office-utility-c-v1/emergency.light.svg";
-import ups from "../../../../../../assets/game/processed/office-utility-c-v1/ups.svg";
-import cableTray from "../../../../../../assets/game/processed/office-utility-c-v1/cable.tray.svg";
 import officeAssetGeometryJson from "../../../../../../assets/game/manifests/office-assets.json";
 import type { OfficeAnchor, OfficeLayer, OfficeSupport } from "../officeTypes";
 
@@ -101,27 +86,19 @@ const assetFiles: Record<string, string> = {
   "bookshelf.low": bookshelfLow,
   "cabinet.filing": cabinetFiling,
   "chair.office.up": chairOffice,
+  "chair.office.side": chairOfficeSide,
   "chair.studio.up": chairStudio,
   "counter.coffee": counterCoffee,
   "desk.creative.up": deskCreative,
   "desk.noc.up": deskNoc,
   "desk.standard.up": deskStandard,
   "divider.planter": dividerPlanter,
-  "table.mission": missionTable,
+  "table.meeting.empty": meetingTableEmpty,
   "pet-bed.round": petBed,
   "sofa.sectional": sectionalSofa,
   "stool.lounge": stoolLounge,
   "table.coffee": tableCoffee,
-  "chair.meeting": chairMeeting,
-  "chair.lounge": chairLounge,
-  refrigerator,
-  microwave,
-  sink,
-  "pantry.shelf": pantryShelf,
-  locker,
-  "coat.rack": coatRack,
   "bin.waste": binWaste,
-  "recycle.bin": recycleBin,
   "box.parcel": boxParcel,
   "cup.coffee": cupCoffee,
   "lamp.desk": lampDesk,
@@ -132,11 +109,6 @@ const assetFiles: Record<string, string> = {
   "door.closed": doorClosed,
   "extinguisher.wall": extinguisherWall,
   "sign.exit": signExit,
-  whiteboard,
-  "display.screen": displayScreen,
-  "first.aid": firstAid,
-  "smoke.detector": smokeDetector,
-  "emergency.light": emergencyLight,
   "camera.cctv": cameraCctv,
   "camera.tripod": cameraTripod,
   "dispenser.water": dispenserWater,
@@ -150,8 +122,6 @@ const assetFiles: Record<string, string> = {
   "phone.preview": phonePreview,
   "printer.desktop": printerDesktop,
   "server.rack": serverRack,
-  ups,
-  "cable.tray": cableTray,
   "station.multidevice": stationMultidevice,
   "tablet.drawing": tabletDrawing,
 };

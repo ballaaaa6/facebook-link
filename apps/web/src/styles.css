@@ -143,7 +143,7 @@ h2 { font-size: var(--font-xl); }
 .metric-strip span, .metric-strip small { display: block; color: var(--muted); font-size: var(--font-sm); }
 .metric-strip strong { display: inline-block; margin: 5px 8px 3px 0; color: var(--ink); font-size: 24px; }
 
-.workspace-grid { display: grid; grid-template-columns: 1fr; gap: 20px; align-items: start; }
+.workspace-grid { display: grid; grid-template-columns: minmax(600px, 1fr) minmax(320px, 370px); gap: 20px; align-items: start; }
 .office-card, .task-panel { border: 1px solid var(--line); border-radius: 22px; background: rgba(255,253,247,.86); box-shadow: var(--shadow); }
 .office-card { min-width: 0; padding: 18px; overflow: hidden; }
 .office-feed-bar {
@@ -214,6 +214,9 @@ h2 { font-size: var(--font-xl); }
   pointer-events: auto;
   transition: filter .16s ease;
 }
+.agent-entity.is-at-desk {
+  transform: translate(-50%, calc(-100% - var(--tile-size) * 1.5));
+}
 .agent-entity::after {
   position: absolute;
   z-index: -1;
@@ -231,7 +234,11 @@ h2 { font-size: var(--font-xl); }
 }
 .agent-entity:hover::after, .agent-entity.is-selected::after { border-color: #ffe28a; background: rgba(255,226,138,.25); box-shadow: 0 0 0 3px rgba(35,67,57,.2); }
 .agent-entity.is-seated::after { opacity: 0; }
-.agent-entity.is-seated .agent-sprite { transform: none; }
+.agent-entity.is-seated .agent-sprite {
+  clip-path: inset(0 0 10% 0);
+  transform: none;
+}
+.agent-entity.is-at-desk .agent-sprite { transform: none; }
 .agent-callout-anchor {
   position: absolute;
   top: 24%;
@@ -350,13 +357,6 @@ h2 { font-size: var(--font-xl); }
 .status-blocked, .status-failed { background: #c46355; }
 .status-offline, .status-stale { background: #9a6c67; }
 .status-completed { background: #4c8f7b; }
-.petdex-mascot { position: absolute; width: calc(var(--tile-size) * 1.5); height: calc(var(--tile-size) * 1.625); background-repeat: no-repeat; background-size: 800% 1100%; image-rendering: auto; transform: translate(-50%,-100%); transform-origin: center bottom; filter: drop-shadow(0 2px 1px rgba(47,38,25,.14)); animation: companion-idle 1.5s steps(6) infinite; }
-@keyframes companion-idle { from { background-position: 0 0; } to { background-position: 85.714% 0; } }
-
-@media (prefers-reduced-motion: reduce) {
-  .petdex-mascot { animation: none; }
-}
-
 .task-panel { display: grid; grid-template-columns: minmax(260px,.75fr) minmax(360px,1fr); gap: 0 24px; padding: 18px; }
 .task-panel .panel-heading, .task-panel .current-task { grid-column: 1; }
 .task-panel > .panel-section-title, .task-panel .task-list, .task-panel .activity-log { grid-column: 2; }

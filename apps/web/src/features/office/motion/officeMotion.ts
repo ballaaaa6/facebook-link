@@ -126,6 +126,10 @@ function interactionState(poi: OfficePoi): AgentPresentation["state"] {
   return "idle";
 }
 
+function interactionIsSeated(poi: OfficePoi) {
+  return poi.activity === "lounge" || poi.activity === "meeting";
+}
+
 function seatedPresentation(agent: OfficeAgentView, station: OfficeWorkstation): AgentPresentation {
   return { position: station.seat, state: deskState(agent), seated: true };
 }
@@ -308,7 +312,7 @@ function presentationForWindow(
     return {
       position: destination,
       state: interactionState(window.poi),
-      seated: false,
+      seated: interactionIsSeated(window.poi),
       activityLabel: window.poi.label,
     };
   }

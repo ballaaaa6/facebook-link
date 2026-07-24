@@ -19,7 +19,7 @@ export function AnimatedAgent({
   state?: CharacterState;
 }) {
   const character = characterRegistry[agentId];
-  const config = characterStates[state];
+  const config = characterStates[state] ?? characterStates.idle;
   const spriteRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {

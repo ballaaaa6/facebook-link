@@ -85,7 +85,7 @@ for (const slug of characterSlugs) {
   }
 }
 const officeAssetIds = new Set(
-  ["core-furniture-sheet.json", "decor-mechanical-sheet.json", "equipment-sheet.json", "office-utility-sheet.json"]
+  ["core-furniture-sheet.json", "decor-mechanical-sheet.json", "equipment-sheet.json", "office-utility-sheet.json", "office-furniture-c-v2.json"]
     .flatMap((manifest) => JSON.parse(readFileSync(join(root, "assets/game/manifests", manifest), "utf8")).cells)
     .map((cell) => cell.id),
 );
@@ -160,6 +160,14 @@ for (const station of officeMap.workstations) {
       && point.y >= hitbox.y
       && point.y <= hitbox.y + hitbox.height;
     if (collides) failures.push(`${station.id} ${anchorName} anchor intersects its desk collision`);
+  }
+}
+for (const companion of officeMap.companions ?? []) {
+  if (!characterRegistry.companions[companion.id]) failures.push(`Missing companion character mapping: ${companion.id}`);
+  for (const [pointId, point] of [["home", companion.home], ...companion.route.map((point, index) => [`route[${index}]`, point])]) {
+    if (!Number.isInteger(point.x) || !Number.isInteger(point.y)) {
+      failures.push(`Office companion must use integer coordinates: ${companion.id}.${pointId}`);
+    }
   }
 }
 if (!Array.isArray(officeMap.routes) || officeMap.routes.length < 8) {

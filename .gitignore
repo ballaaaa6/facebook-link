@@ -13,6 +13,7 @@ packages/*/dist/
 .coverage/
 coverage/
 .cache/
+tmp/
 .playwright/
 playwright-report/
 test-results/

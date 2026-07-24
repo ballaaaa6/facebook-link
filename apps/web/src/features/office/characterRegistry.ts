@@ -19,7 +19,7 @@ import tianSheet2x from "../../../../../assets/game/characters/tian-zekun-2/runt
 import yinyueSheet from "../../../../../assets/game/characters/yinyue-2/runtime-spritesheet-v2.webp";
 import yinyueSheet2x from "../../../../../assets/game/characters/yinyue-2/runtime-spritesheet-v2@2x.webp";
 
-export type CharacterState = "celebrating" | "failed" | "idle" | "review" | "waiting" | "walk-left" | "walk-right" | "waving" | "working";
+export type CharacterState = "celebrating" | "failed" | "idle" | "review" | "seated" | "waiting" | "walk-left" | "walk-right" | "waving" | "working";
 
 export interface CharacterDefinition {
   sheet: string;
@@ -33,6 +33,7 @@ export const characterStates: Record<CharacterState, { row: number; frames: numb
   "walk-left": { row: 2, frames: 8, fps: 9, loop: true },
   waving: { row: 3, frames: 4, fps: 5, loop: true },
   celebrating: { row: 4, frames: 5, fps: 7, loop: false },
+  seated: { row: 4, frames: 1, fps: 1, loop: true },
   failed: { row: 5, frames: 8, fps: 6, loop: false },
   waiting: { row: 6, frames: 6, fps: 4, loop: true },
   working: { row: 7, frames: 6, fps: 7, loop: true },

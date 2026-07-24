@@ -52,7 +52,7 @@ export function AgentEntity({
     >
       <button
         type="button"
-        className={`agent-entity ${visual.seated ? "is-seated" : "is-standing"} ${selected ? "is-selected" : ""}`}
+        className={`agent-entity ${visual.seated ? "is-seated" : "is-standing"} ${visual.atDesk ? "is-at-desk" : ""} ${selected ? "is-selected" : ""}`}
         data-agent-id={agent.agentId}
         aria-label={`Select ${agent.role}${visual.activityLabel ? `, ${visual.activityLabel}` : ""}`}
         aria-describedby={previewed ? `agent-tooltip-${agent.agentId}` : undefined}
@@ -73,7 +73,7 @@ export function AgentEntity({
           agentId={agent.agentId}
           name={agent.displayName}
           sceneStartedAt={sceneStartedAt}
-          state={visual.state}
+          state={visual.seated && agent.status !== "completed" ? "seated" : visual.state}
         />
         <span className="agent-callout-anchor" data-agent-anchor={agent.agentId} aria-hidden="true" />
       </button>

@@ -38,9 +38,22 @@ seat, doorway, or narrow route cell.
 footprints, support types, and integer parent-slot offsets. `office-c-v2.json`
 owns the 36 x 24 integer grid, its 24-column work floor, its 12-column support
 floor, protected routes, navigation, facilities, and workstation collision
-rectangles. Surface props such as monitors, the printer, microwave, papers,
-network stack, and UPS attach to named parent slots and do not reserve unrelated
-floor cells.
+rectangles. Surface props such as monitors, keyboards, the printer, papers, and
+network equipment attach to named parent slots and do not reserve unrelated
+floor cells. Workstation chairs are independent floor objects, while desk
+foreground masks provide the visual occlusion that makes seated actors read
+correctly.
+
+The active room keeps the 24-column work floor on the left and the 12-column
+support floor on the right without an architectural divider. The application
+inspector remains a separate UI column on desktop; the scene never expands over
+it. On mobile, the camera initially exposes the complete work floor and scrolls
+horizontally to the support floor.
+
+The support floor uses a rug as the entry cue and contains no decorative door.
+The meeting table and its four chairs are independent furniture objects. The
+Boba mascot is a non-agent companion with its own integer route and animation
+state, so its movement cannot be confused with operational status.
 
 Runtime movement may interpolate between authored nodes, but map placement,
 asset boxes, footprints, anchors, and route nodes never use fractional tiles.

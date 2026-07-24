@@ -25,11 +25,15 @@ Reduce generation latency without sacrificing usable geometry. Static furniture 
 6. `env-06-decor-small`: plants, cups, documents, boxes, bins, lamps, and small decoration.
 7. `env-07-animated-mechanical`: four mechanical props with four key frames each.
 8. `env-08-animated-ambient`: four ambient props with four key frames each.
-9. `office-utility-c-v1`: deterministic vector utility props for meeting, pantry, storage, presentation, and safety.
+9. `office-furniture-c-v2`: targeted Concept C raster replacements for visible
+   furniture that cannot be assembled from accepted production assets.
 
 Floors, walls, rugs, glass partitions, and simple architectural tiles are generated deterministically from the locked palette so their edges tile perfectly. They are not delegated to image generation.
 
-Small geometry-simple utility props may use authored SVGs when a controlled raster sheet would add no visual value. They still require a manifest, registry entry, and validation report.
+Code may render non-pictorial architecture such as floor fields, rugs, route
+debugging, and shadows. Visible furniture and decorative props must use the
+accepted shaded raster language; the retired `office-utility-c-v1` SVG batch
+must not be imported by the active scene.
 
 ## Character Sheets
 
@@ -39,6 +43,8 @@ Small geometry-simple utility props may use authored SVGs when a controlled rast
 - Original character image is always supplied as the identity anchor.
 - Left/right movement mirrors are created at runtime where safe.
 - Chair movement, sitting transition, and standing transition are code-driven to avoid generating unnecessary frames.
+- A single-frame `seated` semantic state may reuse an accepted source row when
+  the character's lower body is hidden by a desk foreground mask.
 
 ## Extraction Pipeline
 

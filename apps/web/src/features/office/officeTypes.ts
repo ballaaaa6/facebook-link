@@ -66,6 +66,15 @@ export interface OfficeMapObject {
   anchor: OfficeAnchor;
 }
 
+export interface OfficeCompanion {
+  id: string;
+  character: string;
+  home: OfficePoint;
+  route: OfficePoint[];
+  dwellSeconds: number;
+  speedTilesPerSecond: number;
+}
+
 export interface OfficeMapDefinition {
   id?: string;
   gridSize?: number;
@@ -79,6 +88,7 @@ export interface OfficeMapDefinition {
     nodes: OfficeNavigationNode[];
     edges: Array<[string, string]>;
   };
+  companions: OfficeCompanion[];
   objects: OfficeMapObject[];
 }
 

@@ -41,15 +41,33 @@ test("the Office C authoring contract uses integer tiles only", () => {
       assert.ok(Number.isInteger(slot.y));
     }
   }
+  for (const companion of map.companions) {
+    for (const point of [companion.home, ...companion.route]) {
+      assert.ok(Number.isInteger(point.x));
+      assert.ok(Number.isInteger(point.y));
+    }
+  }
+});
+
+test("workstation seats are below their desks and keep chairs visible", () => {
+  for (const station of map.workstations) {
+    assert.ok(station.seat.y > station.y);
+    assert.equal(station.seat.x, station.x);
+  }
 });
 
 test("surface slots cannot be claimed twice", () => {
   const duplicate = structuredClone(map);
+  const existingAttachment = duplicate.objects.find((object) =>
+    object.parentId === "market-scout" && object.slot
+  );
+  assert.ok(existingAttachment?.parentId);
+  assert.ok(existingAttachment.slot);
   duplicate.objects.push({
     id: "duplicate-monitor",
-    asset: "monitor.front.active",
-    parentId: "market-scout",
-    slot: "desk-rear-center",
+    asset: existingAttachment.asset,
+    parentId: existingAttachment.parentId,
+    slot: existingAttachment.slot,
     layer: "equipment",
     anchor: "bottom-center",
   });
@@ -62,7 +80,7 @@ test("floor footprints cannot overlap", () => {
   const plant = overlapping.objects.find((object) => object.id === "work-plant-a");
   assert.ok(plant);
   plant.x = 1;
-  plant.y = 12;
+  plant.y = 17;
   const resolved = resolveOfficeLayout(overlapping, geometry.assets, geometry.slotSets);
   const issues = validateOfficeLayout(overlapping, geometry.assets, resolved);
   assert.ok(issues.some((issue) => issue.includes("work-plant-a overlaps work-plant-b")));

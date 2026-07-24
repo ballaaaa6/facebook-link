@@ -17,12 +17,18 @@ These images are visual references, not production tilemaps. The selected concep
 - Exactly ten active work seats with two reserved workstation modules.
 - Short, collision-free walking routes between related teams.
 - Top-down pixel-art perspective with consistent object scale and lighting.
-- Responsive presentation: whole-office overview on desktop; camera-based zone navigation on mobile.
+- Responsive presentation: the Office scene keeps the existing task inspector
+  beside it on desktop; mobile initially shows the complete work floor and
+  scrolls horizontally to the support floor.
 - Runtime text, charts, task status, and UI chrome must be rendered by code, not baked into artwork.
 - All environment render boxes, floor footprints, map coordinates, and
   attachment offsets use integer tile units. Transparent art may occupy less
   than its declared render box.
 - Production assets must be original, transparent where appropriate, atlas-ready, and validated before use.
+- Work and support zones remain visually distinct through floor treatment and
+  furniture grouping, not a wall or divider line.
+- Workstations are assemblies: independent chair, desk, seated actor, monitor,
+  keyboard, and optional equipment overlays.
 
 ## Concept A: Bright Operations
 
@@ -91,13 +97,12 @@ Risks:
 7. Render automated desktop and mobile test scenes before accepting any asset batch.
 8. Never overwrite approved assets; create versioned replacements and update the manifest deliberately.
 
-## Next Gate
+## Delivered Vertical Slice
 
-Build a Concept C vertical slice containing:
-
-- One research pod.
-- Three agent positions.
-- One interactive computer desk.
-- One server rack animation.
-- One seated typing animation.
-- Desktop and mobile camera demonstrations.
+The active Concept C scene now contains ten assembled workstations, two reserved
+future modules, a support floor, a table-only meeting asset with four separate
+chairs, and an independently animated mascot. Desktop and mobile camera
+demonstrations are part of acceptance testing. The next art gate is a
+purpose-built seated typing sheet for each character identity; the current
+single-frame seated state intentionally reuses accepted source art behind desk
+foreground masks.

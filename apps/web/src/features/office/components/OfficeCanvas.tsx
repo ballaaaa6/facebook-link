@@ -2,12 +2,11 @@ import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react"
 import type { OfficeAgentView, OfficeMode } from "@affiliate-ops/contracts";
 import "../officeScene.css";
 import officeMapJson from "../../../../../../assets/game/maps/office-c-v2.json";
-import bobaSheet from "../../../../../../assets/game/characters/boba/runtime-spritesheet-v2.webp";
-import bobaSheet2x from "../../../../../../assets/game/characters/boba/runtime-spritesheet-v2@2x.webp";
 import { resolveOfficeLayout, validateOfficeLayout } from "../layout/officeLayout";
 import type { OfficeMapDefinition } from "../officeTypes";
 import { AgentEntity, type AgentPreviewRequest } from "./AgentEntity";
 import { AgentTooltip } from "./AgentTooltip";
+import { CompanionEntity } from "./CompanionEntity";
 import { officeAssetRegistry, officeSlotSets } from "./officeAssetRegistry";
 import { WorldObject } from "./WorldObject";
 
@@ -134,10 +133,9 @@ export function OfficeCanvas({
               width: percentX(zone.width),
               height: percentY(zone.height),
             }}
-          >
-            <b>{zone.label}</b>
-          </span>
+          />
         ))}
+        <span className="office-entry-rug" aria-hidden="true" />
         {resolvedMapObjects.map((object) => (
           <WorldObject
             key={object.id}
@@ -166,7 +164,7 @@ export function OfficeCanvas({
                   top: percentY(station.seat.y),
                   width: `${(chair.renderBox.width / officeMap.width) * 100}%`,
                   height: `${(chair.renderBox.height / officeMap.height) * 100}%`,
-                  zIndex: deskDepth - 2,
+                  zIndex: deskDepth - 4,
                 }}
               />
               <img
@@ -179,7 +177,7 @@ export function OfficeCanvas({
                   top: percentY(station.y),
                   width: `${(desk.renderBox.width / officeMap.width) * 100}%`,
                   height: `${(desk.renderBox.height / officeMap.height) * 100}%`,
-                  zIndex: deskDepth,
+                  zIndex: deskDepth - 2,
                 }}
               />
               <AgentEntity
@@ -196,19 +194,31 @@ export function OfficeCanvas({
                 onPreviewEnd={endPreview}
                 onSelect={onSelect}
               />
+              <img
+                className="workstation-desk workstation-desk-front"
+                src={desk.file}
+                alt=""
+                aria-hidden="true"
+                style={{
+                  left: percentX(station.x),
+                  top: percentY(station.y),
+                  width: `${(desk.renderBox.width / officeMap.width) * 100}%`,
+                  height: `${(desk.renderBox.height / officeMap.height) * 100}%`,
+                  zIndex: deskDepth + 2,
+                }}
+              />
             </div>
           );
         })}
-        <span
-          className="petdex-mascot"
-          aria-label="Boba resting by the pet bed"
-          style={{
-            backgroundImage: `image-set(url("${bobaSheet}") 1x, url("${bobaSheet2x}") 2x)`,
-            left: percentX(35),
-            top: percentY(18),
-            zIndex: 475,
-          } as CSSProperties}
-        />
+        {officeMap.companions.map((companion) => (
+          <CompanionEntity
+            key={companion.id}
+            companion={companion}
+            mapWidth={officeMap.width}
+            mapHeight={officeMap.height}
+            sceneStartedAt={sceneStartedAt}
+          />
+        ))}
       </div>
       {previewAgent && preview
         ? <AgentTooltip agent={previewAgent} frameRef={frameRef} request={preview} />

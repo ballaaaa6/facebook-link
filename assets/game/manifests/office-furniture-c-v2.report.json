@@ -1,0 +1,21 @@
+{
+  "sheet": "office-furniture-c-v2",
+  "generatedAt": "2026-07-24",
+  "source": "assets/game/processed/core-furniture-c-v2/table.meeting.empty.png",
+  "validation": {
+    "width": 320,
+    "height": 192,
+    "alphaBounds": [20, 6, 299, 186],
+    "opaquePixels": 40827,
+    "partialAlphaPixels": 2304,
+    "visiblePixels": 43131,
+    "visibleCoverage": 0.702002,
+    "visibleChromaKeyPixels": 0
+  },
+  "result": "accepted",
+  "notes": [
+    "The raster contains the table only; meeting chairs are separate runtime objects.",
+    "Transparent padding preserves the declared 6 x 3 integer render box.",
+    "The active Office registry imports no retired office-utility-c-v1 SVG assets."
+  ]
+}

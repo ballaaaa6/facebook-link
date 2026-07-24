@@ -1,4 +1,4 @@
-# Warm Studio Vertical Slice BOM
+# Warm Studio Office BOM
 
 ## Production Rule
 
@@ -12,21 +12,18 @@ Only assets referenced by `assets/game/maps/office-c-v2.json` are rendered for t
 | Creative desk, up-facing | 2 | Uses equipment overlays for copy and visual work. |
 | NOC desk, up-facing | 1 | Uses multi-monitor and network overlays. |
 | Office chair, up-facing | 10 | Seat point and foreground mask are shared. |
-| Mission table | 1 | Central handoff and review location. |
-| Meeting chair | 4 | Added around the mission table for handoff reviews. |
+| Empty meeting table | 1 | Table-only raster; seats are never baked into it. |
+| Meeting chair | 4 | Independent seats around the meeting table. |
 | Sectional sofa | 1 | Lounge idle location. |
-| Lounge chair | 2 | Extends the lounge to five or more physical seats. |
 | Coffee counter | 1 | Shared interaction point. |
-| Low bookshelf | 4 | Zone boundaries and visual storage. |
-| Filing cabinet | 3 | Research, creative, and NOC storage. |
-| Planter divider | 4 | Soft zone separation without walls. |
-| Staff locker | 1 | Shared personal storage at the lounge entrance. |
-| Coat rack | 1 | Bags and outerwear by the entrance. |
-| Refrigerator | 1 | Pantry cold storage. |
-| Microwave | 1 | Pantry reheating point. |
-| Sink | 1 | Pantry cleanup point. |
-| Pantry shelf | 1 | Dry goods and cups. |
+| Printer credenza | 1 | Printing facility with supported surface attachment. |
+| Server rack | 2 | Systems support equipment. |
+| Water dispenser | 1 | Shared interaction point. |
+| Tall plant | 4 | Work-floor rhythm and edge framing. |
+| Small plant | 7 | Desk spacing and support-floor decoration. |
+| Planter divider | 1 | Soft support-zone structure without a wall. |
 | Round pet bed | 1 | Mascot idle location. |
+| Entry rug | 1 | Code-rendered entry cue; no decorative door. |
 
 ## Equipment Overlay Targets
 
@@ -36,10 +33,7 @@ Only assets referenced by `assets/game/maps/office-c-v2.json` are rendered for t
 - Visual production monitor and camera station (1).
 - Multi-device publishing preview station (1).
 - NOC multi-monitor console (1).
-- Server racks, network stack, printer, coffee machine, water dispenser, CCTV, and studio light.
-- UPS and cable trays for the NOC and publishing workstation.
-- Whiteboard and wall display for mission review.
-- First-aid kit, smoke detectors, and emergency lights.
+- Server racks, printer, coffee machine, water dispenser, camera, and studio light.
 
 ## Rendered Scene Layers
 
@@ -49,10 +43,14 @@ Desk equipment must attach to its workstation rather than duplicate the desk coo
 
 ## Code-Generated Assets
 
-- Floors, walls, rugs, glass partitions, collision geometry, and simple shadows.
+- Floors, walls, rugs, collision geometry, and simple shadows.
 - Monitor content, charts, task status, server LEDs, alert glow, coffee steam, and camera rotation.
 - Theme A/B palette maps, lighting overlays, and UI color tokens.
 
-## Utility Additions
+## Retired Utility Batch
 
-The office utility sheet is a deterministic SVG asset batch for small, geometry-simple objects that do not require another raster generation pass. It adds meeting seating, pantry appliances, storage, presentation surfaces, recycling, and safety equipment while keeping the same warm-studio palette.
+`office-utility-c-v1` remains archived for provenance but is not imported by the
+active Office runtime. Its flat SVG presentation did not match the shaded Warm
+Studio raster language. New visible furniture must be produced against Concept
+C, extracted to transparent raster output, registered with integer geometry,
+and accepted through desktop and mobile scene review.

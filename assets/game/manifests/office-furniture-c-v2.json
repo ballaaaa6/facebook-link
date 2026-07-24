@@ -1,0 +1,11 @@
+{
+  "id": "office-furniture-c-v2",
+  "theme": "warm-studio",
+  "sourceConcept": "../../art/style-concepts/office-concept-c-warm-studio.png",
+  "backgroundKey": "#ff00ff",
+  "rows": 1,
+  "columns": 1,
+  "cells": [
+    { "row": 0, "column": 0, "id": "table.meeting.empty" }
+  ]
+}

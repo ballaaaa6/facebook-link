@@ -5,6 +5,7 @@ import { createDemoOfficeSnapshot } from "@affiliate-ops/office-read-model";
 import officeMapJson from "../../../assets/game/maps/office-c-v2.json" with { type: "json" };
 import { presentationAt, presentationsAt } from "../src/features/office/motion/officeMotion.ts";
 import { pixelAlignedCharacterFrame } from "../src/features/office/motion/pixelGeometry.ts";
+import { companionPresentationAt } from "../src/features/office/motion/companionMotion.ts";
 import type { OfficeMapDefinition, OfficeWorkstation } from "../src/features/office/officeTypes.ts";
 
 const station: OfficeWorkstation = {
@@ -29,6 +30,7 @@ const map: OfficeMapDefinition = {
   workstations: [station],
   pois: [{ id: "water", activity: "water", point: { x: 11, y: 0 }, navNode: "end", capacity: 1, duration: 2, label: "Water" }],
   routes: [],
+  companions: [],
   objects: [],
   navigation: {
     nodes: [{ id: "start", x: 1, y: 0 }, { id: "end", x: 10, y: 0 }],
@@ -56,6 +58,17 @@ test("live mode remains at the workstation", () => {
   const presentation = presentationAt(30, 0, agent, "live", map, station);
   assert.deepEqual(presentation.position, station.seat);
   assert.equal(presentation.seated, true);
+});
+
+test("the office companion rests at home and walks its declared route", () => {
+  const companion = (officeMapJson as unknown as OfficeMapDefinition).companions[0]!;
+  assert.deepEqual(companionPresentationAt(0, companion), {
+    position: companion.home,
+    state: "idle",
+  });
+  const moving = companionPresentationAt(companion.dwellSeconds + 1, companion);
+  assert.notDeepEqual(moving.position, companion.home);
+  assert.match(moving.state, /^walk-/);
 });
 
 test("completed work uses the ninth character row as a one-shot celebration", () => {

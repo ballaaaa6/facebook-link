@@ -202,6 +202,14 @@ export function validateOfficeLayout(
         { id: `${poi.id}.slots[${index}].y`, value: slot.y },
       ]),
     ]),
+    ...map.companions.flatMap((companion) => [
+      { id: `${companion.id}.home.x`, value: companion.home.x },
+      { id: `${companion.id}.home.y`, value: companion.home.y },
+      ...companion.route.flatMap((point, index) => [
+        { id: `${companion.id}.route[${index}].x`, value: point.x },
+        { id: `${companion.id}.route[${index}].y`, value: point.y },
+      ]),
+    ]),
   ];
   for (const field of integerFields) {
     if (!Number.isInteger(field.value)) issues.push(`${field.id} must be an integer grid value`);
@@ -222,6 +230,7 @@ export function validateOfficeLayout(
     ...map.workstations.map((station) => `workstation:${station.id}`),
     ...map.objects.map((object) => `object:${object.id}`),
     ...map.pois.map((poi) => `poi:${poi.id}`),
+    ...map.companions.map((companion) => `companion:${companion.id}`),
   ];
   const rawIds = allIds.map((entry) => entry.slice(entry.indexOf(":") + 1));
   if (new Set(rawIds).size !== rawIds.length) issues.push("map entity identifiers must be unique");
@@ -278,6 +287,13 @@ export function validateOfficeLayout(
     for (const point of [poi.point, ...(poi.slots ?? [])]) {
       if (point.x < 0 || point.y < 0 || point.x > map.width || point.y > map.height) {
         issues.push(`${poi.id}: interaction point leaves map bounds`);
+      }
+    }
+  }
+  for (const companion of map.companions) {
+    for (const point of [companion.home, ...companion.route]) {
+      if (point.x < 0 || point.y < 0 || point.x > map.width || point.y > map.height) {
+        issues.push(`${companion.id}: companion route leaves map bounds`);
       }
     }
   }

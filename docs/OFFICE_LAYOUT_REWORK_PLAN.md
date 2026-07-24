@@ -35,6 +35,15 @@ manifest, validator, and tests are the implementation authority.
 - Desktop fits the complete 36-tile room using an integer pixel size per tile.
 - Mobile fits the 24-tile work floor first, showing all ten agents, then scrolls
   horizontally to the support and break floor.
+- Desktop preserves the existing application inspector as a separate right-hand
+  UI column rather than stretching the scene across the full viewport.
+- Work and support floors have no architectural divider line.
+- Each active workstation is assembled from an independent chair, desk,
+  foreground mask, seated actor, monitor, keyboard, and optional equipment.
+- The support entry is communicated by a rug rather than a decorative door.
+- The meeting area uses one table-only raster and four independent chairs.
+- Boba is a non-agent companion with an integer patrol route and reduced-motion
+  fallback at its home point.
 - The ninth character animation row is exposed as the non-looping
   `celebrating` state for completed work.
 
@@ -56,11 +65,9 @@ Reference sizes:
 | Work desk | 4 x 3 | 4 x 2 |
 | Office chair | 1 x 2 | 1 x 1 |
 | Water dispenser | 1 x 3 | 1 x 1 |
-| Refrigerator | 2 x 3 | 2 x 1 |
-| Locker | 2 x 3 | 2 x 1 |
 | Server rack | 2 x 3 | 2 x 1 |
 | Sectional sofa | 6 x 4 | 6 x 3 |
-| Mission table | 6 x 4 | 6 x 2 |
+| Empty meeting table | 6 x 3 | 6 x 2 |
 
 The renderer sizes an asset from both render-box dimensions. It never derives
 world height from the source file aspect ratio. Geometry-simple tall utility
@@ -91,6 +98,7 @@ resizing the map.
 
 | State | Use |
 | --- | --- |
+| `seated` | Single-frame pose behind a desk or accepted seat mask |
 | `working` | Active assigned-workstation pose |
 | `idle` | Offline or stale workstation pose |
 | `waiting` | Dependency or queue wait |
@@ -100,9 +108,9 @@ resizing the map.
 | `waving` | Coffee, water, or greeting interaction |
 | `celebrating` | One-shot completed-work animation from source row 4 |
 
-A dedicated furniture-free lounge sitting pose remains future art work. Until
-then, lounge interaction reuses the existing idle presentation without
-claiming that the desk-oriented sprite is a sofa-specific pose.
+The current `seated` semantic state reuses one accepted source frame and hides
+the lower body behind a desk foreground mask. A dedicated furniture-free lounge
+sitting sheet remains future art work.
 
 ## Camera Contract
 
@@ -132,10 +140,7 @@ claiming that the desk-oriented sprite is a sofa-specific pose.
 
 ## Remaining Art Work
 
-- Produce directional meeting and lounge-chair variants if final art review
-  requires direction-specific lighting.
 - Produce furniture-free lounge sitting frames before showing characters
   physically seated on the sofa.
-- Add foreground mask variants for desks, counters, tables, and the sofa when
-  the approved artwork requires more occlusion detail than current z-ordering.
+- Produce full typing and mouse/review frames for the `seated` state.
 - Resolve prototype-only Petdex licenses before public or commercial use.

@@ -3,7 +3,7 @@
   "$id": "office-map.schema.json",
   "title": "Office map",
   "type": "object",
-  "required": ["id", "gridSize", "width", "height", "zones", "workstations", "pois", "routes", "navigation", "objects"],
+  "required": ["id", "gridSize", "width", "height", "zones", "workstations", "companions", "pois", "routes", "navigation", "objects"],
   "properties": {
     "id": { "type": "string" },
     "gridSize": { "type": "integer", "minimum": 8 },
@@ -44,6 +44,26 @@
           "capacity": { "type": "integer", "minimum": 1 },
           "duration": { "type": "integer", "minimum": 1 },
           "label": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "companions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "character", "home", "route", "dwellSeconds", "speedTilesPerSecond"],
+        "properties": {
+          "id": { "type": "string" },
+          "character": { "type": "string" },
+          "home": { "$ref": "#/$defs/point" },
+          "route": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "$ref": "#/$defs/point" }
+          },
+          "dwellSeconds": { "type": "integer", "minimum": 1 },
+          "speedTilesPerSecond": { "type": "number", "exclusiveMinimum": 0 }
         },
         "additionalProperties": false
       }
