@@ -149,24 +149,10 @@ export function OfficeCanvas({
         {officeMap.workstations.map((station) => {
           const agent = agents.find((item) => item.agentId === station.id);
           const desk = officeAssetRegistry[station.desk];
-          const chair = officeAssetRegistry[station.chair];
-          if (!agent || !desk || !chair) return null;
+          if (!agent || !desk) return null;
           const deskDepth = 100 + Math.round(station.y * 20);
           return (
             <div className="workstation-rig" key={station.id}>
-              <img
-                className="workstation-chair"
-                src={chair.file}
-                alt=""
-                aria-hidden="true"
-                style={{
-                  left: percentX(station.seat.x),
-                  top: percentY(station.seat.y),
-                  width: `${(chair.renderBox.width / officeMap.width) * 100}%`,
-                  height: `${(chair.renderBox.height / officeMap.height) * 100}%`,
-                  zIndex: deskDepth - 4,
-                }}
-              />
               <img
                 className="workstation-desk"
                 src={desk.file}

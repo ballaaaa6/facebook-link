@@ -49,8 +49,13 @@ test("the Office C authoring contract uses integer tiles only", () => {
   }
 });
 
-test("workstation seats are below their desks and keep chairs visible", () => {
+test("workstation standing points are behind desks and chairs stay on the viewer side", () => {
   for (const station of map.workstations) {
+    assert.equal(station.work.y, station.collision.y);
+    assert.equal(station.work.x, station.x);
+    assert.ok(station.stand.y < station.work.y);
+    assert.ok(station.stand.y < station.y);
+    assert.equal(station.stand.x, station.x);
     assert.ok(station.seat.y > station.y);
     assert.equal(station.seat.x, station.x);
   }

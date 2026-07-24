@@ -22,7 +22,7 @@ export function useAgentMotion(
   mode: OfficeMode,
   sceneStartedAt: number,
 ): AgentVisualState {
-  const [visual, setVisual] = useState<AgentVisualState>({ state: "idle", seated: true, atDesk: true });
+  const [visual, setVisual] = useState<AgentVisualState>({ state: "idle", seated: false, atDesk: true });
   const signature = useRef("");
 
   useEffect(() => {
@@ -46,14 +46,14 @@ export function useAgentMotion(
         track.style.setProperty("--agent-y", `${y}px`);
         track.style.setProperty("--agent-width", `${frame.width}px`);
         track.style.setProperty("--agent-height", `${frame.height}px`);
-        const atDesk = Math.abs(presentation.position.x - station.seat.x) < 0.05
-          && Math.abs(presentation.position.y - station.seat.y) < 0.05;
+        const atDesk = Math.abs(presentation.position.x - station.work.x) < 0.05
+          && Math.abs(presentation.position.y - station.work.y) < 0.05;
         track.style.zIndex = String(atDesk
-          ? 100 + Math.round(station.y * 20)
+          ? 97 + Math.round(station.y * 20)
           : 110 + Math.round(presentation.position.y * 20));
       }
-      const atDesk = Math.abs(presentation.position.x - station.seat.x) < 0.05
-        && Math.abs(presentation.position.y - station.seat.y) < 0.05;
+      const atDesk = Math.abs(presentation.position.x - station.work.x) < 0.05
+        && Math.abs(presentation.position.y - station.work.y) < 0.05;
       const nextSignature = `${presentation.state}:${presentation.seated}:${atDesk}:${presentation.activityLabel ?? ""}`;
       if (signature.current !== nextSignature) {
         signature.current = nextSignature;

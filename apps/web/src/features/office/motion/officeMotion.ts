@@ -103,7 +103,8 @@ function routeFor(
   destination: OfficePoint = poi.point,
 ) {
   const nodePath = findNodePath(map, station.navNode, poi.navNode);
-  const points = [station.seat, station.approach, ...nodePath, poi.point];
+  const deskSideExit = { x: station.approach.x, y: station.stand.y };
+  const points = [station.work, station.stand, deskSideExit, station.approach, ...nodePath, poi.point];
   if (distance(poi.point, destination) > 0.05) {
     points.push({ x: destination.x, y: poi.point.y }, destination);
   }
@@ -130,8 +131,8 @@ function interactionIsSeated(poi: OfficePoi) {
   return poi.activity === "lounge" || poi.activity === "meeting";
 }
 
-function seatedPresentation(agent: OfficeAgentView, station: OfficeWorkstation): AgentPresentation {
-  return { position: station.seat, state: deskState(agent), seated: true };
+function workstationPresentation(agent: OfficeAgentView, station: OfficeWorkstation): AgentPresentation {
+  return { position: station.work, state: deskState(agent), seated: false };
 }
 
 function cycleLength(agent: OfficeAgentView) {
@@ -293,11 +294,11 @@ function presentationForWindow(
   allocation: Allocation | undefined,
   map: OfficeMapDefinition,
 ): AgentPresentation {
-  const seated = seatedPresentation(window.agent, window.station);
-  if (elapsedSeconds < window.outboundStart || elapsedSeconds >= window.returnEnd) return seated;
+  const workstation = workstationPresentation(window.agent, window.station);
+  if (elapsedSeconds < window.outboundStart || elapsedSeconds >= window.returnEnd) return workstation;
   if (!allocation?.accepted) {
     return {
-      ...seated,
+      ...workstation,
       state: "waiting",
       activityLabel: `Waiting — ${window.poi.label}`,
     };
@@ -329,7 +330,7 @@ export function presentationsAt(
   if (mode === "live") {
     for (const agent of agents) {
       const station = map.workstations.find((item) => item.id === agent.agentId);
-      if (station) presentations.set(agent.agentId, seatedPresentation(agent, station));
+      if (station) presentations.set(agent.agentId, workstationPresentation(agent, station));
     }
     return presentations;
   }
@@ -341,7 +342,7 @@ export function presentationsAt(
     if (!station) continue;
     const warmup = 5 + index * 1.25;
     if (elapsedSeconds < warmup) {
-      presentations.set(agent.agentId, seatedPresentation(agent, station));
+      presentations.set(agent.agentId, workstationPresentation(agent, station));
       continue;
     }
     const currentCycle = Math.floor((elapsedSeconds - warmup) / cycleLength(agent));
@@ -350,7 +351,7 @@ export function presentationsAt(
       agent.agentId,
       window
         ? presentationForWindow(elapsedSeconds, window, allocations.get(window.key), map)
-        : seatedPresentation(agent, station),
+        : workstationPresentation(agent, station),
     );
   }
   return presentations;
@@ -377,5 +378,5 @@ export function presentationAt(
     station,
   ];
   return presentationsAt(elapsedSeconds, agents, mode, { ...map, workstations }).get(agent.agentId)
-    ?? seatedPresentation(agent, station);
+    ?? workstationPresentation(agent, station);
 }

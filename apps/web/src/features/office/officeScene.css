@@ -1,3 +1,30 @@
+.office-mobile-tabs { display: none; }
+
+.office-workspace {
+  display: grid;
+  grid-template:
+    "scene chat" auto
+    "task chat" auto
+    / minmax(580px, 1fr) minmax(300px, 360px);
+  gap: 20px;
+  align-items: start;
+}
+
+.office-workspace-scene { grid-area: scene; }
+
+.office-workspace > .team-chat {
+  position: sticky;
+  top: 20px;
+  grid-area: chat;
+  display: grid;
+  grid-template-rows: auto minmax(0,1fr) auto;
+  width: 100%;
+  height: calc(100vh - 40px);
+  min-height: 600px;
+  max-height: 820px;
+  margin: 0;
+}
+
 .office-frame {
   position: relative;
   overflow: auto;

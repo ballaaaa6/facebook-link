@@ -143,7 +143,6 @@ h2 { font-size: var(--font-xl); }
 .metric-strip span, .metric-strip small { display: block; color: var(--muted); font-size: var(--font-sm); }
 .metric-strip strong { display: inline-block; margin: 5px 8px 3px 0; color: var(--ink); font-size: 24px; }
 
-.workspace-grid { display: grid; grid-template-columns: minmax(600px, 1fr) minmax(320px, 370px); gap: 20px; align-items: start; }
 .office-card, .task-panel { border: 1px solid var(--line); border-radius: 22px; background: rgba(255,253,247,.86); box-shadow: var(--shadow); }
 .office-card { min-width: 0; padding: 18px; overflow: hidden; }
 .office-feed-bar {
@@ -214,9 +213,7 @@ h2 { font-size: var(--font-xl); }
   pointer-events: auto;
   transition: filter .16s ease;
 }
-.agent-entity.is-at-desk {
-  transform: translate(-50%, calc(-100% - var(--tile-size) * 1.5));
-}
+.agent-entity.is-at-desk { transform: translate(-50%,-100%); }
 .agent-entity::after {
   position: absolute;
   z-index: -1;
@@ -357,12 +354,23 @@ h2 { font-size: var(--font-xl); }
 .status-blocked, .status-failed { background: #c46355; }
 .status-offline, .status-stale { background: #9a6c67; }
 .status-completed { background: #4c8f7b; }
-.task-panel { display: grid; grid-template-columns: minmax(260px,.75fr) minmax(360px,1fr); gap: 0 24px; padding: 18px; }
-.task-panel .panel-heading, .task-panel .current-task { grid-column: 1; }
-.task-panel > .panel-section-title, .task-panel .task-list, .task-panel .activity-log { grid-column: 2; }
-.task-panel > .panel-section-title { grid-row: 1; align-self: end; }
-.task-panel .task-list { grid-row: 2 / span 2; }
-.task-panel .activity-log { grid-row: 4; }
+.task-panel {
+  grid-area: task;
+  display: grid;
+  grid-template:
+    "heading current events" auto
+    "summary current events" auto
+    "facts review events" auto
+    / minmax(190px,.8fr) minmax(240px,1.05fr) minmax(240px,1fr);
+  gap: 0 20px;
+  padding: 18px;
+}
+.task-panel .panel-heading { grid-area: heading; }
+.task-panel .agent-status-summary { grid-area: summary; }
+.task-panel .current-task { grid-area: current; }
+.task-panel .run-facts { grid-area: facts; }
+.task-panel .review-callout { grid-area: review; }
+.task-panel .activity-log { grid-area: events; }
 .panel-heading { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
 .panel-heading h2 { margin-top: 4px; font-size: 25px; }
 .panel-heading p { margin-top: 2px; color: var(--muted); font-size: 14px; }
@@ -405,13 +413,28 @@ h2 { font-size: var(--font-xl); }
 .mobile-nav { display: none; }
 
 @media (max-width: 1120px) {
-  .workspace-grid { grid-template-columns: 1fr; }
-  .task-panel { display: grid; grid-template-columns: minmax(180px,.75fr) minmax(260px,1fr); gap: 0 20px; }
-  .panel-heading, .current-task { grid-column: 1; }
-  .task-panel > .panel-section-title, .task-list, .activity-log { grid-column: 2; }
-  .task-panel > .panel-section-title { grid-row: 1; align-self: end; }
-  .task-list { grid-row: 2 / span 2; }
-  .activity-log { grid-row: 4; }
+  .office-workspace {
+    grid-template:
+      "scene" auto
+      "chat" auto
+      "task" auto
+      / minmax(0,1fr);
+  }
+  .office-workspace > .team-chat {
+    position: static;
+    height: min(620px, calc(100vh - 40px));
+    min-height: 480px;
+    max-height: none;
+  }
+  .task-panel {
+    grid-template:
+      "heading current" auto
+      "summary current" auto
+      "facts events" auto
+      "review events" auto
+      / minmax(200px,.8fr) minmax(280px,1.2fr);
+  }
+  .task-panel .activity-log { grid-area: events; }
 }
 
 @media (max-width: 760px) {
@@ -428,9 +451,34 @@ h2 { font-size: var(--font-xl); }
   .office-frame { border-width: 5px; }
   .office-world { min-width: 0; }
   .office-viewport-toolbar { justify-content: flex-start; overflow-x: auto; }
+  .office-mobile-tabs {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 6px;
+    margin-bottom: 12px;
+    padding: 5px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: rgba(255,253,247,.8);
+  }
+  .office-mobile-tabs button {
+    padding: 9px 6px;
+    border: 0;
+    border-radius: 9px;
+    color: var(--muted);
+    background: transparent;
+    font: 600 10px "IBM Plex Mono",monospace;
+  }
+  .office-mobile-tabs button.is-active { color: #fff; background: var(--green-800); }
+  .office-workspace { display: block; }
+  .office-workspace > .team-chat { height: calc(100vh - 180px); min-height: 440px; }
+  .office-workspace[data-mobile-pane="office"] > .team-chat,
+  .office-workspace[data-mobile-pane="office"] > .task-panel,
+  .office-workspace[data-mobile-pane="chat"] > .office-workspace-scene,
+  .office-workspace[data-mobile-pane="chat"] > .task-panel,
+  .office-workspace[data-mobile-pane="task"] > .office-workspace-scene,
+  .office-workspace[data-mobile-pane="task"] > .team-chat { display: none; }
   .task-panel { display: block; padding: 14px; border-radius: 17px; }
-  .task-panel > .panel-section-title, .task-list, .activity-log { display: flex; }
-  .task-panel > .panel-section-title { display: flex; }.task-list { display: grid; }.activity-log { display: block; }
   .mobile-nav { position: fixed; z-index: 30; inset: auto 8px 8px; display: grid; grid-template-columns: repeat(4,1fr); padding: 6px; border: 1px solid rgba(255,255,255,.18); border-radius: 17px; background: rgba(18,58,53,.94); box-shadow: 0 12px 35px rgba(16,43,38,.34); backdrop-filter: blur(12px); }
   .mobile-nav button { padding: 10px 4px; border: 0; border-radius: 11px; color: rgba(255,255,255,.62); background: transparent; font-size: var(--font-xs); }.mobile-nav button.is-active { color: #fff; background: rgba(255,255,255,.12); }
 }

@@ -17,6 +17,7 @@ const station: OfficeWorkstation = {
   y: 0,
   facing: "up",
   seat: { x: 0, y: 0 },
+  work: { x: 0, y: 0 },
   approach: { x: 1, y: 0 },
   stand: { x: 1, y: 1 },
   navNode: "start",
@@ -54,10 +55,10 @@ const agent: OfficeAgentView = {
   latestEvents: [],
 };
 
-test("live mode remains at the workstation", () => {
+test("live mode stands behind the workstation", () => {
   const presentation = presentationAt(30, 0, agent, "live", map, station);
-  assert.deepEqual(presentation.position, station.seat);
-  assert.equal(presentation.seated, true);
+  assert.deepEqual(presentation.position, station.work);
+  assert.equal(presentation.seated, false);
 });
 
 test("the office companion rests at home and walks its declared route", () => {
@@ -74,7 +75,7 @@ test("the office companion rests at home and walks its declared route", () => {
 test("completed work uses the ninth character row as a one-shot celebration", () => {
   const presentation = presentationAt(0, 0, { ...agent, status: "completed" }, "live", map, station);
   assert.equal(presentation.state, "celebrating");
-  assert.equal(presentation.seated, true);
+  assert.equal(presentation.seated, false);
 });
 
 test("simulation movement is continuous between display frames", () => {
@@ -82,8 +83,12 @@ test("simulation movement is continuous between display frames", () => {
   const second = presentationAt(25.116, 0, agent, "simulation", map, station);
   assert.equal(first.seated, false);
   assert.equal(second.seated, false);
-  assert.ok(second.position.x > first.position.x);
-  assert.ok(second.position.x - first.position.x < 0.1);
+  const frameDistance = Math.hypot(
+    second.position.x - first.position.x,
+    second.position.y - first.position.y,
+  );
+  assert.ok(frameDistance > 0);
+  assert.ok(frameDistance < 0.1);
 });
 
 test("a capacity-one facility never admits two agents", () => {
@@ -92,7 +97,7 @@ test("a capacity-one facility never admits two agents", () => {
   const sceneMap = { ...map, workstations: [station, secondStation] };
   const presentations = presentationsAt(30, [agent, secondAgent], "simulation", sceneMap);
   assert.equal(presentations.get(agent.agentId)?.seated, false);
-  assert.equal(presentations.get(secondAgent.agentId)?.seated, true);
+  assert.equal(presentations.get(secondAgent.agentId)?.seated, false);
   assert.match(presentations.get(secondAgent.agentId)?.activityLabel ?? "", /Waiting — Water/i);
 });
 
@@ -123,7 +128,8 @@ test("the real scene does not place two moving agents in the same route cell", (
   const sceneAgents = createDemoOfficeSnapshot().agents;
   for (let elapsed = 0; elapsed <= 300; elapsed += 0.25) {
     const moving = [...presentationsAt(elapsed, sceneAgents, "simulation", sceneMap).entries()]
-      .filter(([, presentation]) => !presentation.seated);
+      .filter(([, presentation]) =>
+        presentation.state === "walk-left" || presentation.state === "walk-right");
     for (let left = 0; left < moving.length; left += 1) {
       for (let right = left + 1; right < moving.length; right += 1) {
         const [leftId, a] = moving[left]!;

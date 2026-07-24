@@ -148,6 +148,10 @@ for (const station of officeMap.workstations) {
   if (!agentIds.has(station.id)) failures.push(`Unknown office workstation agent: ${station.id}`);
   if (!characterRegistry.agents[station.id]) failures.push(`Missing runtime character mapping: ${station.id}`);
   if (!officeAssetIds.has(station.desk)) failures.push(`Unknown workstation desk asset: ${station.desk}`);
+  const workPoint = station.work;
+  if (!workPoint || workPoint.x < 0 || workPoint.x > officeMap.width || workPoint.y < 0 || workPoint.y > officeMap.height) {
+    failures.push(`Invalid work anchor for ${station.id}`);
+  }
   for (const anchorName of ["seat", "stand"]) {
     const point = station[anchorName];
     if (!point || point.x < 0 || point.x > officeMap.width || point.y < 0 || point.y > officeMap.height) {

@@ -41,8 +41,8 @@ export function AgentEntity({
 }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const visual = useAgentMotion(trackRef, map, station, agent, agents, mode, sceneStartedAt);
-  const initialX = `${(station.seat.x / map.width) * 100}%`;
-  const initialY = `${(station.seat.y / map.height) * 100}%`;
+  const initialX = `${(station.work.x / map.width) * 100}%`;
+  const initialY = `${(station.work.y / map.height) * 100}%`;
 
   return (
     <div
@@ -73,7 +73,7 @@ export function AgentEntity({
           agentId={agent.agentId}
           name={agent.displayName}
           sceneStartedAt={sceneStartedAt}
-          state={visual.seated && agent.status !== "completed" ? "seated" : visual.state}
+          state={visual.state}
         />
         <span className="agent-callout-anchor" data-agent-anchor={agent.agentId} aria-hidden="true" />
       </button>

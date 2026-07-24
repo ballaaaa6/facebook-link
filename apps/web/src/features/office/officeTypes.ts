@@ -31,6 +31,7 @@ export interface OfficeWorkstation {
   y: number;
   facing: "up" | "down" | "left" | "right";
   seat: OfficePoint;
+  work: OfficePoint;
   approach: OfficePoint;
   stand: OfficePoint;
   navNode: string;

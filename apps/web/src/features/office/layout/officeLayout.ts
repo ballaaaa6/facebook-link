@@ -171,6 +171,8 @@ export function validateOfficeLayout(
       { id: `${station.id}.y`, value: station.y },
       { id: `${station.id}.seat.x`, value: station.seat.x },
       { id: `${station.id}.seat.y`, value: station.seat.y },
+      { id: `${station.id}.work.x`, value: station.work.x },
+      { id: `${station.id}.work.y`, value: station.work.y },
       { id: `${station.id}.approach.x`, value: station.approach.x },
       { id: `${station.id}.approach.y`, value: station.approach.y },
       { id: `${station.id}.stand.x`, value: station.stand.x },
