@@ -29,6 +29,6 @@
     "check": "npm run repo:check && npm run architecture:check && npm run code:health && npm run duplicate:check && npm run code:map && npm run typecheck && npm run test && npm run build"
   },
   "devDependencies": {
-    "@types/node": "^24.0.0"
+    "@types/node": "^26.1.1"
   }
 }
