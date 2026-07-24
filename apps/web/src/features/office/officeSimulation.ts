@@ -132,14 +132,14 @@ function presentationAt(
   }
   if (phaseTime < outboundEnd) {
     const sampled = samplePath(route, (phaseTime - deskDuration) / travelDuration);
-    return { position: sampled.point, state: sampled.state, seated: false, activityLabel: poi.label };
+    return { position: sampled.point, state: sampled.state, seated: false };
   }
   if (phaseTime < interactionEnd) {
     return { position: poi.point, state: interactionState(poi), seated: false, activityLabel: poi.label };
   }
 
   const sampled = samplePath([...route].reverse(), (phaseTime - interactionEnd) / travelDuration);
-  return { position: sampled.point, state: sampled.state, seated: false, activityLabel: "Returning to desk" };
+  return { position: sampled.point, state: sampled.state, seated: false };
 }
 
 export function useOfficeSimulation(

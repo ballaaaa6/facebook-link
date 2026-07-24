@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import { useState, type CSSProperties } from "react";
 import officeMapJson from "../../../../../../assets/game/maps/office-c-v1.json";
 import bobaSheet from "../../../../../../assets/game/characters/boba/spritesheet.webp";
 import { StatusDot } from "../../../shared/components/StatusDot";
@@ -45,6 +45,7 @@ const resolvedMapObjects = mapObjects.flatMap((object): ResolvedOfficeObject[] =
 });
 
 export function OfficeCanvas({ selectedId, onSelect }: { selectedId: string; onSelect: (id: string) => void }) {
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
   const simulation = useOfficeSimulation(officeMap, agents);
   const percentX = (x: number) => `${(x / officeMap.width) * 100}%`;
   const percentY = (y: number) => `${(y / officeMap.height) * 100}%`;
@@ -52,20 +53,6 @@ export function OfficeCanvas({ selectedId, onSelect }: { selectedId: string; onS
   return (
     <div className="office-frame">
       <div className="office-world" aria-label="Warm pixel operations office">
-        {officeMap.zones.map((zone) => (
-          <div
-            className={`office-zone office-zone-${zone.id}`}
-            key={zone.id}
-            style={{
-              left: percentX(zone.x),
-              top: percentY(zone.y),
-              width: percentX(zone.width),
-              height: percentY(zone.height),
-            }}
-          >
-            <span>{zone.label}</span>
-          </div>
-        ))}
         <div className="window-row" aria-hidden="true"><span /><span /><span /><span /></div>
         {resolvedMapObjects.map((object) => (
           <WorldObject
@@ -87,6 +74,9 @@ export function OfficeCanvas({ selectedId, onSelect }: { selectedId: string; onS
           const deskDepth = 100 + Math.round(station.y * 20);
           const agentDepth = seated ? deskDepth - 1 : 110 + Math.round(position.y * 20);
           const nameY = seated ? station.y + 1.35 : position.y + 0.9;
+          const hovered = hoveredId === station.id;
+          const selected = selectedId === station.id;
+          const cardOnLeft = position.x > officeMap.width - 8;
 
           return (
             <div className="workstation-rig" key={station.id}>
@@ -116,9 +106,13 @@ export function OfficeCanvas({ selectedId, onSelect }: { selectedId: string; onS
               />
               <button
                 type="button"
-                className={`agent-entity ${seated ? "is-seated" : "is-standing"} ${station.id === selectedId ? "is-selected" : ""}`}
+                className={`agent-entity ${seated ? "is-seated" : "is-standing"} ${selected ? "is-selected" : ""}`}
                 aria-label={`Select ${agent.role}`}
                 onClick={() => onSelect(station.id)}
+                onMouseEnter={() => setHoveredId(station.id)}
+                onMouseLeave={() => setHoveredId(null)}
+                onFocus={() => setHoveredId(station.id)}
+                onBlur={() => setHoveredId(null)}
                 style={{
                   left: percentX(position.x),
                   top: percentY(position.y),
@@ -130,17 +124,31 @@ export function OfficeCanvas({ selectedId, onSelect }: { selectedId: string; onS
               {activityLabel && !seated ? (
                 <span
                   className="agent-activity-badge"
-                  style={{ left: percentX(position.x), top: percentY(position.y - 1.45), zIndex: agentDepth + 2 }}
+                  style={{ left: percentX(position.x), top: percentY(position.y - 1.75), zIndex: 960 }}
                 >
                   {activityLabel}
                 </span>
               ) : null}
               <span
-                className={`agent-nameplate ${seated ? "is-seated" : ""}`}
+                className={`agent-nameplate ${seated ? "is-seated" : ""} ${hovered || selected ? "is-visible" : ""}`}
                 style={{ left: percentX(seated ? station.x : position.x), top: percentY(nameY) }}
               >
                 <StatusDot status={agent.status} />{agent.name}
               </span>
+              {hovered ? (
+                <span
+                  className={`agent-hover-card ${cardOnLeft ? "opens-left" : ""}`}
+                  style={{
+                    left: percentX(position.x + (cardOnLeft ? -1.2 : 1.2)),
+                    top: percentY(Math.max(2.8, position.y - 1.1)),
+                  }}
+                >
+                  <strong>{agent.name}</strong>
+                  <small>{agent.role}</small>
+                  <em>{agent.task}</em>
+                  <i><StatusDot status={agent.status} />{agent.status} · {agent.progress}%</i>
+                </span>
+              ) : null}
             </div>
           );
         })}
@@ -150,7 +158,7 @@ export function OfficeCanvas({ selectedId, onSelect }: { selectedId: string; onS
           style={{
             backgroundImage: `url(${bobaSheet})`,
             left: percentX(10.1),
-            top: percentY(19),
+            top: percentY(18.45),
             zIndex: 475,
           } as CSSProperties}
         />

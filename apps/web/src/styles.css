@@ -183,26 +183,6 @@ h2 { font-size: var(--font-xl); }
   box-shadow: 0 8px 0 rgba(67,80,67,.16);
   content: "";
 }
-.office-zone {
-  position: absolute;
-  z-index: 3;
-  border: 1px solid rgba(62, 80, 65, .12);
-  border-radius: 10px;
-  background: rgba(255, 248, 222, .08);
-  box-shadow: inset 0 0 28px rgba(255, 255, 255, .08);
-  pointer-events: none;
-}
-.office-zone > span {
-  position: absolute;
-  top: 5px;
-  left: 7px;
-  color: rgba(49, 68, 59, .55);
-  font: 600 clamp(7px, .58vw, 10px)/1 "IBM Plex Mono", monospace;
-  letter-spacing: .08em;
-}
-.office-zone-mission-handoff { background: rgba(255, 227, 157, .12); }
-.office-zone-lounge { background: rgba(122, 157, 112, .1); }
-.office-zone-systems-noc { background: rgba(71, 102, 113, .08); }
 .window-row { position: absolute; z-index: 2; top: 1.9%; left: 9%; right: 8%; display: flex; justify-content: space-around; }
 .window-row span { width: 15%; aspect-ratio: 2.8; border: 3px solid #415651; background: linear-gradient(#93bdc0 0 55%,#d7e8dc 56%); box-shadow: inset 0 0 0 2px #e6d5ae; }
 
@@ -273,7 +253,8 @@ h2 { font-size: var(--font-xl); }
   filter: drop-shadow(0 3px 1px rgba(36,31,25,.2));
   pointer-events: none;
 }
-.agent-nameplate { position: absolute; z-index: 900; display: flex; align-items: center; gap: 4px; padding: 4px 7px; border: 1px solid rgba(20,45,39,.23); border-radius: 5px; color: #203a35; background: rgba(255,253,240,.96); font: 600 clamp(10px,.7vw,12px)/1.15 "IBM Plex Mono",monospace; white-space: nowrap; transform: translate(-50%,-50%); box-shadow: 0 2px 4px rgba(32,50,43,.12); pointer-events: none; }
+.agent-nameplate { position: absolute; z-index: 900; display: flex; align-items: center; gap: 4px; padding: 4px 7px; border: 1px solid rgba(20,45,39,.23); border-radius: 5px; opacity: 0; color: #203a35; background: rgba(255,253,240,.96); font: 600 clamp(10px,.7vw,12px)/1.15 "IBM Plex Mono",monospace; white-space: nowrap; transform: translate(-50%,-45%); box-shadow: 0 2px 4px rgba(32,50,43,.12); transition: opacity .14s ease, transform .14s ease; pointer-events: none; }
+.agent-nameplate.is-visible { opacity: 1; transform: translate(-50%,-50%); }
 .agent-nameplate.is-seated { box-shadow: 0 2px 5px rgba(32,50,43,.16); }
 .agent-activity-badge {
   position: absolute;
@@ -291,6 +272,38 @@ h2 { font-size: var(--font-xl); }
   box-shadow: 0 2px 5px rgba(32, 50, 43, .12);
   pointer-events: none;
 }
+.agent-activity-badge::after {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  border-right: 1px solid rgba(32, 58, 51, .18);
+  border-bottom: 1px solid rgba(32, 58, 51, .18);
+  background: rgba(255, 253, 244, .94);
+  content: "";
+  transform: translate(-50%, -4px) rotate(45deg);
+}
+.agent-hover-card {
+  position: absolute;
+  z-index: 980;
+  display: grid;
+  width: clamp(150px, 13vw, 190px);
+  gap: 2px;
+  padding: 9px 10px;
+  border: 1px solid rgba(25, 61, 52, .2);
+  border-radius: 9px;
+  color: #1e3d35;
+  background: rgba(255, 253, 247, .98);
+  transform: translate(0, -100%);
+  box-shadow: 0 8px 22px rgba(31, 52, 45, .18);
+  pointer-events: none;
+}
+.agent-hover-card.opens-left { transform: translate(-100%, -100%); }
+.agent-hover-card strong { font-size: 12px; }
+.agent-hover-card small { color: var(--muted); font-size: 10px; }
+.agent-hover-card em { overflow: hidden; margin-top: 4px; font-size: 10px; font-style: normal; text-overflow: ellipsis; white-space: nowrap; }
+.agent-hover-card i { display: flex; align-items: center; gap: 5px; margin-top: 4px; color: #597068; font: 600 9px "IBM Plex Mono", monospace; text-transform: capitalize; }
 .status-dot { display: inline-block; width: 8px; height: 8px; flex: 0 0 auto; border-radius: 50%; background: #7a8990; }
 .status-working { background: #55a36a; box-shadow: 0 0 0 3px rgba(85,163,106,.14); }.status-review { background: #d39c41; }.status-waiting { background: #82919d; }.status-offline { background: #b06c62; }
 .petdex-mascot { position: absolute; width: 8.5%; height: 15%; background-repeat: no-repeat; background-size: 800% 1100%; image-rendering: pixelated; transform: translate(-50%,-100%) scale(.66); transform-origin: center bottom; filter: drop-shadow(0 2px 1px rgba(47,38,25,.14)); animation: companion-idle 1.5s steps(6) infinite; }

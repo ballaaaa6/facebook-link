@@ -121,6 +121,42 @@ for (const station of officeMap.workstations) {
     if (collides) failures.push(`${station.id} ${anchorName} anchor intersects its desk collision`);
   }
 }
+if (!Array.isArray(officeMap.routes) || officeMap.routes.length < 8) {
+  failures.push("Office map must protect its primary walking routes");
+} else {
+  const routeContains = (point) => officeMap.routes.some((route) => (
+    point.x >= route.x
+    && point.x <= route.x + route.width
+    && point.y >= route.y
+    && point.y <= route.y + route.height
+  ));
+  const navigationNodes = new Map((officeMap.navigation?.nodes ?? []).map((node) => [node.id, node]));
+  for (const object of (officeMap.objects ?? []).filter((item) => item.layer !== "wall" && Number.isFinite(item.x) && Number.isFinite(item.y))) {
+    if (routeContains(object)) failures.push(`Office object center blocks a protected route: ${object.id}`);
+  }
+  for (const [fromId, toId] of officeMap.navigation?.edges ?? []) {
+    const from = navigationNodes.get(fromId);
+    const to = navigationNodes.get(toId);
+    if (!from || !to) {
+      failures.push(`Office navigation edge references an unknown node: ${fromId} -> ${toId}`);
+      continue;
+    }
+    if (from.x !== to.x && from.y !== to.y) {
+      failures.push(`Office navigation edge must be axis-aligned: ${fromId} -> ${toId}`);
+      continue;
+    }
+    const length = Math.hypot(to.x - from.x, to.y - from.y);
+    const steps = Math.max(1, Math.ceil(length * 4));
+    for (let step = 0; step <= steps; step += 1) {
+      const ratio = step / steps;
+      const sample = { x: from.x + (to.x - from.x) * ratio, y: from.y + (to.y - from.y) * ratio };
+      if (!routeContains(sample)) {
+        failures.push(`Office navigation leaves protected routes: ${fromId} -> ${toId}`);
+        break;
+      }
+    }
+  }
+}
 for (const [agentId, slug] of Object.entries(characterRegistry.agents)) {
   const sheetPath = join(root, "assets/game/characters", slug, "spritesheet.webp");
   if (!existsSync(sheetPath)) failures.push(`Missing spritesheet for ${agentId}: ${slug}`);

@@ -42,6 +42,7 @@ export interface OfficeMapDefinition {
   zones: Array<{ id: string; label: string; x: number; y: number; width: number; height: number; capacity: number }>;
   workstations: OfficeWorkstation[];
   pois: OfficePoi[];
+  routes: Array<OfficePoint & { id: string; width: number; height: number }>;
   navigation: {
     nodes: OfficeNavigationNode[];
     edges: Array<[string, string]>;

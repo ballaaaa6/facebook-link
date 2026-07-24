@@ -3,13 +3,30 @@
   "$id": "office-map.schema.json",
   "title": "Office map",
   "type": "object",
-  "required": ["id", "gridSize", "width", "height", "zones", "workstations", "objects"],
+  "required": ["id", "gridSize", "width", "height", "zones", "workstations", "pois", "routes", "navigation", "objects"],
   "properties": {
     "id": { "type": "string" },
     "gridSize": { "type": "integer", "minimum": 8 },
     "width": { "type": "number", "exclusiveMinimum": 0 },
     "height": { "type": "number", "exclusiveMinimum": 0 },
     "zones": { "type": "array" },
+    "pois": { "type": "array" },
+    "routes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "x", "y", "width", "height"],
+        "properties": {
+          "id": { "type": "string" },
+          "x": { "type": "number" },
+          "y": { "type": "number" },
+          "width": { "type": "number", "exclusiveMinimum": 0 },
+          "height": { "type": "number", "exclusiveMinimum": 0 }
+        },
+        "additionalProperties": false
+      }
+    },
+    "navigation": { "type": "object" },
     "objects": {
       "type": "array",
       "items": { "$ref": "#/$defs/object" }
