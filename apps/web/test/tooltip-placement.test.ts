@@ -75,7 +75,6 @@ test("vertical placement and arrow stay inside the visible frame", () => {
 
 test("obstacle avoidance does not detach the tooltip from its actor", () => {
   const anchor = rect(450, 250, 60, 80);
-  const centeredTop = anchor.top + anchor.height / 2 - tooltip.height / 2;
   const placement = placeAgentTooltip({
     anchor,
     tooltip,
@@ -86,5 +85,10 @@ test("obstacle avoidance does not detach the tooltip from its actor", () => {
       rect(250, 390, 450, 100),
     ],
   });
-  assert.ok(Math.abs(placement.top - centeredTop) <= 48);
+  const verticalGap = Math.max(
+    0,
+    placement.top - anchor.bottom,
+    anchor.top - (placement.top + tooltip.height),
+  );
+  assert.ok(verticalGap <= 10);
 });

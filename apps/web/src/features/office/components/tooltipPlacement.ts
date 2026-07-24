@@ -58,12 +58,17 @@ function candidateForSide({
   const minimumTop = bounds.top + margin;
   const maximumTop = Math.max(minimumTop, bounds.bottom - margin - tooltip.height);
   const centeredTopInBounds = clamp(centeredTop, minimumTop, maximumTop);
-  const localMinimumTop = Math.max(minimumTop, centeredTopInBounds - 48);
-  const localMaximumTop = Math.min(maximumTop, centeredTopInBounds + 48);
+  const attachedMinimumTop = Math.max(minimumTop, anchor.top - gap - tooltip.height);
+  const attachedMaximumTop = Math.min(maximumTop, anchor.bottom + gap);
+  const hasAttachedRange = attachedMinimumTop <= attachedMaximumTop;
+  const localMinimumTop = hasAttachedRange ? attachedMinimumTop : centeredTopInBounds;
+  const localMaximumTop = hasAttachedRange ? attachedMaximumTop : centeredTopInBounds;
   const topOptions = new Set([
     centeredTop,
     anchor.top,
     anchor.bottom - tooltip.height,
+    anchor.top - tooltip.height - gap,
+    anchor.bottom + gap,
     minimumTop,
     maximumTop,
   ]);
