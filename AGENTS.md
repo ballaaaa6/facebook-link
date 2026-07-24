@@ -57,6 +57,14 @@ npm run check
 
 `npm run check` is the required pre-commit gate. Never bypass architecture, file-size, or duplication failures by weakening a rule without documenting the architectural reason.
 
+## Local process lifecycle
+
+- Before starting a local dev server, check whether `http://127.0.0.1:4173` is already responding and reuse it when available.
+- Start the web app only with `npm run dev`; do not override its host or port and do not accept an automatically selected fallback port.
+- Record the PID of any long-running server started for a task and stop that process tree after local QA unless the user explicitly asks to keep it running.
+- Never terminate Codex-owned `mcp/server.mjs`, `node_repl`, or processes under `OpenAI\Codex\runtimes` while cleaning up project servers.
+- Before completing a task that used local servers, confirm that it did not leave duplicate Vite, Wrangler, or workerd processes behind.
+
 ## Change workflow
 
 1. Identify the owning boundary and source-of-truth document.
