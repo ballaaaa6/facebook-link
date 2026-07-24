@@ -4,12 +4,11 @@ import { StatusDot } from "../../../shared/components/StatusDot";
 import { useAgentMotion } from "../motion/useAgentMotion";
 import type { OfficeMapDefinition, OfficeWorkstation } from "../officeTypes";
 import { AnimatedAgent } from "./AnimatedAgent";
+import type { TooltipPreference } from "./tooltipPlacement";
 
-export interface AgentPreviewAnchor {
+export interface AgentPreviewRequest {
   agentId: string;
-  left: number;
-  top: number;
-  opensLeft: boolean;
+  preferredSide: TooltipPreference;
 }
 
 export function AgentEntity({
@@ -32,7 +31,7 @@ export function AgentEntity({
   selected: boolean;
   previewed: boolean;
   station: OfficeWorkstation;
-  onPreview: (anchor: AgentPreviewAnchor) => void;
+  onPreview: (request: AgentPreviewRequest) => void;
   onSelect: (agentId: string) => void;
 }) {
   const trackRef = useRef<HTMLDivElement>(null);
@@ -53,19 +52,14 @@ export function AgentEntity({
         aria-label={`Select ${agent.role}${visual.activityLabel ? `, ${visual.activityLabel}` : ""}`}
         aria-describedby={previewed ? `agent-tooltip-${agent.agentId}` : undefined}
         onClick={() => onSelect(agent.agentId)}
-        onFocus={(event) => {
-          const rect = event.currentTarget.getBoundingClientRect();
-          onPreview({ agentId: agent.agentId, left: rect.right, top: rect.top + rect.height / 2, opensLeft: false });
-        }}
-        onPointerEnter={(event) => {
-          const rect = event.currentTarget.getBoundingClientRect();
-          onPreview({
-            agentId: agent.agentId,
-            left: rect.right,
-            top: rect.top + rect.height / 2,
-            opensLeft: rect.right > window.innerWidth - 230,
-          });
-        }}
+        onFocus={() => onPreview({
+          agentId: agent.agentId,
+          preferredSide: station.previewSide ?? "auto",
+        })}
+        onPointerEnter={() => onPreview({
+          agentId: agent.agentId,
+          preferredSide: station.previewSide ?? "auto",
+        })}
       >
         <AnimatedAgent
           agentId={agent.agentId}

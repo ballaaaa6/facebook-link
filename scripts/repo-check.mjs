@@ -73,6 +73,17 @@ const officeMap = JSON.parse(readFileSync(join(root, "assets/game/maps/office-c-
 const officeGeometry = JSON.parse(readFileSync(join(root, "assets/game/manifests/office-assets.json"), "utf8"));
 const characterRegistry = JSON.parse(readFileSync(join(root, "assets/game/characters/registry.json"), "utf8"));
 const agentIds = new Set(agents.map((agent) => agent.id));
+const characterSlugs = [
+  ...Object.values(characterRegistry.agents),
+  ...Object.values(characterRegistry.companions),
+];
+for (const slug of characterSlugs) {
+  for (const sheet of [characterRegistry.activeRuntime.sheet1x, characterRegistry.activeRuntime.sheet2x]) {
+    if (!existsSync(join(root, "assets/game/characters", slug, sheet))) {
+      failures.push(`Missing active character runtime sheet: ${slug}/${sheet}`);
+    }
+  }
+}
 const officeAssetIds = new Set(
   ["core-furniture-sheet.json", "decor-mechanical-sheet.json", "equipment-sheet.json", "office-utility-sheet.json"]
     .flatMap((manifest) => JSON.parse(readFileSync(join(root, "assets/game/manifests", manifest), "utf8")).cells)

@@ -80,6 +80,8 @@ test("a capacity-one facility never admits two agents", () => {
 test("character frames stay aligned to physical pixels", () => {
   assert.deepEqual(pixelAlignedCharacterFrame(680, 1), { width: 52, height: 56 });
   assert.deepEqual(pixelAlignedCharacterFrame(680, 2), { width: 51, height: 55 });
+  assert.deepEqual(pixelAlignedCharacterFrame(1_280, 1), { width: 96, height: 104 });
+  assert.deepEqual(pixelAlignedCharacterFrame(1_280, 2), { width: 96, height: 104 });
 });
 
 test("the real scene respects every facility capacity over repeated cycles", () => {

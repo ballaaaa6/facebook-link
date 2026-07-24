@@ -21,7 +21,7 @@ Business state and visual motion are intentionally separate:
 - The presentation layer selects a workstation or point of interest.
 - A single browser animation loop interpolates position against timestamps.
 - CSS transforms move actors without React state updates on every frame.
-- Sprite frames retain their low-frame-rate pixel-art character.
+- Sprite frames retain their low-frame-rate illustrated animation.
 - Reduced-motion mode keeps agents at their workstations while preserving all operational information.
 
 Random routines are simulation-only. Live mode never invents operational movement.
@@ -47,15 +47,23 @@ destinations, invalid facility capacity, and missing geometry.
 
 ## Pixel rendering
 
-The 192 x 208 source frames remain provenance assets. The browser imports
-lossless 48 x 52 nearest-neighbor runtime sheets, aligns actor dimensions and
-translations to physical pixels, and derives sprite phase from the shared scene
-clock. This prevents the half-pixel resampling that previously made non-walking
-states appear blurred.
+The 192 x 208 source frames remain provenance assets. Runtime v2 provides
+sharpened 96 x 104 frames for standard displays and optimized 192 x 208 frames
+for high-density displays. CSS `image-set` selects the density tier and normal
+image interpolation preserves the illustrated shading. Actor translations
+remain aligned to physical pixels, and sprite phase comes from the shared scene
+clock.
 
 ## Interaction model
 
 - Pointer or keyboard focus opens a stable preview.
+- Preview placement measures the live actor and tooltip rectangles, scores the
+  left and right sides for overflow and actor overlap, and clamps the result to
+  the visible Office frame.
+- A workstation may prefer `auto`, `left`, or `right`; an unsafe preference
+  still flips before leaving the frame.
+- The tooltip renders through a fixed portal so the scroll container cannot
+  clip it, and follows a moving actor without React frame rerenders.
 - Preview placement is independent from the moving actor.
 - Clicking an actor pins its details in the inspector.
 - Escape dismisses transient previews.

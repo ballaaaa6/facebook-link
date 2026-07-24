@@ -28,9 +28,10 @@ the implementation authority.
   An unsuccessful request remains at the workstation in a waiting state.
 - A five-minute deterministic scene test checks every facility capacity,
   interaction slot, and moving-agent separation.
-- All agent sprites use 48 x 52 px lossless nearest-neighbor runtime sheets.
-  Actor dimensions, translation, and background frames align to physical
-  pixels; seated scaling and per-agent frame timers have been removed.
+- Agent sprites use illustrated-art runtime v2 sheets: sharpened 96 x 104
+  frames at 1x and optimized 192 x 208 frames at 2x. CSS `image-set` chooses
+  density while actor translation remains aligned to physical pixels; seated
+  scaling and per-agent frame timers have been removed.
 - One persistent scene clock and animation-frame scheduler drive every actor.
   Reduced-motion mode freezes routes and sprite loops at the workstation.
 - Object depth uses the bottom of its physical footprint. Desks render in front
@@ -39,6 +40,9 @@ the implementation authority.
   room has fit and selected-agent focus controls.
 - The Office feed preserves the last live snapshot during temporary failure and
   distinguishes loading, live, reconnecting, stale, fallback, and offline.
+- Agent previews render outside the scroll clip, follow moving actors, score
+  left/right placement against visible bounds and other actors, and support
+  `auto`, `left`, or `right` workstation preferences.
 
 ## Remaining Production Work
 

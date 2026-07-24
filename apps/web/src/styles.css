@@ -297,7 +297,7 @@ h2 { font-size: var(--font-xl); }
   height: 100%;
   background-repeat: no-repeat;
   background-size: 800% 900%;
-  image-rendering: pixelated;
+  image-rendering: auto;
   transform: none;
   transform-origin: center bottom;
   filter: drop-shadow(0 3px 1px rgba(36,31,25,.2));
@@ -338,7 +338,8 @@ h2 { font-size: var(--font-xl); }
   transform: translate(-50%, -4px) rotate(45deg);
 }
 .agent-hover-card {
-  position: absolute;
+  --tooltip-arrow-top: 50%;
+  position: fixed;
   z-index: 1200;
   display: grid;
   width: clamp(150px, 13vw, 190px);
@@ -348,11 +349,29 @@ h2 { font-size: var(--font-xl); }
   border-radius: 9px;
   color: #1e3d35;
   background: rgba(255, 253, 247, .98);
-  transform: translate(10px, -50%);
   box-shadow: 0 8px 22px rgba(31, 52, 45, .18);
   pointer-events: auto;
 }
-.agent-hover-card.opens-left { transform: translate(calc(-100% - 10px), -50%); }
+.agent-hover-card::after {
+  position: absolute;
+  top: var(--tooltip-arrow-top);
+  width: 9px;
+  height: 9px;
+  border: 1px solid rgba(25, 61, 52, .2);
+  background: rgba(255, 253, 247, .98);
+  content: "";
+  transform: translateY(-50%) rotate(45deg);
+}
+.agent-hover-card[data-side="right"]::after {
+  left: -6px;
+  border-top: 0;
+  border-right: 0;
+}
+.agent-hover-card[data-side="left"]::after {
+  right: -6px;
+  border-bottom: 0;
+  border-left: 0;
+}
 .agent-hover-card strong { font-size: 12px; }
 .agent-hover-card small { color: var(--muted); font-size: 11px; }
 .agent-hover-card em { display: -webkit-box; overflow: hidden; margin-top: 4px; font-size: 11px; font-style: normal; line-height: 1.35; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
@@ -366,7 +385,7 @@ h2 { font-size: var(--font-xl); }
 .status-blocked, .status-failed { background: #c46355; }
 .status-offline, .status-stale { background: #9a6c67; }
 .status-completed { background: #4c8f7b; }
-.petdex-mascot { position: absolute; width: 48px; height: 52px; background-repeat: no-repeat; background-size: 800% 1100%; image-rendering: pixelated; transform: translate(-50%,-100%); transform-origin: center bottom; filter: drop-shadow(0 2px 1px rgba(47,38,25,.14)); animation: companion-idle 1.5s steps(6) infinite; }
+.petdex-mascot { position: absolute; width: 48px; height: 52px; background-repeat: no-repeat; background-size: 800% 1100%; image-rendering: auto; transform: translate(-50%,-100%); transform-origin: center bottom; filter: drop-shadow(0 2px 1px rgba(47,38,25,.14)); animation: companion-idle 1.5s steps(6) infinite; }
 @keyframes companion-idle { from { background-position: 0 0; } to { background-position: 85.714% 0; } }
 
 @media (prefers-reduced-motion: reduce) {

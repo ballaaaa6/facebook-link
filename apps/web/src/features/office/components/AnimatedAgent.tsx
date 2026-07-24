@@ -1,5 +1,10 @@
 import { useEffect, useRef } from "react";
-import { characterRegistry, characterStates, type CharacterState } from "../characterRegistry";
+import {
+  characterImageSet,
+  characterRegistry,
+  characterStates,
+  type CharacterState,
+} from "../characterRegistry";
 import { subscribeToOfficeFrame } from "../motion/frameScheduler";
 
 export function AnimatedAgent({
@@ -44,7 +49,7 @@ export function AnimatedAgent({
       data-character={character.sourceSlug}
       data-state={state}
       style={{
-        backgroundImage: `url(${character.sheet})`,
+        backgroundImage: characterImageSet(character),
         backgroundPosition: `0% ${(config.row / 8) * 100}%`,
       } as React.CSSProperties}
     />

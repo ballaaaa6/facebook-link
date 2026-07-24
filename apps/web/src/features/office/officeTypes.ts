@@ -35,6 +35,7 @@ export interface OfficeWorkstation {
   stand: OfficePoint;
   navNode: string;
   collision: OfficePoint & { width: number; height: number };
+  previewSide?: "auto" | "left" | "right";
 }
 
 export type OfficeActivity = "coffee" | "lounge" | "meeting" | "printer" | "server" | "water";

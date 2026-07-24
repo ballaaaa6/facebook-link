@@ -1,18 +1,29 @@
-import aiWorkbotSheet from "../../../../../assets/game/characters/ai-workbot/runtime-spritesheet.webp";
-import doraemonSheet from "../../../../../assets/game/characters/doraemon/runtime-spritesheet.webp";
-import einsteinSheet from "../../../../../assets/game/characters/einstein/runtime-spritesheet.webp";
-import luffySheet from "../../../../../assets/game/characters/luffy/runtime-spritesheet.webp";
-import noirWeblingSheet from "../../../../../assets/game/characters/noir-webling/runtime-spritesheet.webp";
-import remSheet from "../../../../../assets/game/characters/rem-xl/runtime-spritesheet.webp";
-import ruriSheet from "../../../../../assets/game/characters/ruri/runtime-spritesheet.webp";
-import taffySheet from "../../../../../assets/game/characters/taffy-2/runtime-spritesheet.webp";
-import tianSheet from "../../../../../assets/game/characters/tian-zekun-2/runtime-spritesheet.webp";
-import yinyueSheet from "../../../../../assets/game/characters/yinyue-2/runtime-spritesheet.webp";
+import aiWorkbotSheet from "../../../../../assets/game/characters/ai-workbot/runtime-spritesheet-v2.webp";
+import aiWorkbotSheet2x from "../../../../../assets/game/characters/ai-workbot/runtime-spritesheet-v2@2x.webp";
+import doraemonSheet from "../../../../../assets/game/characters/doraemon/runtime-spritesheet-v2.webp";
+import doraemonSheet2x from "../../../../../assets/game/characters/doraemon/runtime-spritesheet-v2@2x.webp";
+import einsteinSheet from "../../../../../assets/game/characters/einstein/runtime-spritesheet-v2.webp";
+import einsteinSheet2x from "../../../../../assets/game/characters/einstein/runtime-spritesheet-v2@2x.webp";
+import luffySheet from "../../../../../assets/game/characters/luffy/runtime-spritesheet-v2.webp";
+import luffySheet2x from "../../../../../assets/game/characters/luffy/runtime-spritesheet-v2@2x.webp";
+import noirWeblingSheet from "../../../../../assets/game/characters/noir-webling/runtime-spritesheet-v2.webp";
+import noirWeblingSheet2x from "../../../../../assets/game/characters/noir-webling/runtime-spritesheet-v2@2x.webp";
+import remSheet from "../../../../../assets/game/characters/rem-xl/runtime-spritesheet-v2.webp";
+import remSheet2x from "../../../../../assets/game/characters/rem-xl/runtime-spritesheet-v2@2x.webp";
+import ruriSheet from "../../../../../assets/game/characters/ruri/runtime-spritesheet-v2.webp";
+import ruriSheet2x from "../../../../../assets/game/characters/ruri/runtime-spritesheet-v2@2x.webp";
+import taffySheet from "../../../../../assets/game/characters/taffy-2/runtime-spritesheet-v2.webp";
+import taffySheet2x from "../../../../../assets/game/characters/taffy-2/runtime-spritesheet-v2@2x.webp";
+import tianSheet from "../../../../../assets/game/characters/tian-zekun-2/runtime-spritesheet-v2.webp";
+import tianSheet2x from "../../../../../assets/game/characters/tian-zekun-2/runtime-spritesheet-v2@2x.webp";
+import yinyueSheet from "../../../../../assets/game/characters/yinyue-2/runtime-spritesheet-v2.webp";
+import yinyueSheet2x from "../../../../../assets/game/characters/yinyue-2/runtime-spritesheet-v2@2x.webp";
 
 export type CharacterState = "failed" | "idle" | "review" | "waiting" | "walk-left" | "walk-right" | "waving" | "working";
 
 export interface CharacterDefinition {
   sheet: string;
+  sheet2x: string;
   sourceSlug: string;
 }
 
@@ -28,14 +39,18 @@ export const characterStates: Record<CharacterState, { row: number; frames: numb
 };
 
 export const characterRegistry: Record<string, CharacterDefinition> = {
-  "market-scout": { sheet: noirWeblingSheet, sourceSlug: "noir-webling" },
-  "product-ranker": { sheet: einsteinSheet, sourceSlug: "einstein" },
-  "growth-strategist": { sheet: ruriSheet, sourceSlug: "ruri" },
-  "performance-analyst": { sheet: tianSheet, sourceSlug: "tian-zekun-2" },
-  "gemini-copywriter": { sheet: yinyueSheet, sourceSlug: "yinyue-2" },
-  "flow-visual-producer": { sheet: taffySheet, sourceSlug: "taffy-2" },
-  "link-attribution": { sheet: doraemonSheet, sourceSlug: "doraemon" },
-  "qa-editor": { sheet: remSheet, sourceSlug: "rem-xl" },
-  publisher: { sheet: luffySheet, sourceSlug: "luffy" },
-  "session-keeper": { sheet: aiWorkbotSheet, sourceSlug: "ai-workbot" },
+  "market-scout": { sheet: noirWeblingSheet, sheet2x: noirWeblingSheet2x, sourceSlug: "noir-webling" },
+  "product-ranker": { sheet: einsteinSheet, sheet2x: einsteinSheet2x, sourceSlug: "einstein" },
+  "growth-strategist": { sheet: ruriSheet, sheet2x: ruriSheet2x, sourceSlug: "ruri" },
+  "performance-analyst": { sheet: tianSheet, sheet2x: tianSheet2x, sourceSlug: "tian-zekun-2" },
+  "gemini-copywriter": { sheet: yinyueSheet, sheet2x: yinyueSheet2x, sourceSlug: "yinyue-2" },
+  "flow-visual-producer": { sheet: taffySheet, sheet2x: taffySheet2x, sourceSlug: "taffy-2" },
+  "link-attribution": { sheet: doraemonSheet, sheet2x: doraemonSheet2x, sourceSlug: "doraemon" },
+  "qa-editor": { sheet: remSheet, sheet2x: remSheet2x, sourceSlug: "rem-xl" },
+  publisher: { sheet: luffySheet, sheet2x: luffySheet2x, sourceSlug: "luffy" },
+  "session-keeper": { sheet: aiWorkbotSheet, sheet2x: aiWorkbotSheet2x, sourceSlug: "ai-workbot" },
 };
+
+export function characterImageSet(character: CharacterDefinition) {
+  return `image-set(url("${character.sheet}") 1x, url("${character.sheet2x}") 2x)`;
+}

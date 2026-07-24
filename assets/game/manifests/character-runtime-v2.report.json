@@ -1,0 +1,33 @@
+{
+  "version": 2,
+  "sourceFrame": [192, 208],
+  "runtimeFrame1x": [96, 104],
+  "runtimeFrame2x": [192, 208],
+  "columns": 8,
+  "agentRows": 9,
+  "companionRows": 11,
+  "resizeFilter": "lanczos",
+  "sharpening": {
+    "frame1x": 0.55,
+    "frame2x": 0.3
+  },
+  "encoding": {
+    "format": "webp",
+    "quality1x": 92,
+    "quality2x": 90
+  },
+  "rendering": "auto",
+  "agents": [
+    "ai-workbot",
+    "doraemon",
+    "einstein",
+    "luffy",
+    "noir-webling",
+    "rem-xl",
+    "ruri",
+    "taffy-2",
+    "tian-zekun-2",
+    "yinyue-2"
+  ],
+  "companions": ["boba"]
+}

@@ -112,6 +112,7 @@
           "approach": { "$ref": "#/$defs/point" },
           "stand": { "$ref": "#/$defs/point" },
           "navNode": { "type": "string" },
+          "previewSide": { "enum": ["auto", "left", "right"] },
           "collision": { "$ref": "#/$defs/rectangle" }
         },
         "additionalProperties": false

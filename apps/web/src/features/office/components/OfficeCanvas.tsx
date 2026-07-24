@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import type { OfficeAgentView, OfficeMode } from "@affiliate-ops/contracts";
 import officeMapJson from "../../../../../../assets/game/maps/office-c-v1.json";
-import bobaSheet from "../../../../../../assets/game/characters/boba/runtime-spritesheet.webp";
+import bobaSheet from "../../../../../../assets/game/characters/boba/runtime-spritesheet-v2.webp";
+import bobaSheet2x from "../../../../../../assets/game/characters/boba/runtime-spritesheet-v2@2x.webp";
 import { resolveOfficeLayout, validateOfficeLayout } from "../layout/officeLayout";
 import type { OfficeMapDefinition } from "../officeTypes";
-import { AgentEntity, type AgentPreviewAnchor } from "./AgentEntity";
+import { AgentEntity, type AgentPreviewRequest } from "./AgentEntity";
 import { AgentTooltip } from "./AgentTooltip";
 import { officeAssetRegistry, officeSlotSets } from "./officeAssetRegistry";
 import { WorldObject } from "./WorldObject";
@@ -36,7 +37,7 @@ export function OfficeCanvas({
   onSelect: (id: string) => void;
 }) {
   const frameRef = useRef<HTMLDivElement>(null);
-  const [preview, setPreview] = useState<AgentPreviewAnchor | null>(null);
+  const [preview, setPreview] = useState<AgentPreviewRequest | null>(null);
   const [zoom, setZoom] = useState(() => window.matchMedia("(max-width: 760px)").matches ? .5 : 1);
   const [sceneStartedAt] = useState(() => performance.now());
   const previewAgent = useMemo(
@@ -54,15 +55,6 @@ export function OfficeCanvas({
     window.addEventListener("keydown", dismiss);
     return () => window.removeEventListener("keydown", dismiss);
   }, [preview]);
-
-  const showPreview = (anchor: AgentPreviewAnchor) => {
-    const frame = frameRef.current?.getBoundingClientRect();
-    if (!frame) return;
-    const viewportLeft = anchor.left - frame.left;
-    const left = viewportLeft + frameRef.current!.scrollLeft;
-    const top = anchor.top - frame.top + frameRef.current!.scrollTop;
-    setPreview({ ...anchor, left, top, opensLeft: viewportLeft > frame.width - 220 });
-  };
 
   const focusSelected = () => {
     const frame = frameRef.current;
@@ -140,7 +132,7 @@ export function OfficeCanvas({
                 selected={selectedId === agent.agentId}
                 previewed={preview?.agentId === agent.agentId}
                 station={station}
-                onPreview={showPreview}
+                onPreview={setPreview}
                 onSelect={onSelect}
               />
             </div>
@@ -149,10 +141,17 @@ export function OfficeCanvas({
         <span
           className="petdex-mascot"
           aria-label="Boba resting by the pet bed"
-          style={{ backgroundImage: `url(${bobaSheet})`, left: percentX(10.1), top: percentY(18.45), zIndex: 475 } as CSSProperties}
+          style={{
+            backgroundImage: `image-set(url("${bobaSheet}") 1x, url("${bobaSheet2x}") 2x)`,
+            left: percentX(10.1),
+            top: percentY(18.45),
+            zIndex: 475,
+          } as CSSProperties}
         />
       </div>
-      {previewAgent && preview ? <AgentTooltip agent={previewAgent} anchor={preview} /> : null}
+      {previewAgent && preview
+        ? <AgentTooltip agent={previewAgent} frameRef={frameRef} request={preview} />
+        : null}
       </div>
     </div>
   );
