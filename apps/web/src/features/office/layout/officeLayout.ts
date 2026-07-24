@@ -9,6 +9,8 @@ import type {
 } from "../officeTypes";
 
 export interface OfficeAssetGeometryLike {
+  renderBox: { width: number; height: number };
+  fit?: "contain" | "fill";
   layer: OfficeLayer;
   anchor: OfficeAnchor;
   supports: OfficeSupport[];
@@ -37,11 +39,10 @@ interface ParentPlacement extends OfficePoint {
 }
 
 function rectanglesOverlap(a: OfficeRectangle, b: OfficeRectangle) {
-  const epsilon = 0.001;
-  return a.x < b.x + b.width - epsilon
-    && a.x + a.width > b.x + epsilon
-    && a.y < b.y + b.height - epsilon
-    && a.y + a.height > b.y + epsilon;
+  return a.x < b.x + b.width
+    && a.x + a.width > b.x
+    && a.y < b.y + b.height
+    && a.y + a.height > b.y;
 }
 
 function footprintRectangle(
@@ -156,6 +157,67 @@ export function validateOfficeLayout(
   resolved: OfficeLayoutResult,
 ) {
   const issues = [...resolved.issues];
+  const integerFields = [
+    { id: "map width", value: map.width },
+    { id: "map height", value: map.height },
+    ...map.zones.flatMap((zone) => [
+      { id: `${zone.id}.x`, value: zone.x },
+      { id: `${zone.id}.y`, value: zone.y },
+      { id: `${zone.id}.width`, value: zone.width },
+      { id: `${zone.id}.height`, value: zone.height },
+    ]),
+    ...map.workstations.flatMap((station) => [
+      { id: `${station.id}.x`, value: station.x },
+      { id: `${station.id}.y`, value: station.y },
+      { id: `${station.id}.seat.x`, value: station.seat.x },
+      { id: `${station.id}.seat.y`, value: station.seat.y },
+      { id: `${station.id}.approach.x`, value: station.approach.x },
+      { id: `${station.id}.approach.y`, value: station.approach.y },
+      { id: `${station.id}.stand.x`, value: station.stand.x },
+      { id: `${station.id}.stand.y`, value: station.stand.y },
+      { id: `${station.id}.collision.x`, value: station.collision.x },
+      { id: `${station.id}.collision.y`, value: station.collision.y },
+      { id: `${station.id}.collision.width`, value: station.collision.width },
+      { id: `${station.id}.collision.height`, value: station.collision.height },
+    ]),
+    ...map.objects.flatMap((object) => [
+      ...(typeof object.x === "number" ? [{ id: `${object.id}.x`, value: object.x }] : []),
+      ...(typeof object.y === "number" ? [{ id: `${object.id}.y`, value: object.y }] : []),
+    ]),
+    ...map.routes.flatMap((route) => [
+      { id: `${route.id}.x`, value: route.x },
+      { id: `${route.id}.y`, value: route.y },
+      { id: `${route.id}.width`, value: route.width },
+      { id: `${route.id}.height`, value: route.height },
+    ]),
+    ...map.navigation.nodes.flatMap((node) => [
+      { id: `${node.id}.x`, value: node.x },
+      { id: `${node.id}.y`, value: node.y },
+    ]),
+    ...map.pois.flatMap((poi) => [
+      { id: `${poi.id}.point.x`, value: poi.point.x },
+      { id: `${poi.id}.point.y`, value: poi.point.y },
+      ...(poi.slots ?? []).flatMap((slot, index) => [
+        { id: `${poi.id}.slots[${index}].x`, value: slot.x },
+        { id: `${poi.id}.slots[${index}].y`, value: slot.y },
+      ]),
+    ]),
+  ];
+  for (const field of integerFields) {
+    if (!Number.isInteger(field.value)) issues.push(`${field.id} must be an integer grid value`);
+  }
+  for (const [assetId, geometry] of Object.entries(assets)) {
+    for (const [name, value] of [
+      ["renderBox.width", geometry.renderBox.width],
+      ["renderBox.height", geometry.renderBox.height],
+      ["footprint.width", geometry.footprint?.width],
+      ["footprint.depth", geometry.footprint?.depth],
+    ] as const) {
+      if (value !== undefined && (!Number.isInteger(value) || value < 1)) {
+        issues.push(`${assetId}.${name} must be a positive integer`);
+      }
+    }
+  }
   const allIds = [
     ...map.workstations.map((station) => `workstation:${station.id}`),
     ...map.objects.map((object) => `object:${object.id}`),

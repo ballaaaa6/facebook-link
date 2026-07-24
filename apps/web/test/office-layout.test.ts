@@ -13,7 +13,7 @@ interface GeometryManifest {
 }
 
 const map = JSON.parse(
-  readFileSync(new URL("../../../assets/game/maps/office-c-v1.json", import.meta.url), "utf8"),
+  readFileSync(new URL("../../../assets/game/maps/office-c-v2.json", import.meta.url), "utf8"),
 ) as OfficeMapDefinition;
 const geometry = JSON.parse(
   readFileSync(new URL("../../../assets/game/manifests/office-assets.json", import.meta.url), "utf8"),
@@ -22,6 +22,25 @@ const geometry = JSON.parse(
 test("the Office C map has no occupancy or support violations", () => {
   const resolved = resolveOfficeLayout(map, geometry.assets, geometry.slotSets);
   assert.deepEqual(validateOfficeLayout(map, geometry.assets, resolved), []);
+});
+
+test("the Office C authoring contract uses integer tiles only", () => {
+  assert.equal(map.width, 36);
+  assert.equal(map.height, 24);
+  assert.deepEqual(map.zones.map(({ width }) => width), [24, 12]);
+  for (const geometryEntry of Object.values(geometry.assets)) {
+    assert.ok(Number.isInteger(geometryEntry.renderBox.width));
+    assert.ok(Number.isInteger(geometryEntry.renderBox.height));
+    if (!geometryEntry.footprint) continue;
+    assert.ok(Number.isInteger(geometryEntry.footprint.width));
+    assert.ok(Number.isInteger(geometryEntry.footprint.depth));
+  }
+  for (const slots of Object.values(geometry.slotSets)) {
+    for (const slot of Object.values(slots)) {
+      assert.ok(Number.isInteger(slot.x));
+      assert.ok(Number.isInteger(slot.y));
+    }
+  }
 });
 
 test("surface slots cannot be claimed twice", () => {
@@ -40,11 +59,11 @@ test("surface slots cannot be claimed twice", () => {
 
 test("floor footprints cannot overlap", () => {
   const overlapping = structuredClone(map);
-  const plant = overlapping.objects.find((object) => object.id === "creative-plant-tall");
+  const plant = overlapping.objects.find((object) => object.id === "work-plant-a");
   assert.ok(plant);
-  plant.x = 15.5;
-  plant.y = 8.8;
+  plant.x = 1;
+  plant.y = 12;
   const resolved = resolveOfficeLayout(overlapping, geometry.assets, geometry.slotSets);
   const issues = validateOfficeLayout(overlapping, geometry.assets, resolved);
-  assert.ok(issues.some((issue) => issue.includes("creative-cabinet overlaps creative-plant-tall")));
+  assert.ok(issues.some((issue) => issue.includes("work-plant-a overlaps work-plant-b")));
 });

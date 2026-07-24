@@ -4,7 +4,7 @@ import { officeAssetRegistry } from "./officeAssetRegistry";
 
 const layerOffset: Record<OfficeLayer, number> = { wall: 0, furniture: 0, equipment: 6, decor: 8 };
 
-export function WorldObject({ object, worldWidth, percentX, percentY, className = "" }: { object: ResolvedOfficeObject; worldWidth: number; percentX: (value: number) => string; percentY: (value: number) => string; className?: string }) {
+export function WorldObject({ object, worldWidth, worldHeight, percentX, percentY, className = "" }: { object: ResolvedOfficeObject; worldWidth: number; worldHeight: number; percentX: (value: number) => string; percentY: (value: number) => string; className?: string }) {
   const asset = officeAssetRegistry[object.asset];
   if (!asset) return null;
 
@@ -21,7 +21,9 @@ export function WorldObject({ object, worldWidth, percentX, percentY, className 
       style={{
         left: percentX(object.x),
         top: percentY(object.y),
-        width: `${(asset.renderWidthTiles / worldWidth) * 100}%`,
+        width: `${(asset.renderBox.width / worldWidth) * 100}%`,
+        height: `${(asset.renderBox.height / worldHeight) * 100}%`,
+        objectFit: asset.fit ?? "contain",
         zIndex,
       }}
     />

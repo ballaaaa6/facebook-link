@@ -111,6 +111,7 @@ function routeFor(
 }
 
 function deskState(agent: OfficeAgentView): AgentPresentation["state"] {
+  if (agent.status === "completed") return "celebrating";
   if (agent.status === "failed" || agent.status === "blocked") return "failed";
   if (agent.status === "review" || agent.status === "waiting_human") return "review";
   if (agent.status === "running") return "working";

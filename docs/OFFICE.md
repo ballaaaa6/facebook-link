@@ -34,12 +34,16 @@ seat, doorway, or narrow route cell.
 
 ## Spatial model
 
-`assets/game/manifests/office-assets.json` owns physical footprints, support
-types, parent slot sets, and render widths. `office-c-v1.json` owns placement,
-protected routes, navigation, facilities, and workstation collision
+`assets/game/manifests/office-assets.json` owns integer render boxes, physical
+footprints, support types, and integer parent-slot offsets. `office-c-v2.json`
+owns the 36 x 24 integer grid, its 24-column work floor, its 12-column support
+floor, protected routes, navigation, facilities, and workstation collision
 rectangles. Surface props such as monitors, the printer, microwave, papers,
 network stack, and UPS attach to named parent slots and do not reserve unrelated
 floor cells.
+
+Runtime movement may interpolate between authored nodes, but map placement,
+asset boxes, footprints, anchors, and route nodes never use fractional tiles.
 
 The Office layout validator runs as part of `npm run check`. It rejects overlap,
 route obstruction, unsupported or duplicate attachments, unreachable
@@ -50,9 +54,9 @@ destinations, invalid facility capacity, and missing geometry.
 The 192 x 208 source frames remain provenance assets. Runtime v2 provides
 sharpened 96 x 104 frames for standard displays and optimized 192 x 208 frames
 for high-density displays. CSS `image-set` selects the density tier and normal
-image interpolation preserves the illustrated shading. Actor translations
-remain aligned to physical pixels, and sprite phase comes from the shared scene
-clock.
+image interpolation preserves the illustrated shading. Character size derives
+from the current integer tile size. Actor translations remain aligned to
+physical pixels, and sprite phase comes from the shared scene clock.
 
 ## Interaction model
 

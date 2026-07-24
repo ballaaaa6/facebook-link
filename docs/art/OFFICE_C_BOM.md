@@ -2,7 +2,7 @@
 
 ## Production Rule
 
-Only assets referenced by `assets/game/maps/office-c-v1.json` are rendered for the first vertical slice. Extra catalog variants remain deferred until a real layout requires them.
+Only assets referenced by `assets/game/maps/office-c-v2.json` are rendered for the active integer-grid scene. Extra catalog variants remain deferred until a real layout requires them.
 
 ## Core Furniture
 

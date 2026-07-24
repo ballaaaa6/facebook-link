@@ -47,9 +47,11 @@ Small geometry-simple utility props may use authored SVGs when a controlled rast
 3. Find visible bounds inside each cell.
 4. Add canonical padding and align to the 32 px world grid.
 5. Quantize to the locked palette.
-6. Validate alpha, bounds, palette, perspective, and anchor safety.
-7. Pack accepted assets into atlases.
-8. Record collisions and interaction anchors separately from theme images.
+6. Place the trimmed content inside an integer tile render box; transparent
+   padding may remain and must not change the floor footprint.
+7. Validate alpha, bounds, palette, perspective, integer geometry, and anchor safety.
+8. Pack accepted assets into atlases.
+9. Record integer collisions and interaction anchors separately from theme images.
 
 ## Theme Strategy
 

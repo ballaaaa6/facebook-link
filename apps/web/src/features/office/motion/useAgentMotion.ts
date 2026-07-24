@@ -40,7 +40,7 @@ export function useAgentMotion(
         const snap = (value: number) => Math.round(value * deviceScale) / deviceScale;
         const x = snap((presentation.position.x / map.width) * track.clientWidth);
         const y = snap((presentation.position.y / map.height) * track.clientHeight);
-        const frame = pixelAlignedCharacterFrame(track.clientWidth, deviceScale);
+        const frame = pixelAlignedCharacterFrame(track.clientWidth / map.width, deviceScale);
         track.style.setProperty("--agent-x", `${x}px`);
         track.style.setProperty("--agent-y", `${y}px`);
         track.style.setProperty("--agent-width", `${frame.width}px`);

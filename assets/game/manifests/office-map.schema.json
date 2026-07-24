@@ -7,8 +7,8 @@
   "properties": {
     "id": { "type": "string" },
     "gridSize": { "type": "integer", "minimum": 8 },
-    "width": { "type": "number", "exclusiveMinimum": 0 },
-    "height": { "type": "number", "exclusiveMinimum": 0 },
+    "width": { "type": "integer", "minimum": 1 },
+    "height": { "type": "integer", "minimum": 1 },
     "zones": {
       "type": "array",
       "items": {
@@ -17,10 +17,11 @@
         "properties": {
           "id": { "type": "string" },
           "label": { "type": "string" },
-          "x": { "type": "number" },
-          "y": { "type": "number" },
-          "width": { "type": "number", "exclusiveMinimum": 0 },
-          "height": { "type": "number", "exclusiveMinimum": 0 }
+          "x": { "type": "integer" },
+          "y": { "type": "integer" },
+          "width": { "type": "integer", "minimum": 1 },
+          "height": { "type": "integer", "minimum": 1 },
+          "capacity": { "type": "integer", "minimum": 1 }
         },
         "additionalProperties": false
       }
@@ -41,7 +42,7 @@
           },
           "navNode": { "type": "string" },
           "capacity": { "type": "integer", "minimum": 1 },
-          "duration": { "type": "number", "exclusiveMinimum": 0 },
+          "duration": { "type": "integer", "minimum": 1 },
           "label": { "type": "string" }
         },
         "additionalProperties": false
@@ -54,10 +55,10 @@
         "required": ["id", "x", "y", "width", "height"],
         "properties": {
           "id": { "type": "string" },
-          "x": { "type": "number" },
-          "y": { "type": "number" },
-          "width": { "type": "number", "exclusiveMinimum": 0 },
-          "height": { "type": "number", "exclusiveMinimum": 0 }
+          "x": { "type": "integer" },
+          "y": { "type": "integer" },
+          "width": { "type": "integer", "minimum": 1 },
+          "height": { "type": "integer", "minimum": 1 }
         },
         "additionalProperties": false
       }
@@ -73,8 +74,8 @@
             "required": ["id", "x", "y"],
             "properties": {
               "id": { "type": "string" },
-              "x": { "type": "number" },
-              "y": { "type": "number" }
+              "x": { "type": "integer" },
+              "y": { "type": "integer" }
             },
             "additionalProperties": false
           }
@@ -105,8 +106,8 @@
           "zone": { "type": "string" },
           "desk": { "type": "string" },
           "chair": { "type": "string" },
-          "x": { "type": "number" },
-          "y": { "type": "number" },
+          "x": { "type": "integer" },
+          "y": { "type": "integer" },
           "facing": { "enum": ["up", "down", "left", "right"] },
           "seat": { "$ref": "#/$defs/point" },
           "approach": { "$ref": "#/$defs/point" },
@@ -123,17 +124,17 @@
     "point": {
       "type": "object",
       "required": ["x", "y"],
-      "properties": { "x": { "type": "number" }, "y": { "type": "number" } },
+      "properties": { "x": { "type": "integer" }, "y": { "type": "integer" } },
       "additionalProperties": false
     },
     "rectangle": {
       "type": "object",
       "required": ["x", "y", "width", "height"],
       "properties": {
-        "x": { "type": "number" },
-        "y": { "type": "number" },
-        "width": { "type": "number", "exclusiveMinimum": 0 },
-        "height": { "type": "number", "exclusiveMinimum": 0 }
+        "x": { "type": "integer" },
+        "y": { "type": "integer" },
+        "width": { "type": "integer", "minimum": 1 },
+        "height": { "type": "integer", "minimum": 1 }
       },
       "additionalProperties": false
     },
@@ -147,8 +148,8 @@
       "properties": {
         "id": { "type": "string" },
         "asset": { "type": "string" },
-        "x": { "type": "number" },
-        "y": { "type": "number" },
+        "x": { "type": "integer" },
+        "y": { "type": "integer" },
         "parentId": { "type": "string" },
         "slot": { "type": "string" },
         "layer": { "enum": ["wall", "furniture", "equipment", "decor"] },

@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import type { OfficeAgentView } from "@affiliate-ops/contracts";
 import { createDemoOfficeSnapshot } from "@affiliate-ops/office-read-model";
-import officeMapJson from "../../../assets/game/maps/office-c-v1.json" with { type: "json" };
+import officeMapJson from "../../../assets/game/maps/office-c-v2.json" with { type: "json" };
 import { presentationAt, presentationsAt } from "../src/features/office/motion/officeMotion.ts";
 import { pixelAlignedCharacterFrame } from "../src/features/office/motion/pixelGeometry.ts";
 import type { OfficeMapDefinition, OfficeWorkstation } from "../src/features/office/officeTypes.ts";
@@ -58,6 +58,12 @@ test("live mode remains at the workstation", () => {
   assert.equal(presentation.seated, true);
 });
 
+test("completed work uses the ninth character row as a one-shot celebration", () => {
+  const presentation = presentationAt(0, 0, { ...agent, status: "completed" }, "live", map, station);
+  assert.equal(presentation.state, "celebrating");
+  assert.equal(presentation.seated, true);
+});
+
 test("simulation movement is continuous between display frames", () => {
   const first = presentationAt(25.1, 0, agent, "simulation", map, station);
   const second = presentationAt(25.116, 0, agent, "simulation", map, station);
@@ -77,11 +83,11 @@ test("a capacity-one facility never admits two agents", () => {
   assert.match(presentations.get(secondAgent.agentId)?.activityLabel ?? "", /Waiting — Water/i);
 });
 
-test("character frames stay aligned to physical pixels", () => {
-  assert.deepEqual(pixelAlignedCharacterFrame(680, 1), { width: 52, height: 56 });
-  assert.deepEqual(pixelAlignedCharacterFrame(680, 2), { width: 51, height: 55 });
-  assert.deepEqual(pixelAlignedCharacterFrame(1_280, 1), { width: 96, height: 104 });
-  assert.deepEqual(pixelAlignedCharacterFrame(1_280, 2), { width: 96, height: 104 });
+test("character frames derive from an integer tile size and stay pixel aligned", () => {
+  assert.deepEqual(pixelAlignedCharacterFrame(12, 1), { width: 36, height: 39 });
+  assert.deepEqual(pixelAlignedCharacterFrame(13, 2), { width: 39, height: 42.5 });
+  assert.deepEqual(pixelAlignedCharacterFrame(32, 1), { width: 96, height: 104 });
+  assert.deepEqual(pixelAlignedCharacterFrame(32, 2), { width: 96, height: 104 });
 });
 
 test("the real scene respects every facility capacity over repeated cycles", () => {

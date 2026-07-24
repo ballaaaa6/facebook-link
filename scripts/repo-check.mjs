@@ -69,7 +69,7 @@ if (new Set(agents.map((agent) => agent.id)).size !== agents.length) failures.pu
 const attribution = JSON.parse(readFileSync(join(root, "config/attribution.json"), "utf8"));
 if (attribution.dimensions.length !== 5) failures.push("Attribution must define exactly five Sub ID dimensions");
 
-const officeMap = JSON.parse(readFileSync(join(root, "assets/game/maps/office-c-v1.json"), "utf8"));
+const officeMap = JSON.parse(readFileSync(join(root, "assets/game/maps/office-c-v2.json"), "utf8"));
 const officeGeometry = JSON.parse(readFileSync(join(root, "assets/game/manifests/office-assets.json"), "utf8"));
 const characterRegistry = JSON.parse(readFileSync(join(root, "assets/game/characters/registry.json"), "utf8"));
 const agentIds = new Set(agents.map((agent) => agent.id));
@@ -100,6 +100,25 @@ const officeParentIds = new Set([
 const officeAttachmentSlots = new Set(
   Object.values(officeGeometry.slotSets).flatMap((slots) => Object.keys(slots)),
 );
+for (const [assetId, geometry] of Object.entries(officeGeometry.assets)) {
+  for (const [field, value] of [
+    ["renderBox.width", geometry.renderBox?.width],
+    ["renderBox.height", geometry.renderBox?.height],
+    ["footprint.width", geometry.footprint?.width],
+    ["footprint.depth", geometry.footprint?.depth],
+  ]) {
+    if (value !== undefined && (!Number.isInteger(value) || value < 1)) {
+      failures.push(`Office geometry must use positive integer ${field}: ${assetId}`);
+    }
+  }
+}
+for (const [slotSetId, slots] of Object.entries(officeGeometry.slotSets)) {
+  for (const [slotId, slot] of Object.entries(slots)) {
+    if (!Number.isInteger(slot.x) || !Number.isInteger(slot.y)) {
+      failures.push(`Office surface slot must use integer coordinates: ${slotSetId}.${slotId}`);
+    }
+  }
+}
 for (const object of officeMap.objects ?? []) {
   if (officeObjectIds.has(object.id)) failures.push(`Duplicate office object ID: ${object.id}`);
   officeObjectIds.add(object.id);

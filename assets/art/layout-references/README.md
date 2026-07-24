@@ -10,7 +10,8 @@ assets and must not be imported by the web application.
   collision validation before implementation
 - Source: generated from the current Office C scene and pantry screenshots
 - Intended use: guide zoning, furniture scale, support relationships,
-  circulation, and facility placement for `office-c-v1`
+  circulation, and facility placement for the archived `office-c-v1` direction;
+  `office-c-v2.json` is the active integer-grid implementation
 
 The reference establishes:
 

@@ -64,6 +64,11 @@ export interface OfficeFootprint {
   depth: number;
 }
 
+export interface OfficeRenderBox {
+  width: number;
+  height: number;
+}
+
 export interface OfficeAssetSlot {
   x: number;
   y: number;
@@ -71,7 +76,8 @@ export interface OfficeAssetSlot {
 }
 
 export interface OfficeAssetGeometry {
-  renderWidthTiles: number;
+  renderBox: OfficeRenderBox;
+  fit?: "contain" | "fill";
   layer: OfficeLayer;
   anchor: OfficeAnchor;
   supports: OfficeSupport[];

@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import type { OfficeAgentView, OfficeMode } from "@affiliate-ops/contracts";
-import officeMapJson from "../../../../../../assets/game/maps/office-c-v1.json";
+import "../officeScene.css";
+import officeMapJson from "../../../../../../assets/game/maps/office-c-v2.json";
 import bobaSheet from "../../../../../../assets/game/characters/boba/runtime-spritesheet-v2.webp";
 import bobaSheet2x from "../../../../../../assets/game/characters/boba/runtime-spritesheet-v2@2x.webp";
 import { resolveOfficeLayout, validateOfficeLayout } from "../layout/officeLayout";
@@ -17,12 +18,13 @@ if (officeLayoutIssues.length > 0) {
   throw new Error(`Invalid Office C layout: ${officeLayoutIssues.join("; ")}`);
 }
 const resolvedMapObjects = officeLayout.objects;
-const zoomLevels = [.5, .75, 1, 1.25] as const;
+const tileSizeLevels = [10, 12, 16, 24, 32, 40] as const;
+const workZoneWidth = officeMap.zones.find((zone) => zone.id === "work-floor")?.width ?? 24;
 
-function adjacentZoom(current: number, direction: -1 | 1) {
-  const currentIndex = zoomLevels.findIndex((value) => value === current);
-  const index = currentIndex < 0 ? 2 : currentIndex;
-  return zoomLevels[Math.max(0, Math.min(zoomLevels.length - 1, index + direction))]!;
+function adjacentTileSize(current: number, direction: -1 | 1) {
+  const currentIndex = tileSizeLevels.findIndex((value) => value >= current);
+  const index = currentIndex < 0 ? tileSizeLevels.length - 1 : currentIndex;
+  return tileSizeLevels[Math.max(0, Math.min(tileSizeLevels.length - 1, index + direction))]!;
 }
 
 export function OfficeCanvas({
@@ -38,7 +40,7 @@ export function OfficeCanvas({
 }) {
   const frameRef = useRef<HTMLDivElement>(null);
   const [preview, setPreview] = useState<AgentPreviewRequest | null>(null);
-  const [zoom, setZoom] = useState(() => window.matchMedia("(max-width: 760px)").matches ? .5 : 1);
+  const [tileSize, setTileSize] = useState(() => window.matchMedia("(max-width: 760px)").matches ? 12 : 32);
   const [sceneStartedAt] = useState(() => performance.now());
   const previewAgent = useMemo(
     () => agents.find((agent) => agent.agentId === preview?.agentId),
@@ -49,6 +51,18 @@ export function OfficeCanvas({
   const endPreview = (agentId: string) => {
     setPreview((current) => current?.agentId === agentId ? null : current);
   };
+  const fitWidth = (tiles: number) => {
+    const frame = frameRef.current;
+    if (!frame) return;
+    setTileSize(Math.max(10, Math.floor((frame.clientWidth - 2) / tiles)));
+    frame.scrollTo({ left: 0, top: 0, behavior: "smooth" });
+  };
+  const showZone = (zoneId: string) => {
+    const frame = frameRef.current;
+    const zone = officeMap.zones.find((item) => item.id === zoneId);
+    if (!frame || !zone) return;
+    frame.scrollTo({ left: zone.x * tileSize, top: 0, behavior: "smooth" });
+  };
 
   useEffect(() => {
     if (!preview) return;
@@ -58,6 +72,14 @@ export function OfficeCanvas({
     window.addEventListener("keydown", dismiss);
     return () => window.removeEventListener("keydown", dismiss);
   }, [preview]);
+
+  useEffect(() => {
+    const frame = frameRef.current;
+    if (!frame) return;
+    const mobile = window.matchMedia("(max-width: 760px)").matches;
+    setTileSize(Math.max(10, Math.floor((frame.clientWidth - 2) / (mobile ? workZoneWidth : officeMap.width))));
+    frame.scrollTo({ left: 0, top: 0 });
+  }, []);
 
   const focusSelected = () => {
     const frame = frameRef.current;
@@ -75,10 +97,12 @@ export function OfficeCanvas({
   return (
     <div className="office-viewport">
       <div className="office-viewport-toolbar" aria-label="Office view controls">
-        <button type="button" onClick={() => setZoom((value) => adjacentZoom(value, -1))} aria-label="Zoom out">−</button>
-        <span>{Math.round(zoom * 100)}%</span>
-        <button type="button" onClick={() => setZoom((value) => adjacentZoom(value, 1))} aria-label="Zoom in">+</button>
-        <button type="button" onClick={() => setZoom(1)}>Fit room</button>
+        <button type="button" onClick={() => setTileSize((value) => adjacentTileSize(value, -1))} aria-label="Zoom out">−</button>
+        <span>{tileSize}px</span>
+        <button type="button" onClick={() => setTileSize((value) => adjacentTileSize(value, 1))} aria-label="Zoom in">+</button>
+        <button type="button" onClick={() => fitWidth(workZoneWidth)}>Fit work</button>
+        <button type="button" onClick={() => fitWidth(officeMap.width)}>Fit room</button>
+        <button type="button" onClick={() => showZone("support-break")}>Break</button>
         <button type="button" onClick={focusSelected}>Focus agent</button>
       </div>
       <div
@@ -92,14 +116,34 @@ export function OfficeCanvas({
       <div
         className="office-world"
         aria-label="Warm pixel operations office"
-        style={{ width: `${zoom * 100}%`, minWidth: `${680 * zoom}px` }}
+        style={{
+          "--tile-size": `${tileSize}px`,
+          width: `${officeMap.width * tileSize}px`,
+          height: `${officeMap.height * tileSize}px`,
+        } as CSSProperties}
       >
         <div className="window-row" aria-hidden="true"><span /><span /><span /><span /></div>
+        {officeMap.zones.map((zone) => (
+          <span
+            className={`office-zone office-zone-${zone.id}`}
+            key={zone.id}
+            aria-hidden="true"
+            style={{
+              left: percentX(zone.x),
+              top: percentY(zone.y),
+              width: percentX(zone.width),
+              height: percentY(zone.height),
+            }}
+          >
+            <b>{zone.label}</b>
+          </span>
+        ))}
         {resolvedMapObjects.map((object) => (
           <WorldObject
             key={object.id}
             object={object}
             worldWidth={officeMap.width}
+            worldHeight={officeMap.height}
             percentX={percentX}
             percentY={percentY}
           />
@@ -117,14 +161,26 @@ export function OfficeCanvas({
                 src={chair.file}
                 alt=""
                 aria-hidden="true"
-                style={{ left: percentX(station.seat.x), top: percentY(station.seat.y + 0.08), width: `${(chair.renderWidthTiles / officeMap.width) * 100}%`, zIndex: deskDepth - 2 }}
+                style={{
+                  left: percentX(station.seat.x),
+                  top: percentY(station.seat.y),
+                  width: `${(chair.renderBox.width / officeMap.width) * 100}%`,
+                  height: `${(chair.renderBox.height / officeMap.height) * 100}%`,
+                  zIndex: deskDepth - 2,
+                }}
               />
               <img
                 className="workstation-desk"
                 src={desk.file}
                 alt=""
                 aria-hidden="true"
-                style={{ left: percentX(station.x), top: percentY(station.y), width: `${(desk.renderWidthTiles / officeMap.width) * 100}%`, zIndex: deskDepth }}
+                style={{
+                  left: percentX(station.x),
+                  top: percentY(station.y),
+                  width: `${(desk.renderBox.width / officeMap.width) * 100}%`,
+                  height: `${(desk.renderBox.height / officeMap.height) * 100}%`,
+                  zIndex: deskDepth,
+                }}
               />
               <AgentEntity
                 agent={agent}
@@ -148,8 +204,8 @@ export function OfficeCanvas({
           aria-label="Boba resting by the pet bed"
           style={{
             backgroundImage: `image-set(url("${bobaSheet}") 1x, url("${bobaSheet2x}") 2x)`,
-            left: percentX(10.1),
-            top: percentY(18.45),
+            left: percentX(35),
+            top: percentY(18),
             zIndex: 475,
           } as CSSProperties}
         />

@@ -9,13 +9,19 @@ These images are visual references, not production tilemaps. The selected concep
 ## Shared Requirements
 
 - One connected open-plan office floor, not ten isolated rooms.
-- Four work neighborhoods: Research & Growth (4 seats), Creative Studio (2 seats), Release (3 seats), and Systems/NOC (1 seat).
-- One central handoff/mission area and one lounge/mascot area.
-- Exactly ten active work seats.
+- One 24-column work floor that communicates Research & Growth, Creative,
+  Release, and Systems/NOC through equipment and accents rather than separate
+  room islands.
+- One 12-column support floor containing service, pantry, lounge, mascot, and
+  mission-review areas.
+- Exactly ten active work seats with two reserved workstation modules.
 - Short, collision-free walking routes between related teams.
 - Top-down pixel-art perspective with consistent object scale and lighting.
 - Responsive presentation: whole-office overview on desktop; camera-based zone navigation on mobile.
 - Runtime text, charts, task status, and UI chrome must be rendered by code, not baked into artwork.
+- All environment render boxes, floor footprints, map coordinates, and
+  attachment offsets use integer tile units. Transparent art may occupy less
+  than its declared render box.
 - Production assets must be original, transparent where appropriate, atlas-ready, and validated before use.
 
 ## Concept A: Bright Operations
