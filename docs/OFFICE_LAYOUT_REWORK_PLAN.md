@@ -147,6 +147,158 @@ Initial capacities:
   destination rectangles.
 - Verify every state at supported zoom levels and common device-pixel ratios.
 
+## Additional System Work
+
+### One scene clock
+
+Position motion already uses a shared animation-frame scheduler, but each agent
+currently starts its own elapsed-time origin and each sprite owns a separate
+interval timer. A status update may therefore restart one route while the rest
+of the scene continues.
+
+Replace these independent clocks with:
+
+- one scene time origin tied to the current snapshot sequence;
+- one low-frequency sprite-frame phase derived from scene time;
+- stable route-plan identifiers that survive unrelated snapshot updates;
+- explicit transition plans when an activity or destination changes;
+- pause and resume behavior that does not teleport an agent.
+
+Reduced-motion mode must stop both route motion and repeated sprite animation,
+while keeping current status and facility information available.
+
+### Navigation and local avoidance
+
+The navigation graph must be regenerated after the occupancy pass. Route
+validation and runtime movement must:
+
+- expand blocked cells by the actor footprint before pathfinding;
+- prevent diagonal corner cutting through furniture;
+- preserve protected corridor direction and width;
+- reserve single-cell bottlenecks and queue cells;
+- allow passing in sufficiently wide corridors;
+- prevent two agents from occupying the same destination, doorway, or narrow
+  route cell;
+- replan or return to the workstation when a route becomes unavailable.
+
+The route planner should prefer the shortest valid path, then apply stable
+tie-breaking so simulation replays remain deterministic.
+
+### Depth, occlusion, and furniture masks
+
+Depth ordering must use an object's floor contact or footprint-bottom anchor,
+not its visual center. Workstations require separate back and foreground masks
+so seated characters render behind monitors and desktops but in front of
+chairs where appropriate.
+
+Add:
+
+- explicit depth anchors to all assets;
+- foreground masks for desks, counters, tables, sofas, and tall storage where
+  needed;
+- consistent shadows that do not affect footprint geometry;
+- tests for character-to-furniture occlusion at every supported facing.
+
+### Camera, zoom, and visible grid
+
+The visible floor grid currently uses a fixed CSS pixel size that is unrelated
+to the 40-by-22 world grid. Replace it with map-relative tile dimensions.
+
+Camera behavior must:
+
+- use discrete pixel-safe zoom tiers instead of arbitrary fractional scaling;
+- preserve the selected or focused agent while zooming;
+- maintain a minimum useful character size;
+- keep the world scrollable without changing map geometry;
+- provide a fit-to-room action;
+- restore a valid camera position after responsive layout changes.
+
+### Asset normalization and style consistency
+
+Normalize every runtime asset before final placement:
+
+- trim visible bounds and restore canonical padding;
+- validate perspective, floor contact, outline weight, palette, and shadow;
+- keep raster and deterministic SVG utility assets visually compatible;
+- generate orientation variants when runtime mirroring would break lighting or
+  perspective;
+- store geometry independently from image dimensions.
+
+The decorative CSS grid must never be used as collision or scale authority.
+
+### Loading and performance
+
+The character source sheets total roughly 25 MB before bundling. Build
+pixel-aligned runtime derivatives at the largest supported display tier rather
+than shipping full source sheets to the browser.
+
+Add performance controls for:
+
+- optimized lossless or visually lossless runtime character sheets;
+- source images retained outside the browser bundle;
+- deterministic preload of the visible roster;
+- graceful placeholders while a character sheet loads;
+- a single animation loop without per-character React frame updates;
+- performance budgets for initial Office transfer size, decode time, and steady
+  animation frame time.
+
+### Live-feed reliability
+
+Polling failures must not become unhandled promises or briefly show
+`reconnecting` during every successful refresh.
+
+The Office feed must:
+
+- distinguish loading, live, stale, reconnecting, fallback, and offline states;
+- keep the last valid snapshot during a temporary failure;
+- use snapshot generation and heartbeat timestamps to determine staleness;
+- apply bounded retry backoff with jitter;
+- reject out-of-order snapshots;
+- show the real connection state without inventing agent activity;
+- recover without resetting the scene clock or active selection.
+
+### Interaction and accessibility
+
+- Keep keyboard and pointer selection equivalent.
+- Reposition previews against the Office viewport and inspector boundaries.
+- Prevent activity badges, previews, and nameplates from covering facility
+  queues or important map controls.
+- Keep selected-agent details persistent when transient previews close.
+- Give every zoom and focus control a stable accessible label and state.
+- Announce connection and facility-wait changes without announcing every
+  animation frame.
+- Provide a non-animated semantic list of agents and facilities for reduced
+  motion and assistive technology.
+
+### Licensing and provenance
+
+The current Petdex character roster is prototype-only and marked
+`pending-commercial-review`. No public or paid release may depend on those
+characters without explicit clearance.
+
+Before production:
+
+- record a verified license for every character and generated environment
+  source;
+- replace uncleared characters while preserving the same runtime manifest;
+- keep source provenance and generated-derivative metadata;
+- prevent production builds from including prototype-only assets.
+
+### Authoring and diagnostics
+
+Provide a development-only Office debug overlay that can display:
+
+- world cells and coordinates;
+- hard occupancy and interaction clearance;
+- parent slots and occupied surface slots;
+- facility state, leases, queues, and expiry;
+- navigation nodes, planned routes, and blocked edges;
+- depth anchors and current z-order;
+- asset identifiers and validation errors.
+
+Add a deterministic map-validation report so layout problems are actionable
+without inspecting the rendered scene manually.
+
 ## Target Layout
 
 ### Upper-left: research and growth
@@ -228,17 +380,32 @@ provenance, use a versioned derivative, and pass asset validation.
 
 ## Delivery Order
 
-1. Add character render metadata and pixel-aligned rendering tests.
-2. Extend asset and map contracts for footprint, clearance, supports, slots,
-   and rotations.
-3. Implement occupancy, support, route, and reachability validation.
-4. Implement global facility allocation, leases, queues, alternatives, and
+1. Tighten the asset and map schemas and establish canonical geometry
+   manifests.
+2. Add character render metadata, optimized runtime sheets, and pixel-aligned
+   rendering tests.
+3. Introduce one persistent scene clock and remove per-character frame timers.
+4. Implement occupancy, clearance, support, slot, rotation, and depth-anchor
+   validation.
+5. Implement global facility allocation, leases, queues, alternatives, and
    deterministic simulation tests.
-5. Produce and validate the required furniture variants.
-6. Translate the approved composition reference onto the map grid.
-7. Rebuild navigation nodes and facility approaches from the validated layout.
-8. Render and inspect desktop, mobile, and supported zoom levels.
-9. Run `npm run check` and review the final scene before activation.
+6. Implement collision-aware pathfinding, bottleneck reservations, local
+   avoidance, and stable replanning.
+7. Correct workstation occlusion and add foreground masks.
+8. Produce and validate the required furniture and orientation variants.
+9. Translate the approved composition reference onto the validated map grid.
+10. Rebuild navigation nodes, queue points, facility approaches, and route
+    clearances from the new layout.
+11. Replace arbitrary zoom with pixel-safe camera tiers and a map-relative
+    visible grid.
+12. Harden the Office feed, stale-state handling, retry behavior, and
+    selection continuity.
+13. Add the debug overlay, validation report, visual regression coverage,
+    accessibility checks, and performance budgets.
+14. Resolve character licensing before any public or commercial release.
+15. Render and inspect desktop, mobile, reduced-motion, and every supported
+    zoom tier.
+16. Run `npm run check` and review the final scene before activation.
 
 ## Acceptance Criteria
 
@@ -251,5 +418,16 @@ provenance, use a versioned derivative, and pass asset validation.
   remain at their workstation.
 - All character states remain crisp and correctly proportioned.
 - Common routes are direct and do not require walking around unrelated zones.
+- Snapshot refreshes do not teleport agents, reset reservations, or lose the
+  current selection.
+- Agents do not cut through corners, share bottlenecks, or collide while
+  approaching facilities.
+- Furniture and characters occlude each other according to floor contact and
+  foreground masks.
+- The visible grid remains aligned with map cells at every supported zoom tier.
+- Reduced-motion mode stops route and sprite animation.
+- Office loading and steady animation remain inside the documented performance
+  budgets.
+- Production builds contain no uncleared prototype assets.
 - The final rendered layout follows the approved reference without treating the
   reference image as collision geometry.
