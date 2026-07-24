@@ -92,3 +92,29 @@ test("obstacle avoidance does not detach the tooltip from its actor", () => {
   );
   assert.ok(verticalGap <= 10);
 });
+
+test("the callout arrow aims at the center of a character body anchor", () => {
+  const anchor = rect(450, 250, 34, 32);
+  const placement = placeAgentTooltip({
+    anchor,
+    tooltip,
+    bounds,
+  });
+  const arrowTarget = placement.top + placement.arrowTop;
+  const characterCenter = anchor.top + anchor.height / 2;
+  assert.ok(Math.abs(arrowTarget - characterCenter) < 0.001);
+});
+
+test("a compact activity callout flips inward at the left edge", () => {
+  const activityCallout = { width: 160, height: 26 };
+  const placement = placeAgentTooltip({
+    anchor: rect(104, 250, 34, 32),
+    tooltip: activityCallout,
+    bounds,
+    preference: "left",
+    gap: 7,
+  });
+  assert.equal(placement.side, "right");
+  assert.ok(placement.left >= bounds.left);
+  assert.ok(placement.left + activityCallout.width <= bounds.right);
+});

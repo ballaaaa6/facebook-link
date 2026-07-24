@@ -1,8 +1,9 @@
-import { useRef } from "react";
+import { useRef, type RefObject } from "react";
 import type { OfficeAgentView, OfficeMode } from "@affiliate-ops/contracts";
 import { StatusDot } from "../../../shared/components/StatusDot";
 import { useAgentMotion } from "../motion/useAgentMotion";
 import type { OfficeMapDefinition, OfficeWorkstation } from "../officeTypes";
+import { AgentActivityBadge } from "./AgentActivityBadge";
 import { AnimatedAgent } from "./AnimatedAgent";
 import type { TooltipPreference } from "./tooltipPlacement";
 
@@ -14,6 +15,7 @@ export interface AgentPreviewRequest {
 export function AgentEntity({
   agent,
   agents,
+  frameRef,
   map,
   mode,
   sceneStartedAt,
@@ -21,10 +23,12 @@ export function AgentEntity({
   previewed,
   station,
   onPreview,
+  onPreviewEnd,
   onSelect,
 }: {
   agent: OfficeAgentView;
   agents: readonly OfficeAgentView[];
+  frameRef: RefObject<HTMLDivElement | null>;
   map: OfficeMapDefinition;
   mode: OfficeMode;
   sceneStartedAt: number;
@@ -32,6 +36,7 @@ export function AgentEntity({
   previewed: boolean;
   station: OfficeWorkstation;
   onPreview: (request: AgentPreviewRequest) => void;
+  onPreviewEnd: (agentId: string) => void;
   onSelect: (agentId: string) => void;
 }) {
   const trackRef = useRef<HTMLDivElement>(null);
@@ -56,10 +61,13 @@ export function AgentEntity({
           agentId: agent.agentId,
           preferredSide: station.previewSide ?? "auto",
         })}
+        onBlur={() => onPreviewEnd(agent.agentId)}
         onPointerEnter={() => onPreview({
           agentId: agent.agentId,
           preferredSide: station.previewSide ?? "auto",
         })}
+        onPointerLeave={() => onPreviewEnd(agent.agentId)}
+        onPointerCancel={() => onPreviewEnd(agent.agentId)}
       >
         <AnimatedAgent
           agentId={agent.agentId}
@@ -67,11 +75,20 @@ export function AgentEntity({
           sceneStartedAt={sceneStartedAt}
           state={visual.state}
         />
+        <span className="agent-callout-anchor" data-agent-anchor={agent.agentId} aria-hidden="true" />
       </button>
       {visual.activityLabel && !visual.seated
-        ? <span className="agent-activity-badge">{visual.activityLabel}</span>
+        ? (
+          <AgentActivityBadge
+            agentId={agent.agentId}
+            frameRef={frameRef}
+            label={visual.activityLabel}
+            preference={station.previewSide ?? "auto"}
+            suppressed={previewed}
+          />
+        )
         : null}
-      <span className={`agent-nameplate ${visual.seated ? "is-seated" : ""} ${previewed || selected ? "is-visible" : ""}`}>
+      <span className={`agent-nameplate ${visual.seated ? "is-seated" : ""} ${previewed ? "is-visible" : ""}`}>
         <StatusDot status={agent.status} />{agent.displayName}
       </span>
     </div>

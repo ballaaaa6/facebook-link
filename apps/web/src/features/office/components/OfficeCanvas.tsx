@@ -46,6 +46,9 @@ export function OfficeCanvas({
   );
   const percentX = (x: number) => `${(x / officeMap.width) * 100}%`;
   const percentY = (y: number) => `${(y / officeMap.height) * 100}%`;
+  const endPreview = (agentId: string) => {
+    setPreview((current) => current?.agentId === agentId ? null : current);
+  };
 
   useEffect(() => {
     if (!preview) return;
@@ -126,6 +129,7 @@ export function OfficeCanvas({
               <AgentEntity
                 agent={agent}
                 agents={agents}
+                frameRef={frameRef}
                 map={officeMap}
                 mode={mode}
                 sceneStartedAt={sceneStartedAt}
@@ -133,6 +137,7 @@ export function OfficeCanvas({
                 previewed={preview?.agentId === agent.agentId}
                 station={station}
                 onPreview={setPreview}
+                onPreviewEnd={endPreview}
                 onSelect={onSelect}
               />
             </div>
