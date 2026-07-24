@@ -17,7 +17,7 @@ const pageTitles: Record<AppRoute, { eyebrow: string; title: string }> = {
 export function AppShell({ route, navigate, theme, children }: { route: AppRoute; navigate: (route: AppRoute) => void; theme: ThemeName; children: ReactNode }) {
   const page = pageTitles[route];
   return (
-    <div className="app-shell" data-theme={theme}>
+    <div className="app-shell" data-route={route} data-theme={theme}>
       <nav className="side-nav" aria-label="Main navigation">
         <div className="brand-mark">AO</div>
         {navigation.map((item) => (

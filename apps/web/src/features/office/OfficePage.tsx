@@ -24,12 +24,14 @@ export function OfficePage() {
   );
 
   return (
-    <>
-      <MetricStrip metrics={snapshot.metrics} />
-      <div className="office-feed-bar" role="status">
-        <span className={`feed-indicator feed-${state}`} />
-        <strong>{feedLabels[state]}</strong>
-        <small>Sequence {snapshot.sequence} · {snapshot.pendingReviews} reviews pending</small>
+    <section className="office-screen">
+      <div className="office-overview-bar">
+        <MetricStrip metrics={snapshot.metrics} />
+        <div className="office-feed-bar" role="status">
+          <span className={`feed-indicator feed-${state}`} />
+          <strong>{feedLabels[state]}</strong>
+          <small>Sequence {snapshot.sequence} · {snapshot.pendingReviews} reviews pending</small>
+        </div>
       </div>
       <nav className="office-mobile-tabs" aria-label="Office panels">
         {(["office", "chat", "task"] as const).map((pane) => (
@@ -63,6 +65,6 @@ export function OfficePage() {
         <TeamChatPanel />
         {selectedAgent ? <TaskPanel agent={selectedAgent} /> : null}
       </div>
-    </>
+    </section>
   );
 }

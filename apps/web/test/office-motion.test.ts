@@ -4,7 +4,7 @@ import type { OfficeAgentView } from "@affiliate-ops/contracts";
 import { createDemoOfficeSnapshot } from "@affiliate-ops/office-read-model";
 import officeMapJson from "../../../assets/game/maps/office-c-v2.json" with { type: "json" };
 import { presentationAt, presentationsAt } from "../src/features/office/motion/officeMotion.ts";
-import { pixelAlignedCharacterFrame } from "../src/features/office/motion/pixelGeometry.ts";
+import { fittedTileSize, pixelAlignedCharacterFrame } from "../src/features/office/motion/pixelGeometry.ts";
 import { companionPresentationAt } from "../src/features/office/motion/companionMotion.ts";
 import type { OfficeMapDefinition, OfficeWorkstation } from "../src/features/office/officeTypes.ts";
 
@@ -106,6 +106,13 @@ test("character frames derive from an integer tile size and stay pixel aligned",
   assert.deepEqual(pixelAlignedCharacterFrame(13, 2), { width: 39, height: 42.5 });
   assert.deepEqual(pixelAlignedCharacterFrame(32, 1), { width: 96, height: 104 });
   assert.deepEqual(pixelAlignedCharacterFrame(32, 2), { width: 96, height: 104 });
+});
+
+test("the office tile size fits both frame axes", () => {
+  assert.equal(fittedTileSize(1_260, 530, 36, 24), 22);
+  assert.equal(fittedTileSize(720, 720, 36, 24), 20);
+  assert.equal(fittedTileSize(4_000, 4_000, 36, 24), 40);
+  assert.equal(fittedTileSize(0, 0, 36, 24), 6);
 });
 
 test("the real scene respects every facility capacity over repeated cycles", () => {

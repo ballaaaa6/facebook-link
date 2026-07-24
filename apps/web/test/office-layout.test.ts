@@ -61,6 +61,36 @@ test("workstation standing points are behind desks and chairs stay on the viewer
   }
 });
 
+test("every workstation uses a monitor without a keyboard visual", () => {
+  const workstationIds = new Set(map.workstations.map((station) => station.id));
+  const attachments = map.objects.filter((object) => object.parentId && workstationIds.has(object.parentId));
+  assert.equal(attachments.some((object) => object.asset === "keyboard.mouse"), false);
+  for (const station of map.workstations) {
+    assert.ok(
+      attachments.some((object) => object.parentId === station.id && object.asset.startsWith("monitor.")),
+      `${station.id} needs a monitor`,
+    );
+  }
+});
+
+test("the support zone separates service, pantry, lounge, and symmetric meeting furniture", () => {
+  const object = (id: string) => {
+    const match = map.objects.find((candidate) => candidate.id === id);
+    assert.ok(match && typeof match.x === "number" && typeof match.y === "number");
+    return match as typeof match & { x: number; y: number };
+  };
+  assert.ok(object("server-a").y < object("coffee-counter").y);
+  assert.ok(object("server-b").y < object("water-dispenser").y);
+  assert.ok(object("coffee-counter").y < object("lounge-sofa").y);
+  assert.ok(object("lounge-sofa").y < object("mission-table").y);
+  assert.equal(object("mission-chair-top").x, object("mission-table").x);
+  assert.equal(object("mission-chair-bottom").x, object("mission-table").x);
+  assert.equal(
+    object("mission-table").x - object("mission-chair-left").x,
+    object("mission-chair-right").x - object("mission-table").x,
+  );
+});
+
 test("surface slots cannot be claimed twice", () => {
   const duplicate = structuredClone(map);
   const existingAttachment = duplicate.objects.find((object) =>

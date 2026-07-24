@@ -169,25 +169,6 @@ h2 { font-size: var(--font-xl); }
 .legend-working { background: #59a56b; }.legend-review { background: #d49c3d; }.legend-waiting { background: #8190a0; }
 
 .office-viewport { min-width: 0; }
-.office-viewport-toolbar {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 5px;
-  margin-bottom: 7px;
-}
-.office-viewport-toolbar button {
-  min-width: 30px;
-  padding: 5px 8px;
-  border: 1px solid rgba(38,75,65,.17);
-  border-radius: 7px;
-  color: #38584f;
-  background: rgba(255,255,255,.75);
-  cursor: pointer;
-  font-size: 11px;
-}
-.office-viewport-toolbar button:hover { border-color: rgba(38,75,65,.35); background: #fff; }
-.office-viewport-toolbar span { min-width: 40px; color: var(--muted); text-align: center; font: 600 10px "IBM Plex Mono",monospace; }
 .agent-track {
   --agent-x: 0%;
   --agent-y: 0%;

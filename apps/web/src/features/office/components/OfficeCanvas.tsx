@@ -4,6 +4,7 @@ import "../officeScene.css";
 import officeMapJson from "../../../../../../assets/game/maps/office-c-v2.json";
 import { resolveOfficeLayout, validateOfficeLayout } from "../layout/officeLayout";
 import type { OfficeMapDefinition } from "../officeTypes";
+import { fittedTileSize } from "../motion/pixelGeometry";
 import { AgentEntity, type AgentPreviewRequest } from "./AgentEntity";
 import { AgentTooltip } from "./AgentTooltip";
 import { CompanionEntity } from "./CompanionEntity";
@@ -17,14 +18,6 @@ if (officeLayoutIssues.length > 0) {
   throw new Error(`Invalid Office C layout: ${officeLayoutIssues.join("; ")}`);
 }
 const resolvedMapObjects = officeLayout.objects;
-const tileSizeLevels = [10, 12, 16, 24, 32, 40] as const;
-const workZoneWidth = officeMap.zones.find((zone) => zone.id === "work-floor")?.width ?? 24;
-
-function adjacentTileSize(current: number, direction: -1 | 1) {
-  const currentIndex = tileSizeLevels.findIndex((value) => value >= current);
-  const index = currentIndex < 0 ? tileSizeLevels.length - 1 : currentIndex;
-  return tileSizeLevels[Math.max(0, Math.min(tileSizeLevels.length - 1, index + direction))]!;
-}
 
 export function OfficeCanvas({
   agents,
@@ -39,7 +32,7 @@ export function OfficeCanvas({
 }) {
   const frameRef = useRef<HTMLDivElement>(null);
   const [preview, setPreview] = useState<AgentPreviewRequest | null>(null);
-  const [tileSize, setTileSize] = useState(() => window.matchMedia("(max-width: 760px)").matches ? 12 : 32);
+  const [tileSize, setTileSize] = useState(10);
   const [sceneStartedAt] = useState(() => performance.now());
   const previewAgent = useMemo(
     () => agents.find((agent) => agent.agentId === preview?.agentId),
@@ -49,18 +42,6 @@ export function OfficeCanvas({
   const percentY = (y: number) => `${(y / officeMap.height) * 100}%`;
   const endPreview = (agentId: string) => {
     setPreview((current) => current?.agentId === agentId ? null : current);
-  };
-  const fitWidth = (tiles: number) => {
-    const frame = frameRef.current;
-    if (!frame) return;
-    setTileSize(Math.max(10, Math.floor((frame.clientWidth - 2) / tiles)));
-    frame.scrollTo({ left: 0, top: 0, behavior: "smooth" });
-  };
-  const showZone = (zoneId: string) => {
-    const frame = frameRef.current;
-    const zone = officeMap.zones.find((item) => item.id === zoneId);
-    if (!frame || !zone) return;
-    frame.scrollTo({ left: zone.x * tileSize, top: 0, behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -75,35 +56,26 @@ export function OfficeCanvas({
   useEffect(() => {
     const frame = frameRef.current;
     if (!frame) return;
-    const mobile = window.matchMedia("(max-width: 760px)").matches;
-    setTileSize(Math.max(10, Math.floor((frame.clientWidth - 2) / (mobile ? workZoneWidth : officeMap.width))));
-    frame.scrollTo({ left: 0, top: 0 });
+    const fitScene = () => {
+      const style = window.getComputedStyle(frame);
+      const horizontalBorder = Number.parseFloat(style.borderLeftWidth) + Number.parseFloat(style.borderRightWidth);
+      const verticalBorder = Number.parseFloat(style.borderTopWidth) + Number.parseFloat(style.borderBottomWidth);
+      const next = fittedTileSize(
+        frame.clientWidth - horizontalBorder,
+        frame.clientHeight - verticalBorder,
+        officeMap.width,
+        officeMap.height,
+      );
+      setTileSize((current) => current === next ? current : next);
+    };
+    fitScene();
+    const observer = new ResizeObserver(fitScene);
+    observer.observe(frame);
+    return () => observer.disconnect();
   }, []);
-
-  const focusSelected = () => {
-    const frame = frameRef.current;
-    const button = frame?.querySelector<HTMLElement>(`[data-agent-id="${selectedId}"]`);
-    if (!frame || !button) return;
-    const frameRect = frame.getBoundingClientRect();
-    const buttonRect = button.getBoundingClientRect();
-    frame.scrollBy({
-      left: buttonRect.left - frameRect.left - frameRect.width / 2 + buttonRect.width / 2,
-      top: buttonRect.top - frameRect.top - frameRect.height / 2 + buttonRect.height / 2,
-      behavior: "smooth",
-    });
-  };
 
   return (
     <div className="office-viewport">
-      <div className="office-viewport-toolbar" aria-label="Office view controls">
-        <button type="button" onClick={() => setTileSize((value) => adjacentTileSize(value, -1))} aria-label="Zoom out">−</button>
-        <span>{tileSize}px</span>
-        <button type="button" onClick={() => setTileSize((value) => adjacentTileSize(value, 1))} aria-label="Zoom in">+</button>
-        <button type="button" onClick={() => fitWidth(workZoneWidth)}>Fit work</button>
-        <button type="button" onClick={() => fitWidth(officeMap.width)}>Fit room</button>
-        <button type="button" onClick={() => showZone("support-break")}>Break</button>
-        <button type="button" onClick={focusSelected}>Focus agent</button>
-      </div>
       <div
         className="office-frame"
         ref={frameRef}
@@ -135,7 +107,7 @@ export function OfficeCanvas({
             }}
           />
         ))}
-        <span className="office-entry-rug" aria-hidden="true" />
+        <span className="office-lounge-rug" aria-hidden="true" />
         {resolvedMapObjects.map((object) => (
           <WorldObject
             key={object.id}
