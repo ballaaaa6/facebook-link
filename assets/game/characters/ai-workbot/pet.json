@@ -1,0 +1,6 @@
+{
+  "id": "ai-workbot",
+  "displayName": "AI Workbot",
+  "description": "A small expressive AI robot pet with a white shell and work uniform.",
+  "spritesheetPath": "spritesheet.webp"
+}

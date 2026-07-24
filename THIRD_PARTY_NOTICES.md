@@ -1,6 +1,6 @@
 # Third-Party Notices
 
-## Petdex pilot character
+## Petdex pilot characters
 
 - Asset: `assets/game/characters/tian-zekun-2`
 - Source: `https://petdex.dev/pets/tian-zekun-2`
@@ -8,7 +8,19 @@
 - Current scope: internal prototype only
 - Commercial/redistribution status: pending review
 
-Do not ship this character in a paid or publicly redistributed product until its applicable terms and creator attribution requirements are recorded here.
+- Asset: `assets/game/characters/ruri`
+- Source: `https://petdex.dev/pets/ruri`
+- Installed with: `npx petdex install ruri`
+- Current scope: internal prototype only
+- Commercial/redistribution status: pending review
+
+- Asset: `assets/game/characters/ai-workbot`
+- Source: `https://petdex.dev/pets/ai-workbot`
+- Installed with: `npx petdex install ai-workbot`
+- Current scope: internal prototype only
+- Commercial/redistribution status: pending review
+
+Do not ship these characters in a paid or publicly redistributed product until their applicable terms and creator attribution requirements are recorded here.
 
 ## JavaScript dependencies
 

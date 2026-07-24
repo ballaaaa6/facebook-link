@@ -30,6 +30,7 @@ Cloudflare coordinates work. It does not run Playwright browser sessions. The au
 8. Do not regenerate visual assets casually. Follow `docs/art/ASSET_SHEET_PLAN.md` and run asset validation.
 9. Petdex assets marked `pending-commercial-review` are prototype-only.
 10. No connector may execute real external actions while its feature flag is disabled.
+11. After completing a requested change and passing the relevant checks, commit the change and push the current branch to its configured remote so the deployed/source-of-truth view is updated. Skip the push only when the user explicitly requests local-only work or provides a different delivery target.
 
 ## Source-of-truth files
 

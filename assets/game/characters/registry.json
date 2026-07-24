@@ -7,14 +7,14 @@
   "agents": {
     "market-scout": "noir-webling",
     "product-ranker": "einstein",
-    "growth-strategist": "abg",
+    "growth-strategist": "ruri",
     "performance-analyst": "tian-zekun-2",
     "gemini-copywriter": "yinyue-2",
     "flow-visual-producer": "taffy-2",
     "link-attribution": "doraemon",
     "qa-editor": "rem-xl",
     "publisher": "luffy",
-    "session-keeper": "rx-78-2-gundam"
+    "session-keeper": "ai-workbot"
   },
   "companions": {
     "office-mascot": "boba"
