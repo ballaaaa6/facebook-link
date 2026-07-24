@@ -3,7 +3,7 @@ import type { OfficeSnapshot } from "@affiliate-ops/contracts";
 import { createDemoOfficeSnapshot } from "@affiliate-ops/office-read-model";
 import { fetchOfficeSnapshot } from "../../shared/services/office";
 
-export type OfficeFeedState = "loading" | "ready" | "fallback" | "reconnecting";
+export type OfficeFeedState = "loading" | "ready" | "fallback" | "reconnecting" | "stale" | "offline";
 
 export interface OfficeFeed {
   snapshot: OfficeSnapshot;
@@ -22,23 +22,47 @@ export function useOfficeFeed(): OfficeFeed {
   useEffect(() => {
     const controller = new AbortController();
     let active = true;
+    let consecutiveFailures = 0;
 
     const refresh = async () => {
       try {
         const result = await fetchOfficeSnapshot(controller.signal);
         if (!active || result.snapshot.sequence < sequence.current) return;
+        if (result.source === "fallback") {
+          if (sequence.current === 0) {
+            setFeed({ snapshot: result.snapshot, state: "fallback" });
+            return;
+          }
+          consecutiveFailures += 1;
+          const state = consecutiveFailures >= 6
+            ? "offline"
+            : consecutiveFailures >= 2 ? "stale" : "reconnecting";
+          setFeed((current) => ({ ...current, state }));
+          return;
+        }
+        consecutiveFailures = 0;
         sequence.current = result.snapshot.sequence;
-        setFeed({ snapshot: result.snapshot, state: result.source === "api" ? "ready" : "fallback" });
+        const connectionState = result.snapshot.connection === "connected"
+          ? "ready"
+          : result.snapshot.connection;
+        setFeed({ snapshot: result.snapshot, state: connectionState });
       } catch (error) {
         const isAbort = controller.signal.aborted
           || (typeof error === "object" && error !== null && "name" in error && error.name === "AbortError");
-        if (!isAbort) throw error;
+        if (!isAbort && active) {
+          consecutiveFailures += 1;
+          setFeed((current) => ({
+            ...current,
+            state: consecutiveFailures >= 6
+              ? "offline"
+              : consecutiveFailures >= 2 ? "stale" : "reconnecting",
+          }));
+        }
       }
     };
 
     void refresh();
     const timer = window.setInterval(() => {
-      setFeed((current) => current.state === "fallback" ? current : { ...current, state: "reconnecting" });
       void refresh();
     }, pollIntervalMs);
 

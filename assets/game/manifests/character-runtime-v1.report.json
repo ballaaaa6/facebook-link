@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "sourceFrame": [192, 208],
+  "runtimeFrame": [48, 52],
+  "columns": 8,
+  "agentRows": 9,
+  "companionRows": 11,
+  "resizeFilter": "nearest-neighbor",
+  "encoding": "lossless-webp",
+  "agents": [
+    "ai-workbot",
+    "doraemon",
+    "einstein",
+    "luffy",
+    "noir-webling",
+    "rem-xl",
+    "ruri",
+    "taffy-2",
+    "tian-zekun-2",
+    "yinyue-2"
+  ],
+  "companions": ["boba"]
+}

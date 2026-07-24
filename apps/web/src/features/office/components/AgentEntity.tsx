@@ -14,9 +14,10 @@ export interface AgentPreviewAnchor {
 
 export function AgentEntity({
   agent,
-  index,
+  agents,
   map,
   mode,
+  sceneStartedAt,
   selected,
   previewed,
   station,
@@ -24,9 +25,10 @@ export function AgentEntity({
   onSelect,
 }: {
   agent: OfficeAgentView;
-  index: number;
+  agents: readonly OfficeAgentView[];
   map: OfficeMapDefinition;
   mode: OfficeMode;
+  sceneStartedAt: number;
   selected: boolean;
   previewed: boolean;
   station: OfficeWorkstation;
@@ -34,7 +36,7 @@ export function AgentEntity({
   onSelect: (agentId: string) => void;
 }) {
   const trackRef = useRef<HTMLDivElement>(null);
-  const visual = useAgentMotion(trackRef, map, station, agent, mode, index);
+  const visual = useAgentMotion(trackRef, map, station, agent, agents, mode, sceneStartedAt);
   const initialX = `${(station.seat.x / map.width) * 100}%`;
   const initialY = `${(station.seat.y / map.height) * 100}%`;
 
@@ -48,7 +50,7 @@ export function AgentEntity({
         type="button"
         className={`agent-entity ${visual.seated ? "is-seated" : "is-standing"} ${selected ? "is-selected" : ""}`}
         data-agent-id={agent.agentId}
-        aria-label={`Select ${agent.role}`}
+        aria-label={`Select ${agent.role}${visual.activityLabel ? `, ${visual.activityLabel}` : ""}`}
         aria-describedby={previewed ? `agent-tooltip-${agent.agentId}` : undefined}
         onClick={() => onSelect(agent.agentId)}
         onFocus={(event) => {
@@ -65,9 +67,16 @@ export function AgentEntity({
           });
         }}
       >
-        <AnimatedAgent agentId={agent.agentId} name={agent.displayName} state={visual.state} />
+        <AnimatedAgent
+          agentId={agent.agentId}
+          name={agent.displayName}
+          sceneStartedAt={sceneStartedAt}
+          state={visual.state}
+        />
       </button>
-      {visual.activityLabel ? <span className="agent-activity-badge">{visual.activityLabel}</span> : null}
+      {visual.activityLabel && !visual.seated
+        ? <span className="agent-activity-badge">{visual.activityLabel}</span>
+        : null}
       <span className={`agent-nameplate ${visual.seated ? "is-seated" : ""} ${previewed || selected ? "is-visible" : ""}`}>
         <StatusDot status={agent.status} />{agent.displayName}
       </span>

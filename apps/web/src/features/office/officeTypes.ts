@@ -1,8 +1,25 @@
 import type { CharacterState } from "./characterRegistry";
 
+export type OfficeLayer = "wall" | "furniture" | "equipment" | "decor";
+export type OfficeAnchor = "center" | "bottom-center" | "wall-top" | "wall-right";
+export type OfficeSupport =
+  | "floor"
+  | "desk-surface"
+  | "table-surface"
+  | "counter-surface"
+  | "credenza-surface"
+  | "rack-surface"
+  | "wall"
+  | "ceiling";
+
 export interface OfficePoint {
   x: number;
   y: number;
+}
+
+export interface OfficeRectangle extends OfficePoint {
+  width: number;
+  height: number;
 }
 
 export interface OfficeWorkstation {
@@ -30,23 +47,38 @@ export interface OfficePoi {
   capacity: number;
   duration: number;
   label: string;
+  slots?: OfficePoint[];
 }
 
 export interface OfficeNavigationNode extends OfficePoint {
   id: string;
 }
 
+export interface OfficeMapObject {
+  id: string;
+  asset: string;
+  x?: number;
+  y?: number;
+  parentId?: string;
+  slot?: string;
+  layer: OfficeLayer;
+  anchor: OfficeAnchor;
+}
+
 export interface OfficeMapDefinition {
+  id?: string;
+  gridSize?: number;
   width: number;
   height: number;
   zones: Array<{ id: string; label: string; x: number; y: number; width: number; height: number; capacity: number }>;
   workstations: OfficeWorkstation[];
   pois: OfficePoi[];
-  routes: Array<OfficePoint & { id: string; width: number; height: number }>;
+  routes: Array<OfficeRectangle & { id: string }>;
   navigation: {
     nodes: OfficeNavigationNode[];
     edges: Array<[string, string]>;
   };
+  objects: OfficeMapObject[];
 }
 
 export interface AgentPresentation {

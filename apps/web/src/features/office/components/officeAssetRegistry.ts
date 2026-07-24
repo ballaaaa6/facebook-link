@@ -54,82 +54,108 @@ import smokeDetector from "../../../../../../assets/game/processed/office-utilit
 import emergencyLight from "../../../../../../assets/game/processed/office-utility-c-v1/emergency.light.svg";
 import ups from "../../../../../../assets/game/processed/office-utility-c-v1/ups.svg";
 import cableTray from "../../../../../../assets/game/processed/office-utility-c-v1/cable.tray.svg";
+import officeAssetGeometryJson from "../../../../../../assets/game/manifests/office-assets.json";
+import type { OfficeAnchor, OfficeLayer, OfficeSupport } from "../officeTypes";
 
-export type OfficeLayer = "wall" | "furniture" | "equipment" | "decor";
-export type OfficeAnchor = "center" | "bottom-center" | "wall-top" | "wall-right";
-export type OfficeSupport = "floor" | "desk-surface" | "table-surface" | "wall" | "ceiling";
+export type { OfficeAnchor, OfficeLayer, OfficeSupport } from "../officeTypes";
 
-export interface OfficeAssetDefinition {
-  file: string;
-  widthTiles: number;
-  layer: OfficeLayer;
-  anchor: OfficeAnchor;
-  support: OfficeSupport;
+export interface OfficeFootprint {
+  width: number;
+  depth: number;
 }
 
-const asset = (file: string, widthTiles: number, layer: OfficeLayer, anchor: OfficeAnchor, support: OfficeSupport): OfficeAssetDefinition => ({ file, widthTiles, layer, anchor, support });
-const furniture = (file: string, widthTiles: number): OfficeAssetDefinition => asset(file, widthTiles, "furniture", "center", "floor");
-const floorEquipment = (file: string, widthTiles: number): OfficeAssetDefinition => asset(file, widthTiles, "equipment", "bottom-center", "floor");
-const deskEquipment = (file: string, widthTiles: number): OfficeAssetDefinition => asset(file, widthTiles, "equipment", "bottom-center", "desk-surface");
-const floorDecor = (file: string, widthTiles: number): OfficeAssetDefinition => asset(file, widthTiles, "decor", "bottom-center", "floor");
-const surfaceDecor = (file: string, widthTiles: number, support: OfficeSupport = "desk-surface"): OfficeAssetDefinition => asset(file, widthTiles, "decor", "bottom-center", support);
-const wall = (file: string, widthTiles: number, anchor: OfficeAnchor = "wall-top"): OfficeAssetDefinition => asset(file, widthTiles, "wall", anchor, "wall");
+export interface OfficeAssetSlot {
+  x: number;
+  y: number;
+  surface: OfficeSupport;
+}
 
-export const officeAssetRegistry: Record<string, OfficeAssetDefinition> = {
-  "bookshelf.low": furniture(bookshelfLow, 3.2),
-  "cabinet.filing": furniture(cabinetFiling, 1.45),
-  "chair.office.up": furniture(chairOffice, 1.25),
-  "chair.studio.up": furniture(chairStudio, 1.25),
-  "counter.coffee": furniture(counterCoffee, 5),
-  "desk.creative.up": furniture(deskCreative, 4.1),
-  "desk.noc.up": furniture(deskNoc, 4.1),
-  "desk.standard.up": furniture(deskStandard, 4.1),
-  "divider.planter": furniture(dividerPlanter, 3),
-  "table.mission": furniture(missionTable, 5.8),
-  "pet-bed.round": furniture(petBed, 2.2),
-  "sofa.sectional": furniture(sectionalSofa, 4.5),
-  "stool.lounge": furniture(stoolLounge, 1.05),
-  "table.coffee": furniture(tableCoffee, 2.3),
-  "chair.meeting": furniture(chairMeeting, 1.35),
-  "chair.lounge": furniture(chairLounge, 1.65),
-  "refrigerator": furniture(refrigerator, 1.55),
-  "microwave": furniture(microwave, 1.55),
-  "sink": furniture(sink, 1.8),
-  "pantry.shelf": furniture(pantryShelf, 1.65),
-  "locker": furniture(locker, 2.1),
-  "coat.rack": furniture(coatRack, 1.35),
-  "bin.waste": floorDecor(binWaste, 0.7),
-  "recycle.bin": floorDecor(recycleBin, 0.7),
-  "box.parcel": floorDecor(boxParcel, 0.9),
-  "cup.coffee": surfaceDecor(cupCoffee, 0.35, "table-surface"),
-  "lamp.desk": surfaceDecor(lampDesk, 0.65),
-  "papers.stack": surfaceDecor(papersStack, 0.8, "table-surface"),
-  "plant.small": floorDecor(plantSmall, 1.05),
-  "plant.tall": floorDecor(plantTall, 1.35),
-  "clock.wall": wall(clockWall, 1.05),
-  "door.closed": wall(doorClosed, 1.5, "wall-right"),
-  "extinguisher.wall": wall(extinguisherWall, 0.65),
-  "sign.exit": wall(signExit, 1.4),
-  "whiteboard": wall(whiteboard, 3.8),
-  "display.screen": wall(displayScreen, 3.8),
-  "first.aid": wall(firstAid, 1.05),
-  "smoke.detector": wall(smokeDetector, 0.75),
-  "emergency.light": wall(emergencyLight, 1.25),
-  "camera.cctv": wall(cameraCctv, 0.95, "wall-right"),
-  "camera.tripod": floorEquipment(cameraTripod, 0.9),
-  "dispenser.water": floorEquipment(dispenserWater, 0.85),
-  "keyboard.mouse": deskEquipment(keyboardMouse, 0.95),
-  "laptop.open": deskEquipment(laptopOpen, 1.1),
-  "light.studio": floorEquipment(lightStudio, 0.8),
-  "machine.coffee": deskEquipment(machineCoffee, 0.9),
-  "monitor.dual.active": deskEquipment(monitorDualActive, 1.8),
-  "monitor.front.active": deskEquipment(monitorFrontActive, 1.35),
-  "network.stack": floorEquipment(networkStack, 1.15),
-  "phone.preview": deskEquipment(phonePreview, 0.6),
-  "printer.desktop": deskEquipment(printerDesktop, 1),
-  "server.rack": floorEquipment(serverRack, 1.8),
-  "ups": floorEquipment(ups, 1.1),
-  "cable.tray": deskEquipment(cableTray, 1.1),
-  "station.multidevice": deskEquipment(stationMultidevice, 1.8),
-  "tablet.drawing": deskEquipment(tabletDrawing, 1.05),
+export interface OfficeAssetGeometry {
+  renderWidthTiles: number;
+  layer: OfficeLayer;
+  anchor: OfficeAnchor;
+  supports: OfficeSupport[];
+  footprint?: OfficeFootprint;
+  slotSet?: string;
+}
+
+interface OfficeAssetGeometryManifest {
+  version: number;
+  slotSets: Record<string, Record<string, OfficeAssetSlot>>;
+  assets: Record<string, OfficeAssetGeometry>;
+}
+
+export interface OfficeAssetDefinition extends OfficeAssetGeometry {
+  file: string;
+}
+
+const geometryManifest = officeAssetGeometryJson as unknown as OfficeAssetGeometryManifest;
+
+const assetFiles: Record<string, string> = {
+  "bookshelf.low": bookshelfLow,
+  "cabinet.filing": cabinetFiling,
+  "chair.office.up": chairOffice,
+  "chair.studio.up": chairStudio,
+  "counter.coffee": counterCoffee,
+  "desk.creative.up": deskCreative,
+  "desk.noc.up": deskNoc,
+  "desk.standard.up": deskStandard,
+  "divider.planter": dividerPlanter,
+  "table.mission": missionTable,
+  "pet-bed.round": petBed,
+  "sofa.sectional": sectionalSofa,
+  "stool.lounge": stoolLounge,
+  "table.coffee": tableCoffee,
+  "chair.meeting": chairMeeting,
+  "chair.lounge": chairLounge,
+  refrigerator,
+  microwave,
+  sink,
+  "pantry.shelf": pantryShelf,
+  locker,
+  "coat.rack": coatRack,
+  "bin.waste": binWaste,
+  "recycle.bin": recycleBin,
+  "box.parcel": boxParcel,
+  "cup.coffee": cupCoffee,
+  "lamp.desk": lampDesk,
+  "papers.stack": papersStack,
+  "plant.small": plantSmall,
+  "plant.tall": plantTall,
+  "clock.wall": clockWall,
+  "door.closed": doorClosed,
+  "extinguisher.wall": extinguisherWall,
+  "sign.exit": signExit,
+  whiteboard,
+  "display.screen": displayScreen,
+  "first.aid": firstAid,
+  "smoke.detector": smokeDetector,
+  "emergency.light": emergencyLight,
+  "camera.cctv": cameraCctv,
+  "camera.tripod": cameraTripod,
+  "dispenser.water": dispenserWater,
+  "keyboard.mouse": keyboardMouse,
+  "laptop.open": laptopOpen,
+  "light.studio": lightStudio,
+  "machine.coffee": machineCoffee,
+  "monitor.dual.active": monitorDualActive,
+  "monitor.front.active": monitorFrontActive,
+  "network.stack": networkStack,
+  "phone.preview": phonePreview,
+  "printer.desktop": printerDesktop,
+  "server.rack": serverRack,
+  ups,
+  "cable.tray": cableTray,
+  "station.multidevice": stationMultidevice,
+  "tablet.drawing": tabletDrawing,
 };
+
+export const officeSlotSets = geometryManifest.slotSets;
+
+export const officeAssetRegistry = Object.fromEntries(
+  Object.entries(geometryManifest.assets).map(([id, geometry]) => {
+    const file = assetFiles[id];
+    if (!file) throw new Error(`Missing runtime file for office asset ${id}`);
+    return [id, { ...geometry, file }];
+  }),
+) as Record<string, OfficeAssetDefinition>;

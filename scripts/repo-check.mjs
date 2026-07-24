@@ -1,5 +1,9 @@
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { basename, join, relative, resolve } from "node:path";
+import {
+  resolveOfficeLayout,
+  validateOfficeLayout,
+} from "../apps/web/src/features/office/layout/officeLayout.ts";
 
 const root = resolve(import.meta.dirname, "..");
 const ignoredDirectories = new Set([".git", "node_modules", "dist", ".wrangler", "coverage"]);
@@ -66,6 +70,7 @@ const attribution = JSON.parse(readFileSync(join(root, "config/attribution.json"
 if (attribution.dimensions.length !== 5) failures.push("Attribution must define exactly five Sub ID dimensions");
 
 const officeMap = JSON.parse(readFileSync(join(root, "assets/game/maps/office-c-v1.json"), "utf8"));
+const officeGeometry = JSON.parse(readFileSync(join(root, "assets/game/manifests/office-assets.json"), "utf8"));
 const characterRegistry = JSON.parse(readFileSync(join(root, "assets/game/characters/registry.json"), "utf8"));
 const agentIds = new Set(agents.map((agent) => agent.id));
 const officeAssetIds = new Set(
@@ -81,17 +86,19 @@ const officeParentIds = new Set([
   ...officeMap.workstations.map((station) => station.id),
   ...(officeMap.objects ?? []).filter((object) => Number.isFinite(object.x) && Number.isFinite(object.y)).map((object) => object.id),
 ]);
-const officeAttachmentSlots = new Set([
-  "desk-rear-center", "desk-rear-left", "desk-rear-right",
-  "desk-front-center", "desk-front-left", "desk-front-right",
-  "table-left", "table-right", "counter-left", "counter-right",
-]);
+const officeAttachmentSlots = new Set(
+  Object.values(officeGeometry.slotSets).flatMap((slots) => Object.keys(slots)),
+);
 for (const object of officeMap.objects ?? []) {
   if (officeObjectIds.has(object.id)) failures.push(`Duplicate office object ID: ${object.id}`);
   officeObjectIds.add(object.id);
   if (!officeAssetIds.has(object.asset)) failures.push(`Unknown office object asset: ${object.asset}`);
+  const geometry = officeGeometry.assets[object.asset];
+  if (!geometry) failures.push(`Missing office geometry: ${object.asset}`);
   if (!["wall", "furniture", "equipment", "decor"].includes(object.layer)) failures.push(`Invalid office object layer: ${object.id}`);
   if (!["center", "bottom-center", "wall-top", "wall-right"].includes(object.anchor)) failures.push(`Invalid office object anchor: ${object.id}`);
+  if (geometry && geometry.layer !== object.layer) failures.push(`Office object layer differs from geometry: ${object.id}`);
+  if (geometry && geometry.anchor !== object.anchor) failures.push(`Office object anchor differs from geometry: ${object.id}`);
   const hasPosition = Number.isFinite(object.x) && Number.isFinite(object.y);
   const hasAttachment = typeof object.parentId === "string" && typeof object.slot === "string";
   if (hasPosition === hasAttachment) failures.push(`Office object must use either coordinates or an attachment: ${object.id}`);
@@ -102,6 +109,10 @@ for (const object of officeMap.objects ?? []) {
   }
   if (object.anchor === "wall-top" && (!hasPosition || object.y > 2.4)) failures.push(`Top-wall object is not attached to the wall: ${object.id}`);
   if (object.anchor === "wall-right" && (!hasPosition || object.x < officeMap.width - 1.5)) failures.push(`Right-wall object is not attached to the wall: ${object.id}`);
+}
+const officeLayout = resolveOfficeLayout(officeMap, officeGeometry.assets, officeGeometry.slotSets);
+for (const issue of validateOfficeLayout(officeMap, officeGeometry.assets, officeLayout)) {
+  failures.push(`Office layout: ${issue}`);
 }
 for (const station of officeMap.workstations) {
   if (!agentIds.has(station.id)) failures.push(`Unknown office workstation agent: ${station.id}`);

@@ -26,6 +26,33 @@ Business state and visual motion are intentionally separate:
 
 Random routines are simulation-only. Live mode never invents operational movement.
 
+Before a simulation agent leaves its workstation, the scene allocator reserves
+one named facility slot and checks the time-overlapping route plans of every
+other actor. A losing request remains at its workstation with a waiting
+presentation. This prevents two actors from sharing a coffee machine, printer,
+seat, doorway, or narrow route cell.
+
+## Spatial model
+
+`assets/game/manifests/office-assets.json` owns physical footprints, support
+types, parent slot sets, and render widths. `office-c-v1.json` owns placement,
+protected routes, navigation, facilities, and workstation collision
+rectangles. Surface props such as monitors, the printer, microwave, papers,
+network stack, and UPS attach to named parent slots and do not reserve unrelated
+floor cells.
+
+The Office layout validator runs as part of `npm run check`. It rejects overlap,
+route obstruction, unsupported or duplicate attachments, unreachable
+destinations, invalid facility capacity, and missing geometry.
+
+## Pixel rendering
+
+The 192 x 208 source frames remain provenance assets. The browser imports
+lossless 48 x 52 nearest-neighbor runtime sheets, aligns actor dimensions and
+translations to physical pixels, and derives sprite phase from the shared scene
+clock. This prevents the half-pixel resampling that previously made non-walking
+states appear blurred.
+
 ## Interaction model
 
 - Pointer or keyboard focus opens a stable preview.
@@ -47,4 +74,6 @@ The inspector shows workflow, stage, agent run, progress mode, attempt, human-re
 - A preview remains readable when its actor moves.
 - Selected details persist until another agent is selected.
 - Simulation, reconnecting, stale, and live modes are visibly distinct.
+- Five simulated minutes do not exceed a facility capacity, reuse a facility
+  slot, or place two moving actors in the same route cell.
 - No browser credential, token, local path, or provider secret enters an Office response.

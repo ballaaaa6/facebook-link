@@ -12,7 +12,48 @@ The generated composition reference is
 composition only. The map grid, registry metadata, validators, and tests remain
 the implementation authority.
 
-## Current Gaps
+## Implemented Baseline (2026-07-24)
+
+- `office-assets.json` is the canonical geometry and support manifest for all
+  64 Office assets. It defines render scale, floor footprint, physical support,
+  and named parent-surface slots.
+- `office-c-v1.json` now uses the rebuilt room layout, protected routes,
+  reachable navigation graph, unique facility slots, and parent attachments.
+- The runtime resolver rejects floor overlap, route obstruction, missing
+  geometry, floating surface props, support mismatch, duplicate parent slots,
+  invalid facility capacity, out-of-bounds interaction points, and unreachable
+  workstations or POIs. The same checks run in `npm run check`.
+- Facility allocation is global and deterministic. It reserves both the
+  facility slot and conflicting route space before an agent leaves its desk.
+  An unsuccessful request remains at the workstation in a waiting state.
+- A five-minute deterministic scene test checks every facility capacity,
+  interaction slot, and moving-agent separation.
+- All agent sprites use 48 x 52 px lossless nearest-neighbor runtime sheets.
+  Actor dimensions, translation, and background frames align to physical
+  pixels; seated scaling and per-agent frame timers have been removed.
+- One persistent scene clock and animation-frame scheduler drive every actor.
+  Reduced-motion mode freezes routes and sprite loops at the workstation.
+- Object depth uses the bottom of its physical footprint. Desks render in front
+  of seated actors and chairs render behind them.
+- Zoom uses discrete tiers, the visible grid follows the 40 x 22 map, and the
+  room has fit and selected-agent focus controls.
+- The Office feed preserves the last live snapshot during temporary failure and
+  distinguishes loading, live, reconnecting, stale, fallback, and offline.
+
+## Remaining Production Work
+
+- Add optional cooldowns, durable cross-client facility leases, and audited
+  reservation records when facility use becomes backend-owned rather than a
+  deterministic browser simulation.
+- Produce dedicated directional chair/storage art and split foreground masks
+  when the approved visual style requires more than the current top-down
+  utility assets and desk z-order.
+- Add a development occupancy/debug overlay and screenshot regression matrix.
+- Add heartbeat-based retry backoff and a formal Office transfer/decode/frame
+  performance budget.
+- Resolve the prototype-only Petdex licenses before public or paid deployment.
+
+## Original Gaps Addressed
 
 - Responsive percentage sizing and nested fractional transforms blur seated
   character states.
@@ -353,18 +394,21 @@ without inspecting the rendered scene manually.
 - Mount network equipment and the UPS in rack or service slots.
 - Keep rack inspection clearance separate from the entrance route.
 
-## Required Asset Work
+## Asset Work
 
-Create these environment assets before the final map pass:
+The pilot layout uses the existing versioned `office-utility-c-v1` batch for
+meeting chairs, lounge chairs, pantry appliances, storage, safety equipment,
+and NOC hardware. The printer uses a validated credenza surface; the microwave
+and coffee machine use distinct counter slots; network equipment and the UPS
+use rack slots. No additional raster generation is required for this validated
+layout.
 
-1. printer credenza or copy-station table;
-2. modular pantry base counter;
-3. pantry sink module and counter end module;
-4. meeting chairs facing up, down, left, and right;
-5. lounge chairs facing the required directions;
-6. side-facing low bookshelf and filing-cabinet variants where edge placement
-   requires them;
-7. rack-mounted or service-row variants for network equipment and the UPS.
+Create these directional variants only if the final art review requires them:
+
+1. meeting chairs facing up, down, left, and right;
+2. lounge chairs facing the required directions;
+3. side-facing low bookshelf and filing-cabinet variants;
+4. foreground mask variants for desks, counters, tables, and the sofa.
 
 Reuse and reclassify these existing assets:
 

@@ -3,7 +3,8 @@ import type { OfficeAgentView, OfficeMode } from "@affiliate-ops/contracts";
 import type { CharacterState } from "../characterRegistry";
 import type { OfficeMapDefinition, OfficeWorkstation } from "../officeTypes";
 import { subscribeToOfficeFrame } from "./frameScheduler";
-import { presentationAt } from "./officeMotion";
+import { presentationsAt } from "./officeMotion";
+import { pixelAlignedCharacterFrame } from "./pixelGeometry";
 
 export interface AgentVisualState {
   state: CharacterState;
@@ -16,28 +17,34 @@ export function useAgentMotion(
   map: OfficeMapDefinition,
   station: OfficeWorkstation,
   agent: OfficeAgentView,
+  agents: readonly OfficeAgentView[],
   mode: OfficeMode,
-  index: number,
+  sceneStartedAt: number,
 ): AgentVisualState {
   const [visual, setVisual] = useState<AgentVisualState>({ state: "idle", seated: true });
   const signature = useRef("");
 
   useEffect(() => {
-    const startedAt = performance.now();
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const update = (timestamp: number) => {
-      const presentation = presentationAt(
-        (timestamp - startedAt) / 1_000,
-        index,
-        agent,
+      const presentation = presentationsAt(
+        (timestamp - sceneStartedAt) / 1_000,
+        agents,
         reduceMotion ? "live" : mode,
         map,
-        station,
-      );
+      ).get(agent.agentId);
+      if (!presentation) return;
       const track = trackRef.current;
       if (track) {
-        track.style.setProperty("--agent-x", `${(presentation.position.x / map.width) * 100}%`);
-        track.style.setProperty("--agent-y", `${(presentation.position.y / map.height) * 100}%`);
+        const deviceScale = window.devicePixelRatio || 1;
+        const snap = (value: number) => Math.round(value * deviceScale) / deviceScale;
+        const x = snap((presentation.position.x / map.width) * track.clientWidth);
+        const y = snap((presentation.position.y / map.height) * track.clientHeight);
+        const frame = pixelAlignedCharacterFrame(track.clientWidth, deviceScale);
+        track.style.setProperty("--agent-x", `${x}px`);
+        track.style.setProperty("--agent-y", `${y}px`);
+        track.style.setProperty("--agent-width", `${frame.width}px`);
+        track.style.setProperty("--agent-height", `${frame.height}px`);
         track.style.zIndex = String(presentation.seated
           ? 99 + Math.round(station.y * 20)
           : 110 + Math.round(presentation.position.y * 20));
@@ -53,7 +60,7 @@ export function useAgentMotion(
       }
     };
     return subscribeToOfficeFrame(update);
-  }, [agent.activity, agent.agentId, agent.status, index, map, mode, station, trackRef]);
+  }, [agent.agentId, agents, map, mode, sceneStartedAt, station, trackRef]);
 
   return visual;
 }

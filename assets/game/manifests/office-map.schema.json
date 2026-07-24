@@ -9,8 +9,44 @@
     "gridSize": { "type": "integer", "minimum": 8 },
     "width": { "type": "number", "exclusiveMinimum": 0 },
     "height": { "type": "number", "exclusiveMinimum": 0 },
-    "zones": { "type": "array" },
-    "pois": { "type": "array" },
+    "zones": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "x", "y", "width", "height"],
+        "properties": {
+          "id": { "type": "string" },
+          "label": { "type": "string" },
+          "x": { "type": "number" },
+          "y": { "type": "number" },
+          "width": { "type": "number", "exclusiveMinimum": 0 },
+          "height": { "type": "number", "exclusiveMinimum": 0 }
+        },
+        "additionalProperties": false
+      }
+    },
+    "pois": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "activity", "point", "slots", "navNode", "capacity", "duration", "label"],
+        "properties": {
+          "id": { "type": "string" },
+          "activity": { "type": "string" },
+          "point": { "$ref": "#/$defs/point" },
+          "slots": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "$ref": "#/$defs/point" }
+          },
+          "navNode": { "type": "string" },
+          "capacity": { "type": "integer", "minimum": 1 },
+          "duration": { "type": "number", "exclusiveMinimum": 0 },
+          "label": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
     "routes": {
       "type": "array",
       "items": {
@@ -26,7 +62,35 @@
         "additionalProperties": false
       }
     },
-    "navigation": { "type": "object" },
+    "navigation": {
+      "type": "object",
+      "required": ["nodes", "edges"],
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "x", "y"],
+            "properties": {
+              "id": { "type": "string" },
+              "x": { "type": "number" },
+              "y": { "type": "number" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "prefixItems": [{ "type": "string" }, { "type": "string" }],
+            "minItems": 2,
+            "maxItems": 2
+          }
+        }
+      },
+      "additionalProperties": false
+    },
     "objects": {
       "type": "array",
       "items": { "$ref": "#/$defs/object" }

@@ -1,46 +1,28 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import type { OfficeAgentView, OfficeMode } from "@affiliate-ops/contracts";
 import officeMapJson from "../../../../../../assets/game/maps/office-c-v1.json";
-import bobaSheet from "../../../../../../assets/game/characters/boba/spritesheet.webp";
+import bobaSheet from "../../../../../../assets/game/characters/boba/runtime-spritesheet.webp";
+import { resolveOfficeLayout, validateOfficeLayout } from "../layout/officeLayout";
 import type { OfficeMapDefinition } from "../officeTypes";
 import { AgentEntity, type AgentPreviewAnchor } from "./AgentEntity";
 import { AgentTooltip } from "./AgentTooltip";
-import { officeAssetRegistry } from "./officeAssetRegistry";
-import { WorldObject, type OfficeMapObject, type ResolvedOfficeObject } from "./WorldObject";
+import { officeAssetRegistry, officeSlotSets } from "./officeAssetRegistry";
+import { WorldObject } from "./WorldObject";
 
-const officeMap = officeMapJson as unknown as OfficeMapDefinition & { objects: OfficeMapObject[] };
-const attachmentSlots: Record<string, { x: number; y: number }> = {
-  "desk-rear-center": { x: 0, y: -0.22 },
-  "desk-rear-left": { x: -0.72, y: -0.18 },
-  "desk-rear-right": { x: 0.72, y: -0.18 },
-  "desk-front-center": { x: 0, y: 0.26 },
-  "desk-front-left": { x: -0.72, y: 0.18 },
-  "desk-front-right": { x: 0.72, y: 0.18 },
-  "table-left": { x: -0.9, y: -0.12 },
-  "table-right": { x: 0.9, y: -0.12 },
-  "counter-left": { x: -0.9, y: -0.1 },
-  "counter-right": { x: 0.9, y: -0.1 },
-};
+const officeMap = officeMapJson as unknown as OfficeMapDefinition;
+const officeLayout = resolveOfficeLayout(officeMap, officeAssetRegistry, officeSlotSets);
+const officeLayoutIssues = validateOfficeLayout(officeMap, officeAssetRegistry, officeLayout);
+if (officeLayoutIssues.length > 0) {
+  throw new Error(`Invalid Office C layout: ${officeLayoutIssues.join("; ")}`);
+}
+const resolvedMapObjects = officeLayout.objects;
+const zoomLevels = [.5, .75, 1, 1.25] as const;
 
-const parentPositions = new Map<string, { x: number; y: number }>([
-  ...officeMap.workstations.map((station) => [station.id, { x: station.x, y: station.y }] as const),
-  ...officeMap.objects.flatMap((object) => (
-    typeof object.x === "number" && typeof object.y === "number"
-      ? [[object.id, { x: object.x, y: object.y }] as const]
-      : []
-  )),
-]);
-
-const resolvedMapObjects = officeMap.objects.flatMap((object): ResolvedOfficeObject[] => {
-  if (object.parentId) {
-    const parent = parentPositions.get(object.parentId);
-    const offset = object.slot ? attachmentSlots[object.slot] : undefined;
-    if (!parent || !offset) return [];
-    return [{ ...object, x: parent.x + offset.x, y: parent.y + offset.y }];
-  }
-  if (typeof object.x !== "number" || typeof object.y !== "number") return [];
-  return [{ ...object, x: object.x, y: object.y }];
-});
+function adjacentZoom(current: number, direction: -1 | 1) {
+  const currentIndex = zoomLevels.findIndex((value) => value === current);
+  const index = currentIndex < 0 ? 2 : currentIndex;
+  return zoomLevels[Math.max(0, Math.min(zoomLevels.length - 1, index + direction))]!;
+}
 
 export function OfficeCanvas({
   agents,
@@ -56,6 +38,7 @@ export function OfficeCanvas({
   const frameRef = useRef<HTMLDivElement>(null);
   const [preview, setPreview] = useState<AgentPreviewAnchor | null>(null);
   const [zoom, setZoom] = useState(() => window.matchMedia("(max-width: 760px)").matches ? .5 : 1);
+  const [sceneStartedAt] = useState(() => performance.now());
   const previewAgent = useMemo(
     () => agents.find((agent) => agent.agentId === preview?.agentId),
     [agents, preview?.agentId],
@@ -97,10 +80,10 @@ export function OfficeCanvas({
   return (
     <div className="office-viewport">
       <div className="office-viewport-toolbar" aria-label="Office view controls">
-        <button type="button" onClick={() => setZoom((value) => Math.max(.45, value - .1))} aria-label="Zoom out">−</button>
+        <button type="button" onClick={() => setZoom((value) => adjacentZoom(value, -1))} aria-label="Zoom out">−</button>
         <span>{Math.round(zoom * 100)}%</span>
-        <button type="button" onClick={() => setZoom((value) => Math.min(1.35, value + .1))} aria-label="Zoom in">+</button>
-        <button type="button" onClick={() => setZoom(1)}>Reset</button>
+        <button type="button" onClick={() => setZoom((value) => adjacentZoom(value, 1))} aria-label="Zoom in">+</button>
+        <button type="button" onClick={() => setZoom(1)}>Fit room</button>
         <button type="button" onClick={focusSelected}>Focus agent</button>
       </div>
       <div
@@ -126,7 +109,7 @@ export function OfficeCanvas({
             percentY={percentY}
           />
         ))}
-        {officeMap.workstations.map((station, index) => {
+        {officeMap.workstations.map((station) => {
           const agent = agents.find((item) => item.agentId === station.id);
           const desk = officeAssetRegistry[station.desk];
           const chair = officeAssetRegistry[station.chair];
@@ -139,20 +122,21 @@ export function OfficeCanvas({
                 src={chair.file}
                 alt=""
                 aria-hidden="true"
-                style={{ left: percentX(station.seat.x), top: percentY(station.seat.y + 0.08), width: `${(chair.widthTiles / officeMap.width) * 100}%`, zIndex: deskDepth - 2 }}
+                style={{ left: percentX(station.seat.x), top: percentY(station.seat.y + 0.08), width: `${(chair.renderWidthTiles / officeMap.width) * 100}%`, zIndex: deskDepth - 2 }}
               />
               <img
                 className="workstation-desk"
                 src={desk.file}
                 alt=""
                 aria-hidden="true"
-                style={{ left: percentX(station.x), top: percentY(station.y), width: `${(desk.widthTiles / officeMap.width) * 100}%`, zIndex: deskDepth }}
+                style={{ left: percentX(station.x), top: percentY(station.y), width: `${(desk.renderWidthTiles / officeMap.width) * 100}%`, zIndex: deskDepth }}
               />
               <AgentEntity
                 agent={agent}
-                index={index}
+                agents={agents}
                 map={officeMap}
                 mode={mode}
+                sceneStartedAt={sceneStartedAt}
                 selected={selectedId === agent.agentId}
                 previewed={preview?.agentId === agent.agentId}
                 station={station}

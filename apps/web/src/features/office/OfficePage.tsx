@@ -10,6 +10,8 @@ const feedLabels = {
   ready: "Live feed",
   fallback: "Simulation",
   reconnecting: "Reconnecting",
+  stale: "Stale feed",
+  offline: "Offline",
 } as const;
 
 export function OfficePage() {

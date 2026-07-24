@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "slotSets": {
+    "workstation": {
+      "desk-rear-center": { "x": 0, "y": -0.22, "surface": "desk-surface" },
+      "desk-rear-left": { "x": -0.72, "y": -0.18, "surface": "desk-surface" },
+      "desk-rear-right": { "x": 0.72, "y": -0.18, "surface": "desk-surface" },
+      "desk-front-center": { "x": 0, "y": 0.26, "surface": "desk-surface" },
+      "desk-front-left": { "x": -0.72, "y": 0.18, "surface": "desk-surface" },
+      "desk-front-right": { "x": 0.72, "y": 0.18, "surface": "desk-surface" }
+    },
+    "mission-table": {
+      "table-left": { "x": -0.9, "y": -0.12, "surface": "table-surface" },
+      "table-right": { "x": 0.9, "y": -0.12, "surface": "table-surface" }
+    },
+    "coffee-counter": {
+      "counter-left": { "x": -1.15, "y": -0.1, "surface": "counter-surface" },
+      "counter-center": { "x": 0, "y": -0.1, "surface": "counter-surface" },
+      "counter-right": { "x": 1.15, "y": -0.1, "surface": "counter-surface" }
+    },
+    "credenza": {
+      "credenza-left": { "x": -0.75, "y": -0.12, "surface": "credenza-surface" },
+      "credenza-center": { "x": 0, "y": -0.12, "surface": "credenza-surface" },
+      "credenza-right": { "x": 0.75, "y": -0.12, "surface": "credenza-surface" }
+    },
+    "server-rack": {
+      "rack-center": { "x": 0, "y": -0.85, "surface": "rack-surface" }
+    }
+  },
+  "assets": {
+    "bookshelf.low": { "renderWidthTiles": 3.2, "layer": "furniture", "anchor": "center", "supports": ["floor"], "footprint": { "width": 3, "depth": 0.7 }, "slotSet": "credenza" },
+    "cabinet.filing": { "renderWidthTiles": 1.2, "layer": "furniture", "anchor": "bottom-center", "supports": ["floor"], "footprint": { "width": 1, "depth": 1 } },
+    "chair.office.up": { "renderWidthTiles": 1.1, "layer": "furniture", "anchor": "bottom-center", "supports": ["floor"], "footprint": { "width": 1, "depth": 1 } },
+    "chair.studio.up": { "renderWidthTiles": 1.1, "layer": "furniture", "anchor": "bottom-center", "supports": ["floor"], "footprint": { "width": 1, "depth": 1 } },
+    "counter.coffee": { "renderWidthTiles": 4.2, "layer": "furniture", "anchor": "center", "supports": ["floor"], "footprint": { "width": 3.6, "depth": 1.5 }, "slotSet": "coffee-counter" },
+    "desk.creative.up": { "renderWidthTiles": 4, "layer": "furniture", "anchor": "center", "supports": ["floor"], "footprint": { "width": 3.8, "depth": 1.6 }, "slotSet": "workstation" },
+    "desk.noc.up": { "renderWidthTiles": 4, "layer": "furniture", "anchor": "center", "supports": ["floor"], "footprint": { "width": 3.8, "depth": 1.6 }, "slotSet": "workstation" },
+    "desk.standard.up": { "renderWidthTiles": 4, "layer": "furniture", "anchor": "center", "supports": ["floor"], "footprint": { "width": 3.8, "depth": 1.6 }, "slotSet": "workstation" },
+    "divider.planter": { "renderWidthTiles": 3, "layer": "furniture", "anchor": "center", "supports": ["floor"], "footprint": { "width": 3, "depth": 1 } },
+    "table.mission": { "renderWidthTiles": 5.4, "layer": "furniture", "anchor": "center", "supports": ["floor"], "footprint": { "width": 5.2, "depth": 2.4 }, "slotSet": "mission-table" },
+    "pet-bed.round": { "renderWidthTiles": 2, "layer": "furniture", "anchor": "bottom-center", "supports": ["floor"], "footprint": { "width": 2, "depth": 1.5 } },
+    "sofa.sectional": { "renderWidthTiles": 4.3, "layer": "furniture", "anchor": "center", "supports": ["floor"], "footprint": { "width": 4.2, "depth": 3 } },
+    "stool.lounge": { "renderWidthTiles": 0.95, "layer": "furniture", "anchor": "bottom-center", "supports": ["floor"], "footprint": { "width": 1, "depth": 1 } },
+    "table.coffee": { "renderWidthTiles": 2.2, "layer": "furniture", "anchor": "center", "supports": ["floor"], "footprint": { "width": 2.2, "depth": 1.5 } },
+    "chair.meeting": { "renderWidthTiles": 1.1, "layer": "furniture", "anchor": "bottom-center", "supports": ["floor"], "footprint": { "width": 1, "depth": 1 } },
+    "chair.lounge": { "renderWidthTiles": 1.4, "layer": "furniture", "anchor": "bottom-center", "supports": ["floor"], "footprint": { "width": 1.4, "depth": 1.4 } },
+    "refrigerator": { "renderWidthTiles": 1.35, "layer": "furniture", "anchor": "bottom-center", "supports": ["floor"], "footprint": { "width": 1.2, "depth": 1.2 } },
+    "microwave": { "renderWidthTiles": 0.85, "layer": "equipment", "anchor": "bottom-center", "supports": ["counter-surface"] },
+    "sink": { "renderWidthTiles": 1.55, "layer": "furniture", "anchor": "bottom-center", "supports": ["floor"], "footprint": { "width": 1.5, "depth": 1.2 } },
+    "pantry.shelf": { "renderWidthTiles": 1.5, "layer": "furniture", "anchor": "bottom-center", "supports": ["floor"], "footprint": { "width": 1.5, "depth": 1 } },
+    "locker": { "renderWidthTiles": 1.9, "layer": "furniture", "anchor": "bottom-center", "supports": ["floor"], "footprint": { "width": 2, "depth": 1 } },
+    "coat.rack": { "renderWidthTiles": 1.1, "layer": "furniture", "anchor": "bottom-center", "supports": ["floor"], "footprint": { "width": 1, "depth": 1 } },
+    "bin.waste": { "renderWidthTiles": 0.55, "layer": "decor", "anchor": "bottom-center", "supports": ["floor"], "footprint": { "width": 1, "depth": 1 } },
+    "recycle.bin": { "renderWidthTiles": 0.55, "layer": "decor", "anchor": "bottom-center", "supports": ["floor"], "footprint": { "width": 1, "depth": 1 } },
+    "box.parcel": { "renderWidthTiles": 0.75, "layer": "decor", "anchor": "bottom-center", "supports": ["floor"], "footprint": { "width": 1, "depth": 1 } },
+    "cup.coffee": { "renderWidthTiles": 0.3, "layer": "decor", "anchor": "bottom-center", "supports": ["table-surface", "counter-surface"] },
+    "lamp.desk": { "renderWidthTiles": 0.55, "layer": "decor", "anchor": "bottom-center", "supports": ["desk-surface"] },
+    "papers.stack": { "renderWidthTiles": 0.65, "layer": "decor", "anchor": "bottom-center", "supports": ["desk-surface", "table-surface", "credenza-surface"] },
+    "plant.small": { "renderWidthTiles": 0.75, "layer": "decor", "anchor": "bottom-center", "supports": ["floor"], "footprint": { "width": 1, "depth": 1 } },
+    "plant.tall": { "renderWidthTiles": 1.05, "layer": "decor", "anchor": "bottom-center", "supports": ["floor"], "footprint": { "width": 1, "depth": 1 } },
+    "clock.wall": { "renderWidthTiles": 0.9, "layer": "wall", "anchor": "wall-top", "supports": ["wall"] },
+    "door.closed": { "renderWidthTiles": 1.5, "layer": "wall", "anchor": "wall-right", "supports": ["wall"] },
+    "extinguisher.wall": { "renderWidthTiles": 0.55, "layer": "wall", "anchor": "wall-top", "supports": ["wall"] },
+    "sign.exit": { "renderWidthTiles": 1.2, "layer": "wall", "anchor": "wall-top", "supports": ["wall"] },
+    "whiteboard": { "renderWidthTiles": 3.6, "layer": "wall", "anchor": "wall-top", "supports": ["wall"] },
+    "display.screen": { "renderWidthTiles": 3.6, "layer": "wall", "anchor": "wall-top", "supports": ["wall"] },
+    "first.aid": { "renderWidthTiles": 0.9, "layer": "wall", "anchor": "wall-top", "supports": ["wall"] },
+    "smoke.detector": { "renderWidthTiles": 0.65, "layer": "wall", "anchor": "wall-top", "supports": ["ceiling"] },
+    "emergency.light": { "renderWidthTiles": 1.05, "layer": "wall", "anchor": "wall-top", "supports": ["wall"] },
+    "camera.cctv": { "renderWidthTiles": 0.8, "layer": "wall", "anchor": "wall-right", "supports": ["wall"] },
+    "camera.tripod": { "renderWidthTiles": 0.8, "layer": "equipment", "anchor": "bottom-center", "supports": ["floor"], "footprint": { "width": 1, "depth": 1 } },
+    "dispenser.water": { "renderWidthTiles": 0.75, "layer": "equipment", "anchor": "bottom-center", "supports": ["floor"], "footprint": { "width": 1, "depth": 1 } },
+    "keyboard.mouse": { "renderWidthTiles": 0.8, "layer": "equipment", "anchor": "bottom-center", "supports": ["desk-surface"] },
+    "laptop.open": { "renderWidthTiles": 1, "layer": "equipment", "anchor": "bottom-center", "supports": ["desk-surface", "table-surface"] },
+    "light.studio": { "renderWidthTiles": 0.7, "layer": "equipment", "anchor": "bottom-center", "supports": ["floor"], "footprint": { "width": 1, "depth": 1 } },
+    "machine.coffee": { "renderWidthTiles": 0.8, "layer": "equipment", "anchor": "bottom-center", "supports": ["counter-surface"] },
+    "monitor.dual.active": { "renderWidthTiles": 1.65, "layer": "equipment", "anchor": "bottom-center", "supports": ["desk-surface"] },
+    "monitor.front.active": { "renderWidthTiles": 1.2, "layer": "equipment", "anchor": "bottom-center", "supports": ["desk-surface"] },
+    "network.stack": { "renderWidthTiles": 0.85, "layer": "equipment", "anchor": "bottom-center", "supports": ["rack-surface"] },
+    "phone.preview": { "renderWidthTiles": 0.5, "layer": "equipment", "anchor": "bottom-center", "supports": ["desk-surface"] },
+    "printer.desktop": { "renderWidthTiles": 0.9, "layer": "equipment", "anchor": "bottom-center", "supports": ["credenza-surface"] },
+    "server.rack": { "renderWidthTiles": 1.55, "layer": "equipment", "anchor": "bottom-center", "supports": ["floor"], "footprint": { "width": 1.5, "depth": 1.2 }, "slotSet": "server-rack" },
+    "ups": { "renderWidthTiles": 0.75, "layer": "equipment", "anchor": "bottom-center", "supports": ["rack-surface"] },
+    "cable.tray": { "renderWidthTiles": 0.9, "layer": "equipment", "anchor": "bottom-center", "supports": ["desk-surface"] },
+    "station.multidevice": { "renderWidthTiles": 1.65, "layer": "equipment", "anchor": "bottom-center", "supports": ["desk-surface"] },
+    "tablet.drawing": { "renderWidthTiles": 0.9, "layer": "equipment", "anchor": "bottom-center", "supports": ["desk-surface"] }
+  }
+}
