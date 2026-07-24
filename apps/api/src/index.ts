@@ -1,6 +1,7 @@
 import { agentCatalog } from "@affiliate-ops/agent-catalog";
 import { createBrainProvider, defaultWorkersAiModel, MockBrainProvider, type AiTextRunner } from "@affiliate-ops/brain";
 import type { BrainRequest, HealthReport } from "@affiliate-ops/contracts";
+import { createDemoOfficeSnapshot } from "@affiliate-ops/office-read-model";
 
 const serviceVersion = "0.1.0";
 
@@ -70,6 +71,10 @@ export default {
 
     if (request.method === "GET" && url.pathname === "/v1/system/manifest") {
       return json({ version: serviceVersion, agents: agentCatalog, brainProvider: env.AI ? "workers-ai" : "unavailable", brainModel: env.BRAIN_MODEL ?? defaultWorkersAiModel });
+    }
+
+    if (request.method === "GET" && url.pathname === "/v1/office") {
+      return json(createDemoOfficeSnapshot());
     }
 
     if (request.method === "POST" && url.pathname === "/v1/brain/respond") {

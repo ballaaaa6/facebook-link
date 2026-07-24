@@ -6,10 +6,12 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "test": "node --test test/*.test.ts",
     "typecheck": "tsc -b --pretty false"
   },
   "dependencies": {
     "@affiliate-ops/contracts": "0.1.0",
+    "@affiliate-ops/office-read-model": "0.1.0",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },

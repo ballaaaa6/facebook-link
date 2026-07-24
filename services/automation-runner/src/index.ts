@@ -2,6 +2,7 @@ import { agentCatalog } from "@affiliate-ops/agent-catalog";
 import type { HealthReport, WorkflowStage } from "@affiliate-ops/contracts";
 import { nextStages } from "@affiliate-ops/workflows";
 export * from "./sheet-sync/index.ts";
+export * from "./simulation/persistence.ts";
 export * from "./simulation/pilot.ts";
 
 export interface RunnerPlan {

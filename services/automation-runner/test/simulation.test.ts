@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { FakeSheetsConnector, simulatePilotRun } from "../src/index.ts";
+import { resolve } from "node:path";
+import { openLocalDatabase } from "@affiliate-ops/database";
+import { FakeSheetsConnector, persistPilotSimulation, simulatePilotRun } from "../src/index.ts";
 
 test("simulates an idempotent pilot and mirrors rows", async () => {
   const simulation = simulatePilotRun();
@@ -15,4 +17,19 @@ test("simulates an idempotent pilot and mirrors rows", async () => {
   assert.equal(second.rowsWritten, 0);
   assert.equal(connector.workbook.size, 10);
   assert.equal(connector.workbook.get("Products")?.rows.size, 1);
+});
+
+test("persists agent runs and observable events idempotently", () => {
+  const { database } = openLocalDatabase(":memory:", resolve(process.cwd(), "../../packages/database/migrations"));
+  try {
+    const simulation = simulatePilotRun();
+    persistPilotSimulation(database, simulation);
+    persistPilotSimulation(database, simulation);
+    assert.equal(Number(database.prepare("SELECT COUNT(*) AS count FROM jobs").get()?.count), 8);
+    assert.equal(Number(database.prepare("SELECT COUNT(*) AS count FROM agent_runs").get()?.count), 8);
+    assert.equal(Number(database.prepare("SELECT COUNT(*) AS count FROM audit_events").get()?.count), 8);
+    assert.equal(Number(database.prepare("SELECT COUNT(*) AS count FROM job_outbox").get()?.count), 8);
+  } finally {
+    database.close();
+  }
 });

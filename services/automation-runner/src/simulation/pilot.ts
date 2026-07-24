@@ -12,7 +12,7 @@ export function simulatePilotRun(now = new Date("2026-07-23T10:00:00.000Z")): Pi
   const workflowId = `workflow-${now.toISOString().slice(0, 10)}`;
   const stages = ["discovered", "scored", "selected", "link_ready", "content_queued", "content_ready", "qa_approved", "scheduled"] as const;
   const jobs = stages.map((stage, index): JobEnvelope => ({
-    id: `job-${index + 1}`,
+    id: `${workflowId}-job-${index + 1}`,
     workspaceId,
     version: 1,
     workflowId,

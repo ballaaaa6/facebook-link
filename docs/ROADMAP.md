@@ -6,10 +6,11 @@
 
 ## M1 — Observable local workflow
 
-- Replace UI mock data with API read models.
-- Persist the working fake pipeline through SQLite job/event transport.
+- Office UI reads a versioned API read model with a safe local simulation fallback.
+- The working fake pipeline persists jobs, agent runs, audit events, and outbox events idempotently through SQLite.
+- Complete the local runner-to-control-plane event relay and replace remaining dashboard/settings mock values.
 - Replace fake Sheets transport with a credentialed connector behind the same interface.
-- Office, settings, dashboard, mock brain, action proposals, and fake connectors already exist.
+- Office motion, stable inspection, settings, dashboard, mock brain, action proposals, and fake connectors already exist.
 
 ## M2 — One-account Shopee pilot
 

@@ -13,6 +13,7 @@
 | `@affiliate-ops/contracts` | `packages/contracts` | Workspace module |
 | `@affiliate-ops/database` | `packages/database` | Workspace module |
 | `@affiliate-ops/observability` | `packages/observability` | Workspace module |
+| `@affiliate-ops/office-read-model` | `packages/office-read-model` | Versioned office read models and deterministic pilot projections. |
 | `@affiliate-ops/storage` | `packages/storage` | Workspace module |
 | `@affiliate-ops/workflows` | `packages/workflows` | Workspace module |
 | `@affiliate-ops/automation-runner` | `services/automation-runner` | Workspace module |
