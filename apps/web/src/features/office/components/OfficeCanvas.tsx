@@ -56,13 +56,14 @@ export function OfficeCanvas({
   useEffect(() => {
     const frame = frameRef.current;
     if (!frame) return;
+    const viewport = frame.parentElement ?? frame;
     const fitScene = () => {
       const style = window.getComputedStyle(frame);
-      const horizontalBorder = Number.parseFloat(style.borderLeftWidth) + Number.parseFloat(style.borderRightWidth);
-      const verticalBorder = Number.parseFloat(style.borderTopWidth) + Number.parseFloat(style.borderBottomWidth);
+      const horizontalBorder = (Number.parseFloat(style.borderLeftWidth) || 4) + (Number.parseFloat(style.borderRightWidth) || 4);
+      const verticalBorder = (Number.parseFloat(style.borderTopWidth) || 4) + (Number.parseFloat(style.borderBottomWidth) || 4);
       const next = fittedTileSize(
-        frame.clientWidth - horizontalBorder,
-        frame.clientHeight - verticalBorder,
+        viewport.clientWidth - horizontalBorder,
+        viewport.clientHeight - verticalBorder,
         officeMap.width,
         officeMap.height,
       );
@@ -70,7 +71,7 @@ export function OfficeCanvas({
     };
     fitScene();
     const observer = new ResizeObserver(fitScene);
-    observer.observe(frame);
+    observer.observe(viewport);
     return () => observer.disconnect();
   }, []);
 

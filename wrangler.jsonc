@@ -9,7 +9,8 @@
   "vars": {
     "APP_ENV": "production",
     "BRAIN_PROVIDER": "workers-ai",
-    "BRAIN_MODEL": "@cf/zai-org/glm-4.7-flash"
+    "BRAIN_MODEL": "@cf/zai-org/glm-4.7-flash",
+    "LEADER_BRAIN_MODEL": "@cf/meta/llama-3.3-70b-instruct"
   },
   "ai": {
     "binding": "AI"

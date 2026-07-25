@@ -1,6 +1,7 @@
 import type { ActionProposal, BrainProvider, BrainRequest, BrainResponse, Capability } from "@affiliate-ops/contracts";
 
 export const defaultWorkersAiModel = "@cf/zai-org/glm-4.7-flash";
+export const defaultLeaderAiModel = "@cf/meta/llama-3.3-70b-instruct";
 
 export interface AiTextRunner {
   run(model: string, input: unknown): Promise<unknown>;
@@ -9,6 +10,7 @@ export interface AiTextRunner {
 export interface WorkersAiBrainOptions {
   runner: AiTextRunner;
   model?: string;
+  leaderModel?: string;
 }
 
 const roleHints: readonly { keywords: readonly string[]; agentId: string; label: string }[] = [
@@ -62,9 +64,12 @@ function readText(result: unknown): string {
 }
 
 function systemPrompt(agentId: string, label: string) {
+  const isLeader = agentId === "growth-strategist";
   return [
     "You are TeamBrain for an affiliate operations control panel.",
-    `Respond as ${label}, the ${agentId} specialist.`,
+    isLeader
+      ? "You are Nova, the Lead Growth Strategist and team coordinator. Synthesize operator goals, guide strategy, and coordinate specialist agents."
+      : `Respond as ${label}, the ${agentId} specialist.`,
     "Answer in the same language as the operator. Thai should sound natural, direct, and practical.",
     "Never claim that you inspected metrics, accounts, products, or live systems unless those facts appear in the conversation.",
     "Explain assumptions briefly. Prefer a concrete next step.",
@@ -96,16 +101,19 @@ export class MockBrainProvider implements BrainProvider {
 export class WorkersAiBrainProvider implements BrainProvider {
   readonly #runner: AiTextRunner;
   readonly #model: string;
+  readonly #leaderModel: string;
 
   constructor(options: WorkersAiBrainOptions) {
     this.#runner = options.runner;
     this.#model = options.model ?? defaultWorkersAiModel;
+    this.#leaderModel = options.leaderModel ?? defaultLeaderAiModel;
   }
 
   async respond(request: BrainRequest): Promise<BrainResponse> {
     const role = selectRole(request);
     const history = request.recentMessages.slice(-10).map((message) => ({ role: message.role, content: message.content }));
-    const result = await this.#runner.run(this.#model, {
+    const targetModel = role.agentId === "growth-strategist" ? this.#leaderModel : this.#model;
+    const result = await this.#runner.run(targetModel, {
       messages: [
         { role: "system", content: systemPrompt(role.agentId, role.label) },
         ...(request.rollingSummary ? [{ role: "system", content: `Earlier conversation summary: ${request.rollingSummary}` }] : []),
@@ -125,3 +133,4 @@ export function createBrainProvider(name = "mock", options?: WorkersAiBrainOptio
   if (name === "workers-ai" && options) return new WorkersAiBrainProvider(options);
   throw new Error(`Brain provider '${name}' is not configured.`);
 }
+

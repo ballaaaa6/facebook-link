@@ -1,5 +1,5 @@
 import { agentCatalog } from "@affiliate-ops/agent-catalog";
-import { createBrainProvider, defaultWorkersAiModel, MockBrainProvider, type AiTextRunner } from "@affiliate-ops/brain";
+import { createBrainProvider, defaultLeaderAiModel, defaultWorkersAiModel, MockBrainProvider, type AiTextRunner } from "@affiliate-ops/brain";
 import type { BrainRequest, HealthReport } from "@affiliate-ops/contracts";
 import { createDemoOfficeSnapshot } from "@affiliate-ops/office-read-model";
 
@@ -9,6 +9,7 @@ interface Env {
   ASSETS?: { fetch(request: Request): Promise<Response> };
   AI?: AiTextRunner;
   BRAIN_MODEL?: string;
+  LEADER_BRAIN_MODEL?: string;
 }
 
 function json(data: unknown, status = 200): Response {
@@ -70,7 +71,13 @@ export default {
     }
 
     if (request.method === "GET" && url.pathname === "/v1/system/manifest") {
-      return json({ version: serviceVersion, agents: agentCatalog, brainProvider: env.AI ? "workers-ai" : "unavailable", brainModel: env.BRAIN_MODEL ?? defaultWorkersAiModel });
+      return json({ 
+        version: serviceVersion, 
+        agents: agentCatalog, 
+        brainProvider: env.AI ? "workers-ai" : "unavailable", 
+        brainModel: env.BRAIN_MODEL ?? defaultWorkersAiModel,
+        leaderBrainModel: env.LEADER_BRAIN_MODEL ?? defaultLeaderAiModel,
+      });
     }
 
     if (request.method === "GET" && url.pathname === "/v1/office") {
@@ -82,7 +89,11 @@ export default {
       if (!isBrainRequest(body)) return json({ error: "invalid_brain_request" }, 400);
       if (!env.AI) return json({ error: "brain_unavailable" }, 503);
       try {
-        const brain = createBrainProvider("workers-ai", { runner: env.AI, model: env.BRAIN_MODEL ?? defaultWorkersAiModel });
+        const brain = createBrainProvider("workers-ai", { 
+          runner: env.AI, 
+          model: env.BRAIN_MODEL ?? defaultWorkersAiModel,
+          leaderModel: env.LEADER_BRAIN_MODEL ?? defaultLeaderAiModel,
+        });
         return json(await withTimeout(brain.respond(body), 8_000));
       } catch (error) {
         console.error("brain_provider_error", error instanceof Error ? error.message : "unknown provider error");
