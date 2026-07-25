@@ -1,6 +1,6 @@
 # 🎨 2.5D Pixel Art Furniture & Asset Workflow Guide
 
-This document serves as the official design specification and procedural guide for creating, generating, extracting, registering, and placing 2.5D pixel-art environment assets in the Office Canvas system.
+This document serves as the official design specification and procedural guide for creating, generating, extracting, defringing, registering, and placing 2.5D pixel-art environment assets in the Office Canvas system.
 
 ---
 
@@ -34,48 +34,53 @@ When generating new 2.5D pixel art assets via `generate_image`, always adhere to
 3. **Background**:
    - Uniform solid magenta background (`#FF00FF` / RGB `[255, 0, 255]`) for clean alpha keying.
 
-### Example Prompt Template
-```
-A clean 4x4 asset sheet of 2D top-down 16-bit pixel art office furniture for Concept C warm studio theme on a solid uniform magenta background (#FF00FF). Top-down 2.5D perspective. High quality pixel art with clean edges, warm wooden tones, visible wooden legs under tables, and subtle floor shadows.
-Row 1: A round wooden cafe table with 4 visible wooden legs (2x2 tiles), a low rectangular wooden coffee table with 4 legs (3x2 tiles).
-Row 2: Green cushioned wooden cafe chair facing up, side, down (1x2 tiles).
-Row 3: Wall mounted flatscreen TV (3x2 tiles), low magazine bookshelf (2x2 tiles), standing floor lamp (1x3 tiles).
-No cast shadows outside items, generous empty padding between items, crisp outlines, no text or grid lines.
-```
-
 ---
 
-## 🛠️ 3. Extraction & Processing Pipeline
+## 🛠️ 3. Defringing & Chroma Extraction Pipeline
 
-Do not rely on naive fixed-cell slicing (which cuts objects spanning across cell boundaries). Use **Connected Blob Segmentation (`ndimage.label`)**:
+To avoid **magenta/purple halo outlines** around object edges (caused by anti-aliasing blending between object edges and magenta background), use **Binary Mask Dilation & Color Defringing**:
 
-### Python Extraction Script Pattern
+### Python Defringing Extraction Pattern
 ```python
-import os, json
+import os
 from PIL import Image
 import numpy as np
 from scipy import ndimage
 
 img = Image.open("raw_generated_sheet.png").convert("RGBA")
-arr = np.array(img)
+arr = np.array(img, dtype=np.float32)
 
-# 1. Mask Chroma-Key Magenta Background
-r, g, b, a = arr[:,:,0], arr[:,:,1], arr[:,:,2], arr[:,:,3]
-bg_mask = (r > 165) & (b > 165) & (g < 125)
-arr[bg_mask, 3] = 0
+r, g, b = arr[:,:,0], arr[:,:,1], arr[:,:,2]
 
-# 2. Connected Component Segmentation
-fg_mask = ~bg_mask
-labeled, num_features = ndimage.label(fg_mask)
+# 1. Primary Magenta Chroma Keying
+bg_mask = (r > g + 35) & (b > g + 35)
 
-# 3. Crop Tight Bounding Box per Blob
-def save_tight_blob(blob_id, output_path):
+# 2. Expand Mask by Dilation to erase semi-transparent edge halos
+struct = ndimage.generate_binary_structure(2, 2)
+clean_bg = ndimage.binary_dilation(bg_mask, structure=struct, iterations=2)
+
+res = arr.copy().astype(np.uint8)
+res[clean_bg, 3] = 0
+
+# 3. Defringe Residual Tint on Object Outlines
+edge_zone = ndimage.binary_dilation(clean_bg, structure=struct, iterations=2) & (~clean_bg)
+for y, x in zip(*np.where(edge_zone)):
+    pr, pg, pb = res[y, x, 0], res[y, x, 1], res[y, x, 2]
+    if pr > pg + 10 or pb > pg + 10:
+        res[y, x, 0] = pg
+        res[y, x, 2] = pg
+
+# 4. Connected Blob Segmentation
+labeled, num_features = ndimage.label(~clean_bg)
+
+def save_clean_blob(blob_id, output_path):
     mask = (labeled == blob_id)
     ys, xs = np.where(mask)
+    if len(ys) == 0: return
     min_x, max_x, min_y, max_y = np.min(xs), np.max(xs), np.min(ys), np.max(ys)
     
-    blob_rgba = np.zeros_like(arr)
-    blob_rgba[mask] = arr[mask]
+    blob_rgba = np.zeros_like(res)
+    blob_rgba[mask] = res[mask]
     
     cropped = Image.fromarray(blob_rgba).crop((min_x, min_y, max_x + 1, max_y + 1))
     cropped.save(output_path)
@@ -95,21 +100,6 @@ To place items (coffee cups, laptops, coffee machines, papers) on top of desks o
    }
    ```
    > **Note**: Surface slot `y` offset is relative to table center. Use `y: 0` so items rest flat on top of the counter surface instead of floating.
-
-2. **Declare Support in Child Asset**:
-   ```json
-   "machine.coffee": {
-     "renderBox": { "width": 1, "height": 2 },
-     "layer": "equipment",
-     "anchor": "bottom-center",
-     "supports": ["counter-surface"]
-   }
-   ```
-
-3. **Attach in Map Object (`office-c-v2.json`)**:
-   ```json
-   { "id": "pantry-coffee-machine", "asset": "machine.coffee", "parentId": "coffee-counter", "slot": "counter-right", "layer": "equipment", "anchor": "bottom-center" }
-   ```
 
 ---
 
