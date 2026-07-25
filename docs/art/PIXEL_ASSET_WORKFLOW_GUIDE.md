@@ -36,11 +36,11 @@ When generating new 2.5D pixel art assets via `generate_image`, always adhere to
 
 ---
 
-## 🛠️ 3. Defringing & Chroma Extraction Pipeline
+## 🛠️ 3. Lineart Preservation & Defringing Pipeline
 
-To avoid **magenta/purple halo outlines** around object edges (caused by anti-aliasing blending between object edges and magenta background), use **Binary Mask Dilation & Color Defringing**:
+In pixel art, the **dark/black outer lineart border** gives objects their form and contrast against the floor. Never erode or dilate away dark lineart.
 
-### Python Defringing Extraction Pattern
+### Python Lineart Preservation Script
 ```python
 import os
 from PIL import Image
@@ -52,38 +52,29 @@ arr = np.array(img, dtype=np.float32)
 
 r, g, b = arr[:,:,0], arr[:,:,1], arr[:,:,2]
 
-# 1. Primary Magenta Chroma Keying
-bg_mask = (r > g + 35) & (b > g + 35)
+# 1. Pure Magenta Background Mask
+pure_bg = (r > 175) & (b > 175) & (g < 125)
 
-# 2. Expand Mask by Dilation to erase semi-transparent edge halos
-struct = ndimage.generate_binary_structure(2, 2)
-clean_bg = ndimage.binary_dilation(bg_mask, structure=struct, iterations=2)
+# 2. Protect Dark Lineart (RGB brightness < 90)
+dark_outline = (r < 90) & (g < 90) & (b < 90)
+
+# 3. Magenta Fringe Mask (only non-outline pixels)
+magenta_fringe = (r > g + 35) & (b > g + 35) & (~dark_outline)
+
+erase_mask = pure_bg | magenta_fringe
 
 res = arr.copy().astype(np.uint8)
-res[clean_bg, 3] = 0
+res[erase_mask, 3] = 0
 
-# 3. Defringe Residual Tint on Object Outlines
-edge_zone = ndimage.binary_dilation(clean_bg, structure=struct, iterations=2) & (~clean_bg)
-for y, x in zip(*np.where(edge_zone)):
-    pr, pg, pb = res[y, x, 0], res[y, x, 1], res[y, x, 2]
-    if pr > pg + 10 or pb > pg + 10:
-        res[y, x, 0] = pg
-        res[y, x, 2] = pg
+# 4. Desaturate Magenta Tint on Outer Borders without changing Alpha
+fringe_pixels = (~erase_mask) & ((r > g + 10) | (b > g + 10))
+for y, x in zip(*np.where(fringe_pixels)):
+    max_fg = int(res[y, x, 1])
+    res[y, x, 0] = min(int(res[y, x, 0]), max_fg + 15)
+    res[y, x, 2] = min(int(res[y, x, 2]), max_fg + 15)
 
-# 4. Connected Blob Segmentation
-labeled, num_features = ndimage.label(~clean_bg)
-
-def save_clean_blob(blob_id, output_path):
-    mask = (labeled == blob_id)
-    ys, xs = np.where(mask)
-    if len(ys) == 0: return
-    min_x, max_x, min_y, max_y = np.min(xs), np.max(xs), np.min(ys), np.max(ys)
-    
-    blob_rgba = np.zeros_like(res)
-    blob_rgba[mask] = res[mask]
-    
-    cropped = Image.fromarray(blob_rgba).crop((min_x, min_y, max_x + 1, max_y + 1))
-    cropped.save(output_path)
+# 5. Connected Blob Extraction
+labeled, num_features = ndimage.label(~erase_mask)
 ```
 
 ---
