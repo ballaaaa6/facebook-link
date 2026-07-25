@@ -13,6 +13,12 @@ import sectionalSofa from "../../../../../../assets/game/processed/core-furnitur
 import stoolLounge from "../../../../../../assets/game/processed/core-furniture-c-v1/stool.lounge.png";
 import tableCoffee from "../../../../../../assets/game/processed/core-furniture-c-v1/table.coffee.png";
 import meetingTableEmpty from "../../../../../../assets/game/processed/core-furniture-c-v2/table.meeting.empty.png";
+import tableCafeRound from "../../../../../../assets/game/processed/core-furniture-c-v2/table.cafe.round.png";
+import chairCafeUp from "../../../../../../assets/game/processed/core-furniture-c-v2/chair.cafe.up.png";
+import chairCafeSide from "../../../../../../assets/game/processed/core-furniture-c-v2/chair.cafe.side.png";
+import chairCafeDown from "../../../../../../assets/game/processed/core-furniture-c-v2/chair.cafe.down.png";
+import tvWall from "../../../../../../assets/game/processed/core-furniture-c-v2/tv.wall.png";
+import bookshelfMagazine from "../../../../../../assets/game/processed/core-furniture-c-v2/bookshelf.magazine.png";
 import binWaste from "../../../../../../assets/game/processed/decor-mechanical-c-v1/bin.waste.png";
 import boxParcel from "../../../../../../assets/game/processed/decor-mechanical-c-v1/box.parcel.png";
 import clockWall from "../../../../../../assets/game/processed/decor-mechanical-c-v1/clock.wall.png";
@@ -94,6 +100,12 @@ const assetFiles: Record<string, string> = {
   "desk.standard.up": deskStandard,
   "divider.planter": dividerPlanter,
   "table.meeting.empty": meetingTableEmpty,
+  "table.cafe.round": tableCafeRound,
+  "chair.cafe.up": chairCafeUp,
+  "chair.cafe.side": chairCafeSide,
+  "chair.cafe.down": chairCafeDown,
+  "tv.wall": tvWall,
+  "bookshelf.magazine": bookshelfMagazine,
   "pet-bed.round": petBed,
   "sofa.sectional": sectionalSofa,
   "stool.lounge": stoolLounge,

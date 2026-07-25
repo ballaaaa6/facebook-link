@@ -30,9 +30,18 @@
     },
     "server-rack": {
       "rack-center": { "x": 0, "y": -1, "surface": "rack-surface" }
+    },
+    "cafe-table": {
+      "table-center": { "x": 0, "y": 0, "surface": "table-surface" }
     }
   },
   "assets": {
+    "table.cafe.round": { "renderBox": { "width": 2, "height": 2 }, "layer": "furniture", "anchor": "center", "supports": ["floor"], "footprint": { "width": 2, "depth": 2 }, "slotSet": "cafe-table" },
+    "chair.cafe.up": { "renderBox": { "width": 1, "height": 2 }, "layer": "furniture", "anchor": "bottom-center", "supports": ["floor"], "footprint": { "width": 1, "depth": 1 } },
+    "chair.cafe.side": { "renderBox": { "width": 1, "height": 2 }, "layer": "furniture", "anchor": "bottom-center", "supports": ["floor"], "footprint": { "width": 1, "depth": 1 } },
+    "chair.cafe.down": { "renderBox": { "width": 1, "height": 2 }, "layer": "furniture", "anchor": "bottom-center", "supports": ["floor"], "footprint": { "width": 1, "depth": 1 } },
+    "tv.wall": { "renderBox": { "width": 3, "height": 2 }, "layer": "wall", "anchor": "wall-top", "supports": ["wall"] },
+    "bookshelf.magazine": { "renderBox": { "width": 2, "height": 2 }, "layer": "furniture", "anchor": "center", "supports": ["floor"], "footprint": { "width": 2, "depth": 1 } },
     "bookshelf.low": { "renderBox": { "width": 4, "height": 2 }, "layer": "furniture", "anchor": "center", "supports": ["floor"], "footprint": { "width": 4, "depth": 1 }, "slotSet": "credenza" },
     "cabinet.filing": { "renderBox": { "width": 2, "height": 3 }, "layer": "furniture", "anchor": "bottom-center", "supports": ["floor"], "footprint": { "width": 2, "depth": 1 } },
     "chair.office.up": { "renderBox": { "width": 1, "height": 2 }, "layer": "furniture", "anchor": "bottom-center", "supports": ["floor"], "footprint": { "width": 1, "depth": 1 } },

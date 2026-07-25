@@ -82,13 +82,10 @@ test("the support zone separates service, pantry, lounge, and symmetric meeting 
   assert.ok(object("server-a").y < object("coffee-counter").y);
   assert.ok(object("server-b").y < object("water-dispenser").y);
   assert.ok(object("coffee-counter").y < object("lounge-sofa").y);
-  assert.ok(object("lounge-sofa").y < object("mission-table").y);
-  assert.equal(object("mission-chair-top").x, object("mission-table").x);
-  assert.equal(object("mission-chair-bottom").x, object("mission-table").x);
-  assert.equal(
-    object("mission-table").x - object("mission-chair-left").x,
-    object("mission-chair-right").x - object("mission-table").x,
-  );
+  assert.ok(object("lounge-sofa").y < object("cafe-table-a").y);
+  assert.equal(object("cafe-table-a").y, object("cafe-table-b").y);
+  assert.equal(object("cafe-chair-a1").x, object("cafe-table-a").x);
+  assert.equal(object("cafe-chair-a2").x, object("cafe-table-a").x);
 });
 
 test("surface slots cannot be claimed twice", () => {
