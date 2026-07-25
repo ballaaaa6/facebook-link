@@ -19,9 +19,9 @@
       "table-right": { "x": 1, "y": 0, "surface": "table-surface" }
     },
     "coffee-counter": {
-      "counter-left": { "x": -1, "y": -1, "surface": "counter-surface" },
-      "counter-center": { "x": 0, "y": -1, "surface": "counter-surface" },
-      "counter-right": { "x": 1, "y": -1, "surface": "counter-surface" }
+      "counter-left": { "x": -1, "y": 0, "surface": "counter-surface" },
+      "counter-center": { "x": 0, "y": 0, "surface": "counter-surface" },
+      "counter-right": { "x": 1, "y": 0, "surface": "counter-surface" }
     },
     "credenza": {
       "credenza-left": { "x": -1, "y": 0, "surface": "credenza-surface" },
@@ -42,6 +42,9 @@
     "chair.cafe.down": { "renderBox": { "width": 1, "height": 2 }, "layer": "furniture", "anchor": "bottom-center", "supports": ["floor"], "footprint": { "width": 1, "depth": 1 } },
     "tv.wall": { "renderBox": { "width": 3, "height": 2 }, "layer": "wall", "anchor": "wall-top", "supports": ["wall"] },
     "bookshelf.magazine": { "renderBox": { "width": 2, "height": 2 }, "layer": "furniture", "anchor": "center", "supports": ["floor"], "footprint": { "width": 2, "depth": 1 } },
+    "lamp.floor": { "renderBox": { "width": 1, "height": 3 }, "layer": "furniture", "anchor": "bottom-center", "supports": ["floor"], "footprint": { "width": 1, "depth": 1 } },
+    "art.wall": { "renderBox": { "width": 2, "height": 1 }, "layer": "wall", "anchor": "wall-top", "supports": ["wall"] },
+    "plant.potted": { "renderBox": { "width": 1, "height": 2 }, "layer": "decor", "anchor": "bottom-center", "supports": ["floor"], "footprint": { "width": 1, "depth": 1 } },
     "bookshelf.low": { "renderBox": { "width": 4, "height": 2 }, "layer": "furniture", "anchor": "center", "supports": ["floor"], "footprint": { "width": 4, "depth": 1 }, "slotSet": "credenza" },
     "cabinet.filing": { "renderBox": { "width": 2, "height": 3 }, "layer": "furniture", "anchor": "bottom-center", "supports": ["floor"], "footprint": { "width": 2, "depth": 1 } },
     "chair.office.up": { "renderBox": { "width": 1, "height": 2 }, "layer": "furniture", "anchor": "bottom-center", "supports": ["floor"], "footprint": { "width": 1, "depth": 1 } },

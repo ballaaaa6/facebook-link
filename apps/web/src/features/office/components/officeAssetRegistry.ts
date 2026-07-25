@@ -19,6 +19,9 @@ import chairCafeSide from "../../../../../../assets/game/processed/core-furnitur
 import chairCafeDown from "../../../../../../assets/game/processed/core-furniture-c-v2/chair.cafe.down.png";
 import tvWall from "../../../../../../assets/game/processed/core-furniture-c-v2/tv.wall.png";
 import bookshelfMagazine from "../../../../../../assets/game/processed/core-furniture-c-v2/bookshelf.magazine.png";
+import lampFloor from "../../../../../../assets/game/processed/core-furniture-c-v2/lamp.floor.png";
+import artWall from "../../../../../../assets/game/processed/core-furniture-c-v2/art.wall.png";
+import plantPotted from "../../../../../../assets/game/processed/core-furniture-c-v2/plant.potted.png";
 import binWaste from "../../../../../../assets/game/processed/decor-mechanical-c-v1/bin.waste.png";
 import boxParcel from "../../../../../../assets/game/processed/decor-mechanical-c-v1/box.parcel.png";
 import clockWall from "../../../../../../assets/game/processed/decor-mechanical-c-v1/clock.wall.png";
@@ -106,6 +109,9 @@ const assetFiles: Record<string, string> = {
   "chair.cafe.down": chairCafeDown,
   "tv.wall": tvWall,
   "bookshelf.magazine": bookshelfMagazine,
+  "lamp.floor": lampFloor,
+  "art.wall": artWall,
+  "plant.potted": plantPotted,
   "pet-bed.round": petBed,
   "sofa.sectional": sectionalSofa,
   "stool.lounge": stoolLounge,
