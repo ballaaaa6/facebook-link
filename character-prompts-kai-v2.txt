@@ -1,0 +1,50 @@
+================================================================================
+  COMMANDER KAI — V2 PERFECT ALIGNMENT & CHROMA KEY SPRITESHEET PROMPT
+  Format: 8 columns × 12 rows grid
+  Background: Solid Magenta (#FF00FF) Chroma Key Background
+  Cell Size: 192 × 208 px per cell (Total: 1536 × 2496 px)
+================================================================================
+
+
+────────────────────────────────────────────────────────────────────────────────
+  PROMPT (copy ทั้งก้อนนี้ไปใช้สร้างภาพใหม่ได้เลย)
+────────────────────────────────────────────────────────────────────────────────
+
+Create a 2D pixel-art character spritesheet of a male human boss character named "Commander Kai".
+
+BACKGROUND & GRID SPECIFICATIONS (CRITICAL):
+- BACKGROUND COLOR: Solid pure Magenta / Pink (#FF00FF) background for 100% clean chroma-keying. NO gradients, NO white, NO shadows on background.
+- GRID BORDERS: Draw thin dark gray grid lines (1px width, #222222) separating every cell in the 8 columns × 12 rows grid, so every frame is clearly enclosed in its own rectangular box.
+- TOTAL IMAGE DIMENSIONS: Exactly 1536 pixels wide × 2496 pixels tall.
+- CELL DIMENSIONS: Exactly 8 columns × 12 rows. Every cell box is exactly 192 pixels wide × 208 pixels tall.
+
+CHARACTER ANCHOR & ALIGNMENT RULES (STRICT CONSISTENCY):
+1. FIXED GROUND BASELINE: In EVERY single frame, the character's feet must touch the EXACT SAME horizontal ground line (located 28px above the bottom of each cell box, i.e., Y = 180px in each 208px cell).
+2. FIXED HORIZONTAL CENTER: The character's spine/body center line MUST be aligned to the EXACT HORIZONTAL CENTER of each cell (X = 96px). Do NOT shift the body left or right between frames.
+3. CONSISTENT SCALE & PROPORTIONS: The head size, torso height, leg length, and overall height (~150px tall) MUST be 100% identical in every frame across all 12 rows. Only the limbs/face move during animations.
+
+CHARACTER DESIGN:
+- "Commander Kai" — Young confident Asian male startup boss/leader in chibi pixel-art style.
+- Hair: Short styled black hair with a neat undercut on sides and textured top.
+- Eyes: Sharp, confident dark brown eyes, handsome face with a slight grin.
+- Skin: Warm beige skin tone.
+- Clothing: Dark navy blue blazer (sleeves rolled to forearms), clean bright white crew-neck t-shirt underneath, dark charcoal slim pants, clean white sneakers.
+- Details: Small gold star badge pinned on lapel, smartwatch on left wrist.
+
+SPRITESHEET ROW LAYOUT (8 Columns × 12 Rows):
+
+Row 0  (top): IDLE — Front-facing relaxed pose. Subtle 6-frame breathing cycle. (Cols 0-5 filled, 6-7 empty with magenta #FF00FF).
+Row 1: WALK RIGHT — Side-view walking cycle to the right. Feet touch baseline in all 8 frames. (Cols 0-7 filled).
+Row 2: WALK LEFT — Side-view walking cycle to the left. Feet touch baseline in all 8 frames. (Cols 0-7 filled).
+Row 3: WALK UP — Back-facing walking cycle (walking away from camera). Shows back of navy blazer and undercut hair. (Cols 0-7 filled).
+Row 4: WALK DOWN — Front-facing walking cycle (walking toward camera). (Cols 0-7 filled).
+Row 5: WAVING — Front-facing friendly wave pose. Upper body waves, feet remain fixed on baseline. (Cols 0-3 filled, 4-7 empty).
+Row 6: CELEBRATING — Victory fist pump jump. (Cols 0-4 filled, 5-7 empty).
+Row 7: FAILED / FRUSTRATED — Frustrated face-palm / forehead touch. (Cols 0-7 filled).
+Row 8: WAITING — Arms crossed, tapping foot, checking smartwatch. (Cols 0-5 filled, 6-7 empty).
+Row 9: WORKING — Seated typing pose at desk. Feet/torso positioned consistently. (Cols 0-5 filled, 6-7 empty).
+Row 10: REVIEWING — Holding tablet, inspecting data. (Cols 0-5 filled, 6-7 empty).
+Row 11 (bottom): LOUNGING / CAFÉ — Sitting relaxed with a coffee mug. (Cols 0-5 filled, 6-7 empty).
+
+ALL empty cells must be filled with pure solid Magenta (#FF00FF).
+Do NOT let character limbs or hair cross outside the cell grid borders.
