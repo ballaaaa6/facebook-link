@@ -4,6 +4,7 @@ import { TeamChatPanel } from "../../shared/components/TeamChatPanel";
 import { OfficeCanvas } from "./components/OfficeCanvas";
 import { TaskPanel } from "./components/TaskPanel";
 import { useOfficeFeed } from "./useOfficeFeed";
+import "./officeScene.css";
 
 const feedLabels = {
   loading: "Connecting",
