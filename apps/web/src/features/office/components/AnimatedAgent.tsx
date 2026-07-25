@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import {
   characterImageSet,
   characterRegistry,
-  characterStates,
+  getCharacterStateConfig,
   type CharacterState,
 } from "../characterRegistry";
 import { subscribeToOfficeFrame } from "../motion/frameScheduler";
@@ -19,13 +19,14 @@ export function AnimatedAgent({
   state?: CharacterState;
 }) {
   const character = characterRegistry[agentId];
-  const config = characterStates[state] ?? characterStates.idle;
+  const config = getCharacterStateConfig(character, state);
   const spriteRef = useRef<HTMLSpanElement>(null);
+  const rowDivisor = (character?.rows ?? 9) - 1;
 
   useEffect(() => {
     const sprite = spriteRef.current;
     if (!sprite) return;
-    const rowPosition = (config.row / 8) * 100;
+    const rowPosition = (config.row / rowDivisor) * 100;
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let currentFrame = -1;
     const update = (timestamp: number) => {
@@ -41,9 +42,10 @@ export function AnimatedAgent({
     };
     update(performance.now());
     return reduceMotion ? undefined : subscribeToOfficeFrame(update);
-  }, [config.fps, config.frames, config.loop, config.row, sceneStartedAt]);
+  }, [config.fps, config.frames, config.loop, config.row, rowDivisor, sceneStartedAt]);
 
   if (!character) return null;
+  const rowPosition = (config.row / rowDivisor) * 100;
   return (
     <span
       ref={spriteRef}
@@ -53,8 +55,9 @@ export function AnimatedAgent({
       data-state={state}
       style={{
         backgroundImage: characterImageSet(character),
-        backgroundPosition: `0% ${(config.row / 8) * 100}%`,
+        backgroundPosition: `0% ${rowPosition}%`,
       } as React.CSSProperties}
     />
   );
 }
+

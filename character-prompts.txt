@@ -1,0 +1,129 @@
+================================================================================
+  BOSS CHARACTER — "COMMANDER KAI" (หัวหน้าทีม — มนุษย์ชาย)
+  FULL 12-ROW SPRITESHEET PROMPT
+  Format: 8 columns × 12 rows, 192×208 px per frame @2x
+  Total image size: 1536 × 2496 px
+================================================================================
+
+
+────────────────────────────────────────────────────────────────────────────────
+  PROMPT (copy ทั้งก้อนนี้ไปใช้เลย)
+────────────────────────────────────────────────────────────────────────────────
+
+Create a 2D pixel-art character spritesheet on a fully transparent background (PNG with alpha channel).
+
+CHARACTER DESCRIPTION:
+"Commander Kai" — A young confident male human boss/team-leader character in chibi pixel-art style.
+- Asian male, early 30s vibe, sharp but friendly look.
+- Short styled black hair, slightly messy/textured on top with an undercut fade on the sides. A few strands fall over the forehead.
+- Strong defined eyebrows, confident sharp dark-brown eyes, slight smirk/grin.
+- Light tan/warm beige skin tone.
+- Athletic-slim chibi build — head-to-body ratio ~1:1 (big head, small body, typical chibi proportions).
+- Wears a fitted dark navy blazer (sleeves rolled up to elbows showing forearms — casual boss style), over a clean white crew-neck t-shirt.
+- Dark charcoal slim pants and clean white sneakers (modern startup CEO look, not corporate).
+- Has a smartwatch on left wrist (subtle tech detail).
+- Small gold lapel pin on blazer (star/shield shape — leader badge).
+- Sometimes holds a tablet or phone in hand.
+
+STYLE: Cute chibi pixel art, similar to Pokémon trainer sprites, Stardew Valley characters, or Habitica avatars. Warm color palette, clean pixel outlines (2-3px), expressive face despite small size. NOT realistic proportions — keep it adorable but cool. The character should look like a capable young tech startup boss who is approachable and stylish.
+
+COLOR PALETTE:
+- Hair: dark black-brown #1A1A2E with subtle blue-black highlight #2D2D44
+- Skin: warm beige #E8C9A0 with lighter highlight #F2DCC0 and shadow #C4A07A
+- Eyes: dark brown #3D2B1F
+- Blazer: dark navy #1B2A4A with subtle fabric texture
+- T-shirt: clean white #F5F5F5
+- Pants: charcoal #3A3A3A
+- Sneakers: white #FFFFFF with navy sole accent #1B2A4A
+- Smartwatch: dark gray #4A4A4A with tiny cyan screen glow #00E5FF
+- Lapel pin: gold #FFD93D
+
+SPRITESHEET LAYOUT:
+The sheet is a grid of exactly 8 columns × 12 rows.
+Each cell is exactly 192 × 208 pixels.
+Total image dimensions: 1536 × 2496 pixels.
+The character should be centered within each cell with consistent sizing.
+All frames must maintain identical proportions, line thickness, and color palette.
+Empty cells (where frames are fewer than 8) must be fully transparent.
+
+ROW-BY-ROW INSTRUCTIONS (top to bottom):
+
+ROW 0 — IDLE (front-facing, 6 frames + 2 empty)
+Standing relaxed facing the viewer. One hand in pocket, other hand at side. Subtle breathing animation — chest rises slightly, hair sways. Confident casual stance with weight on one leg. Slight smile. Frames 1-6 show the breathing/sway cycle, columns 7-8 are empty/transparent.
+
+ROW 1 — WALK RIGHT (side-view, 8 frames)
+Full 8-frame walk cycle viewed from the right side. Character walks confidently to the right. Blazer sways slightly, arms swing naturally. Stride is purposeful — he's a boss on a mission. All 8 columns filled.
+
+ROW 2 — WALK LEFT (side-view, 8 frames)
+Mirror of Row 1. Full 8-frame walk cycle facing and walking to the left. All 8 columns filled.
+
+ROW 3 — WALK UP / BACK-FACING (8 frames)
+Full 8-frame walk cycle seen from BEHIND. Character walks away from the viewer (toward top of screen). We see the back of the blazer, the back of his head showing the undercut hairstyle, arms swinging. All 8 columns filled.
+
+ROW 4 — WALK DOWN / FRONT-FACING WALK (8 frames)
+Full 8-frame walk cycle facing the viewer and walking toward camera. Body bounces slightly with each step, arms swing, hair bobs. Similar to idle but with leg movement. All 8 columns filled.
+
+ROW 5 — WAVING (front-facing, 4 frames + 4 empty)
+Standing facing viewer, raising right hand and giving a friendly wave. Confident smile, eyes slightly closed in a warm expression. Not stiff — casual "hey team" wave. Frames 1-4, columns 5-8 empty.
+
+ROW 6 — CELEBRATING (front-facing, 5 frames + 3 empty)
+Pumping fist in the air with a big grin. Maybe a small victory jump. Blazer lifts with the motion. Hair bounces. Energetic "we did it!" pose. Lapel pin sparkles. Frames 1-5, columns 6-8 empty.
+
+ROW 7 — FAILED / FRUSTRATED (front-facing, 8 frames)
+One hand on forehead (face-palm) or pinching bridge of nose. Slight slump in shoulders. Frustrated but composed — he's the boss, he doesn't break down, he looks determined to fix it. Maybe loosens collar or runs hand through hair. Eyes closed or looking down. All 8 columns filled.
+
+ROW 8 — WAITING (front-facing, 6 frames + 2 empty)
+Arms crossed, weight shifting from one foot to the other. Occasionally glances at smartwatch on wrist. Slight impatient tap of one foot. Expression: calm but "let's get this done." Frames 1-6, columns 7-8 empty.
+
+ROW 9 — WORKING AT DESK (front-facing, 6 frames + 2 empty)
+Upper body visible in seated pose (no chair — the office provides it). Typing rapidly, eyes focused on invisible screen ahead. Concentrated expression — eyebrows slightly furrowed, slight lean forward. Occasionally glances at smartwatch. Frames 1-6, columns 7-8 empty.
+
+ROW 10 — REVIEWING / INSPECTING (front-facing, 6 frames + 2 empty)
+Holding up a tablet with both hands, studying the screen. One hand swipes the tablet. Thoughtful expression — one eyebrow raised, slight head tilt. Analytical boss reviewing team performance. Frames 1-6, columns 7-8 empty.
+
+ROW 11 — LOUNGING / CAFÉ REST (front-facing, 6 frames + 2 empty)
+Relaxed casual pose — holding a coffee mug in one hand, other hand in pocket. Blazer more relaxed/open. Taking a sip of coffee, peaceful satisfied smile. Steam rises from the mug. The boss taking a well-deserved break in the café zone. Frames 1-6, columns 7-8 empty.
+
+IMPORTANT RULES:
+1. Every frame must show the SAME character with identical design, colors, and proportions.
+2. The character must be vertically centered and horizontally centered within each 192×208 cell.
+3. The character's feet should touch the same baseline in every frame (roughly 85% from top of cell).
+4. Background must be 100% transparent — no floor, no shadow, no background color.
+5. Line art should be clean with consistent 2-3px dark outlines.
+6. Shading should be soft cel-shading with 2-3 tone levels per color area.
+7. The character should be roughly 140-160px tall within the 208px cell height.
+8. This is CHIBI style — the head should be almost as large as the body. Big expressive eyes, small nose, simplified hands.
+
+
+================================================================================
+  GRID MAP (เอาไว้ตรวจภาพที่ gen ออกมา)
+================================================================================
+
+  Col:   0      1      2      3      4      5      6      7
+       ┌──────┬──────┬──────┬──────┬──────┬──────┬──────┬──────┐
+Row 0  │idle-1│idle-2│idle-3│idle-4│idle-5│idle-6│      │      │  IDLE (front)
+       ├──────┼──────┼──────┼──────┼──────┼──────┼──────┼──────┤
+Row 1  │wkR-1 │wkR-2 │wkR-3 │wkR-4 │wkR-5 │wkR-6 │wkR-7 │wkR-8 │  WALK RIGHT
+       ├──────┼──────┼──────┼──────┼──────┼──────┼──────┼──────┤
+Row 2  │wkL-1 │wkL-2 │wkL-3 │wkL-4 │wkL-5 │wkL-6 │wkL-7 │wkL-8 │  WALK LEFT
+       ├──────┼──────┼──────┼──────┼──────┼──────┼──────┼──────┤
+Row 3  │wkU-1 │wkU-2 │wkU-3 │wkU-4 │wkU-5 │wkU-6 │wkU-7 │wkU-8 │  WALK UP (back)
+       ├──────┼──────┼──────┼──────┼──────┼──────┼──────┼──────┤
+Row 4  │wkD-1 │wkD-2 │wkD-3 │wkD-4 │wkD-5 │wkD-6 │wkD-7 │wkD-8 │  WALK DOWN (front)
+       ├──────┼──────┼──────┼──────┼──────┼──────┼──────┼──────┤
+Row 5  │wav-1 │wav-2 │wav-3 │wav-4 │      │      │      │      │  WAVING
+       ├──────┼──────┼──────┼──────┼──────┼──────┼──────┼──────┤
+Row 6  │cel-1 │cel-2 │cel-3 │cel-4 │cel-5 │      │      │      │  CELEBRATING
+       ├──────┼──────┼──────┼──────┼──────┼──────┼──────┼──────┤
+Row 7  │fal-1 │fal-2 │fal-3 │fal-4 │fal-5 │fal-6 │fal-7 │fal-8 │  FAILED
+       ├──────┼──────┼──────┼──────┼──────┼──────┼──────┼──────┤
+Row 8  │wai-1 │wai-2 │wai-3 │wai-4 │wai-5 │wai-6 │      │      │  WAITING
+       ├──────┼──────┼──────┼──────┼──────┼──────┼──────┼──────┤
+Row 9  │wrk-1 │wrk-2 │wrk-3 │wrk-4 │wrk-5 │wrk-6 │      │      │  WORKING
+       ├──────┼──────┼──────┼──────┼──────┼──────┼──────┼──────┤
+Row 10 │rev-1 │rev-2 │rev-3 │rev-4 │rev-5 │rev-6 │      │      │  REVIEWING
+       ├──────┼──────┼──────┼──────┼──────┼──────┼──────┼──────┤
+Row 11 │caf-1 │caf-2 │caf-3 │caf-4 │caf-5 │caf-6 │      │      │  LOUNGING/CAFÉ
+       └──────┴──────┴──────┴──────┴──────┴──────┴──────┴──────┘
+
+Active frames: 74 | Empty cells: 22 | Total: 96 (8×12)

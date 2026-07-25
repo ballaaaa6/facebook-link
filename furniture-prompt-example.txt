@@ -1,0 +1,157 @@
+================================================================================
+  FURNITURE PROMPT EXAMPLE: COFFEE COUNTER (เคาน์เตอร์กาแฟ)
+  Pokémon / Cute Creature Office Style
+================================================================================
+
+
+────────────────────────────────────────────────────────────────────────────────
+  SPEC ที่ต้องตรงกับระบบ
+────────────────────────────────────────────────────────────────────────────────
+
+  Asset ID:       counter.coffee
+  Render Box:     4 tiles wide × 3 tiles tall
+  1 tile        = ~64 px (at base rendering)
+  Target image:   256 × 192 px (minimum), แนะนำ 512 × 384 px สำหรับ retina
+  Footprint:      4 × 2 tiles (กว้าง 4 ลึก 2)
+  Layer:          furniture
+  Anchor:         center
+  View angle:     3/4 top-down isometric (มองจากด้านบน-หน้า)
+  Background:     Transparent PNG (no background, no shadow, no floor)
+
+  Slot positions (ตำแหน่งวางของบนเคาน์เตอร์):
+    - counter-left:   วางของได้ฝั่งซ้าย
+    - counter-center: วางของได้ตรงกลาง
+    - counter-right:  วางของได้ฝั่งขวา
+  → ดังนั้นด้านบนเคาน์เตอร์ต้องมีพื้นผิวแบนๆ ให้วางเครื่องชงกาแฟ แก้ว etc.
+
+
+────────────────────────────────────────────────────────────────────────────────
+  PROMPT (copy ไปใช้เลย)
+────────────────────────────────────────────────────────────────────────────────
+
+Create a single 2D pixel-art furniture asset: a café coffee counter/bar, viewed from a 3/4 top-down isometric angle (camera looking slightly downward from the front).
+
+STYLE:
+Cute, warm pixel art style matching Pokémon game interiors or Stardew Valley furniture. NOT realistic — should feel cozy, hand-crafted, and inviting. Soft outlines (2-3px), warm color palette, subtle wood grain texture implied through pixel shading. Cel-shaded with 3-4 tone levels per material.
+
+DESCRIPTION:
+A long wooden café counter/bar spanning the full width of the image.
+- The counter body is warm honey-oak wood with visible front panels and a slightly darker wood trim along edges.
+- The countertop surface is a lighter maple or birch tone — smooth and flat (items will be placed on top by the game engine, so keep the surface relatively clear).
+- The front of the counter has 3-4 cute cabinet doors/panels with small round knobs.
+- On the LEFT end of the countertop: a cute espresso machine (small, boxy, with a tiny steam puff).
+- In the CENTER: 2-3 small coffee cups/mugs lined up neatly, and a tiny tip jar.
+- On the RIGHT end: a small glass display case showing tiny pastries/cookies (pixel-art cute style, just colored dots to suggest food).
+- Behind the counter (visible over the top): a small hanging menu board (dark green/chalkboard style) with illegible cute squiggly text (faux menu writing).
+- Small decorative touches: a tiny potted succulent on one corner, a napkin holder.
+
+COLOR PALETTE:
+- Counter body: warm honey oak #B8864E → darker trim #7B5B3A
+- Countertop surface: light maple #D4B88A
+- Cabinet knobs: brass/gold #C8A84E
+- Espresso machine: dark gray #4A4A4A with chrome #A8A8A8 accents
+- Chalkboard menu: dark green #2D4A2D with white #F0F0F0 squiggles
+- Cups: white ceramic #F8F8F0 with assorted accent colors
+- Display case: light blue glass tint #C8E0F0 with chrome frame
+- Pastries: warm tan #D4A86A, pink #FFB0C0, brown #8B6B3D
+
+COMPOSITION:
+- The counter fills roughly 85-90% of the image width, centered horizontally.
+- The counter's base sits at roughly 70-80% down from the top of the image.
+- The top surface of the counter is visible (3/4 view means we see both the front face AND the top surface).
+- Leave some transparent space above for the menu board and some below for the base/floor gap.
+
+IMPORTANT RULES:
+1. Background must be 100% transparent — NO floor, NO wall, NO shadow underneath.
+2. The top surface must be relatively flat and uncluttered in the center area, because the game engine will dynamically place objects (coffee machine, cups) on the slot positions.
+3. Actually, you CAN include the espresso machine and cups as part of the counter art for visual richness — the game's slot system will overlay additional objects if needed.
+4. Maintain consistent pixel density — don't mix high-res and low-res areas.
+5. The viewing angle must match other furniture in the set: 3/4 top-down, NOT straight side-view, NOT pure top-down.
+6. Aspect ratio: wider than tall (roughly 4:3 ratio).
+
+
+────────────────────────────────────────────────────────────────────────────────
+  ตัวอย่างเฟอร์อื่นๆ ที่ต้องทำ (เอาไว้ reference เวลาจะ gen ต่อ)
+────────────────────────────────────────────────────────────────────────────────
+
+  ถ้าจะทำ Pokémon-style office ใหม่ทั้งหมด เฟอร์ที่ต้องวาดใหม่:
+
+  FURNITURE (เฟอร์นิเจอร์หลัก):
+  ├── desk.standard.up      256×192   โต๊ะทำงานมาตรฐาน
+  ├── desk.creative.up      256×192   โต๊ะทำงานครีเอทีฟ (กว้างกว่า มีแท็บเล็ต)
+  ├── desk.noc.up           256×192   โต๊ะ NOC/monitoring (จอเยอะ)
+  ├── chair.office.up       64×128    เก้าอี้ออฟฟิศ มองจากบน
+  ├── chair.office.side     64×128    เก้าอี้ออฟฟิศ มองจากข้าง
+  ├── chair.studio.up       64×128    เก้าอี้สตูดิโอ
+  ├── counter.coffee        256×192   เคาน์เตอร์กาแฟ (prompt ด้านบน)
+  ├── sofa.sectional        384×256   โซฟาตัวแอล โซนพักผ่อน
+  ├── table.coffee          192×128   โต๊ะกลาง (หน้าโซฟา)
+  ├── table.meeting.empty   384×192   โต๊ะประชุม
+  ├── table.cafe.round      128×128   โต๊ะกลมคาเฟ่
+  ├── chair.cafe.up/side    64×128    เก้าอี้คาเฟ่
+  ├── bookshelf.low         256×128   ชั้นหนังสือเตี้ย
+  ├── bookshelf.magazine    128×128   ชั้นแมกกาซีน
+  ├── cabinet.filing        128×192   ตู้เก็บเอกสาร
+  ├── divider.planter       256×128   ฉากกั้นพร้อมต้นไม้
+  ├── pet-bed.round         128×128   ที่นอนสัตว์เลี้ยง (companion)
+  ├── stool.lounge          64×64     สตูลนั่งเล่น
+  ├── lamp.floor            64×192    โคมไฟตั้งพื้น
+  └── tv.wall               192×128   ทีวีแขวนผนัง
+
+  EQUIPMENT (อุปกรณ์):
+  ├── monitor.dual.active   128×128   จอคู่ (บนโต๊ะ)
+  ├── monitor.front.active  128×128   จอเดี่ยว (บนโต๊ะ)
+  ├── keyboard.mouse        128×64    คีย์บอร์ด+เมาส์
+  ├── laptop.open           128×128   แล็ปท็อป
+  ├── machine.coffee        64×128    เครื่องชงกาแฟ (บนเคาน์เตอร์)
+  ├── server.rack           128×192   ตู้เซิร์ฟเวอร์
+  ├── printer.desktop       128×64    เครื่องปริ้น
+  ├── dispenser.water       64×192    ตู้กดน้ำ
+  ├── camera.tripod         64×192    กล้องบนขาตั้ง
+  ├── light.studio          64×192    ไฟสตูดิโอ
+  ├── tablet.drawing        64×64     แท็บเล็ตวาดรูป
+  ├── phone.preview         64×64     มือถือ preview
+  ├── station.multidevice   128×128   สถานีหลายจอ
+  └── network.stack         64×128    อุปกรณ์เน็ตเวิร์ค
+
+  DECOR (ของตกแต่ง):
+  ├── plant.small           64×128    ต้นไม้เล็ก
+  ├── plant.tall            128×192   ต้นไม้ใหญ่
+  ├── plant.potted          64×128    ต้นไม้กระถาง
+  ├── cup.coffee            64×64     แก้วกาแฟ
+  ├── papers.stack          64×64     กองกระดาษ
+  ├── lamp.desk             64×64     โคมไฟตั้งโต๊ะ
+  ├── bin.waste             64×64     ถังขยะ
+  ├── box.parcel            64×64     กล่องพัสดุ
+  ├── art.wall              128×64    ภาพแขวนผนัง
+  ├── clock.wall            64×64     นาฬิกาแขวนผนัง
+  ├── door.closed           128×192   ประตู
+  ├── sign.exit             128×64    ป้ายทางออก
+  ├── extinguisher.wall     64×128    ถังดับเพลิง
+  └── camera.cctv           64×64     กล้องวงจรปิด
+
+  TOTAL: ~50 furniture/equipment/decor assets
+  (ภาพนิ่งทั้งหมด ไม่มี animation — ง่ายกว่าตัวละครมาก)
+
+
+────────────────────────────────────────────────────────────────────────────────
+  TIPS สำหรับ gen เฟอร์นิเจอร์
+────────────────────────────────────────────────────────────────────────────────
+
+  1. CONSISTENT ANGLE
+     ทุกชิ้นต้องเป็นมุม 3/4 top-down เหมือนกันหมด
+     ถ้า gen 1 ชิ้นออกมาดี ใช้เป็น style reference สำหรับชิ้นอื่น
+
+  2. TRANSPARENT BACKGROUND
+     ห้ามมีพื้น ห้ามมีเงา — ระบบเราจัดการ depth sorting เอง
+
+  3. SIZE MATTERS
+     - ของเล็ก (แก้วกาแฟ ปากกา): 64×64 px
+     - ของกลาง (เก้าอี้ จอ): 128×128 px
+     - ของใหญ่ (โต๊ะ เคาน์เตอร์): 256×192 px
+     - ของใหญ่มาก (โซฟา โต๊ะประชุม): 384×256 px
+     gen ขนาดใหญ่กว่านี้แล้ว resize ลงได้
+
+  4. เฟอร์ไม่ต้อง ANIMATE
+     ต่างจากตัวละคร — เฟอร์ทุกชิ้นเป็นภาพนิ่ง PNG เดียว
+     gen ง่ายกว่าตัวละครมากเพราะไม่ต้องทำ spritesheet
