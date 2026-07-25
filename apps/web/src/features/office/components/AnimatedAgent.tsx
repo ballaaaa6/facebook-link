@@ -56,6 +56,7 @@ export function AnimatedAgent({
       style={{
         backgroundImage: characterImageSet(character),
         backgroundPosition: `0% ${rowPosition}%`,
+        backgroundSize: `800% ${(character?.rows ?? 9) * 100}%`,
       } as React.CSSProperties}
     />
   );
