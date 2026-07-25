@@ -1,4 +1,5 @@
 import type { OfficeAgentView, OfficeMode } from "@affiliate-ops/contracts";
+import type { CharacterState } from "../characterRegistry";
 import type {
   AgentPresentation,
   OfficeMapDefinition,
@@ -47,6 +48,15 @@ const allocationCache = new WeakMap<
 
 const distance = (a: OfficePoint, b: OfficePoint) => Math.hypot(b.x - a.x, b.y - a.y);
 
+function getDirectionState(from: OfficePoint, to: OfficePoint): CharacterState {
+  const dx = to.x - from.x;
+  const dy = to.y - from.y;
+  if (Math.abs(dy) > Math.abs(dx)) {
+    return dy < 0 ? "walk-up" : "walk-down";
+  }
+  return dx < 0 ? "walk-left" : "walk-right";
+}
+
 function samplePath(points: OfficePoint[], progress: number): AgentPresentation {
   const total = points.slice(1).reduce((sum, point, index) => sum + distance(points[index]!, point), 0);
   let remaining = Math.max(0, Math.min(1, progress)) * total;
@@ -58,7 +68,7 @@ function samplePath(points: OfficePoint[], progress: number): AgentPresentation 
       const ratio = length === 0 ? 1 : remaining / length;
       return {
         position: { x: from.x + (to.x - from.x) * ratio, y: from.y + (to.y - from.y) * ratio },
-        state: to.x < from.x ? "walk-left" : "walk-right",
+        state: getDirectionState(from, to),
         seated: false,
       };
     }
