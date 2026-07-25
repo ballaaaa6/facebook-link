@@ -1,0 +1,1140 @@
+{
+  "version": 1,
+  "source": "assets/game/characters/ceo-kai/source-atlas-preview.png",
+  "sourceSize": [
+    724,
+    2172
+  ],
+  "runtimeFrame2x": [
+    192,
+    208
+  ],
+  "runtimeFrame1x": [
+    96,
+    104
+  ],
+  "columns": 8,
+  "rows": [
+    {
+      "row": 0,
+      "sourceRow": 0,
+      "activeFrames": 6,
+      "detectedSourceFrames": 5,
+      "cells": [
+        {
+          "column": 0,
+          "status": "passed",
+          "sourceRow": 0,
+          "sourceColumn": 0,
+          "sourceBounds": [
+            24,
+            18,
+            91,
+            185
+          ]
+        },
+        {
+          "column": 1,
+          "status": "passed",
+          "sourceRow": 0,
+          "sourceColumn": 1,
+          "sourceBounds": [
+            122,
+            18,
+            188,
+            185
+          ]
+        },
+        {
+          "column": 2,
+          "status": "passed",
+          "sourceRow": 0,
+          "sourceColumn": 2,
+          "sourceBounds": [
+            219,
+            18,
+            286,
+            185
+          ]
+        },
+        {
+          "column": 3,
+          "status": "passed",
+          "sourceRow": 0,
+          "sourceColumn": 3,
+          "sourceBounds": [
+            317,
+            18,
+            383,
+            185
+          ]
+        },
+        {
+          "column": 4,
+          "status": "passed",
+          "sourceRow": 0,
+          "sourceColumn": 4,
+          "sourceBounds": [
+            413,
+            18,
+            480,
+            185
+          ]
+        },
+        {
+          "column": 5,
+          "status": "passed",
+          "sourceRow": 0,
+          "sourceColumn": 5,
+          "sourceBounds": [
+            413,
+            18,
+            480,
+            185
+          ]
+        },
+        {
+          "column": 6,
+          "status": "empty"
+        },
+        {
+          "column": 7,
+          "status": "empty"
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "sourceRow": 1,
+      "activeFrames": 8,
+      "detectedSourceFrames": 7,
+      "cells": [
+        {
+          "column": 0,
+          "status": "passed",
+          "sourceRow": 1,
+          "sourceColumn": 0,
+          "sourceBounds": [
+            22,
+            219,
+            95,
+            370
+          ]
+        },
+        {
+          "column": 1,
+          "status": "passed",
+          "sourceRow": 1,
+          "sourceColumn": 1,
+          "sourceBounds": [
+            123,
+            219,
+            196,
+            369
+          ]
+        },
+        {
+          "column": 2,
+          "status": "passed",
+          "sourceRow": 1,
+          "sourceColumn": 2,
+          "sourceBounds": [
+            224,
+            219,
+            293,
+            370
+          ]
+        },
+        {
+          "column": 3,
+          "status": "passed",
+          "sourceRow": 1,
+          "sourceColumn": 3,
+          "sourceBounds": [
+            325,
+            219,
+            393,
+            370
+          ]
+        },
+        {
+          "column": 4,
+          "status": "passed",
+          "sourceRow": 1,
+          "sourceColumn": 4,
+          "sourceBounds": [
+            426,
+            220,
+            496,
+            369
+          ]
+        },
+        {
+          "column": 5,
+          "status": "passed",
+          "sourceRow": 1,
+          "sourceColumn": 5,
+          "sourceBounds": [
+            532,
+            221,
+            602,
+            370
+          ]
+        },
+        {
+          "column": 6,
+          "status": "passed",
+          "sourceRow": 1,
+          "sourceColumn": 6,
+          "sourceBounds": [
+            625,
+            222,
+            695,
+            370
+          ]
+        },
+        {
+          "column": 7,
+          "status": "passed",
+          "sourceRow": 1,
+          "sourceColumn": 7,
+          "sourceBounds": [
+            625,
+            222,
+            695,
+            370
+          ]
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "sourceRow": 2,
+      "activeFrames": 8,
+      "detectedSourceFrames": 7,
+      "cells": [
+        {
+          "column": 0,
+          "status": "passed",
+          "sourceRow": 2,
+          "sourceColumn": 0,
+          "sourceBounds": [
+            20,
+            406,
+            90,
+            559
+          ]
+        },
+        {
+          "column": 1,
+          "status": "passed",
+          "sourceRow": 2,
+          "sourceColumn": 1,
+          "sourceBounds": [
+            117,
+            406,
+            187,
+            558
+          ]
+        },
+        {
+          "column": 2,
+          "status": "passed",
+          "sourceRow": 2,
+          "sourceColumn": 2,
+          "sourceBounds": [
+            215,
+            406,
+            286,
+            558
+          ]
+        },
+        {
+          "column": 3,
+          "status": "passed",
+          "sourceRow": 2,
+          "sourceColumn": 3,
+          "sourceBounds": [
+            315,
+            406,
+            385,
+            559
+          ]
+        },
+        {
+          "column": 4,
+          "status": "passed",
+          "sourceRow": 2,
+          "sourceColumn": 4,
+          "sourceBounds": [
+            417,
+            406,
+            486,
+            559
+          ]
+        },
+        {
+          "column": 5,
+          "status": "passed",
+          "sourceRow": 2,
+          "sourceColumn": 5,
+          "sourceBounds": [
+            518,
+            407,
+            590,
+            559
+          ]
+        },
+        {
+          "column": 6,
+          "status": "passed",
+          "sourceRow": 2,
+          "sourceColumn": 6,
+          "sourceBounds": [
+            620,
+            408,
+            691,
+            559
+          ]
+        },
+        {
+          "column": 7,
+          "status": "passed",
+          "sourceRow": 2,
+          "sourceColumn": 7,
+          "sourceBounds": [
+            620,
+            408,
+            691,
+            559
+          ]
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "sourceRow": 3,
+      "activeFrames": 8,
+      "detectedSourceFrames": 7,
+      "cells": [
+        {
+          "column": 0,
+          "status": "passed",
+          "sourceRow": 3,
+          "sourceColumn": 0,
+          "sourceBounds": [
+            23,
+            590,
+            89,
+            744
+          ]
+        },
+        {
+          "column": 1,
+          "status": "passed",
+          "sourceRow": 3,
+          "sourceColumn": 1,
+          "sourceBounds": [
+            121,
+            590,
+            189,
+            744
+          ]
+        },
+        {
+          "column": 2,
+          "status": "passed",
+          "sourceRow": 3,
+          "sourceColumn": 2,
+          "sourceBounds": [
+            224,
+            591,
+            291,
+            745
+          ]
+        },
+        {
+          "column": 3,
+          "status": "passed",
+          "sourceRow": 3,
+          "sourceColumn": 3,
+          "sourceBounds": [
+            323,
+            591,
+            390,
+            745
+          ]
+        },
+        {
+          "column": 4,
+          "status": "passed",
+          "sourceRow": 3,
+          "sourceColumn": 4,
+          "sourceBounds": [
+            424,
+            591,
+            492,
+            745
+          ]
+        },
+        {
+          "column": 5,
+          "status": "passed",
+          "sourceRow": 3,
+          "sourceColumn": 5,
+          "sourceBounds": [
+            524,
+            593,
+            593,
+            747
+          ]
+        },
+        {
+          "column": 6,
+          "status": "passed",
+          "sourceRow": 3,
+          "sourceColumn": 6,
+          "sourceBounds": [
+            626,
+            593,
+            693,
+            748
+          ]
+        },
+        {
+          "column": 7,
+          "status": "passed",
+          "sourceRow": 3,
+          "sourceColumn": 7,
+          "sourceBounds": [
+            626,
+            593,
+            693,
+            748
+          ]
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "sourceRow": 4,
+      "activeFrames": 8,
+      "detectedSourceFrames": 5,
+      "cells": [
+        {
+          "column": 0,
+          "status": "passed",
+          "sourceRow": 4,
+          "sourceColumn": 0,
+          "sourceBounds": [
+            21,
+            777,
+            88,
+            943
+          ]
+        },
+        {
+          "column": 1,
+          "status": "passed",
+          "sourceRow": 4,
+          "sourceColumn": 1,
+          "sourceBounds": [
+            122,
+            777,
+            203,
+            943
+          ]
+        },
+        {
+          "column": 2,
+          "status": "passed",
+          "sourceRow": 4,
+          "sourceColumn": 2,
+          "sourceBounds": [
+            224,
+            777,
+            291,
+            943
+          ]
+        },
+        {
+          "column": 3,
+          "status": "passed",
+          "sourceRow": 4,
+          "sourceColumn": 3,
+          "sourceBounds": [
+            306,
+            776,
+            392,
+            943
+          ]
+        },
+        {
+          "column": 4,
+          "status": "passed",
+          "sourceRow": 4,
+          "sourceColumn": 4,
+          "sourceBounds": [
+            425,
+            778,
+            491,
+            943
+          ]
+        },
+        {
+          "column": 5,
+          "status": "passed",
+          "sourceRow": 4,
+          "sourceColumn": 5,
+          "sourceBounds": [
+            425,
+            778,
+            491,
+            943
+          ]
+        },
+        {
+          "column": 6,
+          "status": "passed",
+          "sourceRow": 4,
+          "sourceColumn": 6,
+          "sourceBounds": [
+            425,
+            778,
+            491,
+            943
+          ]
+        },
+        {
+          "column": 7,
+          "status": "passed",
+          "sourceRow": 4,
+          "sourceColumn": 7,
+          "sourceBounds": [
+            425,
+            778,
+            491,
+            943
+          ]
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "sourceRow": 4,
+      "activeFrames": 4,
+      "detectedSourceFrames": 5,
+      "cells": [
+        {
+          "column": 0,
+          "status": "passed",
+          "sourceRow": 4,
+          "sourceColumn": 1,
+          "sourceBounds": [
+            122,
+            777,
+            203,
+            943
+          ]
+        },
+        {
+          "column": 1,
+          "status": "passed",
+          "sourceRow": 4,
+          "sourceColumn": 2,
+          "sourceBounds": [
+            224,
+            777,
+            291,
+            943
+          ]
+        },
+        {
+          "column": 2,
+          "status": "passed",
+          "sourceRow": 4,
+          "sourceColumn": 3,
+          "sourceBounds": [
+            306,
+            776,
+            392,
+            943
+          ]
+        },
+        {
+          "column": 3,
+          "status": "passed",
+          "sourceRow": 4,
+          "sourceColumn": 4,
+          "sourceBounds": [
+            425,
+            778,
+            491,
+            943
+          ]
+        },
+        {
+          "column": 4,
+          "status": "empty"
+        },
+        {
+          "column": 5,
+          "status": "empty"
+        },
+        {
+          "column": 6,
+          "status": "empty"
+        },
+        {
+          "column": 7,
+          "status": "empty"
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "sourceRow": 5,
+      "activeFrames": 5,
+      "detectedSourceFrames": 4,
+      "cells": [
+        {
+          "column": 0,
+          "status": "passed",
+          "sourceRow": 5,
+          "sourceColumn": 0,
+          "sourceBounds": [
+            21,
+            980,
+            96,
+            1142
+          ]
+        },
+        {
+          "column": 1,
+          "status": "passed",
+          "sourceRow": 5,
+          "sourceColumn": 1,
+          "sourceBounds": [
+            131,
+            982,
+            200,
+            1142
+          ]
+        },
+        {
+          "column": 2,
+          "status": "passed",
+          "sourceRow": 5,
+          "sourceColumn": 2,
+          "sourceBounds": [
+            233,
+            982,
+            305,
+            1143
+          ]
+        },
+        {
+          "column": 3,
+          "status": "passed",
+          "sourceRow": 5,
+          "sourceColumn": 3,
+          "sourceBounds": [
+            333,
+            974,
+            428,
+            1142
+          ]
+        },
+        {
+          "column": 4,
+          "status": "passed",
+          "sourceRow": 5,
+          "sourceColumn": 4,
+          "sourceBounds": [
+            333,
+            974,
+            428,
+            1142
+          ]
+        },
+        {
+          "column": 5,
+          "status": "empty"
+        },
+        {
+          "column": 6,
+          "status": "empty"
+        },
+        {
+          "column": 7,
+          "status": "empty"
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "sourceRow": 6,
+      "activeFrames": 8,
+      "detectedSourceFrames": 7,
+      "cells": [
+        {
+          "column": 0,
+          "status": "passed",
+          "sourceRow": 6,
+          "sourceColumn": 0,
+          "sourceBounds": [
+            26,
+            1179,
+            94,
+            1347
+          ]
+        },
+        {
+          "column": 1,
+          "status": "passed",
+          "sourceRow": 6,
+          "sourceColumn": 1,
+          "sourceBounds": [
+            129,
+            1180,
+            197,
+            1347
+          ]
+        },
+        {
+          "column": 2,
+          "status": "passed",
+          "sourceRow": 6,
+          "sourceColumn": 2,
+          "sourceBounds": [
+            233,
+            1181,
+            302,
+            1347
+          ]
+        },
+        {
+          "column": 3,
+          "status": "passed",
+          "sourceRow": 6,
+          "sourceColumn": 3,
+          "sourceBounds": [
+            339,
+            1180,
+            407,
+            1347
+          ]
+        },
+        {
+          "column": 4,
+          "status": "passed",
+          "sourceRow": 6,
+          "sourceColumn": 4,
+          "sourceBounds": [
+            442,
+            1180,
+            511,
+            1347
+          ]
+        },
+        {
+          "column": 5,
+          "status": "passed",
+          "sourceRow": 6,
+          "sourceColumn": 5,
+          "sourceBounds": [
+            539,
+            1181,
+            609,
+            1347
+          ]
+        },
+        {
+          "column": 6,
+          "status": "passed",
+          "sourceRow": 6,
+          "sourceColumn": 6,
+          "sourceBounds": [
+            637,
+            1182,
+            705,
+            1347
+          ]
+        },
+        {
+          "column": 7,
+          "status": "passed",
+          "sourceRow": 6,
+          "sourceColumn": 7,
+          "sourceBounds": [
+            637,
+            1182,
+            705,
+            1347
+          ]
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "sourceRow": 7,
+      "activeFrames": 6,
+      "detectedSourceFrames": 5,
+      "cells": [
+        {
+          "column": 0,
+          "status": "passed",
+          "sourceRow": 7,
+          "sourceColumn": 0,
+          "sourceBounds": [
+            27,
+            1384,
+            91,
+            1553
+          ]
+        },
+        {
+          "column": 1,
+          "status": "passed",
+          "sourceRow": 7,
+          "sourceColumn": 1,
+          "sourceBounds": [
+            130,
+            1384,
+            193,
+            1553
+          ]
+        },
+        {
+          "column": 2,
+          "status": "passed",
+          "sourceRow": 7,
+          "sourceColumn": 2,
+          "sourceBounds": [
+            232,
+            1384,
+            295,
+            1554
+          ]
+        },
+        {
+          "column": 3,
+          "status": "passed",
+          "sourceRow": 7,
+          "sourceColumn": 3,
+          "sourceBounds": [
+            336,
+            1384,
+            398,
+            1554
+          ]
+        },
+        {
+          "column": 4,
+          "status": "passed",
+          "sourceRow": 7,
+          "sourceColumn": 4,
+          "sourceBounds": [
+            439,
+            1384,
+            501,
+            1554
+          ]
+        },
+        {
+          "column": 5,
+          "status": "passed",
+          "sourceRow": 7,
+          "sourceColumn": 5,
+          "sourceBounds": [
+            439,
+            1384,
+            501,
+            1554
+          ]
+        },
+        {
+          "column": 6,
+          "status": "empty"
+        },
+        {
+          "column": 7,
+          "status": "empty"
+        }
+      ]
+    },
+    {
+      "row": 9,
+      "sourceRow": 8,
+      "activeFrames": 6,
+      "detectedSourceFrames": 6,
+      "cells": [
+        {
+          "column": 0,
+          "status": "passed",
+          "sourceRow": 8,
+          "sourceColumn": 0,
+          "sourceBounds": [
+            25,
+            1592,
+            104,
+            1747
+          ]
+        },
+        {
+          "column": 1,
+          "status": "passed",
+          "sourceRow": 8,
+          "sourceColumn": 1,
+          "sourceBounds": [
+            133,
+            1591,
+            211,
+            1748
+          ]
+        },
+        {
+          "column": 2,
+          "status": "passed",
+          "sourceRow": 8,
+          "sourceColumn": 2,
+          "sourceBounds": [
+            238,
+            1592,
+            317,
+            1748
+          ]
+        },
+        {
+          "column": 3,
+          "status": "passed",
+          "sourceRow": 8,
+          "sourceColumn": 3,
+          "sourceBounds": [
+            341,
+            1592,
+            419,
+            1748
+          ]
+        },
+        {
+          "column": 4,
+          "status": "passed",
+          "sourceRow": 8,
+          "sourceColumn": 4,
+          "sourceBounds": [
+            442,
+            1592,
+            520,
+            1748
+          ]
+        },
+        {
+          "column": 5,
+          "status": "passed",
+          "sourceRow": 8,
+          "sourceColumn": 5,
+          "sourceBounds": [
+            547,
+            1592,
+            626,
+            1748
+          ]
+        },
+        {
+          "column": 6,
+          "status": "empty"
+        },
+        {
+          "column": 7,
+          "status": "empty"
+        }
+      ]
+    },
+    {
+      "row": 10,
+      "sourceRow": 9,
+      "activeFrames": 6,
+      "detectedSourceFrames": 6,
+      "cells": [
+        {
+          "column": 0,
+          "status": "passed",
+          "sourceRow": 9,
+          "sourceColumn": 0,
+          "sourceBounds": [
+            24,
+            1783,
+            104,
+            1943
+          ]
+        },
+        {
+          "column": 1,
+          "status": "passed",
+          "sourceRow": 9,
+          "sourceColumn": 1,
+          "sourceBounds": [
+            132,
+            1784,
+            211,
+            1944
+          ]
+        },
+        {
+          "column": 2,
+          "status": "passed",
+          "sourceRow": 9,
+          "sourceColumn": 2,
+          "sourceBounds": [
+            236,
+            1785,
+            315,
+            1945
+          ]
+        },
+        {
+          "column": 3,
+          "status": "passed",
+          "sourceRow": 9,
+          "sourceColumn": 3,
+          "sourceBounds": [
+            340,
+            1785,
+            418,
+            1945
+          ]
+        },
+        {
+          "column": 4,
+          "status": "passed",
+          "sourceRow": 9,
+          "sourceColumn": 4,
+          "sourceBounds": [
+            440,
+            1786,
+            516,
+            1945
+          ]
+        },
+        {
+          "column": 5,
+          "status": "passed",
+          "sourceRow": 9,
+          "sourceColumn": 5,
+          "sourceBounds": [
+            542,
+            1786,
+            620,
+            1945
+          ]
+        },
+        {
+          "column": 6,
+          "status": "empty"
+        },
+        {
+          "column": 7,
+          "status": "empty"
+        }
+      ]
+    },
+    {
+      "row": 11,
+      "sourceRow": 10,
+      "activeFrames": 6,
+      "detectedSourceFrames": 5,
+      "cells": [
+        {
+          "column": 0,
+          "status": "passed",
+          "sourceRow": 10,
+          "sourceColumn": 0,
+          "sourceBounds": [
+            24,
+            1980,
+            102,
+            2141
+          ]
+        },
+        {
+          "column": 1,
+          "status": "passed",
+          "sourceRow": 10,
+          "sourceColumn": 1,
+          "sourceBounds": [
+            129,
+            1980,
+            205,
+            2142
+          ]
+        },
+        {
+          "column": 2,
+          "status": "passed",
+          "sourceRow": 10,
+          "sourceColumn": 2,
+          "sourceBounds": [
+            237,
+            1981,
+            312,
+            2142
+          ]
+        },
+        {
+          "column": 3,
+          "status": "passed",
+          "sourceRow": 10,
+          "sourceColumn": 3,
+          "sourceBounds": [
+            342,
+            1981,
+            417,
+            2142
+          ]
+        },
+        {
+          "column": 4,
+          "status": "passed",
+          "sourceRow": 10,
+          "sourceColumn": 4,
+          "sourceBounds": [
+            443,
+            1981,
+            518,
+            2142
+          ]
+        },
+        {
+          "column": 5,
+          "status": "passed",
+          "sourceRow": 10,
+          "sourceColumn": 5,
+          "sourceBounds": [
+            443,
+            1981,
+            518,
+            2142
+          ]
+        },
+        {
+          "column": 6,
+          "status": "empty"
+        },
+        {
+          "column": 7,
+          "status": "empty"
+        }
+      ]
+    }
+  ],
+  "baselineY": 180,
+  "detectedRows": 11,
+  "detectedComponents": 64,
+  "summary": {
+    "total": 96,
+    "active": 79,
+    "empty": 17,
+    "failed": 0
+  }
+}

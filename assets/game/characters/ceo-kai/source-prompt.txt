@@ -1,0 +1,10 @@
+Source: OpenAI built-in image generation preview generated on 2026-07-26.
+Input images: none.
+Use case: original 2D game character runtime sprite atlas.
+Character: Commander Kai, an original young Asian male CEO with black textured hair,
+navy-teal blazer, cream shirt, charcoal trousers, and off-white sneakers.
+Style: warm cozy 2D cel-shaded raster game art with gentle pixel-art influence.
+Background: solid magenta chroma-key background for local alpha extraction.
+The generated preview was normalized into the 12-row office runtime contract by
+tools/art/normalize_character_sprite_atlas.py. Missing or repeated frames remain
+pilot placeholders until controlled strips are generated for production.
