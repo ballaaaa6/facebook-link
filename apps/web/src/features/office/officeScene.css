@@ -79,7 +79,7 @@
 
 .office-workspace {
   display: grid;
-  grid-template-columns: minmax(580px, 1fr) minmax(300px, 360px);
+  grid-template-columns: minmax(440px, 1fr) minmax(260px, 300px) minmax(280px, 340px);
   min-height: 0;
   gap: 8px;
   align-items: stretch;
@@ -89,25 +89,17 @@
   display: grid;
   grid-template-rows: 38px minmax(0, 1fr);
   min-height: 0;
+  height: 100%;
   padding: 10px;
 }
 
-.office-sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  min-height: 0;
-  height: 100%;
-  overflow: hidden;
-}
-
-.office-sidebar > .team-chat {
+.office-workspace > .team-chat {
   position: static;
   display: grid;
   grid-template-rows: auto minmax(0,1fr) auto;
   width: 100%;
-  flex: 1 1 52%;
-  min-height: 220px;
+  height: 100%;
+  min-height: 0;
   max-height: none;
   margin: 0;
   padding: 12px;
@@ -287,11 +279,11 @@
 .office-workspace .chat-composer textarea { min-height: 62px; resize: none; }
 .office-workspace .chat-composer button { padding: 0 12px; font-size: 12px; }
 
-.office-sidebar > .task-panel {
+.office-workspace > .task-panel {
   display: flex;
   flex-direction: column;
-  flex: 1 1 48%;
-  min-height: 200px;
+  height: 100%;
+  min-height: 0;
   gap: 6px;
   padding: 10px 12px;
   overflow-y: auto;
@@ -300,35 +292,35 @@
   background: rgba(255, 255, 255, 0.75);
 }
 
-.office-sidebar .task-panel .panel-heading {
+.office-workspace .task-panel .panel-heading {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 }
 
-.office-sidebar .task-panel .panel-heading h2 { margin: 1px 0 0; font-size: 16px; }
-.office-sidebar .task-panel .panel-heading p { margin: 0; font-size: 11px; color: var(--muted); }
+.office-workspace .task-panel .panel-heading h2 { margin: 1px 0 0; font-size: 16px; }
+.office-workspace .task-panel .panel-heading p { margin: 0; font-size: 11px; color: var(--muted); }
 
-.office-sidebar .task-panel .agent-status-summary {
+.office-workspace .task-panel .agent-status-summary {
   display: flex;
   align-items: center;
   gap: 6px;
   margin: 0;
 }
-.office-sidebar .task-panel .agent-status-summary small { font-size: 10px; color: var(--muted); }
-.office-sidebar .task-panel .agent-status-label { padding: 2px 6px; font-size: 9px; border-radius: 4px; }
+.office-workspace .task-panel .agent-status-summary small { font-size: 10px; color: var(--muted); }
+.office-workspace .task-panel .agent-status-label { padding: 2px 6px; font-size: 9px; border-radius: 4px; }
 
-.office-sidebar .task-panel .current-task {
+.office-workspace .task-panel .current-task {
   margin: 0;
   padding: 8px 10px;
   border-radius: 8px;
   background: rgba(255,255,255,0.6);
   border: 1px solid var(--line);
 }
-.office-sidebar .task-panel .current-task span { font-size: 9px; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.7; }
-.office-sidebar .task-panel .current-task strong { display: block; margin: 2px 0 6px; font-size: 12px; }
+.office-workspace .task-panel .current-task span { font-size: 9px; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.7; }
+.office-workspace .task-panel .current-task strong { display: block; margin: 2px 0 6px; font-size: 12px; }
 
-.office-sidebar .task-panel .run-facts {
+.office-workspace .task-panel .run-facts {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 4px;
@@ -338,11 +330,11 @@
   background: rgba(0,0,0,0.02);
   font-size: 9px;
 }
-.office-sidebar .task-panel .run-facts div { display: flex; flex-direction: column; gap: 1px; }
-.office-sidebar .task-panel .run-facts dt { font-weight: 600; opacity: 0.6; }
-.office-sidebar .task-panel .run-facts dd { margin: 0; word-break: break-all; }
+.office-workspace .task-panel .run-facts div { display: flex; flex-direction: column; gap: 1px; }
+.office-workspace .task-panel .run-facts dt { font-weight: 600; opacity: 0.6; }
+.office-workspace .task-panel .run-facts dd { margin: 0; word-break: break-all; }
 
-.office-sidebar .task-panel .review-callout {
+.office-workspace .task-panel .review-callout {
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -352,11 +344,11 @@
   background: rgba(212, 166, 86, 0.12);
   border: 1px solid rgba(212, 166, 86, 0.3);
 }
-.office-sidebar .task-panel .review-callout span { display: block; font-size: 9px; text-transform: uppercase; font-weight: 600; color: #a37218; }
-.office-sidebar .task-panel .review-callout strong { font-size: 10px; }
-.office-sidebar .task-panel .review-callout button { margin-top: 2px; padding: 4px 8px; font-size: 9px; }
+.office-workspace .task-panel .review-callout span { display: block; font-size: 9px; text-transform: uppercase; font-weight: 600; color: #a37218; }
+.office-workspace .task-panel .review-callout strong { font-size: 10px; }
+.office-workspace .task-panel .review-callout button { margin-top: 2px; padding: 4px 8px; font-size: 9px; }
 
-.office-sidebar .task-panel .activity-log {
+.office-workspace .task-panel .activity-log {
   flex: 1 1 auto;
   min-height: 60px;
   margin: 0;
@@ -365,8 +357,8 @@
   border-top: 1px solid var(--line);
   border-left: 0;
 }
-.office-sidebar .task-panel .panel-section-title { margin: 0 0 4px; font-size: 9px; }
-.office-sidebar .task-panel .activity-log p { display: grid; grid-template-columns: 42px 1fr; margin: 3px 0; font-size: 10px; }
+.office-workspace .task-panel .panel-section-title { margin: 0 0 4px; font-size: 9px; }
+.office-workspace .task-panel .activity-log p { display: grid; grid-template-columns: 42px 1fr; margin: 3px 0; font-size: 10px; }
 
 @media (max-width: 1120px) {
   .app-shell[data-route="/"] {
@@ -386,11 +378,10 @@
   .app-shell[data-route="/"] .top-bar { min-height: 54px; margin-bottom: 10px; }
   .office-screen { display: block; }
   .office-overview-bar { margin-bottom: 10px; }
-  .office-workspace { display: flex; flex-direction: column; min-height: auto; }
+  .office-workspace { display: flex; flex-direction: column; min-height: auto; gap: 10px; }
   .office-workspace-scene { height: 500px; min-height: 400px; }
-  .office-sidebar { height: auto; min-height: 0; }
-  .office-sidebar > .team-chat { height: 420px; min-height: 0; }
-  .office-sidebar > .task-panel { height: auto; min-height: 200px; }
+  .office-workspace > .task-panel { height: auto; min-height: 240px; }
+  .office-workspace > .team-chat { height: 480px; min-height: 0; }
 }
 
 @media (max-width: 760px) {
@@ -398,8 +389,9 @@
   .office-overview-bar .office-feed-bar { display: none; }
   .office-overview-bar .metric-strip { margin-bottom: 10px; }
   .office-workspace { min-height: 0; }
-  .office-sidebar > .team-chat { height: calc(100dvh - 230px); min-height: 420px; }
-  .office-sidebar > .task-panel { min-height: 300px; overflow: auto; }
-  .office-workspace-scene { height: calc(100dvh - 230px); min-height: 420px; }
+  .office-workspace-scene { height: calc(100dvh - 230px); min-height: 380px; }
+  .office-workspace > .task-panel { min-height: 300px; overflow: auto; }
+  .office-workspace > .team-chat { height: calc(100dvh - 230px); min-height: 380px; }
 }
+
 

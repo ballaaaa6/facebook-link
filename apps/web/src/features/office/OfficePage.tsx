@@ -62,10 +62,8 @@ export function OfficePage() {
             onSelect={setSelectedId}
           />
         </section>
-        <div className="office-sidebar">
-          <TeamChatPanel />
-          {selectedAgent ? <TaskPanel agent={selectedAgent} /> : null}
-        </div>
+        {selectedAgent ? <TaskPanel agent={selectedAgent} /> : null}
+        <TeamChatPanel />
       </div>
     </section>
   );
