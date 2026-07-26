@@ -15,6 +15,11 @@ Reduce generation latency without sacrificing usable geometry. Static furniture 
 - Furniture views are straight orthographic only. A side view is an exact
   90-degree turn; oblique, diagonal, three-quarter, and perspective views are
   rejected.
+- This is a hard production gate for every asset and every orientation:
+  front is a straight 0° view, back is the exact horizontally flipped front
+  shell at 180°, left/right are strict 90° profile views. Any visible
+  three-quarter angle, diagonal tilt, foreshortened depth, or perspective top
+  surface is rejected and the sheet must be regenerated.
 - Every cell manifest includes the locked physical `W x D x H`, integer
   `renderBox`, integer floor `footprint`, support surface, and anchor from the
   Office Scale Bible in `docs/art/OFFICE_ASSET_CREATION_GUIDE.md`.
