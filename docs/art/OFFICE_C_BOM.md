@@ -44,16 +44,16 @@ objects. The numbers below are generation cells, not map placements:
 | Vending machine | 1 | Create one facility asset | 1 new |
 | Refrigerator | 1 | Create one facility asset | 1 new |
 | Mission review table | 1 | Reuse `table.meeting.empty` | 1 existing |
-| Sofa zone | 2 (3+2 seats) | Create two footprint variants, or one modular section with per-object slots | 1–2 new |
+| Sofa zone | 2 (3+2 seats) | Create two footprint variants: 3-seat and 2-seat | 2 new |
 | Massage chair | 1 | Create one facility asset | 1 new |
 | Game machine | 1 | Create one facility asset | 1 new |
 
-That leaves four unambiguous new facility cells, plus one or two sofa cells
-depending on whether the 3-seat and 2-seat forms can share a modular raster.
-The second printer, second dispenser, and second rack are placements of
-accepted assets, not additional generation work. Every new cell still needs an
-integer render box, floor footprint, approach anchor, interaction-facing
-metadata, and a separate overlay where its activity changes.
+That locks the Facility v1 addition at six new facility cells: four
+unambiguous missing facility assets plus two sofa footprint variants. The
+second printer, second dispenser, and second rack are placements of accepted
+assets, not additional generation work. Every new cell still needs an integer
+render box, floor footprint, approach anchor, interaction-facing metadata, and
+a separate overlay where its activity changes.
 
 The current map is still an implementation baseline with ten active agents
 and two reserved workstation modules. Expanding to the 15-person target
