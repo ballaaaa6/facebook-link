@@ -9,6 +9,7 @@ import type {
 } from "../officeTypes";
 
 export interface OfficeAssetGeometryLike {
+  physicalScale?: { width: number; depth: number; height: number };
   renderBox: { width: number; height: number };
   fit?: "contain" | "fill";
   layer: OfficeLayer;

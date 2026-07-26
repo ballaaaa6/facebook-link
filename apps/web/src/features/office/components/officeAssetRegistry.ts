@@ -63,6 +63,12 @@ export interface OfficeRenderBox {
   height: number;
 }
 
+export interface OfficePhysicalScale {
+  width: number;
+  depth: number;
+  height: number;
+}
+
 export interface OfficeAssetSlot {
   x: number;
   y: number;
@@ -70,6 +76,7 @@ export interface OfficeAssetSlot {
 }
 
 export interface OfficeAssetGeometry {
+  physicalScale: OfficePhysicalScale;
   renderBox: OfficeRenderBox;
   fit?: "contain" | "fill";
   layer: OfficeLayer;

@@ -102,6 +102,8 @@ const officeAttachmentSlots = new Set(
 );
 for (const [assetId, geometry] of Object.entries(officeGeometry.assets)) {
   for (const [field, value] of [
+    ["physicalScale.width", geometry.physicalScale?.width],
+    ["physicalScale.height", geometry.physicalScale?.height],
     ["renderBox.width", geometry.renderBox?.width],
     ["renderBox.height", geometry.renderBox?.height],
     ["footprint.width", geometry.footprint?.width],
@@ -110,6 +112,9 @@ for (const [assetId, geometry] of Object.entries(officeGeometry.assets)) {
     if (value !== undefined && (!Number.isInteger(value) || value < 1)) {
       failures.push(`Office geometry must use positive integer ${field}: ${assetId}`);
     }
+  }
+  if (!Number.isInteger(geometry.physicalScale?.depth) || geometry.physicalScale.depth < 0) {
+    failures.push(`Office geometry must use non-negative integer physicalScale.depth: ${assetId}`);
   }
 }
 for (const [slotSetId, slots] of Object.entries(officeGeometry.slotSets)) {

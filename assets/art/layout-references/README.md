@@ -126,3 +126,21 @@ lime, amber, and coral accents.
 
 See `facility-modern-seamloop-v1/facility-modern-seamloop-manifest.json` for
 the cell layout and seam-loop acceptance rules.
+
+## `facility-modern-scale-locked-v1/`
+
+- Created: 2026-07-26
+- Status: calibration-only; not registered as a runtime atlas
+- Purpose: verify that the machine-readable Office Scale Bible produces
+  believable relative sizes across a single 4x4 sheet
+
+This sheet uses a common visual ruler of approximately 64 image pixels per
+logical unit and compares every object to the adult reference `1 x 1 x 3`.
+The TV is intentionally smaller in height than the height-3 vending, game,
+and refrigerator assets. The three-seat sofa is wider than the TV, while the
+two-seat sofa is narrower. Empty chroma-key padding is intentional.
+
+See `facility-modern-scale-locked-v1/facility-modern-scale-locked-manifest.json`
+for the cell-to-scale mapping and
+`facility-modern-scale-locked-v1/facility-modern-scale-locked-sheet-v1-alpha.png`
+for the cleaned preview.

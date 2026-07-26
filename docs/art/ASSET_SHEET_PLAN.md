@@ -15,6 +15,10 @@ Reduce generation latency without sacrificing usable geometry. Static furniture 
 - Every cell manifest includes the locked physical `W x D x H`, integer
   `renderBox`, integer floor `footprint`, support surface, and anchor from the
   Office Scale Bible in `docs/art/OFFICE_ASSET_CREATION_GUIDE.md`.
+- Runtime entries read these values from
+  `assets/game/manifests/office-assets.json`; pre-production entries read them
+  from `assets/game/manifests/office-planned-assets.json`. Use
+  `npm run art:prompt -- <asset-id>` instead of transcribing scale values.
 - All prompts compare the object against the canonical `1 x 1 x 3` standing
   adult without drawing the adult inside the exported asset cell.
 - Cell order is defined outside the image in a JSON manifest.

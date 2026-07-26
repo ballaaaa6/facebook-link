@@ -205,6 +205,36 @@ desk, counter, table, credenza, or rack owns the collision.
   scale silhouette before approving the asset. The silhouette is a QA overlay,
   not part of the exported sprite.
 
+### 3.4 Machine-readable scale and prompt workflow
+
+The written Scale Bible explains intent. Generation must read the same
+contracts from machine-readable manifests:
+
+- Registered runtime assets:
+  `assets/game/manifests/office-assets.json`
+- Planned assets that do not yet have accepted runtime files:
+  `assets/game/manifests/office-planned-assets.json`
+
+Every entry declares `physicalScale`, `renderBox`, support, anchor, and any
+floor footprint. Do not copy scale numbers manually into an ad hoc prompt.
+Generate the scale-locked prompt instead:
+
+```bash
+npm run art:prompt -- vending.machine.modern
+npm run art:prompt -- chair.office.up --orientations=front,back,side
+npm run art:prompt -- --list
+```
+
+Validate both catalogs with:
+
+```bash
+npm run art:prompt:check
+```
+
+`npm run check` includes this catalog validation. A planned asset moves into
+the runtime manifest only after its raster, anchor, collision footprint, and
+map placement are accepted.
+
 ## 4. Asset classes
 
 ### 4.1 Furniture

@@ -29,6 +29,12 @@ test("the Office C authoring contract uses integer tiles only", () => {
   assert.equal(map.height, 24);
   assert.deepEqual(map.zones.map(({ width }) => width), [24, 12]);
   for (const geometryEntry of Object.values(geometry.assets)) {
+    assert.ok(Number.isInteger(geometryEntry.physicalScale?.width));
+    assert.ok(Number.isInteger(geometryEntry.physicalScale?.depth));
+    assert.ok(Number.isInteger(geometryEntry.physicalScale?.height));
+    assert.ok((geometryEntry.physicalScale?.width ?? 0) > 0);
+    assert.ok((geometryEntry.physicalScale?.depth ?? -1) >= 0);
+    assert.ok((geometryEntry.physicalScale?.height ?? 0) > 0);
     assert.ok(Number.isInteger(geometryEntry.renderBox.width));
     assert.ok(Number.isInteger(geometryEntry.renderBox.height));
     if (!geometryEntry.footprint) continue;
