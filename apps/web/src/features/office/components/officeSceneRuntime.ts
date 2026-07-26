@@ -39,7 +39,7 @@ export const officeSceneReference = {
   width: 1672,
   height: 941,
   window: { x: 528, y: 133, width: 507, height: 209 },
-  clock: { x: 404, y: 143, width: 96, height: 96 },
+  clock: { x: 1065, y: 90, width: 80, height: 80 },
 } as const;
 
 const windowViews: Record<OfficeSeason, Record<OfficeTimeOfDay, string>> = {

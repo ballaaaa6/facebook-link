@@ -39,15 +39,17 @@ The runtime manifest is
 Window plates must contain only the outside view. The frame, wall, trim, and
 interior lighting remain part of the modern background.
 
-The clock face is mounted on the upper-left wall, immediately left of the
-window and above the workstation area. Its source reference rectangle is:
+The clock face is mounted on the central structural post, centered over the
+right-angle junction where the upper trim meets the post. It is intentionally
+slightly smaller than the original upper-left placement so the post remains
+visually dominant. Its source reference rectangle is:
 
 ```json
 {
-  "x": 404,
-  "y": 143,
-  "width": 96,
-  "height": 96
+  "x": 1065,
+  "y": 90,
+  "width": 80,
+  "height": 80
 }
 ```
 
