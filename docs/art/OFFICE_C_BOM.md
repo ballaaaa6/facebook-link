@@ -61,6 +61,30 @@ footprint variants are placed in authored directions. Do not generate extra
 side or rear views unless the expanded 15-workstation map introduces an actual
 placement or interaction-facing requirement for them.
 
+### Facility scale contracts
+
+The Office Scale Bible in `docs/art/OFFICE_ASSET_CREATION_GUIDE.md` is the
+source of truth for generation prompts. Its canonical adult is `1 x 1 x 3`.
+Facility v1 uses these locked physical scales:
+
+| Facility | W x D x H | Render box | Floor footprint | Extra approach |
+| --- | ---: | ---: | ---: | ---: |
+| Water dispenser | `1 x 1 x 3` | `1 x 3` | `1 x 1` | One front tile |
+| Coffee machine | `1 x 1 x 2` | `1 x 2` | Parent counter | One counter-facing slot |
+| Printer | `2 x 1 x 1` | `2 x 1` | Parent credenza | One pickup slot |
+| Server rack | `2 x 1 x 3` | `2 x 3` | `2 x 1` | One front tile |
+| Vending machine | `2 x 1 x 3` | `2 x 3` | `2 x 1` | One front tile |
+| Refrigerator | `2 x 1 x 3` | `2 x 3` | `2 x 1` | One front tile |
+| Mission review table | `6 x 2 x 2` | `6 x 3` | `6 x 2` | Four external seats |
+| Modern three-seat sofa | `4 x 2 x 2` | `4 x 3` | `4 x 2` | Three lounge slots |
+| Modern two-seat sofa | `3 x 2 x 2` | `3 x 3` | `3 x 2` | Two lounge slots |
+| Massage chair | `2 x 2 x 2` | `2 x 3` | `2 x 2` | One front entry tile |
+| Game machine | `2 x 2 x 3` | `3 x 3` | `2 x 2` | One front interaction tile |
+
+The approach area is navigation clearance, not part of the furniture's
+physical `W x D x H`. Source art is cropped and scaled uniformly into the
+declared render box; it must never be stretched independently by axis.
+
 ### Decorative motion plan
 
 The active Office page targets 43 reusable base asset types: 29

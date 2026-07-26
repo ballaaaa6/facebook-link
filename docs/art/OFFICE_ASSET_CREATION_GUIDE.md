@@ -66,6 +66,145 @@ studio, not as a second unrelated art style:
 The shell palette is static across all frames. Only the declared local display,
 indicator, paper, steam, or light region may change.
 
+### 3.2 Office Scale Bible
+
+Lock scale before generating any office asset. The canonical comparison is one
+standing adult:
+
+```text
+adult = 1 wide x 1 deep x 3 high
+1 tile = 32 authoring pixels
+```
+
+`W x D x H` describes the intended physical mass used in prompts and layout
+planning. `renderBox` describes the integer tile canvas used to draw the
+orthographic sprite. `footprint` describes only the floor cells blocked by
+collision. A render box may be wider or taller than the physical mass to allow
+for perspective, animation, hair, arms, foliage, or transparent padding.
+
+Wall and supported assets use `-` for floor footprint. Their parent wall,
+desk, counter, table, credenza, or rack owns the collision.
+
+#### Actors and architecture
+
+| Asset or family | Locked W x D x H | Render box W x H | Floor footprint W x D | Notes |
+| --- | ---: | ---: | ---: | --- |
+| Standing adult agent | `1 x 1 x 3` | approximately `3 x 3.25` | `1 x 1` | Identity reference for every furniture prompt; feet use bottom-center anchor. |
+| Seated adult agent | `1 x 1 x 2` | same character frame contract | `1 x 1` seat slot | Pelvis and seat anchors remain fixed; furniture is not baked into the character. |
+| Office mascot / small companion | `1 x 1 x 1` | `2 x 2` | `1 x 1` | May use transparent padding for its walk cycle. |
+| Floor tile | `1 x 1 x 0` | code-generated | `-` | Architecture, not an image-generation cell. |
+| Wall segment | `1 x 0 x 3` | code-generated | `-` | Wall height establishes the adult and appliance ceiling reference. |
+| Entry rug / zone rug | `4 x 2 x 0` | code-generated | `-` | Visual floor layer only. |
+| Door | `2 x 0 x 3` | `2 x 3` | `-` | Wall anchor; opening clearance is handled by the map. |
+| Window module | `4 x 0 x 3` | code-generated or `4 x 3` | `-` | Wall-only; never reserves floor collision. |
+| Glass or planter partition | `4 x 1 x 3` | `4 x 3` | `4 x 1` | Use only when an authored map requires a physical divider. |
+
+#### Core furniture and seating
+
+| Asset or family | Locked W x D x H | Render box W x H | Floor footprint W x D | Seats / support |
+| --- | ---: | ---: | ---: | --- |
+| Standard desk | `4 x 2 x 2` | `4 x 3` | `4 x 2` | Workstation surface slots. |
+| Creative desk | `4 x 2 x 2` | `4 x 3` | `4 x 2` | Same geometry as the standard desk; equipment changes the role. |
+| NOC desk | `4 x 2 x 2` | `4 x 3` | `4 x 2` | Same workstation footprint with NOC equipment. |
+| Office task chair | `1 x 1 x 2` | `1 x 2` | `1 x 1` | One seat slot. |
+| Studio task chair | `1 x 1 x 2` | `1 x 2` | `1 x 1` | One seat slot. |
+| Cafe / meeting chair | `1 x 1 x 2` | `1 x 2` | `1 x 1` | One review or cafe seat. |
+| Four-person mission table | `6 x 2 x 2` | `6 x 3` | `6 x 2` | Four separate review slots; chairs remain separate. |
+| Round cafe table | `2 x 2 x 2` | `2 x 2` | `2 x 2` | Supported tabletop slot. |
+| Coffee table | `3 x 2 x 1` | `3 x 2` | `3 x 2` | Low furniture; no reservation slot by default. |
+| Coffee counter | `4 x 2 x 2` | `4 x 3` | `4 x 2` | Three supported counter slots. |
+| Printer credenza / low bookshelf | `4 x 1 x 2` | `4 x 2` | `4 x 1` | Printer and decor parent slots. |
+| Magazine bookshelf | `2 x 1 x 2` | `2 x 2` | `2 x 1` | Static unless reading interaction is activated. |
+| Filing cabinet | `2 x 1 x 3` | `2 x 3` | `2 x 1` | Tall storage. |
+| Planter divider | `4 x 1 x 2` | `4 x 2` | `4 x 1` | Soft zone boundary. |
+| Existing sectional sofa | `6 x 3 x 2` | `6 x 4` | `6 x 3` | Existing large lounge asset. |
+| Modern three-seat sofa | `4 x 2 x 2` | `4 x 3` | `4 x 2` | Three independent lounge slots. |
+| Modern two-seat sofa | `3 x 2 x 2` | `3 x 3` | `3 x 2` | Two independent lounge slots. |
+| Lounge stool | `1 x 1 x 1` | `1 x 1` | `1 x 1` | One optional seat. |
+| Massage chair | `2 x 2 x 2` | `2 x 3` | `2 x 2` | One lounge slot; one approach row in front. |
+| Round pet bed | `2 x 2 x 1` | `2 x 2` | `2 x 2` | Mascot home slot. |
+
+#### Facilities and large equipment
+
+| Asset or family | Locked W x D x H | Render box W x H | Floor footprint W x D | Interaction contract |
+| --- | ---: | ---: | ---: | --- |
+| Wall TV | `3 x 0 x 2` | `3 x 2` | `-` | Approximate inner viewport `80 x 40 px` in a `96 x 64 px` authoring render. |
+| Water dispenser | `1 x 1 x 3` | `1 x 3` | `1 x 1` | One front interaction slot. |
+| Coffee machine | `1 x 1 x 2` | `1 x 2` | `-` | Counter-supported; one front interaction slot belongs to the counter. |
+| Desktop printer | `2 x 1 x 1` | `2 x 1` | `-` | Credenza-supported; one pickup slot. |
+| Server rack | `2 x 1 x 3` | `2 x 3` | `2 x 1` | One inspection slot in front. |
+| Vending machine | `2 x 1 x 3` | `2 x 3` | `2 x 1` | One front interaction slot; one extra approach row. |
+| Refrigerator | `2 x 1 x 3` | `2 x 3` | `2 x 1` | One front interaction slot; door swing stays visual in v1. |
+| Arcade game machine | `2 x 2 x 3` | `3 x 3` | `2 x 2` | One front interaction slot; approximate game viewport `48 x 32 px`. |
+| Camera tripod | `1 x 1 x 3` | `1 x 3` | `1 x 1` | Floor equipment. |
+| Studio light | `1 x 1 x 3` | `1 x 3` | `1 x 1` | Floor equipment. |
+| CCTV camera | `1 x 0 x 1` | `1 x 1` | `-` | Wall support. |
+
+#### Workstation and supported equipment
+
+| Asset or family | Locked W x D x H | Render box W x H | Floor footprint | Parent support |
+| --- | ---: | ---: | ---: | --- |
+| Front monitor | `2 x 1 x 2` | `2 x 2` | `-` | Desk surface. |
+| Dual-monitor set | `2 x 1 x 2` | `2 x 2` | `-` | Desk surface. |
+| Keyboard and mouse | `2 x 1 x 1` | `2 x 1` | `-` | Desk surface. |
+| Open laptop | `2 x 1 x 2` | `2 x 2` | `-` | Desk or table surface. |
+| Drawing tablet | `1 x 1 x 1` | `1 x 1` | `-` | Desk surface. |
+| Phone / preview device | `1 x 1 x 1` | `1 x 1` | `-` | Desk surface. |
+| Multi-device preview station | `2 x 1 x 2` | `2 x 2` | `-` | Desk surface. |
+| Network stack | `1 x 1 x 2` | `1 x 2` | `-` | Rack surface. |
+| Desktop speaker | `1 x 1 x 1` | `1 x 1` | `-` | Desk, shelf, or counter surface. |
+
+#### Plants, lighting, safety, and small decor
+
+| Asset or family | Locked W x D x H | Render box W x H | Floor footprint | Support |
+| --- | ---: | ---: | ---: | --- |
+| Small plant | `1 x 1 x 1` | `1 x 2` | `1 x 1` when floor-supported | Floor or supported surface. |
+| Medium potted plant | `1 x 1 x 2` | `1 x 2` | `1 x 1` | Floor. |
+| Tall plant | `1 x 1 x 3` | `2 x 3` | `1 x 1` | Floor; foliage may overhang transparently. |
+| Floor lamp | `1 x 1 x 3` | `1 x 3` | `1 x 1` | Floor. |
+| Desk lamp | `1 x 1 x 1` | `1 x 1` | `-` | Desk surface. |
+| Wall art | `2 x 0 x 1` | `2 x 1` | `-` | Wall. |
+| Wall clock | `1 x 0 x 1` | `1 x 1` | `-` | Wall. |
+| Exit sign | `2 x 0 x 1` | `2 x 1` | `-` | Wall. |
+| Fire extinguisher | `1 x 0 x 2` | `1 x 2` | `-` | Wall. |
+| Waste bin | `1 x 1 x 1` | `1 x 1` | `1 x 1` | Floor. |
+| Parcel box | `1 x 1 x 1` | `1 x 1` | `1 x 1` | Floor. |
+| Coffee cup | `1 x 1 x 1` | `1 x 1` | `-` | Table or counter surface. |
+| Paper stack | `1 x 1 x 1` | `1 x 1` | `-` | Desk, table, or credenza surface. |
+| Small ornament | `1 x 1 x 1` | `1 x 1` | `-` | Shelf or supported surface. |
+| Decorative wall light | `1 x 0 x 1` | `1 x 1` | `-` | Wall. |
+
+#### Planned storage and Phase 2 lounge assets
+
+| Asset or family | Locked W x D x H | Render box W x H | Floor footprint W x D | Planned behavior |
+| --- | ---: | ---: | ---: | --- |
+| Personal locker bank, 15 compartments | `5 x 1 x 3` | `5 x 3` | `5 x 1` | Static decor/personal storage in v1. |
+| Figure display case | `2 x 1 x 3` | `2 x 3` | `2 x 1` | Static decor. |
+| Beanbag | `2 x 2 x 1` | `2 x 2` | `2 x 2` | One lounge slot when Phase 2 is activated. |
+| Board-game table | `3 x 3 x 2` | `3 x 3` | `3 x 3` | Four external seat slots; chairs remain separate. |
+| Reading bookshelf | `2 x 1 x 3` | `2 x 3` | `2 x 1` | One or two reading slots when activated. |
+| Reading chair | `1 x 1 x 2` | `1 x 2` | `1 x 1` | One reading slot. |
+
+### 3.3 Scale and clearance rules
+
+- The scale table is mandatory prompt input, not a suggestion inferred after
+  generation.
+- Preserve the declared `W x D x H` ratio. Scale uniformly; never stretch an
+  asset independently on one axis to fill its render box.
+- Crop source padding, scale the visible object with nearest-neighbor sampling,
+  and add transparent padding to the locked render box.
+- A floor facility reserves its footprint plus one clear approach tile in
+  front. The approach tile is not part of the furniture's physical size.
+- A seated facility reserves its furniture footprint, seat slots, and one
+  reachable entry side. Do not count the entire sofa footprint as one slot.
+- Supported props do not create new floor collision. Their parent surface owns
+  placement and collision.
+- Internal viewports may use pixel dimensions that are fractions of a tile;
+  world placement, render boxes, and footprints remain integer tile values.
+- Validate each large or interactive asset beside a neutral `1 x 1 x 3` adult
+  scale silhouette before approving the asset. The silhouette is a QA overlay,
+  not part of the exported sprite.
+
 ## 4. Asset classes
 
 ### 4.1 Furniture
@@ -536,6 +675,10 @@ After generation:
 ```text
 Create one original orthographic pixel-art [FURNITURE] in ONLY these required
 orientations: [REQUIRED_ORIENTATIONS].
+Use the Office Scale Bible adult reference of 1 wide x 1 deep x 3 high.
+The furniture's locked physical scale is [WIDTH] x [DEPTH] x [HEIGHT] tiles.
+Its target render box is [RENDER_WIDTH] x [RENDER_HEIGHT] tiles and its floor
+footprint is [FOOTPRINT_WIDTH] x [FOOTPRINT_DEPTH] tiles.
 Use exactly one equal cell per listed orientation and do not add extra views.
 Use one exact design and preserve width, depth, height, material, outline,
 lighting direction, and anchor across every view.
@@ -544,6 +687,8 @@ remove front-only props from the back. When side views are requested, rotate
 the object correctly and expose its depth rather than compressing the front.
 Place one isolated object per equal cell on a flat #FF00FF chroma-key background.
 No people, room, text, logos, watermark, perspective, or isometric camera.
+Do not make the furniture wider, shorter, taller, or bulkier merely to fill
+the cell; preserve the declared scale and leave empty chroma-key padding.
 ```
 
 ### 8.2 Screen animation
@@ -693,6 +838,9 @@ Suggested workstation manifest:
 
 ### Geometry
 
+- [ ] The asset uses the locked `W x D x H` entry from the Office Scale Bible.
+- [ ] A neutral `1 x 1 x 3` adult scale overlay confirms the intended height
+      and bulk.
 - [ ] `requiredOrientations` is derived from current map placements and interaction facings.
 - [ ] No cell was generated for an undeclared or hypothetical orientation.
 - [ ] One-view and symmetric objects are not expanded into unnecessary turnarounds.
@@ -703,6 +851,8 @@ Suggested workstation manifest:
 - [ ] Footprint is integer-aligned.
 - [ ] Irregular objects use orientation-specific masks.
 - [ ] Anchor does not change between frames.
+- [ ] The visible object was scaled uniformly and was not stretched to fill
+      the render box.
 
 ### Layering
 

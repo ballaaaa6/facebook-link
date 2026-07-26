@@ -12,6 +12,11 @@ Reduce generation latency without sacrificing usable geometry. Static furniture 
 - No cell labels, text, logos, watermarks, ground planes, cast shadows, or overlapping assets.
 - Generous empty padding around every object.
 - Fixed top-down perspective, light direction, outline weight, and Concept C palette.
+- Every cell manifest includes the locked physical `W x D x H`, integer
+  `renderBox`, integer floor `footprint`, support surface, and anchor from the
+  Office Scale Bible in `docs/art/OFFICE_ASSET_CREATION_GUIDE.md`.
+- All prompts compare the object against the canonical `1 x 1 x 3` standing
+  adult without drawing the adult inside the exported asset cell.
 - Cell order is defined outside the image in a JSON manifest.
 - Failed cells are regenerated as a targeted row or smaller sheet; accepted cells are not regenerated.
 
