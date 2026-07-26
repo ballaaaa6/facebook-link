@@ -10,6 +10,13 @@ This guide defines the repeatable workflow for creating, extracting, registering
 
 The latest office reference is a layered, orthographic scene. It is not a single background image. Every interactive or visible object must be created so it can be placed, rotated, occluded, animated, and validated independently.
 
+The current composition target is
+`assets/art/layout-references/office-modern-operations-target-v2.png`.
+The active modern scene plate remains
+`assets/art/backgrounds/office-c-background-modern-v2.png`.
+The target establishes the modern workstation and chair language; it does not
+replace the layered scene or authorize baking chairs and characters together.
+
 For the office migration, this guide takes precedence over older office-specific sheet layouts. Generic chroma-key extraction and 32 px grid rules remain applicable.
 
 ## 2. Production principles
@@ -93,6 +100,27 @@ Characters are animated actors with independent world anchors:
 The seated anchor is the seat or pelvis contact point, not the center of the visible alpha bounds.
 
 ## 5. Furniture creation workflow
+
+### 5.0 Chair-first calibration
+
+Before generating seated character rows, create one modern ergonomic chair
+family and validate it with a single workstation. The calibration chair uses a
+four-view turnaround (`up`, `down`, `left`, `right`) so the design, seat
+height, caster baseline, and armrest proportions are locked once. Runtime
+initially uses `up` for a chair facing the desk and `down` for a chair facing
+the aisle.
+
+The chair contract is:
+
+- `renderBox`: 1 x 2 tiles.
+- `footprint`: 1 x 1 floor tile.
+- `anchor`: bottom-center at the caster contact point.
+- `seatAnchor`: the pelvis/seat contact point, never the alpha-box center.
+- `foregroundMask`: the backrest or armrest pixels that should occlude the
+  seated lower body.
+
+Do not place the chair inside a character sprite. The chair, seated actor, and
+desk foreground mask remain separate layers.
 
 ### Step 1 — Define the physical contract
 

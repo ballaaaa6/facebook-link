@@ -29,3 +29,30 @@ The final map remains governed by the asset registry, occupancy footprints,
 support-slot rules, facility reservations, route clearance, and automated
 validation. Do not copy pixels or infer exact collision geometry directly from
 the reference image.
+
+## `office-modern-operations-target-v2.png`
+
+- Created: 2026-07-26
+- Status: current visual target for the modernized workstation presentation
+- Source: `Gemini_Generated_Image_8c2wfh8c2wfh8c2w.png`
+- Intended use: guide workstation chair silhouette, desk grouping, employee
+  seating composition, and modern material accents; it is not a runtime
+  background or a source for copied pixels
+
+The active scene background remains
+`assets/art/backgrounds/office-c-background-modern-v2.png`. The target image
+only establishes the destination composition and chair language. Runtime
+geometry continues to come from the integer-grid map and registered, layered
+assets.
+
+Calibration sources created from this target are intentionally not registered
+as runtime assets yet:
+
+- `office-chair-modern-turnaround-v1.png` — four-view modern task-chair trial.
+- `assets/game/characters/einstein/einstein-seated-extension-v1-source.png` —
+  first Einstein front/back seated trial.
+- `assets/game/characters/einstein/einstein-seated-extension-v2-source.png` —
+  targeted retry of the seated strip.
+
+These remain source material until cell counts, anchors, chair occlusion, and a
+single in-game workstation pass are accepted.

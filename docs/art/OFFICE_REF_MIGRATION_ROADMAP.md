@@ -6,6 +6,12 @@ Scope: Visual migration of the office scene to the latest orthographic pixel-art
 
 ## 1. Target direction
 
+The current visual target is
+`assets/art/layout-references/office-modern-operations-target-v2.png`.
+The modern architectural plate remains
+`assets/art/backgrounds/office-c-background-modern-v2.png`; the target image
+does not replace the layered runtime background.
+
 The target office uses a straight orthographic pixel-art presentation:
 
 - Workstations occupy the left and center of the room.
@@ -106,12 +112,18 @@ Acceptance criteria:
 Create only:
 
 - One bare office desk.
-- One office chair.
+- One modern ergonomic office chair family with a locked up-facing and
+  down-facing view; keep left/right turnaround views available for later
+  rotation.
 - One monitor shell.
 - Keyboard and mouse props.
 - One screen theme with three keyframes.
 - CEO seated-back working pose.
 - Desk foreground mask.
+
+Create and validate the chair before generating character seated extensions.
+The chair establishes the seat height, pelvis contact point, lower-body
+occlusion, and the foreground mask that every character must share.
 
 Layer order:
 
