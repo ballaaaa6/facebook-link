@@ -1,0 +1,25 @@
+{
+  "id": "office-window-viewport-v1",
+  "background": "office-c-background-modern-v1",
+  "viewport": {
+    "x": 528,
+    "y": 133,
+    "width": 507,
+    "height": 209
+  },
+  "seasonMode": "four-season",
+  "seasons": [
+    "spring",
+    "summer",
+    "autumn",
+    "winter"
+  ],
+  "timeOfDay": [
+    "dawn",
+    "day",
+    "evening",
+    "night"
+  ],
+  "assetPattern": "office-window-{season}-{timeOfDay}-v2.png",
+  "notes": "Window plates are cropped to the exact inner blue viewport of office-c-background-modern-v1.png. The window frame remains part of the scene background."
+}
