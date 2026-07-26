@@ -122,6 +122,18 @@ The chair contract is:
 Do not place the chair inside a character sprite. The chair, seated actor, and
 desk foreground mask remain separate layers.
 
+The Einstein calibration now establishes the reusable seated reference:
+
+- `assets/game/characters/einstein/einstein-seated-chair-calibration-v1-source.png`
+  locks the chair-to-pelvis relationship.
+- `assets/game/characters/einstein/einstein-seated-working-v1-source.png`
+  contains the accepted character-only rear and front seated silhouettes.
+
+These files are calibration sources until the runtime atlas packer records the
+seated anchor and chair/desk foreground masks. They are the reference for
+future characters; the chair does not need to be regenerated and removed for
+every character.
+
 ### Step 1 — Define the physical contract
 
 Before prompting, write the intended dimensions:
@@ -341,6 +353,30 @@ frames plus two empty cells. Facility orientation is handled by map placement:
 the actor approaches from the front, so no side or back facility animation is
 required for the pilot. Desk furniture remains separate from the character.
 
+### 7.1.1 Seated work extension
+
+The approved seated-work contract adds two character-only rows after the
+facility rows when both desk directions are required:
+
+```text
+working-back-seated
+working-front-seated
+```
+
+With the four facility rows retained, the complete contract is 8x15. Both
+seated rows use six active frames plus two empty cells. The rear row is a
+dead-center back view with symmetric shoulders and naturally hanging legs; it
+must not drift into a three-quarter or side view. The front row is a
+dead-center upright office-chair pose whose lower legs may be hidden by the
+desk foreground mask. Neither row contains a chair, desk, monitor, or floor.
+
+For future characters, use the approved Einstein seated rows and the modern
+chair calibration as references, then generate the character-only rows
+directly. Do not repeat the chair-in-frame-and-remove step unless the new
+character's body proportions cannot match the shared seat height. Calibrate
+one rear frame and one front frame first; expand to six-frame animation rows
+only after both pelvis and visible-leg anchors pass the chair overlay check.
+
 ### 7.2 Character anchors
 
 Standing characters anchor at the feet. Seated characters anchor at the seat or pelvis contact point.
@@ -373,6 +409,13 @@ For the four extension rows, explicitly request:
 - `interact-front`: front-facing hands reaching toward an unseen facility.
 - `inspect-front`: front-facing look/hand inspection of an unseen facility.
 - `lounge-front`: front-facing seated idle; sofa/beanbag is a separate map asset.
+
+For `working-back-seated`, explicitly request a dead-center rear view with
+symmetrical shoulders, hands reaching toward an unseen keyboard, and a compact
+lower-body silhouette with naturally hanging legs. For
+`working-front-seated`, request a dead-center upright office-chair pose with
+legs down but mostly ready for desk occlusion. Use the approved Einstein
+seated rows as the morphology and anchor reference; do not draw the chair.
 
 Always request a single horizontal strip of eight equal cells: six active
 frames followed by two empty cells. Generate one missing row at a time.
@@ -431,6 +474,27 @@ the facility itself is a separate map asset. For lounge-front, show only the
 front-facing seated character; do not draw the sofa or beanbag.
 Use a flat #FF00FF chroma-key background. No furniture, props, logos, text,
 watermark, extra rows, grid lines, or perspective.
+```
+
+### 8.4 Seated work rows from the approved reference
+
+```text
+Use the supplied PetDex-compatible [CHARACTER] atlas as the identity reference
+and the approved Einstein seated rows as the seated morphology and anchor
+reference. Create ONLY the missing [working-back-seated or
+working-front-seated] character row.
+
+Output one horizontal strip of exactly eight equal cells: six active frames and
+two empty cells. Preserve the character's exact head scale, body proportions,
+palette, outline, seated pelvis height, and visible-leg placement from the
+reference. For working-back-seated use a dead-center straight rear view with
+symmetrical shoulders, hands reaching toward an unseen keyboard, and naturally
+hanging legs. For working-front-seated use a dead-center upright front view
+with legs down and lower-body detail ready for desk occlusion.
+
+Use a flat #FF00FF chroma-key background. Character only: do not draw the
+chair, desk, monitor, keyboard, floor, shadows, text, logos, watermark, side
+angles, or perspective.
 ```
 
 ## 9. Naming and manifest conventions

@@ -58,5 +58,7 @@ as runtime assets yet:
 - `assets/game/characters/einstein/einstein-seated-working-v1-source.png` —
   character-only front/back seated working rows after chair removal.
 
-These remain source material until cell counts, anchors, chair occlusion, and a
-single in-game workstation pass are accepted.
+The chair calibration and Einstein seated silhouettes are accepted visual
+references. They remain source material rather than registered runtime assets
+until cell packing, seated anchors, chair occlusion, and a single in-game
+workstation pass are accepted.
