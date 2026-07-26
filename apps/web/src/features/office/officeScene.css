@@ -151,6 +151,27 @@
   image-rendering: pixelated;
 }
 
+.office-stage {
+  position: relative;
+  flex: 0 0 auto;
+  min-width: 0;
+  min-height: 0;
+}
+
+.office-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.office-world[data-scene="modern"] {
+  position: absolute;
+  top: 0;
+  z-index: 5;
+  background: transparent;
+}
+
 .office-background-image,
 .office-window-view,
 .office-clock-face,
@@ -187,6 +208,18 @@
 
 .office-world[data-scene="modern"]::before,
 .office-world[data-scene="modern"] > .window-row {
+  display: none;
+}
+
+.office-world[data-scene="modern"] .office-zone,
+.office-world[data-scene="modern"] .office-lounge-rug {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.office-world[data-scene="modern"] .office-zone::before,
+.office-world[data-scene="modern"] .office-zone-support-break::before {
   display: none;
 }
 
@@ -434,6 +467,5 @@
   .office-workspace > .task-panel { min-height: 300px; overflow: auto; }
   .office-workspace > .team-chat { height: calc(100dvh - 230px); min-height: 380px; }
 }
-
 
 
