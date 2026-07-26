@@ -160,7 +160,8 @@ deferred from the active map and runtime registry until a future layout selects
 specific assets.
 
 When a future layout rotates an existing functional shell, use the two
-orientation-only sheets in `docs/art/ASSET_SHEET_PLAN.md`:
+orientation-only sheets now generated and available in the library (runtime
+integration remains deferred):
 
 - `env-12-facility-side-orientations`: 16 side cells for vending, refrigerator,
   arcade, massage chair, server rack, printer, water dispenser, and coffee

@@ -178,6 +178,26 @@ SHEETS: list[dict[str, Any]] = [
             ["headphone.hook", "desk.nameplate.blank", "monitor.arm", "cable.grommet"],
         ),
     },
+    {
+        "id": "env-12-facility-side-orientations",
+        "source": "facility-side-orientations-sheet-modern-bright-v1-source.png",
+        "cells": cells(
+            ["vending.machine.modern.side-left", "vending.machine.modern.side-right", "refrigerator.modern.side-left", "refrigerator.modern.side-right"],
+            ["machine.game.arcade.modern.side-left", "machine.game.arcade.modern.side-right", "chair.massage.modern.side-left", "chair.massage.modern.side-right"],
+            ["server.rack.noc.side-left", "server.rack.noc.side-right", "printer.desktop.side-left", "printer.desktop.side-right"],
+            ["dispenser.water.side-left", "dispenser.water.side-right", "machine.coffee.side-left", "machine.coffee.side-right"],
+        ),
+    },
+    {
+        "id": "env-13-lounge-storage-side-orientations",
+        "source": "lounge-storage-side-orientations-sheet-modern-bright-v1-source.png",
+        "cells": cells(
+            ["sofa.modern.three-seat.side-left", "sofa.modern.three-seat.side-right", "sofa.modern.two-seat.side-left", "sofa.modern.two-seat.side-right"],
+            ["cabinet.storage.low.side-left", "cabinet.storage.low.side-right", "cabinet.storage.tall.side-left", "cabinet.storage.tall.side-right"],
+            ["shelf.storage.tall.side-left", "shelf.storage.tall.side-right", "cart.utility.side-left", "cart.utility.side-right"],
+            ["table.board-game.side-left", "table.board-game.side-right", "partition.glass.side-left", "partition.glass.side-right"],
+        ),
+    },
 ]
 
 
@@ -349,6 +369,13 @@ def base_asset_id(asset_id: str) -> str:
 
 def geometry_for(asset_id: str) -> dict[str, Any]:
     base_id = base_asset_id(asset_id)
+    orientation: str | None = None
+    if base_id.endswith(".side-left"):
+        orientation = "left"
+        base_id = base_id[: -len(".side-left")]
+    elif base_id.endswith(".side-right"):
+        orientation = "right"
+        base_id = base_id[: -len(".side-right")]
     if base_id.startswith("screen.theme."):
         base_id = "screen"
     if base_id in GEOMETRY_OVERRIDES:
@@ -369,6 +396,9 @@ def geometry_for(asset_id: str) -> dict[str, Any]:
             result = geometry(1, 1, 1, supports=DESK_SURFACES)
     if asset_id.endswith((".a", ".b", ".c", ".d")):
         result["animation"] = {"type": "seam-loop", "frames": ["a", "b", "c", "d"]}
+    if orientation:
+        result["requiredOrientations"] = [orientation]
+        result["orientationOf"] = base_id
     return result
 
 

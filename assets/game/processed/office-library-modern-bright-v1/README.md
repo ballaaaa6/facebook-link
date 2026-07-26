@@ -1,8 +1,8 @@
 # Modern Bright Office Asset Library v1
 
-This directory contains extracted, alpha-keyed candidates from the twelve
-approved modern-bright office source sheets plus the four-view modern office
-chair turnaround.
+This directory contains extracted, alpha-keyed candidates from the fourteen
+approved modern-bright office source sheets, including the four-view modern
+office chair turnaround and two side-orientation extension sheets.
 
 ## Status
 
@@ -36,3 +36,10 @@ The latest library-only additions are:
 - `env-09-phase2-completion-architecture`
 - `env-10-storage-operations-detail`
 - `env-11-comfort-personal-detail`
+- `env-12-facility-side-orientations` (exact left/right turns of existing facility shells)
+- `env-13-lounge-storage-side-orientations` (exact left/right turns of existing lounge/storage shells)
+
+The env-12 and env-13 assets add no new furniture identities or slots. Their
+`orientationOf` metadata points back to the existing shell and preserves its
+physical scale, footprint, supports, anchor, and layer. Runtime integration
+remains deferred until a rotated map placement needs these views.

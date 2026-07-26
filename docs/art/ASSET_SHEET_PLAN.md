@@ -162,6 +162,10 @@ regenerate only the failed row/cells and preserve accepted cells.
 
 ### Orientation extension sheets (env-12 and env-13)
 
+Status: generated and extracted into the office library. These sheets contain
+only exact side turns of accepted shells; they do not introduce new furniture
+identities, slots, props, or runtime registrations.
+
 These sheets are not new furniture families. They are additional orthographic
 views of accepted assets already present in the library. Each row contains the
 same existing shell rendered from `side-left` and `side-right`; the source
