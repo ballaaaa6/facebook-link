@@ -12,6 +12,9 @@ Reduce generation latency without sacrificing usable geometry. Static furniture 
 - No cell labels, text, logos, watermarks, ground planes, cast shadows, or overlapping assets.
 - Generous empty padding around every object.
 - Fixed top-down perspective, light direction, outline weight, and Concept C palette.
+- Furniture views are straight orthographic only. A side view is an exact
+  90-degree turn; oblique, diagonal, three-quarter, and perspective views are
+  rejected.
 - Every cell manifest includes the locked physical `W x D x H`, integer
   `renderBox`, integer floor `footprint`, support surface, and anchor from the
   Office Scale Bible in `docs/art/OFFICE_ASSET_CREATION_GUIDE.md`.
@@ -158,6 +161,9 @@ stable anchors; no facility prop is baked into a character cell.
 - Bright accents belong to declared displays, indicators, buttons, or trim;
   they must not change the shell silhouette or collision footprint between
   frames.
+- Display content uses bright high-value colors such as warm white, pale sky,
+  cyan, mint, teal, lime, amber, coral, and lavender. Mostly black, navy, or
+  dark-blue screens are not accepted for the modern-bright skin.
 - Theme A and B initially use palette maps, material tokens, lighting overlays, and UI variables.
 - Shared geometry and animation manifests remain unchanged.
 - Only genuinely theme-specific props are generated later, preferably one controlled sheet per theme.

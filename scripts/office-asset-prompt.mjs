@@ -83,6 +83,12 @@ Use exactly one equal cell per orientation. Preserve one design, physical scale,
 silhouette, anchor, material, outline, and upper-left lighting across all views.
 Use lighter graphite, pale slate, brushed metal, warm white, and controlled
 cyan, teal, lime, amber, or coral accents.
+All views are straight orthographic: front/back face the camera directly and
+left/right are exact 90-degree turns. Never use an oblique, diagonal,
+three-quarter, tilted, or perspective view.
+If the asset has a screen or display, use a bright high-value content palette
+of warm white, pale sky, cyan, mint, teal, lime, amber, coral, or lavender;
+never use a mostly black, navy, or dark-blue display background.
 Place one isolated object per cell on a perfectly flat #FF00FF chroma-key
 background. Leave generous empty padding. Do not enlarge or distort the object
 to fill the cell. No people, room, floor, text, logo, watermark, cast shadow,

@@ -144,3 +144,22 @@ See `facility-modern-scale-locked-v1/facility-modern-scale-locked-manifest.json`
 for the cell-to-scale mapping and
 `facility-modern-scale-locked-v1/facility-modern-scale-locked-sheet-v1-alpha.png`
 for the cleaned preview.
+
+## `facility-modern-front-bright-v1/`
+
+- Created: 2026-07-26
+- Status: calibration-only; not registered as a runtime atlas
+- Purpose: enforce the final straight-view and bright-screen rules for the
+  modern Facility v1 set.
+
+All cells use straight front orthographic views. If a side view is needed
+later, it must be an exact 90-degree view; oblique, three-quarter, diagonal,
+tilted, and perspective views are rejected. TV, vending, and arcade rows keep
+the `A-B-C-D-A` seam-loop contract. Display panels use warm white, pale sky,
+light cyan, mint, teal, lime, amber, coral, and lavender instead of mostly
+black/navy/dark-blue backgrounds.
+
+See `facility-modern-front-bright-v1/facility-modern-front-bright-manifest.json`
+for cell mapping and physical scales, and
+`facility-modern-front-bright-v1/facility-modern-front-bright-sheet-v1-alpha.png`
+for the cleaned preview.

@@ -43,6 +43,8 @@ Lock these values before creating production assets:
 - Consistent upper-left light direction.
 - No baked runtime labels, HUD, task text, or branded UI.
 - No perspective convergence or isometric camera.
+- No oblique, three-quarter, 15°, 30°, or 45° furniture views. The default
+  view is straight orthographic; a side view is a deliberate 90° turn.
 - No transparent padding changes between animation frames.
 
 Use the same pixel scale for every view of one asset. Do not create the front at one camera distance and the back at another.
@@ -62,6 +64,11 @@ studio, not as a second unrelated art style:
   simple readable silhouettes.
 - Do not use neon glow, gradients, glossy reflections, brands, or random
   rainbow changes as substitutes for authored screen motion.
+- Screen and display content must use a bright high-value palette: warm white,
+  pale sky, cyan, mint, teal, lime, amber, coral, or lavender. Do not use a
+  mostly black, navy, dark-blue, or near-black screen background. Dark outlines
+  may remain on the furniture shell, but the active display must stay readable
+  and visibly bright at 1:1.
 
 The shell palette is static across all frames. Only the declared local display,
 indicator, paper, steam, or light region may change.
@@ -367,6 +374,15 @@ targeted sheet when a real map placement requires it.
 Mirroring is safe only when it does not reverse text, controls, door hinges,
 asymmetric arms, attached props, material highlights, or the locked upper-left
 light direction. If any of those would look wrong, generate both side views.
+
+Orientation is discrete, never approximate:
+
+- `front` and `back` are straight orthographic views.
+- `left` and `right` are straight 90-degree side views.
+- Do not generate a three-quarter, oblique, diagonal, tilted, or perspective
+  view as a compromise between them.
+- If a prompt or source sheet produces an angled object, reject that cell and
+  regenerate it as the declared straight view.
 
 Examples:
 
@@ -717,6 +733,9 @@ remove front-only props from the back. When side views are requested, rotate
 the object correctly and expose its depth rather than compressing the front.
 Place one isolated object per equal cell on a flat #FF00FF chroma-key background.
 No people, room, text, logos, watermark, perspective, or isometric camera.
+All views must be straight orthographic: front/back face the camera directly,
+and left/right are exact 90-degree turns. Never use an oblique or three-quarter
+view.
 Do not make the furniture wider, shorter, taller, or bulkier merely to fill
 the cell; preserve the declared scale and leave empty chroma-key padding.
 ```
@@ -727,6 +746,9 @@ the cell; preserve the declared scale and leave empty chroma-key padding.
 Create a screen-content-only sprite strip for a fixed [WIDTH]x[HEIGHT] viewport.
 Produce four keyframes A, B, C, D of one [THEME] dashboard, display, or game.
 Keep the viewport, toolbar, sidebar, and major layout fixed.
+Use a bright high-value display palette with warm white, pale sky, cyan, mint,
+teal, lime, amber, coral, or lavender. Do not use a mostly black, navy, or
+dark-blue screen background.
 Animate one large readable region so 20–35% of the pixels visibly change
 between adjacent frames.
 Design the sequence as one continuous seam loop:
@@ -876,6 +898,9 @@ Suggested workstation manifest:
 - [ ] One-view and symmetric objects are not expanded into unnecessary turnarounds.
 - [ ] Left/right mirroring preserves controls, hinges, props, highlights, and lighting direction.
 - [ ] All views use the same intended object design.
+- [ ] Every view is straight orthographic; side views are exact 90-degree turns.
+- [ ] No oblique, three-quarter, diagonal, tilted, or perspective cell was
+      accepted.
 - [ ] Front/back width matches.
 - [ ] Side depth matches.
 - [ ] Footprint is integer-aligned.
@@ -901,6 +926,8 @@ Suggested workstation manifest:
 - [ ] Overlay frames do not redraw the furniture shell.
 - [ ] Animated assets keep a fixed silhouette.
 - [ ] Screen movement is visible at final 1:1 size.
+- [ ] Screen content is bright and high-value at 1:1; it is not mostly black,
+      navy, or dark-blue.
 - [ ] Screen playback uses `A-B-C-D-A`.
 - [ ] The `D -> A` endpoint seam is visually continuous.
 - [ ] Adjacent frames tell one continuous scene, status sequence, or game.
