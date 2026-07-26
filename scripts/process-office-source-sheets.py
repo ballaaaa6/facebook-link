@@ -243,8 +243,10 @@ GEOMETRY_ALIASES = {
 }
 
 GEOMETRY_OVERRIDES = {
-    "desk.workstation.front": geometry(3, 2, 2, render_width=3, render_height=2, supports=["floor"], anchor="center", layer="furniture", orientations=["front", "back"]),
-    "desk.workstation.back": geometry(3, 2, 2, render_width=3, render_height=2, supports=["floor"], anchor="center", layer="furniture", orientations=["front", "back"]),
+    "desk.workstation.front": geometry(3, 2, 2, render_width=3, render_height=2, supports=["floor"], anchor="center", layer="furniture", orientations=["front"]),
+    "desk.workstation.back": geometry(3, 2, 2, render_width=3, render_height=2, supports=["floor"], anchor="center", layer="furniture", orientations=["back"]),
+    "monitor.front": geometry(2, 1, 2, supports=["desk-surface"], orientations=["front"]),
+    "monitor.back": geometry(2, 1, 2, supports=["desk-surface"], orientations=["back"]),
     "pc.case": geometry(1, 1, 2, supports=["floor"], layer="equipment"),
     "cable.tray": geometry(2, 1, 1, supports=["desk-surface"], layer="equipment"),
     "power.strip": geometry(2, 1, 1, supports=["floor", "desk-surface"], layer="equipment"),
@@ -287,10 +289,10 @@ GEOMETRY_OVERRIDES = {
     "rug.office": geometry(3, 2, 1, render_width=3, render_height=2, footprint_width=3, footprint_depth=2, supports=["floor"], anchor="center", layer="decor"),
     "table.side": geometry(2, 2, 1, footprint_width=2, footprint_depth=2, supports=["floor"], anchor="center", layer="furniture"),
     "pouf.lounge": geometry(2, 2, 1, footprint_width=2, footprint_depth=2, supports=["floor"], anchor="center", layer="furniture"),
-    "chair.office.modern.back": geometry(1, 1, 2, render_height=2, supports=["floor"], layer="furniture", orientations=["front", "back", "side-left", "side-right"]),
-    "chair.office.modern.front": geometry(1, 1, 2, render_height=2, supports=["floor"], layer="furniture", orientations=["front", "back", "side-left", "side-right"]),
-    "chair.office.modern.side-left": geometry(1, 1, 2, render_height=2, supports=["floor"], layer="furniture", orientations=["front", "back", "side-left", "side-right"]),
-    "chair.office.modern.side-right": geometry(1, 1, 2, render_height=2, supports=["floor"], layer="furniture", orientations=["front", "back", "side-left", "side-right"]),
+    "chair.office.modern.back": geometry(1, 1, 2, render_height=2, supports=["floor"], layer="furniture", orientations=["back"]),
+    "chair.office.modern.front": geometry(1, 1, 2, render_height=2, supports=["floor"], layer="furniture", orientations=["front"]),
+    "chair.office.modern.side-left": geometry(1, 1, 2, render_height=2, supports=["floor"], layer="furniture", orientations=["left"]),
+    "chair.office.modern.side-right": geometry(1, 1, 2, render_height=2, supports=["floor"], layer="furniture", orientations=["right"]),
     "desk.workstation.left": geometry(3, 2, 2, render_width=3, render_height=2, supports=["floor"], anchor="center", layer="furniture", orientations=["left"]),
     "desk.workstation.right": geometry(3, 2, 2, render_width=3, render_height=2, supports=["floor"], anchor="center", layer="furniture", orientations=["right"]),
     "monitor.shell.left": geometry(2, 1, 2, supports=["desk-surface"], orientations=["left"]),

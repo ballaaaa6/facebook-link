@@ -66,8 +66,7 @@
           "anchor": "center",
           "layer": "furniture",
           "requiredOrientations": [
-            "front",
-            "back"
+            "front"
           ]
         },
         {
@@ -113,7 +112,6 @@
           "anchor": "center",
           "layer": "furniture",
           "requiredOrientations": [
-            "front",
             "back"
           ]
         },
@@ -150,15 +148,15 @@
             "width": 2,
             "height": 2
           },
-          "layer": "equipment",
-          "anchor": "bottom-center",
-          "supports": [
-            "desk-surface"
-          ],
           "footprint": {
             "width": 2,
             "depth": 1
           },
+          "supports": [
+            "desk-surface"
+          ],
+          "anchor": "bottom-center",
+          "layer": "equipment",
           "requiredOrientations": [
             "front"
           ]
@@ -196,17 +194,17 @@
             "width": 2,
             "height": 2
           },
-          "layer": "equipment",
-          "anchor": "bottom-center",
-          "supports": [
-            "desk-surface"
-          ],
           "footprint": {
             "width": 2,
             "depth": 1
           },
+          "supports": [
+            "desk-surface"
+          ],
+          "anchor": "bottom-center",
+          "layer": "equipment",
           "requiredOrientations": [
-            "front"
+            "back"
           ]
         },
         {
@@ -6731,10 +6729,7 @@
           "anchor": "bottom-center",
           "layer": "furniture",
           "requiredOrientations": [
-            "front",
-            "back",
-            "side-left",
-            "side-right"
+            "back"
           ]
         },
         {
@@ -6780,10 +6775,7 @@
           "anchor": "bottom-center",
           "layer": "furniture",
           "requiredOrientations": [
-            "front",
-            "back",
-            "side-left",
-            "side-right"
+            "front"
           ]
         },
         {
@@ -6829,10 +6821,7 @@
           "anchor": "bottom-center",
           "layer": "furniture",
           "requiredOrientations": [
-            "front",
-            "back",
-            "side-left",
-            "side-right"
+            "left"
           ]
         },
         {
@@ -6878,10 +6867,7 @@
           "anchor": "bottom-center",
           "layer": "furniture",
           "requiredOrientations": [
-            "front",
-            "back",
-            "side-left",
-            "side-right"
+            "right"
           ]
         }
       ]
