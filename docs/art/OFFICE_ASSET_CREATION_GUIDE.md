@@ -157,7 +157,38 @@ Before prompting, write the intended dimensions:
 
 ### Step 2 — Create the turnaround
 
-For reusable furniture, create one consistent design in four views:
+Declare `requiredOrientations` from the active map before prompting. The
+contact-sheet grid does not require every object to have four views.
+
+Use this decision gate:
+
+| Required views | Use when |
+| ---: | --- |
+| 1 | The object is wall-mounted, rotationally symmetric, fixed against a wall/counter, or used by the map from one direction only. |
+| 2 | The map needs front/back, or a rectangular object needs horizontal/vertical footprints only. |
+| 3 | The map needs front, back, and one side view, and left/right mirroring is visually safe. |
+| 4 | The object is genuinely rotatable, asymmetric, or needs independent left/right collision or occlusion geometry. |
+
+Read workstation `facing`, facility `approach`, `interactionFacing`, object
+placement, and footprint requirements before choosing the list. Do not
+generate an orientation for a future hypothetical layout. Add it later as a
+targeted sheet when a real map placement requires it.
+
+Mirroring is safe only when it does not reverse text, controls, door hinges,
+asymmetric arms, attached props, material highlights, or the locked upper-left
+light direction. If any of those would look wrong, generate both side views.
+
+Examples:
+
+- Wall TV, vending machine, refrigerator, water dispenser, server rack,
+  printer, coffee machine, game machine, wall art, and extinguisher normally
+  use one front view when their placement is fixed.
+- Round tables, cups, bins, and visually rotationally symmetric plants use one
+  view.
+- A café chair may use front, back, and one mirror-safe side view.
+- A reusable work desk or office-chair calibration may use all four views.
+
+When four views are actually required, create one consistent design in:
 
 ```text
 front
@@ -189,7 +220,8 @@ Required turnaround invariants:
 After generation:
 
 1. Remove the chroma-key background.
-2. Crop each orientation into its own cell.
+2. Crop each declared required orientation into its own cell; reject
+   undeclared extra views.
 3. Preserve the dark outline.
 4. Normalize to the declared render box.
 5. Align the declared anchor to the integer grid.
@@ -468,12 +500,14 @@ After generation:
 ### 8.1 Furniture turnaround
 
 ```text
-Create one original orthographic pixel-art [FURNITURE] as a four-view turnaround:
-front, back, left side, right side.
+Create one original orthographic pixel-art [FURNITURE] in ONLY these required
+orientations: [REQUIRED_ORIENTATIONS].
+Use exactly one equal cell per listed orientation and do not add extra views.
 Use one exact design and preserve width, depth, height, material, outline,
 lighting direction, and anchor across every view.
-The front and back have the same width. The side views correctly rotate the
-object and expose its depth. Front-only props must not appear in the back view.
+When both front and back are requested, preserve the same overall width and
+remove front-only props from the back. When side views are requested, rotate
+the object correctly and expose its depth rather than compressing the front.
 Place one isolated object per equal cell on a flat #FF00FF chroma-key background.
 No people, room, text, logos, watermark, perspective, or isometric camera.
 ```
@@ -568,6 +602,7 @@ Suggested furniture manifest:
 ```json
 {
   "id": "office-desk-v1",
+  "requiredOrientations": ["front", "back", "left", "right"],
   "orientations": {
     "front": "office-desk-v1-front",
     "back": "office-desk-v1-back",
@@ -582,6 +617,22 @@ Suggested furniture manifest:
   },
   "anchor": "center",
   "foregroundMask": "office-desk-v1-front-mask"
+}
+```
+
+A fixed front-facing facility declares only the orientation it uses:
+
+```json
+{
+  "id": "vending-machine-v1",
+  "requiredOrientations": ["front"],
+  "orientations": {
+    "front": "vending-machine-v1-front"
+  },
+  "footprints": {
+    "front": { "width": 2, "depth": 1 }
+  },
+  "anchor": "bottom-center"
 }
 ```
 
@@ -604,6 +655,10 @@ Suggested workstation manifest:
 
 ### Geometry
 
+- [ ] `requiredOrientations` is derived from current map placements and interaction facings.
+- [ ] No cell was generated for an undeclared or hypothetical orientation.
+- [ ] One-view and symmetric objects are not expanded into unnecessary turnarounds.
+- [ ] Left/right mirroring preserves controls, hinges, props, highlights, and lighting direction.
 - [ ] All views use the same intended object design.
 - [ ] Front/back width matches.
 - [ ] Side depth matches.

@@ -55,6 +55,12 @@ assets, not additional generation work. Every new cell still needs an integer
 render box, floor footprint, approach anchor, interaction-facing metadata, and
 a separate overlay where its activity changes.
 
+The six-cell count assumes one map-required orientation for each fixed Facility
+v1 shell. Vending, refrigerator, massage chair, game machine, and both sofa
+footprint variants are placed in authored directions. Do not generate extra
+side or rear views unless the expanded 15-workstation map introduces an actual
+placement or interaction-facing requirement for them.
+
 ### Decorative motion plan
 
 The active Office page targets 43 reusable base asset types: 29

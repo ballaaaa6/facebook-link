@@ -15,9 +15,30 @@ Reduce generation latency without sacrificing usable geometry. Static furniture 
 - Cell order is defined outside the image in a JSON manifest.
 - Failed cells are regenerated as a targeted row or smaller sheet; accepted cells are not regenerated.
 
+## Orientation Allocation Gate
+
+Every manifest declares `requiredOrientations` from current map placements,
+workstation facing, facility approach, interaction facing, footprint, and
+occlusion needs before cells are assigned:
+
+- Use one cell for a fixed-front, wall-mounted, rotationally symmetric, or
+  single-direction object.
+- Use two cells when only front/back or horizontal/vertical footprints are
+  required.
+- Use three cells for front, back, and one side only when runtime mirroring is
+  safe.
+- Use four cells only for a genuinely rotatable or asymmetric asset whose
+  left/right geometry cannot be mirrored safely.
+
+The 4x4 sheet is batching capacity, not an instruction to invent four views
+for every object. Never spend cells on an orientation that has no active map
+placement or interaction contract. If a later layout needs another view,
+generate that view as a targeted sheet without replacing accepted cells.
+
 ## Environment Sheets
 
-1. `env-01-core-furniture`: four furniture families by four orientations.
+1. `env-01-core-furniture`: reusable core furniture families using only their
+   manifest-required orientations, up to four views per family.
 2. `env-02-workstations`: computer, monitor, laptop, printer families by idle/active/waiting/error states.
 3. `env-03-research-creative`: sixteen zone-specific research and creative props.
 4. `env-04-release-noc`: sixteen publishing, QA, networking, and server props.
