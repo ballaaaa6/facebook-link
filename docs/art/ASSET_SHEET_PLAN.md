@@ -61,6 +61,104 @@ generate that view as a targeted sheet without replacing accepted cells.
 9. `office-furniture-c-v2`: targeted Concept C raster replacements for visible
    furniture that cannot be assembled from accepted production assets.
 
+### Deferred library expansion sheets (env-09 through env-11)
+
+The first eight environment sheets and the modern office chair turnaround are
+already extracted into the library. The following three sheets are the next
+controlled generation batch. They are library-only additions: they do not
+increase Facility v1 reservation capacity, alter the current map, or authorize
+runtime imports by themselves.
+
+All three sheets use a 4x4 logical grid, modern-bright Concept C raster style,
+straight orthographic views, a flat `#ff00ff` source background, and no text,
+logos, labels, or baked characters. Cell IDs below are the manifest IDs to use
+when the sheets are generated and extracted.
+
+#### `env-09-phase2-completion-architecture`
+
+Purpose: close the formal Phase 2 orientation/theme gap and supply the
+architecture/safety pieces most likely to be needed when a future layout adds
+partitions and shared walls.
+
+| Cells | IDs | Locked size / support |
+| --- | --- | --- |
+| 1–2 | `desk.workstation.left`, `desk.workstation.right` | `3x2x2`, floor |
+| 3–4 | `monitor.shell.left`, `monitor.shell.right` | `2x1x2`, desk surface |
+| 5–8 | `screen.theme.system.a` … `screen.theme.system.d` | `2x0x1`, monitor viewport overlay |
+| 9 | `light.wall.decorative` | `1x0x1`, wall |
+| 10 | `ornament.small` | `1x1x1`, desk/table/counter/rack surface |
+| 11 | `partition.glass` | `4x1x3`, floor |
+| 12 | `whiteboard.mobile` | `3x1x3`, floor |
+| 13 | `pinboard.team` | `3x0x2`, wall |
+| 14 | `sign.exit.modern` | `1x0x1`, wall |
+| 15 | `emergency.light.wall` | `1x0x1`, wall |
+| 16 | `cable.cover.floor` | `2x1x1`, floor |
+
+The four system frames are one seam loop, not four different dashboards. Keep
+the monitor shell and inner viewport fixed; only local CPU/memory/status
+content changes.
+
+#### `env-10-storage-operations-detail`
+
+Purpose: storage, safety, and operations details for zone edges, support
+rooms, and future facility approaches. These are non-reservation props unless
+a later interaction contract explicitly promotes one.
+
+| Cells | IDs | Locked size / support |
+| --- | --- | --- |
+| 1 | `cabinet.storage.low` | `2x1x2`, floor |
+| 2 | `cabinet.storage.tall` | `2x1x3`, floor |
+| 3 | `cart.utility` | `2x1x2`, floor |
+| 4 | `shelf.storage.tall` | `2x1x3`, floor |
+| 5 | `drawer.archive` | `2x1x2`, floor |
+| 6 | `bin.waste.modern` | `1x1x1`, floor |
+| 7 | `bin.recycling.modern` | `1x1x1`, floor |
+| 8 | `bin.paper.modern` | `1x1x1`, floor |
+| 9 | `mail.sorter` | `2x1x2`, desk/counter surface |
+| 10 | `document.tray` | `1x1x1`, desk/table/counter surface |
+| 11 | `label.box` | `1x1x1`, desk/table/counter surface |
+| 12 | `first.aid.wall` | `2x0x1`, wall |
+| 13 | `extinguisher.wall.modern` | `1x0x2`, wall |
+| 14 | `cctv.camera.wall` | `1x0x1`, wall |
+| 15 | `smoke.detector.wall` | `1x0x1`, wall |
+| 16 | `clock.digital` | `2x0x1`, wall |
+
+Use blank package faces and abstract indicator marks only. Do not put readable
+brand names, safety claims, or UI copy into these small props.
+
+#### `env-11-comfort-personal-detail`
+
+Purpose: small comfort and personalisation props that can be attached to
+desks, lounge furniture, walls, or zone edges without changing navigation or
+reservation geometry.
+
+| Cells | IDs | Locked size / support |
+| --- | --- | --- |
+| 1 | `plant.hanging` | `2x0x2`, wall |
+| 2 | `plant.corner.large` | `2x1x3`, floor |
+| 3 | `planter.round` | `1x1x1`, floor/table surface |
+| 4 | `cushion.lounge` | `1x1x1`, sofa/beanbag surface |
+| 5 | `footrest.office` | `1x1x1`, floor/desk vicinity |
+| 6 | `stool.side` | `1x1x2`, floor |
+| 7 | `coat.hooks.wall` | `2x0x1`, wall |
+| 8 | `bag.hook.wall` | `1x0x1`, wall |
+| 9 | `mug.stack` | `1x1x1`, desk/counter surface |
+| 10 | `water.cup.stack` | `1x1x1`, counter surface |
+| 11 | `stationery.cup` | `1x1x1`, desk surface |
+| 12 | `pen.stand` | `1x1x1`, desk surface |
+| 13 | `headphone.hook` | `1x0x1`, wall/desk surface |
+| 14 | `desk.nameplate.blank` | `2x0x1`, desk surface; blank face |
+| 15 | `monitor.arm` | `1x1x2`, desk surface |
+| 16 | `cable.grommet` | `1x1x1`, desk surface |
+
+Personal-detail props must remain isolated objects. Do not bake them into the
+desk, chair, monitor, or character; attachment and randomisation happen later
+through surface slots.
+
+Generation order is fixed: `env-09` first because it closes the formal Phase 2
+gap, then `env-10`, then `env-11`. If a sheet fails its calibration gate,
+regenerate only the failed row/cells and preserve accepted cells.
+
 Floors, walls, rugs, glass partitions, and simple architectural tiles are generated deterministically from the locked palette so their edges tile perfectly. They are not delegated to image generation.
 
 Code may render non-pictorial architecture such as floor fields, rugs, route

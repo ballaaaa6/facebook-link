@@ -136,6 +136,28 @@ Phase 2 may add beanbags (4 slots), a board-game table (4 slots), a reading
 area (1–2 slots), a second massage chair, a second game machine, and a second
 coffee machine.
 
+Those Phase 2 facility additions already have reusable library candidates in
+the modern-bright source set: `beanbag.lounge`, `table.board-game`,
+`bookshelf.reading`, `chair.reading`, `chair.massage.modern`,
+`machine.game.arcade.modern`, and the coffee-machine loop. Reuse those assets;
+do not generate duplicates merely to represent the second placement.
+
+The next library-only decoration batch is documented in
+`docs/art/ASSET_SHEET_PLAN.md` as three controlled sheets:
+
+- `env-09-phase2-completion-architecture`: missing formal Phase 2 side views,
+  the fifth system/management screen theme, and the three planned catalog gaps
+  (`light.wall.decorative`, `ornament.small`, `partition.glass`) plus shared
+  wall/safety props.
+- `env-10-storage-operations-detail`: storage, waste/recycling, first-aid,
+  safety, CCTV, and support-room detail.
+- `env-11-comfort-personal-detail`: small plants, lounge comfort, desk
+  personalisation, and cable/headphone details.
+
+These sheets add 48 library cells but zero reservation slots. They remain
+deferred from the active map and runtime registry until a future layout selects
+specific assets.
+
 ## Core Furniture
 
 | Asset | Initial quantity | Notes |
