@@ -1,4 +1,4 @@
-import officeBackground from "../../../../../../assets/art/backgrounds/office-c-background-modern-v2.png";
+import officeBackground from "../../../../../../assets/art/backgrounds/office-c-background-modern-v3.png";
 import clockFace from "../../../../../../assets/art/props/clock/clock-face-v1.png";
 import clockHourHand from "../../../../../../assets/art/props/clock/clock-hour-hand-runtime-v1.png";
 import clockMinuteHand from "../../../../../../assets/art/props/clock/clock-minute-hand-runtime-v1.png";
