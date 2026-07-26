@@ -159,6 +159,19 @@ These sheets add 48 library cells but zero reservation slots. They remain
 deferred from the active map and runtime registry until a future layout selects
 specific assets.
 
+When a future layout rotates an existing functional shell, use the two
+orientation-only sheets in `docs/art/ASSET_SHEET_PLAN.md`:
+
+- `env-12-facility-side-orientations`: 16 side cells for vending, refrigerator,
+  arcade, massage chair, server rack, printer, water dispenser, and coffee
+  machine shells.
+- `env-13-lounge-storage-side-orientations`: 16 side cells for sofas, storage
+  cabinets, shelf, utility cart, board-game table, and glass partition shells.
+
+These are turns of existing assets, not new furniture identities. They add zero
+Facility v1 reservation slots and should be generated only when a rotated
+placement requires them.
+
 ## Core Furniture
 
 | Asset | Initial quantity | Notes |

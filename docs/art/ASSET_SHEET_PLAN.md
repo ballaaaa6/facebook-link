@@ -160,6 +160,68 @@ Generation order was fixed as `env-09`, then `env-10`, then `env-11` because
 `env-09` closes the formal Phase 2 gap. If a future replacement is needed,
 regenerate only the failed row/cells and preserve accepted cells.
 
+### Orientation extension sheets (env-12 and env-13)
+
+These sheets are not new furniture families. They are additional orthographic
+views of accepted assets already present in the library. Each row contains the
+same existing shell rendered from `side-left` and `side-right`; the source
+front view remains the identity anchor.
+
+Orientation extensions must preserve the original asset's:
+
+- physical `W x D x H`, render box, floor footprint, and support surface;
+- palette, material treatment, outline weight, and lighting direction;
+- interaction-facing height and bottom/center anchor;
+- animation shell silhouette, when the source asset owns a screen or loop.
+
+Do not bake characters, approach markers, interaction icons, or new props into a
+side cell. A side view is accepted only when it is an exact turn of an existing
+asset, not a redesigned variant. Runtime may mirror a side view only after the
+asset is proven left/right symmetric; keep both cells for asymmetric shells.
+
+#### `env-12-facility-side-orientations`
+
+16 cells, eight existing Facility/operations shells × two side views:
+
+| Cells | Existing source asset | Physical size | Side cells |
+| --- | --- | --- | --- |
+| 1–2 | `vending.machine.modern` | `2x1x3` | `side-left`, `side-right` |
+| 3–4 | `refrigerator.modern` | `2x1x3` | `side-left`, `side-right` |
+| 5–6 | `machine.game.arcade.modern` | `2x2x3` | `side-left`, `side-right` |
+| 7–8 | `chair.massage.modern` | `2x2x2` | `side-left`, `side-right` |
+| 9–10 | `server.rack.noc` | `2x1x3` | `side-left`, `side-right` |
+| 11–12 | `printer.desktop` shell | `2x1x1` | `side-left`, `side-right` |
+| 13–14 | `dispenser.water` shell | `1x1x3` | `side-left`, `side-right` |
+| 15–16 | `machine.coffee` shell | `1x1x2` | `side-left`, `side-right` |
+
+Mechanical/ambient frame sets are not redrawn here. If one of these shells is
+later animated, the existing A–D content frames remain overlays on the same
+side-stable shell.
+
+#### `env-13-lounge-storage-side-orientations`
+
+16 cells, eight existing lounge/storage/table shells × two side views:
+
+| Cells | Existing source asset | Physical size | Side cells |
+| --- | --- | --- | --- |
+| 1–2 | `sofa.modern.three-seat` | `4x2x2` | `side-left`, `side-right` |
+| 3–4 | `sofa.modern.two-seat` | `3x2x2` | `side-left`, `side-right` |
+| 5–6 | `cabinet.storage.low` | `2x1x2` | `side-left`, `side-right` |
+| 7–8 | `cabinet.storage.tall` | `2x1x3` | `side-left`, `side-right` |
+| 9–10 | `shelf.storage.tall` | `2x1x3` | `side-left`, `side-right` |
+| 11–12 | `cart.utility` | `2x1x2` | `side-left`, `side-right` |
+| 13–14 | `table.board-game` | `3x3x2` | `side-left`, `side-right` |
+| 15–16 | `partition.glass` | `4x1x3` | `side-left`, `side-right` |
+
+`whiteboard.mobile` remains front-only for now because its current contract
+places it against a wall. Add a targeted side pair only when a layout actually
+uses it as a room divider or freestanding prop.
+
+These two sheets add 32 orientation cells but zero new furniture identities,
+reservation slots, or animation families. They are generated only to support
+future rotated placements; the current front-facing facility layout can
+continue using the existing shells.
+
 Floors, walls, rugs, glass partitions, and simple architectural tiles are generated deterministically from the locked palette so their edges tile perfectly. They are not delegated to image generation.
 
 Code may render non-pictorial architecture such as floor fields, rugs, route
