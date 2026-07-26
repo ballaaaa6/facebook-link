@@ -40,14 +40,35 @@ must not be imported by the active scene.
 - One selected PetDex-compatible character per image-generation call.
 - The imported 8x9 base atlas is the identity anchor and remains unchanged.
 - Generate only missing semantic rows as separate eight-cell horizontal strips.
-- The facility-ready pilot adds four rows: working-back, interact-front,
-  inspect-front, and lounge-front, producing one packed 8x13 runtime atlas.
-- Each added row contains six active frames and two empty cells.
+- The facility action pilot adds four rows: working-back, interact-front,
+  inspect-front, and lounge-front, producing an interim packed 8x13 runtime
+  atlas.
+- The final workstation contract adds two required character-only rows after
+  the facility rows: working-back-seated and working-front-seated. With those
+  rows included, the final atlas is 8x15.
+- Every added row contains six active frames and two empty cells, so the
+  facility pilot adds 32 cells and the final seated-work extension adds another
+  16 cells.
+- Use the accepted Einstein seated-working source as the morphology, pelvis
+  anchor, visible-leg, and chair/desk occlusion reference. Generate the
+  character-only rows without drawing chairs, desks, monitors, or facilities.
 - Furniture and facility props remain separate map layers.
 - Left/right movement mirrors are created at runtime where safe.
 - Chair movement, sitting transition, and standing transition are code-driven to avoid generating unnecessary frames.
 - A single-frame `seated` semantic state may reuse an accepted source row when
-  the character's lower body is hidden by a desk foreground mask.
+  the character's lower body is hidden by a desk foreground mask, but this is
+  only an interim compatibility fallback and does not replace the final
+  seated-work rows.
+
+## Facility-to-Pose Planning Gate
+
+Before generating the final character set, lock the facility v1 contract at 20
+shared reservation slots. Slot capacity is independent of object count: the
+five sofa seats are five slots even when represented by two sofa objects.
+Assign each slot an action family (`interact-use`, `inspect`, `review`, or
+`lounge`), approach direction, interaction facing, anchor, duration, and any
+map-layer overlay. The final character rows are then generated against those
+stable anchors; no facility prop is baked into a character cell.
 
 ## Extraction Pipeline
 

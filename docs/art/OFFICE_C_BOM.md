@@ -4,6 +4,74 @@
 
 Only assets referenced by `assets/game/maps/office-c-v2.json` are rendered for the active integer-grid scene. Extra catalog variants remain deferred until a real layout requires them.
 
+## Facility v1 Reservation Contract
+
+Facility capacity is measured in shared reservation slots, not in the number
+of furniture objects. The target contract has 20 slots and is the planning
+input for the final character action rows. A sofa can contribute several slots,
+while one reusable raster asset can be placed more than once.
+
+| Facility | Object count | Shared slots | Action family |
+| --- | ---: | ---: | --- |
+| Water dispenser | 2 | 2 | `interact-use` / drink |
+| Coffee machine | 1 | 1 | `interact-use` / drink |
+| Printer | 2 | 2 | `interact-use` / pickup |
+| Server rack | 2 | 2 | `inspect` |
+| Vending machine | 1 | 1 | `interact-use` |
+| Refrigerator | 1 | 1 | `interact-use` |
+| Mission review table | 1 | 4 | `review` |
+| Sofa zone | 2 (3+2 seats) | 5 | `lounge` |
+| Massage chair | 1 | 1 | `lounge` |
+| Game machine | 1 | 1 | `interact-use` |
+| **Total** | **14** | **20** | — |
+
+The object count is an authored-layout target, not a cell multiplier. Reuse a
+single accepted asset for repeated objects unless a deliberate visual variant
+is required. The five sofa seats remain five independently reservable slots
+even when the sofa is split into two furniture objects.
+
+### Facility asset generation plan
+
+The current registry already contains reusable visuals for most Facility v1
+objects. The numbers below are generation cells, not map placements:
+
+| Facility | Planned objects | Reuse or create | Cell plan |
+| --- | ---: | --- | ---: |
+| Water dispenser | 2 | Reuse `dispenser.water` | 1 existing |
+| Coffee machine | 1 | Reuse `machine.coffee` | 1 existing |
+| Printer | 2 | Reuse `printer.desktop` plus paper overlay | 1 existing |
+| Server rack | 2 | Reuse `server.rack` plus status overlay | 1 existing |
+| Vending machine | 1 | Create one facility asset | 1 new |
+| Refrigerator | 1 | Create one facility asset | 1 new |
+| Mission review table | 1 | Reuse `table.meeting.empty` | 1 existing |
+| Sofa zone | 2 (3+2 seats) | Create two footprint variants, or one modular section with per-object slots | 1–2 new |
+| Massage chair | 1 | Create one facility asset | 1 new |
+| Game machine | 1 | Create one facility asset | 1 new |
+
+That leaves four unambiguous new facility cells, plus one or two sofa cells
+depending on whether the 3-seat and 2-seat forms can share a modular raster.
+The second printer, second dispenser, and second rack are placements of
+accepted assets, not additional generation work. Every new cell still needs an
+integer render box, floor footprint, approach anchor, interaction-facing
+metadata, and a separate overlay where its activity changes.
+
+The current map is still an implementation baseline with ten active agents
+and two reserved workstation modules. Expanding to the 15-person target
+requires a map/workstation expansion in the same change set as the facility
+placement; it must not be assumed that the current 36 x 24 map already
+supports 15 people.
+
+### Non-reservation decoration
+
+The following remain decor or personal-station assets until an interaction
+contract is explicitly added: 15 personal locker compartments, speakers,
+figure display cases, non-interactive bookshelves, beanbags without booking,
+decorative lights, and small ornaments.
+
+Phase 2 may add beanbags (4 slots), a board-game table (4 slots), a reading
+area (1–2 slots), a second massage chair, a second game machine, and a second
+coffee machine.
+
 ## Core Furniture
 
 | Asset | Initial quantity | Notes |

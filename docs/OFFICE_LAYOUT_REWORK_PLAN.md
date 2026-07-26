@@ -10,6 +10,39 @@ collision-safe routes on desktop and mobile.
 The composition reference guides visual rhythm only. The map, geometry
 manifest, validator, and tests are the implementation authority.
 
+## Target Capacity and Sequencing
+
+The implemented map remains the 10-agent pilot with two reserved workstation
+modules. The next capacity target is 15 workstations plus 20 shared facility
+reservation slots. These are different dimensions:
+
+- 15 is the number of assigned workstations/people.
+- 20 is the number of concurrently reservable facility seats or interaction
+  points.
+- A facility object can expose multiple slots; object count is not capacity.
+
+Facility v1 uses the following action families before final character art is
+generated:
+
+| Action family | Facility examples | Slots |
+| --- | --- | ---: |
+| `interact-use` | water, coffee, printer, vending, refrigerator, game | 8 |
+| `inspect` | server racks | 2 |
+| `review` | mission review table | 4 |
+| `lounge` | sofa seats, massage chair | 6 |
+| **Total** | — | **20** |
+
+Before final pose generation, each slot must have an id, approach direction,
+interaction facing, anchor, duration, and overlay contract. The allocator
+reserves a slot atomically, routes the actor to its anchor, runs the action,
+and releases the slot. The complete object and slot table is maintained in
+`docs/art/OFFICE_C_BOM.md`.
+
+The required sequence is: lock facility objects and slot geometry, lock action
+families and facings, expand the map/workstations to 15, then generate and
+validate the final character atlas. This prevents a seated or interaction pose
+from being authored against an anchor that later moves.
+
 ## Implemented Baseline (2026-07-24)
 
 - The room is 36 x 24 logical tiles at a 32 px authoring grid.
@@ -100,6 +133,8 @@ resizing the map.
 | --- | --- |
 | `seated` | Single-frame pose behind a desk or accepted seat mask |
 | `working` | Active assigned-workstation pose |
+| `working-back-seated` | Six-frame rear-facing seated work loop at a desk |
+| `working-front-seated` | Six-frame front-facing seated work loop; desk mask may hide legs |
 | `idle` | Offline or stale workstation pose |
 | `waiting` | Dependency or queue wait |
 | `review` | Review or human-approval work |
@@ -108,9 +143,11 @@ resizing the map.
 | `waving` | Coffee, water, or greeting interaction |
 | `celebrating` | One-shot completed-work animation from source row 4 |
 
-The current `seated` semantic state reuses one accepted source frame and hides
-the lower body behind a desk foreground mask. A dedicated furniture-free lounge
-sitting sheet remains future art work.
+The current runtime `seated` semantic state is an interim single-frame fallback.
+The final workstation contract uses the furniture-free
+`working-back-seated` and `working-front-seated` rows, with the desk foreground
+mask providing occlusion. Lounge seating remains a separate map asset and does
+not add furniture pixels to character sheets.
 
 ## Camera Contract
 
@@ -128,7 +165,8 @@ sitting sheet remains future art work.
 - No authored map or geometry value uses fractional tiles.
 - All ten agents are visible in the 320–430 px mobile work view.
 - The support floor is reachable by horizontal scrolling and the Break control.
-- The room supports two additional workstation modules without resizing.
+- The pilot supports two additional workstation modules without resizing; the
+  15-workstation target requires a planned map expansion.
 - Tall appliances are visually comparable to character height.
 - Desk props occupy compatible, unique parent slots.
 - No floor object overlaps another object or a protected route.
@@ -140,7 +178,7 @@ sitting sheet remains future art work.
 
 ## Remaining Art Work
 
-- Produce furniture-free lounge sitting frames before showing characters
-  physically seated on the sofa.
-- Produce full typing and mouse/review frames for the `seated` state.
+- Promote the Einstein seated-working reference into the shared morphology and
+  anchor calibration for all characters.
+- Produce full typing and mouse/review frames for the final seated work rows.
 - Resolve prototype-only Petdex licenses before public or commercial use.

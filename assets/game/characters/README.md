@@ -12,8 +12,10 @@ These Petdex characters are prototype-only and remain marked `pending-commercial
 
 New character work starts from an approved Petdex-compatible base atlas. Missing
 office actions are added as controlled extension rows and packed into a versioned
-atlas; the Doraemon pilot is the first 8x13 example with four added front-facing
-facility rows.
+atlas. The interim facility pilot is an 8x13 atlas with four facility rows; the
+final workstation contract is 8x15 after adding the required
+`working-back-seated` and `working-front-seated` rows. Einstein's accepted
+seated-working source is the morphology and anchor reference for those rows.
 
 The office map owns placement. Every agent has a `seat`, `stand`, and desk `collision` rectangle so rendering can keep characters out of furniture and preserve a future pathfinding boundary.
 

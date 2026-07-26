@@ -355,8 +355,8 @@ required for the pilot. Desk furniture remains separate from the character.
 
 ### 7.1.1 Seated work extension
 
-The approved seated-work contract adds two character-only rows after the
-facility rows when both desk directions are required:
+The approved seated-work contract adds two required character-only rows after
+the facility rows before the final workstation roster is accepted:
 
 ```text
 working-back-seated
@@ -370,12 +370,13 @@ must not drift into a three-quarter or side view. The front row is a
 dead-center upright office-chair pose whose lower legs may be hidden by the
 desk foreground mask. Neither row contains a chair, desk, monitor, or floor.
 
-For future characters, use the approved Einstein seated rows and the modern
-chair calibration as references, then generate the character-only rows
-directly. Do not repeat the chair-in-frame-and-remove step unless the new
-character's body proportions cannot match the shared seat height. Calibrate
-one rear frame and one front frame first; expand to six-frame animation rows
-only after both pelvis and visible-leg anchors pass the chair overlay check.
+Use the approved Einstein seated rows and the modern chair calibration as the
+shared morphology and anchor reference for every character. Generate the
+character-only rows directly. Do not repeat the chair-in-frame-and-remove step
+unless a new character's proportions cannot match the shared seat height.
+Calibrate one rear frame and one front frame first; expand to six-frame
+animation rows only after both pelvis and visible-leg anchors pass the chair
+overlay check.
 
 ### 7.2 Character anchors
 
@@ -430,7 +431,8 @@ After generation:
 4. Align standing feet and seated pelvis/seat anchors.
 5. Validate row-to-row scale against the PetDex base atlas.
 6. Append accepted rows without modifying the base rows.
-7. Pack the result into a versioned 8x13 runtime atlas.
+7. Pack the result into a versioned 8x13 interim atlas or 8x15 final atlas,
+   depending on whether the seated-work rows are present.
 8. Record the extension rows and any per-character scale override explicitly.
 
 ## 8. Prompt templates
@@ -605,13 +607,19 @@ Suggested workstation manifest:
 3. Create and validate one monitor shell.
 4. Create one analytics screen strip and test ping-pong playback.
 5. Create one chair and one seated-back character pose.
-6. Assemble and validate one workstation in the running office.
-7. Produce the remaining four screen themes.
-8. Produce the remaining workstation furniture and equipment.
-9. Migrate the character roster.
-10. Build the relaxation-area asset set.
-11. Add ambient animations and interactions.
-12. Run the full-room QA gate.
+6. Lock the facility v1 objects, 20 shared slots, action families, and
+   approach/facing anchors.
+7. Assemble and validate one workstation plus one facility reservation in the
+   running office.
+8. Produce the remaining four screen themes.
+9. Produce the remaining workstation furniture and equipment.
+10. Generate and validate `working-back-seated` and `working-front-seated`
+    from the Einstein reference.
+11. Expand the map/workstation modules toward the 15-person target.
+12. Migrate the character roster.
+13. Build the relaxation-area asset set.
+14. Add ambient animations and interactions.
+15. Run the full-room QA gate.
 ```
 
 The best quality and speed come from locking the shared interfaces first. Once the desk, monitor viewport, screen overlay, seated anchor, and foreground mask are correct, the rest of the office becomes controlled asset production instead of repeated one-off fixes.
