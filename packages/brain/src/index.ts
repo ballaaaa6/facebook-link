@@ -15,7 +15,7 @@ export interface WorkersAiBrainOptions {
 
 const roleHints: readonly { keywords: readonly string[]; agentId: string; label: string }[] = [
   { keywords: ["สินค้า", "product", "winner"], agentId: "product-ranker", label: "Ranker" },
-  { keywords: ["ยอด", "metric", "วัดผล", "performance"], agentId: "performance-analyst", label: "Tian" },
+  { keywords: ["ยอด", "metric", "วัดผล", "performance"], agentId: "performance-analyst", label: "Noir" },
   { keywords: ["แคปชั่น", "caption", "content"], agentId: "gemini-copywriter", label: "Mira" },
   { keywords: ["รูป", "image", "flow"], agentId: "flow-visual-producer", label: "Pixel" },
   { keywords: ["โพสต์", "publish", "schedule"], agentId: "publisher", label: "Pulse" },
@@ -133,4 +133,3 @@ export function createBrainProvider(name = "mock", options?: WorkersAiBrainOptio
   if (name === "workers-ai" && options) return new WorkersAiBrainProvider(options);
   throw new Error(`Brain provider '${name}' is not configured.`);
 }
-

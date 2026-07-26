@@ -1,6 +1,6 @@
 # Runtime character roster
 
-The pilot office renders ten active agent characters plus one companion. Each directory contains the source or local `spritesheet.webp`, preserved v1 derivatives where applicable, active v2 1x/2x runtime sheets, and its source `pet.json`; `registry.json` is the runtime mapping used by the web app. `ceo-kai` is the first original-owned replacement character and currently serves the `gemini-copywriter` role.
+The pilot office renders ten active agent characters plus one companion. Each directory contains the source or local `spritesheet.webp`, preserved v1 derivatives where applicable, active v2 1x/2x runtime sheets, and its source `pet.json`; `registry.json` is the runtime mapping used by the web app. Characters that are no longer in the active roster remain in this directory as archived prototype art until a replacement is approved.
 
 The active v2 pipeline treats the roster as smooth illustrated raster art, not
 pixel art. Its 96 x 104 px 1x frames use Lanczos downsampling with a mild

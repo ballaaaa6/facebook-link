@@ -1,9 +1,7 @@
 import aiWorkbotSheet from "../../../../../assets/game/characters/ai-workbot/runtime-spritesheet-v2.webp";
 import aiWorkbotSheet2x from "../../../../../assets/game/characters/ai-workbot/runtime-spritesheet-v2@2x.webp";
-import commanderKaiSheet from "../../../../../assets/game/characters/commander-kai/runtime-spritesheet-v2.webp";
-import commanderKaiSheet2x from "../../../../../assets/game/characters/commander-kai/runtime-spritesheet-v2@2x.webp";
-import ceoKaiSheet from "../../../../../assets/game/characters/ceo-kai/runtime-spritesheet-v2.webp";
-import ceoKaiSheet2x from "../../../../../assets/game/characters/ceo-kai/runtime-spritesheet-v2@2x.webp";
+import bobaSheet from "../../../../../assets/game/characters/boba/runtime-spritesheet-v2.webp";
+import bobaSheet2x from "../../../../../assets/game/characters/boba/runtime-spritesheet-v2@2x.webp";
 import doraemonSheet from "../../../../../assets/game/characters/doraemon/runtime-spritesheet-v2.webp";
 import doraemonSheet2x from "../../../../../assets/game/characters/doraemon/runtime-spritesheet-v2@2x.webp";
 import einsteinSheet from "../../../../../assets/game/characters/einstein/runtime-spritesheet-v2.webp";
@@ -18,8 +16,8 @@ import ruriSheet from "../../../../../assets/game/characters/ruri/runtime-sprite
 import ruriSheet2x from "../../../../../assets/game/characters/ruri/runtime-spritesheet-v2@2x.webp";
 import taffySheet from "../../../../../assets/game/characters/taffy-2/runtime-spritesheet-v2.webp";
 import taffySheet2x from "../../../../../assets/game/characters/taffy-2/runtime-spritesheet-v2@2x.webp";
-import tianSheet from "../../../../../assets/game/characters/tian-zekun-2/runtime-spritesheet-v2.webp";
-import tianSheet2x from "../../../../../assets/game/characters/tian-zekun-2/runtime-spritesheet-v2@2x.webp";
+import yinyueSheet from "../../../../../assets/game/characters/yinyue-2/runtime-spritesheet-v2.webp";
+import yinyueSheet2x from "../../../../../assets/game/characters/yinyue-2/runtime-spritesheet-v2@2x.webp";
 
 export type CharacterState =
   | "celebrating"
@@ -90,11 +88,11 @@ export function getCharacterStateConfig(character: CharacterDefinition | undefin
 }
 
 export const characterRegistry: Record<string, CharacterDefinition> = {
-  "market-scout": { sheet: commanderKaiSheet, sheet2x: commanderKaiSheet2x, sourceSlug: "commander-kai", rows: 12 },
+  "market-scout": { sheet: yinyueSheet, sheet2x: yinyueSheet2x, sourceSlug: "yinyue-2" },
   "product-ranker": { sheet: einsteinSheet, sheet2x: einsteinSheet2x, sourceSlug: "einstein" },
   "growth-strategist": { sheet: ruriSheet, sheet2x: ruriSheet2x, sourceSlug: "ruri" },
-  "performance-analyst": { sheet: tianSheet, sheet2x: tianSheet2x, sourceSlug: "tian-zekun-2" },
-  "gemini-copywriter": { sheet: ceoKaiSheet, sheet2x: ceoKaiSheet2x, sourceSlug: "ceo-kai", rows: 12 },
+  "performance-analyst": { sheet: noirWeblingSheet, sheet2x: noirWeblingSheet2x, sourceSlug: "noir-webling" },
+  "gemini-copywriter": { sheet: bobaSheet, sheet2x: bobaSheet2x, sourceSlug: "boba" },
   "flow-visual-producer": { sheet: taffySheet, sheet2x: taffySheet2x, sourceSlug: "taffy-2" },
   "link-attribution": { sheet: doraemonSheet, sheet2x: doraemonSheet2x, sourceSlug: "doraemon" },
   "qa-editor": { sheet: remSheet, sheet2x: remSheet2x, sourceSlug: "rem-xl" },

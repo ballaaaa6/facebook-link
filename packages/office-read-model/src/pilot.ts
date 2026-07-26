@@ -13,7 +13,7 @@ const definitions: ReadonlyArray<{
   { agentId: "market-scout", name: "Scout", status: "running", task: "Scanning Shopee feed", activity: "research", progress: 72, stage: "discovered" },
   { agentId: "product-ranker", name: "Ranker", status: "review", task: "Ranking 41 candidates", activity: "ranking", progress: 58, stage: "scored" },
   { agentId: "growth-strategist", name: "Nova", status: "waiting_dependency", task: "Waiting for daily metrics", activity: "waiting", stage: "selected" },
-  { agentId: "performance-analyst", name: "Tian", status: "running", task: "Analyzing link attribution", activity: "analytics", progress: 84, stage: "measured" },
+  { agentId: "performance-analyst", name: "Noir", status: "running", task: "Analyzing link attribution", activity: "analytics", progress: 84, stage: "measured" },
   { agentId: "gemini-copywriter", name: "Mira", status: "running", task: "Drafting Thai captions", activity: "writing", progress: 44, stage: "content_queued" },
   { agentId: "flow-visual-producer", name: "Pixel", status: "queued", task: "Queued behind copy", activity: "visual", stage: "content_queued" },
   { agentId: "link-attribution", name: "Link", status: "review", task: "Assigning Sub IDs", activity: "linking", progress: 63, stage: "link_ready" },
