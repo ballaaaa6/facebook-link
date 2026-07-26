@@ -2,7 +2,7 @@
   "id": "office-library-modern-bright-v1",
   "status": "library-only",
   "backgroundKey": "#ff00ff",
-  "sourceContract": "controlled-4x4-source-sheet",
+  "sourceContract": "controlled-source-sheet",
   "runtimeIntegration": "deferred",
   "sheets": [
     {
@@ -6667,6 +6667,222 @@
               "d"
             ]
           }
+        }
+      ]
+    },
+    {
+      "id": "chair-office-modern-v1",
+      "source": "assets/art/layout-references/office-chair-modern-turnaround-v1.png",
+      "sourceSize": [
+        2172,
+        724
+      ],
+      "grid": [
+        4,
+        1
+      ],
+      "cellSize": [
+        543,
+        724
+      ],
+      "status": "library-ready",
+      "animation": null,
+      "assets": [
+        {
+          "id": "chair.office.modern.back",
+          "file": "assets/game/processed/office-library-modern-bright-v1/chair-office-modern-v1/chair.office.modern.back.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 0,
+            "bounds": [
+              0,
+              0,
+              543,
+              724
+            ]
+          },
+          "trimBox": [
+            153,
+            172,
+            485,
+            631
+          ],
+          "size": [
+            348,
+            475
+          ],
+          "alphaCoverage": 0.5682,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 2
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "bottom-center",
+          "layer": "furniture",
+          "requiredOrientations": [
+            "front",
+            "back",
+            "side-left",
+            "side-right"
+          ]
+        },
+        {
+          "id": "chair.office.modern.front",
+          "file": "assets/game/processed/office-library-modern-bright-v1/chair-office-modern-v1/chair.office.modern.front.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 1,
+            "bounds": [
+              543,
+              0,
+              1086,
+              724
+            ]
+          },
+          "trimBox": [
+            115,
+            139,
+            446,
+            631
+          ],
+          "size": [
+            347,
+            508
+          ],
+          "alphaCoverage": 0.5759,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 2
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "bottom-center",
+          "layer": "furniture",
+          "requiredOrientations": [
+            "front",
+            "back",
+            "side-left",
+            "side-right"
+          ]
+        },
+        {
+          "id": "chair.office.modern.side-left",
+          "file": "assets/game/processed/office-library-modern-bright-v1/chair-office-modern-v1/chair.office.modern.side-left.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 2,
+            "bounds": [
+              1086,
+              0,
+              1629,
+              724
+            ]
+          },
+          "trimBox": [
+            122,
+            139,
+            410,
+            631
+          ],
+          "size": [
+            304,
+            508
+          ],
+          "alphaCoverage": 0.3997,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 2
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "bottom-center",
+          "layer": "furniture",
+          "requiredOrientations": [
+            "front",
+            "back",
+            "side-left",
+            "side-right"
+          ]
+        },
+        {
+          "id": "chair.office.modern.side-right",
+          "file": "assets/game/processed/office-library-modern-bright-v1/chair-office-modern-v1/chair.office.modern.side-right.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 3,
+            "bounds": [
+              1629,
+              0,
+              2172,
+              724
+            ]
+          },
+          "trimBox": [
+            55,
+            139,
+            342,
+            631
+          ],
+          "size": [
+            303,
+            508
+          ],
+          "alphaCoverage": 0.3996,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 2
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "bottom-center",
+          "layer": "furniture",
+          "requiredOrientations": [
+            "front",
+            "back",
+            "side-left",
+            "side-right"
+          ]
         }
       ]
     }

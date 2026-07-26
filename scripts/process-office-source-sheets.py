@@ -136,6 +136,18 @@ SHEETS: list[dict[str, Any]] = [
         ),
         "animation": "seam-loop",
     },
+    {
+        "id": "chair-office-modern-v1",
+        "source": "office-chair-modern-turnaround-v1.png",
+        "rows": 1,
+        "columns": 4,
+        "cells": [
+            "chair.office.modern.back",
+            "chair.office.modern.front",
+            "chair.office.modern.side-left",
+            "chair.office.modern.side-right",
+        ],
+    },
 ]
 
 
@@ -245,6 +257,10 @@ GEOMETRY_OVERRIDES = {
     "rug.office": geometry(3, 2, 1, render_width=3, render_height=2, footprint_width=3, footprint_depth=2, supports=["floor"], anchor="center", layer="decor"),
     "table.side": geometry(2, 2, 1, footprint_width=2, footprint_depth=2, supports=["floor"], anchor="center", layer="furniture"),
     "pouf.lounge": geometry(2, 2, 1, footprint_width=2, footprint_depth=2, supports=["floor"], anchor="center", layer="furniture"),
+    "chair.office.modern.back": geometry(1, 1, 2, render_height=2, supports=["floor"], layer="furniture", orientations=["front", "back", "side-left", "side-right"]),
+    "chair.office.modern.front": geometry(1, 1, 2, render_height=2, supports=["floor"], layer="furniture", orientations=["front", "back", "side-left", "side-right"]),
+    "chair.office.modern.side-left": geometry(1, 1, 2, render_height=2, supports=["floor"], layer="furniture", orientations=["front", "back", "side-left", "side-right"]),
+    "chair.office.modern.side-right": geometry(1, 1, 2, render_height=2, supports=["floor"], layer="furniture", orientations=["front", "back", "side-left", "side-right"]),
 }
 
 
@@ -311,18 +327,20 @@ def process_sheet(sheet: dict[str, Any]) -> dict[str, Any]:
     if not source_path.exists():
         raise FileNotFoundError(source_path)
     source = Image.open(source_path).convert("RGBA")
-    if source.width < 4 or source.height < 4:
+    rows = sheet.get("rows", 4)
+    columns = sheet.get("columns", 4)
+    if source.width < columns or source.height < rows:
         raise ValueError(f"Source sheet is too small: {source_path}")
     keyed = alpha_key(source)
-    x_edges = [round(index * source.width / 4) for index in range(5)]
-    y_edges = [round(index * source.height / 4) for index in range(5)]
-    cell_width = round(source.width / 4)
-    cell_height = round(source.height / 4)
+    x_edges = [round(index * source.width / columns) for index in range(columns + 1)]
+    y_edges = [round(index * source.height / rows) for index in range(rows + 1)]
+    cell_width = round(source.width / columns)
+    cell_height = round(source.height / rows)
     output_dir = OUTPUT_ROOT / sheet["id"]
     output_dir.mkdir(parents=True, exist_ok=True)
     entries: list[dict[str, Any]] = []
     for index, asset_id in enumerate(sheet["cells"]):
-        row, column = divmod(index, 4)
+        row, column = divmod(index, columns)
         cell = keyed.crop((x_edges[column], y_edges[row], x_edges[column + 1], y_edges[row + 1]))
         bbox = cell.getchannel("A").getbbox()
         if bbox is None:
@@ -350,7 +368,7 @@ def process_sheet(sheet: dict[str, Any]) -> dict[str, Any]:
         "id": sheet["id"],
         "source": f"assets/art/layout-references/{sheet['source']}",
         "sourceSize": [source.width, source.height],
-        "grid": [4, 4],
+        "grid": [columns, rows],
         "cellSize": [cell_width, cell_height],
         "status": "library-ready",
         "animation": sheet.get("animation"),
@@ -367,10 +385,11 @@ def validate_library() -> list[str]:
     if len(manifests) != len(SHEETS):
         failures.append(f"Expected {len(SHEETS)} sheets, found {len(manifests)}.")
     expected_ids = {asset_id for sheet in SHEETS for asset_id in sheet["cells"]}
+    expected_count = len(expected_ids)
     manifest_assets = [asset for sheet in manifests for asset in sheet.get("assets", [])]
     actual_ids = {asset.get("id") for asset in manifest_assets}
-    if len(manifest_assets) != 128:
-        failures.append(f"Expected 128 manifest assets, found {len(manifest_assets)}.")
+    if len(manifest_assets) != expected_count:
+        failures.append(f"Expected {expected_count} manifest assets, found {len(manifest_assets)}.")
     if actual_ids != expected_ids:
         failures.append("Manifest asset IDs differ from the controlled source-sheet inventory.")
     for asset in manifest_assets:
@@ -408,14 +427,15 @@ def main() -> int:
         if failures:
             print("\n".join(f"- {failure}" for failure in failures), file=sys.stderr)
             return 1
-        print("Office asset library OK: 8 sheets, 128 processed assets.")
+        expected_count = sum(len(sheet["cells"]) for sheet in SHEETS)
+        print(f"Office asset library OK: {len(SHEETS)} sources, {expected_count} processed assets.")
         return 0
     manifests = [process_sheet(sheet) for sheet in SHEETS]
     payload = {
         "id": "office-library-modern-bright-v1",
         "status": "library-only",
         "backgroundKey": "#ff00ff",
-        "sourceContract": "controlled-4x4-source-sheet",
+        "sourceContract": "controlled-source-sheet",
         "runtimeIntegration": "deferred",
         "sheets": manifests,
     }

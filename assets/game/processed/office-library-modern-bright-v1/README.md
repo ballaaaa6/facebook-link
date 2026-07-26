@@ -1,7 +1,8 @@
 # Modern Bright Office Asset Library v1
 
 This directory contains extracted, alpha-keyed candidates from the eight
-approved modern-bright office source sheets.
+approved modern-bright office source sheets plus the four-view modern office
+chair turnaround.
 
 ## Status
 
