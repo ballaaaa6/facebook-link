@@ -64,31 +64,33 @@ Count the physical object and its local motion separately:
   orientation. Desks, chairs, tables, sofas, cabinets, shelves, refrigerators,
   massage chairs, wall art, cups, papers, boxes, bins, dividers, and pet beds
   do not receive duplicate cells merely to fill an animation timeline.
-- A screen, LED, indicator, or other local display uses three true overlay
-  keyframes (`A`, `B`, `C`). Runtime plays `A-B-C-B-A`; do not store duplicate
-  return frames.
+- A screen, LED, indicator, or other local display uses four true seam-loop
+  keyframes (`A`, `B`, `C`, `D`). Runtime plays `A-B-C-D-A`; do not store
+  duplicate return frames. The frames must depict one continuous scene,
+  dashboard, or game state.
 - A mechanical or ambient motion that changes more than a local display uses
-  four true keyframes. The base anchor, render box, collision footprint, and
-  support surface remain unchanged in every frame.
-- The shell stays visible under an overlay. Do not generate three or four
-  complete copies of a TV, vending machine, game machine, printer, server rack,
-  water dispenser, coffee machine, or lamp when only its screen, paper, LED,
-  button, steam, or light changes.
+  four true seam-loop keyframes. The base anchor, render box, collision
+  footprint, and support surface remain unchanged in every frame.
+- Use a locked shell plus changing-content source during authoring. Then
+  precompose full-frame runtime variants from that shell when the renderer
+  benefits from a single asset. Do not independently redraw three or four
+  complete copies of a TV, vending machine, game machine, printer, server
+  rack, water dispenser, coffee machine, or lamp.
 
 The approved production tiers are alternatives, not cumulative budgets:
 
 | Tier | Included work | New cells |
 | --- | --- | ---: |
 | Static-only Facility v1 | Six missing facility shells | 6 |
-| Facility v1 motion | Six shells plus three-frame TV, vending, and game overlays | 15 |
-| Full ambient polish | Six shells, four mechanical sets x 4, four ambient sets x 4, five monitor themes x 3, and one TV overlay x 3 | 56 |
+| Facility v1 seam-loop motion | Six shells plus four-frame TV, vending, and game sources | 18 |
+| Full ambient polish | Six shells, four mechanical sets x 4, four ambient sets x 4, five monitor themes x 4, and one TV seam-loop x 4 | 62 |
 
 The full-polish mechanical sets are vending display/mechanism, game display,
-printer paper/status, and server status. They replace the simpler three-frame
-vending and game strips from the Facility v1 motion tier; do not count both
+printer paper/status, and server status. They replace the simpler four-frame
+vending and game sources from the Facility v1 seam-loop tier; do not count both
 versions. The ambient sets are water indicator, coffee steam/indicator, plant
 sway, and lamp brightness. The TV remains a one-cell shell with a separate
-three-frame screen overlay.
+four-frame screen source, plus four derived full-frame runtime variants.
 
 ## Character Sheets
 
@@ -141,9 +143,21 @@ stable anchors; no facility prop is baked into a character cell.
 ## Theme Strategy
 
 - Concept C is the authored source skin.
+- Facility v1 furniture uses a modern-bright material pass inside that skin:
+  lighter graphite, warm white, brushed metal, pale slate, and controlled
+  cyan, teal, lime, amber, and coral accents.
+- Bright accents belong to declared displays, indicators, buttons, or trim;
+  they must not change the shell silhouette or collision footprint between
+  frames.
 - Theme A and B initially use palette maps, material tokens, lighting overlays, and UI variables.
 - Shared geometry and animation manifests remain unchanged.
 - Only genuinely theme-specific props are generated later, preferably one controlled sheet per theme.
+
+Every animated display or prop is authored as a seam loop. Four distinct frames
+must depict one continuous scene or mechanical cycle and play
+`A-B-C-D-A`. The `D -> A` transition is an acceptance check, not an accidental
+reset. Ping-pong is allowed only as a documented exception for motion that
+cannot form a natural cycle.
 
 ## Acceptance Gate
 
@@ -153,10 +167,11 @@ Run one calibration sheet first. Continue with 4x4 batching only if at least 12 
 
 - Full-polish C environment: eight controlled sheets. Static-only and Facility
   v1 motion may defer the complete `env-07` and `env-08` batches.
-- Facility v1 additions: six cells static-only or 15 cells with the recommended
-  TV, vending, and game motion overlays.
-- Full ambient-polish additions: 56 cells; this replaces, rather than adds to,
-  the 15-cell Facility v1 motion tier.
+- Facility v1 additions: six cells static-only or 18 source cells with the
+  recommended TV, vending, and game seam-loop motion.
+- Full ambient-polish additions: 62 source cells; this replaces, rather than
+  adds to, the 18-cell Facility v1 seam-loop tier. Derived runtime composites
+  are produced by processing and are not extra generation prompts.
 - Pilot character: one sheet for the vertical slice.
 - Full active roster: ten character sheets total.
 - Initial image generation: approximately 30-90 minutes depending on retries.

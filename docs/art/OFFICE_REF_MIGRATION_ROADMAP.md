@@ -117,7 +117,7 @@ Create only:
   rotation.
 - One monitor shell.
 - Keyboard and mouse props.
-- One screen theme with three keyframes.
+- One screen theme with four seam-loop keyframes.
 - CEO seated-back working pose.
 - Desk foreground mask.
 
@@ -182,19 +182,23 @@ Create five reusable themes:
 4. Chat/support inbox.
 5. System/management dashboard.
 
-Each theme has three keyframes:
+Each theme has four seam-loop keyframes:
 
 ```text
-A -> B -> C
+A -> B -> C -> D
 ```
 
-Runtime playback uses a ping-pong loop:
+Runtime playback uses a cyclic seam loop:
 
 ```text
-A -> B -> C -> B -> A
+A -> B -> C -> D -> A
 ```
 
-Keep the monitor inner viewport fixed. Only local screen content changes. At final in-game scale, the animated region should occupy roughly 20–35% of the visible screen pixels so the movement survives character occlusion and downscaling.
+Keep the monitor inner viewport fixed. Only local screen content changes. Frame
+D must naturally lead into frame A, and all four frames must describe one scene,
+status sequence, or game state. At final in-game scale, the animated region
+should occupy roughly 20–35% of the visible screen pixels so the movement
+survives character occlusion and downscaling.
 
 Suggested screen animation classes:
 
@@ -332,8 +336,8 @@ Use a per-monitor phase offset so all displays do not animate in sync:
 {
   "monitor": "office-monitor-v1",
   "screenTheme": "analytics",
-  "keyframes": ["analytics-a", "analytics-b", "analytics-c"],
-  "loop": "ping-pong",
+  "keyframes": ["analytics-a", "analytics-b", "analytics-c", "analytics-d"],
+  "loop": "seam",
   "frameDurationMs": 700,
   "phaseOffsetMs": 240
 }
@@ -370,7 +374,7 @@ Check:
 - Back views do not show front-only props.
 - Monitor shells and screen overlays share the same viewport.
 - Screen motion remains visible at 1:1 game scale.
-- Ping-pong loops have no seam.
+- Seam loops have no visible `D -> A` reset.
 - Characters do not jump when changing state.
 - No magenta fringe or alpha halo remains.
 - No duplicate animation timers or unnecessary duplicated atlas pixels.
@@ -393,7 +397,10 @@ For static assets, use aliases instead of storing duplicate animation pixels:
 }
 ```
 
-For animated assets, store only true keyframes and let the runtime play the ping-pong sequence.
+For animated assets, store only true keyframes and let the runtime play the
+seam sequence. When the renderer benefits from one image per object, precompose
+the shell and local content into full-frame variants during asset processing;
+do not ask the generator to redraw the shell independently for every frame.
 
 ## 7. Definition of done
 
@@ -405,7 +412,7 @@ The migration is complete when:
 - Furniture orientation changes its footprint correctly.
 - CEO and the standard roster can work in a seated-back pose.
 - Five screen themes animate visibly at the final monitor size.
-- Screen loops use `A-B-C-B-A` without a visible seam.
+- Screen loops use `A-B-C-D-A` without a visible seam.
 - Main workstation, water, vending, and lounge interactions work.
 - The existing control panel and workflow behavior remain intact.
 - Asset validation and the repository check suite pass.

@@ -1,0 +1,49 @@
+{
+  "id": "facility-modern-seamloop-v1",
+  "status": "calibration-only",
+  "sourceFile": "facility-modern-seamloop-sheet-v1-source.png",
+  "alphaFile": "facility-modern-seamloop-sheet-v1-alpha.png",
+  "sheet": {
+    "size": [1536, 1024],
+    "grid": [4, 4],
+    "cellSize": [384, 256],
+    "background": "#FF00FF"
+  },
+  "modernBrightSkin": {
+    "shells": ["light graphite", "pale slate", "brushed metal", "warm white"],
+    "accents": ["cyan", "teal", "lime", "amber", "coral"],
+    "lighting": "warm upper-left",
+    "outline": "dark consistent pixel outline"
+  },
+  "rows": {
+    "tv": {
+      "cells": [0, 1, 2, 3],
+      "loop": "seam",
+      "sequence": ["A", "B", "C", "D"],
+      "changingRegion": "screen city-dashboard scene"
+    },
+    "vending": {
+      "cells": [4, 5, 6, 7],
+      "loop": "seam",
+      "sequence": ["A", "B", "C", "D"],
+      "changingRegion": "display light and product highlights"
+    },
+    "game": {
+      "cells": [8, 9, 10, 11],
+      "loop": "seam",
+      "sequence": ["A", "B", "C", "D"],
+      "changingRegion": "single spaceship game scene"
+    },
+    "static": {
+      "cells": [12, 13, 14, 15],
+      "loop": "none",
+      "sequence": ["static"]
+    }
+  },
+  "acceptance": {
+    "shellStableAcrossFrames": true,
+    "sceneContinuityRequired": true,
+    "dToASeamMustBeChecked": true,
+    "runtimeDelivery": "precomposed-full-frame-variants"
+  }
+}

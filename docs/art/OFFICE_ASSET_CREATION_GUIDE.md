@@ -25,7 +25,8 @@ For the office migration, this guide takes precedence over older office-specific
 2. Separate physical furniture from equipment and screen content.
 3. Treat `anchor`, `footprint`, and `viewport` as contracts, not visual guesses.
 4. Generate one consistent turnaround for an object before generating animation.
-5. Animate local details while keeping the world anchor and silhouette stable.
+5. Animate local details as a seam loop while keeping the world anchor and
+   silhouette stable.
 6. Use aliases for static frames instead of duplicating identical pixel data.
 7. Use original designs with no copied brands, logos, characters, or UI layouts.
 8. Treat generated sheets as source material; crop, normalize, and validate before runtime use.
@@ -36,7 +37,8 @@ Lock these values before creating production assets:
 
 - 32 px integer world tile grid.
 - Orthographic straight-on pixel-art presentation.
-- Concept C warm studio palette unless a theme-specific exception is approved.
+- Concept C warm studio palette for the room; new furniture may use the
+  approved modern-bright skin below.
 - Consistent dark outline weight.
 - Consistent upper-left light direction.
 - No baked runtime labels, HUD, task text, or branded UI.
@@ -44,6 +46,25 @@ Lock these values before creating production assets:
 - No transparent padding changes between animation frames.
 
 Use the same pixel scale for every view of one asset. Do not create the front at one camera distance and the back at another.
+
+### 3.1 Modern-bright furniture skin
+
+The new Facility v1 furniture should read as modern equipment inside the warm
+studio, not as a second unrelated art style:
+
+- Use lighter charcoal, graphite, warm white, brushed metal, and pale slate
+  for the main shell surfaces.
+- Use controlled cyan, teal, lime, amber, and coral accents for screens,
+  indicators, buttons, and small trim.
+- Keep dark outlines and the established upper-left light direction so the
+  brighter palette still belongs to the same office.
+- Prefer clean flat panels, thin bezels, rounded corners, compact feet, and
+  simple readable silhouettes.
+- Do not use neon glow, gradients, glossy reflections, brands, or random
+  rainbow changes as substitutes for authored screen motion.
+
+The shell palette is static across all frames. Only the declared local display,
+indicator, paper, steam, or light region may change.
 
 ## 4. Asset classes
 
@@ -230,39 +251,47 @@ After generation:
 
 ### Step 4 — Add optional animation
 
-Do not animate the entire furniture silhouette. Select exactly one cell
-contract before generating:
+Do not animate the entire furniture silhouette by redrawing it independently
+for every frame. Select exactly one cell contract before generating:
 
 ```text
 static rigid shell             1 cell
-screen / LED / status overlay  3 true keyframes: A, B, C
-mechanical / ambient motion    4 true keyframes
+screen / LED / status motion   4 true keyframes: A, B, C, D
+mechanical / ambient motion    4 true keyframes: A, B, C, D
 ```
 
-Runtime plays three-frame overlays as `A-B-C-B-A`; duplicate return frames are
-not stored. Four-frame motion stores only the four distinct authored
-keyframes. Static timeline states point to the same one-cell asset rather than
-duplicating its pixels.
+Seam-loop is the default for every animated or changing prop. Runtime plays
+the four distinct authored keyframes as `A-B-C-D-A`; the final frame must
+transition naturally back into the first frame. Do not store duplicate return
+frames. A ping-pong loop is an explicit exception only when a cyclic story
+cannot be authored without a visible jump.
 
-Add a separate overlay for local motion:
+Author animated display furniture in two passes:
 
-- Server LEDs.
-- Vending display.
-- Water dispenser button.
-- Printer paper.
-- Lamp brightness.
-- Fan or status indicator.
+1. Create one locked shell cell.
+2. Create only the changing screen, LED, paper, steam, or light frames.
+3. Measure the local viewport and deterministically precompose full-frame
+   runtime variants from the same shell.
+
+The runtime may use the precomposed full-frame variants so the current
+single-asset renderer does not need a second overlay layer. The source
+manifest still records the shell, viewport, and four content keyframes for
+future themes or live overlays. Never ask the generator to redraw the full
+furniture independently for each animation frame; that causes bezel, anchor,
+and collision drift.
 
 The base furniture must retain the same anchor, dimensions, and collision
-footprint in every frame. For example, a wall TV is one static shell cell plus
-three screen-content cells. Do not generate four complete TV images.
+footprint in every frame. For example, a wall TV uses one shell cell plus four
+screen-content cells, then produces four derived full-frame runtime images.
+The four derived images are processing outputs, not four additional AI
+generation prompts.
 
 Facility production uses three alternative tiers:
 
 - Static-only: six missing facility shell cells.
-- Facility v1 motion: six shells plus TV, vending, and game three-frame
-  overlays, for 15 new cells.
-- Full ambient polish: 56 new cells under
+- Facility v1 motion: six shells plus four-frame TV, vending, and game
+  seam-loop sources, for 18 new source cells and 12 derived runtime frames.
+- Full ambient polish: 62 new source cells under
   `docs/art/ASSET_SHEET_PLAN.md`; this replaces the simpler Facility v1 motion
   strips and is not added on top of them.
 
@@ -319,19 +348,22 @@ Start with five themes so five adjacent workstations can look different:
 4. Chat/support inbox.
 5. System/management dashboard.
 
-Each theme has three keyframes:
+Each theme has four seam-loop keyframes:
 
 ```text
-A, B, C
+A, B, C, D
 ```
 
-Runtime playback is ping-pong:
+Runtime playback is cyclic:
 
 ```text
-A -> B -> C -> B -> A
+A -> B -> C -> D -> A
 ```
 
-The first and final states must be visually related. Keep 65–75% of the screen layout static and animate a visible 20–35% region.
+Frame `D` must be a natural predecessor of frame `A`, not a reset screen.
+Keep 65–75% of the screen layout static and animate a visible 20–35% region.
+The four frames should read as one scene or one game state evolving over time,
+not four unrelated screenshots.
 
 Recommended motion:
 
@@ -345,8 +377,8 @@ Avoid:
 
 - Cursor-only animation that disappears at small scale.
 - Full-screen redesign between frames.
-- Screen content that scrolls forever without returning.
-- A direct `C -> A` cut when the endpoints are visually different.
+- Screen content that changes theme, camera, or game rules between frames.
+- A direct `D -> A` cut when the endpoints are visually different.
 
 ### 6.4 Screen overlay extraction
 
@@ -358,24 +390,26 @@ Screen overlays must contain only the content rectangle. Remove:
 - Desk.
 - Keyboard.
 
-The runtime composes:
+The source pipeline composes:
 
 ```text
 monitor shell
 + screen overlay
+-> precomposed full-frame runtime variant
 ```
 
 Store true keyframes once:
 
 ```json
 {
-  "keyframes": ["analytics-a", "analytics-b", "analytics-c"],
-  "loop": "ping-pong",
+  "keyframes": ["analytics-a", "analytics-b", "analytics-c", "analytics-d"],
+  "loop": "seam",
   "frameDurationMs": 700
 }
 ```
 
-Do not store duplicate copies of `B` merely to represent the return leg.
+Do not store duplicate copies of `B` or `C` merely to represent the return
+leg. Validate the `D -> A` seam at 1:1 scale before packing.
 
 ## 7. Character creation workflow
 
@@ -516,16 +550,19 @@ No people, room, text, logos, watermark, perspective, or isometric camera.
 
 ```text
 Create a screen-content-only sprite strip for a fixed [WIDTH]x[HEIGHT] viewport.
-Produce three keyframes A, B, C of one [THEME] dashboard.
+Produce four keyframes A, B, C, D of one [THEME] dashboard, display, or game.
 Keep the viewport, toolbar, sidebar, and major layout fixed.
-Animate one large readable region so 20–35% of the pixels visibly change from A to C.
-Design the sequence for runtime ping-pong playback A-B-C-B-A.
+Animate one large readable region so 20–35% of the pixels visibly change
+between adjacent frames.
+Design the sequence as one continuous seam loop:
+A-B-C-D-A. Frame D must naturally lead into frame A.
+Keep the same scene, dashboard, or game rules in all four frames.
 Do not include a monitor bezel, stand, desk, keyboard, text labels outside the UI,
 logos, watermark, or any object outside the viewport.
 ```
 
 For a wall TV, vending display, or game display, replace `[THEME] dashboard`
-with the intended screen content while preserving the same three-cell overlay
+with the intended screen content while preserving the same four-cell seam-loop
 contract. The prompt must not include the TV housing, machine shell, floor,
 wall, or cast shadow.
 
@@ -645,7 +682,8 @@ Suggested workstation manifest:
   "chair": "office-chair-v1",
   "monitor": "office-monitor-v1",
   "screenTheme": "analytics",
-  "screenLoop": "ping-pong",
+  "screenLoop": "seam",
+  "screenFrames": ["analytics-a", "analytics-b", "analytics-c", "analytics-d"],
   "seatAnchor": { "x": 2, "y": 3 },
   "interactionAnchor": { "x": 2, "y": 4 }
 }
@@ -677,13 +715,15 @@ Suggested workstation manifest:
 
 - [ ] Static assets use aliases rather than duplicate pixels.
 - [ ] A rigid shell occupies one cell per required orientation.
-- [ ] Screen, LED, and status overlays contain exactly three true keyframes.
+- [ ] Screen, LED, and status overlays contain exactly four true seam-loop
+      keyframes.
 - [ ] Mechanical and ambient sets contain exactly four true keyframes.
 - [ ] Overlay frames do not redraw the furniture shell.
 - [ ] Animated assets keep a fixed silhouette.
 - [ ] Screen movement is visible at final 1:1 size.
-- [ ] Screen playback uses `A-B-C-B-A`.
-- [ ] No direct endpoint seam is visible.
+- [ ] Screen playback uses `A-B-C-D-A`.
+- [ ] The `D -> A` endpoint seam is visually continuous.
+- [ ] Adjacent frames tell one continuous scene, status sequence, or game.
 - [ ] Independent phase offsets prevent synchronized displays.
 
 ### Extraction
@@ -709,7 +749,7 @@ Suggested workstation manifest:
 1. Lock grid, palette, viewport, and anchor contracts.
 2. Create and validate one bare desk.
 3. Create and validate one monitor shell.
-4. Create one analytics screen strip and test ping-pong playback.
+4. Create one four-frame analytics screen strip and test seam-loop playback.
 5. Create one chair and one seated-back character pose.
 6. Lock the facility v1 objects, 20 shared slots, action families, and
    approach/facing anchors.

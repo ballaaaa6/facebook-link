@@ -105,3 +105,24 @@ See `tv-display-calibration-v1/tv-calibration-manifest.json` for the exact
 coordinates and processing record, and
 `tv-display-calibration-v1/tv-calibration-composite-preview-v1.png` for the
 side-by-side result.
+
+## `facility-modern-seamloop-v1/`
+
+- Created: 2026-07-26
+- Status: calibration-only; not registered as a runtime atlas
+- Purpose: test the modern-bright furniture skin and four-frame seam-loop
+  contract in one 4x4 sheet
+
+The first three rows contain four frames each for TV, vending, and game
+furniture. Each row is one continuous scene and plays `A-B-C-D-A`; frame D
+must naturally lead back to frame A. The final row contains static
+refrigerator, massage-chair, three-seat-sofa, and two-seat-sofa cells.
+
+This sheet is a source reference. The production pipeline still locks one
+shell, generates only changing content, and precomposes full-frame runtime
+variants from the same shell. The modern-bright material pass uses lighter
+graphite, pale slate, brushed metal, warm white, and controlled cyan, teal,
+lime, amber, and coral accents.
+
+See `facility-modern-seamloop-v1/facility-modern-seamloop-manifest.json` for
+the cell layout and seam-loop acceptance rules.
