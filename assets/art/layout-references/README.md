@@ -53,6 +53,10 @@ as runtime assets yet:
   first Einstein front/back seated trial.
 - `assets/game/characters/einstein/einstein-seated-extension-v2-source.png` —
   targeted retry of the seated strip.
+- `assets/game/characters/einstein/einstein-seated-chair-calibration-v1-source.png`
+  — approved chair-included posture calibration.
+- `assets/game/characters/einstein/einstein-seated-working-v1-source.png` —
+  character-only front/back seated working rows after chair removal.
 
 These remain source material until cell counts, anchors, chair occlusion, and a
 single in-game workstation pass are accepted.
