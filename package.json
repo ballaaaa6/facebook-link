@@ -25,6 +25,8 @@
     "code:map": "node scripts/code-map.mjs",
     "art:prompt": "node scripts/office-asset-prompt.mjs",
     "art:prompt:check": "node scripts/office-asset-prompt.mjs --check",
+    "art:library": "python scripts/process-office-source-sheets.py",
+    "art:library:check": "python scripts/process-office-source-sheets.py --check",
     "pilot:simulate": "node services/automation-runner/src/simulation/cli.ts",
     "deploy:dry-run": "npm run build --workspace @affiliate-ops/web && npx --yes wrangler@4.113.0 deploy --dry-run --config wrangler.jsonc",
     "deploy:cloudflare": "npm run build --workspace @affiliate-ops/web && npx --yes wrangler@4.113.0 deploy --config wrangler.jsonc",

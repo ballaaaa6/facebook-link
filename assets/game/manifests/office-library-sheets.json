@@ -1,0 +1,6674 @@
+{
+  "id": "office-library-modern-bright-v1",
+  "status": "library-only",
+  "backgroundKey": "#ff00ff",
+  "sourceContract": "controlled-4x4-source-sheet",
+  "runtimeIntegration": "deferred",
+  "sheets": [
+    {
+      "id": "env-01-workstation-static",
+      "source": "assets/art/layout-references/workstation-static-sheet-modern-bright-v1-source.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "grid": [
+        4,
+        4
+      ],
+      "cellSize": [
+        314,
+        314
+      ],
+      "status": "library-ready",
+      "animation": null,
+      "assets": [
+        {
+          "id": "desk.workstation.front",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-01-workstation-static/desk.workstation.front.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 0,
+            "bounds": [
+              0,
+              0,
+              314,
+              314
+            ]
+          },
+          "trimBox": [
+            44,
+            104,
+            311,
+            286
+          ],
+          "size": [
+            283,
+            198
+          ],
+          "alphaCoverage": 0.6723,
+          "physicalScale": {
+            "width": 3,
+            "depth": 2,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 3,
+            "height": 2
+          },
+          "footprint": {
+            "width": 3,
+            "depth": 2
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "center",
+          "layer": "furniture",
+          "requiredOrientations": [
+            "front",
+            "back"
+          ]
+        },
+        {
+          "id": "desk.workstation.back",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-01-workstation-static/desk.workstation.back.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 1,
+            "bounds": [
+              314,
+              0,
+              627,
+              314
+            ]
+          },
+          "trimBox": [
+            48,
+            104,
+            313,
+            287
+          ],
+          "size": [
+            281,
+            199
+          ],
+          "alphaCoverage": 0.6721,
+          "physicalScale": {
+            "width": 3,
+            "depth": 2,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 3,
+            "height": 2
+          },
+          "footprint": {
+            "width": 3,
+            "depth": 2
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "center",
+          "layer": "furniture",
+          "requiredOrientations": [
+            "front",
+            "back"
+          ]
+        },
+        {
+          "id": "monitor.front",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-01-workstation-static/monitor.front.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 2,
+            "bounds": [
+              627,
+              0,
+              940,
+              314
+            ]
+          },
+          "trimBox": [
+            78,
+            101,
+            269,
+            291
+          ],
+          "size": [
+            207,
+            206
+          ],
+          "alphaCoverage": 0.7481,
+          "physicalScale": {
+            "width": 2,
+            "depth": 1,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 2
+          },
+          "layer": "equipment",
+          "anchor": "bottom-center",
+          "supports": [
+            "desk-surface"
+          ],
+          "footprint": {
+            "width": 2,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "monitor.back",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-01-workstation-static/monitor.back.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 3,
+            "bounds": [
+              940,
+              0,
+              1254,
+              314
+            ]
+          },
+          "trimBox": [
+            47,
+            100,
+            239,
+            290
+          ],
+          "size": [
+            208,
+            206
+          ],
+          "alphaCoverage": 0.7373,
+          "physicalScale": {
+            "width": 2,
+            "depth": 1,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 2
+          },
+          "layer": "equipment",
+          "anchor": "bottom-center",
+          "supports": [
+            "desk-surface"
+          ],
+          "footprint": {
+            "width": 2,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "keyboard.mouse",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-01-workstation-static/keyboard.mouse.png",
+          "sourceCell": {
+            "row": 1,
+            "column": 0,
+            "bounds": [
+              0,
+              314,
+              314,
+              627
+            ]
+          },
+          "trimBox": [
+            46,
+            146,
+            314,
+            260
+          ],
+          "size": [
+            284,
+            130
+          ],
+          "alphaCoverage": 0.7441,
+          "physicalScale": {
+            "width": 2,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 1
+          },
+          "layer": "equipment",
+          "anchor": "bottom-center",
+          "supports": [
+            "desk-surface"
+          ],
+          "footprint": {
+            "width": 2,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "pc.case",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-01-workstation-static/pc.case.png",
+          "sourceCell": {
+            "row": 1,
+            "column": 1,
+            "bounds": [
+              314,
+              314,
+              627,
+              627
+            ]
+          },
+          "trimBox": [
+            0,
+            74,
+            313,
+            286
+          ],
+          "size": [
+            329,
+            228
+          ],
+          "alphaCoverage": 0.356,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 2
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "bottom-center",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "cable.tray",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-01-workstation-static/cable.tray.png",
+          "sourceCell": {
+            "row": 1,
+            "column": 2,
+            "bounds": [
+              627,
+              314,
+              940,
+              627
+            ]
+          },
+          "trimBox": [
+            0,
+            156,
+            296,
+            247
+          ],
+          "size": [
+            312,
+            107
+          ],
+          "alphaCoverage": 0.6899,
+          "physicalScale": {
+            "width": 2,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 1
+          },
+          "footprint": {
+            "width": 2,
+            "depth": 1
+          },
+          "supports": [
+            "desk-surface"
+          ],
+          "anchor": "bottom-center",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "lamp.desk",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-01-workstation-static/lamp.desk.png",
+          "sourceCell": {
+            "row": 1,
+            "column": 3,
+            "bounds": [
+              940,
+              314,
+              1254,
+              627
+            ]
+          },
+          "trimBox": [
+            34,
+            72,
+            246,
+            282
+          ],
+          "size": [
+            228,
+            226
+          ],
+          "alphaCoverage": 0.2682,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 1
+          },
+          "layer": "decor",
+          "anchor": "bottom-center",
+          "supports": [
+            "desk-surface"
+          ],
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "papers.stack",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-01-workstation-static/papers.stack.png",
+          "sourceCell": {
+            "row": 2,
+            "column": 0,
+            "bounds": [
+              0,
+              627,
+              314,
+              940
+            ]
+          },
+          "trimBox": [
+            76,
+            76,
+            267,
+            241
+          ],
+          "size": [
+            207,
+            181
+          ],
+          "alphaCoverage": 0.7586,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 1
+          },
+          "layer": "decor",
+          "anchor": "bottom-center",
+          "supports": [
+            "desk-surface",
+            "table-surface",
+            "credenza-surface"
+          ],
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "cup.coffee",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-01-workstation-static/cup.coffee.png",
+          "sourceCell": {
+            "row": 2,
+            "column": 1,
+            "bounds": [
+              314,
+              627,
+              627,
+              940
+            ]
+          },
+          "trimBox": [
+            85,
+            88,
+            253,
+            241
+          ],
+          "size": [
+            184,
+            169
+          ],
+          "alphaCoverage": 0.652,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 1
+          },
+          "layer": "decor",
+          "anchor": "bottom-center",
+          "supports": [
+            "table-surface",
+            "counter-surface"
+          ],
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "phone.desk",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-01-workstation-static/phone.desk.png",
+          "sourceCell": {
+            "row": 2,
+            "column": 2,
+            "bounds": [
+              627,
+              627,
+              940,
+              940
+            ]
+          },
+          "trimBox": [
+            88,
+            65,
+            194,
+            248
+          ],
+          "size": [
+            122,
+            199
+          ],
+          "alphaCoverage": 0.7888,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 1
+          },
+          "layer": "equipment",
+          "anchor": "bottom-center",
+          "supports": [
+            "desk-surface"
+          ],
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "tablet.drawing",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-01-workstation-static/tablet.drawing.png",
+          "sourceCell": {
+            "row": 2,
+            "column": 3,
+            "bounds": [
+              940,
+              627,
+              1254,
+              940
+            ]
+          },
+          "trimBox": [
+            13,
+            86,
+            246,
+            242
+          ],
+          "size": [
+            249,
+            172
+          ],
+          "alphaCoverage": 0.8457,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 1
+          },
+          "layer": "equipment",
+          "anchor": "bottom-center",
+          "supports": [
+            "desk-surface"
+          ],
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "laptop.open",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-01-workstation-static/laptop.open.png",
+          "sourceCell": {
+            "row": 3,
+            "column": 0,
+            "bounds": [
+              0,
+              940,
+              314,
+              1254
+            ]
+          },
+          "trimBox": [
+            47,
+            23,
+            314,
+            234
+          ],
+          "size": [
+            283,
+            227
+          ],
+          "alphaCoverage": 0.7509,
+          "physicalScale": {
+            "width": 2,
+            "depth": 1,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 2
+          },
+          "layer": "equipment",
+          "anchor": "bottom-center",
+          "supports": [
+            "desk-surface",
+            "table-surface"
+          ],
+          "footprint": {
+            "width": 2,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "speaker.desktop",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-01-workstation-static/speaker.desktop.png",
+          "sourceCell": {
+            "row": 3,
+            "column": 1,
+            "bounds": [
+              314,
+              940,
+              627,
+              1254
+            ]
+          },
+          "trimBox": [
+            0,
+            35,
+            230,
+            234
+          ],
+          "size": [
+            246,
+            215
+          ],
+          "alphaCoverage": 0.4488,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 1
+          },
+          "supports": [
+            "desk-surface",
+            "counter-surface",
+            "credenza-surface"
+          ],
+          "anchor": "bottom-center",
+          "requiredOrientations": [
+            "front"
+          ],
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          }
+        },
+        {
+          "id": "plant.small",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-01-workstation-static/plant.small.png",
+          "sourceCell": {
+            "row": 3,
+            "column": 2,
+            "bounds": [
+              627,
+              940,
+              940,
+              1254
+            ]
+          },
+          "trimBox": [
+            36,
+            5,
+            230,
+            240
+          ],
+          "size": [
+            210,
+            251
+          ],
+          "alphaCoverage": 0.5301,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 2
+          },
+          "layer": "decor",
+          "anchor": "bottom-center",
+          "supports": [
+            "floor"
+          ],
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "power.strip",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-01-workstation-static/power.strip.png",
+          "sourceCell": {
+            "row": 3,
+            "column": 3,
+            "bounds": [
+              940,
+              940,
+              1254,
+              1254
+            ]
+          },
+          "trimBox": [
+            6,
+            104,
+            260,
+            219
+          ],
+          "size": [
+            270,
+            131
+          ],
+          "alphaCoverage": 0.7335,
+          "physicalScale": {
+            "width": 2,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 1
+          },
+          "footprint": {
+            "width": 2,
+            "depth": 1
+          },
+          "supports": [
+            "floor",
+            "desk-surface"
+          ],
+          "anchor": "bottom-center",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "env-02-screen-themes",
+      "source": "assets/art/layout-references/screen-themes-sheet-modern-bright-v1-source.png",
+      "sourceSize": [
+        1536,
+        1024
+      ],
+      "grid": [
+        4,
+        4
+      ],
+      "cellSize": [
+        384,
+        256
+      ],
+      "status": "library-ready",
+      "animation": "seam-loop",
+      "assets": [
+        {
+          "id": "screen.theme.progress.a",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-02-screen-themes/screen.theme.progress.a.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 0,
+            "bounds": [
+              0,
+              0,
+              384,
+              256
+            ]
+          },
+          "trimBox": [
+            31,
+            59,
+            371,
+            256
+          ],
+          "size": [
+            356,
+            213
+          ],
+          "alphaCoverage": 0.8788,
+          "physicalScale": {
+            "width": 2,
+            "depth": 0,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 0
+          },
+          "supports": [
+            "wall"
+          ],
+          "anchor": "wall-top",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "screen.theme.progress.b",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-02-screen-themes/screen.theme.progress.b.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 1,
+            "bounds": [
+              384,
+              0,
+              768,
+              256
+            ]
+          },
+          "trimBox": [
+            24,
+            59,
+            365,
+            256
+          ],
+          "size": [
+            357,
+            213
+          ],
+          "alphaCoverage": 0.8789,
+          "physicalScale": {
+            "width": 2,
+            "depth": 0,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 0
+          },
+          "supports": [
+            "wall"
+          ],
+          "anchor": "wall-top",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "screen.theme.progress.c",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-02-screen-themes/screen.theme.progress.c.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 2,
+            "bounds": [
+              768,
+              0,
+              1152,
+              256
+            ]
+          },
+          "trimBox": [
+            18,
+            59,
+            357,
+            256
+          ],
+          "size": [
+            355,
+            213
+          ],
+          "alphaCoverage": 0.8787,
+          "physicalScale": {
+            "width": 2,
+            "depth": 0,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 0
+          },
+          "supports": [
+            "wall"
+          ],
+          "anchor": "wall-top",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "screen.theme.progress.d",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-02-screen-themes/screen.theme.progress.d.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 3,
+            "bounds": [
+              1152,
+              0,
+              1536,
+              256
+            ]
+          },
+          "trimBox": [
+            13,
+            60,
+            350,
+            256
+          ],
+          "size": [
+            353,
+            212
+          ],
+          "alphaCoverage": 0.8826,
+          "physicalScale": {
+            "width": 2,
+            "depth": 0,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 0
+          },
+          "supports": [
+            "wall"
+          ],
+          "anchor": "wall-top",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "screen.theme.dashboard.a",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-02-screen-themes/screen.theme.dashboard.a.png",
+          "sourceCell": {
+            "row": 1,
+            "column": 0,
+            "bounds": [
+              0,
+              256,
+              384,
+              512
+            ]
+          },
+          "trimBox": [
+            31,
+            0,
+            372,
+            242
+          ],
+          "size": [
+            357,
+            258
+          ],
+          "alphaCoverage": 0.7615,
+          "physicalScale": {
+            "width": 2,
+            "depth": 0,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 0
+          },
+          "supports": [
+            "wall"
+          ],
+          "anchor": "wall-top",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "screen.theme.dashboard.b",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-02-screen-themes/screen.theme.dashboard.b.png",
+          "sourceCell": {
+            "row": 1,
+            "column": 1,
+            "bounds": [
+              384,
+              256,
+              768,
+              512
+            ]
+          },
+          "trimBox": [
+            23,
+            0,
+            365,
+            242
+          ],
+          "size": [
+            358,
+            258
+          ],
+          "alphaCoverage": 0.7637,
+          "physicalScale": {
+            "width": 2,
+            "depth": 0,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 0
+          },
+          "supports": [
+            "wall"
+          ],
+          "anchor": "wall-top",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "screen.theme.dashboard.c",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-02-screen-themes/screen.theme.dashboard.c.png",
+          "sourceCell": {
+            "row": 1,
+            "column": 2,
+            "bounds": [
+              768,
+              256,
+              1152,
+              512
+            ]
+          },
+          "trimBox": [
+            18,
+            0,
+            358,
+            243
+          ],
+          "size": [
+            356,
+            259
+          ],
+          "alphaCoverage": 0.7617,
+          "physicalScale": {
+            "width": 2,
+            "depth": 0,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 0
+          },
+          "supports": [
+            "wall"
+          ],
+          "anchor": "wall-top",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "screen.theme.dashboard.d",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-02-screen-themes/screen.theme.dashboard.d.png",
+          "sourceCell": {
+            "row": 1,
+            "column": 3,
+            "bounds": [
+              1152,
+              256,
+              1536,
+              512
+            ]
+          },
+          "trimBox": [
+            13,
+            0,
+            352,
+            243
+          ],
+          "size": [
+            355,
+            259
+          ],
+          "alphaCoverage": 0.7629,
+          "physicalScale": {
+            "width": 2,
+            "depth": 0,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 0
+          },
+          "supports": [
+            "wall"
+          ],
+          "anchor": "wall-top",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "screen.theme.content.a",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-02-screen-themes/screen.theme.content.a.png",
+          "sourceCell": {
+            "row": 2,
+            "column": 0,
+            "bounds": [
+              0,
+              512,
+              384,
+              768
+            ]
+          },
+          "trimBox": [
+            31,
+            20,
+            372,
+            256
+          ],
+          "size": [
+            357,
+            252
+          ],
+          "alphaCoverage": 0.773,
+          "physicalScale": {
+            "width": 2,
+            "depth": 0,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 0
+          },
+          "supports": [
+            "wall"
+          ],
+          "anchor": "wall-top",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "screen.theme.content.b",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-02-screen-themes/screen.theme.content.b.png",
+          "sourceCell": {
+            "row": 2,
+            "column": 1,
+            "bounds": [
+              384,
+              512,
+              768,
+              768
+            ]
+          },
+          "trimBox": [
+            22,
+            20,
+            365,
+            256
+          ],
+          "size": [
+            359,
+            252
+          ],
+          "alphaCoverage": 0.7705,
+          "physicalScale": {
+            "width": 2,
+            "depth": 0,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 0
+          },
+          "supports": [
+            "wall"
+          ],
+          "anchor": "wall-top",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "screen.theme.content.c",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-02-screen-themes/screen.theme.content.c.png",
+          "sourceCell": {
+            "row": 2,
+            "column": 2,
+            "bounds": [
+              768,
+              512,
+              1152,
+              768
+            ]
+          },
+          "trimBox": [
+            18,
+            20,
+            359,
+            256
+          ],
+          "size": [
+            357,
+            252
+          ],
+          "alphaCoverage": 0.7696,
+          "physicalScale": {
+            "width": 2,
+            "depth": 0,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 0
+          },
+          "supports": [
+            "wall"
+          ],
+          "anchor": "wall-top",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "screen.theme.content.d",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-02-screen-themes/screen.theme.content.d.png",
+          "sourceCell": {
+            "row": 2,
+            "column": 3,
+            "bounds": [
+              1152,
+              512,
+              1536,
+              768
+            ]
+          },
+          "trimBox": [
+            11,
+            19,
+            352,
+            256
+          ],
+          "size": [
+            357,
+            253
+          ],
+          "alphaCoverage": 0.7692,
+          "physicalScale": {
+            "width": 2,
+            "depth": 0,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 0
+          },
+          "supports": [
+            "wall"
+          ],
+          "anchor": "wall-top",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "screen.theme.support.a",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-02-screen-themes/screen.theme.support.a.png",
+          "sourceCell": {
+            "row": 3,
+            "column": 0,
+            "bounds": [
+              0,
+              768,
+              384,
+              1024
+            ]
+          },
+          "trimBox": [
+            30,
+            0,
+            372,
+            197
+          ],
+          "size": [
+            358,
+            213
+          ],
+          "alphaCoverage": 0.8786,
+          "physicalScale": {
+            "width": 2,
+            "depth": 0,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 0
+          },
+          "supports": [
+            "wall"
+          ],
+          "anchor": "wall-top",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "screen.theme.support.b",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-02-screen-themes/screen.theme.support.b.png",
+          "sourceCell": {
+            "row": 3,
+            "column": 1,
+            "bounds": [
+              384,
+              768,
+              768,
+              1024
+            ]
+          },
+          "trimBox": [
+            22,
+            0,
+            365,
+            198
+          ],
+          "size": [
+            359,
+            214
+          ],
+          "alphaCoverage": 0.8795,
+          "physicalScale": {
+            "width": 2,
+            "depth": 0,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 0
+          },
+          "supports": [
+            "wall"
+          ],
+          "anchor": "wall-top",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "screen.theme.support.c",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-02-screen-themes/screen.theme.support.c.png",
+          "sourceCell": {
+            "row": 3,
+            "column": 2,
+            "bounds": [
+              768,
+              768,
+              1152,
+              1024
+            ]
+          },
+          "trimBox": [
+            18,
+            0,
+            359,
+            198
+          ],
+          "size": [
+            357,
+            214
+          ],
+          "alphaCoverage": 0.8794,
+          "physicalScale": {
+            "width": 2,
+            "depth": 0,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 0
+          },
+          "supports": [
+            "wall"
+          ],
+          "anchor": "wall-top",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "screen.theme.support.d",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-02-screen-themes/screen.theme.support.d.png",
+          "sourceCell": {
+            "row": 3,
+            "column": 3,
+            "bounds": [
+              1152,
+              768,
+              1536,
+              1024
+            ]
+          },
+          "trimBox": [
+            11,
+            0,
+            350,
+            198
+          ],
+          "size": [
+            355,
+            214
+          ],
+          "alphaCoverage": 0.8791,
+          "physicalScale": {
+            "width": 2,
+            "depth": 0,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 0
+          },
+          "supports": [
+            "wall"
+          ],
+          "anchor": "wall-top",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "env-05-facility-lounge",
+      "source": "assets/art/layout-references/facility-lounge-sheet-modern-bright-v1-source.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "grid": [
+        4,
+        4
+      ],
+      "cellSize": [
+        314,
+        314
+      ],
+      "status": "library-ready",
+      "animation": "seam-loop",
+      "assets": [
+        {
+          "id": "facility.status.a",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-05-facility-lounge/facility.status.a.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 0,
+            "bounds": [
+              0,
+              0,
+              314,
+              314
+            ]
+          },
+          "trimBox": [
+            9,
+            76,
+            301,
+            215
+          ],
+          "size": [
+            308,
+            155
+          ],
+          "alphaCoverage": 0.8491,
+          "physicalScale": {
+            "width": 3,
+            "depth": 0,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 3,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 0
+          },
+          "supports": [
+            "wall"
+          ],
+          "anchor": "wall-top",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "facility.status.b",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-05-facility-lounge/facility.status.b.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 1,
+            "bounds": [
+              314,
+              0,
+              627,
+              314
+            ]
+          },
+          "trimBox": [
+            9,
+            76,
+            301,
+            215
+          ],
+          "size": [
+            308,
+            155
+          ],
+          "alphaCoverage": 0.8492,
+          "physicalScale": {
+            "width": 3,
+            "depth": 0,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 3,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 0
+          },
+          "supports": [
+            "wall"
+          ],
+          "anchor": "wall-top",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "facility.status.c",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-05-facility-lounge/facility.status.c.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 2,
+            "bounds": [
+              627,
+              0,
+              940,
+              314
+            ]
+          },
+          "trimBox": [
+            11,
+            75,
+            303,
+            215
+          ],
+          "size": [
+            308,
+            156
+          ],
+          "alphaCoverage": 0.8411,
+          "physicalScale": {
+            "width": 3,
+            "depth": 0,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 3,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 0
+          },
+          "supports": [
+            "wall"
+          ],
+          "anchor": "wall-top",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "facility.status.d",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-05-facility-lounge/facility.status.d.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 3,
+            "bounds": [
+              940,
+              0,
+              1254,
+              314
+            ]
+          },
+          "trimBox": [
+            12,
+            76,
+            304,
+            215
+          ],
+          "size": [
+            308,
+            155
+          ],
+          "alphaCoverage": 0.8492,
+          "physicalScale": {
+            "width": 3,
+            "depth": 0,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 3,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 0
+          },
+          "supports": [
+            "wall"
+          ],
+          "anchor": "wall-top",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "vending.machine.modern",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-05-facility-lounge/vending.machine.modern.png",
+          "sourceCell": {
+            "row": 1,
+            "column": 0,
+            "bounds": [
+              0,
+              314,
+              314,
+              627
+            ]
+          },
+          "trimBox": [
+            69,
+            11,
+            236,
+            292
+          ],
+          "size": [
+            183,
+            297
+          ],
+          "alphaCoverage": 0.8437,
+          "physicalScale": {
+            "width": 2,
+            "depth": 1,
+            "height": 3
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 3
+          },
+          "footprint": {
+            "width": 2,
+            "depth": 1
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "bottom-center",
+          "requiredOrientations": [
+            "front"
+          ],
+          "approachDepth": 1
+        },
+        {
+          "id": "refrigerator.modern",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-05-facility-lounge/refrigerator.modern.png",
+          "sourceCell": {
+            "row": 1,
+            "column": 1,
+            "bounds": [
+              314,
+              314,
+              627,
+              627
+            ]
+          },
+          "trimBox": [
+            36,
+            11,
+            313,
+            292
+          ],
+          "size": [
+            293,
+            297
+          ],
+          "alphaCoverage": 0.5602,
+          "physicalScale": {
+            "width": 2,
+            "depth": 1,
+            "height": 3
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 3
+          },
+          "footprint": {
+            "width": 2,
+            "depth": 1
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "bottom-center",
+          "requiredOrientations": [
+            "front"
+          ],
+          "approachDepth": 1
+        },
+        {
+          "id": "sofa.modern.three-seat",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-05-facility-lounge/sofa.modern.three-seat.png",
+          "sourceCell": {
+            "row": 1,
+            "column": 2,
+            "bounds": [
+              627,
+              314,
+              940,
+              627
+            ]
+          },
+          "trimBox": [
+            0,
+            79,
+            302,
+            273
+          ],
+          "size": [
+            318,
+            210
+          ],
+          "alphaCoverage": 0.8019,
+          "physicalScale": {
+            "width": 4,
+            "depth": 2,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 4,
+            "height": 3
+          },
+          "footprint": {
+            "width": 4,
+            "depth": 2
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "center",
+          "requiredOrientations": [
+            "front"
+          ],
+          "capacity": 3,
+          "approachDepth": 1
+        },
+        {
+          "id": "sofa.modern.two-seat",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-05-facility-lounge/sofa.modern.two-seat.png",
+          "sourceCell": {
+            "row": 1,
+            "column": 3,
+            "bounds": [
+              940,
+              314,
+              1254,
+              627
+            ]
+          },
+          "trimBox": [
+            33,
+            81,
+            285,
+            273
+          ],
+          "size": [
+            268,
+            208
+          ],
+          "alphaCoverage": 0.7608,
+          "physicalScale": {
+            "width": 3,
+            "depth": 2,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 3,
+            "height": 3
+          },
+          "footprint": {
+            "width": 3,
+            "depth": 2
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "center",
+          "requiredOrientations": [
+            "front"
+          ],
+          "capacity": 2,
+          "approachDepth": 1
+        },
+        {
+          "id": "chair.massage.modern",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-05-facility-lounge/chair.massage.modern.png",
+          "sourceCell": {
+            "row": 2,
+            "column": 0,
+            "bounds": [
+              0,
+              627,
+              314,
+              940
+            ]
+          },
+          "trimBox": [
+            67,
+            34,
+            243,
+            304
+          ],
+          "size": [
+            192,
+            286
+          ],
+          "alphaCoverage": 0.7707,
+          "physicalScale": {
+            "width": 2,
+            "depth": 2,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 3
+          },
+          "footprint": {
+            "width": 2,
+            "depth": 2
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "bottom-center",
+          "requiredOrientations": [
+            "front"
+          ],
+          "capacity": 1,
+          "approachDepth": 1
+        },
+        {
+          "id": "machine.game.arcade.modern",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-05-facility-lounge/machine.game.arcade.modern.png",
+          "sourceCell": {
+            "row": 2,
+            "column": 1,
+            "bounds": [
+              314,
+              627,
+              627,
+              940
+            ]
+          },
+          "trimBox": [
+            42,
+            11,
+            313,
+            299
+          ],
+          "size": [
+            287,
+            304
+          ],
+          "alphaCoverage": 0.5909,
+          "physicalScale": {
+            "width": 2,
+            "depth": 2,
+            "height": 3
+          },
+          "renderBox": {
+            "width": 3,
+            "height": 3
+          },
+          "footprint": {
+            "width": 2,
+            "depth": 2
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "bottom-center",
+          "requiredOrientations": [
+            "front"
+          ],
+          "capacity": 1,
+          "approachDepth": 1,
+          "viewportPixels": {
+            "width": 48,
+            "height": 32
+          }
+        },
+        {
+          "id": "locker.bank.personal-15",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-05-facility-lounge/locker.bank.personal-15.png",
+          "sourceCell": {
+            "row": 2,
+            "column": 2,
+            "bounds": [
+              627,
+              627,
+              940,
+              940
+            ]
+          },
+          "trimBox": [
+            0,
+            55,
+            291,
+            283
+          ],
+          "size": [
+            307,
+            244
+          ],
+          "alphaCoverage": 0.8526,
+          "physicalScale": {
+            "width": 5,
+            "depth": 1,
+            "height": 3
+          },
+          "renderBox": {
+            "width": 5,
+            "height": 3
+          },
+          "footprint": {
+            "width": 5,
+            "depth": 1
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "bottom-center",
+          "requiredOrientations": [
+            "front"
+          ],
+          "capacity": 15
+        },
+        {
+          "id": "case.figure-display",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-05-facility-lounge/case.figure-display.png",
+          "sourceCell": {
+            "row": 2,
+            "column": 3,
+            "bounds": [
+              940,
+              627,
+              1254,
+              940
+            ]
+          },
+          "trimBox": [
+            84,
+            15,
+            233,
+            294
+          ],
+          "size": [
+            165,
+            295
+          ],
+          "alphaCoverage": 0.8184,
+          "physicalScale": {
+            "width": 2,
+            "depth": 1,
+            "height": 3
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 3
+          },
+          "footprint": {
+            "width": 2,
+            "depth": 1
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "bottom-center",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "beanbag.lounge",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-05-facility-lounge/beanbag.lounge.png",
+          "sourceCell": {
+            "row": 3,
+            "column": 0,
+            "bounds": [
+              0,
+              940,
+              314,
+              1254
+            ]
+          },
+          "trimBox": [
+            0,
+            69,
+            251,
+            314
+          ],
+          "size": [
+            267,
+            261
+          ],
+          "alphaCoverage": 0.4136,
+          "physicalScale": {
+            "width": 2,
+            "depth": 2,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 2
+          },
+          "footprint": {
+            "width": 2,
+            "depth": 2
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "bottom-center",
+          "requiredOrientations": [
+            "front"
+          ],
+          "capacity": 1,
+          "approachDepth": 1
+        },
+        {
+          "id": "table.board-game",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-05-facility-lounge/table.board-game.png",
+          "sourceCell": {
+            "row": 3,
+            "column": 1,
+            "bounds": [
+              314,
+              940,
+              627,
+              1254
+            ]
+          },
+          "trimBox": [
+            2,
+            44,
+            289,
+            265
+          ],
+          "size": [
+            303,
+            237
+          ],
+          "alphaCoverage": 0.5274,
+          "physicalScale": {
+            "width": 3,
+            "depth": 3,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 3,
+            "height": 3
+          },
+          "footprint": {
+            "width": 3,
+            "depth": 3
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "center",
+          "requiredOrientations": [
+            "front"
+          ],
+          "capacity": 4,
+          "approachDepth": 1
+        },
+        {
+          "id": "bookshelf.reading",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-05-facility-lounge/bookshelf.reading.png",
+          "sourceCell": {
+            "row": 3,
+            "column": 2,
+            "bounds": [
+              627,
+              940,
+              940,
+              1254
+            ]
+          },
+          "trimBox": [
+            61,
+            14,
+            243,
+            278
+          ],
+          "size": [
+            198,
+            280
+          ],
+          "alphaCoverage": 0.8419,
+          "physicalScale": {
+            "width": 2,
+            "depth": 1,
+            "height": 3
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 3
+          },
+          "footprint": {
+            "width": 2,
+            "depth": 1
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "bottom-center",
+          "requiredOrientations": [
+            "front"
+          ],
+          "capacity": 2,
+          "approachDepth": 1
+        },
+        {
+          "id": "chair.reading",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-05-facility-lounge/chair.reading.png",
+          "sourceCell": {
+            "row": 3,
+            "column": 3,
+            "bounds": [
+              940,
+              940,
+              1254,
+              1254
+            ]
+          },
+          "trimBox": [
+            95,
+            44,
+            223,
+            269
+          ],
+          "size": [
+            144,
+            241
+          ],
+          "alphaCoverage": 0.6387,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 2
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "bottom-center",
+          "requiredOrientations": [
+            "front"
+          ],
+          "capacity": 1
+        }
+      ]
+    },
+    {
+      "id": "env-03-research-creative",
+      "source": "assets/art/layout-references/research-creative-sheet-modern-bright-v1-source.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "grid": [
+        4,
+        4
+      ],
+      "cellSize": [
+        314,
+        314
+      ],
+      "status": "library-ready",
+      "animation": null,
+      "assets": [
+        {
+          "id": "sample.tray.product",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-03-research-creative/sample.tray.product.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 0,
+            "bounds": [
+              0,
+              0,
+              314,
+              314
+            ]
+          },
+          "trimBox": [
+            39,
+            128,
+            304,
+            257
+          ],
+          "size": [
+            281,
+            145
+          ],
+          "alphaCoverage": 0.7901,
+          "physicalScale": {
+            "width": 2,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 1
+          },
+          "footprint": {
+            "width": 2,
+            "depth": 1
+          },
+          "supports": [
+            "desk-surface",
+            "table-surface",
+            "counter-surface",
+            "credenza-surface",
+            "rack-surface"
+          ],
+          "anchor": "bottom-center",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "scanner.barcode",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-03-research-creative/scanner.barcode.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 1,
+            "bounds": [
+              314,
+              0,
+              627,
+              314
+            ]
+          },
+          "trimBox": [
+            90,
+            74,
+            205,
+            271
+          ],
+          "size": [
+            131,
+            213
+          ],
+          "alphaCoverage": 0.5611,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "supports": [
+            "desk-surface",
+            "table-surface",
+            "counter-surface",
+            "credenza-surface",
+            "rack-surface"
+          ],
+          "anchor": "bottom-center",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "scale.digital",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-03-research-creative/scale.digital.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 2,
+            "bounds": [
+              627,
+              0,
+              940,
+              314
+            ]
+          },
+          "trimBox": [
+            18,
+            92,
+            313,
+            267
+          ],
+          "size": [
+            311,
+            191
+          ],
+          "alphaCoverage": 0.5524,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "supports": [
+            "desk-surface",
+            "table-surface",
+            "counter-surface",
+            "credenza-surface",
+            "rack-surface"
+          ],
+          "anchor": "bottom-center",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "board.comparison",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-03-research-creative/board.comparison.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 3,
+            "bounds": [
+              940,
+              0,
+              1254,
+              314
+            ]
+          },
+          "trimBox": [
+            0,
+            92,
+            276,
+            257
+          ],
+          "size": [
+            292,
+            181
+          ],
+          "alphaCoverage": 0.8598,
+          "physicalScale": {
+            "width": 2,
+            "depth": 0,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 0
+          },
+          "supports": [
+            "wall"
+          ],
+          "anchor": "wall-top",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "microphone.desktop",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-03-research-creative/microphone.desktop.png",
+          "sourceCell": {
+            "row": 1,
+            "column": 0,
+            "bounds": [
+              0,
+              314,
+              314,
+              627
+            ]
+          },
+          "trimBox": [
+            93,
+            37,
+            222,
+            290
+          ],
+          "size": [
+            145,
+            269
+          ],
+          "alphaCoverage": 0.5846,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 2
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "supports": [
+            "desk-surface",
+            "table-surface",
+            "counter-surface",
+            "credenza-surface",
+            "rack-surface"
+          ],
+          "anchor": "bottom-center",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "headphones.office",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-03-research-creative/headphones.office.png",
+          "sourceCell": {
+            "row": 1,
+            "column": 1,
+            "bounds": [
+              314,
+              314,
+              627,
+              627
+            ]
+          },
+          "trimBox": [
+            29,
+            70,
+            245,
+            274
+          ],
+          "size": [
+            232,
+            220
+          ],
+          "alphaCoverage": 0.4201,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "supports": [
+            "desk-surface",
+            "table-surface",
+            "counter-surface",
+            "credenza-surface",
+            "rack-surface"
+          ],
+          "anchor": "bottom-center",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "camera.tripod",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-03-research-creative/camera.tripod.png",
+          "sourceCell": {
+            "row": 1,
+            "column": 2,
+            "bounds": [
+              627,
+              314,
+              940,
+              627
+            ]
+          },
+          "trimBox": [
+            43,
+            33,
+            313,
+            290
+          ],
+          "size": [
+            286,
+            273
+          ],
+          "alphaCoverage": 0.275,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 3
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 3
+          },
+          "layer": "equipment",
+          "anchor": "bottom-center",
+          "supports": [
+            "floor"
+          ],
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "lightbox.product",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-03-research-creative/lightbox.product.png",
+          "sourceCell": {
+            "row": 1,
+            "column": 3,
+            "bounds": [
+              940,
+              314,
+              1254,
+              627
+            ]
+          },
+          "trimBox": [
+            0,
+            41,
+            266,
+            290
+          ],
+          "size": [
+            282,
+            265
+          ],
+          "alphaCoverage": 0.8496,
+          "physicalScale": {
+            "width": 2,
+            "depth": 1,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 2
+          },
+          "footprint": {
+            "width": 2,
+            "depth": 1
+          },
+          "supports": [
+            "desk-surface",
+            "credenza-surface"
+          ],
+          "anchor": "bottom-center",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "light.studio",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-03-research-creative/light.studio.png",
+          "sourceCell": {
+            "row": 2,
+            "column": 0,
+            "bounds": [
+              0,
+              627,
+              314,
+              940
+            ]
+          },
+          "trimBox": [
+            91,
+            17,
+            224,
+            280
+          ],
+          "size": [
+            149,
+            279
+          ],
+          "alphaCoverage": 0.4207,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 3
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 3
+          },
+          "layer": "equipment",
+          "anchor": "bottom-center",
+          "supports": [
+            "floor"
+          ],
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "stand.phone",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-03-research-creative/stand.phone.png",
+          "sourceCell": {
+            "row": 2,
+            "column": 1,
+            "bounds": [
+              314,
+              627,
+              627,
+              940
+            ]
+          },
+          "trimBox": [
+            58,
+            90,
+            211,
+            275
+          ],
+          "size": [
+            169,
+            201
+          ],
+          "alphaCoverage": 0.6607,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "supports": [
+            "desk-surface",
+            "table-surface",
+            "counter-surface",
+            "credenza-surface",
+            "rack-surface"
+          ],
+          "anchor": "bottom-center",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "dock.stylus",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-03-research-creative/dock.stylus.png",
+          "sourceCell": {
+            "row": 2,
+            "column": 2,
+            "bounds": [
+              627,
+              627,
+              940,
+              940
+            ]
+          },
+          "trimBox": [
+            66,
+            28,
+            175,
+            277
+          ],
+          "size": [
+            125,
+            265
+          ],
+          "alphaCoverage": 0.3799,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "supports": [
+            "desk-surface",
+            "table-surface",
+            "counter-surface",
+            "credenza-surface",
+            "rack-surface"
+          ],
+          "anchor": "bottom-center",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "swatches.color",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-03-research-creative/swatches.color.png",
+          "sourceCell": {
+            "row": 2,
+            "column": 3,
+            "bounds": [
+              940,
+              627,
+              1254,
+              940
+            ]
+          },
+          "trimBox": [
+            11,
+            68,
+            234,
+            269
+          ],
+          "size": [
+            239,
+            217
+          ],
+          "alphaCoverage": 0.6753,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "supports": [
+            "desk-surface",
+            "table-surface",
+            "counter-surface",
+            "credenza-surface",
+            "rack-surface"
+          ],
+          "anchor": "bottom-center",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "parcel.sample",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-03-research-creative/parcel.sample.png",
+          "sourceCell": {
+            "row": 3,
+            "column": 0,
+            "bounds": [
+              0,
+              940,
+              314,
+              1254
+            ]
+          },
+          "trimBox": [
+            73,
+            64,
+            236,
+            230
+          ],
+          "size": [
+            179,
+            182
+          ],
+          "alphaCoverage": 0.816,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "supports": [
+            "floor",
+            "desk-surface",
+            "table-surface",
+            "counter-surface",
+            "credenza-surface",
+            "rack-surface"
+          ],
+          "anchor": "bottom-center",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "package.mockup",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-03-research-creative/package.mockup.png",
+          "sourceCell": {
+            "row": 3,
+            "column": 1,
+            "bounds": [
+              314,
+              940,
+              627,
+              1254
+            ]
+          },
+          "trimBox": [
+            55,
+            39,
+            205,
+            230
+          ],
+          "size": [
+            166,
+            207
+          ],
+          "alphaCoverage": 0.8274,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "supports": [
+            "desk-surface",
+            "table-surface",
+            "counter-surface",
+            "credenza-surface",
+            "rack-surface"
+          ],
+          "anchor": "bottom-center",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "turntable.display",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-03-research-creative/turntable.display.png",
+          "sourceCell": {
+            "row": 3,
+            "column": 2,
+            "bounds": [
+              627,
+              940,
+              940,
+              1254
+            ]
+          },
+          "trimBox": [
+            5,
+            87,
+            313,
+            245
+          ],
+          "size": [
+            324,
+            174
+          ],
+          "alphaCoverage": 0.486,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "supports": [
+            "desk-surface",
+            "credenza-surface"
+          ],
+          "anchor": "bottom-center",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "backdrop.stand",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-03-research-creative/backdrop.stand.png",
+          "sourceCell": {
+            "row": 3,
+            "column": 3,
+            "bounds": [
+              940,
+              940,
+              1254,
+              1254
+            ]
+          },
+          "trimBox": [
+            0,
+            14,
+            270,
+            248
+          ],
+          "size": [
+            286,
+            250
+          ],
+          "alphaCoverage": 0.7287,
+          "physicalScale": {
+            "width": 2,
+            "depth": 1,
+            "height": 3
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 3
+          },
+          "footprint": {
+            "width": 2,
+            "depth": 1
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "bottom-center",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "env-04-release-noc",
+      "source": "assets/art/layout-references/release-qa-noc-sheet-modern-bright-v1-source.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "grid": [
+        4,
+        4
+      ],
+      "cellSize": [
+        314,
+        314
+      ],
+      "status": "library-ready",
+      "animation": null,
+      "assets": [
+        {
+          "id": "qa.checklist",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-04-release-noc/qa.checklist.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 0,
+            "bounds": [
+              0,
+              0,
+              314,
+              314
+            ]
+          },
+          "trimBox": [
+            66,
+            32,
+            263,
+            314
+          ],
+          "size": [
+            213,
+            298
+          ],
+          "alphaCoverage": 0.7921,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "supports": [
+            "desk-surface",
+            "table-surface",
+            "counter-surface",
+            "credenza-surface",
+            "rack-surface"
+          ],
+          "anchor": "bottom-center",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "qa.triage.terminal",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-04-release-noc/qa.triage.terminal.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 1,
+            "bounds": [
+              314,
+              0,
+              627,
+              314
+            ]
+          },
+          "trimBox": [
+            23,
+            71,
+            288,
+            310
+          ],
+          "size": [
+            281,
+            255
+          ],
+          "alphaCoverage": 0.8629,
+          "physicalScale": {
+            "width": 2,
+            "depth": 1,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 2
+          },
+          "footprint": {
+            "width": 2,
+            "depth": 1
+          },
+          "supports": [
+            "desk-surface",
+            "credenza-surface"
+          ],
+          "anchor": "bottom-center",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "qa.test.device",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-04-release-noc/qa.test.device.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 2,
+            "bounds": [
+              627,
+              0,
+              940,
+              314
+            ]
+          },
+          "trimBox": [
+            75,
+            50,
+            217,
+            313
+          ],
+          "size": [
+            158,
+            279
+          ],
+          "alphaCoverage": 0.8323,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "supports": [
+            "desk-surface",
+            "table-surface",
+            "counter-surface",
+            "credenza-surface",
+            "rack-surface"
+          ],
+          "anchor": "bottom-center",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "qa.status.board",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-04-release-noc/qa.status.board.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 3,
+            "bounds": [
+              940,
+              0,
+              1254,
+              314
+            ]
+          },
+          "trimBox": [
+            6,
+            61,
+            266,
+            313
+          ],
+          "size": [
+            276,
+            268
+          ],
+          "alphaCoverage": 0.8801,
+          "physicalScale": {
+            "width": 2,
+            "depth": 0,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 2
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 0
+          },
+          "supports": [
+            "wall"
+          ],
+          "anchor": "wall-top",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "release.laptop",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-04-release-noc/release.laptop.png",
+          "sourceCell": {
+            "row": 1,
+            "column": 0,
+            "bounds": [
+              0,
+              314,
+              314,
+              627
+            ]
+          },
+          "trimBox": [
+            36,
+            65,
+            293,
+            288
+          ],
+          "size": [
+            273,
+            239
+          ],
+          "alphaCoverage": 0.7665,
+          "physicalScale": {
+            "width": 2,
+            "depth": 1,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 2
+          },
+          "layer": "equipment",
+          "anchor": "bottom-center",
+          "supports": [
+            "desk-surface",
+            "table-surface"
+          ],
+          "footprint": {
+            "width": 2,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "qa.handheld.controller",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-04-release-noc/qa.handheld.controller.png",
+          "sourceCell": {
+            "row": 1,
+            "column": 1,
+            "bounds": [
+              314,
+              314,
+              627,
+              627
+            ]
+          },
+          "trimBox": [
+            24,
+            102,
+            286,
+            253
+          ],
+          "size": [
+            278,
+            167
+          ],
+          "alphaCoverage": 0.7425,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "supports": [
+            "desk-surface",
+            "table-surface",
+            "counter-surface",
+            "credenza-surface",
+            "rack-surface"
+          ],
+          "anchor": "bottom-center",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "printer.barcode",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-04-release-noc/printer.barcode.png",
+          "sourceCell": {
+            "row": 1,
+            "column": 2,
+            "bounds": [
+              627,
+              314,
+              940,
+              627
+            ]
+          },
+          "trimBox": [
+            35,
+            68,
+            256,
+            293
+          ],
+          "size": [
+            237,
+            241
+          ],
+          "alphaCoverage": 0.8131,
+          "physicalScale": {
+            "width": 2,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 1
+          },
+          "footprint": {
+            "width": 2,
+            "depth": 1
+          },
+          "supports": [
+            "desk-surface",
+            "credenza-surface"
+          ],
+          "anchor": "bottom-center",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "release.package.crate",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-04-release-noc/release.package.crate.png",
+          "sourceCell": {
+            "row": 1,
+            "column": 3,
+            "bounds": [
+              940,
+              314,
+              1254,
+              627
+            ]
+          },
+          "trimBox": [
+            6,
+            67,
+            270,
+            288
+          ],
+          "size": [
+            280,
+            237
+          ],
+          "alphaCoverage": 0.8244,
+          "physicalScale": {
+            "width": 2,
+            "depth": 1,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 2
+          },
+          "footprint": {
+            "width": 2,
+            "depth": 1
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "bottom-center",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "server.rack.noc",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-04-release-noc/server.rack.noc.png",
+          "sourceCell": {
+            "row": 2,
+            "column": 0,
+            "bounds": [
+              0,
+              627,
+              314,
+              940
+            ]
+          },
+          "trimBox": [
+            63,
+            34,
+            263,
+            282
+          ],
+          "size": [
+            216,
+            264
+          ],
+          "alphaCoverage": 0.8504,
+          "physicalScale": {
+            "width": 2,
+            "depth": 1,
+            "height": 3
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 3
+          },
+          "footprint": {
+            "width": 2,
+            "depth": 1
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "bottom-center",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "network.switch",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-04-release-noc/network.switch.png",
+          "sourceCell": {
+            "row": 2,
+            "column": 1,
+            "bounds": [
+              314,
+              627,
+              627,
+              940
+            ]
+          },
+          "trimBox": [
+            12,
+            133,
+            293,
+            262
+          ],
+          "size": [
+            297,
+            145
+          ],
+          "alphaCoverage": 0.7992,
+          "physicalScale": {
+            "width": 2,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 1
+          },
+          "footprint": {
+            "width": 2,
+            "depth": 1
+          },
+          "supports": [
+            "rack-surface",
+            "credenza-surface"
+          ],
+          "anchor": "bottom-center",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "network.router.firewall",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-04-release-noc/network.router.firewall.png",
+          "sourceCell": {
+            "row": 2,
+            "column": 2,
+            "bounds": [
+              627,
+              627,
+              940,
+              940
+            ]
+          },
+          "trimBox": [
+            12,
+            50,
+            313,
+            274
+          ],
+          "size": [
+            317,
+            240
+          ],
+          "alphaCoverage": 0.4944,
+          "physicalScale": {
+            "width": 2,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 1
+          },
+          "footprint": {
+            "width": 2,
+            "depth": 1
+          },
+          "supports": [
+            "rack-surface",
+            "credenza-surface"
+          ],
+          "anchor": "bottom-center",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "noc.monitoring.panel",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-04-release-noc/noc.monitoring.panel.png",
+          "sourceCell": {
+            "row": 2,
+            "column": 3,
+            "bounds": [
+              940,
+              627,
+              1254,
+              940
+            ]
+          },
+          "trimBox": [
+            0,
+            59,
+            278,
+            274
+          ],
+          "size": [
+            294,
+            231
+          ],
+          "alphaCoverage": 0.8767,
+          "physicalScale": {
+            "width": 2,
+            "depth": 0,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 2
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 0
+          },
+          "supports": [
+            "wall"
+          ],
+          "anchor": "wall-top",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "backup.drive.dock",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-04-release-noc/backup.drive.dock.png",
+          "sourceCell": {
+            "row": 3,
+            "column": 0,
+            "bounds": [
+              0,
+              940,
+              314,
+              1254
+            ]
+          },
+          "trimBox": [
+            60,
+            19,
+            264,
+            251
+          ],
+          "size": [
+            220,
+            248
+          ],
+          "alphaCoverage": 0.7257,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "supports": [
+            "desk-surface",
+            "table-surface",
+            "counter-surface",
+            "credenza-surface",
+            "rack-surface"
+          ],
+          "anchor": "bottom-center",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "alert.beacon",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-04-release-noc/alert.beacon.png",
+          "sourceCell": {
+            "row": 3,
+            "column": 1,
+            "bounds": [
+              314,
+              940,
+              627,
+              1254
+            ]
+          },
+          "trimBox": [
+            57,
+            27,
+            313,
+            259
+          ],
+          "size": [
+            272,
+            248
+          ],
+          "alphaCoverage": 0.509,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "supports": [
+            "desk-surface",
+            "credenza-surface"
+          ],
+          "anchor": "bottom-center",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "cable.management.tray",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-04-release-noc/cable.management.tray.png",
+          "sourceCell": {
+            "row": 3,
+            "column": 2,
+            "bounds": [
+              627,
+              940,
+              940,
+              1254
+            ]
+          },
+          "trimBox": [
+            0,
+            63,
+            313,
+            246
+          ],
+          "size": [
+            329,
+            199
+          ],
+          "alphaCoverage": 0.6847,
+          "physicalScale": {
+            "width": 2,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 1
+          },
+          "footprint": {
+            "width": 2,
+            "depth": 1
+          },
+          "supports": [
+            "desk-surface",
+            "rack-surface"
+          ],
+          "anchor": "bottom-center",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "incident.response.bag",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-04-release-noc/incident.response.bag.png",
+          "sourceCell": {
+            "row": 3,
+            "column": 3,
+            "bounds": [
+              940,
+              940,
+              1254,
+              1254
+            ]
+          },
+          "trimBox": [
+            0,
+            26,
+            277,
+            257
+          ],
+          "size": [
+            293,
+            247
+          ],
+          "alphaCoverage": 0.719,
+          "physicalScale": {
+            "width": 2,
+            "depth": 1,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 2
+          },
+          "footprint": {
+            "width": 2,
+            "depth": 1
+          },
+          "supports": [
+            "floor",
+            "credenza-surface"
+          ],
+          "anchor": "bottom-center",
+          "layer": "equipment",
+          "requiredOrientations": [
+            "front"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "env-06-decor-architecture-tv",
+      "source": "assets/art/layout-references/decor-architecture-tv-sheet-modern-bright-v1-source.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "grid": [
+        4,
+        4
+      ],
+      "cellSize": [
+        314,
+        314
+      ],
+      "status": "library-ready",
+      "animation": "seam-loop",
+      "assets": [
+        {
+          "id": "clock.wall",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-06-decor-architecture-tv/clock.wall.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 0,
+            "bounds": [
+              0,
+              0,
+              314,
+              314
+            ]
+          },
+          "trimBox": [
+            66,
+            68,
+            273,
+            276
+          ],
+          "size": [
+            223,
+            224
+          ],
+          "alphaCoverage": 0.6807,
+          "physicalScale": {
+            "width": 1,
+            "depth": 0,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 1
+          },
+          "layer": "wall",
+          "anchor": "wall-top",
+          "supports": [
+            "wall"
+          ],
+          "footprint": {
+            "width": 1,
+            "depth": 0
+          },
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "art.abstract.frame",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-06-decor-architecture-tv/art.abstract.frame.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 1,
+            "bounds": [
+              314,
+              0,
+              627,
+              314
+            ]
+          },
+          "trimBox": [
+            55,
+            67,
+            266,
+            279
+          ],
+          "size": [
+            227,
+            228
+          ],
+          "alphaCoverage": 0.8637,
+          "physicalScale": {
+            "width": 2,
+            "depth": 0,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 2
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 0
+          },
+          "supports": [
+            "wall"
+          ],
+          "anchor": "wall-top",
+          "layer": "wall",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "panel.acoustic",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-06-decor-architecture-tv/panel.acoustic.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 2,
+            "bounds": [
+              627,
+              0,
+              940,
+              314
+            ]
+          },
+          "trimBox": [
+            44,
+            70,
+            254,
+            276
+          ],
+          "size": [
+            226,
+            222
+          ],
+          "alphaCoverage": 0.8533,
+          "physicalScale": {
+            "width": 2,
+            "depth": 0,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 2
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 0
+          },
+          "supports": [
+            "wall"
+          ],
+          "anchor": "wall-top",
+          "layer": "wall",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "shelf.wall",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-06-decor-architecture-tv/shelf.wall.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 3,
+            "bounds": [
+              940,
+              0,
+              1254,
+              314
+            ]
+          },
+          "trimBox": [
+            13,
+            108,
+            270,
+            279
+          ],
+          "size": [
+            273,
+            187
+          ],
+          "alphaCoverage": 0.3707,
+          "physicalScale": {
+            "width": 2,
+            "depth": 0,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 1
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 0
+          },
+          "supports": [
+            "wall"
+          ],
+          "anchor": "wall-top",
+          "layer": "wall",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "plant.tall",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-06-decor-architecture-tv/plant.tall.png",
+          "sourceCell": {
+            "row": 1,
+            "column": 0,
+            "bounds": [
+              0,
+              314,
+              314,
+              627
+            ]
+          },
+          "trimBox": [
+            87,
+            19,
+            255,
+            298
+          ],
+          "size": [
+            184,
+            295
+          ],
+          "alphaCoverage": 0.4192,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 3
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 3
+          },
+          "layer": "decor",
+          "anchor": "bottom-center",
+          "supports": [
+            "floor"
+          ],
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "divider.planter",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-06-decor-architecture-tv/divider.planter.png",
+          "sourceCell": {
+            "row": 1,
+            "column": 1,
+            "bounds": [
+              314,
+              314,
+              627,
+              627
+            ]
+          },
+          "trimBox": [
+            38,
+            80,
+            285,
+            291
+          ],
+          "size": [
+            263,
+            227
+          ],
+          "alphaCoverage": 0.712,
+          "physicalScale": {
+            "width": 4,
+            "depth": 1,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 4,
+            "height": 2
+          },
+          "layer": "furniture",
+          "anchor": "center",
+          "supports": [
+            "floor"
+          ],
+          "footprint": {
+            "width": 4,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "rack.coat",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-06-decor-architecture-tv/rack.coat.png",
+          "sourceCell": {
+            "row": 1,
+            "column": 2,
+            "bounds": [
+              627,
+              314,
+              940,
+              627
+            ]
+          },
+          "trimBox": [
+            110,
+            28,
+            191,
+            300
+          ],
+          "size": [
+            97,
+            288
+          ],
+          "alphaCoverage": 0.2675,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 3
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 3
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "bottom-center",
+          "layer": "furniture",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "stand.umbrella",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-06-decor-architecture-tv/stand.umbrella.png",
+          "sourceCell": {
+            "row": 1,
+            "column": 3,
+            "bounds": [
+              940,
+              314,
+              1254,
+              627
+            ]
+          },
+          "trimBox": [
+            70,
+            41,
+            203,
+            297
+          ],
+          "size": [
+            149,
+            272
+          ],
+          "alphaCoverage": 0.5175,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 2
+          },
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "bottom-center",
+          "layer": "furniture",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "rug.office",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-06-decor-architecture-tv/rug.office.png",
+          "sourceCell": {
+            "row": 2,
+            "column": 0,
+            "bounds": [
+              0,
+              627,
+              314,
+              940
+            ]
+          },
+          "trimBox": [
+            43,
+            86,
+            303,
+            260
+          ],
+          "size": [
+            276,
+            190
+          ],
+          "alphaCoverage": 0.8457,
+          "physicalScale": {
+            "width": 3,
+            "depth": 2,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 3,
+            "height": 2
+          },
+          "footprint": {
+            "width": 3,
+            "depth": 2
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "center",
+          "layer": "decor",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "table.side",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-06-decor-architecture-tv/table.side.png",
+          "sourceCell": {
+            "row": 2,
+            "column": 1,
+            "bounds": [
+              314,
+              627,
+              627,
+              940
+            ]
+          },
+          "trimBox": [
+            76,
+            54,
+            245,
+            273
+          ],
+          "size": [
+            185,
+            235
+          ],
+          "alphaCoverage": 0.4776,
+          "physicalScale": {
+            "width": 2,
+            "depth": 2,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 1
+          },
+          "footprint": {
+            "width": 2,
+            "depth": 2
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "center",
+          "layer": "furniture",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "pouf.lounge",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-06-decor-architecture-tv/pouf.lounge.png",
+          "sourceCell": {
+            "row": 2,
+            "column": 2,
+            "bounds": [
+              627,
+              627,
+              940,
+              940
+            ]
+          },
+          "trimBox": [
+            40,
+            88,
+            244,
+            265
+          ],
+          "size": [
+            220,
+            193
+          ],
+          "alphaCoverage": 0.7706,
+          "physicalScale": {
+            "width": 2,
+            "depth": 2,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 1
+          },
+          "footprint": {
+            "width": 2,
+            "depth": 2
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "center",
+          "layer": "furniture",
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "lamp.floor",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-06-decor-architecture-tv/lamp.floor.png",
+          "sourceCell": {
+            "row": 2,
+            "column": 3,
+            "bounds": [
+              940,
+              627,
+              1254,
+              940
+            ]
+          },
+          "trimBox": [
+            69,
+            21,
+            218,
+            282
+          ],
+          "size": [
+            165,
+            277
+          ],
+          "alphaCoverage": 0.1634,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 3
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 3
+          },
+          "layer": "furniture",
+          "anchor": "bottom-center",
+          "supports": [
+            "floor"
+          ],
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ]
+        },
+        {
+          "id": "tv.wall.a",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-06-decor-architecture-tv/tv.wall.a.png",
+          "sourceCell": {
+            "row": 3,
+            "column": 0,
+            "bounds": [
+              0,
+              940,
+              314,
+              1254
+            ]
+          },
+          "trimBox": [
+            47,
+            65,
+            301,
+            243
+          ],
+          "size": [
+            270,
+            194
+          ],
+          "alphaCoverage": 0.8628,
+          "physicalScale": {
+            "width": 3,
+            "depth": 0,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 3,
+            "height": 2
+          },
+          "layer": "wall",
+          "anchor": "wall-top",
+          "supports": [
+            "wall"
+          ],
+          "footprint": {
+            "width": 3,
+            "depth": 0
+          },
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "tv.wall.b",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-06-decor-architecture-tv/tv.wall.b.png",
+          "sourceCell": {
+            "row": 3,
+            "column": 1,
+            "bounds": [
+              314,
+              940,
+              627,
+              1254
+            ]
+          },
+          "trimBox": [
+            35,
+            65,
+            289,
+            243
+          ],
+          "size": [
+            270,
+            194
+          ],
+          "alphaCoverage": 0.8628,
+          "physicalScale": {
+            "width": 3,
+            "depth": 0,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 3,
+            "height": 2
+          },
+          "layer": "wall",
+          "anchor": "wall-top",
+          "supports": [
+            "wall"
+          ],
+          "footprint": {
+            "width": 3,
+            "depth": 0
+          },
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "tv.wall.c",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-06-decor-architecture-tv/tv.wall.c.png",
+          "sourceCell": {
+            "row": 3,
+            "column": 2,
+            "bounds": [
+              627,
+              940,
+              940,
+              1254
+            ]
+          },
+          "trimBox": [
+            24,
+            65,
+            278,
+            243
+          ],
+          "size": [
+            270,
+            194
+          ],
+          "alphaCoverage": 0.8628,
+          "physicalScale": {
+            "width": 3,
+            "depth": 0,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 3,
+            "height": 2
+          },
+          "layer": "wall",
+          "anchor": "wall-top",
+          "supports": [
+            "wall"
+          ],
+          "footprint": {
+            "width": 3,
+            "depth": 0
+          },
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "tv.wall.d",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-06-decor-architecture-tv/tv.wall.d.png",
+          "sourceCell": {
+            "row": 3,
+            "column": 3,
+            "bounds": [
+              940,
+              940,
+              1254,
+              1254
+            ]
+          },
+          "trimBox": [
+            13,
+            65,
+            267,
+            243
+          ],
+          "size": [
+            270,
+            194
+          ],
+          "alphaCoverage": 0.8605,
+          "physicalScale": {
+            "width": 3,
+            "depth": 0,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 3,
+            "height": 2
+          },
+          "layer": "wall",
+          "anchor": "wall-top",
+          "supports": [
+            "wall"
+          ],
+          "footprint": {
+            "width": 3,
+            "depth": 0
+          },
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "env-07-animated-mechanical",
+      "source": "assets/art/layout-references/mechanical-loops-sheet-modern-bright-v1-source.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "grid": [
+        4,
+        4
+      ],
+      "cellSize": [
+        314,
+        314
+      ],
+      "status": "library-ready",
+      "animation": "seam-loop",
+      "assets": [
+        {
+          "id": "vending.machine.loop.a",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-07-animated-mechanical/vending.machine.loop.a.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 0,
+            "bounds": [
+              0,
+              0,
+              314,
+              314
+            ]
+          },
+          "trimBox": [
+            71,
+            46,
+            274,
+            314
+          ],
+          "size": [
+            219,
+            284
+          ],
+          "alphaCoverage": 0.8639,
+          "physicalScale": {
+            "width": 2,
+            "depth": 1,
+            "height": 3
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 3
+          },
+          "footprint": {
+            "width": 2,
+            "depth": 1
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "bottom-center",
+          "requiredOrientations": [
+            "front"
+          ],
+          "approachDepth": 1,
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "vending.machine.loop.b",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-07-animated-mechanical/vending.machine.loop.b.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 1,
+            "bounds": [
+              314,
+              0,
+              627,
+              314
+            ]
+          },
+          "trimBox": [
+            60,
+            46,
+            261,
+            314
+          ],
+          "size": [
+            217,
+            284
+          ],
+          "alphaCoverage": 0.8668,
+          "physicalScale": {
+            "width": 2,
+            "depth": 1,
+            "height": 3
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 3
+          },
+          "footprint": {
+            "width": 2,
+            "depth": 1
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "bottom-center",
+          "requiredOrientations": [
+            "front"
+          ],
+          "approachDepth": 1,
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "vending.machine.loop.c",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-07-animated-mechanical/vending.machine.loop.c.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 2,
+            "bounds": [
+              627,
+              0,
+              940,
+              314
+            ]
+          },
+          "trimBox": [
+            50,
+            46,
+            252,
+            314
+          ],
+          "size": [
+            218,
+            284
+          ],
+          "alphaCoverage": 0.8659,
+          "physicalScale": {
+            "width": 2,
+            "depth": 1,
+            "height": 3
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 3
+          },
+          "footprint": {
+            "width": 2,
+            "depth": 1
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "bottom-center",
+          "requiredOrientations": [
+            "front"
+          ],
+          "approachDepth": 1,
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "vending.machine.loop.d",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-07-animated-mechanical/vending.machine.loop.d.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 3,
+            "bounds": [
+              940,
+              0,
+              1254,
+              314
+            ]
+          },
+          "trimBox": [
+            40,
+            46,
+            241,
+            314
+          ],
+          "size": [
+            217,
+            284
+          ],
+          "alphaCoverage": 0.8673,
+          "physicalScale": {
+            "width": 2,
+            "depth": 1,
+            "height": 3
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 3
+          },
+          "footprint": {
+            "width": 2,
+            "depth": 1
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "bottom-center",
+          "requiredOrientations": [
+            "front"
+          ],
+          "approachDepth": 1,
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "machine.arcade.loop.a",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-07-animated-mechanical/machine.arcade.loop.a.png",
+          "sourceCell": {
+            "row": 1,
+            "column": 0,
+            "bounds": [
+              0,
+              314,
+              314,
+              627
+            ]
+          },
+          "trimBox": [
+            68,
+            0,
+            278,
+            313
+          ],
+          "size": [
+            226,
+            329
+          ],
+          "alphaCoverage": 0.7036,
+          "physicalScale": {
+            "width": 2,
+            "depth": 2,
+            "height": 3
+          },
+          "renderBox": {
+            "width": 3,
+            "height": 3
+          },
+          "footprint": {
+            "width": 2,
+            "depth": 2
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "bottom-center",
+          "requiredOrientations": [
+            "front"
+          ],
+          "capacity": 1,
+          "approachDepth": 1,
+          "viewportPixels": {
+            "width": 48,
+            "height": 32
+          },
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "machine.arcade.loop.b",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-07-animated-mechanical/machine.arcade.loop.b.png",
+          "sourceCell": {
+            "row": 1,
+            "column": 1,
+            "bounds": [
+              314,
+              314,
+              627,
+              627
+            ]
+          },
+          "trimBox": [
+            54,
+            0,
+            265,
+            313
+          ],
+          "size": [
+            227,
+            329
+          ],
+          "alphaCoverage": 0.6983,
+          "physicalScale": {
+            "width": 2,
+            "depth": 2,
+            "height": 3
+          },
+          "renderBox": {
+            "width": 3,
+            "height": 3
+          },
+          "footprint": {
+            "width": 2,
+            "depth": 2
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "bottom-center",
+          "requiredOrientations": [
+            "front"
+          ],
+          "capacity": 1,
+          "approachDepth": 1,
+          "viewportPixels": {
+            "width": 48,
+            "height": 32
+          },
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "machine.arcade.loop.c",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-07-animated-mechanical/machine.arcade.loop.c.png",
+          "sourceCell": {
+            "row": 1,
+            "column": 2,
+            "bounds": [
+              627,
+              314,
+              940,
+              627
+            ]
+          },
+          "trimBox": [
+            43,
+            0,
+            255,
+            313
+          ],
+          "size": [
+            228,
+            329
+          ],
+          "alphaCoverage": 0.7001,
+          "physicalScale": {
+            "width": 2,
+            "depth": 2,
+            "height": 3
+          },
+          "renderBox": {
+            "width": 3,
+            "height": 3
+          },
+          "footprint": {
+            "width": 2,
+            "depth": 2
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "bottom-center",
+          "requiredOrientations": [
+            "front"
+          ],
+          "capacity": 1,
+          "approachDepth": 1,
+          "viewportPixels": {
+            "width": 48,
+            "height": 32
+          },
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "machine.arcade.loop.d",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-07-animated-mechanical/machine.arcade.loop.d.png",
+          "sourceCell": {
+            "row": 1,
+            "column": 3,
+            "bounds": [
+              940,
+              314,
+              1254,
+              627
+            ]
+          },
+          "trimBox": [
+            32,
+            0,
+            244,
+            313
+          ],
+          "size": [
+            228,
+            329
+          ],
+          "alphaCoverage": 0.6986,
+          "physicalScale": {
+            "width": 2,
+            "depth": 2,
+            "height": 3
+          },
+          "renderBox": {
+            "width": 3,
+            "height": 3
+          },
+          "footprint": {
+            "width": 2,
+            "depth": 2
+          },
+          "supports": [
+            "floor"
+          ],
+          "anchor": "bottom-center",
+          "requiredOrientations": [
+            "front"
+          ],
+          "capacity": 1,
+          "approachDepth": 1,
+          "viewportPixels": {
+            "width": 48,
+            "height": 32
+          },
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "printer.label.loop.a",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-07-animated-mechanical/printer.label.loop.a.png",
+          "sourceCell": {
+            "row": 2,
+            "column": 0,
+            "bounds": [
+              0,
+              627,
+              314,
+              940
+            ]
+          },
+          "trimBox": [
+            58,
+            57,
+            282,
+            313
+          ],
+          "size": [
+            240,
+            272
+          ],
+          "alphaCoverage": 0.6403,
+          "physicalScale": {
+            "width": 2,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 1
+          },
+          "layer": "equipment",
+          "anchor": "bottom-center",
+          "supports": [
+            "credenza-surface"
+          ],
+          "footprint": {
+            "width": 2,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "printer.label.loop.b",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-07-animated-mechanical/printer.label.loop.b.png",
+          "sourceCell": {
+            "row": 2,
+            "column": 1,
+            "bounds": [
+              314,
+              627,
+              627,
+              940
+            ]
+          },
+          "trimBox": [
+            44,
+            57,
+            268,
+            313
+          ],
+          "size": [
+            240,
+            272
+          ],
+          "alphaCoverage": 0.6392,
+          "physicalScale": {
+            "width": 2,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 1
+          },
+          "layer": "equipment",
+          "anchor": "bottom-center",
+          "supports": [
+            "credenza-surface"
+          ],
+          "footprint": {
+            "width": 2,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "printer.label.loop.c",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-07-animated-mechanical/printer.label.loop.c.png",
+          "sourceCell": {
+            "row": 2,
+            "column": 2,
+            "bounds": [
+              627,
+              627,
+              940,
+              940
+            ]
+          },
+          "trimBox": [
+            34,
+            57,
+            256,
+            313
+          ],
+          "size": [
+            238,
+            272
+          ],
+          "alphaCoverage": 0.6398,
+          "physicalScale": {
+            "width": 2,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 1
+          },
+          "layer": "equipment",
+          "anchor": "bottom-center",
+          "supports": [
+            "credenza-surface"
+          ],
+          "footprint": {
+            "width": 2,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "printer.label.loop.d",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-07-animated-mechanical/printer.label.loop.d.png",
+          "sourceCell": {
+            "row": 2,
+            "column": 3,
+            "bounds": [
+              940,
+              627,
+              1254,
+              940
+            ]
+          },
+          "trimBox": [
+            25,
+            57,
+            246,
+            313
+          ],
+          "size": [
+            237,
+            272
+          ],
+          "alphaCoverage": 0.6757,
+          "physicalScale": {
+            "width": 2,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 1
+          },
+          "layer": "equipment",
+          "anchor": "bottom-center",
+          "supports": [
+            "credenza-surface"
+          ],
+          "footprint": {
+            "width": 2,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "server.rack.loop.a",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-07-animated-mechanical/server.rack.loop.a.png",
+          "sourceCell": {
+            "row": 3,
+            "column": 0,
+            "bounds": [
+              0,
+              940,
+              314,
+              1254
+            ]
+          },
+          "trimBox": [
+            66,
+            0,
+            274,
+            255
+          ],
+          "size": [
+            224,
+            271
+          ],
+          "alphaCoverage": 0.8484,
+          "physicalScale": {
+            "width": 2,
+            "depth": 1,
+            "height": 3
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 3
+          },
+          "layer": "equipment",
+          "anchor": "bottom-center",
+          "supports": [
+            "floor"
+          ],
+          "footprint": {
+            "width": 2,
+            "depth": 1
+          },
+          "slotSet": "server-rack",
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "server.rack.loop.b",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-07-animated-mechanical/server.rack.loop.b.png",
+          "sourceCell": {
+            "row": 3,
+            "column": 1,
+            "bounds": [
+              314,
+              940,
+              627,
+              1254
+            ]
+          },
+          "trimBox": [
+            54,
+            0,
+            263,
+            255
+          ],
+          "size": [
+            225,
+            271
+          ],
+          "alphaCoverage": 0.8516,
+          "physicalScale": {
+            "width": 2,
+            "depth": 1,
+            "height": 3
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 3
+          },
+          "layer": "equipment",
+          "anchor": "bottom-center",
+          "supports": [
+            "floor"
+          ],
+          "footprint": {
+            "width": 2,
+            "depth": 1
+          },
+          "slotSet": "server-rack",
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "server.rack.loop.c",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-07-animated-mechanical/server.rack.loop.c.png",
+          "sourceCell": {
+            "row": 3,
+            "column": 2,
+            "bounds": [
+              627,
+              940,
+              940,
+              1254
+            ]
+          },
+          "trimBox": [
+            43,
+            0,
+            249,
+            255
+          ],
+          "size": [
+            222,
+            271
+          ],
+          "alphaCoverage": 0.8515,
+          "physicalScale": {
+            "width": 2,
+            "depth": 1,
+            "height": 3
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 3
+          },
+          "layer": "equipment",
+          "anchor": "bottom-center",
+          "supports": [
+            "floor"
+          ],
+          "footprint": {
+            "width": 2,
+            "depth": 1
+          },
+          "slotSet": "server-rack",
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "server.rack.loop.d",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-07-animated-mechanical/server.rack.loop.d.png",
+          "sourceCell": {
+            "row": 3,
+            "column": 3,
+            "bounds": [
+              940,
+              940,
+              1254,
+              1254
+            ]
+          },
+          "trimBox": [
+            35,
+            0,
+            241,
+            255
+          ],
+          "size": [
+            222,
+            271
+          ],
+          "alphaCoverage": 0.8514,
+          "physicalScale": {
+            "width": 2,
+            "depth": 1,
+            "height": 3
+          },
+          "renderBox": {
+            "width": 2,
+            "height": 3
+          },
+          "layer": "equipment",
+          "anchor": "bottom-center",
+          "supports": [
+            "floor"
+          ],
+          "footprint": {
+            "width": 2,
+            "depth": 1
+          },
+          "slotSet": "server-rack",
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "env-08-animated-ambient",
+      "source": "assets/art/layout-references/ambient-loops-sheet-modern-bright-v1-source.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "grid": [
+        4,
+        4
+      ],
+      "cellSize": [
+        314,
+        314
+      ],
+      "status": "library-ready",
+      "animation": "seam-loop",
+      "assets": [
+        {
+          "id": "dispenser.water.loop.a",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-08-animated-ambient/dispenser.water.loop.a.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 0,
+            "bounds": [
+              0,
+              0,
+              314,
+              314
+            ]
+          },
+          "trimBox": [
+            101,
+            47,
+            236,
+            314
+          ],
+          "size": [
+            151,
+            283
+          ],
+          "alphaCoverage": 0.7655,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 3
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 3
+          },
+          "fit": "fill",
+          "layer": "equipment",
+          "anchor": "bottom-center",
+          "supports": [
+            "floor"
+          ],
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "dispenser.water.loop.b",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-08-animated-ambient/dispenser.water.loop.b.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 1,
+            "bounds": [
+              314,
+              0,
+              627,
+              314
+            ]
+          },
+          "trimBox": [
+            93,
+            47,
+            228,
+            314
+          ],
+          "size": [
+            151,
+            283
+          ],
+          "alphaCoverage": 0.7644,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 3
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 3
+          },
+          "fit": "fill",
+          "layer": "equipment",
+          "anchor": "bottom-center",
+          "supports": [
+            "floor"
+          ],
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "dispenser.water.loop.c",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-08-animated-ambient/dispenser.water.loop.c.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 2,
+            "bounds": [
+              627,
+              0,
+              940,
+              314
+            ]
+          },
+          "trimBox": [
+            86,
+            47,
+            221,
+            314
+          ],
+          "size": [
+            151,
+            283
+          ],
+          "alphaCoverage": 0.7663,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 3
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 3
+          },
+          "fit": "fill",
+          "layer": "equipment",
+          "anchor": "bottom-center",
+          "supports": [
+            "floor"
+          ],
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "dispenser.water.loop.d",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-08-animated-ambient/dispenser.water.loop.d.png",
+          "sourceCell": {
+            "row": 0,
+            "column": 3,
+            "bounds": [
+              940,
+              0,
+              1254,
+              314
+            ]
+          },
+          "trimBox": [
+            78,
+            47,
+            232,
+            314
+          ],
+          "size": [
+            170,
+            283
+          ],
+          "alphaCoverage": 0.6922,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 3
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 3
+          },
+          "fit": "fill",
+          "layer": "equipment",
+          "anchor": "bottom-center",
+          "supports": [
+            "floor"
+          ],
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "machine.coffee.loop.a",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-08-animated-ambient/machine.coffee.loop.a.png",
+          "sourceCell": {
+            "row": 1,
+            "column": 0,
+            "bounds": [
+              0,
+              314,
+              314,
+              627
+            ]
+          },
+          "trimBox": [
+            72,
+            0,
+            266,
+            313
+          ],
+          "size": [
+            210,
+            329
+          ],
+          "alphaCoverage": 0.5895,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 2
+          },
+          "layer": "equipment",
+          "anchor": "bottom-center",
+          "supports": [
+            "counter-surface"
+          ],
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "machine.coffee.loop.b",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-08-animated-ambient/machine.coffee.loop.b.png",
+          "sourceCell": {
+            "row": 1,
+            "column": 1,
+            "bounds": [
+              314,
+              314,
+              627,
+              627
+            ]
+          },
+          "trimBox": [
+            62,
+            0,
+            257,
+            313
+          ],
+          "size": [
+            211,
+            329
+          ],
+          "alphaCoverage": 0.5861,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 2
+          },
+          "layer": "equipment",
+          "anchor": "bottom-center",
+          "supports": [
+            "counter-surface"
+          ],
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "machine.coffee.loop.c",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-08-animated-ambient/machine.coffee.loop.c.png",
+          "sourceCell": {
+            "row": 1,
+            "column": 2,
+            "bounds": [
+              627,
+              314,
+              940,
+              627
+            ]
+          },
+          "trimBox": [
+            55,
+            0,
+            249,
+            313
+          ],
+          "size": [
+            210,
+            329
+          ],
+          "alphaCoverage": 0.5918,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 2
+          },
+          "layer": "equipment",
+          "anchor": "bottom-center",
+          "supports": [
+            "counter-surface"
+          ],
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "machine.coffee.loop.d",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-08-animated-ambient/machine.coffee.loop.d.png",
+          "sourceCell": {
+            "row": 1,
+            "column": 3,
+            "bounds": [
+              940,
+              314,
+              1254,
+              627
+            ]
+          },
+          "trimBox": [
+            48,
+            0,
+            242,
+            313
+          ],
+          "size": [
+            210,
+            329
+          ],
+          "alphaCoverage": 0.5885,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 2
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 2
+          },
+          "layer": "equipment",
+          "anchor": "bottom-center",
+          "supports": [
+            "counter-surface"
+          ],
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "plant.small.loop.a",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-08-animated-ambient/plant.small.loop.a.png",
+          "sourceCell": {
+            "row": 2,
+            "column": 0,
+            "bounds": [
+              0,
+              627,
+              314,
+              940
+            ]
+          },
+          "trimBox": [
+            63,
+            0,
+            261,
+            291
+          ],
+          "size": [
+            214,
+            307
+          ],
+          "alphaCoverage": 0.3575,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 2
+          },
+          "layer": "decor",
+          "anchor": "bottom-center",
+          "supports": [
+            "floor"
+          ],
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "plant.small.loop.b",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-08-animated-ambient/plant.small.loop.b.png",
+          "sourceCell": {
+            "row": 2,
+            "column": 1,
+            "bounds": [
+              314,
+              627,
+              627,
+              940
+            ]
+          },
+          "trimBox": [
+            55,
+            0,
+            252,
+            291
+          ],
+          "size": [
+            213,
+            307
+          ],
+          "alphaCoverage": 0.3514,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 2
+          },
+          "layer": "decor",
+          "anchor": "bottom-center",
+          "supports": [
+            "floor"
+          ],
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "plant.small.loop.c",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-08-animated-ambient/plant.small.loop.c.png",
+          "sourceCell": {
+            "row": 2,
+            "column": 2,
+            "bounds": [
+              627,
+              627,
+              940,
+              940
+            ]
+          },
+          "trimBox": [
+            34,
+            0,
+            245,
+            291
+          ],
+          "size": [
+            227,
+            307
+          ],
+          "alphaCoverage": 0.3794,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 2
+          },
+          "layer": "decor",
+          "anchor": "bottom-center",
+          "supports": [
+            "floor"
+          ],
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "plant.small.loop.d",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-08-animated-ambient/plant.small.loop.d.png",
+          "sourceCell": {
+            "row": 2,
+            "column": 3,
+            "bounds": [
+              940,
+              627,
+              1254,
+              940
+            ]
+          },
+          "trimBox": [
+            44,
+            0,
+            237,
+            291
+          ],
+          "size": [
+            209,
+            307
+          ],
+          "alphaCoverage": 0.3839,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 2
+          },
+          "layer": "decor",
+          "anchor": "bottom-center",
+          "supports": [
+            "floor"
+          ],
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "lamp.desk.loop.a",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-08-animated-ambient/lamp.desk.loop.a.png",
+          "sourceCell": {
+            "row": 3,
+            "column": 0,
+            "bounds": [
+              0,
+              940,
+              314,
+              1254
+            ]
+          },
+          "trimBox": [
+            77,
+            20,
+            254,
+            269
+          ],
+          "size": [
+            193,
+            265
+          ],
+          "alphaCoverage": 0.3763,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 1
+          },
+          "layer": "decor",
+          "anchor": "bottom-center",
+          "supports": [
+            "desk-surface"
+          ],
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "lamp.desk.loop.b",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-08-animated-ambient/lamp.desk.loop.b.png",
+          "sourceCell": {
+            "row": 3,
+            "column": 1,
+            "bounds": [
+              314,
+              940,
+              627,
+              1254
+            ]
+          },
+          "trimBox": [
+            67,
+            20,
+            245,
+            269
+          ],
+          "size": [
+            194,
+            265
+          ],
+          "alphaCoverage": 0.3783,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 1
+          },
+          "layer": "decor",
+          "anchor": "bottom-center",
+          "supports": [
+            "desk-surface"
+          ],
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "lamp.desk.loop.c",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-08-animated-ambient/lamp.desk.loop.c.png",
+          "sourceCell": {
+            "row": 3,
+            "column": 2,
+            "bounds": [
+              627,
+              940,
+              940,
+              1254
+            ]
+          },
+          "trimBox": [
+            58,
+            20,
+            237,
+            268
+          ],
+          "size": [
+            195,
+            264
+          ],
+          "alphaCoverage": 0.3795,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 1
+          },
+          "layer": "decor",
+          "anchor": "bottom-center",
+          "supports": [
+            "desk-surface"
+          ],
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        },
+        {
+          "id": "lamp.desk.loop.d",
+          "file": "assets/game/processed/office-library-modern-bright-v1/env-08-animated-ambient/lamp.desk.loop.d.png",
+          "sourceCell": {
+            "row": 3,
+            "column": 3,
+            "bounds": [
+              940,
+              940,
+              1254,
+              1254
+            ]
+          },
+          "trimBox": [
+            48,
+            20,
+            227,
+            269
+          ],
+          "size": [
+            195,
+            265
+          ],
+          "alphaCoverage": 0.3765,
+          "physicalScale": {
+            "width": 1,
+            "depth": 1,
+            "height": 1
+          },
+          "renderBox": {
+            "width": 1,
+            "height": 1
+          },
+          "layer": "decor",
+          "anchor": "bottom-center",
+          "supports": [
+            "desk-surface"
+          ],
+          "footprint": {
+            "width": 1,
+            "depth": 1
+          },
+          "requiredOrientations": [
+            "front"
+          ],
+          "animation": {
+            "type": "seam-loop",
+            "frames": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
