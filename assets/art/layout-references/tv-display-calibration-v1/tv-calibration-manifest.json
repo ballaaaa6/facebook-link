@@ -1,0 +1,43 @@
+{
+  "id": "tv-display-calibration-v1",
+  "status": "calibration-only",
+  "sourceStyle": "Concept C warm studio",
+  "shell": {
+    "file": "tv-shell.png",
+    "sourceFile": "tv-shell-source.png",
+    "renderSize": [1082, 603],
+    "sourceAlphaBounds": [295, 160, 1377, 763],
+    "viewport": {
+      "x": 80,
+      "y": 65,
+      "width": 926,
+      "height": 464
+    },
+    "viewportAspect": 1.9957,
+    "anchor": "center"
+  },
+  "overlays": {
+    "type": "screen-content-only",
+    "sourceFile": "tv-overlay-strip-v2-source.png",
+    "normalizedFrom": {
+      "file": "tv-overlay-strip-v2-alpha.png",
+      "panelSizes": [[709, 474], [710, 474], [709, 474]],
+      "method": "center crop to 2:1, then nearest-neighbor resize"
+    },
+    "frames": [
+      "tv-overlay-a.png",
+      "tv-overlay-b.png",
+      "tv-overlay-c.png"
+    ],
+    "frameSize": [926, 464],
+    "loop": "ping-pong",
+    "sequence": ["a", "b", "c", "b", "a"]
+  },
+  "preview": "tv-calibration-composite-preview-v1.png",
+  "notes": [
+    "The shell is the only asset that contains the TV body and bezel.",
+    "Overlay frames contain screen content only and are composited inside the measured viewport.",
+    "This set is a calibration reference; it is not registered as a runtime asset yet.",
+    "The first overlay attempt retained dashboard chrome and is intentionally rejected."
+  ]
+}

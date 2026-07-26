@@ -86,3 +86,22 @@ display cells redraw a bezel or product window instead of containing only the
 transparent viewport content required by the shell/overlay contract. Retain it
 as a composition reference and regenerate targeted overlay strips before
 runtime extraction.
+
+## `tv-display-calibration-v1/`
+
+- Created: 2026-07-26
+- Status: calibration-only; not registered as a runtime asset
+- Purpose: prove the two-pass workflow for a furniture object with an internal
+  display
+
+The TV shell was cropped to `1082x603` and its measured viewport is
+`x=80, y=65, width=926, height=464` (approximately 2:1). Three content-only
+overlay frames were extracted from one generated strip, center-cropped to the
+measured aspect, and normalized with nearest-neighbor sampling before being
+composited into the shell. The generated source panels were about `709x474`
+(1.5:1), so the raw panels are intentionally not used directly.
+
+See `tv-display-calibration-v1/tv-calibration-manifest.json` for the exact
+coordinates and processing record, and
+`tv-display-calibration-v1/tv-calibration-composite-preview-v1.png` for the
+side-by-side result.
