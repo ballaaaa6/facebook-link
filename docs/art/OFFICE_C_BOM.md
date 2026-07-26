@@ -142,8 +142,9 @@ the modern-bright source set: `beanbag.lounge`, `table.board-game`,
 `machine.game.arcade.modern`, and the coffee-machine loop. Reuse those assets;
 do not generate duplicates merely to represent the second placement.
 
-The next library-only decoration batch is documented in
-`docs/art/ASSET_SHEET_PLAN.md` as three controlled sheets:
+The library-only decoration batch is documented in
+`docs/art/ASSET_SHEET_PLAN.md` as three controlled sheets, now generated and
+extracted:
 
 - `env-09-phase2-completion-architecture`: missing formal Phase 2 side views,
   the fifth system/management screen theme, and the three planned catalog gaps

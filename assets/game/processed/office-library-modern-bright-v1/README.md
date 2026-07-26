@@ -1,6 +1,6 @@
 # Modern Bright Office Asset Library v1
 
-This directory contains extracted, alpha-keyed candidates from the eight
+This directory contains extracted, alpha-keyed candidates from the twelve
 approved modern-bright office source sheets plus the four-view modern office
 chair turnaround.
 
@@ -30,3 +30,9 @@ animation metadata are recorded in
 Animated rows use four true frames named `a`, `b`, `c`, and `d`, intended to
 play as `a-b-c-d-a`. Runtime atlas packing, asset registry imports, and map
 placement are intentionally deferred.
+
+The latest library-only additions are:
+
+- `env-09-phase2-completion-architecture`
+- `env-10-storage-operations-detail`
+- `env-11-comfort-personal-detail`

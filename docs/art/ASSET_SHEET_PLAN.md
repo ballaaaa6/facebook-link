@@ -61,13 +61,14 @@ generate that view as a targeted sheet without replacing accepted cells.
 9. `office-furniture-c-v2`: targeted Concept C raster replacements for visible
    furniture that cannot be assembled from accepted production assets.
 
-### Deferred library expansion sheets (env-09 through env-11)
+### Library expansion sheets (env-09 through env-11)
 
 The first eight environment sheets and the modern office chair turnaround are
-already extracted into the library. The following three sheets are the next
-controlled generation batch. They are library-only additions: they do not
-increase Facility v1 reservation capacity, alter the current map, or authorize
-runtime imports by themselves.
+already extracted into the library. The following three controlled sheets are
+also generated and extracted; their source and cell contracts remain here as
+the source of truth. They are library-only additions: they do not increase
+Facility v1 reservation capacity, alter the current map, or authorize runtime
+imports by themselves.
 
 All three sheets use a 4x4 logical grid, modern-bright Concept C raster style,
 straight orthographic views, a flat `#ff00ff` source background, and no text,
@@ -155,8 +156,8 @@ Personal-detail props must remain isolated objects. Do not bake them into the
 desk, chair, monitor, or character; attachment and randomisation happen later
 through surface slots.
 
-Generation order is fixed: `env-09` first because it closes the formal Phase 2
-gap, then `env-10`, then `env-11`. If a sheet fails its calibration gate,
+Generation order was fixed as `env-09`, then `env-10`, then `env-11` because
+`env-09` closes the formal Phase 2 gap. If a future replacement is needed,
 regenerate only the failed row/cells and preserve accepted cells.
 
 Floors, walls, rugs, glass partitions, and simple architectural tiles are generated deterministically from the locked palette so their edges tile perfectly. They are not delegated to image generation.
