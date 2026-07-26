@@ -62,3 +62,27 @@ The chair calibration and Einstein seated silhouettes are accepted visual
 references. They remain source material rather than registered runtime assets
 until cell packing, seated anchors, chair occlusion, and a single in-game
 workstation pass are accepted.
+
+## `facility-v1-contact-sheet-preview-v1.png`
+
+- Created: 2026-07-26
+- Status: calibration preview only; do not register as a runtime asset
+- Source: generated against the Warm Studio Concept C reference
+- Intended use: validate the proposed 4x4 batching layout for fixed-front
+  Facility v1 shells and three-frame display overlays
+
+Cell order:
+
+```text
+TV shell       TV A       TV B       TV C
+Vending shell  Vending A  Vending B  Vending C
+Game shell     Game A     Game B     Game C
+Refrigerator   Massage    Sofa 3     Sofa 2
+```
+
+The first pass demonstrates that sixteen logical cells can hold several
+furniture families in one generated image. It is not production-ready: some
+display cells redraw a bezel or product window instead of containing only the
+transparent viewport content required by the shell/overlay contract. Retain it
+as a composition reference and regenerate targeted overlay strips before
+runtime extraction.
