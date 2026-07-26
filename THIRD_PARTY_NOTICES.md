@@ -2,12 +2,6 @@
 
 ## Petdex pilot characters
 
-- Asset: `assets/game/characters/tian-zekun-2`
-- Source: `https://petdex.dev/pets/tian-zekun-2`
-- Installed with: `npx petdex install tian-zekun-2`
-- Current scope: internal prototype only
-- Commercial/redistribution status: pending review
-
 - Asset: `assets/game/characters/ruri`
 - Source: `https://petdex.dev/pets/ruri`
 - Installed with: `npx petdex install ruri`

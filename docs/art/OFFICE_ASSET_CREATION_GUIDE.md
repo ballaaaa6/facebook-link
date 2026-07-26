@@ -420,8 +420,8 @@ screen-analytics-v1-a.webp
 screen-analytics-v1-b.webp
 screen-analytics-v1-c.webp
 
-ceo-kai-working-back-v1.webp
-ceo-kai-review-back-v1.webp
+office-agent-working-back-v1.webp
+office-agent-review-back-v1.webp
 ```
 
 Suggested furniture manifest:

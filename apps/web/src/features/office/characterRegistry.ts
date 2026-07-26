@@ -1,7 +1,7 @@
 import aiWorkbotSheet from "../../../../../assets/game/characters/ai-workbot/runtime-spritesheet-v2.webp";
 import aiWorkbotSheet2x from "../../../../../assets/game/characters/ai-workbot/runtime-spritesheet-v2@2x.webp";
-import abgSheet from "../../../../../assets/game/characters/abg/runtime-spritesheet-v2.webp";
-import abgSheet2x from "../../../../../assets/game/characters/abg/runtime-spritesheet-v2@2x.webp";
+import annaSheet from "../../../../../assets/game/characters/anna/spritesheet.webp";
+import mikuSheet from "../../../../../assets/game/characters/miku/spritesheet.webp";
 import doraemonSheet from "../../../../../assets/game/characters/doraemon/runtime-spritesheet-v3.webp";
 import doraemonSheet2x from "../../../../../assets/game/characters/doraemon/runtime-spritesheet-v3@2x.webp";
 import einsteinSheet from "../../../../../assets/game/characters/einstein/runtime-spritesheet-v2.webp";
@@ -12,8 +12,6 @@ import remSheet from "../../../../../assets/game/characters/rem-xl/runtime-sprit
 import remSheet2x from "../../../../../assets/game/characters/rem-xl/runtime-spritesheet-v2@2x.webp";
 import ruriSheet from "../../../../../assets/game/characters/ruri/runtime-spritesheet-v2.webp";
 import ruriSheet2x from "../../../../../assets/game/characters/ruri/runtime-spritesheet-v2@2x.webp";
-import rx78Sheet from "../../../../../assets/game/characters/rx-78-2-gundam/runtime-spritesheet-v2.webp";
-import rx78Sheet2x from "../../../../../assets/game/characters/rx-78-2-gundam/runtime-spritesheet-v2@2x.webp";
 import taffySheet from "../../../../../assets/game/characters/taffy-2/runtime-spritesheet-v2.webp";
 import taffySheet2x from "../../../../../assets/game/characters/taffy-2/runtime-spritesheet-v2@2x.webp";
 import yinyueSheet from "../../../../../assets/game/characters/yinyue-2/runtime-spritesheet-v2.webp";
@@ -128,11 +126,11 @@ export const characterRegistry: Record<string, CharacterDefinition> = {
   "product-ranker": { sheet: einsteinSheet, sheet2x: einsteinSheet2x, sourceSlug: "einstein" },
   "growth-strategist": { sheet: ruriSheet, sheet2x: ruriSheet2x, sourceSlug: "ruri" },
   "performance-analyst": { sheet: noirWeblingSheet, sheet2x: noirWeblingSheet2x, sourceSlug: "noir-webling" },
-  "gemini-copywriter": { sheet: abgSheet, sheet2x: abgSheet2x, sourceSlug: "abg" },
+  "gemini-copywriter": { sheet: annaSheet, sheet2x: annaSheet, sourceSlug: "anna" },
   "flow-visual-producer": { sheet: taffySheet, sheet2x: taffySheet2x, sourceSlug: "taffy-2" },
   "link-attribution": { sheet: doraemonSheet, sheet2x: doraemonSheet2x, sourceSlug: "doraemon", rows: 13 },
   "qa-editor": { sheet: remSheet, sheet2x: remSheet2x, sourceSlug: "rem-xl" },
-  publisher: { sheet: rx78Sheet, sheet2x: rx78Sheet2x, sourceSlug: "rx-78-2-gundam" },
+  publisher: { sheet: mikuSheet, sheet2x: mikuSheet, sourceSlug: "miku" },
   "session-keeper": { sheet: aiWorkbotSheet, sheet2x: aiWorkbotSheet2x, sourceSlug: "ai-workbot" },
 };
 
