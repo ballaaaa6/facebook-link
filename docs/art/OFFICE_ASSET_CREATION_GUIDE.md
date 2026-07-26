@@ -281,7 +281,10 @@ Do not store duplicate copies of `B` merely to represent the return leg.
 
 ### 7.1 Standard pose contract
 
-Every production character should support the following semantic states where applicable:
+Every production character starts from an approved PetDex-compatible base atlas.
+The base contract is an 8x9 sheet; do not redraw the identity or regenerate
+working rows that already exist. Add only the missing semantic rows required by
+the office:
 
 ```text
 idle-front
@@ -289,23 +292,26 @@ walk-down
 walk-up
 walk-left
 walk-right
-working-back-seated
-review-back-seated
-relax-seated-or-standing
-interact-standing
+working
+review
+failed
+waiting
 reaction-or-wave
 ```
 
-The first vertical slice only needs:
+The facility-ready extension adds four rows to the same atlas:
 
 ```text
-walk in four directions
-working-back-seated
-review-back-seated
-idle-front
+working-back
+interact-front
+inspect-front
+lounge-front
 ```
 
-Add optional reactions after the workstation anchor is stable.
+This produces an 8x13 atlas (104 cells). Each extension row uses six active
+frames plus two empty cells. Facility orientation is handled by map placement:
+the actor approaches from the front, so no side or back facility animation is
+required for the pilot. Desk furniture remains separate from the character.
 
 ### 7.2 Character anchors
 
@@ -324,34 +330,37 @@ For action poses such as waving, keep the body anchor fixed and move only the ha
 
 Character prompts must specify:
 
-- Original character identity.
+- The supplied PetDex/base atlas as the identity reference.
 - Straight orthographic game sprite style.
 - Fixed body proportions.
 - Exact pose.
 - Stable feet/pelvis anchor.
-- No extra props unless requested.
+- No furniture or facility props in the character frame; those remain map layers.
 - No text, logos, or watermark.
 - Same frame size and baseline across the sheet.
 
-For a seated-back work pose, explicitly request:
+For the four extension rows, explicitly request:
 
-- Back-facing head and shoulders.
-- Hands reaching toward the keyboard.
-- Lower body hidden by the desk foreground.
-- Pelvis aligned to the chair contact point.
-- Stable silhouette across the animation frames.
+- `working-back`: back-facing head and shoulders with subtle typing motion.
+- `interact-front`: front-facing hands reaching toward an unseen facility.
+- `inspect-front`: front-facing look/hand inspection of an unseen facility.
+- `lounge-front`: front-facing seated idle; sofa/beanbag is a separate map asset.
+
+Always request a single horizontal strip of eight equal cells: six active
+frames followed by two empty cells. Generate one missing row at a time.
 
 ### 7.4 Character extraction
 
 After generation:
 
 1. Remove chroma key.
-2. Slice frames by manifest.
-3. Normalize the canonical standing and seated boxes separately.
+2. Detect the six generated frame bounds and slice the row.
+3. Normalize the standing or seated box separately.
 4. Align standing feet and seated pelvis/seat anchors.
-5. Validate row-to-row scale.
-6. Pack accepted frames into the character atlas.
-7. Record any per-character scale override explicitly.
+5. Validate row-to-row scale against the PetDex base atlas.
+6. Append accepted rows without modifying the base rows.
+7. Pack the result into a versioned 8x13 runtime atlas.
+8. Record the extension rows and any per-character scale override explicitly.
 
 ## 8. Prompt templates
 
@@ -380,16 +389,20 @@ Do not include a monitor bezel, stand, desk, keyboard, text labels outside the U
 logos, watermark, or any object outside the viewport.
 ```
 
-### 8.3 Character turnaround
+### 8.3 PetDex character extension
 
 ```text
-Create one original [CHARACTER] in a fixed orthographic game-sprite sheet.
-Preserve body proportions, frame size, baseline, feet anchor, and silhouette.
-Include idle-front, walk-up, walk-down, walk-left, walk-right, and
-working-back-seated poses.
-For the seated pose, align the pelvis to the chair contact point and keep the
-lower body ready to be hidden by the desk foreground mask.
-No identity drift, extra props, logos, text, watermark, or perspective.
+Use the supplied PetDex-compatible [CHARACTER] atlas as the identity and style
+reference. Create ONLY the missing [POSE] animation row.
+Output one horizontal strip of exactly eight equal cells: six active frames and
+two empty cells. Preserve body proportions, frame size, baseline, feet/pelvis
+anchor, palette, outline, and silhouette from the base atlas.
+For working-back, show only the back-facing character with subtle typing motion.
+For interact-front and inspect-front, show only the front-facing character;
+the facility itself is a separate map asset. For lounge-front, show only the
+front-facing seated character; do not draw the sofa or beanbag.
+Use a flat #FF00FF chroma-key background. No furniture, props, logos, text,
+watermark, extra rows, grid lines, or perspective.
 ```
 
 ## 9. Naming and manifest conventions

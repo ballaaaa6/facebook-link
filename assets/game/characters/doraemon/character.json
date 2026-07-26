@@ -1,0 +1,21 @@
+{
+  "id": "doraemon",
+  "source": {
+    "kind": "petdex",
+    "slug": "doraemon",
+    "baseAtlas": "runtime-spritesheet-v2@2x.webp"
+  },
+  "runtime": {
+    "version": 3,
+    "frame": { "width": 192, "height": 208, "columns": 8, "rows": 13 },
+    "sheet1x": "runtime-spritesheet-v3.webp",
+    "sheet2x": "runtime-spritesheet-v3@2x.webp"
+  },
+  "extensionRows": [
+    { "row": 9, "state": "working-back", "frames": 6, "fps": 7, "loop": true },
+    { "row": 10, "state": "interact-front", "frames": 6, "fps": 5, "loop": true },
+    { "row": 11, "state": "inspect-front", "frames": 6, "fps": 5, "loop": true },
+    { "row": 12, "state": "lounge-front", "frames": 6, "fps": 4, "loop": true }
+  ],
+  "generationPolicy": "Reuse the PetDex base atlas and generate only missing semantic rows. Keep furniture and props in separate map layers."
+}

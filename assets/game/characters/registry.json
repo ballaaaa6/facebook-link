@@ -10,6 +10,15 @@
     "sheet1x": "runtime-spritesheet-v2.webp",
     "sheet2x": "runtime-spritesheet-v2@2x.webp"
   },
+  "characterOverrides": {
+    "doraemon": {
+      "version": 3,
+      "frame": { "width": 192, "height": 208, "columns": 8, "rows": 13 },
+      "sheet1x": "runtime-spritesheet-v3.webp",
+      "sheet2x": "runtime-spritesheet-v3@2x.webp",
+      "extensionRows": ["working-back", "interact-front", "inspect-front", "lounge-front"]
+    }
+  },
   "licenseStatus": "pending-commercial-review",
   "usage": "internal-prototype",
   "agents": {

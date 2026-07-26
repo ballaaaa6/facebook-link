@@ -125,15 +125,16 @@ function deskState(agent: OfficeAgentView): AgentPresentation["state"] {
   if (agent.status === "completed") return "celebrating";
   if (agent.status === "failed" || agent.status === "blocked") return "failed";
   if (agent.status === "review" || agent.status === "waiting_human") return "review";
-  if (agent.status === "running") return "working";
+  if (agent.status === "running") return "working-back";
   if (agent.status === "offline" || agent.status === "stale") return "idle";
   return "waiting";
 }
 
 function interactionState(poi: OfficePoi): AgentPresentation["state"] {
   if (poi.activity === "meeting") return "review";
-  if (poi.activity === "printer" || poi.activity === "server") return "working";
-  if (poi.activity === "coffee" || poi.activity === "water") return "waving";
+  if (poi.activity === "server") return "inspect-front";
+  if (poi.activity === "printer" || poi.activity === "coffee" || poi.activity === "water") return "interact-front";
+  if (poi.activity === "lounge") return "lounge-front";
   return "idle";
 }
 

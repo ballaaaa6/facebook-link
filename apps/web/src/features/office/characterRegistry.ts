@@ -2,8 +2,8 @@ import aiWorkbotSheet from "../../../../../assets/game/characters/ai-workbot/run
 import aiWorkbotSheet2x from "../../../../../assets/game/characters/ai-workbot/runtime-spritesheet-v2@2x.webp";
 import abgSheet from "../../../../../assets/game/characters/abg/runtime-spritesheet-v2.webp";
 import abgSheet2x from "../../../../../assets/game/characters/abg/runtime-spritesheet-v2@2x.webp";
-import doraemonSheet from "../../../../../assets/game/characters/doraemon/runtime-spritesheet-v2.webp";
-import doraemonSheet2x from "../../../../../assets/game/characters/doraemon/runtime-spritesheet-v2@2x.webp";
+import doraemonSheet from "../../../../../assets/game/characters/doraemon/runtime-spritesheet-v3.webp";
+import doraemonSheet2x from "../../../../../assets/game/characters/doraemon/runtime-spritesheet-v3@2x.webp";
 import einsteinSheet from "../../../../../assets/game/characters/einstein/runtime-spritesheet-v2.webp";
 import einsteinSheet2x from "../../../../../assets/game/characters/einstein/runtime-spritesheet-v2@2x.webp";
 import noirWeblingSheet from "../../../../../assets/game/characters/noir-webling/runtime-spritesheet-v2.webp";
@@ -22,7 +22,10 @@ import yinyueSheet2x from "../../../../../assets/game/characters/yinyue-2/runtim
 export type CharacterState =
   | "celebrating"
   | "failed"
+  | "inspect-front"
+  | "interact-front"
   | "idle"
+  | "lounge-front"
   | "lounging"
   | "review"
   | "seated"
@@ -32,6 +35,7 @@ export type CharacterState =
   | "walk-right"
   | "walk-up"
   | "waving"
+  | "working-back"
   | "working";
 
 export interface CharacterDefinition {
@@ -62,6 +66,10 @@ export const characterStates9Row: Record<CharacterState, StateConfig> = {
   working: { row: 7, frames: 6, fps: 7, loop: true },
   review: { row: 8, frames: 6, fps: 5, loop: true },
   lounging: { row: 0, frames: 6, fps: 4, loop: true },
+  "working-back": { row: 7, frames: 6, fps: 7, loop: true },
+  "interact-front": { row: 3, frames: 4, fps: 5, loop: true },
+  "inspect-front": { row: 0, frames: 6, fps: 4, loop: true },
+  "lounge-front": { row: 0, frames: 6, fps: 4, loop: true },
 };
 
 export const characterStates12Row: Record<CharacterState, StateConfig> = {
@@ -78,12 +86,40 @@ export const characterStates12Row: Record<CharacterState, StateConfig> = {
   working: { row: 9, frames: 6, fps: 7, loop: true },
   review: { row: 10, frames: 6, fps: 5, loop: true },
   lounging: { row: 11, frames: 6, fps: 3, loop: true },
+  "working-back": { row: 9, frames: 6, fps: 7, loop: true },
+  "interact-front": { row: 5, frames: 4, fps: 5, loop: true },
+  "inspect-front": { row: 0, frames: 6, fps: 4, loop: true },
+  "lounge-front": { row: 11, frames: 6, fps: 3, loop: true },
+};
+
+export const characterStates13Row: Record<CharacterState, StateConfig> = {
+  idle: { row: 0, frames: 6, fps: 4, loop: true },
+  "walk-right": { row: 1, frames: 8, fps: 9, loop: true },
+  "walk-left": { row: 2, frames: 8, fps: 9, loop: true },
+  "walk-up": { row: 2, frames: 8, fps: 9, loop: true },
+  "walk-down": { row: 1, frames: 8, fps: 9, loop: true },
+  waving: { row: 3, frames: 4, fps: 5, loop: true },
+  celebrating: { row: 4, frames: 5, fps: 7, loop: false },
+  seated: { row: 12, frames: 6, fps: 4, loop: true },
+  failed: { row: 5, frames: 8, fps: 6, loop: false },
+  waiting: { row: 6, frames: 6, fps: 4, loop: true },
+  working: { row: 7, frames: 6, fps: 7, loop: true },
+  review: { row: 8, frames: 6, fps: 5, loop: true },
+  lounging: { row: 12, frames: 6, fps: 4, loop: true },
+  "working-back": { row: 9, frames: 6, fps: 7, loop: true },
+  "interact-front": { row: 10, frames: 6, fps: 5, loop: true },
+  "inspect-front": { row: 11, frames: 6, fps: 5, loop: true },
+  "lounge-front": { row: 12, frames: 6, fps: 4, loop: true },
 };
 
 export const characterStates = characterStates9Row;
 
 export function getCharacterStateConfig(character: CharacterDefinition | undefined, state: CharacterState): StateConfig {
-  const table = character?.rows === 12 ? characterStates12Row : characterStates9Row;
+  const table = character?.rows === 13
+    ? characterStates13Row
+    : character?.rows === 12
+      ? characterStates12Row
+      : characterStates9Row;
   return table[state] ?? table.idle;
 }
 
@@ -94,7 +130,7 @@ export const characterRegistry: Record<string, CharacterDefinition> = {
   "performance-analyst": { sheet: noirWeblingSheet, sheet2x: noirWeblingSheet2x, sourceSlug: "noir-webling" },
   "gemini-copywriter": { sheet: abgSheet, sheet2x: abgSheet2x, sourceSlug: "abg" },
   "flow-visual-producer": { sheet: taffySheet, sheet2x: taffySheet2x, sourceSlug: "taffy-2" },
-  "link-attribution": { sheet: doraemonSheet, sheet2x: doraemonSheet2x, sourceSlug: "doraemon" },
+  "link-attribution": { sheet: doraemonSheet, sheet2x: doraemonSheet2x, sourceSlug: "doraemon", rows: 13 },
   "qa-editor": { sheet: remSheet, sheet2x: remSheet2x, sourceSlug: "rem-xl" },
   publisher: { sheet: rx78Sheet, sheet2x: rx78Sheet2x, sourceSlug: "rx-78-2-gundam" },
   "session-keeper": { sheet: aiWorkbotSheet, sheet2x: aiWorkbotSheet2x, sourceSlug: "ai-workbot" },

@@ -10,6 +10,11 @@ performs any remaining downscale.
 
 These Petdex characters are prototype-only and remain marked `pending-commercial-review`. Before a public or paid release, replace any character whose commercial rights are not explicitly cleared while keeping the same 8x9 sheet geometry and role mapping.
 
+New character work starts from an approved Petdex-compatible base atlas. Missing
+office actions are added as controlled extension rows and packed into a versioned
+atlas; the Doraemon pilot is the first 8x13 example with four added front-facing
+facility rows.
+
 The office map owns placement. Every agent has a `seat`, `stand`, and desk `collision` rectangle so rendering can keep characters out of furniture and preserve a future pathfinding boundary.
 
 ## Imported Petdex candidate packs

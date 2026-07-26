@@ -37,10 +37,13 @@ must not be imported by the active scene.
 
 ## Character Sheets
 
-- One selected character per image-generation call.
-- Four columns: seated idle, typing left, typing right, mouse/review.
-- Rows are reserved for controlled revisions or additional frames of the same character only.
-- Original character image is always supplied as the identity anchor.
+- One selected PetDex-compatible character per image-generation call.
+- The imported 8x9 base atlas is the identity anchor and remains unchanged.
+- Generate only missing semantic rows as separate eight-cell horizontal strips.
+- The facility-ready pilot adds four rows: working-back, interact-front,
+  inspect-front, and lounge-front, producing one packed 8x13 runtime atlas.
+- Each added row contains six active frames and two empty cells.
+- Furniture and facility props remain separate map layers.
 - Left/right movement mirrors are created at runtime where safe.
 - Chair movement, sitting transition, and standing transition are code-driven to avoid generating unnecessary frames.
 - A single-frame `seated` semantic state may reuse an accepted source row when
