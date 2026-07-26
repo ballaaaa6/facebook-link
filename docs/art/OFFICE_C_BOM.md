@@ -55,6 +55,33 @@ assets, not additional generation work. Every new cell still needs an integer
 render box, floor footprint, approach anchor, interaction-facing metadata, and
 a separate overlay where its activity changes.
 
+### Decorative motion plan
+
+The active Office page targets 43 reusable base asset types: 29
+functional/support assets and 14 decorative assets. Every base type still owns
+one static shell cell. Animation adds overlay/keyframe cells; it does not
+increase object count, reservation capacity, or collision geometry.
+
+| Decorative base asset | v1 behavior | Cell contract |
+| --- | --- | ---: |
+| `tv.wall` | Subtle changing screen | 1 existing shell + 3 new overlay cells |
+| `lamp.desk`, `lamp.floor` | Static in v1; animate one selected lamp family in full polish | 1 shell each; 4 cells for the selected ambient set |
+| `plant.small`, `plant.tall`, `plant.potted` | Static in v1; animate one selected plant family in full polish | 1 shell each; 4 cells for the selected ambient set |
+| `art.wall`, `bookshelf.magazine`, `cup.coffee`, `papers.stack` | Static | 1 cell each |
+| `bin.waste`, `divider.planter`, `extinguisher.wall`, `pet-bed.round` | Static | 1 cell each |
+
+For the recommended Facility v1 motion tier, create 15 new cells total:
+
+- Six missing facility shell cells.
+- Three TV screen overlay cells.
+- Three vending display overlay cells.
+- Three game display overlay cells.
+
+For full ambient polish, replace the simple vending/game strips with the
+four-frame mechanical contract and produce 56 new cells total as defined in
+`docs/art/ASSET_SHEET_PLAN.md`. The tiers are alternatives; never add 15 and
+56 together.
+
 The current map is still an implementation baseline with ten active agents
 and two reserved workstation modules. Expanding to the 15-person target
 requires a map/workstation expansion in the same change set as the facility

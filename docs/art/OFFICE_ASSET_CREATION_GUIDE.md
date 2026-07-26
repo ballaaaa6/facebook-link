@@ -198,7 +198,21 @@ After generation:
 
 ### Step 4 — Add optional animation
 
-Do not animate the entire furniture silhouette. Add a separate overlay for local motion:
+Do not animate the entire furniture silhouette. Select exactly one cell
+contract before generating:
+
+```text
+static rigid shell             1 cell
+screen / LED / status overlay  3 true keyframes: A, B, C
+mechanical / ambient motion    4 true keyframes
+```
+
+Runtime plays three-frame overlays as `A-B-C-B-A`; duplicate return frames are
+not stored. Four-frame motion stores only the four distinct authored
+keyframes. Static timeline states point to the same one-cell asset rather than
+duplicating its pixels.
+
+Add a separate overlay for local motion:
 
 - Server LEDs.
 - Vending display.
@@ -207,7 +221,21 @@ Do not animate the entire furniture silhouette. Add a separate overlay for local
 - Lamp brightness.
 - Fan or status indicator.
 
-The base furniture must retain the same anchor, dimensions, and collision footprint in every frame.
+The base furniture must retain the same anchor, dimensions, and collision
+footprint in every frame. For example, a wall TV is one static shell cell plus
+three screen-content cells. Do not generate four complete TV images.
+
+Facility production uses three alternative tiers:
+
+- Static-only: six missing facility shell cells.
+- Facility v1 motion: six shells plus TV, vending, and game three-frame
+  overlays, for 15 new cells.
+- Full ambient polish: 56 new cells under
+  `docs/art/ASSET_SHEET_PLAN.md`; this replaces the simpler Facility v1 motion
+  strips and is not added on top of them.
+
+Before extraction, confirm whether a generated strip is a shell, an overlay,
+or a full local-motion frame set. Never mix those roles inside one strip.
 
 ## 6. Equipment and monitor workflow
 
@@ -462,6 +490,23 @@ Do not include a monitor bezel, stand, desk, keyboard, text labels outside the U
 logos, watermark, or any object outside the viewport.
 ```
 
+For a wall TV, vending display, or game display, replace `[THEME] dashboard`
+with the intended screen content while preserving the same three-cell overlay
+contract. The prompt must not include the TV housing, machine shell, floor,
+wall, or cast shadow.
+
+### 8.2.1 Mechanical or ambient overlay
+
+```text
+Use the supplied accepted [ASSET] shell as the fixed anchor and style
+reference. Create ONLY the local [MOTION] overlay as four distinct keyframes.
+Keep the render box, anchor, lighting direction, palette, and affected region
+identical across all four cells. Pixels outside the moving LED, paper, button,
+steam, plant, or light region must remain transparent.
+Use a flat #FF00FF chroma-key background. Do not redraw the furniture shell,
+change its footprint, move its baseline, add a room, add text, or add shadows.
+```
+
 ### 8.3 PetDex character extension
 
 ```text
@@ -576,6 +621,10 @@ Suggested workstation manifest:
 ### Animation
 
 - [ ] Static assets use aliases rather than duplicate pixels.
+- [ ] A rigid shell occupies one cell per required orientation.
+- [ ] Screen, LED, and status overlays contain exactly three true keyframes.
+- [ ] Mechanical and ambient sets contain exactly four true keyframes.
+- [ ] Overlay frames do not redraw the furniture shell.
 - [ ] Animated assets keep a fixed silhouette.
 - [ ] Screen movement is visible at final 1:1 size.
 - [ ] Screen playback uses `A-B-C-B-A`.

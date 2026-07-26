@@ -35,6 +35,40 @@ debugging, and shadows. Visible furniture and decorative props must use the
 accepted shaded raster language; the retired `office-utility-c-v1` SVG batch
 must not be imported by the active scene.
 
+## Static and Motion Cell Budget
+
+Count the physical object and its local motion separately:
+
+- A rigid furniture shell or static decoration uses one cell per required
+  orientation. Desks, chairs, tables, sofas, cabinets, shelves, refrigerators,
+  massage chairs, wall art, cups, papers, boxes, bins, dividers, and pet beds
+  do not receive duplicate cells merely to fill an animation timeline.
+- A screen, LED, indicator, or other local display uses three true overlay
+  keyframes (`A`, `B`, `C`). Runtime plays `A-B-C-B-A`; do not store duplicate
+  return frames.
+- A mechanical or ambient motion that changes more than a local display uses
+  four true keyframes. The base anchor, render box, collision footprint, and
+  support surface remain unchanged in every frame.
+- The shell stays visible under an overlay. Do not generate three or four
+  complete copies of a TV, vending machine, game machine, printer, server rack,
+  water dispenser, coffee machine, or lamp when only its screen, paper, LED,
+  button, steam, or light changes.
+
+The approved production tiers are alternatives, not cumulative budgets:
+
+| Tier | Included work | New cells |
+| --- | --- | ---: |
+| Static-only Facility v1 | Six missing facility shells | 6 |
+| Facility v1 motion | Six shells plus three-frame TV, vending, and game overlays | 15 |
+| Full ambient polish | Six shells, four mechanical sets x 4, four ambient sets x 4, five monitor themes x 3, and one TV overlay x 3 | 56 |
+
+The full-polish mechanical sets are vending display/mechanism, game display,
+printer paper/status, and server status. They replace the simpler three-frame
+vending and game strips from the Facility v1 motion tier; do not count both
+versions. The ambient sets are water indicator, coffee steam/indicator, plant
+sway, and lamp brightness. The TV remains a one-cell shell with a separate
+three-frame screen overlay.
+
 ## Character Sheets
 
 - One selected PetDex-compatible character per image-generation call.
@@ -96,7 +130,12 @@ Run one calibration sheet first. Continue with 4x4 batching only if at least 12 
 
 ## Estimated Generation Work
 
-- C environment: eight controlled sheets.
+- Full-polish C environment: eight controlled sheets. Static-only and Facility
+  v1 motion may defer the complete `env-07` and `env-08` batches.
+- Facility v1 additions: six cells static-only or 15 cells with the recommended
+  TV, vending, and game motion overlays.
+- Full ambient-polish additions: 56 cells; this replaces, rather than adds to,
+  the 15-cell Facility v1 motion tier.
 - Pilot character: one sheet for the vertical slice.
 - Full active roster: ten character sheets total.
 - Initial image generation: approximately 30-90 minutes depending on retries.
