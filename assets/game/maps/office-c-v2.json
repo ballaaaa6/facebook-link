@@ -86,8 +86,6 @@
     ]
   },
   "objects": [
-    { "id": "wall-clock", "asset": "clock.wall", "x": 4, "y": 1, "layer": "wall", "anchor": "wall-top" },
-
     { "id": "work-plant-a", "asset": "plant.tall", "x": 1, "y": 7, "layer": "decor", "anchor": "bottom-center" },
     { "id": "work-plant-b", "asset": "plant.tall", "x": 1, "y": 17, "layer": "decor", "anchor": "bottom-center" },
     { "id": "work-plant-c", "asset": "plant.small", "x": 9, "y": 6, "layer": "decor", "anchor": "bottom-center" },

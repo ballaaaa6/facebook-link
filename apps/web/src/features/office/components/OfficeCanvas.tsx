@@ -9,6 +9,12 @@ import { AgentEntity, type AgentPreviewRequest } from "./AgentEntity";
 import { AgentTooltip } from "./AgentTooltip";
 import { CompanionEntity } from "./CompanionEntity";
 import { officeAssetRegistry, officeSlotSets } from "./officeAssetRegistry";
+import {
+  officeSceneAssets,
+  officeSceneReference,
+  officeSceneTimeAt,
+  officeWindowViewFor,
+} from "./officeSceneRuntime";
 import { WorldObject } from "./WorldObject";
 
 const officeMap = officeMapJson as unknown as OfficeMapDefinition;
@@ -34,15 +40,34 @@ export function OfficeCanvas({
   const [preview, setPreview] = useState<AgentPreviewRequest | null>(null);
   const [tileSize, setTileSize] = useState(10);
   const [sceneStartedAt] = useState(() => performance.now());
+  const [sceneTime, setSceneTime] = useState(() => officeSceneTimeAt(new Date()));
   const previewAgent = useMemo(
     () => agents.find((agent) => agent.agentId === preview?.agentId),
     [agents, preview?.agentId],
   );
   const percentX = (x: number) => `${(x / officeMap.width) * 100}%`;
   const percentY = (y: number) => `${(y / officeMap.height) * 100}%`;
+  const referencePercentX = (x: number) => `${(x / officeSceneReference.width) * 100}%`;
+  const referencePercentY = (y: number) => `${(y / officeSceneReference.height) * 100}%`;
+  const referenceWidth = (width: number) => `${(width / officeSceneReference.width) * 100}%`;
+  const referenceHeight = (height: number) => `${(height / officeSceneReference.height) * 100}%`;
+  const windowView = officeWindowViewFor(sceneTime);
   const endPreview = (agentId: string) => {
     setPreview((current) => current?.agentId === agentId ? null : current);
   };
+
+  useEffect(() => {
+    let timer: number | undefined;
+    const refresh = () => {
+      setSceneTime(officeSceneTimeAt(new Date()));
+      const untilNextMinute = 60_000 - (Date.now() % 60_000) + 50;
+      timer = window.setTimeout(refresh, untilNextMinute);
+    };
+    refresh();
+    return () => {
+      if (timer !== undefined) window.clearTimeout(timer);
+    };
+  }, []);
 
   useEffect(() => {
     if (!preview) return;
@@ -87,6 +112,7 @@ export function OfficeCanvas({
       >
       <div
         className="office-world"
+        data-scene="modern"
         aria-label="Warm pixel operations office"
         style={{
           "--tile-size": `${tileSize}px`,
@@ -94,7 +120,62 @@ export function OfficeCanvas({
           height: `${officeMap.height * tileSize}px`,
         } as CSSProperties}
       >
-        <div className="window-row" aria-hidden="true"><span /><span /><span /><span /></div>
+        <img
+          className="office-background-image"
+          src={officeSceneAssets.background}
+          alt=""
+          aria-hidden="true"
+        />
+        <img
+          className="office-window-view"
+          src={windowView}
+          alt=""
+          aria-hidden="true"
+          style={{
+            left: referencePercentX(officeSceneReference.window.x),
+            top: referencePercentY(officeSceneReference.window.y),
+            width: referenceWidth(officeSceneReference.window.width),
+            height: referenceHeight(officeSceneReference.window.height),
+          }}
+        />
+        <img
+          className="office-clock-face"
+          src={officeSceneAssets.clockFace}
+          alt=""
+          aria-hidden="true"
+          style={{
+            left: referencePercentX(officeSceneReference.clock.x),
+            top: referencePercentY(officeSceneReference.clock.y),
+            width: referenceWidth(officeSceneReference.clock.width),
+            height: referenceHeight(officeSceneReference.clock.height),
+          }}
+        />
+        <img
+          className="office-clock-hand office-clock-hour-hand"
+          src={officeSceneAssets.clockHourHand}
+          alt=""
+          aria-hidden="true"
+          style={{
+            left: referencePercentX(officeSceneReference.clock.x + officeSceneReference.clock.width / 2),
+            top: referencePercentY(officeSceneReference.clock.y + officeSceneReference.clock.height / 2),
+            width: referenceWidth(officeSceneReference.clock.width),
+            height: referenceHeight(officeSceneReference.clock.height),
+            transform: `translate(-50%, -50%) rotate(${sceneTime.hourAngle}deg)`,
+          }}
+        />
+        <img
+          className="office-clock-hand office-clock-minute-hand"
+          src={officeSceneAssets.clockMinuteHand}
+          alt=""
+          aria-hidden="true"
+          style={{
+            left: referencePercentX(officeSceneReference.clock.x + officeSceneReference.clock.width / 2),
+            top: referencePercentY(officeSceneReference.clock.y + officeSceneReference.clock.height / 2),
+            width: referenceWidth(officeSceneReference.clock.width),
+            height: referenceHeight(officeSceneReference.clock.height),
+            transform: `translate(-50%, -50%) rotate(${sceneTime.minuteAngle}deg)`,
+          }}
+        />
         {officeMap.zones.map((zone) => (
           <span
             className={`office-zone office-zone-${zone.id}`}

@@ -151,6 +151,45 @@
   image-rendering: pixelated;
 }
 
+.office-background-image,
+.office-window-view,
+.office-clock-face,
+.office-clock-hand {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+  image-rendering: pixelated;
+}
+
+.office-background-image {
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.office-window-view {
+  z-index: 1;
+  object-fit: fill;
+}
+
+.office-clock-face {
+  z-index: 2;
+  object-fit: fill;
+}
+
+.office-clock-hand {
+  z-index: 3;
+  object-fit: fill;
+  transform-origin: center;
+}
+
+.office-world[data-scene="modern"]::before,
+.office-world[data-scene="modern"] > .window-row {
+  display: none;
+}
+
 .office-world::before {
   position: absolute;
   inset: 0 0 auto 0;
@@ -395,7 +434,6 @@
   .office-workspace > .task-panel { min-height: 300px; overflow: auto; }
   .office-workspace > .team-chat { height: calc(100dvh - 230px); min-height: 380px; }
 }
-
 
 
 
