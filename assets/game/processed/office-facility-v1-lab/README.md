@@ -9,18 +9,23 @@ It uses the retired lab composition and is not an acceptance reference.
 
 ## Part 1 result
 
-- Ten modern desks form two directly touching rows of five.
-- The complete workstation, seat, route, and aisle assembly is one tile closer
-  to the wall than the v2 calibration.
+- Ten rectangular `5 x 4` modern desks form two directly touching rows of five.
+- The far row starts after exactly one clear floor row below the wall.
 - The far row contains five `working-front-seated` employees.
 - The near row contains five `working-back-seated` employees.
+- The far row uses the viewer-back desk; the near row uses the viewer-front
+  desk. Monitor and character directions remain employee-relative.
 - Ten `keyboard.only` crops replace the malformed keyboard-and-half-mouse
   source in the lab renderer.
-- Monitor and keyboard render boxes use calibrated fractional tile sizes and
-  precise desk-surface anchors.
-- Near-row equipment renders above the desk base but below the seated actor, so
-  it remains visible without drawing over the head.
-- Every desk exposes four reserved future prop slots, forty slots total.
+- Each desk has a three-cell center lane: monitor far from the employee,
+  keyboard in the middle, and one clear cell nearest the employee.
+- Each desk has six left prop cells and six right prop cells, twelve per desk
+  and 120 across the ten-desk lab.
+- Twenty sample props exercise both side regions without using the protected
+  center lane.
+- Near-row actors render above every desk, chair, monitor, keyboard, and prop.
+  The far row uses a clipped lower desk foreground so furniture cannot cover a
+  character head.
 - The room contains no facility or decorative furniture.
 - The rendered asset list contains no retired desk or chair ids.
 - All ten positions and seated states remain unchanged at 0, 10, 20, and 30
@@ -29,12 +34,12 @@ It uses the retired lab composition and is not an acceptance reference.
 
 ## Evidence
 
-- `qa/two-row-modern-office-part1-furniture-grid-v3.png`
-- `qa/two-row-modern-office-part1-seated-v3.png`
-- `qa/two-row-modern-office-part1-seated-grid-v3.png`
+- `qa/two-row-rectangular-office-v5-furniture.png`
+- `qa/two-row-rectangular-office-v5-seated.png`
+- `qa/two-row-rectangular-office-v5-slot-grid.png`
 
-The three Part 1 images were captured from the local browser renderer at a 1280
-by 720 viewport on 2026-07-27.
+The three v5 images are captured from the local browser renderer at a 1280 by
+720 viewport.
 
-The v2 captures remain as superseded QA history and are not the current
+The v2 and v3 captures remain as superseded QA history and are not the current
 acceptance evidence.

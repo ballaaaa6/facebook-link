@@ -22,6 +22,7 @@ export function useAgentMotion(
   mode: OfficeMode,
   sceneStartedAt: number,
   presentationOverride?: AgentPresentation,
+  atDeskDepthOverride?: number,
 ): AgentVisualState {
   const [visual, setVisual] = useState<AgentVisualState>({ state: "idle", seated: false, atDesk: true });
   const signature = useRef("");
@@ -50,7 +51,7 @@ export function useAgentMotion(
         const atDesk = Math.abs(presentation.position.x - station.work.x) < 0.05
           && Math.abs(presentation.position.y - station.work.y) < 0.05;
         track.style.zIndex = String(atDesk
-          ? 97 + Math.round(station.y * 20)
+          ? atDeskDepthOverride ?? 97 + Math.round(station.y * 20)
           : 110 + Math.round(presentation.position.y * 20));
       }
       const atDesk = Math.abs(presentation.position.x - station.work.x) < 0.05
@@ -67,7 +68,7 @@ export function useAgentMotion(
       }
     };
     return subscribeToOfficeFrame(update);
-  }, [agent.agentId, agents, map, mode, presentationOverride, sceneStartedAt, station, trackRef]);
+  }, [agent.agentId, agents, atDeskDepthOverride, map, mode, presentationOverride, sceneStartedAt, station, trackRef]);
 
   return visual;
 }

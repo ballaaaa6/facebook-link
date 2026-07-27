@@ -1,40 +1,40 @@
 {
   "id": "office-modern-workstation-part1-lab",
   "gridSize": 32,
-  "width": 24,
-  "height": 18,
+  "width": 29,
+  "height": 22,
   "surfaces": [
-    { "id": "part1-wall", "support": "wall", "x": 0, "y": 0, "width": 24, "height": 4 },
-    { "id": "part1-floor", "support": "floor", "x": 0, "y": 4, "width": 24, "height": 14 }
+    { "id": "part1-wall", "support": "wall", "x": 0, "y": 0, "width": 29, "height": 4 },
+    { "id": "part1-floor", "support": "floor", "x": 0, "y": 4, "width": 29, "height": 18 }
   ],
   "zones": [
-    { "id": "paired-workstations", "label": "Paired modern workstations", "x": 0, "y": 4, "width": 24, "height": 14, "capacity": 10 }
+    { "id": "paired-workstations", "label": "Paired rectangular workstations", "x": 0, "y": 4, "width": 29, "height": 18, "capacity": 10 }
   ],
   "workstations": [
-    { "id": "market-scout", "zone": "paired-workstations", "surfaceId": "part1-floor", "desk": "desk.workstation.front", "chair": "chair.office.modern.front", "x": 5, "y": 8, "facing": "down", "seat": { "x": 5, "y": 7 }, "work": { "x": 5, "y": 7 }, "approach": { "x": 5, "y": 15 }, "stand": { "x": 5, "y": 7 }, "navNode": "aisle-1", "previewSide": "right", "collision": { "x": 4, "y": 7, "width": 3, "height": 2 } },
-    { "id": "product-ranker", "zone": "paired-workstations", "surfaceId": "part1-floor", "desk": "desk.workstation.front", "chair": "chair.office.modern.front", "x": 8, "y": 8, "facing": "down", "seat": { "x": 8, "y": 7 }, "work": { "x": 8, "y": 7 }, "approach": { "x": 8, "y": 15 }, "stand": { "x": 8, "y": 7 }, "navNode": "aisle-2", "collision": { "x": 7, "y": 7, "width": 3, "height": 2 } },
-    { "id": "growth-strategist", "zone": "paired-workstations", "surfaceId": "part1-floor", "desk": "desk.workstation.front", "chair": "chair.office.modern.front", "x": 11, "y": 8, "facing": "down", "seat": { "x": 11, "y": 7 }, "work": { "x": 11, "y": 7 }, "approach": { "x": 11, "y": 15 }, "stand": { "x": 11, "y": 7 }, "navNode": "aisle-3", "collision": { "x": 10, "y": 7, "width": 3, "height": 2 } },
-    { "id": "performance-analyst", "zone": "paired-workstations", "surfaceId": "part1-floor", "desk": "desk.workstation.front", "chair": "chair.office.modern.front", "x": 14, "y": 8, "facing": "down", "seat": { "x": 14, "y": 7 }, "work": { "x": 14, "y": 7 }, "approach": { "x": 14, "y": 15 }, "stand": { "x": 14, "y": 7 }, "navNode": "aisle-4", "collision": { "x": 13, "y": 7, "width": 3, "height": 2 } },
-    { "id": "gemini-copywriter", "zone": "paired-workstations", "surfaceId": "part1-floor", "desk": "desk.workstation.front", "chair": "chair.office.modern.front", "x": 17, "y": 8, "facing": "down", "seat": { "x": 17, "y": 7 }, "work": { "x": 17, "y": 7 }, "approach": { "x": 17, "y": 15 }, "stand": { "x": 17, "y": 7 }, "navNode": "aisle-5", "previewSide": "left", "collision": { "x": 16, "y": 7, "width": 3, "height": 2 } },
-    { "id": "flow-visual-producer", "zone": "paired-workstations", "surfaceId": "part1-floor", "desk": "desk.workstation.back", "chair": "chair.office.modern.back", "x": 5, "y": 10, "facing": "up", "seat": { "x": 5, "y": 13 }, "work": { "x": 5, "y": 13 }, "approach": { "x": 5, "y": 15 }, "stand": { "x": 5, "y": 13 }, "navNode": "aisle-1", "previewSide": "right", "collision": { "x": 4, "y": 9, "width": 3, "height": 2 } },
-    { "id": "link-attribution", "zone": "paired-workstations", "surfaceId": "part1-floor", "desk": "desk.workstation.back", "chair": "chair.office.modern.back", "x": 8, "y": 10, "facing": "up", "seat": { "x": 8, "y": 13 }, "work": { "x": 8, "y": 13 }, "approach": { "x": 8, "y": 15 }, "stand": { "x": 8, "y": 13 }, "navNode": "aisle-2", "collision": { "x": 7, "y": 9, "width": 3, "height": 2 } },
-    { "id": "qa-editor", "zone": "paired-workstations", "surfaceId": "part1-floor", "desk": "desk.workstation.back", "chair": "chair.office.modern.back", "x": 11, "y": 10, "facing": "up", "seat": { "x": 11, "y": 13 }, "work": { "x": 11, "y": 13 }, "approach": { "x": 11, "y": 15 }, "stand": { "x": 11, "y": 13 }, "navNode": "aisle-3", "collision": { "x": 10, "y": 9, "width": 3, "height": 2 } },
-    { "id": "publisher", "zone": "paired-workstations", "surfaceId": "part1-floor", "desk": "desk.workstation.back", "chair": "chair.office.modern.back", "x": 14, "y": 10, "facing": "up", "seat": { "x": 14, "y": 13 }, "work": { "x": 14, "y": 13 }, "approach": { "x": 14, "y": 15 }, "stand": { "x": 14, "y": 13 }, "navNode": "aisle-4", "collision": { "x": 13, "y": 9, "width": 3, "height": 2 } },
-    { "id": "session-keeper", "zone": "paired-workstations", "surfaceId": "part1-floor", "desk": "desk.workstation.back", "chair": "chair.office.modern.back", "x": 17, "y": 10, "facing": "up", "seat": { "x": 17, "y": 13 }, "work": { "x": 17, "y": 13 }, "approach": { "x": 17, "y": 15 }, "stand": { "x": 17, "y": 13 }, "navNode": "aisle-5", "previewSide": "left", "collision": { "x": 16, "y": 9, "width": 3, "height": 2 } }
+    { "id": "market-scout", "zone": "paired-workstations", "surfaceId": "part1-floor", "desk": "desk.workstation.viewer-back.v5", "chair": "chair.office.modern.front", "x": 4, "y": 7, "facing": "down", "seat": { "x": 4, "y": 8 }, "work": { "x": 4, "y": 8 }, "approach": { "x": 4, "y": 18 }, "stand": { "x": 4, "y": 8 }, "navNode": "aisle-1", "previewSide": "right", "collision": { "x": 2, "y": 5, "width": 5, "height": 4 } },
+    { "id": "product-ranker", "zone": "paired-workstations", "surfaceId": "part1-floor", "desk": "desk.workstation.viewer-back.v5", "chair": "chair.office.modern.front", "x": 9, "y": 7, "facing": "down", "seat": { "x": 9, "y": 8 }, "work": { "x": 9, "y": 8 }, "approach": { "x": 9, "y": 18 }, "stand": { "x": 9, "y": 8 }, "navNode": "aisle-2", "collision": { "x": 7, "y": 5, "width": 5, "height": 4 } },
+    { "id": "growth-strategist", "zone": "paired-workstations", "surfaceId": "part1-floor", "desk": "desk.workstation.viewer-back.v5", "chair": "chair.office.modern.front", "x": 14, "y": 7, "facing": "down", "seat": { "x": 14, "y": 8 }, "work": { "x": 14, "y": 8 }, "approach": { "x": 14, "y": 18 }, "stand": { "x": 14, "y": 8 }, "navNode": "aisle-3", "collision": { "x": 12, "y": 5, "width": 5, "height": 4 } },
+    { "id": "performance-analyst", "zone": "paired-workstations", "surfaceId": "part1-floor", "desk": "desk.workstation.viewer-back.v5", "chair": "chair.office.modern.front", "x": 19, "y": 7, "facing": "down", "seat": { "x": 19, "y": 8 }, "work": { "x": 19, "y": 8 }, "approach": { "x": 19, "y": 18 }, "stand": { "x": 19, "y": 8 }, "navNode": "aisle-4", "collision": { "x": 17, "y": 5, "width": 5, "height": 4 } },
+    { "id": "gemini-copywriter", "zone": "paired-workstations", "surfaceId": "part1-floor", "desk": "desk.workstation.viewer-back.v5", "chair": "chair.office.modern.front", "x": 24, "y": 7, "facing": "down", "seat": { "x": 24, "y": 8 }, "work": { "x": 24, "y": 8 }, "approach": { "x": 24, "y": 18 }, "stand": { "x": 24, "y": 8 }, "navNode": "aisle-5", "previewSide": "left", "collision": { "x": 22, "y": 5, "width": 5, "height": 4 } },
+    { "id": "flow-visual-producer", "zone": "paired-workstations", "surfaceId": "part1-floor", "desk": "desk.workstation.viewer-front.v5", "chair": "chair.office.modern.back", "x": 4, "y": 11, "facing": "up", "seat": { "x": 4, "y": 14 }, "work": { "x": 4, "y": 14 }, "approach": { "x": 4, "y": 18 }, "stand": { "x": 4, "y": 14 }, "navNode": "aisle-1", "previewSide": "right", "collision": { "x": 2, "y": 9, "width": 5, "height": 4 } },
+    { "id": "link-attribution", "zone": "paired-workstations", "surfaceId": "part1-floor", "desk": "desk.workstation.viewer-front.v5", "chair": "chair.office.modern.back", "x": 9, "y": 11, "facing": "up", "seat": { "x": 9, "y": 14 }, "work": { "x": 9, "y": 14 }, "approach": { "x": 9, "y": 18 }, "stand": { "x": 9, "y": 14 }, "navNode": "aisle-2", "collision": { "x": 7, "y": 9, "width": 5, "height": 4 } },
+    { "id": "qa-editor", "zone": "paired-workstations", "surfaceId": "part1-floor", "desk": "desk.workstation.viewer-front.v5", "chair": "chair.office.modern.back", "x": 14, "y": 11, "facing": "up", "seat": { "x": 14, "y": 14 }, "work": { "x": 14, "y": 14 }, "approach": { "x": 14, "y": 18 }, "stand": { "x": 14, "y": 14 }, "navNode": "aisle-3", "collision": { "x": 12, "y": 9, "width": 5, "height": 4 } },
+    { "id": "publisher", "zone": "paired-workstations", "surfaceId": "part1-floor", "desk": "desk.workstation.viewer-front.v5", "chair": "chair.office.modern.back", "x": 19, "y": 11, "facing": "up", "seat": { "x": 19, "y": 14 }, "work": { "x": 19, "y": 14 }, "approach": { "x": 19, "y": 18 }, "stand": { "x": 19, "y": 14 }, "navNode": "aisle-4", "collision": { "x": 17, "y": 9, "width": 5, "height": 4 } },
+    { "id": "session-keeper", "zone": "paired-workstations", "surfaceId": "part1-floor", "desk": "desk.workstation.viewer-front.v5", "chair": "chair.office.modern.back", "x": 24, "y": 11, "facing": "up", "seat": { "x": 24, "y": 14 }, "work": { "x": 24, "y": 14 }, "approach": { "x": 24, "y": 18 }, "stand": { "x": 24, "y": 14 }, "navNode": "aisle-5", "previewSide": "left", "collision": { "x": 22, "y": 9, "width": 5, "height": 4 } }
   ],
   "companions": [],
   "pois": [],
   "routes": [
-    { "id": "wall-clearance", "x": 0, "y": 4, "width": 24, "height": 1 },
-    { "id": "front-aisle", "x": 0, "y": 14, "width": 24, "height": 3 }
+    { "id": "wall-clearance", "x": 0, "y": 4, "width": 29, "height": 1 },
+    { "id": "front-aisle", "x": 0, "y": 16, "width": 29, "height": 4 }
   ],
   "navigation": {
     "nodes": [
-      { "id": "aisle-1", "x": 5, "y": 15 },
-      { "id": "aisle-2", "x": 8, "y": 15 },
-      { "id": "aisle-3", "x": 11, "y": 15 },
-      { "id": "aisle-4", "x": 14, "y": 15 },
-      { "id": "aisle-5", "x": 17, "y": 15 }
+      { "id": "aisle-1", "x": 4, "y": 18 },
+      { "id": "aisle-2", "x": 9, "y": 18 },
+      { "id": "aisle-3", "x": 14, "y": 18 },
+      { "id": "aisle-4", "x": 19, "y": 18 },
+      { "id": "aisle-5", "x": 24, "y": 18 }
     ],
     "edges": [
       ["aisle-1", "aisle-2"],
@@ -46,23 +46,52 @@
   "objects": [
     { "id": "market-monitor", "asset": "monitor.back", "parentId": "market-scout", "slot": "monitor", "layer": "equipment", "anchor": "bottom-center" },
     { "id": "market-keyboard", "asset": "keyboard.only", "parentId": "market-scout", "slot": "keyboard", "layer": "equipment", "anchor": "bottom-center" },
+    { "id": "market-prop-left", "asset": "papers.stack", "parentId": "market-scout", "slot": "prop-left-far-1", "layer": "decor", "anchor": "bottom-center" },
+    { "id": "market-prop-right", "asset": "phone.desk", "parentId": "market-scout", "slot": "prop-right-middle-2", "layer": "equipment", "anchor": "bottom-center" },
+
     { "id": "ranker-monitor", "asset": "monitor.back", "parentId": "product-ranker", "slot": "monitor", "layer": "equipment", "anchor": "bottom-center" },
     { "id": "ranker-keyboard", "asset": "keyboard.only", "parentId": "product-ranker", "slot": "keyboard", "layer": "equipment", "anchor": "bottom-center" },
+    { "id": "ranker-prop-left", "asset": "lamp.desk", "parentId": "product-ranker", "slot": "prop-left-middle-2", "layer": "decor", "anchor": "bottom-center" },
+    { "id": "ranker-prop-right", "asset": "stationery.cup", "parentId": "product-ranker", "slot": "prop-right-near-1", "layer": "decor", "anchor": "bottom-center" },
+
     { "id": "growth-monitor", "asset": "monitor.back", "parentId": "growth-strategist", "slot": "monitor", "layer": "equipment", "anchor": "bottom-center" },
     { "id": "growth-keyboard", "asset": "keyboard.only", "parentId": "growth-strategist", "slot": "keyboard", "layer": "equipment", "anchor": "bottom-center" },
+    { "id": "growth-prop-left", "asset": "mug.stack", "parentId": "growth-strategist", "slot": "prop-left-near-1", "layer": "decor", "anchor": "bottom-center" },
+    { "id": "growth-prop-right", "asset": "papers.stack", "parentId": "growth-strategist", "slot": "prop-right-far-2", "layer": "decor", "anchor": "bottom-center" },
+
     { "id": "performance-monitor", "asset": "monitor.back", "parentId": "performance-analyst", "slot": "monitor", "layer": "equipment", "anchor": "bottom-center" },
     { "id": "performance-keyboard", "asset": "keyboard.only", "parentId": "performance-analyst", "slot": "keyboard", "layer": "equipment", "anchor": "bottom-center" },
+    { "id": "performance-prop-left", "asset": "phone.desk", "parentId": "performance-analyst", "slot": "prop-left-far-2", "layer": "equipment", "anchor": "bottom-center" },
+    { "id": "performance-prop-right", "asset": "lamp.desk", "parentId": "performance-analyst", "slot": "prop-right-middle-1", "layer": "decor", "anchor": "bottom-center" },
+
     { "id": "copy-monitor", "asset": "monitor.back", "parentId": "gemini-copywriter", "slot": "monitor", "layer": "equipment", "anchor": "bottom-center" },
     { "id": "copy-keyboard", "asset": "keyboard.only", "parentId": "gemini-copywriter", "slot": "keyboard", "layer": "equipment", "anchor": "bottom-center" },
+    { "id": "copy-prop-left", "asset": "stationery.cup", "parentId": "gemini-copywriter", "slot": "prop-left-middle-1", "layer": "decor", "anchor": "bottom-center" },
+    { "id": "copy-prop-right", "asset": "mug.stack", "parentId": "gemini-copywriter", "slot": "prop-right-near-2", "layer": "decor", "anchor": "bottom-center" },
+
     { "id": "flow-monitor", "asset": "monitor.front", "parentId": "flow-visual-producer", "slot": "monitor", "layer": "equipment", "anchor": "bottom-center" },
     { "id": "flow-keyboard", "asset": "keyboard.only", "parentId": "flow-visual-producer", "slot": "keyboard", "layer": "equipment", "anchor": "bottom-center" },
+    { "id": "flow-prop-left", "asset": "lamp.desk", "parentId": "flow-visual-producer", "slot": "prop-left-far-1", "layer": "decor", "anchor": "bottom-center" },
+    { "id": "flow-prop-right", "asset": "papers.stack", "parentId": "flow-visual-producer", "slot": "prop-right-middle-2", "layer": "decor", "anchor": "bottom-center" },
+
     { "id": "link-monitor", "asset": "monitor.front", "parentId": "link-attribution", "slot": "monitor", "layer": "equipment", "anchor": "bottom-center" },
     { "id": "link-keyboard", "asset": "keyboard.only", "parentId": "link-attribution", "slot": "keyboard", "layer": "equipment", "anchor": "bottom-center" },
+    { "id": "link-prop-left", "asset": "phone.desk", "parentId": "link-attribution", "slot": "prop-left-middle-2", "layer": "equipment", "anchor": "bottom-center" },
+    { "id": "link-prop-right", "asset": "mug.stack", "parentId": "link-attribution", "slot": "prop-right-near-1", "layer": "decor", "anchor": "bottom-center" },
+
     { "id": "qa-monitor", "asset": "monitor.front", "parentId": "qa-editor", "slot": "monitor", "layer": "equipment", "anchor": "bottom-center" },
     { "id": "qa-keyboard", "asset": "keyboard.only", "parentId": "qa-editor", "slot": "keyboard", "layer": "equipment", "anchor": "bottom-center" },
+    { "id": "qa-prop-left", "asset": "stationery.cup", "parentId": "qa-editor", "slot": "prop-left-near-1", "layer": "decor", "anchor": "bottom-center" },
+    { "id": "qa-prop-right", "asset": "papers.stack", "parentId": "qa-editor", "slot": "prop-right-far-2", "layer": "decor", "anchor": "bottom-center" },
+
     { "id": "publisher-monitor", "asset": "monitor.front", "parentId": "publisher", "slot": "monitor", "layer": "equipment", "anchor": "bottom-center" },
     { "id": "publisher-keyboard", "asset": "keyboard.only", "parentId": "publisher", "slot": "keyboard", "layer": "equipment", "anchor": "bottom-center" },
+    { "id": "publisher-prop-left", "asset": "mug.stack", "parentId": "publisher", "slot": "prop-left-far-2", "layer": "decor", "anchor": "bottom-center" },
+    { "id": "publisher-prop-right", "asset": "phone.desk", "parentId": "publisher", "slot": "prop-right-middle-1", "layer": "equipment", "anchor": "bottom-center" },
+
     { "id": "session-monitor", "asset": "monitor.front", "parentId": "session-keeper", "slot": "monitor", "layer": "equipment", "anchor": "bottom-center" },
-    { "id": "session-keyboard", "asset": "keyboard.only", "parentId": "session-keeper", "slot": "keyboard", "layer": "equipment", "anchor": "bottom-center" }
+    { "id": "session-keyboard", "asset": "keyboard.only", "parentId": "session-keeper", "slot": "keyboard", "layer": "equipment", "anchor": "bottom-center" },
+    { "id": "session-prop-left", "asset": "stationery.cup", "parentId": "session-keeper", "slot": "prop-left-middle-1", "layer": "decor", "anchor": "bottom-center" },
+    { "id": "session-prop-right", "asset": "lamp.desk", "parentId": "session-keeper", "slot": "prop-right-near-2", "layer": "decor", "anchor": "bottom-center" }
   ]
 }

@@ -25,6 +25,7 @@ export function AgentEntity({
   station,
   characterDefinition,
   presentationOverride,
+  atDeskDepthOverride,
   onPreview,
   onPreviewEnd,
   onSelect,
@@ -40,6 +41,7 @@ export function AgentEntity({
   station: OfficeWorkstation;
   characterDefinition?: CharacterDefinition;
   presentationOverride?: AgentPresentation;
+  atDeskDepthOverride?: number;
   onPreview: (request: AgentPreviewRequest) => void;
   onPreviewEnd: (agentId: string) => void;
   onSelect: (agentId: string) => void;
@@ -54,6 +56,7 @@ export function AgentEntity({
     mode,
     sceneStartedAt,
     presentationOverride,
+    atDeskDepthOverride,
   );
   const initialPosition = presentationOverride?.position ?? station.work;
   const initialX = `${(initialPosition.x / map.width) * 100}%`;

@@ -71,16 +71,18 @@ export function OfficeDebugOverlay({
         const desk = assetRegistry[station.desk];
         const slots = desk?.slotSet ? slotSets[desk.slotSet] : undefined;
         if (!slots) return null;
+        const surfaceWidth = (desk.footprint?.width ?? desk.renderBox.width) * 0.9;
+        const surfaceDepth = (desk.footprint?.depth ?? desk.renderBox.height) * 0.75;
         return (
           <span key={`${station.id}-desk-surface`}>
             <span
               className="office-debug-rect office-debug-desk-surface"
               data-label="desk surface"
               style={{
-                left: percentX(station.x - 1.35),
-                top: percentY(station.y - 0.95),
-                width: percentX(2.7),
-                height: percentY(0.9),
+                left: percentX(station.x - surfaceWidth / 2),
+                top: percentY(station.y - surfaceDepth / 2),
+                width: percentX(surfaceWidth),
+                height: percentY(surfaceDepth),
               }}
             />
             {Object.entries(slots)

@@ -21,7 +21,10 @@ import {
   type OfficeAssetSlot,
 } from "./officeAssetRegistry";
 import { officeSceneReference, officeSceneTimeAt } from "./officeSceneRuntime";
-import { pairedObjectDepth } from "./workstationLayering";
+import {
+  pairedObjectDepth,
+  pairedWorkstationDepths,
+} from "./workstationLayering";
 import { WorldObject } from "./WorldObject";
 
 const activeOfficeMap = activeOfficeMapJson as unknown as OfficeMapDefinition;
@@ -209,9 +212,14 @@ export function OfficeCanvas({
           const chair = assetRegistry[station.chair];
           if (!desk || !chair) return null;
           const deskDepth = 100 + Math.round(station.y * 20);
+          const pairedDepths = workstationLayering === "paired-seating"
+            ? pairedWorkstationDepths(station)
+            : undefined;
           const nearPairedRow = workstationLayering === "paired-seating" && station.facing === "up";
-          const deskBaseDepth = nearPairedRow ? deskDepth - 5 : deskDepth - 2;
-          const deskForegroundDepth = nearPairedRow ? deskDepth - 2 : deskDepth + 2;
+          const deskBaseDepth = pairedDepths?.deskBase ?? deskDepth - 2;
+          const deskForegroundDepth = pairedDepths?.deskForeground ?? deskDepth + 2;
+          const renderDeskForeground = workstationLayering !== "paired-seating" || !nearPairedRow;
+          const chairForeground = nearPairedRow ? undefined : workstationChairForeground;
           return (
             <div
               className="workstation-rig"
@@ -232,6 +240,7 @@ export function OfficeCanvas({
                   top: percentY(station.y),
                   width: `${(desk.renderBox.width / officeMap.width) * 100}%`,
                   height: `${(desk.renderBox.height / officeMap.height) * 100}%`,
+                  objectFit: desk.fit ?? "contain",
                   zIndex: deskBaseDepth,
                 }}
               />
@@ -248,7 +257,7 @@ export function OfficeCanvas({
                       top: percentY(station.seat.y),
                       width: `${(chair.renderBox.width / officeMap.width) * 100}%`,
                       height: `${(chair.renderBox.height / officeMap.height) * 100}%`,
-                      zIndex: deskDepth - 3,
+                      zIndex: pairedDepths?.chair ?? deskDepth - 3,
                     }}
                   />
                 )
@@ -267,44 +276,50 @@ export function OfficeCanvas({
                     station={station}
                     characterDefinition={characterDefinitions[agent.agentId]}
                     presentationOverride={agentPresentations[agent.agentId]}
+                    atDeskDepthOverride={pairedDepths?.actor}
                     onPreview={setPreview}
                     onPreviewEnd={endPreview}
                     onSelect={onSelect}
                   />
                 )
                 : null}
-              {workstationChairForeground
+              {chairForeground
                 ? (
                   <img
                     className="workstation-chair workstation-chair-foreground"
-                    src={workstationChairForeground.file}
-                    data-asset-id={workstationChairForeground.id}
+                    src={chairForeground.file}
+                    data-asset-id={chairForeground.id}
                     alt=""
                     aria-hidden="true"
                     style={{
                       left: percentX(station.seat.x),
                       top: percentY(station.seat.y),
-                      width: `${(workstationChairForeground.renderBox.width / officeMap.width) * 100}%`,
-                      height: `${(workstationChairForeground.renderBox.height / officeMap.height) * 100}%`,
-                      zIndex: deskDepth - 1,
+                      width: `${(chairForeground.renderBox.width / officeMap.width) * 100}%`,
+                      height: `${(chairForeground.renderBox.height / officeMap.height) * 100}%`,
+                      zIndex: pairedDepths?.chairForeground ?? deskDepth - 1,
                     }}
                   />
                 )
                 : null}
-              <img
-                className="workstation-desk workstation-desk-front"
-                src={desk.file}
-                data-asset-id={station.desk}
-                alt=""
-                aria-hidden="true"
-                style={{
-                  left: percentX(station.x),
-                  top: percentY(station.y),
-                  width: `${(desk.renderBox.width / officeMap.width) * 100}%`,
-                  height: `${(desk.renderBox.height / officeMap.height) * 100}%`,
-                  zIndex: deskForegroundDepth,
-                }}
-              />
+              {renderDeskForeground
+                ? (
+                  <img
+                    className="workstation-desk workstation-desk-front"
+                    src={desk.file}
+                    data-asset-id={station.desk}
+                    alt=""
+                    aria-hidden="true"
+                    style={{
+                      left: percentX(station.x),
+                      top: percentY(station.y),
+                      width: `${(desk.renderBox.width / officeMap.width) * 100}%`,
+                      height: `${(desk.renderBox.height / officeMap.height) * 100}%`,
+                      objectFit: desk.fit ?? "contain",
+                      zIndex: deskForegroundDepth,
+                    }}
+                  />
+                )
+                : null}
             </div>
           );
         })}

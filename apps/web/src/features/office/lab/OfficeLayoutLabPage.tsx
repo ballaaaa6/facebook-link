@@ -68,8 +68,8 @@ export function OfficeLayoutLabPage() {
         />
       </section>
       <footer>
-        <span>Row A: faces viewer · Row B: faces away</span>
-        <span>Keyboard-only: 10 · Future prop slots: 40</span>
+        <span>5×4 desks · Row A faces viewer · Row B faces away</span>
+        <span>Center lane: monitor + keyboard + clear · Prop cells: 60 left + 60 right</span>
         <span>Facilities: 0 · Legacy furniture: 0</span>
         <strong>{debugGeometry ? showAgents ? "SEATED GRID" : "FURNITURE GRID" : "LAB ONLY"}</strong>
       </footer>
