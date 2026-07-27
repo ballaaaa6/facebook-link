@@ -12,6 +12,34 @@
 - Replace fake Sheets transport with a credentialed connector behind the same interface.
 - Office motion, stable inspection, settings, dashboard, mock brain, action proposals, and fake connectors already exist.
 
+### Immediate Office art tranche — Einstein and transient held props
+
+Before replacing the active Office interior, prepare and validate one complete
+runtime slice against the accepted Modern v3 background, seasonal window, and
+clock:
+
+1. Complete Einstein as the golden PetDex-compatible 8x15 character by adding
+   the four missing facility rows (`working-back`, `interact-front`,
+   `inspect-front`, and `lounge-front`) and packing the two accepted seated-work
+   rows.
+2. Produce one controlled 4x4 sheet containing sixteen isolated handheld props
+   for water, coffee, vending, refrigerator, printer, review, lounge, massage,
+   and server interactions.
+3. Register deterministic per-facility prop pools. A prop appears only during
+   the six-frame interaction, never becomes part of the character atlas, and
+   is not carried away from the facility.
+4. Derive chair, meeting-table, sofa, and massage-chair foreground masks from
+   the accepted furniture pixels; do not regenerate masks as approximate art.
+5. Validate Einstein's `interact-front` row with representative dispensing,
+   document, review, and lounge props before generating extension rows for the
+   rest of the PetDex roster.
+6. Promote only validated modern-bright assets, animation groups, anchors,
+   masks, and prop pools into a runtime-ready catalog. The active Office keeps
+   the current interior until this slice passes.
+
+The locked execution and acceptance contract is maintained in
+`docs/art/EINSTEIN_HELD_PROP_VERTICAL_SLICE.md`.
+
 ## M2 — One-account Shopee pilot
 
 - Import the existing login/session recovery approach through a connector.

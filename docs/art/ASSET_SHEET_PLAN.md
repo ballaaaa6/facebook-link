@@ -274,6 +274,61 @@ versions. The ambient sets are water indicator, coffee steam/indicator, plant
 sway, and lamp brightness. The TV remains a one-cell shell with a separate
 four-frame screen source, plus four derived full-frame runtime variants.
 
+## Transient Held-Prop Sheet
+
+`held-props-modern-bright-v1` is one controlled 4x4 sheet of character-scale
+objects. These are not furniture, world-collision objects, or pixels baked into
+a character atlas. Runtime attaches one selected prop to a recorded hand anchor
+only during an interaction and removes it before the actor leaves the facility.
+
+| Cell | Asset ID | Primary pools |
+| ---: | --- | --- |
+| 1 | `held.water-cup.clear` | water |
+| 2 | `held.water-cup.blue` | water |
+| 3 | `held.water-bottle` | water, refrigerator |
+| 4 | `held.coffee-mug` | coffee, sofa |
+| 5 | `held.takeaway-cup` | coffee |
+| 6 | `held.tea-cup` | coffee |
+| 7 | `held.soda-can` | vending |
+| 8 | `held.juice-box` | vending, refrigerator |
+| 9 | `held.snack-bag` | vending |
+| 10 | `held.yogurt-box` | refrigerator |
+| 11 | `held.paper-sheet` | printer, review |
+| 12 | `held.envelope` | printer |
+| 13 | `held.label-card` | printer |
+| 14 | `held.tablet` | review, server |
+| 15 | `held.notebook` | review, sofa, massage |
+| 16 | `held.smartphone` | sofa, massage |
+
+The sheet uses the same magenta source background, modern-bright palette,
+outline weight, lighting, cell padding, and no-text/no-logo requirements as the
+environment library. Every cell contains one isolated handheld object in a
+consistent front presentation. Stacks, furniture-scale desk props, hands, and
+characters are rejected.
+
+Each extracted prop records a normalized grip anchor, character-relative scale,
+and front/back hand-layer role. Facility pools may also contain an explicit
+`none` entry. Selection is deterministic for
+`agentId + facilitySlotId + visitIndex`, remains stable for the complete
+interaction, and avoids the immediately previous selection when the pool has
+an alternative.
+
+The six-frame `interact-front` contract is:
+
+1. reach with no prop;
+2. facility response with no prop;
+3. selected prop appears at the output or hand anchor;
+4. hold or inspect;
+5. hold or inspect;
+6. lower the hand and remove the prop before departure.
+
+Water, coffee, and printer variants keep silhouettes compatible with their
+existing loops. The vending tray is processed into an item-neutral shell so a
+selected can, juice box, or snack bag never conflicts with baked output art.
+The refrigerator remains static in v1; its selected prop appears at the hand
+anchor without a door-opening animation. No carry-walk or side-facing facility
+rows are added.
+
 ## Character Sheets
 
 - One selected PetDex-compatible character per image-generation call.
@@ -298,6 +353,17 @@ four-frame screen source, plus four derived full-frame runtime variants.
   the character's lower body is hidden by a desk foreground mask, but this is
   only an interim compatibility fallback and does not replace the final
   seated-work rows.
+- Einstein is the first golden 8x15 runtime character. Generate its four missing
+  facility rows as separate eight-cell strips, retain the accepted
+  character-only rear/front seated-working sources, then pack and validate the
+  complete atlas before extending any other PetDex identity.
+- Einstein defines the semantic row order, standing and seated anchors,
+  character-relative prop scale, and interaction hand-anchor contract. Each
+  later PetDex character still preserves its own base identity, proportions,
+  and any recorded seat or hand offset.
+- The final 15 rows remain sufficient for Facility v1. Review seating uses
+  `working-front-seated` with a transient tablet, paper, or notebook; it does
+  not add a sixteenth character row.
 
 ## Facility-to-Pose Planning Gate
 

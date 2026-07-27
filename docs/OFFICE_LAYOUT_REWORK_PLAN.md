@@ -142,12 +142,21 @@ resizing the map.
 | `walk-left`, `walk-right` | Movement between integer route nodes |
 | `waving` | Coffee, water, or greeting interaction |
 | `celebrating` | One-shot completed-work animation from source row 4 |
+| `interact-front` | Front-facing transient facility use with an optional held-prop layer |
+| `inspect-front` | Front-facing server or equipment inspection |
+| `lounge-front` | Front-facing seated lounge or massage interaction |
 
 The current runtime `seated` semantic state is an interim single-frame fallback.
 The final workstation contract uses the furniture-free
 `working-back-seated` and `working-front-seated` rows, with the desk foreground
 mask providing occlusion. Lounge seating remains a separate map asset and does
 not add furniture pixels to character sheets.
+
+Facility v1 deliberately uses front-facing action rows even when a library
+contains side furniture orientations. A transient held prop may appear at a
+recorded hand anchor during the interaction, but it disappears before the
+actor returns to a route. No facility object, held prop, chair, or foreground
+mask is baked into a character frame.
 
 ## Camera Contract
 
@@ -178,7 +187,16 @@ not add furniture pixels to character sheets.
 
 ## Remaining Art Work
 
-- Promote the Einstein seated-working reference into the shared morphology and
-  anchor calibration for all characters.
-- Produce full typing and mouse/review frames for the final seated work rows.
+- Complete Einstein's four missing facility strips and pack the accepted rear
+  and front seated-working sources into the first final 8x15 runtime atlas.
+- Generate and extract the sixteen-cell
+  `held-props-modern-bright-v1` sheet, then validate deterministic prop
+  selection and per-frame hand anchors with Einstein's `interact-front` row.
+- Derive foreground masks for the modern office chair, meeting table, both
+  modern sofas, and massage chair from their accepted pixels.
+- Promote the selected modern-bright furniture, animation groups, masks,
+  output anchors, and prop pools into a runtime-ready catalog before replacing
+  the active interior.
+- Use the accepted Einstein slice as the semantic and anchor reference when
+  producing the six missing rows for the remaining active PetDex characters.
 - Resolve prototype-only Petdex licenses before public or commercial use.
