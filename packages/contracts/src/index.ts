@@ -5,6 +5,7 @@ export * from "./identity.ts";
 export * from "./jobs.ts";
 export * from "./office.ts";
 export * from "./officeGeometry.ts";
+export * from "./officeWorkstation.ts";
 export * from "./sheets.ts";
 export * from "./storage.ts";
 export * from "./workflow.ts";

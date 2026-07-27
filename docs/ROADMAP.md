@@ -146,6 +146,36 @@ accepted workstation generation values without changing the legacy Active
 Office manifest. The combined Steps 1-4 gate passes; Active Office data,
 renderer behavior, and visuals remain unchanged.
 
+### Immediate Office workstation vertical slice — Steps 5-8 complete in staging
+
+The next reuse-first tranche is complete at its intended staging gate:
+
+5. `Workstation Bundle v1` now composes the canonical desk, four orientation
+   part sets, support slots, the accepted chair and monitor families, a neutral
+   calibration actor, and a viewport-local four-frame screen loop. Standard,
+   Creative, and NOC variants share one physical desk family.
+6. A deterministic generator produces one modular bare-desk family in four
+   orthographic orientations, split into `rear`, `surface`, `base`, and
+   `foreground` parts. Its `5 x 4 x 2.4` scale, `5 x 4` footprint, and `5 x 3`
+   support plane match the accepted Camera/Scale Bible. No equipment, chair,
+   or character pixels are baked into the desk.
+7. A Geometry v3 compositor now exists behind the development-only
+   `?lab=workstation-v1` route. Semantic part order and the workstation
+   `sortPivot` determine depth; the monitor animation is a viewport-local
+   child. The active renderer and active registry do not import this bundle.
+8. The isolated vertical slice contains exactly two edge-touching
+   workstations: a far down-facing station and a near up-facing station. It
+   supports seated, standing, furniture-only, and geometry-debug inspection.
+   Automated checks cover footprint adjacency, seat placement, composition
+   order, all sixteen desk parts, the 30-second screen-loop interval, and
+   Active Office isolation. Desktop and 390 px mobile visual QA passed with no
+   horizontal overflow.
+
+Status on 2026-07-27: `accepted-staging`. This is not Active Office promotion
+and does not approve the 19 prototype character identities for commercial use.
+The next tranche is furniture-family migration and character calibration in
+small staging waves, followed by a separate explicit promotion decision.
+
 ## M2 — One-account Shopee pilot
 
 - Import the existing login/session recovery approach through a connector.

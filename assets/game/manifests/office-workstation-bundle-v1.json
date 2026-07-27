@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "geometrySchemaVersion": 3,
+  "id": "office.workstation.bundle.v1",
+  "status": "staging",
+  "deskFamily": {
+    "id": "desk.modular.v1",
+    "physicalScale": { "width": 5, "depth": 4, "height": 2.4, "unit": "tile" },
+    "footprint": { "width": 5, "depth": 4, "unit": "tile" },
+    "supportPlane": { "id": "desk-surface", "width": 5, "depth": 3, "height": 2.4, "unit": "tile" },
+    "employeeEdge": { "originY": 3, "depth": 1, "attachmentSlots": 0 },
+    "generationRenderBox": { "width": 5, "height": 5, "unit": "tile" },
+    "basePivot": { "x": 2.5, "y": 4, "unit": "tile" },
+    "sortPivot": { "x": 2.5, "y": 4, "unit": "tile" },
+    "orientations": {
+      "front": {
+        "rearAssetId": "desk.modular.front.rear",
+        "surfaceAssetId": "desk.modular.front.surface",
+        "baseAssetId": "desk.modular.front.base",
+        "foregroundAssetId": "desk.modular.front.foreground"
+      },
+      "back": {
+        "rearAssetId": "desk.modular.back.rear",
+        "surfaceAssetId": "desk.modular.back.surface",
+        "baseAssetId": "desk.modular.back.base",
+        "foregroundAssetId": "desk.modular.back.foreground"
+      },
+      "left": {
+        "rearAssetId": "desk.modular.left.rear",
+        "surfaceAssetId": "desk.modular.left.surface",
+        "baseAssetId": "desk.modular.left.base",
+        "foregroundAssetId": "desk.modular.left.foreground"
+      },
+      "right": {
+        "rearAssetId": "desk.modular.right.rear",
+        "surfaceAssetId": "desk.modular.right.surface",
+        "baseAssetId": "desk.modular.right.base",
+        "foregroundAssetId": "desk.modular.right.foreground"
+      }
+    }
+  },
+  "attachmentSlots": [
+    { "id": "monitor-center", "surfaceId": "desk-surface", "x": 2.5, "y": 0.75, "unit": "tile", "accepts": ["monitor-shell"] },
+    { "id": "keyboard-center", "surfaceId": "desk-surface", "x": 2.5, "y": 2, "unit": "tile", "accepts": ["keyboard", "mouse"] },
+    { "id": "prop-left", "surfaceId": "desk-surface", "x": 0.75, "y": 1.5, "unit": "tile", "accepts": ["role-prop", "plant-small"] },
+    { "id": "prop-right", "surfaceId": "desk-surface", "x": 4.25, "y": 1.5, "unit": "tile", "accepts": ["role-prop", "mug"] }
+  ],
+  "chairFamily": {
+    "id": "chair.office.modern.v1",
+    "orientationAssets": {
+      "front": "chair.office.modern.front",
+      "back": "chair.office.modern.back",
+      "left": "chair.office.modern.side-left",
+      "right": "chair.office.modern.side-right"
+    },
+    "seatAnchor": { "x": 0.5, "y": 0.58, "unit": "asset-normalized" }
+  },
+  "actorCalibration": {
+    "id": "actor.neutral.calibration.v1",
+    "source": "code-generated-neutral",
+    "seatedScale": { "width": 1, "depth": 1, "height": 2, "unit": "tile" },
+    "seatLevel": 1,
+    "pelvisAnchor": { "x": 0.5, "y": 0.62, "unit": "asset-normalized" },
+    "headSafeRegion": { "top": 8, "left": 32, "right": 32, "unit": "authoring-pixel" }
+  },
+  "monitorFamily": {
+    "id": "monitor.office.static.v1",
+    "orientationAssets": {
+      "front": "monitor.front",
+      "back": "monitor.back",
+      "left": "monitor.front",
+      "right": "monitor.front"
+    },
+    "viewport": { "id": "monitor-screen", "x": 21, "y": 24, "width": 166, "height": 112, "unit": "asset-pixel" }
+  },
+  "screenLoop": {
+    "id": "screen.theme.system.loop.v1",
+    "coordinateSpace": "viewport-local",
+    "parentViewportId": "monitor-screen",
+    "frameAssetIds": ["screen.theme.system.a", "screen.theme.system.b", "screen.theme.system.c", "screen.theme.system.d"],
+    "frameDurationMs": 500
+  },
+  "roleVariants": {
+    "standard": { "deskFamilyId": "desk.modular.v1", "equipmentProfile": "keyboard-mouse", "screenThemeId": "screen.theme.system.loop.v1" },
+    "creative": { "deskFamilyId": "desk.modular.v1", "equipmentProfile": "keyboard-tablet", "screenThemeId": "screen.theme.system.loop.v1" },
+    "noc": { "deskFamilyId": "desk.modular.v1", "equipmentProfile": "keyboard-dual-status", "screenThemeId": "screen.theme.system.loop.v1" }
+  },
+  "compositeOrder": [
+    "desk-rear",
+    "desk-surface",
+    "desk-base",
+    "monitor-shell",
+    "monitor-viewport",
+    "surface-equipment",
+    "chair",
+    "actor",
+    "desk-foreground"
+  ]
+}
