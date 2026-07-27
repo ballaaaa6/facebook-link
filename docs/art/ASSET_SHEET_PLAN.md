@@ -4,6 +4,12 @@
 
 Reduce generation latency without sacrificing usable geometry. Static furniture and props are generated as controlled 4x4 asset sheets. Identity-sensitive character work animations use one character per sheet.
 
+Execution hold (2026-07-27): Do not start a new Office furniture or prop sheet
+until Steps 1-4 in `docs/art/OFFICE_GEOMETRY_REMEDIATION_ROADMAP.md` pass their
+combined acceptance gate. The audit decides which assets may be reused or
+derived and which require regeneration; the accepted Camera/Scale Bible then
+controls every authorized sheet.
+
 ## Shared Sheet Contract
 
 - Square contact sheet with a logical 4x4 grid.

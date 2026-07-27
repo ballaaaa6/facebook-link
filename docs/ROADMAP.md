@@ -88,15 +88,44 @@ Implementation status (2026-07-27):
   surface; runtime validation rejects incompatible supports, anchors or
   footprints outside the region, and supported props that bypass parent slots.
 - Held at the intended gate: none of these staging assets replaces the active
-  Office interior yet. The next tranche is facility-by-facility composition
-  geometry for the complete 14-object/20-slot Facility v1 set, followed by the
-  full interior swap only after the final map validates those slots.
+  Office interior. The previously planned direct Facility v1 composition and
+  interior swap is superseded by the geometry-remediation program below.
 
-The character-art batch is now closed in staging. The next Office tranche is
-to lock the complete 14-object/20-slot Facility v1 layout, calibrate each
-character's provisional hand and seat offsets against the chosen furniture,
-and then promote the validated character/facility catalog during the single
-replacement-interior swap.
+### Immediate Office geometry remediation — approved Steps 1-4
+
+The character-art batch is closed in staging. The next Office tranche is not a
+full asset rebuild or a direct replacement-interior swap. It is a reuse-first
+geometry audit that must decide per asset whether to reuse it, fix metadata,
+derive a composite, regenerate it, or block it for orientation or licensing.
+
+Verified baseline on 2026-07-27:
+
+- 212 modern Office library assets across 14 sheets;
+- 50 current runtime geometry entries and 16 planning-only entries;
+- 19 character directories;
+- 35 library assets without a declared `layer`;
+- a `4 x 2` standard-desk Scale Bible conflicting with the isolated lab's
+  `5 x 4` desk collision contract;
+- v6 lab captures that must be retained as rejected regression evidence rather
+  than used as the production geometry template.
+
+The approved first batch delivers Steps 1-4 together, with sequential gates:
+
+1. Quarantine the rejected v6 composition, preserve it as a negative
+   regression case, and prove that the Active Office remains unchanged.
+2. Define Office Geometry Contract v3, including independent placement planes,
+   footprints, support planes, pivots, render bounds, offsets, occlusion parts,
+   attachment slots, seat slots, and orientations.
+3. Generate and review a complete asset audit with one explicit disposition
+   and reason for every discovered record.
+4. Lock a machine-readable Camera/Scale Bible and deterministic calibration
+   board before authorizing replacement asset generation.
+
+Production image generation, renderer replacement, character recalibration,
+and Active Office promotion remain blocked until the combined Step 1-4 gate
+passes. The detailed execution order, planned files, validation strategy, and
+acceptance criteria are maintained in
+`docs/art/OFFICE_GEOMETRY_REMEDIATION_ROADMAP.md`.
 
 ## M2 — One-account Shopee pilot
 

@@ -1,8 +1,14 @@
 # Office Reference Migration Roadmap
 
-Status: Planned  
-Owner: Art and office-rendering workstream  
+Status: Superseded for current execution
+Owner: Art and office-rendering workstream
 Scope: Visual migration of the office scene to the latest orthographic pixel-art reference
+
+Execution note: This document remains historical visual-migration context. Do
+not execute its asset-generation phases until Steps 1-4 in
+`docs/art/OFFICE_GEOMETRY_REMEDIATION_ROADMAP.md` pass. The remediation roadmap
+is the current source of truth for geometry quarantine, contract definition,
+full-library audit, and camera/scale calibration.
 
 ## 1. Target direction
 

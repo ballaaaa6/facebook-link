@@ -1,8 +1,15 @@
 # Office Asset Creation Guide
 
-Status: Production guide  
-Scope: Office assets created for the latest orthographic pixel-art reference  
-Related plan: `docs/art/OFFICE_REF_MIGRATION_ROADMAP.md`
+Status: Production guide
+Scope: Office assets created for the latest orthographic pixel-art reference
+Current execution plan: `docs/art/OFFICE_GEOMETRY_REMEDIATION_ROADMAP.md`
+Historical migration plan: `docs/art/OFFICE_REF_MIGRATION_ROADMAP.md`
+
+Execution hold (2026-07-27): Do not generate replacement Office assets from
+this guide until Steps 1-4 of the current execution plan pass their combined
+acceptance gate. Geometry quarantine, Geometry Contract v3, the complete asset
+audit, and the accepted Camera/Scale Bible take precedence over the legacy
+scale tables in this guide.
 
 ## 1. Purpose
 
