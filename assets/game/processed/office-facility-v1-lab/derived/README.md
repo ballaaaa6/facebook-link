@@ -16,15 +16,15 @@ An image-generation edit was reviewed and rejected because it changed the
 keyboard artwork and did not produce a uniform removable background. It is not
 part of the repository or the runtime.
 
-## Rectangular workstation v5
+## Rejected rectangular workstation v5
 
 - Runtime files:
   - `desk.workstation.viewer-front.v5.png`
   - `desk.workstation.viewer-back.v5.png`
 - Source: `../generated/workstation-rectangular-pair-v5-chroma.png`.
 - Built-in image generation produced a matched chroma-key pair from the
-  accepted modern-bright desk material references.
-- The accepted prompt required a full rectangular tabletop, exact square
+  modern-bright desk material references.
+- The historical prompt required a full rectangular tabletop, exact square
   corners, a `5 x 4` footprint, and a plausible `5 x 3` usable surface grid.
 - The standard chroma-key helper removed the flat green background. The pair
   was split at the center and cropped to visible bounds.
@@ -33,3 +33,7 @@ part of the repository or the runtime.
   corner gaps and lets adjacent five-tile desks meet without a seam.
 - Both runtime files are 752 by 508 RGBA PNGs. Furniture, equipment, actors,
   grid lines, labels, and shadows are not baked into either desk.
+- These files are `rejected-geometry` inputs for the v6 composition. Their
+  straight-front artwork does not represent the declared four-cell top-down
+  depth, and their normalized rectangle must not be used as a production
+  geometry reference.

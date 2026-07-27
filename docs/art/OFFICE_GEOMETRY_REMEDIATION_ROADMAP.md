@@ -1,6 +1,6 @@
 # Office Geometry Remediation Roadmap
 
-Status: Approved for execution; Steps 1-4 not started
+Status: In progress; Step 1 complete, Steps 2-4 not started
 Approved: 2026-07-27
 Owner: Art, asset-pipeline, shared-contract, and Office-rendering workstreams
 Scope: Reconcile the existing Office asset library with top-down placement,

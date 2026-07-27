@@ -1,13 +1,20 @@
-# Part 1 modern paired-workstation lab
+# Rejected Part 1 modern paired-workstation lab
 
 This directory records visual QA for the isolated modern workstation lab. The
 lab is available only in the web development build at `/?lab=office-layout`;
 it does not replace the active Office map.
 
+Status: `rejected-geometry`
+
+The complete v6 composition is retained only as negative regression evidence.
+It must not be promoted into the Active Office or used as the camera, scale,
+footprint, support-plane, or occlusion reference for replacement assets. See
+`docs/art/OFFICE_REJECTED_GEOMETRY_CASES.md` for the rejection contract.
+
 The original `qa/two-row-office-layout-v1.png` is a rejected historical result.
 It uses the retired lab composition and is not an acceptance reference.
 
-## Part 1 result
+## Historical Part 1 behavior
 
 - Ten rectangular `5 x 4` modern desks form two directly touching rows of five.
 - Each chair reserves only its adjacent `1 x 1` floor base. Sprite height may
@@ -36,14 +43,14 @@ It uses the retired lab composition and is not an acceptance reference.
   seconds.
 - Browser console warnings and errors are both zero.
 
-## Evidence
+## Rejected evidence
 
 - `qa/two-row-ground-pivot-office-v6-furniture.png`
 - `qa/two-row-ground-pivot-office-v6-seated.png`
 - `qa/two-row-ground-pivot-office-v6-footprint-grid.png`
 
-The three v6 images are captured from the local browser renderer at a 1280 by
-720 viewport.
+The three v6 images were captured from the local browser renderer at a 1280 by
+720 viewport. Their presence proves regression provenance, not acceptance.
 
-The v2, v3, and v5 captures remain as superseded QA history and are not the
-current acceptance evidence.
+The v2, v3, and v5 captures remain as superseded QA history. This directory has
+no current positive acceptance evidence.

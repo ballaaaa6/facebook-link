@@ -38,6 +38,13 @@ interface OfficeLibraryManifest {
 const activeMap = JSON.parse(
   readFileSync(new URL("../../../assets/game/maps/office-c-v2.json", import.meta.url), "utf8"),
 ) as OfficeMapDefinition;
+const activeGeometry = JSON.parse(
+  readFileSync(new URL("../../../assets/game/manifests/office-assets.json", import.meta.url), "utf8"),
+) as GeometryManifest;
+const activeRegistrySource = readFileSync(
+  new URL("../src/features/office/components/officeAssetRegistry.ts", import.meta.url),
+  "utf8",
+);
 const labMap = JSON.parse(
   readFileSync(new URL("../../../assets/game/maps/office-facility-v1-lab.json", import.meta.url), "utf8"),
 ) as OfficeMapDefinition;
@@ -62,6 +69,7 @@ const rectangularDeskFiles = {
     import.meta.url,
   ),
 };
+const rejectedGeometryAssetIds = Object.freeze(Object.keys(rectangularDeskFiles));
 const labAssetIds = new Set([
   ...labMap.workstations.flatMap(({ desk, chair }) => [desk, chair]),
   ...labMap.objects.map(({ asset }) => asset),
@@ -150,7 +158,21 @@ test("the isolated Office lab has valid geometry without replacing the active ma
   assert.notEqual(activeMap.id, labMap.id);
 });
 
-test("the Part 1 lab uses rectangular v5 desks, modern-bright props, and the clean keyboard", () => {
+test("the rejected v6 desk inputs remain isolated from the Active Office", () => {
+  const activeAssetIds = new Set([
+    ...activeMap.workstations.flatMap(({ desk, chair }) => [desk, chair]),
+    ...activeMap.objects.map(({ asset }) => asset),
+  ]);
+  for (const rejectedId of rejectedGeometryAssetIds) {
+    assert.equal(activeAssetIds.has(rejectedId), false);
+    assert.equal(rejectedId in activeGeometry.assets, false);
+    assert.equal(activeRegistrySource.includes(`\"${rejectedId}\"`), false);
+  }
+  assert.equal(labMap.id, modernOfficeLabId);
+  assert.notEqual(activeMap.id, labMap.id);
+});
+
+test("the rejected Part 1 regression fixture preserves its v5 desk inputs and clean keyboard", () => {
   assert.equal(officeLibrary.id, "office-library-modern-bright-v1");
   assert.equal(officeLibrary.status, "library-only");
   const usedIds = [
@@ -188,7 +210,7 @@ test("the Part 1 lab uses rectangular v5 desks, modern-bright props, and the cle
   assert.deepEqual(labAssets["keyboard.only"]?.renderBox, { width: 1.8, height: 0.75 });
 });
 
-test("the Part 1 lab arranges one continuous paired block of ten 5-by-4 desks", () => {
+test("the rejected Part 1 fixture records one continuous block of ten 5-by-4 desks", () => {
   assert.equal(labMap.workstations.length, 10);
   const rows = Map.groupBy(labMap.workstations, ({ y }) => y);
   assert.deepEqual([...rows.keys()], [8, 12]);

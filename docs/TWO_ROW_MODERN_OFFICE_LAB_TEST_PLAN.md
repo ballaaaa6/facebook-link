@@ -1,10 +1,16 @@
 # Two-Row Modern Office Lab Test Plan
 
+Status: Historical and rejected
+
+This test plan documents the path that produced the rejected v6 composition.
+Do not execute it as the current Office migration plan. Preserve it as
+regression context and follow
+`docs/art/OFFICE_GEOMETRY_REMEDIATION_ROADMAP.md` instead.
+
 ## Status
 
-Planned for the isolated development lab only. The active Office map and the
-production entry point must remain unchanged until the replacement lab render
-is explicitly approved.
+The lab remains isolated and the active Office map and production entry point
+remain unchanged. No output described below is approved for promotion.
 
 The first lab screenshot,
 `assets/game/processed/office-facility-v1-lab/qa/two-row-office-layout-v1.png`,
