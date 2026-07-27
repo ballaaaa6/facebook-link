@@ -54,10 +54,15 @@ Implementation status (2026-07-27):
 - Complete: added a runtime-ready staging catalog, a React interaction harness,
   a sixteen-case `interact-front` visual contact sheet, and automated contract
   tests.
+- Complete: built an isolated eight-facility composition lab at the real
+  32px-tile runtime scale. It is not routed into the web app. All eight cases
+  pass geometry checks; standing machines use a front-right `(1,+1)` candidate
+  slot so the actor does not hide the facility, and the printer is composed on
+  `cabinet.storage.low`.
 - Held at the intended gate: none of these staging assets replaces the active
   Office interior yet. The next tranche is facility-by-facility composition
-  against Water, Vending, Printer, Review, Sofa, Massage, Server, and Arcade,
-  followed by the full interior swap only after those compositions pass.
+  geometry for the complete 14-object/20-slot Facility v1 set, followed by the
+  full interior swap only after the final map validates those slots.
 
 ## M2 — One-account Shopee pilot
 

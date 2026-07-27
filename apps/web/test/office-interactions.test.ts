@@ -1,9 +1,11 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import interactionAssets from "../../../assets/game/manifests/office-interaction-assets.json" with { type: "json" };
+import interactionLab from "../../../assets/game/manifests/office-interaction-lab.json" with { type: "json" };
 import {
   characterRows15,
   facilityPropPools,
+  facilityVisitAt,
   facilityVerticalSlice,
   heldPropAtInteractFrame,
   heldPropIds,
@@ -84,9 +86,47 @@ test("the eight staging interactions declare action, duration, pool, and overlay
     assert.ok(contract.durationSeconds > 0);
     assert.ok(contract.propPool in facilityPropPools);
     assert.ok(contract.action in characterRows15);
+    assert.equal(contract.interactionFacing, "front");
+    assert.ok(contract.renderBoxTiles.width > 0);
+    assert.ok(contract.renderBoxTiles.height > 0);
+    assert.ok(Number.isInteger(contract.approach.x));
+    assert.ok(Number.isInteger(contract.approach.y));
   }
   assert.deepEqual(facilityPropPools.arcade, [null]);
   assert.ok(facilityPropPools["server-rack"].includes(null));
+});
+
+test("an isolated facility visit holds and then releases its reservation", () => {
+  const contract = facilityVerticalSlice.water!;
+  assert.deepEqual(facilityVisitAt(0, contract), {
+    phase: "approaching",
+    reservationHeld: true,
+    interactionFrame: null,
+  });
+  assert.equal(facilityVisitAt(1, contract).interactionFrame, 0);
+  assert.equal(facilityVisitAt(6.9, contract).interactionFrame, 5);
+  assert.deepEqual(facilityVisitAt(7.5, contract), {
+    phase: "departing",
+    reservationHeld: true,
+    interactionFrame: null,
+  });
+  assert.deepEqual(facilityVisitAt(8, contract), {
+    phase: "complete",
+    reservationHeld: false,
+    interactionFrame: null,
+  });
+});
+
+test("the isolated eight-facility composition lab passes runtime-scale geometry", () => {
+  assert.equal(interactionLab.scope, "isolated-staging-only");
+  assert.equal(interactionLab.activeOfficeImported, false);
+  assert.equal(interactionLab.caseCount, 8);
+  assert.equal(interactionLab.allGeometryPass, true);
+  assert.ok(interactionLab.cases.every(({ geometryPass }) => geometryPass));
+  assert.equal(
+    interactionLab.cases.find(({ id }) => id === "printer")?.support?.includes("cabinet.storage.low"),
+    true,
+  );
 });
 
 test("all five foreground masks were derived and recorded", () => {
