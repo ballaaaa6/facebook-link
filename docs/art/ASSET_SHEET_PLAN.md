@@ -355,6 +355,15 @@ rows are added.
 
 ## Character Sheets
 
+- Commercial replacement work follows
+  `docs/art/COMMERCIAL_CHARACTER_ROSTER_PLAN.md`. Prototype PetDex images,
+  screenshots, names, and identifying visual combinations are forbidden as
+  generation inputs. The project may reuse only the technical atlas contract,
+  semantic rows, frame counts, and anchor coordinate systems.
+- A project-authored replacement begins from an approved original identity
+  master rather than an imported PetDex base. Generated output remains
+  staging-only until its provenance record and explicit commercial reviewer
+  sign-off are complete.
 - One selected PetDex-compatible character per image-generation call.
 - The imported 8x9 base atlas is the identity anchor and remains unchanged.
 - Generate only missing semantic rows as separate eight-cell horizontal strips.

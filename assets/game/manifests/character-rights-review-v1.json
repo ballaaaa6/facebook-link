@@ -1,0 +1,215 @@
+{
+  "version": 1,
+  "reviewedOn": "2026-07-27",
+  "records": [
+    {
+      "id": "ai-workbot",
+      "currentLicenseState": "pending-commercial-review",
+      "usage": "active-agent-prototype",
+      "disposition": "replace-and-quarantine",
+      "permittedUse": "internal-prototype-only",
+      "generationInputAllowed": false,
+      "replacementSlot": "session-keeper",
+      "reason": "The installed prototype has no project-held commercial rights evidence.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "anna",
+      "currentLicenseState": "pending-commercial-review",
+      "usage": "active-agent-prototype",
+      "disposition": "replace-and-quarantine",
+      "permittedUse": "internal-prototype-only",
+      "generationInputAllowed": false,
+      "replacementSlot": "gemini-copywriter",
+      "reason": "The installed prototype has no project-held commercial rights evidence.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "asuka-2",
+      "currentLicenseState": "pending-commercial-review",
+      "usage": "alternate-prototype",
+      "disposition": "replace-and-quarantine",
+      "permittedUse": "internal-prototype-only",
+      "generationInputAllowed": false,
+      "replacementSlot": null,
+      "reason": "The alternate remains internal and is excluded from production generation inputs.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "baobao-2",
+      "currentLicenseState": "pending-commercial-review",
+      "usage": "alternate-prototype",
+      "disposition": "replace-and-quarantine",
+      "permittedUse": "internal-prototype-only",
+      "generationInputAllowed": false,
+      "replacementSlot": null,
+      "reason": "The alternate remains internal and is excluded from production generation inputs.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "boba",
+      "currentLicenseState": "pending-commercial-review",
+      "usage": "active-companion-prototype",
+      "disposition": "replace-and-quarantine",
+      "permittedUse": "internal-prototype-only",
+      "generationInputAllowed": false,
+      "replacementSlot": "office-mascot",
+      "reason": "The active companion needs an original replacement with project-held provenance.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "doraemon",
+      "currentLicenseState": "pending-commercial-review",
+      "usage": "active-agent-prototype",
+      "disposition": "replace-and-quarantine",
+      "permittedUse": "internal-prototype-only",
+      "generationInputAllowed": false,
+      "replacementSlot": "link-attribution",
+      "reason": "The installed prototype has no project-held commercial rights evidence.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "einstein",
+      "currentLicenseState": "pending-commercial-review",
+      "usage": "active-agent-prototype",
+      "disposition": "replace-and-quarantine",
+      "permittedUse": "internal-prototype-only",
+      "generationInputAllowed": false,
+      "replacementSlot": "product-ranker",
+      "reason": "The installed prototype has no project-held commercial rights evidence.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "gugugaga",
+      "currentLicenseState": "pending-commercial-review",
+      "usage": "alternate-prototype",
+      "disposition": "replace-and-quarantine",
+      "permittedUse": "internal-prototype-only",
+      "generationInputAllowed": false,
+      "replacementSlot": null,
+      "reason": "The alternate remains internal and is excluded from production generation inputs.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "itachi",
+      "currentLicenseState": "pending-commercial-review",
+      "usage": "alternate-prototype",
+      "disposition": "replace-and-quarantine",
+      "permittedUse": "internal-prototype-only",
+      "generationInputAllowed": false,
+      "replacementSlot": null,
+      "reason": "The alternate remains internal and is excluded from production generation inputs.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "jesus",
+      "currentLicenseState": "pending-commercial-review",
+      "usage": "alternate-prototype",
+      "disposition": "replace-and-quarantine",
+      "permittedUse": "internal-prototype-only",
+      "generationInputAllowed": false,
+      "replacementSlot": null,
+      "reason": "The alternate remains internal and is excluded from production generation inputs.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "lian-3",
+      "currentLicenseState": "pending-commercial-review",
+      "usage": "alternate-prototype",
+      "disposition": "replace-and-quarantine",
+      "permittedUse": "internal-prototype-only",
+      "generationInputAllowed": false,
+      "replacementSlot": null,
+      "reason": "The alternate remains internal and is excluded from production generation inputs.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "miku",
+      "currentLicenseState": "pending-commercial-review",
+      "usage": "active-agent-prototype",
+      "disposition": "replace-and-quarantine",
+      "permittedUse": "internal-prototype-only",
+      "generationInputAllowed": false,
+      "replacementSlot": "publisher",
+      "reason": "The installed prototype has no project-held commercial rights evidence.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "nai-long",
+      "currentLicenseState": "pending-commercial-review",
+      "usage": "alternate-prototype",
+      "disposition": "replace-and-quarantine",
+      "permittedUse": "internal-prototype-only",
+      "generationInputAllowed": false,
+      "replacementSlot": null,
+      "reason": "The alternate remains internal and is excluded from production generation inputs.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "noir-webling",
+      "currentLicenseState": "pending-commercial-review",
+      "usage": "active-agent-prototype",
+      "disposition": "replace-and-quarantine",
+      "permittedUse": "internal-prototype-only",
+      "generationInputAllowed": false,
+      "replacementSlot": "performance-analyst",
+      "reason": "The installed prototype has no project-held commercial rights evidence.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "qq-penguin",
+      "currentLicenseState": "pending-commercial-review",
+      "usage": "alternate-prototype",
+      "disposition": "replace-and-quarantine",
+      "permittedUse": "internal-prototype-only",
+      "generationInputAllowed": false,
+      "replacementSlot": null,
+      "reason": "The alternate remains internal and is excluded from production generation inputs.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "rem-xl",
+      "currentLicenseState": "pending-commercial-review",
+      "usage": "active-agent-prototype",
+      "disposition": "replace-and-quarantine",
+      "permittedUse": "internal-prototype-only",
+      "generationInputAllowed": false,
+      "replacementSlot": "qa-editor",
+      "reason": "The installed prototype has no project-held commercial rights evidence.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "ruri",
+      "currentLicenseState": "pending-commercial-review",
+      "usage": "active-agent-prototype",
+      "disposition": "replace-and-quarantine",
+      "permittedUse": "internal-prototype-only",
+      "generationInputAllowed": false,
+      "replacementSlot": "growth-strategist",
+      "reason": "The installed prototype has no project-held commercial rights evidence.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "taffy-2",
+      "currentLicenseState": "pending-commercial-review",
+      "usage": "active-agent-prototype",
+      "disposition": "replace-and-quarantine",
+      "permittedUse": "internal-prototype-only",
+      "generationInputAllowed": false,
+      "replacementSlot": "flow-visual-producer",
+      "reason": "The installed prototype has no project-held commercial rights evidence.",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "id": "yinyue-2",
+      "currentLicenseState": "pending-commercial-review",
+      "usage": "active-agent-prototype",
+      "disposition": "replace-and-quarantine",
+      "permittedUse": "internal-prototype-only",
+      "generationInputAllowed": false,
+      "replacementSlot": "market-scout",
+      "reason": "The installed prototype has no project-held commercial rights evidence.",
+      "reviewStatus": "reviewed"
+    }
+  ]
+}

@@ -224,6 +224,30 @@ Status on 2026-07-27: `accepted-staging`. All 77 audit records are resolved,
 desktop, 390 px, and 320 px, and `activeOfficePromotion` remains false. The
 acceptance record is `docs/OFFICE_DERIVED_ASSET_WAVES_ACCEPTANCE.md`.
 
+### Commercial character replacement and calibration — Steps 17-20
+
+17. Reconcile all nineteen prototype character directories, quarantine every
+    unresolved identity from generation inputs, and lock eleven original
+    production slots behind a reproducible rights audit.
+18. Produce a three-morphology original pilot for compact-stylized,
+    standard-human, and non-human-robot roster members using complete rights
+    evidence and the existing technical `8 x 15` animation contract.
+19. Complete ten original agent atlases plus one original companion, with
+    deterministic packing, art QA, similarity review, and explicit commercial
+    reviewer sign-off for every production slot.
+20. Reconcile seat coordinate spaces and calibrate all ten agents across
+    workstation, review, sofa, and massage-chair presentations. The complete
+    matrix contains 720 deterministic frame composites.
+
+Step 17 is complete on 2026-07-27. The reproducible audit reconciles nineteen
+prototype directories into ten active-agent prototypes, one active-companion
+prototype, and eight alternates. All prototype images remain internal-only and
+generation-input blocked. Eleven unique `original-*` replacement slots are
+locked with zero commercial approvals and no Active Office imports. Steps
+18-20 are now authorized but remain staging-only. Detailed scope and acceptance criteria are maintained in
+`docs/art/COMMERCIAL_CHARACTER_ROSTER_PLAN.md`. Active Office promotion remains
+a later, separate decision.
+
 ## M2 — One-account Shopee pilot
 
 - Import the existing login/session recovery approach through a connector.

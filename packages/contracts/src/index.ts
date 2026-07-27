@@ -1,5 +1,6 @@
 export * from "./actions.ts";
 export * from "./brain.ts";
+export * from "./characterRights.ts";
 export * from "./entities.ts";
 export * from "./identity.ts";
 export * from "./jobs.ts";
