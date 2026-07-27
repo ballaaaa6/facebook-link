@@ -80,13 +80,17 @@ function inside(point: { x: number; y: number }, bounds: StructureBounds) {
     && point.x < bounds.x + bounds.width && point.y <= bounds.y + bounds.height;
 }
 
-type CollisionBounds = { x: number; y: number; width: number } & (
-  { height: number; depth?: never } | { depth: number; height?: never }
-);
+type CollisionBounds = {
+  x: number;
+  y: number;
+  width: number;
+  height?: number;
+  depth?: number;
+};
 
 function overlaps(left: CollisionBounds, right: CollisionBounds) {
-  const leftHeight = "height" in left ? left.height : left.depth;
-  const rightHeight = "height" in right ? right.height : right.depth;
+  const leftHeight = left.height ?? left.depth ?? 0;
+  const rightHeight = right.height ?? right.depth ?? 0;
   return left.x < right.x + right.width && left.x + left.width > right.x
     && left.y < right.y + rightHeight && left.y + leftHeight > right.y;
 }

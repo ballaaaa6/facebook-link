@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "office.structural-assets.v1",
+  "status": "staging",
+  "assets": {
+    "floor.grid.cool-gray": { "source": "code-generated-deterministic", "renderRole": "floor-region" },
+    "wall.panel.cool-gray": { "source": "code-generated-deterministic", "renderRole": "wall-segment" },
+    "window.frame.v1": { "source": "code-generated-deterministic", "renderRole": "window-frame" },
+    "door.frame.v1": { "source": "code-generated-deterministic", "renderRole": "door-frame" },
+    "door.closed.leaf.v1": {
+      "source": "assets/game/processed/decor-mechanical-c-v1/door.closed.png",
+      "sourceAssetId": "door.closed",
+      "derivation": "original pixels rendered as leaf inside a semantic opening; frame and threshold are deterministic renderer geometry",
+      "renderRole": "door-leaf"
+    }
+  },
+  "provenance": {
+    "originalDoorOverwritten": false,
+    "backgroundBitmapImported": false,
+    "windowContentSet": "office.window.seasonal.v2",
+    "windowVariantCount": 16
+  }
+}

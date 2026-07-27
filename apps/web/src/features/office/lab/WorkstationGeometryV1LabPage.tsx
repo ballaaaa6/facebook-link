@@ -8,6 +8,7 @@ import {
   type WorkstationLabMap,
   type WorkstationPose,
 } from "../workstation/workstationBundleRuntime";
+import { useSceneClock } from "../workstation/useSceneClock";
 import "./workstationGeometryV1Lab.css";
 
 const bundle = bundleJson as unknown as OfficeWorkstationBundleV1;
@@ -18,6 +19,7 @@ export function WorkstationGeometryV1LabPage() {
   const [debug, setDebug] = useState(query.get("debug") === "1");
   const [pose, setPose] = useState<WorkstationPose>(query.get("pose") === "standing" ? "standing" : "seated");
   const [showActor, setShowActor] = useState(query.get("actors") !== "0");
+  const elapsedMs = useSceneClock();
   const issues = useMemo(() => validateWorkstationLabMap(labMap, bundle), []);
 
   return (
@@ -55,6 +57,7 @@ export function WorkstationGeometryV1LabPage() {
               key={station.id}
               bundle={bundle}
               debug={debug}
+              elapsedMs={elapsedMs}
               grid={labMap.grid}
               pose={pose}
               showActor={showActor}

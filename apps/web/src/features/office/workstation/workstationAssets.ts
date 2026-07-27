@@ -17,6 +17,9 @@ import deskRightSurface from "../../../../../../assets/game/processed/office-wor
 import chairBack from "../../../../../../assets/game/processed/office-library-modern-bright-v1/chair-office-modern-v1/chair.office.modern.back.png";
 import chairFront from "../../../../../../assets/game/processed/office-library-modern-bright-v1/chair-office-modern-v1/chair.office.modern.front.png";
 import keyboardMouse from "../../../../../../assets/game/processed/equipment-c-v1/keyboard.mouse.png";
+import tabletDrawing from "../../../../../../assets/game/processed/equipment-c-v1/tablet.drawing.png";
+import deskPhone from "../../../../../../assets/game/processed/office-library-modern-bright-v1/env-01-workstation-static/phone.desk.png";
+import deskLamp from "../../../../../../assets/game/processed/decor-mechanical-c-v1/lamp.desk.png";
 import monitorBack from "../../../../../../assets/game/processed/office-library-modern-bright-v1/env-01-workstation-static/monitor.back.png";
 import monitorFront from "../../../../../../assets/game/processed/office-library-modern-bright-v1/env-01-workstation-static/monitor.front.png";
 import screenA from "../../../../../../assets/game/processed/office-library-modern-bright-v1/env-09-phase2-completion-architecture/screen.theme.system.a.png";
@@ -35,4 +38,10 @@ export const deskPartAssets: Record<WorkstationOrientation, Record<"rear" | "sur
 export const chairAssets = { front: chairFront, back: chairBack } as const;
 export const monitorAssets = { front: monitorFront, back: monitorBack } as const;
 export const screenFrames = [screenA, screenB, screenC, screenD] as const;
+export const roleEquipmentAssets = {
+  keyboard: keyboardMouse,
+  tablet: tabletDrawing,
+  phone: deskPhone,
+  lamp: deskLamp,
+} as const;
 export { keyboardMouse };
