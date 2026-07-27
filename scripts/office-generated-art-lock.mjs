@@ -38,7 +38,11 @@ function toRepoPath(path) {
 function hashFile(repoPath) {
   const path = join(root, repoPath);
   if (!existsSync(path)) return null;
-  return createHash("sha256").update(readFileSync(path)).digest("hex");
+  const bytes = readFileSync(path);
+  const content = /\.(json|md|mjs|py|ts)$/.test(repoPath)
+    ? Buffer.from(bytes.toString("utf8").replaceAll("\r\n", "\n"), "utf8")
+    : bytes;
+  return createHash("sha256").update(content).digest("hex");
 }
 
 function hashMap(paths) {
@@ -90,6 +94,20 @@ function validateLock(lock) {
   return failures;
 }
 
+function changedPaths(previous, next) {
+  const paths = new Set([
+    ...Object.keys(previous?.inputs ?? {}),
+    ...Object.keys(previous?.outputs ?? {}),
+    ...Object.keys(next.inputs),
+    ...Object.keys(next.outputs),
+  ]);
+  return [...paths].filter((path) => {
+    const previousHash = previous?.inputs?.[path] ?? previous?.outputs?.[path];
+    const nextHash = next.inputs[path] ?? next.outputs[path];
+    return previousHash !== nextHash;
+  }).sort();
+}
+
 const args = process.argv.slice(2);
 const nextLock = buildLock();
 const failures = validateLock(nextLock);
@@ -106,10 +124,12 @@ if (failures.length > 0) {
   if (!existsSync(lockPath)) {
     process.stderr.write(`Missing generated-art lock: ${toRepoPath(lockPath)}\n`);
     process.exitCode = 1;
-  } else if (readFileSync(lockPath, "utf8") !== jsonText(nextLock)) {
+  } else if (readFileSync(lockPath, "utf8").replaceAll("\r\n", "\n") !== jsonText(nextLock)) {
+    const previousLock = JSON.parse(readFileSync(lockPath, "utf8"));
+    const changes = changedPaths(previousLock, nextLock);
     process.stderr.write(
       "Office generated artifacts or their inputs changed. Regenerate the audit and board, "
-        + "then run npm run art:geometry:lock.\n",
+        + `then run npm run art:geometry:lock. Changed paths: ${changes.slice(0, 12).join(", ")}\n`,
     );
     process.exitCode = 1;
   } else {
