@@ -9,6 +9,14 @@ const currentManifest = JSON.parse(
 const plannedManifest = JSON.parse(
   readFileSync(join(root, "assets/game/manifests/office-planned-assets.json"), "utf8"),
 );
+const biblePath = join(root, "assets/game/manifests/office-camera-scale-bible.json");
+let bible;
+let bibleLoadFailure;
+try {
+  bible = JSON.parse(readFileSync(biblePath, "utf8"));
+} catch (error) {
+  bibleLoadFailure = `Camera/Scale Bible unavailable: ${error.message}`;
+}
 const catalog = {
   ...Object.fromEntries(
     Object.entries(currentManifest.assets).map(([id, asset]) => [id, {
@@ -58,6 +66,41 @@ function validateAsset(id, asset) {
   return failures;
 }
 
+function validateBible() {
+  if (bibleLoadFailure) return [bibleLoadFailure];
+  const failures = [];
+  if (bible.status !== "accepted") failures.push("Camera/Scale Bible status must equal accepted");
+  if (bible.geometrySchemaVersion !== 3) failures.push("Camera/Scale Bible must target Geometry v3");
+  if (bible.authoring?.tilePixels !== 32) failures.push("Camera/Scale Bible tilePixels must equal 32");
+  if (bible.camera?.perspectiveConvergence !== false) {
+    failures.push("Camera/Scale Bible must disable perspective convergence");
+  }
+  const adult = bible.characters?.standingAdult?.physicalScale;
+  if (adult?.width !== 1 || adult?.depth !== 1 || adult?.height !== 3) {
+    failures.push("Camera/Scale Bible standing adult must equal 1 x 1 x 3");
+  }
+  const desk = bible.canonicalDesk;
+  if (desk?.physicalScale?.width !== 5 || desk?.physicalScale?.depth !== 4
+      || desk?.physicalScale?.height !== 2.4 || desk?.footprint?.width !== 5
+      || desk?.footprint?.depth !== 4 || desk?.supportPlane?.width !== 5
+      || desk?.supportPlane?.depth !== 3) {
+    failures.push("Camera/Scale Bible desk must equal 5 x 4 x 2.4 with a 5 x 3 support plane");
+  }
+  return failures;
+}
+
+function generationAsset(asset) {
+  if (asset.slotSet !== "workstation") return asset;
+  return {
+    ...asset,
+    physicalScale: bible.canonicalDesk.physicalScale,
+    footprint: bible.canonicalDesk.footprint,
+    renderBox: bible.canonicalDesk.generationRenderBox,
+    requiredOrientations: bible.canonicalDesk.requiredOrientations,
+    geometryGenerationRule: bible.canonicalDesk.generationRule,
+  };
+}
+
 function formatScale(scale) {
   return `${scale.width} x ${scale.depth} x ${scale.height}`;
 }
@@ -69,15 +112,23 @@ function formatFootprint(asset) {
 }
 
 function createPrompt(id, asset, orientations) {
+  const generation = generationAsset(asset);
   const views = orientations.length > 0
     ? orientations
-    : asset.requiredOrientations ?? ["front"];
+    : generation.requiredOrientations ?? ["front"];
+  const adult = bible.characters.standingAdult.physicalScale;
+  const deskRule = generation.geometryGenerationRule
+    ? `\nWorkstation composite rule: ${generation.geometryGenerationRule}`
+    : "";
   return `Create one original modern-bright orthographic pixel-art ${id}.
-Use the Office Scale Bible adult reference of 1 wide x 1 deep x 3 high.
-Locked physical scale: ${formatScale(asset.physicalScale)} tiles.
-Target render box: ${asset.renderBox.width} x ${asset.renderBox.height} tiles.
-Floor footprint: ${formatFootprint(asset)}.
-Support: ${asset.supports.join(", ")}. Anchor: ${asset.anchor}.
+Use the accepted Camera/Scale Bible: ${bible.authoring.tilePixels} authoring pixels per tile,
+${bible.camera.spriteProjection}, ${bible.authoring.lightDirection} lighting,
+and ${bible.authoring.outlinePixels}-pixel authoring outlines.
+Standing adult reference: ${formatScale(adult)} tiles.
+Locked physical scale: ${formatScale(generation.physicalScale)} tiles.
+Target render box: ${generation.renderBox.width} x ${generation.renderBox.height} tiles.
+Floor footprint: ${formatFootprint(generation)}.
+Support: ${generation.supports.join(", ")}. Anchor: ${generation.anchor}.${deskRule}
 Create ONLY these required orientations: ${views.join(", ")}.
 Use exactly one equal cell per orientation. Preserve one design, physical scale,
 silhouette, anchor, material, outline, and upper-left lighting across all views.
@@ -97,7 +148,10 @@ perspective convergence, or isometric camera.`;
 
 const args = process.argv.slice(2);
 if (args.includes("--check")) {
-  const failures = Object.entries(catalog).flatMap(([id, asset]) => validateAsset(id, asset));
+  const failures = [
+    ...validateBible(),
+    ...Object.entries(catalog).flatMap(([id, asset]) => validateAsset(id, asset)),
+  ];
   if (failures.length > 0) {
     process.stderr.write(`${failures.join("\n")}\n`);
     process.exitCode = 1;
@@ -111,7 +165,11 @@ if (args.includes("--check")) {
   process.stdout.write(`${Object.keys(catalog).sort().join("\n")}\n`);
 } else {
   const id = args.find((arg) => !arg.startsWith("--"));
-  if (!id || !catalog[id]) {
+  const bibleFailures = validateBible();
+  if (bibleFailures.length > 0) {
+    process.stderr.write(`${bibleFailures.join("\n")}\n`);
+    process.exitCode = 1;
+  } else if (!id || !catalog[id]) {
     process.stderr.write(
       `Usage: npm run art:prompt -- <asset-id> [--orientations=front,back,side]\n`
       + `Use --list to show asset IDs or --check to validate both catalogs.\n`,

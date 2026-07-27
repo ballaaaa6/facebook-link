@@ -3,6 +3,19 @@
 These images are pre-production composition references. They are not runtime
 assets and must not be imported by the web application.
 
+## `office-camera-scale-calibration-v1.png`
+
+- Created: 2026-07-27
+- Status: accepted deterministic Geometry v3 calibration board
+- Source: `assets/game/manifests/office-camera-scale-bible.json`
+- Generator: `scripts/build-office-camera-scale-board.py`
+- Intended use: lock the 32 px tile, projection split, character scale,
+  workstation footprint/support plane, levels, pivots, overflow, orientations,
+  adjacency, and occlusion before any authorized replacement generation
+
+This board is generated evidence, not a runtime asset. Regenerate it with
+`npm run art:geometry:bible` and never edit the PNG independently.
+
 ## `office-c-layout-reference-v1.png`
 
 - Created: 2026-07-24

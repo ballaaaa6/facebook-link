@@ -4,11 +4,11 @@
 
 Reduce generation latency without sacrificing usable geometry. Static furniture and props are generated as controlled 4x4 asset sheets. Identity-sensitive character work animations use one character per sheet.
 
-Execution hold (2026-07-27): Do not start a new Office furniture or prop sheet
-until Steps 1-4 in `docs/art/OFFICE_GEOMETRY_REMEDIATION_ROADMAP.md` pass their
-combined acceptance gate. The audit decides which assets may be reused or
-derived and which require regeneration; the accepted Camera/Scale Bible then
-controls every authorized sheet.
+Execution gate (2026-07-27): Steps 1-4 in
+`docs/art/OFFICE_GEOMETRY_REMEDIATION_ROADMAP.md` are complete. A new Office
+sheet requires an approved `regenerate` audit record; deterministic cleanup or
+composition requires `derive-composite`. Every sheet reads the accepted
+Camera/Scale Bible. Active Office promotion remains a separate later gate.
 
 ## Shared Sheet Contract
 
@@ -30,8 +30,8 @@ controls every authorized sheet.
   centered at 0° with parallel edges and no side rotation, while a slightly
   raised frontal camera exposes the tabletop surface and both legs.
 - Every cell manifest includes the locked physical `W x D x H`, integer
-  `renderBox`, integer floor `footprint`, support surface, and anchor from the
-  Office Scale Bible in `docs/art/OFFICE_ASSET_CREATION_GUIDE.md`.
+  `renderBox`, integer floor `footprint`, support surface, and anchor from
+  `assets/game/manifests/office-camera-scale-bible.json`.
 - Runtime entries read these values from
   `assets/game/manifests/office-assets.json`; pre-production entries read them
   from `assets/game/manifests/office-planned-assets.json`. Use

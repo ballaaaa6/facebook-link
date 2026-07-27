@@ -5,11 +5,11 @@ Scope: Office assets created for the latest orthographic pixel-art reference
 Current execution plan: `docs/art/OFFICE_GEOMETRY_REMEDIATION_ROADMAP.md`
 Historical migration plan: `docs/art/OFFICE_REF_MIGRATION_ROADMAP.md`
 
-Execution hold (2026-07-27): Do not generate replacement Office assets from
-this guide until Steps 1-4 of the current execution plan pass their combined
-acceptance gate. Geometry quarantine, Geometry Contract v3, the complete asset
-audit, and the accepted Camera/Scale Bible take precedence over the legacy
-scale tables in this guide.
+Execution gate (2026-07-27): Steps 1-4 of the current execution plan are
+complete. New replacement work may start only from a `regenerate` audit record
+or an approved `derive-composite` record and must use the accepted
+machine-readable Camera/Scale Bible. This does not authorize Active Office
+promotion or broad regeneration of the library.
 
 ## 1. Purpose
 
@@ -91,6 +91,12 @@ indicator, paper, steam, or light region may change.
 
 ### 3.2 Office Scale Bible
 
+The authoritative values are now machine-readable in
+`assets/game/manifests/office-camera-scale-bible.json`; the rendered reference
+is `assets/art/layout-references/office-camera-scale-calibration-v1.png`.
+This section is explanatory only. Prompt generation reads the accepted
+manifest and refuses missing or non-accepted Bible data.
+
 Lock scale before generating any office asset. The canonical comparison is one
 standing adult:
 
@@ -147,9 +153,9 @@ metadata, parent slots, and layout validation are the enforceable contract.
 
 | Asset or family | Locked W x D x H | Render box W x H | Floor footprint W x D | Seats / support |
 | --- | ---: | ---: | ---: | --- |
-| Standard desk | `5 x 4 x 2.4` | Geometry v3 calibration pending | `5 x 4` | Separate `5 x 3` support plane; employee-edge row has no slots. |
-| Creative desk | `5 x 4 x 2.4` | Geometry v3 calibration pending | `5 x 4` | Same contract as the standard desk; equipment changes the role. |
-| NOC desk | `5 x 4 x 2.4` | Geometry v3 calibration pending | `5 x 4` | Same contract as the standard desk; equipment changes the role. |
+| Standard desk | `5 x 4 x 2.4` | `5 x 5` generation canvas | `5 x 4` | Separate `5 x 3` support plane; employee-edge row has no slots. |
+| Creative desk | `5 x 4 x 2.4` | `5 x 5` generation canvas | `5 x 4` | Same contract as the standard desk; equipment changes the role. |
+| NOC desk | `5 x 4 x 2.4` | `5 x 5` generation canvas | `5 x 4` | Same contract as the standard desk; equipment changes the role. |
 | Office task chair | `1 x 1 x 2` | `1 x 2` | `1 x 1` | One seat slot. |
 | Studio task chair | `1 x 1 x 2` | `1 x 2` | `1 x 1` | One seat slot. |
 | Cafe / meeting chair | `1 x 1 x 2` | `1 x 2` | `1 x 1` | One review or cafe seat. |

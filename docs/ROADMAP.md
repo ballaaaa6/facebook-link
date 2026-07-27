@@ -127,7 +127,7 @@ passes. The detailed execution order, planned files, validation strategy, and
 acceptance criteria are maintained in
 `docs/art/OFFICE_GEOMETRY_REMEDIATION_ROADMAP.md`.
 
-Implementation status (2026-07-27): Steps 1-3 are complete. The v6 composition
+Implementation status (2026-07-27): Steps 1-4 are complete. The v6 composition
 and its v5 desk inputs are explicitly rejected, preserved as negative
 regression evidence, and covered by automated isolation checks. Geometry v3
 now has a written contract, JSON Schema, shared TypeScript types, a validator,
@@ -137,8 +137,14 @@ footprint, and a `5 x 3` support plane. The deterministic audit reconciles 297
 records representing 235 distinct asset keys: 20 reuse, 142 metadata fixes, 77
 clean derivatives/composites, 7 regenerations, 32 orientation blocks, and 19
 license blocks. It reports all 35 missing library layer declarations, no
-missing referenced images, and no unreviewed records. Step 4 is in progress;
-Active Office data, renderer behavior, and visuals remain unchanged.
+missing referenced images, and no unreviewed records. The accepted
+machine-readable Camera/Scale Bible and deterministic calibration
+board now lock the 32 px tile, projection split, reference levels, orientation
+gate, and the canonical `5 x 4` desk with its `5 x 3` support plane. The prompt
+builder refuses missing or non-accepted Bible data and substitutes these
+accepted workstation generation values without changing the legacy Active
+Office manifest. The combined Steps 1-4 gate passes; Active Office data,
+renderer behavior, and visuals remain unchanged.
 
 ## M2 — One-account Shopee pilot
 

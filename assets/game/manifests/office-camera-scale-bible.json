@@ -1,0 +1,109 @@
+{
+  "version": 1,
+  "geometrySchemaVersion": 3,
+  "status": "accepted",
+  "acceptedOn": "2026-07-27",
+  "acceptance": {
+    "reviewedBy": "Codex deterministic visual QA",
+    "ownerAuthorization": "Project owner requested execution of the approved Steps 1-4 tranche on 2026-07-27",
+    "scope": "Prototype Office geometry calibration only",
+    "commercialAssetApproval": false
+  },
+  "authoring": {
+    "tilePixels": 32,
+    "pixelSnap": "integer-authoring-pixels",
+    "outlinePixels": 2,
+    "lightDirection": "upper-left",
+    "exportScales": [1, 2]
+  },
+  "camera": {
+    "worldGridProjection": "top-down-orthographic",
+    "spriteProjection": "straight-orthographic-elevation",
+    "perspectiveConvergence": false,
+    "allowedOrientations": ["front", "back", "left", "right"],
+    "orientationDegrees": {
+      "front": 0,
+      "back": 180,
+      "left": -90,
+      "right": 90
+    },
+    "forbiddenViews": [
+      "isometric",
+      "oblique",
+      "three-quarter",
+      "diagonal",
+      "perspective"
+    ],
+    "surfaceFurnitureComposition": "top-down support plane plus straight elevation underframe and foreground occluder"
+  },
+  "palette": {
+    "background": "#111827",
+    "panel": "#1f2937",
+    "grid": "#64748b",
+    "footprint": "#334155",
+    "supportPlane": "#22d3ee",
+    "employeeEdge": "#f59e0b",
+    "accepted": "#22c55e",
+    "rejected": "#ef4444",
+    "pivot": "#f43f5e",
+    "overflow": "#a78bfa",
+    "character": "#f8fafc"
+  },
+  "referenceLevels": {
+    "floor": 0,
+    "seat": 1,
+    "workSurface": 2.4,
+    "standingAdult": 3,
+    "wall": 3
+  },
+  "characters": {
+    "standingAdult": {
+      "physicalScale": { "width": 1, "depth": 1, "height": 3 },
+      "footprint": { "width": 1, "depth": 1 },
+      "basePivot": { "x": 0.5, "y": 1 },
+      "sortPivot": { "x": 0.5, "y": 1 }
+    },
+    "seatedAdult": {
+      "physicalScale": { "width": 1, "depth": 1, "height": 2 },
+      "seatLevel": 1,
+      "basePivot": { "x": 0.5, "y": 1 },
+      "sortPivot": { "x": 0.5, "y": 1 }
+    },
+    "morphologySafeOverflowPixels": {
+      "left": 32,
+      "right": 32,
+      "top": 8,
+      "bottom": 0
+    }
+  },
+  "requiredFootprintSamples": [
+    { "width": 1, "depth": 1 },
+    { "width": 2, "depth": 1 },
+    { "width": 2, "depth": 2 }
+  ],
+  "canonicalDesk": {
+    "physicalScale": { "width": 5, "depth": 4, "height": 2.4 },
+    "footprint": { "width": 5, "depth": 4 },
+    "supportPlane": {
+      "id": "desk-surface",
+      "origin": { "x": 0, "y": 0 },
+      "width": 5,
+      "depth": 3,
+      "height": 2.4
+    },
+    "employeeEdge": { "originY": 3, "depth": 1, "attachmentSlots": 0 },
+    "basePivot": { "x": 2.5, "y": 4 },
+    "sortPivot": { "x": 2.5, "y": 4 },
+    "generationRenderBox": { "width": 5, "height": 5 },
+    "compositeParts": ["rear", "surface", "base", "foreground"],
+    "requiredOrientations": ["front", "back", "left", "right"],
+    "generationRule": "The 5 x 3 support plane must be visible as a top-down plan component; never stretch a straight-front desk bitmap across the 5 x 4 footprint."
+  },
+  "acceptanceExamples": {
+    "adjacency": "Footprints may touch edges and support-plane cells remain continuous without overlap.",
+    "depthSorting": "The greater sortPivot.y draws later.",
+    "occlusion": "Foreground parts may cover the lower body while preserving the head-safe region.",
+    "overflow": "Render pixels may cross a footprint edge only through declared render bounds and offsets.",
+    "rejectedDesk": "A straight-front bitmap filled or stretched to occupy a 5 x 4 logical rectangle."
+  }
+}
