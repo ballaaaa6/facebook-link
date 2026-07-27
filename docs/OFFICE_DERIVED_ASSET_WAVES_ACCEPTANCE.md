@@ -33,7 +33,7 @@ pixel counts, Geometry v3 metadata, and QA boards for every audit record.
 - 64 cleanup records produce versioned clean outputs.
 - 48 cleanup records remove 89,915 reviewed adjacent-cell alpha pixels.
 - 16 cleanup records have one coherent alpha component in the current reviewed
-  source. They are retained byte-for-byte as `verified-noop-cleanup` rather
+  source. Their pixels are retained exactly as `verified-noop-cleanup` rather
   than deleting pixels without a defensible component boundary.
 - 13 furniture or structural records produce exact source-pixel base layers.
 - 12 of the composites also produce source-pixel foreground overlays. The
