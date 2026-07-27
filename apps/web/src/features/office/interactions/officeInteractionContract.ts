@@ -175,7 +175,7 @@ export const facilityVerticalSlice: Record<string, FacilityVerticalSliceContract
     durationSeconds: 8,
     propPool: "mission-review",
     interactionFacing: "front",
-    renderBoxTiles: { width: 4, height: 1 },
+    renderBoxTiles: { width: 4, height: 2 },
     facilityOverlay: null,
     foregroundMask: null,
     reservationCapacity: 4,

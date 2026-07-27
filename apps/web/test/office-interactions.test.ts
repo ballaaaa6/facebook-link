@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import interactionAssets from "../../../assets/game/manifests/office-interaction-assets.json" with { type: "json" };
 import interactionLab from "../../../assets/game/manifests/office-interaction-lab.json" with { type: "json" };
-import reviewFacility from "../../../assets/game/manifests/review-facility-completion.json" with { type: "json" };
+import reviewFacility from "../../../assets/game/manifests/review-decor-completion.json" with { type: "json" };
 import {
   characterRows15,
   facilityPropPools,
@@ -151,7 +151,7 @@ test("vending uses an item-neutral output tray before prop overlay", () => {
 test("the new review table replaces the old meeting table in staging", () => {
   assert.equal(facilityVerticalSlice.review?.assetId, "table.review.long.modern");
   assert.equal(facilityVerticalSlice.review?.reservationCapacity, 4);
-  assert.deepEqual(facilityVerticalSlice.review?.renderBoxTiles, { width: 4, height: 1 });
+  assert.deepEqual(facilityVerticalSlice.review?.renderBoxTiles, { width: 4, height: 2 });
   assert.notEqual(facilityVerticalSlice.review?.assetId, "table.meeting.empty");
 });
 
@@ -177,21 +177,16 @@ test("the four-seat review contract uses only front and back seated rows", () =>
   );
 });
 
-test("the review completion sheet extracts 16 useful runtime cells", () => {
+test("the review and decor completion sheet extracts 16 useful staging cells", () => {
   assert.equal(reviewFacility.activeOfficeImported, false);
   assert.deepEqual(reviewFacility.grid, [4, 4]);
   assert.equal(reviewFacility.assetCount, 16);
   assert.equal(reviewFacility.assets.length, 16);
   assert.equal(reviewFacility.reviewFacility.reservationCapacity, 4);
   assert.equal(reviewFacility.qa.allFourActors, true);
-  for (const group of [
-    "printer.neutral",
-    "dispenser.water.neutral",
-    "machine.coffee.neutral",
-  ]) {
-    assert.equal(
-      reviewFacility.assets.filter((asset) => asset.animationGroup === group).length,
-      4,
-    );
-  }
+  assert.equal(
+    reviewFacility.assets.filter((asset) => asset.layer === "decor").length,
+    15,
+  );
+  assert.deepEqual(reviewFacility.assets[0]?.renderBox, { width: 4, height: 2 });
 });

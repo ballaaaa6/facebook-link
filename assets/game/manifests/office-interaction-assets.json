@@ -593,39 +593,35 @@
         ]
       },
       {
-        "id": "table.meeting.foreground",
-        "source": "assets/game/processed/core-furniture-c-v2/table.meeting.empty.png",
-        "file": "assets/game/processed/office-interactions-v1/foreground-masks/table-meeting-foreground.png",
+        "id": "table.review.long.modern.foreground",
+        "source": "assets/game/processed/review-decor-completion-v2/table.review.long.modern.png",
+        "file": "assets/game/processed/office-interactions-v1/foreground-masks/table-review-long-modern-foreground.png",
         "size": [
-          320,
-          192
+          268,
+          118
         ],
         "bounds": [
-          20,
-          138,
-          299,
-          186
+          0,
+          0,
+          268,
+          118
         ],
         "regions": [
           [
             0.0,
-            0.72,
+            0.0,
             1.0,
             1.0
           ]
         ],
         "seatAnchors": [
           [
-            0.2,
-            0.69
+            0.25,
+            0.5
           ],
           [
-            0.5,
-            0.69
-          ],
-          [
-            0.8,
-            0.69
+            0.75,
+            0.5
           ]
         ]
       },

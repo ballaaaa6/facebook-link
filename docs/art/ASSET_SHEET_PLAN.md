@@ -375,31 +375,33 @@ Assign each slot an action family (`interact-use`, `inspect`, `review`, or
 map-layer overlay. The final character rows are then generated against those
 stable anchors; no facility prop is baked into a character cell.
 
-### Review and neutral-facility completion sheet
+### Review and decor completion sheet
 
-`review-facility-completion-sheet-modern-bright-v1-source.png` is a controlled
+`review-decor-completion-sheet-modern-bright-v2-source.png` is a controlled
 4x4 source sheet. Every cell has a declared runtime consumer:
 
 | Row | Cells 1-4 |
 | --- | --- |
-| 1 | `table.review.long.modern`, `cabinet.printer.modern`, `hub.table.power`, `speaker.conference` |
-| 2 | `printer.neutral.a` through `printer.neutral.d` |
-| 3 | `dispenser.water.neutral.a` through `dispenser.water.neutral.d` |
-| 4 | `machine.coffee.neutral.a` through `machine.coffee.neutral.d` |
+| 1 | `table.review.long.modern`, `planter.trough.slim`, `cactus.column`, `cactus.cluster` |
+| 2 | `plant.snake`, `plant.zz`, `plant.bonsai`, `planter.succulent.bowl` |
+| 3 | `planter.moss.low`, `vase.floor.branch`, `sculpture.arch.ceramic`, `sculpture.rings.metal` |
+| 4 | `sculpture.stones.stack`, `hourglass.desktop`, `globe.desktop`, `terrarium.succulent` |
 
-The table is a slim 4x1-tile Modern v3 shell. It has no baked chairs, actors,
-props, or wood texture. Four existing modern office chairs are composed as
-children: two rear seats at x=1 and x=3 use `working-front-seated`; two front
-seats at x=1 and x=3 use `working-back-seated`. There are no head, tail, or
-side-facing seats.
+The table is a slim straight-front orthographic Modern v3 shell with a 4x1
+floor footprint and a 4x2 render box. It has no visible perspective top plane,
+baked chairs, actors, props, or wood texture. Four existing modern office
+chairs are composed as children: two rear seats at x=1 and x=3 use
+`working-front-seated`; two front seats at x=1 and x=3 use
+`working-back-seated`. There are no head, tail, or side-facing seats.
 
-The table and chairs occupy a 4x5 facility envelope. Approach clearance extends
-to 4x7 so each seat has an independent entry and release path. The entire
+The table and chairs occupy a compact 4x3 facility envelope. Approach clearance
+extends to 4x5 so each seat has an independent entry and release path. The entire
 group is one facility object with four reservation slots.
 
-Printer, Water, and Coffee frames are item-neutral. Their output animations
-contain no paper, label, cup, bottle, or mug; transient objects remain held-prop
-overlays selected by the visit seed.
+The fifteen decor cells remain library-only staging assets. They do not consume
+reservation slots or enter the active Office until chosen during the interior
+layout pass. Existing Printer, Water, and Coffee families remain the canonical
+machine assets and are not duplicated in this sheet.
 
 ## Extraction Pipeline
 

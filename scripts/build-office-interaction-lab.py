@@ -73,9 +73,9 @@ CASES = [
     },
     {
         "id": "review",
-        "asset": "assets/game/processed/review-facility-completion-v1/table.review.long.modern.png",
+        "asset": "assets/game/processed/review-decor-completion-v2/table.review.long.modern.png",
         "action": "front-and-back-seated",
-        "precomposed": "assets/game/processed/review-facility-completion-v1/qa/review-table-four-seat-lab.png",
+        "precomposed": "assets/game/processed/review-decor-completion-v2/qa/review-table-four-seat-lab.png",
         "precomposedCrop": (360, 300, 720, 600),
         "actorAnchor": (0.50, 0.50),
         "renderSize": (128, 32),
@@ -163,8 +163,8 @@ def alpha_overlap(first: Image.Image, first_xy: tuple[int, int], second: Image.I
     return sum(
         1
         for a, b in zip(
-            first_alpha.get_flattened_data(),
-            second_alpha.get_flattened_data(),
+            first_alpha.getdata(),
+            second_alpha.getdata(),
             strict=True,
         )
         if a and b

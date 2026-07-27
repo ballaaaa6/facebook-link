@@ -89,10 +89,10 @@ MASK_SPECS = [
         "seatAnchors": [(0.50, 0.53)],
     },
     {
-        "id": "table.meeting.foreground",
-        "source": "assets/game/processed/core-furniture-c-v2/table.meeting.empty.png",
-        "regions": [(0.00, 0.72, 1.00, 1.00)],
-        "seatAnchors": [(0.20, 0.69), (0.50, 0.69), (0.80, 0.69)],
+        "id": "table.review.long.modern.foreground",
+        "source": "assets/game/processed/review-decor-completion-v2/table.review.long.modern.png",
+        "regions": [(0.00, 0.00, 1.00, 1.00)],
+        "seatAnchors": [(0.25, 0.50), (0.75, 0.50)],
     },
     {
         "id": "sofa.modern.three-seat.foreground",
@@ -118,7 +118,7 @@ MASK_SPECS = [
 def chroma_key(image: Image.Image, tolerance: int = 46) -> Image.Image:
     rgba = image.convert("RGBA")
     pixels = []
-    for red, green, blue, alpha in rgba.get_flattened_data():
+    for red, green, blue, alpha in rgba.getdata():
         distance = abs(red - MAGENTA[0]) + abs(green) + abs(blue - MAGENTA[2])
         generated_magenta = (
             red >= 170
@@ -139,7 +139,7 @@ def non_empty_x_runs(image: Image.Image) -> list[tuple[int, int]]:
     occupied = [
         sum(
             1
-            for value in alpha.crop((x, 0, x + 1, image.height)).get_flattened_data()
+            for value in alpha.crop((x, 0, x + 1, image.height)).getdata()
             if value
         )
         >= 4

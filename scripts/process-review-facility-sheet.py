@@ -1,4 +1,4 @@
-"""Extract and validate the four-seat modern review facility slice.
+"""Extract and validate the four-seat review table and decor reserve.
 
 The keyed 4x4 source sheet is split into runtime library assets, then composed
 with the existing modern chair and Einstein seated rows in an isolated QA board.
@@ -10,7 +10,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from PIL import Image, ImageChops, ImageDraw
+from PIL import Image, ImageDraw
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -19,19 +19,19 @@ SOURCE = (
     / "assets"
     / "art"
     / "layout-references"
-    / "review-facility-completion-sheet-modern-bright-v1-source.png"
+    / "review-decor-completion-sheet-modern-bright-v2-source.png"
 )
 KEYED_SOURCE = (
     ROOT
     / "assets"
     / "game"
     / "processed"
-    / "review-facility-completion-v1"
+    / "review-decor-completion-v2"
     / "source-keyed.png"
 )
 OUTPUT_ROOT = KEYED_SOURCE.parent
 MANIFEST_PATH = (
-    ROOT / "assets" / "game" / "manifests" / "review-facility-completion.json"
+    ROOT / "assets" / "game" / "manifests" / "review-decor-completion.json"
 )
 QA_PATH = OUTPUT_ROOT / "qa" / "review-table-four-seat-lab.png"
 
@@ -39,51 +39,132 @@ FRAME = (96, 104)
 TILE = 32
 CELL_IDS = [
     "table.review.long.modern",
-    "cabinet.printer.modern",
-    "hub.table.power",
-    "speaker.conference",
-    "printer.neutral.a",
-    "printer.neutral.b",
-    "printer.neutral.c",
-    "printer.neutral.d",
-    "dispenser.water.neutral.a",
-    "dispenser.water.neutral.b",
-    "dispenser.water.neutral.c",
-    "dispenser.water.neutral.d",
-    "machine.coffee.neutral.a",
-    "machine.coffee.neutral.b",
-    "machine.coffee.neutral.c",
-    "machine.coffee.neutral.d",
+    "planter.trough.slim",
+    "cactus.column",
+    "cactus.cluster",
+    "plant.snake",
+    "plant.zz",
+    "plant.bonsai",
+    "planter.succulent.bowl",
+    "planter.moss.low",
+    "vase.floor.branch",
+    "sculpture.arch.ceramic",
+    "sculpture.rings.metal",
+    "sculpture.stones.stack",
+    "hourglass.desktop",
+    "globe.desktop",
+    "terrarium.succulent",
 ]
 
 GEOMETRY = {
     "table.review.long.modern": {
-        "physicalScale": {"width": 4, "depth": 1, "height": 1},
-        "renderBox": {"width": 4, "height": 1},
+        "physicalScale": {"width": 4, "depth": 1, "height": 2},
+        "renderBox": {"width": 4, "height": 2},
         "footprint": {"width": 4, "depth": 1},
         "supports": ["floor"],
         "layer": "furniture",
     },
-    "cabinet.printer.modern": {
+    "planter.trough.slim": {
+        "physicalScale": {"width": 3, "depth": 1, "height": 2},
+        "renderBox": {"width": 3, "height": 2},
+        "footprint": {"width": 3, "depth": 1},
+        "supports": ["floor"],
+        "layer": "decor",
+    },
+    "cactus.column": {
+        "physicalScale": {"width": 1, "depth": 1, "height": 3},
+        "renderBox": {"width": 1, "height": 3},
+        "footprint": {"width": 1, "depth": 1},
+        "supports": ["floor"],
+        "layer": "decor",
+    },
+    "cactus.cluster": {
         "physicalScale": {"width": 2, "depth": 1, "height": 2},
         "renderBox": {"width": 2, "height": 2},
         "footprint": {"width": 2, "depth": 1},
         "supports": ["floor"],
-        "layer": "furniture",
+        "layer": "decor",
     },
-    "hub.table.power": {
-        "physicalScale": {"width": 1, "depth": 0, "height": 1},
-        "renderBox": {"width": 1, "height": 1},
-        "footprint": {"width": 0, "depth": 0},
-        "supports": ["table-surface"],
-        "layer": "equipment",
+    "plant.snake": {
+        "physicalScale": {"width": 1, "depth": 1, "height": 3},
+        "renderBox": {"width": 1, "height": 3},
+        "footprint": {"width": 1, "depth": 1},
+        "supports": ["floor"],
+        "layer": "decor",
     },
-    "speaker.conference": {
-        "physicalScale": {"width": 1, "depth": 0, "height": 1},
-        "renderBox": {"width": 1, "height": 1},
-        "footprint": {"width": 0, "depth": 0},
-        "supports": ["table-surface"],
-        "layer": "equipment",
+    "plant.zz": {
+        "physicalScale": {"width": 1, "depth": 1, "height": 2},
+        "renderBox": {"width": 1, "height": 2},
+        "footprint": {"width": 1, "depth": 1},
+        "supports": ["floor"],
+        "layer": "decor",
+    },
+    "plant.bonsai": {
+        "physicalScale": {"width": 2, "depth": 1, "height": 2},
+        "renderBox": {"width": 2, "height": 2},
+        "footprint": {"width": 2, "depth": 1},
+        "supports": ["floor", "table-surface", "counter-surface"],
+        "layer": "decor",
+    },
+    "planter.succulent.bowl": {
+        "physicalScale": {"width": 2, "depth": 1, "height": 1},
+        "renderBox": {"width": 2, "height": 1},
+        "footprint": {"width": 2, "depth": 1},
+        "supports": ["floor", "table-surface", "counter-surface"],
+        "layer": "decor",
+    },
+    "planter.moss.low": {
+        "physicalScale": {"width": 2, "depth": 1, "height": 1},
+        "renderBox": {"width": 2, "height": 1},
+        "footprint": {"width": 2, "depth": 1},
+        "supports": ["floor", "table-surface", "counter-surface"],
+        "layer": "decor",
+    },
+    "vase.floor.branch": {
+        "physicalScale": {"width": 1, "depth": 1, "height": 3},
+        "renderBox": {"width": 1, "height": 3},
+        "footprint": {"width": 1, "depth": 1},
+        "supports": ["floor"],
+        "layer": "decor",
+    },
+    "sculpture.arch.ceramic": {
+        "physicalScale": {"width": 1, "depth": 1, "height": 2},
+        "renderBox": {"width": 1, "height": 2},
+        "footprint": {"width": 1, "depth": 1},
+        "supports": ["floor", "table-surface", "counter-surface"],
+        "layer": "decor",
+    },
+    "sculpture.rings.metal": {
+        "physicalScale": {"width": 1, "depth": 1, "height": 2},
+        "renderBox": {"width": 1, "height": 2},
+        "footprint": {"width": 1, "depth": 1},
+        "supports": ["floor", "table-surface", "counter-surface"],
+        "layer": "decor",
+    },
+    "sculpture.stones.stack": {
+        "physicalScale": {"width": 1, "depth": 1, "height": 2},
+        "renderBox": {"width": 1, "height": 2},
+        "footprint": {"width": 1, "depth": 1},
+        "supports": ["floor", "table-surface", "counter-surface"],
+        "layer": "decor",
+    },
+    "hourglass.desktop": {
+        "physicalScale": {"width": 1, "depth": 1, "height": 2},
+        "renderBox": {"width": 1, "height": 2},
+        "supports": ["desk-surface", "table-surface", "counter-surface"],
+        "layer": "decor",
+    },
+    "globe.desktop": {
+        "physicalScale": {"width": 1, "depth": 1, "height": 2},
+        "renderBox": {"width": 1, "height": 2},
+        "supports": ["desk-surface", "table-surface", "counter-surface"],
+        "layer": "decor",
+    },
+    "terrarium.succulent": {
+        "physicalScale": {"width": 1, "depth": 1, "height": 2},
+        "renderBox": {"width": 1, "height": 2},
+        "supports": ["desk-surface", "table-surface", "counter-surface"],
+        "layer": "decor",
     },
 }
 
@@ -92,33 +173,33 @@ SEATS = [
         "id": "review.rear-left",
         "side": "rear",
         "x": 1,
-        "y": -2,
+        "y": -1,
         "action": "working-front-seated",
-        "approach": {"x": 1, "y": -3},
+        "approach": {"x": 1, "y": -2},
     },
     {
         "id": "review.rear-right",
         "side": "rear",
         "x": 3,
-        "y": -2,
+        "y": -1,
         "action": "working-front-seated",
-        "approach": {"x": 3, "y": -3},
+        "approach": {"x": 3, "y": -2},
     },
     {
         "id": "review.front-left",
         "side": "front",
         "x": 1,
-        "y": 2,
+        "y": 1,
         "action": "working-back-seated",
-        "approach": {"x": 1, "y": 3},
+        "approach": {"x": 1, "y": 2},
     },
     {
         "id": "review.front-right",
         "side": "front",
         "x": 3,
-        "y": 2,
+        "y": 1,
         "action": "working-back-seated",
-        "approach": {"x": 3, "y": 3},
+        "approach": {"x": 3, "y": 2},
     },
 ]
 
@@ -147,61 +228,23 @@ def extract_cells() -> list[dict[str, object]]:
             "size": list(sprite.size),
             "alphaBounds": list(sprite.getbbox() or ()),
         }
-        if asset_id in GEOMETRY:
-            record.update(GEOMETRY[asset_id])
-        else:
-            prefix, frame = asset_id.rsplit(".", 1)
-            record.update(
-                {
-                    "animationGroup": prefix,
-                    "frame": frame,
-                    "itemNeutral": True,
-                    "renderBox": (
-                        {"width": 2, "height": 1}
-                        if prefix == "printer.neutral"
-                        else {"width": 1, "height": 3}
-                    ),
-                }
-            )
+        record.update(GEOMETRY[asset_id])
         records.append(record)
     return records
 
 
 def derive_chair_back_mask() -> Path:
-    source_path = (
+    existing_mask = (
         ROOT
         / "assets"
         / "game"
         / "processed"
-        / "office-library-modern-bright-v1"
-        / "chair-office-modern-v1"
-        / "chair.office.modern.back.png"
+        / "review-facility-completion-v1"
+        / "chair.office.modern.back.foreground.png"
     )
-    source = Image.open(source_path).convert("RGBA")
-    region = Image.new("L", source.size, 0)
-    draw = ImageDraw.Draw(region)
-    width, height = source.size
-    for normalized in (
-        (0.00, 0.36, 0.20, 0.68),
-        (0.80, 0.36, 1.00, 0.68),
-        (0.06, 0.50, 0.94, 0.66),
-        (0.00, 0.66, 1.00, 1.00),
-    ):
-        left, top, right, bottom = normalized
-        draw.rectangle(
-            (
-                round(left * width),
-                round(top * height),
-                round(right * width),
-                round(bottom * height),
-            ),
-            fill=255,
-        )
-    mask = Image.new("RGBA", source.size, (0, 0, 0, 0))
-    mask.paste(source, (0, 0), ImageChops.multiply(source.getchannel("A"), region))
-    path = OUTPUT_ROOT / "chair.office.modern.back.foreground.png"
-    mask.save(path)
-    return path
+    if not existing_mask.exists():
+        raise FileNotFoundError(existing_mask)
+    return existing_mask
 
 
 def actor_frame(sheet: Image.Image, row: int, frame: int = 3) -> Image.Image:
@@ -230,8 +273,8 @@ def render_review_case(
 ) -> dict[str, object]:
     card_x, card_y = card_origin
     table_xy = (card_x + 116, card_y + 145)
-    rear_centers = [(table_xy[0] + TILE, table_xy[1] - 40), (table_xy[0] + TILE * 3, table_xy[1] - 40)]
-    front_centers = [(table_xy[0] + TILE, table_xy[1] + 80), (table_xy[0] + TILE * 3, table_xy[1] + 80)]
+    rear_centers = [(table_xy[0] + TILE, table_xy[1] - 10), (table_xy[0] + TILE * 3, table_xy[1] - 10)]
+    front_centers = [(table_xy[0] + TILE, table_xy[1] + 45), (table_xy[0] + TILE * 3, table_xy[1] + 45)]
 
     include_rear = mode in {"rear-pair", "all-four"}
     include_front = mode in {"front-pair", "all-four"}
@@ -292,7 +335,7 @@ def build_review_lab(chair_back_mask_path: Path) -> list[dict[str, object]]:
         / "runtime-spritesheet-v3.webp"
     ).convert("RGBA")
     table = Image.open(OUTPUT_ROOT / "table.review.long.modern.png").convert("RGBA")
-    table = table.resize((TILE * 4, TILE), Image.Resampling.NEAREST)
+    table = table.resize((TILE * 4, TILE * 2), Image.Resampling.NEAREST)
 
     chair_root = (
         ROOT
@@ -364,9 +407,10 @@ def main() -> None:
     chair_back_mask = derive_chair_back_mask()
     cases = build_review_lab(chair_back_mask)
     manifest = {
-        "version": 1,
+        "version": 2,
         "status": "isolated-staging",
         "activeOfficeImported": False,
+        "supersedes": "assets/game/manifests/review-facility-completion.json",
         "source": str(SOURCE.relative_to(ROOT)).replace("\\", "/"),
         "keyedSource": str(KEYED_SOURCE.relative_to(ROOT)).replace("\\", "/"),
         "grid": [4, 4],
@@ -376,9 +420,9 @@ def main() -> None:
             "id": "review-table-modern-four-seat",
             "objectCount": 1,
             "reservationCapacity": 4,
-            "tableRenderBox": {"width": 4, "height": 1},
-            "facilityFootprint": {"width": 4, "depth": 5},
-            "navigationClearance": {"width": 4, "depth": 7},
+            "tableRenderBox": {"width": 4, "height": 2},
+            "facilityFootprint": {"width": 4, "depth": 3},
+            "navigationClearance": {"width": 4, "depth": 5},
             "seats": SEATS,
             "chairBackMask": str(chair_back_mask.relative_to(ROOT)).replace("\\", "/"),
         },

@@ -223,5 +223,7 @@ The original `table.meeting.empty` review candidate was rejected after the
 isolated lab showed an obsolete wood style and a center anchor that appeared
 to seat the actor on the tabletop. Staging now uses
 `table.review.long.modern`: a slim 4x1 Modern v3 table with two chairs per long
-side. Its four-seat lab validates the front and back seated rows separately and
-together. No side-facing pose is required.
+side. The accepted replacement is a strict straight-front orthographic shell
+with a 4x2 render box; the rejected three-quarter source remains
+provenance-only. Its four-seat lab validates the front and back seated rows
+separately and together. No side-facing pose is required.
