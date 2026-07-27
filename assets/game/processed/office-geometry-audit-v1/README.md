@@ -10,4 +10,5 @@ The images are audit artifacts only. They are not runtime assets and do not
 authorize generation, promotion, or replacement of the Active Office.
 
 Run `npm run art:geometry:audit` to regenerate them and
-`npm run art:geometry:audit:check` to verify committed outputs.
+`npm run art:geometry:audit:check` to perform the full pixel-aware verification.
+Then run `npm run art:geometry:lock` to refresh the portable CI freshness lock.

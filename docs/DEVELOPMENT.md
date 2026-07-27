@@ -4,13 +4,14 @@
 
 - Node.js 24 or newer
 - npm 11 or newer
-- Python 3 with Pillow, NumPy, and SciPy for art processing
+- Python 3 with the pinned art dependency from `requirements-art.txt`
 - Git
 
 ## Setup
 
 ```bash
 npm install
+python -m pip install -r requirements-art.txt
 copy .env.example .env
 npm run dev
 ```

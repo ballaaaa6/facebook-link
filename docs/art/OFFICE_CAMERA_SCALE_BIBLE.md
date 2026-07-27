@@ -81,4 +81,7 @@ future generated sheet without the normal asset review.
 
 Run `npm run art:geometry:bible` to regenerate the board and
 `npm run art:geometry:bible:check` to verify that the committed image matches
-the accepted manifest.
+the accepted manifest. After regenerating the board or audit, run
+`npm run art:geometry:lock` to refresh the portable CI freshness lock. The
+repository gate uses that lock so Cloudflare and GitHub can verify exact inputs
+and outputs without installing image-processing libraries.
