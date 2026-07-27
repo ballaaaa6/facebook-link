@@ -39,9 +39,10 @@ front circulation aisle
 viewer
 ```
 
-The empty wall-clearance row must remain visually empty. A chair render box,
-character render box, desk footprint, prop, or wall object may not extend into
-that row.
+The wall-clearance row must remain free of furniture collision footprints. The
+requested one-tile upward shift allows the tall seated-character artwork to
+visually extend into this band, while chairs, desks, equipment anchors, and
+navigation geometry remain on the floor surface.
 
 The five workstation columns must align between Rows A and B. Modern
 workstation desks are three tiles wide, so consecutive column anchors must be
@@ -67,7 +68,8 @@ The first seating test is intentionally limited to these modern assets:
 - `chair.office.modern.back`
 - `monitor.front`
 - `monitor.back`
-- the modern-library `keyboard.mouse`
+- the derived `keyboard.only`, cropped without resampling from the
+  modern-library `keyboard.mouse`
 - optional modern-library workstation props after the base seating pass passes
 
 The lab must not fall back to the active `officeAssetRegistry`. In particular,
@@ -94,18 +96,18 @@ Part 1 uses the following integer-grid targets in the isolated lab:
 | --- | --- |
 | Back wall | `y=0..3` |
 | Required empty clearance row | `y=4` |
-| Row A chair and actor seat anchors | `y=8` |
-| Row A desk footprints | `y=8..9` |
-| Row B desk footprints | `y=10..11` |
-| Row B chair and actor seat anchors | `y=14` |
-| Front circulation aisle | begins at `y=15` |
+| Row A chair and actor seat anchors | `y=7` |
+| Row A desk footprints | `y=7..8` |
+| Row B desk footprints | `y=9..10` |
+| Row B chair and actor seat anchors | `y=13` |
+| Front circulation aisle | begins at `y=14` |
 | Five workstation column anchors | `x=[5, 8, 11, 14, 17]` |
 
-The pixel-aligned character frame for Row A includes transparent padding near
-the required empty row at `y=4`, but no opaque character pixel or furniture
-footprint may enter that row. Row A chairs may occupy `y=6..8`. Row B
-characters may occupy `y=12..14` and
-Row B chairs may occupy `y=13..14`.
+The upward calibration moves every workstation, seat, approach point,
+navigation node, and front-aisle marker by exactly one tile. Furniture
+footprints do not enter the clearance row at `y=4`. Tall Row A character art
+may visually enter that floor band, matching the requested tighter wall
+spacing. Row B characters and chairs remain on the viewer side of both desks.
 
 Each three-tile desk footprint occupies one of these horizontal ranges:
 
@@ -118,8 +120,9 @@ column 5: x=16..18
 ```
 
 This produces one continuous fifteen-tile-wide workstation block with no
-horizontal gaps. The Row A desk bottom edge at `y=9` touches the Row B desk top
-edge at `y=10`, so there is no route or decorative strip between the rows.
+horizontal gaps. The Row A desk collision bottom edge and Row B collision top
+edge both meet at `y=9`, so there is no route or decorative strip between the
+rows.
 
 ### Test 1A: Empty-room and asset-isolation gate
 
@@ -140,7 +143,8 @@ asset can enter the lab.
 1. Place five Row A desks and five Row B desks at the fixed anchors.
 2. Place the ten matching modern chairs without characters.
 3. Attach `monitor.back` to Row A desks and `monitor.front` to Row B desks.
-4. Attach only the modern-library keyboard to each desk.
+4. Attach only the clean derived `keyboard.only` to each desk. The malformed
+   `keyboard.mouse` must resolve zero times.
 5. Run the structural surface, parent-slot, footprint, and overlap validators.
 6. Assert the exact empty row, desk adjacency, aligned columns, and open front
    aisle described above.
@@ -201,11 +205,11 @@ console errors: 0
 
 Capture these Part 1 artifacts:
 
-1. `two-row-modern-office-part1-furniture-grid-v2.png` — furniture-only debug
+1. `two-row-modern-office-part1-furniture-grid-v3.png` — furniture-only debug
    geometry from Test 1B.
-2. `two-row-modern-office-part1-seated-v2.png` — normal seated result after the
+2. `two-row-modern-office-part1-seated-v3.png` — normal seated result after the
    thirty-second stability gate.
-3. `two-row-modern-office-part1-seated-grid-v2.png` — the same seated result
+3. `two-row-modern-office-part1-seated-grid-v3.png` — the same seated result
    with grid and anchor overlays.
 
 Part 1 ends by showing the normal seated screenshot to the user. No service,
@@ -258,7 +262,8 @@ is promoted to the active runtime by the lab.
 ### Asset provenance
 
 - Every lab furniture, equipment, and decor file resolves under
-  `assets/game/processed/office-library-modern-bright-v1/`.
+  `assets/game/processed/office-library-modern-bright-v1/`, except the
+  provenance-recorded `keyboard.only` crop under the isolated lab directory.
 - The lab renderer has no fallback path to `officeAssetRegistry`.
 - A forbidden legacy asset id or source path fails the test.
 - Exactly ten desks, ten chairs, ten seated actors, and ten workstation monitor
@@ -272,6 +277,8 @@ is promoted to the active runtime by the lab.
 - Every desk and chair is supported by the floor surface.
 - Every monitor, keyboard, and optional prop occupies a compatible named desk
   slot.
+- Each desk exposes four unclaimed prop slots, for forty future prop positions
+  across the ten-desk block.
 - No floor footprint overlaps another footprint except the intentional
   actor-chair seat anchor relationship.
 
@@ -311,12 +318,12 @@ The browser pass uses the real local renderer, not a generated mockup.
 
 Required captures:
 
-1. `two-row-modern-office-layout-v2.png` at 1280 by 720 with the debug grid
+1. `two-row-modern-office-part1-seated-v3.png` at 1280 by 720 with the debug grid
    hidden.
-2. `two-row-modern-office-layout-v2-grid.png` at 1280 by 720 with surface,
+2. `two-row-modern-office-part1-seated-grid-v3.png` at 1280 by 720 with surface,
    clearance-row, seat-anchor, desk-footprint, and aisle overlays visible.
-3. A narrow viewport capture between 390 and 430 pixels wide to confirm that
-   all ten seated employees remain reachable without corrupting geometry.
+3. `two-row-modern-office-part1-furniture-grid-v3.png` at 1280 by 720 with
+   actors hidden and future prop anchors visible.
 
 The normal screenshot passes only when a reviewer can identify the following
 without using the debug overlay:

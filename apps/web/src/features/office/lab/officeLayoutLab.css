@@ -168,6 +168,22 @@
   background: rgba(78, 113, 218, .08);
 }
 
+.office-layout-lab .office-debug-desk-surface {
+  border: 1px solid rgba(30, 188, 190, .9);
+  background: rgba(42, 214, 204, .16);
+}
+
+.office-layout-lab .office-debug-prop-anchor {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border: 1px solid #fff;
+  border-radius: 1px;
+  background: #10aeb1;
+  box-shadow: 0 0 0 1px rgba(7, 70, 76, .82);
+  transform: translate(-50%, -50%);
+}
+
 .office-layout-lab .office-debug-anchor {
   position: absolute;
   width: 8px;

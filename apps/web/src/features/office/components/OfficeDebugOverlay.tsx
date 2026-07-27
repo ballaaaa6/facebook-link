@@ -1,13 +1,18 @@
 import type { OfficeMapDefinition } from "../officeTypes";
+import type { OfficeAssetDefinition, OfficeAssetSlot } from "./officeAssetRegistry";
 
 export function OfficeDebugOverlay({
   map,
   percentX,
   percentY,
+  assetRegistry,
+  slotSets,
 }: {
   map: OfficeMapDefinition;
   percentX: (value: number) => string;
   percentY: (value: number) => string;
+  assetRegistry: Record<string, OfficeAssetDefinition>;
+  slotSets: Record<string, Record<string, OfficeAssetSlot>>;
 }) {
   return (
     <div className="office-debug-overlay" aria-hidden="true">
@@ -62,6 +67,38 @@ export function OfficeDebugOverlay({
           />
         </div>
       ))}
+      {map.workstations.map((station) => {
+        const desk = assetRegistry[station.desk];
+        const slots = desk?.slotSet ? slotSets[desk.slotSet] : undefined;
+        if (!slots) return null;
+        return (
+          <span key={`${station.id}-desk-surface`}>
+            <span
+              className="office-debug-rect office-debug-desk-surface"
+              data-label="desk surface"
+              style={{
+                left: percentX(station.x - 1.35),
+                top: percentY(station.y - 0.95),
+                width: percentX(2.7),
+                height: percentY(0.9),
+              }}
+            />
+            {Object.entries(slots)
+              .filter(([slotId]) => slotId.startsWith("prop-"))
+              .map(([slotId, slot]) => (
+                <span
+                  className="office-debug-prop-anchor"
+                  data-prop-slot={slotId}
+                  key={`${station.id}-${slotId}`}
+                  style={{
+                    left: percentX(station.x + slot.x),
+                    top: percentY(station.y + slot.y),
+                  }}
+                />
+              ))}
+          </span>
+        );
+      })}
     </div>
   );
 }

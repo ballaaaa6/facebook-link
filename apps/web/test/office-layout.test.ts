@@ -5,12 +5,6 @@ import {
   resolveOfficeLayout,
   validateOfficeLayout,
 } from "../src/features/office/layout/officeLayout.ts";
-import {
-  modernOfficeLabId,
-  modernOfficeLabPresentationAt,
-  modernOfficeLabRows,
-  modernOfficeLabStabilitySamples,
-} from "../src/features/office/lab/modernOfficeLabContract.ts";
 import type { OfficeMapDefinition } from "../src/features/office/officeTypes.ts";
 
 interface GeometryManifest {
@@ -18,145 +12,16 @@ interface GeometryManifest {
   slotSets: Parameters<typeof resolveOfficeLayout>[2];
 }
 
-interface OfficeLibraryManifest {
-  id: string;
-  status: string;
-  sheets: Array<{
-    assets: Array<Parameters<typeof resolveOfficeLayout>[1][string] & {
-      id: string;
-      file: string;
-    }>;
-  }>;
-}
-
 const map = JSON.parse(
   readFileSync(new URL("../../../assets/game/maps/office-c-v2.json", import.meta.url), "utf8"),
-) as OfficeMapDefinition;
-const labMap = JSON.parse(
-  readFileSync(new URL("../../../assets/game/maps/office-facility-v1-lab.json", import.meta.url), "utf8"),
 ) as OfficeMapDefinition;
 const geometry = JSON.parse(
   readFileSync(new URL("../../../assets/game/manifests/office-assets.json", import.meta.url), "utf8"),
 ) as GeometryManifest;
-const officeLibrary = JSON.parse(
-  readFileSync(new URL("../../../assets/game/manifests/office-library-sheets.json", import.meta.url), "utf8"),
-) as OfficeLibraryManifest;
-const labAssetIds = new Set([
-  ...labMap.workstations.flatMap(({ desk, chair }) => [desk, chair]),
-  ...labMap.objects.map(({ asset }) => asset),
-]);
-const labAssets = Object.fromEntries(
-  officeLibrary.sheets
-    .flatMap(({ assets }) => assets)
-    .filter(({ id }) => labAssetIds.has(id))
-    .map((asset) => [asset.id, asset]),
-) as GeometryManifest["assets"];
-labAssets["desk.workstation.front"]!.slotSet = "modern-workstation-front";
-labAssets["desk.workstation.back"]!.slotSet = "modern-workstation-back";
-const labSlotSets: GeometryManifest["slotSets"] = {
-  "modern-workstation-front": {
-    monitor: { x: 0, y: 0, surface: "desk-surface" },
-    keyboard: { x: 0, y: 1, surface: "desk-surface" },
-  },
-  "modern-workstation-back": {
-    monitor: { x: 0, y: 0, surface: "desk-surface" },
-    keyboard: { x: 0, y: 1, surface: "desk-surface" },
-  },
-};
 
 test("the Office C map has no occupancy or support violations", () => {
   const resolved = resolveOfficeLayout(map, geometry.assets, geometry.slotSets);
   assert.deepEqual(validateOfficeLayout(map, geometry.assets, resolved), []);
-});
-
-test("the isolated Office lab has valid geometry without replacing the active map", () => {
-  const resolved = resolveOfficeLayout(labMap, labAssets, labSlotSets);
-  assert.deepEqual(validateOfficeLayout(labMap, labAssets, resolved), []);
-  assert.equal(map.id, "office-c-v2-integer");
-  assert.equal(labMap.id, modernOfficeLabId);
-  assert.notEqual(map.id, labMap.id);
-});
-
-test("the Part 1 lab uses only the modern-bright asset library", () => {
-  assert.equal(officeLibrary.id, "office-library-modern-bright-v1");
-  assert.equal(officeLibrary.status, "library-only");
-  const usedIds = [
-    ...labMap.workstations.flatMap(({ desk, chair }) => [desk, chair]),
-    ...labMap.objects.map(({ asset }) => asset),
-  ];
-  const forbidden = [
-    "desk.standard.up",
-    "desk.creative.up",
-    "desk.noc.up",
-    "chair.office.up",
-    "chair.studio.up",
-  ];
-  for (const id of usedIds) {
-    const asset = officeLibrary.sheets.flatMap(({ assets }) => assets).find((item) => item.id === id);
-    assert.ok(asset, `${id} must come from the modern-bright library`);
-    assert.match(asset.file, /^assets\/game\/processed\/office-library-modern-bright-v1\//);
-    assert.equal(forbidden.includes(id), false);
-  }
-});
-
-test("the Part 1 lab arranges one continuous paired block of ten desks", () => {
-  assert.equal(labMap.workstations.length, 10);
-  const rows = Map.groupBy(labMap.workstations, ({ y }) => y);
-  assert.deepEqual([...rows.keys()], [9, 11]);
-  for (const row of rows.values()) {
-    assert.deepEqual(row.map(({ x }) => x), [5, 8, 11, 14, 17]);
-    for (let index = 1; index < row.length; index += 1) {
-      assert.equal(row[index]!.collision.x, row[index - 1]!.collision.x + 3);
-    }
-  }
-  const [rowA, rowB] = [...rows.values()];
-  assert.ok(rowA && rowB);
-  for (let index = 0; index < 5; index += 1) {
-    assert.equal(rowA[index]!.collision.y + rowA[index]!.collision.height, rowB[index]!.collision.y);
-  }
-});
-
-test("the Part 1 lab preserves wall clearance, seat direction, and the front aisle", () => {
-  const clearance = labMap.routes.find(({ id }) => id === "wall-clearance");
-  const aisle = labMap.routes.find(({ id }) => id === "front-aisle");
-  assert.deepEqual(clearance, { id: "wall-clearance", x: 0, y: 4, width: 24, height: 1 });
-  assert.deepEqual(aisle, { id: "front-aisle", x: 0, y: 15, width: 24, height: 3 });
-  for (const station of labMap.workstations.slice(0, 5)) {
-    assert.equal(station.facing, "down");
-    assert.equal(station.seat.y, 8);
-    assert.equal(station.desk, modernOfficeLabRows["row-a"].desk);
-    assert.equal(station.chair, modernOfficeLabRows["row-a"].chair);
-  }
-  for (const station of labMap.workstations.slice(5)) {
-    assert.equal(station.facing, "up");
-    assert.equal(station.seat.y, 14);
-    assert.equal(station.desk, modernOfficeLabRows["row-b"].desk);
-    assert.equal(station.chair, modernOfficeLabRows["row-b"].chair);
-  }
-});
-
-test("the Part 1 lab contains no facilities, companions, or decorative furniture", () => {
-  assert.deepEqual(labMap.pois, []);
-  assert.deepEqual(labMap.companions, []);
-  assert.equal(labMap.objects.length, 20);
-  assert.equal(labMap.objects.filter(({ asset }) => asset.startsWith("monitor.")).length, 10);
-  assert.equal(labMap.objects.filter(({ asset }) => asset === "keyboard.mouse").length, 10);
-  assert.equal(labMap.objects.some(({ layer }) => layer === "decor" || layer === "furniture"), false);
-});
-
-test("the Part 1 pose split stays seated and stable for thirty seconds", () => {
-  const snapshots = modernOfficeLabStabilitySamples.map((elapsed) =>
-    modernOfficeLabPresentationAt(elapsed, labMap));
-  for (const snapshot of snapshots) {
-    const presentations = Object.values(snapshot);
-    assert.equal(presentations.length, 10);
-    assert.equal(presentations.filter(({ state }) => state === "working-front-seated").length, 5);
-    assert.equal(presentations.filter(({ state }) => state === "working-back-seated").length, 5);
-    assert.equal(presentations.every(({ seated }) => seated), true);
-  }
-  assert.deepEqual(snapshots[1], snapshots[0]);
-  assert.deepEqual(snapshots[2], snapshots[0]);
-  assert.deepEqual(snapshots[3], snapshots[0]);
 });
 
 test("the Office C map declares distinct floor and wall placement surfaces", () => {

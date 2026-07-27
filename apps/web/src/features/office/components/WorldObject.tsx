@@ -12,6 +12,7 @@ export function WorldObject({
   percentY,
   assetRegistry = officeAssetRegistry,
   className = "",
+  zIndexOverride,
 }: {
   object: ResolvedOfficeObject;
   worldWidth: number;
@@ -20,6 +21,7 @@ export function WorldObject({
   percentY: (value: number) => string;
   assetRegistry?: Record<string, OfficeAssetDefinition>;
   className?: string;
+  zIndexOverride?: number;
 }) {
   const asset = assetRegistry[object.asset];
   if (!asset) return null;
@@ -33,6 +35,9 @@ export function WorldObject({
       className={`world-object world-object-${anchor} world-layer-${object.layer} world-support-${object.support} ${className}`.trim()}
       src={asset.file}
       data-asset-id={object.asset}
+      data-parent-id={object.parentId}
+      data-slot={object.slot}
+      data-support={object.support}
       alt=""
       aria-hidden="true"
       style={{
@@ -41,7 +46,7 @@ export function WorldObject({
         width: `${(asset.renderBox.width / worldWidth) * 100}%`,
         height: `${(asset.renderBox.height / worldHeight) * 100}%`,
         objectFit: asset.fit ?? "contain",
-        zIndex,
+        zIndex: zIndexOverride ?? zIndex,
       }}
     />
   );

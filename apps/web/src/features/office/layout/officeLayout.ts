@@ -19,11 +19,9 @@ export interface OfficeAssetGeometryLike {
   footprint?: { width: number; depth: number };
   slotSet?: string;
 }
-
 export interface OfficeSlotLike extends OfficePoint {
   surface: OfficeSupport;
 }
-
 export interface ResolvedOfficeObject extends OfficeMapObject {
   x: number;
   y: number;
@@ -260,6 +258,10 @@ export function validateOfficeLayout(
     for (const [name, value] of [
       ["renderBox.width", geometry.renderBox.width],
       ["renderBox.height", geometry.renderBox.height],
+    ] as const) {
+      if (!Number.isFinite(value) || value <= 0) issues.push(`${assetId}.${name} must be positive`);
+    }
+    for (const [name, value] of [
       ["footprint.width", geometry.footprint?.width],
       ["footprint.depth", geometry.footprint?.depth],
     ] as const) {

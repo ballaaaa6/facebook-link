@@ -2,7 +2,7 @@ import chairBack from "../../../../../../assets/game/processed/office-library-mo
 import chairFront from "../../../../../../assets/game/processed/office-library-modern-bright-v1/chair-office-modern-v1/chair.office.modern.front.png";
 import deskBack from "../../../../../../assets/game/processed/office-library-modern-bright-v1/env-01-workstation-static/desk.workstation.back.png";
 import deskFront from "../../../../../../assets/game/processed/office-library-modern-bright-v1/env-01-workstation-static/desk.workstation.front.png";
-import keyboardMouse from "../../../../../../assets/game/processed/office-library-modern-bright-v1/env-01-workstation-static/keyboard.mouse.png";
+import keyboardOnly from "../../../../../../assets/game/processed/office-facility-v1-lab/derived/keyboard.only.png";
 import monitorBack from "../../../../../../assets/game/processed/office-library-modern-bright-v1/env-01-workstation-static/monitor.back.png";
 import monitorFront from "../../../../../../assets/game/processed/office-library-modern-bright-v1/env-01-workstation-static/monitor.front.png";
 import chairForeground from "../../../../../../assets/game/processed/office-interactions-v1/foreground-masks/chair-office-modern-foreground.png";
@@ -13,6 +13,8 @@ import type {
 
 export const modernOfficeLabAssetSourcePrefix =
   "assets/game/processed/office-library-modern-bright-v1/";
+export const modernOfficeLabDerivedAssetSourcePrefix =
+  "assets/game/processed/office-facility-v1-lab/derived/";
 
 export const modernOfficeLabAssetRegistry: Record<string, OfficeAssetDefinition> = {
   "desk.workstation.front": {
@@ -55,8 +57,8 @@ export const modernOfficeLabAssetRegistry: Record<string, OfficeAssetDefinition>
   },
   "monitor.front": {
     file: monitorFront,
-    physicalScale: { width: 2, depth: 1, height: 2 },
-    renderBox: { width: 2, height: 2 },
+    physicalScale: { width: 1.4, depth: 0.5, height: 1.4 },
+    renderBox: { width: 1.4, height: 1.4 },
     footprint: { width: 2, depth: 1 },
     layer: "equipment",
     anchor: "bottom-center",
@@ -64,18 +66,18 @@ export const modernOfficeLabAssetRegistry: Record<string, OfficeAssetDefinition>
   },
   "monitor.back": {
     file: monitorBack,
-    physicalScale: { width: 2, depth: 1, height: 2 },
-    renderBox: { width: 2, height: 2 },
+    physicalScale: { width: 1.4, depth: 0.5, height: 1.4 },
+    renderBox: { width: 1.4, height: 1.4 },
     footprint: { width: 2, depth: 1 },
     layer: "equipment",
     anchor: "bottom-center",
     supports: ["desk-surface"],
   },
-  "keyboard.mouse": {
-    file: keyboardMouse,
-    physicalScale: { width: 2, depth: 1, height: 1 },
-    renderBox: { width: 2, height: 1 },
-    footprint: { width: 2, depth: 1 },
+  "keyboard.only": {
+    file: keyboardOnly,
+    physicalScale: { width: 1.2, depth: 0.5, height: 0.65 },
+    renderBox: { width: 1.2, height: 0.65 },
+    footprint: { width: 1, depth: 1 },
     layer: "equipment",
     anchor: "bottom-center",
     supports: ["desk-surface"],
@@ -84,12 +86,20 @@ export const modernOfficeLabAssetRegistry: Record<string, OfficeAssetDefinition>
 
 export const modernOfficeLabSlotSets: Record<string, Record<string, OfficeAssetSlot>> = {
   "modern-workstation-front": {
-    monitor: { x: 0, y: 0, surface: "desk-surface" },
-    keyboard: { x: 0, y: 1, surface: "desk-surface" },
+    monitor: { x: 0, y: -0.55, surface: "desk-surface" },
+    keyboard: { x: 0, y: -0.3, surface: "desk-surface" },
+    "prop-front-left": { x: -1, y: -0.1, surface: "desk-surface" },
+    "prop-front-right": { x: 1, y: -0.1, surface: "desk-surface" },
+    "prop-rear-left": { x: -1, y: -0.55, surface: "desk-surface" },
+    "prop-rear-right": { x: 1, y: -0.55, surface: "desk-surface" },
   },
   "modern-workstation-back": {
-    monitor: { x: 0, y: 0, surface: "desk-surface" },
-    keyboard: { x: 0, y: 1, surface: "desk-surface" },
+    monitor: { x: 0, y: -0.55, surface: "desk-surface" },
+    keyboard: { x: 0, y: -0.3, surface: "desk-surface" },
+    "prop-front-left": { x: -1, y: -0.1, surface: "desk-surface" },
+    "prop-front-right": { x: 1, y: -0.1, surface: "desk-surface" },
+    "prop-rear-left": { x: -1, y: -0.55, surface: "desk-surface" },
+    "prop-rear-right": { x: 1, y: -0.55, surface: "desk-surface" },
   },
 };
 

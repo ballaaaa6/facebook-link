@@ -69,6 +69,7 @@ export function OfficeLayoutLabPage() {
       </section>
       <footer>
         <span>Row A: faces viewer · Row B: faces away</span>
+        <span>Keyboard-only: 10 · Future prop slots: 40</span>
         <span>Facilities: 0 · Legacy furniture: 0</span>
         <strong>{debugGeometry ? showAgents ? "SEATED GRID" : "FURNITURE GRID" : "LAB ONLY"}</strong>
       </footer>

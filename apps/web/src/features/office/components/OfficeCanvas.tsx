@@ -3,7 +3,10 @@ import type { OfficeAgentView, OfficeMode } from "@affiliate-ops/contracts";
 import "../officeScene.css";
 import activeOfficeMapJson from "../../../../../../assets/game/maps/office-c-v2.json";
 import type { CharacterDefinition } from "../characterRegistry";
-import { resolveOfficeLayout, validateOfficeLayout } from "../layout/officeLayout";
+import {
+  resolveOfficeLayout,
+  validateOfficeLayout,
+} from "../layout/officeLayout";
 import type { AgentPresentation, OfficeMapDefinition } from "../officeTypes";
 import { fittedTileSize } from "../motion/pixelGeometry";
 import { AgentEntity, type AgentPreviewRequest } from "./AgentEntity";
@@ -18,6 +21,7 @@ import {
   type OfficeAssetSlot,
 } from "./officeAssetRegistry";
 import { officeSceneReference, officeSceneTimeAt } from "./officeSceneRuntime";
+import { pairedObjectDepth } from "./workstationLayering";
 import { WorldObject } from "./WorldObject";
 
 const activeOfficeMap = activeOfficeMapJson as unknown as OfficeMapDefinition;
@@ -194,6 +198,9 @@ export function OfficeCanvas({
             worldHeight={officeMap.height}
             percentX={percentX}
             percentY={percentY}
+            zIndexOverride={workstationLayering === "paired-seating"
+              ? pairedObjectDepth(object, officeMap.workstations)
+              : undefined}
           />
         ))}
         {officeMap.workstations.map((station) => {
@@ -203,14 +210,15 @@ export function OfficeCanvas({
           if (!desk || !chair) return null;
           const deskDepth = 100 + Math.round(station.y * 20);
           const nearPairedRow = workstationLayering === "paired-seating" && station.facing === "up";
-          const deskBaseDepth = nearPairedRow ? deskDepth - 4 : deskDepth - 2;
-          const deskForegroundDepth = nearPairedRow ? deskDepth - 4 : deskDepth + 2;
+          const deskBaseDepth = nearPairedRow ? deskDepth - 5 : deskDepth - 2;
+          const deskForegroundDepth = nearPairedRow ? deskDepth - 2 : deskDepth + 2;
           return (
             <div
               className="workstation-rig"
               data-chair-asset={station.chair}
               data-desk-asset={station.desk}
               data-facing={station.facing}
+              data-station-id={station.id}
               key={station.id}
             >
               <img
@@ -310,7 +318,15 @@ export function OfficeCanvas({
           />
         ))}
         {debugGeometry
-          ? <OfficeDebugOverlay map={officeMap} percentX={percentX} percentY={percentY} />
+          ? (
+            <OfficeDebugOverlay
+              assetRegistry={assetRegistry}
+              map={officeMap}
+              percentX={percentX}
+              percentY={percentY}
+              slotSets={slotSets}
+            />
+          )
           : null}
           </div>
         </div>
