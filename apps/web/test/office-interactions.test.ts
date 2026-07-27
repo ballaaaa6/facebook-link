@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import interactionAssets from "../../../assets/game/manifests/office-interaction-assets.json" with { type: "json" };
 import interactionLab from "../../../assets/game/manifests/office-interaction-lab.json" with { type: "json" };
+import morphologyPilot from "../../../assets/game/manifests/character-morphology-pilot.json" with { type: "json" };
 import reviewFacility from "../../../assets/game/manifests/review-decor-completion.json" with { type: "json" };
 import {
   characterRows15,
@@ -32,6 +33,44 @@ test("Einstein has a complete 8x15 staging atlas contract", () => {
     ],
   );
   assert.equal(characterRows15["working-front-seated"], 14);
+});
+
+test("the morphology pilot closes Doraemon and proves human and robot 8x15 atlases", () => {
+  assert.equal(morphologyPilot.status, "staging-only");
+  assert.equal(morphologyPilot.activeOfficeImported, false);
+  assert.deepEqual(morphologyPilot.frame1x, [96, 104]);
+  assert.deepEqual(morphologyPilot.frame2x, [192, 208]);
+  assert.equal(morphologyPilot.characters.length, 3);
+
+  const expected = new Map([
+    ["doraemon", { baseRows: 13, extensionRows: 2 }],
+    ["anna", { baseRows: 9, extensionRows: 6 }],
+    ["ai-workbot", { baseRows: 9, extensionRows: 6 }],
+  ]);
+  for (const character of morphologyPilot.characters) {
+    const contract = expected.get(character.id);
+    assert.ok(contract);
+    assert.equal(character.rows, 15);
+    assert.equal(character.columns, 8);
+    assert.equal(character.baseRows, contract.baseRows);
+    assert.equal(character.extensionRows.length, contract.extensionRows);
+    assert.equal(character.baseRowsPreservedPixelExact, true);
+    assert.equal(character.activeOfficeImported, false);
+    assert.ok(character.extensionRows.every(({ activeFrames }) => activeFrames === 6));
+  }
+
+  assert.deepEqual(
+    morphologyPilot.characters
+      .find(({ id }) => id === "anna")
+      ?.extensionRows.map(({ state }) => state),
+    morphologyPilot.rowOrder,
+  );
+  assert.deepEqual(
+    morphologyPilot.characters
+      .find(({ id }) => id === "ai-workbot")
+      ?.extensionRows.map(({ state }) => state),
+    morphologyPilot.rowOrder,
+  );
 });
 
 test("the held-prop sheet extracts all 16 declared items", () => {

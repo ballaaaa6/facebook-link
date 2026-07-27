@@ -17,6 +17,13 @@ final workstation contract is 8x15 after adding the required
 `working-back-seated` and `working-front-seated` rows. Einstein's accepted
 seated-working source is the morphology and anchor reference for those rows.
 
+The first post-Einstein morphology pilot is complete in staging. Doraemon v4
+adds only rows 13-14 to its accepted 8x13 atlas. Anna v3 and AI Workbot v3 add
+rows 9-14 in the canonical order and demonstrate that the Einstein motion
+semantics transfer to both a human-like silhouette and a compact non-human
+robot. The active Office registry still imports Doraemon v3, Anna v2, and AI
+Workbot v2; promotion waits for the replacement interior pass.
+
 The office map owns placement. Every agent has a `seat`, `stand`, and desk `collision` rectangle so rendering can keep characters out of furniture and preserve a future pathfinding boundary.
 
 ## Imported Petdex candidate packs

@@ -1,5 +1,11 @@
 import einsteinSheet from "../../../../../../assets/game/characters/einstein/runtime-spritesheet-v3.webp";
 import einsteinSheet2x from "../../../../../../assets/game/characters/einstein/runtime-spritesheet-v3@2x.webp";
+import doraemonPilotSheet from "../../../../../../assets/game/characters/doraemon/runtime-spritesheet-v4.webp";
+import doraemonPilotSheet2x from "../../../../../../assets/game/characters/doraemon/runtime-spritesheet-v4@2x.webp";
+import annaPilotSheet from "../../../../../../assets/game/characters/anna/runtime-spritesheet-v3.webp";
+import annaPilotSheet2x from "../../../../../../assets/game/characters/anna/runtime-spritesheet-v3@2x.webp";
+import aiWorkbotPilotSheet from "../../../../../../assets/game/characters/ai-workbot/runtime-spritesheet-v3.webp";
+import aiWorkbotPilotSheet2x from "../../../../../../assets/game/characters/ai-workbot/runtime-spritesheet-v3@2x.webp";
 import coffeeMug from "../../../../../../assets/game/processed/office-interactions-v1/held-props/coffee-mug.png";
 import envelope from "../../../../../../assets/game/processed/office-interactions-v1/held-props/envelope.png";
 import juiceBox from "../../../../../../assets/game/processed/office-interactions-v1/held-props/juice-box.png";
@@ -49,6 +55,33 @@ export const einstein15RowStagingAsset = {
   rows: 15,
   columns: 8,
   frame: { width: 96, height: 104 },
+} as const;
+
+export const characterMorphologyPilotAssets = {
+  doraemon: {
+    sheet: doraemonPilotSheet,
+    sheet2x: doraemonPilotSheet2x,
+    rows: 15,
+    columns: 8,
+    frame: { width: 96, height: 104 },
+    status: "staging-only",
+  },
+  anna: {
+    sheet: annaPilotSheet,
+    sheet2x: annaPilotSheet2x,
+    rows: 15,
+    columns: 8,
+    frame: { width: 96, height: 104 },
+    status: "staging-only",
+  },
+  "ai-workbot": {
+    sheet: aiWorkbotPilotSheet,
+    sheet2x: aiWorkbotPilotSheet2x,
+    rows: 15,
+    columns: 8,
+    frame: { width: 96, height: 104 },
+    status: "staging-only",
+  },
 } as const;
 
 export const heldPropAssetCatalog: Record<HeldPropId, string> = {

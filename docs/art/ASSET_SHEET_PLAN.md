@@ -360,6 +360,10 @@ rows are added.
   facility rows as separate eight-cell strips, retain the accepted
   character-only rear/front seated-working sources, then pack and validate the
   complete atlas before extending any other PetDex identity.
+- The first transfer pilot is accepted in staging: Doraemon closes its existing
+  8x13 sheet with the two seated rows; Anna supplies the human-like proof; AI
+  Workbot supplies the non-human robot proof. Their versioned 8x15 atlases are
+  cataloged but not imported by the active Office.
 - Einstein defines the semantic row order, standing and seated anchors,
   character-relative prop scale, and interaction hand-anchor contract. Each
   later PetDex character still preserves its own base identity, proportions,

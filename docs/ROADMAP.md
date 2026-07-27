@@ -70,10 +70,21 @@ Implementation status (2026-07-27):
   vase, sculptures, an hourglass, a globe, and a terrarium. Existing Printer,
   Water, and Coffee assets are reused instead of regenerated. All sixteen
   cells are extracted and registered; the active Office remains unchanged.
+- Complete: closed Doraemon as the second 8x15 character by adding only its two
+  seated-work rows, then completed a morphology transfer pilot with Anna
+  (human-like) and AI Workbot (non-human robot). All three versioned atlases
+  preserve their accepted base rows pixel-exactly, contain six active frames
+  plus two empty cells per new row, and are available only through the staging
+  asset catalog. The active Office registry remains on the prior versions.
 - Held at the intended gate: none of these staging assets replaces the active
   Office interior yet. The next tranche is facility-by-facility composition
   geometry for the complete 14-object/20-slot Facility v1 set, followed by the
   full interior swap only after the final map validates those slots.
+
+The next character-art tranche is to extend the remaining active PetDex roster
+from the same validated six-row contract. Batch generation can proceed by
+morphology family, while promotion and map placement remain a single later
+interior-swap gate.
 
 ## M2 — One-account Shopee pilot
 

@@ -197,6 +197,25 @@ Facility v1 geometry on the replacement map. The representative composition
 lab below supplies candidate offsets without inferring final coordinates from
 the current 10-seat active map.
 
+### Morphology transfer result
+
+The next gated character step is also complete in staging:
+
+- Doraemon v4 adds `working-back-seated` and `working-front-seated` to the
+  accepted v3 8x13 base.
+- Anna v3 adds all six canonical extension rows and validates Einstein as a
+  human-like motion reference.
+- AI Workbot v3 adds all six canonical extension rows while preserving its
+  compact robot head, hands, and short modular legs.
+- All prior rows remain decoded-RGBA pixel exact. Every new row has six active
+  frames and two empty cells.
+- The atlases are imported only by the staging interaction asset catalog. The
+  active Office registry and map remain unchanged.
+
+Build measurements and the visual contact sheet are stored in
+`assets/game/manifests/character-morphology-pilot.json`; the repeatable build is
+`scripts/process-character-morphology-pilot.py`.
+
 ### Isolated facility lab result
 
 The eight representative facilities were subsequently composed in a separate
