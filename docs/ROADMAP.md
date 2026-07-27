@@ -247,19 +247,33 @@ Decision recorded on 2026-07-27:
 - Reopen character rights clearance or replacement only through an explicit
   owner decision before commercialization, currently represented by M6.
 
-### Next Office tranche — staging-to-active integration
+### Office Candidate review — Steps 21-23 complete, awaiting owner review
 
 This tranche requires no character generation or batch pose calibration:
 
-1. Create a promotion manifest that selects the accepted Geometry v3 structure,
-   workstation, furniture, and facility composites from Steps 5-16.
-2. Integrate the selected staging assets behind a reversible Active Office
-   feature flag while leaving the current character art unchanged.
-3. Exercise the existing character and companion states against the promoted
-   scene. Fix only verified placement, occlusion, or interaction regressions.
-4. Run contract, production-build, desktop, tablet, and mobile browser QA, then
-   record explicit owner acceptance before setting `activeOfficePromotion` to
-   true.
+21. `office-candidate-v1.json` locks the accepted Geometry v3 structure,
+    workstation, deployment, and 77-record derived manifest by hash. It also
+    locks four Active Office baseline files and keeps both promotion flags false.
+22. The development-only `?lab=office-candidate-v1` route provides live,
+    workstation, facility, and roster review scenarios. The workstation scene
+    replaces neutral silhouettes with the existing staged 8x15 characters.
+23. Review revision `r01` records ten PNG captures, a 69-second stability run,
+    all eighteen office-agent identities, Boba, all thirteen composites, zero
+    broken images, zero browser warnings/errors, and responsive passes at
+    desktop, 768 px, 390 px, and 320 px.
+
+Status on 2026-07-27: `awaiting-owner-review`, with
+`activeOfficePromotion: false`, `commercialCharacterApproval: false`, and
+`ownerApproval: false`. Evidence is maintained in
+`docs/OFFICE_CANDIDATE_V1_REVIEW.md`.
+
+### Active Office promotion — Step 24 blocked on explicit approval
+
+24. After the owner approves a specific Candidate revision, wire that exact
+    shared scene into Active Office behind a reversible feature flag, run the
+    production and browser parity gates, and retain `office-c-v2` as rollback.
+    Do not begin this step while the Candidate status is
+    `awaiting-owner-review` or `changes-requested`.
 
 ## M2 — One-account Shopee pilot
 

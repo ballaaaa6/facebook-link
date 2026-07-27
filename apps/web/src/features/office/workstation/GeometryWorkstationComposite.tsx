@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import type {
   OfficeWorkstationBundleV1,
   OfficeWorkstationPreset,
@@ -19,6 +19,7 @@ import {
 } from "./workstationBundleRuntime";
 
 interface GeometryWorkstationCompositeProps {
+  actor?: ReactNode;
   bundle: OfficeWorkstationBundleV1;
   debug: boolean;
   elapsedMs: number;
@@ -50,6 +51,7 @@ function NeutralCalibrationActor({ pose }: { pose: "seated" | "standing" }) {
 }
 
 export function GeometryWorkstationComposite({
+  actor,
   bundle,
   debug,
   elapsedMs,
@@ -163,8 +165,8 @@ export function GeometryWorkstationComposite({
         style={{ zIndex: depths.chair }}
       />
       {showActor && (
-        <div className="workstation-actor-layer" style={{ zIndex: depths.actor }}>
-          <NeutralCalibrationActor pose={pose} />
+        <div className={`workstation-actor-layer is-${pose}`} style={{ zIndex: depths.actor }}>
+          {actor ?? <NeutralCalibrationActor pose={pose} />}
         </div>
       )}
       <img alt="" className="workstation-desk-part" src={parts.foreground} style={{ zIndex: depths["desk-foreground"] }} />

@@ -1,6 +1,6 @@
 # Office Geometry Remediation Roadmap
 
-Status: Steps 1-4 accepted; Steps 5-16 accepted-staging on 2026-07-27
+Status: Steps 1-4 accepted; Steps 5-16 accepted-staging; Steps 21-23 review-candidate on 2026-07-27
 Approved: 2026-07-27
 Owner: Art, asset-pipeline, shared-contract, and Office-rendering workstreams
 Scope: Reconcile the existing Office asset library with top-down placement,
@@ -517,3 +517,44 @@ The development-only derived-asset lab verifies the thirteen composites with
 a neutral actor and Geometry v3 labels. Active Office imports remain unchanged
 and promotion remains a separate owner decision. Detailed evidence is in
 `docs/OFFICE_DERIVED_ASSET_WAVES_ACCEPTANCE.md`.
+
+## 18. Steps 17-20 — Removed from the prototype plan
+
+The owner removed the proposed character relicensing, replacement generation,
+and full-roster pose recalibration work from the current prototype plan. The
+existing nineteen character directories and their existing poses remain
+frozen for internal review. No replacement character assets or generation
+code are part of the current candidate.
+
+Commercial rights clearance remains a future pre-commercialization gate.
+Nothing in this decision changes the `pending-commercial-review` status of the
+current character art.
+
+## 19. Steps 21-23 — Isolated Office Candidate v1 review
+
+Status: Complete and awaiting owner review on 2026-07-27
+
+The candidate is isolated behind the development-only
+`?lab=office-candidate-v1` route. It combines the accepted Office Map v2,
+Geometry v3 workstation bundle, structural deployment, derived facility
+composites, the existing eighteen active/alternate character identities, and
+Boba without changing Active Office.
+
+The review suite covers the live-runtime compatibility view, ten Geometry v3
+workstations, all thirteen derived composites, and the complete frozen roster.
+Revision `r01` contains ten screenshots, a 69-second stability run, zero
+browser console warnings or errors, zero broken images, and responsive checks
+at desktop, tablet, 390 px, and 320 px widths. Machine-readable results are in
+`assets/game/manifests/office-candidate-review-r01.json`; the owner-facing
+summary is in `docs/OFFICE_CANDIDATE_V1_REVIEW.md`.
+
+## 20. Step 24 — Active Office promotion
+
+Status: Blocked pending explicit owner approval
+
+Promotion is not part of the candidate review. Both
+`activeOfficePromotion` and `commercialCharacterApproval` remain false. Step
+24 may begin only after the owner approves a named candidate revision. The
+promotion must remain reversible, preserve `office-c-v2` as the rollback
+target, reuse the reviewed scene without regenerating characters or poses, and
+repeat contract, production-build, stability, and responsive browser checks.

@@ -1,0 +1,100 @@
+{
+  "version": 1,
+  "id": "office-candidate-v1",
+  "status": "review-candidate",
+  "activeOfficePromotion": false,
+  "commercialCharacterApproval": false,
+  "sources": {
+    "structuralMap": {
+      "file": "assets/game/maps/office-ten-v1.json",
+      "sha256": "603859b468061017023b2c4720f8d082bf9b8a46306c82dcd49cd416cc94c63d"
+    },
+    "workstationBundle": {
+      "file": "assets/game/manifests/office-workstation-bundle-v1.json",
+      "sha256": "7d0e8071db12a1288e4aaf41ad88fe623d7cc877e564269dc713f5e3bd1db5e0"
+    },
+    "workstationDeployment": {
+      "file": "assets/game/manifests/office-workstation-deployment-v1.json",
+      "sha256": "f522b6b88ebf6654fe19335c88d03826694b6472c835f037f1fd6f86447eeff4"
+    },
+    "derivedAssets": {
+      "file": "assets/game/manifests/office-derived-assets-v1.json",
+      "sha256": "9f7ec932deb92b0f1ac841d78e4b68e797ca9d691e48357d1747a038ea59ec3f"
+    }
+  },
+  "activeOfficeBaseline": [
+    {
+      "file": "assets/game/maps/office-c-v2.json",
+      "sha256": "c40db448eb8e6d0f3fea67a41f716c0108aca63a4136cfad15293534273c618d"
+    },
+    {
+      "file": "apps/web/src/features/office/components/officeAssetRegistry.ts",
+      "sha256": "1c8752653d8818e57564f28f61870ae3eddbdabc8e46229e1364c546ec7607ef"
+    },
+    {
+      "file": "apps/web/src/features/office/characterRegistry.ts",
+      "sha256": "f76306c173e43fce5a14d13f7f5d1531a5d36532079186c325f6d7a1fba3118f"
+    },
+    {
+      "file": "apps/web/src/features/office/OfficePage.tsx",
+      "sha256": "4f6c73fc07396e698882daa496332f741cbe19c5d4647dd72f9982e74079e13b"
+    }
+  ],
+  "roster": {
+    "activeAgentIds": [
+      "market-scout",
+      "product-ranker",
+      "growth-strategist",
+      "performance-analyst",
+      "gemini-copywriter",
+      "flow-visual-producer",
+      "link-attribution",
+      "qa-editor",
+      "publisher",
+      "session-keeper"
+    ],
+    "alternateCharacterIds": [
+      "asuka-2",
+      "baobao-2",
+      "gugugaga",
+      "itachi",
+      "jesus",
+      "lian-3",
+      "nai-long",
+      "qq-penguin"
+    ],
+    "companionIds": ["boba"]
+  },
+  "selectedCompositeIds": [
+    "sofa.modern.three-seat",
+    "sofa.modern.two-seat",
+    "table.board-game",
+    "table.side",
+    "cabinet.storage.low",
+    "cart.utility",
+    "bookshelf.low",
+    "counter.coffee",
+    "door.closed",
+    "sofa.sectional",
+    "table.cafe.round",
+    "table.coffee",
+    "table.meeting.empty"
+  ],
+  "scenarios": ["live", "workstations", "facilities", "roster"],
+  "review": {
+    "revision": "r01",
+    "status": "awaiting-owner-review",
+    "ownerApproval": false,
+    "captureDirectory": "assets/game/processed/office-candidate-v1/qa/review-r01",
+    "savedImageCount": 10
+  },
+  "acceptance": {
+    "activeAgentCount": 10,
+    "alternateCharacterCount": 8,
+    "companionCount": 1,
+    "derivedRecordCount": 77,
+    "requiredDurationSeconds": 60,
+    "consoleWarningsAllowed": 0,
+    "consoleErrorsAllowed": 0
+  }
+}

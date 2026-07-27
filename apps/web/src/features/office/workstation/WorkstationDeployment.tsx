@@ -3,9 +3,11 @@ import type {
   OfficeWorkstationPreset,
   WorkstationDeploymentV1,
 } from "@affiliate-ops/contracts";
+import type { ReactNode } from "react";
 import { GeometryWorkstationComposite } from "./GeometryWorkstationComposite";
 
 interface WorkstationDeploymentProps {
+  actor?: ReactNode;
   bundle: OfficeWorkstationBundleV1;
   debug: boolean;
   elapsedMs: number;
@@ -18,6 +20,7 @@ interface WorkstationDeploymentProps {
 }
 
 export function WorkstationDeployment({
+  actor,
   bundle,
   debug,
   elapsedMs,
@@ -30,6 +33,7 @@ export function WorkstationDeployment({
 }: WorkstationDeploymentProps) {
   return (
     <GeometryWorkstationComposite
+      actor={actor}
       bundle={bundle}
       debug={debug}
       elapsedMs={elapsedMs}
