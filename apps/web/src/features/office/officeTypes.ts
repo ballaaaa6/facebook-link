@@ -11,6 +11,7 @@ export type OfficeSupport =
   | "rack-surface"
   | "wall"
   | "ceiling";
+export type OfficeStructuralSupport = Extract<OfficeSupport, "floor" | "wall" | "ceiling">;
 
 export interface OfficePoint {
   x: number;
@@ -22,9 +23,15 @@ export interface OfficeRectangle extends OfficePoint {
   height: number;
 }
 
+export interface OfficeSurface extends OfficeRectangle {
+  id: string;
+  support: OfficeStructuralSupport;
+}
+
 export interface OfficeWorkstation {
   id: string;
   zone: string;
+  surfaceId: string;
   desk: string;
   chair: string;
   x: number;
@@ -59,6 +66,7 @@ export interface OfficeNavigationNode extends OfficePoint {
 export interface OfficeMapObject {
   id: string;
   asset: string;
+  surfaceId?: string;
   x?: number;
   y?: number;
   parentId?: string;
@@ -81,6 +89,7 @@ export interface OfficeMapDefinition {
   gridSize?: number;
   width: number;
   height: number;
+  surfaces: OfficeSurface[];
   zones: Array<{ id: string; label: string; x: number; y: number; width: number; height: number; capacity: number }>;
   workstations: OfficeWorkstation[];
   pois: OfficePoi[];

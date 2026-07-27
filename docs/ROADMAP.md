@@ -83,6 +83,10 @@ Implementation status (2026-07-27):
   accepted base rows,
   records provisional hand/seat calibration data, and is registered only in
   the staging catalog. The active Office registry and map remain unchanged.
+- Complete: added explicit `floor` and `wall` regions to the active Office map.
+  Coordinate-placed objects and workstations now name their structural
+  surface; runtime validation rejects incompatible supports, anchors or
+  footprints outside the region, and supported props that bypass parent slots.
 - Held at the intended gate: none of these staging assets replaces the active
   Office interior yet. The next tranche is facility-by-facility composition
   geometry for the complete 14-object/20-slot Facility v1 set, followed by the

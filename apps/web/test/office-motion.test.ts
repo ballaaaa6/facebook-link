@@ -11,6 +11,7 @@ import type { OfficeMapDefinition, OfficeWorkstation } from "../src/features/off
 const station: OfficeWorkstation = {
   id: "market-scout",
   zone: "research",
+  surfaceId: "floor",
   desk: "desk",
   chair: "chair",
   x: 0,
@@ -27,6 +28,10 @@ const station: OfficeWorkstation = {
 const map: OfficeMapDefinition = {
   width: 12,
   height: 6,
+  surfaces: [
+    { id: "floor", support: "floor", x: 0, y: 0, width: 12, height: 6 },
+    { id: "wall", support: "wall", x: 0, y: 0, width: 12, height: 2 },
+  ],
   zones: [],
   workstations: [station],
   pois: [{ id: "water", activity: "water", point: { x: 11, y: 0 }, navNode: "end", capacity: 1, duration: 2, label: "Water" }],

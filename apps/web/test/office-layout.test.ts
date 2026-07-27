@@ -24,6 +24,25 @@ test("the Office C map has no occupancy or support violations", () => {
   assert.deepEqual(validateOfficeLayout(map, geometry.assets, resolved), []);
 });
 
+test("the Office C map declares distinct floor and wall placement surfaces", () => {
+  assert.deepEqual(
+    map.surfaces.map(({ id, support }) => ({ id, support })),
+    [
+      { id: "office-floor", support: "floor" },
+      { id: "back-wall", support: "wall" },
+    ],
+  );
+  for (const object of map.objects) {
+    if (object.parentId) {
+      assert.equal(object.surfaceId, undefined);
+      continue;
+    }
+    const surface = map.surfaces.find(({ id }) => id === object.surfaceId);
+    assert.ok(surface, `${object.id} needs an explicit structural surface`);
+    assert.ok(geometry.assets[object.asset]?.supports.includes(surface.support));
+  }
+});
+
 test("the Office C authoring contract uses integer tiles only", () => {
   assert.equal(map.width, 36);
   assert.equal(map.height, 24);
@@ -111,6 +130,65 @@ test("surface slots cannot be claimed twice", () => {
   });
   const resolved = resolveOfficeLayout(duplicate, geometry.assets, geometry.slotSets);
   assert.ok(resolved.issues.some((issue) => issue.includes("parent slot already occupied")));
+});
+
+test("wall assets cannot be placed on the floor", () => {
+  const invalid = structuredClone(map);
+  const television = invalid.objects.find((object) => object.id === "lounge-tv");
+  assert.ok(television);
+  television.surfaceId = "office-floor";
+  const resolved = resolveOfficeLayout(invalid, geometry.assets, geometry.slotSets);
+  assert.ok(resolved.issues.some((issue) => issue.includes("wall cannot use floor surface office-floor")));
+});
+
+test("coordinate placement cannot bypass a required furniture slot", () => {
+  const invalid = structuredClone(map);
+  const monitor = invalid.objects.find((object) => object.id === "market-monitor");
+  assert.ok(monitor);
+  delete monitor.parentId;
+  delete monitor.slot;
+  monitor.surfaceId = "office-floor";
+  monitor.x = 4;
+  monitor.y = 6;
+  const resolved = resolveOfficeLayout(invalid, geometry.assets, geometry.slotSets);
+  assert.ok(resolved.issues.some((issue) => issue.includes("desk-surface cannot use floor surface office-floor")));
+});
+
+test("coordinate placement requires an explicit structural surface", () => {
+  const invalid = structuredClone(map);
+  const plant = invalid.objects.find((object) => object.id === "work-plant-a");
+  assert.ok(plant);
+  delete plant.surfaceId;
+  const resolved = resolveOfficeLayout(invalid, geometry.assets, geometry.slotSets);
+  assert.ok(resolved.issues.some((issue) => issue.includes("unknown placement surface (missing)")));
+});
+
+test("wall anchors must remain inside their declared wall region", () => {
+  const invalid = structuredClone(map);
+  const television = invalid.objects.find((object) => object.id === "lounge-tv");
+  assert.ok(television);
+  television.y = 5;
+  const resolved = resolveOfficeLayout(invalid, geometry.assets, geometry.slotSets);
+  const issues = validateOfficeLayout(invalid, geometry.assets, resolved);
+  assert.ok(issues.some((issue) => issue.includes("lounge-tv: anchor leaves surface back-wall")));
+});
+
+test("floor footprints must remain inside their declared floor region", () => {
+  const invalid = structuredClone(map);
+  const plant = invalid.objects.find((object) => object.id === "work-plant-a");
+  assert.ok(plant);
+  plant.x = 0;
+  const resolved = resolveOfficeLayout(invalid, geometry.assets, geometry.slotSets);
+  const issues = validateOfficeLayout(invalid, geometry.assets, resolved);
+  assert.ok(issues.some((issue) => issue.includes("work-plant-a: footprint leaves surface office-floor")));
+});
+
+test("workstations require a declared floor surface", () => {
+  const invalid = structuredClone(map);
+  invalid.workstations[0]!.surfaceId = "back-wall";
+  const resolved = resolveOfficeLayout(invalid, geometry.assets, geometry.slotSets);
+  const issues = validateOfficeLayout(invalid, geometry.assets, resolved);
+  assert.ok(issues.some((issue) => issue.includes("market-scout: workstation requires a floor surface")));
 });
 
 test("floor footprints cannot overlap", () => {

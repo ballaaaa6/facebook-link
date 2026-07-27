@@ -3,12 +3,17 @@
   "$id": "office-map.schema.json",
   "title": "Office map",
   "type": "object",
-  "required": ["id", "gridSize", "width", "height", "zones", "workstations", "companions", "pois", "routes", "navigation", "objects"],
+  "required": ["id", "gridSize", "width", "height", "surfaces", "zones", "workstations", "companions", "pois", "routes", "navigation", "objects"],
   "properties": {
     "id": { "type": "string" },
     "gridSize": { "type": "integer", "minimum": 8 },
     "width": { "type": "integer", "minimum": 1 },
     "height": { "type": "integer", "minimum": 1 },
+    "surfaces": {
+      "type": "array",
+      "minItems": 2,
+      "items": { "$ref": "#/$defs/surface" }
+    },
     "zones": {
       "type": "array",
       "items": {
@@ -120,16 +125,18 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "zone", "desk", "chair", "x", "y", "facing", "seat", "approach", "stand", "navNode", "collision"],
+        "required": ["id", "zone", "surfaceId", "desk", "chair", "x", "y", "facing", "seat", "work", "approach", "stand", "navNode", "collision"],
         "properties": {
           "id": { "type": "string" },
           "zone": { "type": "string" },
+          "surfaceId": { "type": "string" },
           "desk": { "type": "string" },
           "chair": { "type": "string" },
           "x": { "type": "integer" },
           "y": { "type": "integer" },
           "facing": { "enum": ["up", "down", "left", "right"] },
           "seat": { "$ref": "#/$defs/point" },
+          "work": { "$ref": "#/$defs/point" },
           "approach": { "$ref": "#/$defs/point" },
           "stand": { "$ref": "#/$defs/point" },
           "navNode": { "type": "string" },
@@ -158,18 +165,49 @@
       },
       "additionalProperties": false
     },
+    "surface": {
+      "type": "object",
+      "required": ["id", "support", "x", "y", "width", "height"],
+      "properties": {
+        "id": { "type": "string" },
+        "support": { "enum": ["floor", "wall", "ceiling"] },
+        "x": { "type": "integer" },
+        "y": { "type": "integer" },
+        "width": { "type": "integer", "minimum": 1 },
+        "height": { "type": "integer", "minimum": 1 }
+      },
+      "additionalProperties": false
+    },
     "object": {
       "type": "object",
       "required": ["id", "asset", "layer", "anchor"],
       "oneOf": [
-        { "required": ["x", "y"] },
-        { "required": ["parentId", "slot"] }
+        {
+          "required": ["x", "y", "surfaceId"],
+          "not": {
+            "anyOf": [
+              { "required": ["parentId"] },
+              { "required": ["slot"] }
+            ]
+          }
+        },
+        {
+          "required": ["parentId", "slot"],
+          "not": {
+            "anyOf": [
+              { "required": ["x"] },
+              { "required": ["y"] },
+              { "required": ["surfaceId"] }
+            ]
+          }
+        }
       ],
       "properties": {
         "id": { "type": "string" },
         "asset": { "type": "string" },
         "x": { "type": "integer" },
         "y": { "type": "integer" },
+        "surfaceId": { "type": "string" },
         "parentId": { "type": "string" },
         "slot": { "type": "string" },
         "layer": { "enum": ["wall", "furniture", "equipment", "decor"] },

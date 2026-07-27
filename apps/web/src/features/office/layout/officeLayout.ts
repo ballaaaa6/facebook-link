@@ -5,6 +5,7 @@ import type {
   OfficeMapObject,
   OfficePoint,
   OfficeRectangle,
+  OfficeSurface,
   OfficeSupport,
 } from "../officeTypes";
 
@@ -44,6 +45,20 @@ function rectanglesOverlap(a: OfficeRectangle, b: OfficeRectangle) {
     && a.x + a.width > b.x
     && a.y < b.y + b.height
     && a.y + a.height > b.y;
+}
+
+function rectangleWithinBounds(rectangle: OfficeRectangle, bounds: OfficeRectangle) {
+  return rectangle.x >= bounds.x
+    && rectangle.y >= bounds.y
+    && rectangle.x + rectangle.width <= bounds.x + bounds.width
+    && rectangle.y + rectangle.height <= bounds.y + bounds.height;
+}
+
+function pointWithinSurface(point: OfficePoint, surface: OfficeSurface) {
+  return point.x >= surface.x
+    && point.y >= surface.y
+    && point.x <= surface.x + surface.width
+    && point.y <= surface.y + surface.height;
 }
 
 function footprintRectangle(
@@ -99,26 +114,30 @@ export function resolveOfficeLayout(
       issues.push(`${object.id}: anchor ${object.anchor} does not match ${geometry.anchor}`);
     }
     if (typeof object.x === "number" && typeof object.y === "number") {
-      const support = geometry.supports[0];
-      if (!support) {
-        issues.push(`${object.id}: asset has no supported placement`);
+      const surface = map.surfaces.find(({ id }) => id === object.surfaceId);
+      if (!object.surfaceId || !surface) {
+        issues.push(`${object.id}: unknown placement surface ${object.surfaceId ?? "(missing)"}`);
         continue;
       }
-      if (!["floor", "wall", "ceiling"].includes(support)) {
-        issues.push(`${object.id}: ${support} assets require a parent slot`);
+      if (!geometry.supports.includes(surface.support)) {
+        issues.push(`${object.id}: ${geometry.supports.join("|")} cannot use ${surface.support} surface ${surface.id}`);
         continue;
       }
       objects.push({
         ...object,
         x: object.x,
         y: object.y,
-        support,
+        support: surface.support,
         depthY: resolveDepthY({ x: object.x, y: object.y }, object.anchor, geometry.footprint),
       });
       continue;
     }
     if (!object.parentId || !object.slot) {
       issues.push(`${object.id}: object needs coordinates or a parent slot`);
+      continue;
+    }
+    if (object.surfaceId) {
+      issues.push(`${object.id}: attached objects cannot declare surface ${object.surfaceId}`);
       continue;
     }
     const parent = parents.get(object.parentId);
@@ -158,9 +177,29 @@ export function validateOfficeLayout(
   resolved: OfficeLayoutResult,
 ) {
   const issues = [...resolved.issues];
+  const surfaceIds = new Set<string>();
+  const mapBounds = { x: 0, y: 0, width: map.width, height: map.height };
+  for (const surface of map.surfaces) {
+    if (surfaceIds.has(surface.id)) issues.push(`duplicate surface identifier ${surface.id}`);
+    surfaceIds.add(surface.id);
+    if (!rectangleWithinBounds(surface, mapBounds)) {
+      issues.push(`${surface.id}: surface leaves map bounds`);
+    }
+  }
+  for (const requiredSupport of ["floor", "wall"] as const) {
+    if (!map.surfaces.some(({ support }) => support === requiredSupport)) {
+      issues.push(`map needs a ${requiredSupport} surface`);
+    }
+  }
   const integerFields = [
     { id: "map width", value: map.width },
     { id: "map height", value: map.height },
+    ...map.surfaces.flatMap((surface) => [
+      { id: `${surface.id}.x`, value: surface.x },
+      { id: `${surface.id}.y`, value: surface.y },
+      { id: `${surface.id}.width`, value: surface.width },
+      { id: `${surface.id}.height`, value: surface.height },
+    ]),
     ...map.zones.flatMap((zone) => [
       { id: `${zone.id}.x`, value: zone.x },
       { id: `${zone.id}.y`, value: zone.y },
@@ -246,16 +285,58 @@ export function validateOfficeLayout(
       height: station.collision.height,
     },
   }));
+  for (const station of map.workstations) {
+    const surface = map.surfaces.find(({ id }) => id === station.surfaceId);
+    if (!surface) {
+      issues.push(`${station.id}: unknown workstation surface ${station.surfaceId}`);
+      continue;
+    }
+    if (surface.support !== "floor") {
+      issues.push(`${station.id}: workstation requires a floor surface`);
+      continue;
+    }
+    for (const [role, assetId] of [["desk", station.desk], ["chair", station.chair]] as const) {
+      const geometry = assets[assetId];
+      if (!geometry) issues.push(`${station.id}: unknown ${role} geometry ${assetId}`);
+      else if (!geometry.supports.includes(surface.support)) {
+        issues.push(`${station.id}: ${role} ${assetId} cannot use ${surface.support} surface ${surface.id}`);
+      }
+    }
+    if (!rectangleWithinBounds(station.collision, surface)) {
+      issues.push(`${station.id}: collision leaves surface ${surface.id}`);
+    }
+    for (const [name, point] of [
+      ["seat", station.seat],
+      ["work", station.work],
+      ["approach", station.approach],
+      ["stand", station.stand],
+    ] as const) {
+      if (!pointWithinSurface(point, surface)) {
+        issues.push(`${station.id}.${name}: point leaves surface ${surface.id}`);
+      }
+    }
+  }
 
   for (const object of resolved.objects) {
     const geometry = assets[object.asset];
     if (!geometry) continue;
+    if (!object.parentId) {
+      const surface = map.surfaces.find(({ id }) => id === object.surfaceId);
+      if (!surface) continue;
+      if (object.support !== "floor" && !pointWithinSurface(object, surface)) {
+        issues.push(`${object.id}: anchor leaves surface ${surface.id}`);
+      }
+    }
     if (object.support === "floor" && !geometry.footprint) {
       issues.push(`${object.id}: floor object has no footprint`);
       continue;
     }
     if (!geometry.footprint || object.support !== "floor") continue;
     const rect = footprintRectangle(object, object.anchor, geometry.footprint);
+    const surface = map.surfaces.find(({ id }) => id === object.surfaceId);
+    if (surface && !rectangleWithinBounds(rect, surface)) {
+      issues.push(`${object.id}: footprint leaves surface ${surface.id}`);
+    }
     if (rect.x < 0 || rect.y < 0 || rect.x + rect.width > map.width || rect.y + rect.height > map.height) {
       issues.push(`${object.id}: footprint leaves map bounds`);
     }

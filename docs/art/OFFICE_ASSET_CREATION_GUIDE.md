@@ -101,6 +101,27 @@ for perspective, animation, hair, arms, foliage, or transparent padding.
 Wall and supported assets use `-` for floor footprint. Their parent wall,
 desk, counter, table, credenza, or rack owns the collision.
 
+#### Structural surface contract
+
+The map, rather than the backdrop pixels, is the source of truth for legal
+placement. Every Office map declares named structural `surfaces` with a
+`support` of `floor`, `wall`, or `ceiling` and integer-grid bounds.
+
+- A coordinate-placed object must declare `surfaceId`. Its asset `supports`
+  list must contain that surface's support.
+- A floor object's complete footprint must remain inside its declared floor
+  surface.
+- A wall or ceiling object's anchor must remain inside its declared structural
+  surface.
+- Workstations must reference a floor surface; their collision rectangle and
+  seat, work, approach, and stand points must remain inside it.
+- A desk-, table-, counter-, credenza-, or rack-supported object must use a
+  parent slot and must not declare a structural `surfaceId`.
+
+The visual wall and floor may share one non-interactive architecture backdrop.
+That image never grants placement permission. Surface regions, asset support
+metadata, parent slots, and layout validation are the enforceable contract.
+
 #### Actors and architecture
 
 | Asset or family | Locked W x D x H | Render box W x H | Floor footprint W x D | Notes |
@@ -921,6 +942,9 @@ Suggested workstation manifest:
 ### Layering
 
 - [ ] Desk, monitor, screen, props, and character are separate.
+- [ ] Every coordinate-placed object declares a compatible structural surface.
+- [ ] Floor footprints and wall or ceiling anchors remain inside that surface.
+- [ ] Supported objects use one compatible parent slot and no structural surface.
 - [ ] Foreground mask hides the seated lower body.
 - [ ] Screen overlay is clipped to the monitor viewport.
 - [ ] Back views do not show front-only props.
