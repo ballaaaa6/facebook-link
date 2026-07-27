@@ -10,7 +10,9 @@ It uses the retired lab composition and is not an acceptance reference.
 ## Part 1 result
 
 - Ten rectangular `5 x 4` modern desks form two directly touching rows of five.
-- The far row starts after exactly one clear floor row below the wall.
+- Each chair reserves only its adjacent `1 x 1` floor base. Sprite height may
+  cross a footprint boundary and is never clipped to that base.
+- The far chair bases start after exactly one clear floor row below the wall.
 - The far row contains five `working-front-seated` employees.
 - The near row contains five `working-back-seated` employees.
 - The far row uses the viewer-back desk; the near row uses the viewer-front
@@ -21,6 +23,8 @@ It uses the retired lab composition and is not an acceptance reference.
   keyboard in the middle, and one clear cell nearest the employee.
 - Each desk has six left prop cells and six right prop cells, twelve per desk
   and 120 across the ten-desk lab.
+- Monitor and keyboard each reserve one center cell while rendering wider than
+  that logical cell for a readable, proportionate scale.
 - Twenty sample props exercise both side regions without using the protected
   center lane.
 - Near-row actors render above every desk, chair, monitor, keyboard, and prop.
@@ -34,12 +38,12 @@ It uses the retired lab composition and is not an acceptance reference.
 
 ## Evidence
 
-- `qa/two-row-rectangular-office-v5-furniture.png`
-- `qa/two-row-rectangular-office-v5-seated.png`
-- `qa/two-row-rectangular-office-v5-slot-grid.png`
+- `qa/two-row-ground-pivot-office-v6-furniture.png`
+- `qa/two-row-ground-pivot-office-v6-seated.png`
+- `qa/two-row-ground-pivot-office-v6-footprint-grid.png`
 
-The three v5 images are captured from the local browser renderer at a 1280 by
+The three v6 images are captured from the local browser renderer at a 1280 by
 720 viewport.
 
-The v2 and v3 captures remain as superseded QA history and are not the current
-acceptance evidence.
+The v2, v3, and v5 captures remain as superseded QA history and are not the
+current acceptance evidence.

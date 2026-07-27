@@ -43,6 +43,8 @@ export interface OfficeWorkstation {
   stand: OfficePoint;
   navNode: string;
   collision: OfficePoint & { width: number; height: number };
+  seatCollision?: OfficeRectangle;
+  seatRenderOffset?: OfficePoint;
   previewSide?: "auto" | "left" | "right";
 }
 
@@ -106,5 +108,6 @@ export interface AgentPresentation {
   position: OfficePoint;
   state: CharacterState;
   seated: boolean;
+  renderOffset?: OfficePoint;
   activityLabel?: string;
 }

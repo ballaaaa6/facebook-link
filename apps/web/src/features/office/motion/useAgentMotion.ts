@@ -41,8 +41,10 @@ export function useAgentMotion(
       if (track) {
         const deviceScale = window.devicePixelRatio || 1;
         const snap = (value: number) => Math.round(value * deviceScale) / deviceScale;
-        const x = snap((presentation.position.x / map.width) * track.clientWidth);
-        const y = snap((presentation.position.y / map.height) * track.clientHeight);
+        const renderX = presentation.position.x + (presentation.renderOffset?.x ?? 0);
+        const renderY = presentation.position.y + (presentation.renderOffset?.y ?? 0);
+        const x = snap((renderX / map.width) * track.clientWidth);
+        const y = snap((renderY / map.height) * track.clientHeight);
         const frame = pixelAlignedCharacterFrame(track.clientWidth / map.width, deviceScale);
         track.style.setProperty("--agent-x", `${x}px`);
         track.style.setProperty("--agent-y", `${y}px`);

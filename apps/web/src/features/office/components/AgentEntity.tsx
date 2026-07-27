@@ -59,8 +59,12 @@ export function AgentEntity({
     atDeskDepthOverride,
   );
   const initialPosition = presentationOverride?.position ?? station.work;
-  const initialX = `${(initialPosition.x / map.width) * 100}%`;
-  const initialY = `${(initialPosition.y / map.height) * 100}%`;
+  const initialX = `${(
+    (initialPosition.x + (presentationOverride?.renderOffset?.x ?? 0)) / map.width
+  ) * 100}%`;
+  const initialY = `${(
+    (initialPosition.y + (presentationOverride?.renderOffset?.y ?? 0)) / map.height
+  ) * 100}%`;
 
   return (
     <div

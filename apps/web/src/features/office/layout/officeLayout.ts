@@ -8,6 +8,10 @@ import type {
   OfficeSurface,
   OfficeSupport,
 } from "../officeTypes";
+import {
+  workstationOccupiedAreas,
+  workstationSeatIntegerFields,
+} from "./workstationGeometry.ts";
 
 export interface OfficeAssetGeometryLike {
   physicalScale?: { width: number; depth: number; height: number };
@@ -219,6 +223,7 @@ export function validateOfficeLayout(
       { id: `${station.id}.collision.y`, value: station.collision.y },
       { id: `${station.id}.collision.width`, value: station.collision.width },
       { id: `${station.id}.collision.height`, value: station.collision.height },
+      ...workstationSeatIntegerFields(station),
     ]),
     ...map.objects.flatMap((object) => [
       ...(typeof object.x === "number" ? [{ id: `${object.id}.x`, value: object.x }] : []),
@@ -278,15 +283,7 @@ export function validateOfficeLayout(
   ];
   const rawIds = allIds.map((entry) => entry.slice(entry.indexOf(":") + 1));
   if (new Set(rawIds).size !== rawIds.length) issues.push("map entity identifiers must be unique");
-  const occupied: Array<{ id: string; rect: OfficeRectangle }> = map.workstations.map((station) => ({
-    id: `workstation:${station.id}`,
-    rect: {
-      x: station.collision.x,
-      y: station.collision.y,
-      width: station.collision.width,
-      height: station.collision.height,
-    },
-  }));
+  const occupied = workstationOccupiedAreas(map.workstations);
   for (const station of map.workstations) {
     const surface = map.surfaces.find(({ id }) => id === station.surfaceId);
     if (!surface) {
@@ -306,6 +303,9 @@ export function validateOfficeLayout(
     }
     if (!rectangleWithinBounds(station.collision, surface)) {
       issues.push(`${station.id}: collision leaves surface ${surface.id}`);
+    }
+    if (station.seatCollision && !rectangleWithinBounds(station.seatCollision, surface)) {
+      issues.push(`${station.id}: seat collision leaves surface ${surface.id}`);
     }
     for (const [name, point] of [
       ["seat", station.seat],

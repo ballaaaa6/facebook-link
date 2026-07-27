@@ -1,5 +1,6 @@
 import type { OfficeMapDefinition } from "../officeTypes";
 import type { OfficeAssetDefinition, OfficeAssetSlot } from "./officeAssetRegistry";
+import { workstationSeatRenderPoint } from "./workstationLayering";
 
 export function OfficeDebugOverlay({
   map,
@@ -61,28 +62,41 @@ export function OfficeDebugOverlay({
             className="office-debug-anchor"
             data-debug-seat={station.id}
             style={{
-              left: percentX(station.seat.x),
-              top: percentY(station.seat.y),
+              left: percentX(workstationSeatRenderPoint(station).x),
+              top: percentY(workstationSeatRenderPoint(station).y),
             }}
           />
+          {station.seatCollision
+            ? (
+              <span
+                className="office-debug-rect office-debug-seat-footprint"
+                data-debug-seat-footprint={station.id}
+                data-label="chair base 1x1"
+                style={{
+                  left: percentX(station.seatCollision.x),
+                  top: percentY(station.seatCollision.y),
+                  width: percentX(station.seatCollision.width),
+                  height: percentY(station.seatCollision.height),
+                }}
+              />
+            )
+            : null}
         </div>
       ))}
       {map.workstations.map((station) => {
         const desk = assetRegistry[station.desk];
         const slots = desk?.slotSet ? slotSets[desk.slotSet] : undefined;
         if (!slots) return null;
-        const surfaceWidth = (desk.footprint?.width ?? desk.renderBox.width) * 0.9;
-        const surfaceDepth = (desk.footprint?.depth ?? desk.renderBox.height) * 0.75;
         return (
           <span key={`${station.id}-desk-surface`}>
             <span
               className="office-debug-rect office-debug-desk-surface"
               data-label="desk surface"
               style={{
-                left: percentX(station.x - surfaceWidth / 2),
-                top: percentY(station.y - surfaceDepth / 2),
-                width: percentX(surfaceWidth),
-                height: percentY(surfaceDepth),
+                left: percentX(station.collision.x),
+                top: percentY(station.collision.y),
+                width: percentX(station.collision.width),
+                height: percentY(station.collision.height),
               }}
             />
             {Object.entries(slots)

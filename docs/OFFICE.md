@@ -34,6 +34,10 @@ seat, doorway, or narrow route cell.
 
 ## Spatial model
 
+The authoritative distinction between floor footprints, parent support grids,
+ground pivots, render bounds, and render offsets is documented in
+`docs/art/OFFICE_2D_GEOMETRY_PRINCIPLES.md`.
+
 `assets/game/manifests/office-assets.json` owns integer render boxes, physical
 footprints, support types, and integer parent-slot offsets. `office-c-v2.json`
 owns the 36 x 24 integer grid, its 24-column work floor, its 12-column support

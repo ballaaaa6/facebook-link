@@ -49,12 +49,24 @@ export function createModernOfficeLabPresentations(
     map.workstations.map((station) => {
       const row = modernOfficeLabRowFor(station.id);
       if (!row) throw new Error(`No Part 1 seating row for ${station.id}`);
+      const seatRenderX = station.seatCollision
+        ? station.seatCollision.x + station.seatCollision.width / 2
+          + (station.seatRenderOffset?.x ?? 0)
+        : station.seat.x;
+      const seatRenderY = station.seatCollision
+        ? station.seatCollision.y + station.seatCollision.height
+          + (station.seatRenderOffset?.y ?? 0)
+        : station.seat.y;
       return [
         station.id,
         {
           position: station.seat,
           state: row.pose,
           seated: true,
+          renderOffset: {
+            x: seatRenderX - station.seat.x,
+            y: seatRenderY - station.seat.y,
+          },
         },
       ];
     }),

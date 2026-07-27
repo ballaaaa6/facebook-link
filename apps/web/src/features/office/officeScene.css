@@ -304,11 +304,15 @@
   position: absolute;
   object-fit: contain;
   object-position: center;
-  transform: translate(-50%,-50%);
   filter: drop-shadow(0 3px 1px rgba(65,42,26,.2));
   image-rendering: pixelated;
   pointer-events: none;
 }
+
+.workstation-desk-center { transform: translate(-50%,-50%); }
+.workstation-desk-bottom-center { transform: translate(-50%,-100%); }
+.workstation-desk-wall-top { transform: translate(-50%,-50%); }
+.workstation-desk-wall-right { transform: translate(-100%,-50%); }
 
 .workstation-desk-front {
   clip-path: inset(50% 0 0);
@@ -467,5 +471,4 @@
   .office-workspace > .task-panel { min-height: 300px; overflow: auto; }
   .office-workspace > .team-chat { height: calc(100dvh - 230px); min-height: 380px; }
 }
-
 

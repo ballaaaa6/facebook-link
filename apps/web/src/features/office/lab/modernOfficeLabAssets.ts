@@ -25,22 +25,22 @@ export const modernOfficeLabAssetRegistry: Record<string, OfficeAssetDefinition>
   "desk.workstation.viewer-front.v5": {
     file: deskViewerFront,
     physicalScale: { width: 5, depth: 4, height: 2.4 },
-    renderBox: { width: 5, height: 4 },
+    renderBox: { width: 5, height: 5 },
     fit: "fill",
     footprint: { width: 5, depth: 4 },
     layer: "furniture",
-    anchor: "center",
+    anchor: "bottom-center",
     supports: ["floor"],
     slotSet: "rectangular-workstation-viewer-front",
   },
   "desk.workstation.viewer-back.v5": {
     file: deskViewerBack,
     physicalScale: { width: 5, depth: 4, height: 2.4 },
-    renderBox: { width: 5, height: 4 },
+    renderBox: { width: 5, height: 5 },
     fit: "fill",
     footprint: { width: 5, depth: 4 },
     layer: "furniture",
-    anchor: "center",
+    anchor: "bottom-center",
     supports: ["floor"],
     slotSet: "rectangular-workstation-viewer-back",
   },
@@ -64,26 +64,26 @@ export const modernOfficeLabAssetRegistry: Record<string, OfficeAssetDefinition>
   },
   "monitor.front": {
     file: monitorFront,
-    physicalScale: { width: 1.4, depth: 0.5, height: 1.4 },
-    renderBox: { width: 1.4, height: 1.4 },
-    footprint: { width: 2, depth: 1 },
+    physicalScale: { width: 2, depth: 0.5, height: 2.1 },
+    renderBox: { width: 2, height: 2.1 },
+    footprint: { width: 1, depth: 1 },
     layer: "equipment",
     anchor: "bottom-center",
     supports: ["desk-surface"],
   },
   "monitor.back": {
     file: monitorBack,
-    physicalScale: { width: 1.4, depth: 0.5, height: 1.4 },
-    renderBox: { width: 1.4, height: 1.4 },
-    footprint: { width: 2, depth: 1 },
+    physicalScale: { width: 2, depth: 0.5, height: 2.1 },
+    renderBox: { width: 2, height: 2.1 },
+    footprint: { width: 1, depth: 1 },
     layer: "equipment",
     anchor: "bottom-center",
     supports: ["desk-surface"],
   },
   "keyboard.only": {
     file: keyboardOnly,
-    physicalScale: { width: 0.9, depth: 0.45, height: 0.5 },
-    renderBox: { width: 0.9, height: 0.5 },
+    physicalScale: { width: 1.8, depth: 0.65, height: 0.75 },
+    renderBox: { width: 1.8, height: 0.75 },
     footprint: { width: 1, depth: 1 },
     layer: "equipment",
     anchor: "bottom-center",
@@ -112,8 +112,8 @@ function deskProp(
 }
 
 const propColumns = [
-  { side: "left", xValues: [-2, -1] },
-  { side: "right", xValues: [1, 2] },
+  { side: "left", xValues: [-1.5, -0.5] },
+  { side: "right", xValues: [1.5, 2.5] },
 ] as const;
 
 const employeeRelativeRows = ["far", "middle", "near"] as const;
@@ -125,8 +125,8 @@ function rectangularWorkstationSlots(
 ): Record<string, OfficeAssetSlot> {
   const rowY = { far: farY, middle: middleY, near: nearY };
   const slots: Record<string, OfficeAssetSlot> = {
-    monitor: { x: 0, y: farY, surface: "desk-surface" },
-    keyboard: { x: 0, y: middleY, surface: "desk-surface" },
+    monitor: { x: 0.5, y: farY, surface: "desk-surface" },
+    keyboard: { x: 0.5, y: middleY, surface: "desk-surface" },
   };
   for (const { side, xValues } of propColumns) {
     for (const row of employeeRelativeRows) {
@@ -143,8 +143,8 @@ function rectangularWorkstationSlots(
 }
 
 export const modernOfficeLabSlotSets: Record<string, Record<string, OfficeAssetSlot>> = {
-  "rectangular-workstation-viewer-back": rectangularWorkstationSlots(1, 0, -1),
-  "rectangular-workstation-viewer-front": rectangularWorkstationSlots(-1, 0, 1),
+  "rectangular-workstation-viewer-back": rectangularWorkstationSlots(1.5, 0.5, -0.5),
+  "rectangular-workstation-viewer-front": rectangularWorkstationSlots(-1.5, -0.5, 0.5),
 };
 
 export const modernOfficeLabAllowedAssetIds = Object.freeze(

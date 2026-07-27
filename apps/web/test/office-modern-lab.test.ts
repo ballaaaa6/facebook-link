@@ -4,6 +4,8 @@ import test from "node:test";
 import {
   pairedObjectDepth,
   pairedWorkstationDepths,
+  workstationDeskRenderPoint,
+  workstationSeatRenderPoint,
 } from "../src/features/office/components/workstationLayering.ts";
 import {
   resolveOfficeLayout,
@@ -72,41 +74,51 @@ const labAssets = Object.fromEntries(
 ) as GeometryManifest["assets"];
 labAssets["desk.workstation.viewer-front.v5"] = {
   physicalScale: { width: 5, depth: 4, height: 2.4 },
-  renderBox: { width: 5, height: 4 },
+  renderBox: { width: 5, height: 5 },
   fit: "fill",
   footprint: { width: 5, depth: 4 },
   layer: "furniture",
-  anchor: "center",
+  anchor: "bottom-center",
   supports: ["floor"],
   slotSet: "rectangular-workstation-viewer-front",
 };
 labAssets["desk.workstation.viewer-back.v5"] = {
   physicalScale: { width: 5, depth: 4, height: 2.4 },
-  renderBox: { width: 5, height: 4 },
+  renderBox: { width: 5, height: 5 },
   fit: "fill",
   footprint: { width: 5, depth: 4 },
   layer: "furniture",
-  anchor: "center",
+  anchor: "bottom-center",
   supports: ["floor"],
   slotSet: "rectangular-workstation-viewer-back",
 };
 labAssets["keyboard.only"] = {
-  physicalScale: { width: 0.9, depth: 0.45, height: 0.5 },
-  renderBox: { width: 0.9, height: 0.5 },
+  physicalScale: { width: 1.8, depth: 0.65, height: 0.75 },
+  renderBox: { width: 1.8, height: 0.75 },
   footprint: { width: 1, depth: 1 },
   layer: "equipment",
   anchor: "bottom-center",
   supports: ["desk-surface"],
 };
+for (const monitorId of ["monitor.front", "monitor.back"]) {
+  labAssets[monitorId] = {
+    physicalScale: { width: 2, depth: 0.5, height: 2.1 },
+    renderBox: { width: 2, height: 2.1 },
+    footprint: { width: 1, depth: 1 },
+    layer: "equipment",
+    anchor: "bottom-center",
+    supports: ["desk-surface"],
+  };
+}
 function workstationSlots(farY: number, middleY: number, nearY: number) {
   const rows = { far: farY, middle: middleY, near: nearY };
   const slots: GeometryManifest["slotSets"][string] = {
-    monitor: { x: 0, y: farY, surface: "desk-surface" },
-    keyboard: { x: 0, y: middleY, surface: "desk-surface" },
+    monitor: { x: 0.5, y: farY, surface: "desk-surface" },
+    keyboard: { x: 0.5, y: middleY, surface: "desk-surface" },
   };
   for (const [side, xValues] of [
-    ["left", [-2, -1]],
-    ["right", [1, 2]],
+    ["left", [-1.5, -0.5]],
+    ["right", [1.5, 2.5]],
   ] as const) {
     for (const [row, y] of Object.entries(rows)) {
       for (const [columnIndex, x] of xValues.entries()) {
@@ -121,8 +133,8 @@ function workstationSlots(farY: number, middleY: number, nearY: number) {
   return slots;
 }
 const labSlotSets: GeometryManifest["slotSets"] = {
-  "rectangular-workstation-viewer-back": workstationSlots(1, 0, -1),
-  "rectangular-workstation-viewer-front": workstationSlots(-1, 0, 1),
+  "rectangular-workstation-viewer-back": workstationSlots(1.5, 0.5, -0.5),
+  "rectangular-workstation-viewer-front": workstationSlots(-1.5, -0.5, 0.5),
 };
 
 function pngDimensions(file: URL) {
@@ -170,18 +182,32 @@ test("the Part 1 lab uses rectangular v5 desks, modern-bright props, and the cle
     assert.match(asset.file, /^assets\/game\/processed\/office-library-modern-bright-v1\//);
     assert.equal(forbidden.includes(id), false);
   }
+  assert.deepEqual(labAssets["monitor.front"]?.footprint, { width: 1, depth: 1 });
+  assert.deepEqual(labAssets["monitor.front"]?.renderBox, { width: 2, height: 2.1 });
+  assert.deepEqual(labAssets["keyboard.only"]?.footprint, { width: 1, depth: 1 });
+  assert.deepEqual(labAssets["keyboard.only"]?.renderBox, { width: 1.8, height: 0.75 });
 });
 
 test("the Part 1 lab arranges one continuous paired block of ten 5-by-4 desks", () => {
   assert.equal(labMap.workstations.length, 10);
   const rows = Map.groupBy(labMap.workstations, ({ y }) => y);
-  assert.deepEqual([...rows.keys()], [7, 11]);
+  assert.deepEqual([...rows.keys()], [8, 12]);
   for (const row of rows.values()) {
     assert.deepEqual(row.map(({ x }) => x), [4, 9, 14, 19, 24]);
     for (let index = 1; index < row.length; index += 1) {
       assert.equal(row[index]!.collision.x, row[index - 1]!.collision.x + 5);
     }
     assert.equal(row.every(({ collision }) => collision.width === 5 && collision.height === 4), true);
+    for (const station of row) {
+      assert.deepEqual(workstationDeskRenderPoint(station), {
+        x: station.collision.x + 2.5,
+        y: station.collision.y + 4,
+      });
+      assert.deepEqual(workstationSeatRenderPoint(station), {
+        x: station.seatCollision!.x + 0.5,
+        y: station.seatCollision!.y + 1,
+      });
+    }
   }
   const [rowA, rowB] = [...rows.values()];
   assert.ok(rowA && rowB);
@@ -197,13 +223,29 @@ test("the Part 1 lab preserves wall clearance, seat direction, and the front ais
   assert.deepEqual(aisle, { id: "front-aisle", x: 0, y: 16, width: 29, height: 4 });
   for (const station of labMap.workstations.slice(0, 5)) {
     assert.equal(station.facing, "down");
-    assert.equal(station.seat.y, 8);
+    assert.equal(station.seat.y, 6);
+    assert.ok(station.seatCollision);
+    assert.deepEqual(station.seatCollision, {
+      x: station.x,
+      y: 5,
+      width: 1,
+      height: 1,
+    });
+    assert.equal(station.seatCollision.y + station.seatCollision.height, station.collision.y);
     assert.equal(station.desk, modernOfficeLabRows["row-a"].desk);
     assert.equal(station.chair, modernOfficeLabRows["row-a"].chair);
   }
   for (const station of labMap.workstations.slice(5)) {
     assert.equal(station.facing, "up");
-    assert.equal(station.seat.y, 14);
+    assert.equal(station.seat.y, 15);
+    assert.ok(station.seatCollision);
+    assert.deepEqual(station.seatCollision, {
+      x: station.x,
+      y: 14,
+      width: 1,
+      height: 1,
+    });
+    assert.equal(station.collision.y + station.collision.height, station.seatCollision.y);
     assert.equal(station.desk, modernOfficeLabRows["row-b"].desk);
     assert.equal(station.chair, modernOfficeLabRows["row-b"].chair);
   }
@@ -240,14 +282,14 @@ test("each desk has six left and six right prop cells plus a mirrored center lan
       parentId === station.id && slot === "keyboard");
     assert.ok(monitor);
     assert.ok(keyboard);
-    assert.equal(monitor.x, station.x);
-    assert.equal(keyboard.x, station.x);
-    assert.equal(keyboard.y, station.y);
-    assert.equal(monitor.y, station.y + (station.facing === "down" ? 1 : -1));
+    assert.equal(monitor.x, station.x + 0.5);
+    assert.equal(keyboard.x, station.x + 0.5);
+    assert.equal(keyboard.y, station.y + (station.facing === "down" ? 0.5 : -0.5));
+    assert.equal(monitor.y, station.y + (station.facing === "down" ? 1.5 : -1.5));
     const propObjects = resolved.objects.filter(({ parentId, slot }) =>
       parentId === station.id && slot?.startsWith("prop-"));
     assert.equal(propObjects.length, 2);
-    assert.equal(propObjects.every(({ x }) => x !== station.x), true);
+    assert.equal(propObjects.every(({ x }) => x !== station.x + 0.5), true);
     const objectDepth = pairedObjectDepth(keyboard, labMap.workstations);
     const actorDepth = pairedWorkstationDepths(station).actor;
     if (station.facing === "up") assert.ok((objectDepth ?? Infinity) < actorDepth);
@@ -264,6 +306,8 @@ test("the Part 1 pose split stays seated and stable for thirty seconds", () => {
     assert.equal(presentations.filter(({ state }) => state === "working-front-seated").length, 5);
     assert.equal(presentations.filter(({ state }) => state === "working-back-seated").length, 5);
     assert.equal(presentations.every(({ seated }) => seated), true);
+    assert.equal(presentations.every(({ renderOffset }) =>
+      renderOffset?.x === 0.5 && renderOffset.y === 0), true);
   }
   assert.deepEqual(snapshots[1], snapshots[0]);
   assert.deepEqual(snapshots[2], snapshots[0]);

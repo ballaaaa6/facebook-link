@@ -86,7 +86,7 @@
 .office-layout-lab .office-debug-overlay {
   position: absolute;
   inset: 0;
-  z-index: 1200;
+  z-index: 5000;
   pointer-events: none;
 }
 
@@ -166,6 +166,11 @@
 .office-layout-lab .office-debug-workstation {
   border: 2px solid rgba(78, 113, 218, .95);
   background: rgba(78, 113, 218, .08);
+}
+
+.office-layout-lab .office-debug-seat-footprint {
+  border: 2px solid rgba(221, 63, 123, .95);
+  background: rgba(221, 63, 123, .18);
 }
 
 .office-layout-lab .office-debug-desk-surface {

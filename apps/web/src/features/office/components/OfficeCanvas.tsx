@@ -22,8 +22,8 @@ import {
 } from "./officeAssetRegistry";
 import { officeSceneReference, officeSceneTimeAt } from "./officeSceneRuntime";
 import {
-  pairedObjectDepth,
-  pairedWorkstationDepths,
+  pairedObjectDepth, pairedWorkstationDepths,
+  workstationDeskRenderPoint, workstationSeatRenderPoint,
 } from "./workstationLayering";
 import { WorldObject } from "./WorldObject";
 
@@ -215,6 +215,11 @@ export function OfficeCanvas({
           const pairedDepths = workstationLayering === "paired-seating"
             ? pairedWorkstationDepths(station)
             : undefined;
+          const deskRenderPoint = pairedDepths
+            ? workstationDeskRenderPoint(station) : { x: station.x, y: station.y };
+          const seatRenderPoint = pairedDepths
+            ? workstationSeatRenderPoint(station)
+            : station.seat;
           const nearPairedRow = workstationLayering === "paired-seating" && station.facing === "up";
           const deskBaseDepth = pairedDepths?.deskBase ?? deskDepth - 2;
           const deskForegroundDepth = pairedDepths?.deskForeground ?? deskDepth + 2;
@@ -230,14 +235,14 @@ export function OfficeCanvas({
               key={station.id}
             >
               <img
-                className="workstation-desk"
+                className={`workstation-desk workstation-desk-${desk.anchor}`}
                 src={desk.file}
                 data-asset-id={station.desk}
                 alt=""
                 aria-hidden="true"
                 style={{
-                  left: percentX(station.x),
-                  top: percentY(station.y),
+                  left: percentX(deskRenderPoint.x),
+                  top: percentY(deskRenderPoint.y),
                   width: `${(desk.renderBox.width / officeMap.width) * 100}%`,
                   height: `${(desk.renderBox.height / officeMap.height) * 100}%`,
                   objectFit: desk.fit ?? "contain",
@@ -253,8 +258,8 @@ export function OfficeCanvas({
                     alt=""
                     aria-hidden="true"
                     style={{
-                      left: percentX(station.seat.x),
-                      top: percentY(station.seat.y),
+                      left: percentX(seatRenderPoint.x),
+                      top: percentY(seatRenderPoint.y),
                       width: `${(chair.renderBox.width / officeMap.width) * 100}%`,
                       height: `${(chair.renderBox.height / officeMap.height) * 100}%`,
                       zIndex: pairedDepths?.chair ?? deskDepth - 3,
@@ -292,8 +297,8 @@ export function OfficeCanvas({
                     alt=""
                     aria-hidden="true"
                     style={{
-                      left: percentX(station.seat.x),
-                      top: percentY(station.seat.y),
+                      left: percentX(seatRenderPoint.x),
+                      top: percentY(seatRenderPoint.y),
                       width: `${(chairForeground.renderBox.width / officeMap.width) * 100}%`,
                       height: `${(chairForeground.renderBox.height / officeMap.height) * 100}%`,
                       zIndex: pairedDepths?.chairForeground ?? deskDepth - 1,
@@ -304,14 +309,14 @@ export function OfficeCanvas({
               {renderDeskForeground
                 ? (
                   <img
-                    className="workstation-desk workstation-desk-front"
+                    className={`workstation-desk workstation-desk-${desk.anchor} workstation-desk-front`}
                     src={desk.file}
                     data-asset-id={station.desk}
                     alt=""
                     aria-hidden="true"
                     style={{
-                      left: percentX(station.x),
-                      top: percentY(station.y),
+                      left: percentX(deskRenderPoint.x),
+                      top: percentY(deskRenderPoint.y),
                       width: `${(desk.renderBox.width / officeMap.width) * 100}%`,
                       height: `${(desk.renderBox.height / officeMap.height) * 100}%`,
                       objectFit: desk.fit ?? "contain",
