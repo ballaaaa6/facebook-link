@@ -147,9 +147,9 @@ metadata, parent slots, and layout validation are the enforceable contract.
 
 | Asset or family | Locked W x D x H | Render box W x H | Floor footprint W x D | Seats / support |
 | --- | ---: | ---: | ---: | --- |
-| Standard desk | `4 x 2 x 2` | `4 x 3` | `4 x 2` | Workstation surface slots. |
-| Creative desk | `4 x 2 x 2` | `4 x 3` | `4 x 2` | Same geometry as the standard desk; equipment changes the role. |
-| NOC desk | `4 x 2 x 2` | `4 x 3` | `4 x 2` | Same workstation footprint with NOC equipment. |
+| Standard desk | `5 x 4 x 2.4` | Geometry v3 calibration pending | `5 x 4` | Separate `5 x 3` support plane; employee-edge row has no slots. |
+| Creative desk | `5 x 4 x 2.4` | Geometry v3 calibration pending | `5 x 4` | Same contract as the standard desk; equipment changes the role. |
+| NOC desk | `5 x 4 x 2.4` | Geometry v3 calibration pending | `5 x 4` | Same contract as the standard desk; equipment changes the role. |
 | Office task chair | `1 x 1 x 2` | `1 x 2` | `1 x 1` | One seat slot. |
 | Studio task chair | `1 x 1 x 2` | `1 x 2` | `1 x 1` | One seat slot. |
 | Cafe / meeting chair | `1 x 1 x 2` | `1 x 2` | `1 x 1` | One review or cafe seat. |

@@ -25,12 +25,13 @@
     "code:map": "node scripts/code-map.mjs",
     "art:prompt": "node scripts/office-asset-prompt.mjs",
     "art:prompt:check": "node scripts/office-asset-prompt.mjs --check",
+    "art:geometry:check": "node scripts/office-geometry-check.mjs",
     "art:library": "python scripts/process-office-source-sheets.py",
     "art:library:check": "python scripts/process-office-source-sheets.py --check",
     "pilot:simulate": "node services/automation-runner/src/simulation/cli.ts",
     "deploy:dry-run": "npm run build --workspace @affiliate-ops/web && npx --yes wrangler@4.113.0 deploy --dry-run --config wrangler.jsonc",
     "deploy:cloudflare": "npm run build --workspace @affiliate-ops/web && npx --yes wrangler@4.113.0 deploy --config wrangler.jsonc",
-    "check": "npm run repo:check && npm run art:prompt:check && npm run architecture:check && npm run code:health && npm run duplicate:check && npm run code:map && npm run typecheck && npm run test && npm run build"
+    "check": "npm run repo:check && npm run art:prompt:check && npm run art:geometry:check && npm run architecture:check && npm run code:health && npm run duplicate:check && npm run code:map && npm run typecheck && npm run test && npm run build"
   },
   "devDependencies": {
     "@types/node": "^24.0.0"

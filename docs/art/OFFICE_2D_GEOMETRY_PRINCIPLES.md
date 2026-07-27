@@ -1,98 +1,198 @@
-# Office 2D geometry principles
+# Office 2D Geometry Principles
 
-This document is the geometry contract for Office furniture, actors, and
-surface props. It prevents a sprite's visible height from being mistaken for
-the cells that the object reserves.
+Status: Geometry Contract v3
 
-## Five independent concepts
+This document is the geometry source of truth for Office assets. It separates
+top-down placement and collision from the visible bitmap so a straight-front
+sprite, transparent overflow, or tall actor cannot silently redefine world
+geometry.
 
-Every placeable object must be reasoned about through separate concepts:
+Machine-readable definitions live in
+`assets/game/manifests/office-asset-geometry.schema.json` and
+`packages/contracts/src/officeGeometry.ts`.
 
-1. **Floor footprint** — top-down cells reserved for collision and placement.
-2. **Support grid** — cells on a desk, table, wall, or other parent that may
-   accept attached objects.
-3. **Ground pivot** — the base point used to position and depth-sort the
-   sprite. For floor objects this is normally the bottom-center of the
-   footprint.
-4. **Render bounds** — the visible width and height of the bitmap. Render
-   bounds may extend outside the footprint.
-5. **Render offset** — a visual-only correction from a logical point to a
-   sprite pivot. It never changes collision or pathfinding.
+## Coordinate spaces and units
 
-A collision or debug rectangle is not a clipping cage. A chair, employee,
-monitor, or desk may be visibly taller than its reserved cells.
+- World X increases to the right.
+- World Y increases toward the viewer and draws later when a floor object has
+  a greater `sortPivot.y`.
+- Physical scale, footprints, support planes, pivots, slots, and vertical
+  extension use logical tile units. Half-tile values are allowed for pivots
+  and slot centers.
+- Source and render dimensions use canonical authoring pixels. One tile is 32
+  authoring pixels; a 2x export scales those pixels without changing logical
+  geometry.
+- `basePivot` and `sortPivot` are local to the footprint origin. They never
+  derive from the bitmap center or alpha bounding box.
+- `renderOffset` is measured in authoring pixels from `basePivot` to the
+  render-bounds origin. It never changes collision, navigation, or slots.
 
-## Paired workstation contract
+## Independent geometry concepts
 
-Each desk reserves a complete rectangular `5 x 4` top-down footprint: 20
-cells. Adjacent desks and the two desk rows may touch footprint edges. Touching
-edges do not count as overlap and no decorative gap is inserted.
+Every Geometry v3 record declares each concept or uses an explicit `null` or
+empty collection when the concept does not apply.
 
-The four depth rows have the following employee-relative meaning:
+1. `assetType` defines semantic behavior rather than visual style.
+2. `placementPlane` names floor, wall, ceiling, or a furniture surface.
+3. `physicalScale` records intended physical width, depth, and height.
+4. `footprint` reserves top-down floor cells for placement and collision.
+5. `supportPlane` defines a local surface that may accept child objects.
+6. `basePivot` aligns an asset to its logical placement point.
+7. `sortPivot` controls front-to-back ordering independently from placement.
+8. `renderBounds` records the visible bitmap canvas at the authoring scale.
+9. `renderOffset` positions that canvas without moving logical geometry.
+10. `verticalExtension` records visible mass above or below the base.
+11. `occlusionParts` names rear, base, and foreground composite parts.
+12. `attachmentSlots` and `seatSlots` define legal child and actor anchors.
+13. `orientation` names the authored front, back, left, or right view, or
+    `none` for a non-oriented asset.
 
-| Depth row | Center column | Side columns |
-| --- | --- | --- |
-| Farthest from employee | Monitor | Two left and two right prop cells |
-| Middle | Keyboard | Two left and two right prop cells |
-| Near | Clear center cell | Two left and two right prop cells |
-| Employee edge | Clear across the desk | No attachment slots |
+A debug footprint is not a clipping cage. Visible pixels may cross a footprint
+edge when render bounds and offsets declare that overflow.
 
-The left side therefore contains `2 x 3 = 6` prop cells and the right side
-contains another six. Monitor and keyboard each reserve one center support
-cell. Their bitmap may be wider than one cell so that the equipment remains
-legible and proportionate to the desk.
+## Asset types
 
-The chair reserves exactly one `1 x 1` floor cell immediately adjacent to the
-employee edge of the desk. There is no empty cell between desk and chair. The
-actor and chair sprites are bottom-center anchored to that floor base; their
-heads and backs may visually cross the desk footprint.
+### `floor-decal`
 
-## Orientation and depth
+Uses the floor plane but reserves no collision, owns no slots, has no pivots,
+and does not participate in Y-sort. Rugs and cable covers use this type.
 
-- The far row is next to the wall and faces the viewer. Its chair base is on
-  the wall side of the desk.
-- The near row faces away from the viewer. Its chair base is on the viewer
-  side of the desk.
-- Exactly one floor row remains clear between the wall and the far chair
-  bases.
-- The far and near desk footprints touch directly.
-- Depth order derives from each object's ground pivot or footprint bottom,
-  not from the bitmap center.
-- A greater ground Y draws later. The near desk therefore hides the lower
-  visual parts of the far desk where the bitmaps overlap.
-- The near seated actor draws above the complete paired workstation group.
-  The far seated actor uses a lower desk foreground mask so the desk can hide
-  the lower body without covering the head.
+### `upright-floor-object`
+
+Requires a floor footprint, base pivot, and sort pivot. It owns no support or
+seat plane. Tall plants, floor lamps, and simple cabinets use this type.
+
+### `surface-furniture`
+
+Requires independent floor footprint and support plane plus both pivots.
+Desks, counters, tables, and credenzas use this type. Attachment slots must
+reference and remain inside the declared support plane.
+
+### `seat`
+
+Requires a floor footprint, pivots, and at least one seat slot. Chairs, sofas,
+beanbags, and massage chairs use this type. Seat slots may sit within or beside
+the visible upholstery but remain logical tile-space anchors.
+
+### `wall-mounted`
+
+Uses the wall plane, has no floor footprint, and does not use floor Y-sort. Its
+base pivot aligns it to the wall surface. Wall TVs, clocks, signs, and art use
+this type.
+
+### `structural-opening`
+
+Uses the wall plane and represents a semantic opening independently from its
+threshold, leaf, and visual overlay. Doors and traversable openings use this
+type.
+
+### `animated-shell`
+
+Uses the placement rules of its plane and must declare more than one frame.
+Every frame preserves identical base and sort pivots. Vending machines, arcade
+screens, and other locally animated facilities use this type.
+
+### `character`
+
+Uses the floor plane, reserves exactly `1 x 1`, and sorts from the foot or seat
+base rather than the head or bitmap center. Morphology may extend outside the
+cell without expanding collision.
+
+## Canonical workstation decision
+
+Geometry v3 resolves the previous `4 x 2` versus `5 x 4` conflict as follows:
+
+```text
+physicalScale  = 5 x 4 x 2.4 tiles
+floor footprint = 5 x 4 tiles
+support plane   = 5 x 3 tiles at height 2.4
+employee edge   = the fourth depth row, with no attachment slots
+```
+
+The five columns provide a center lane and two prop columns on each side. The
+three support rows contain the monitor row, keyboard row, and near clear/prop
+row. The fourth row belongs to the physical desk footprint but is not a legal
+support row.
+
+This approves the logical contract, not the rejected v6 artwork. Replacement
+art must visibly represent the four-cell top-down depth without stretching a
+straight-front bitmap to fill the footprint.
+
+## Paired workstation behavior
+
+- Each desk reserves one complete `5 x 4` rectangle.
+- Adjacent desk footprints may touch edges but may not overlap.
+- Far and near desk rows touch directly.
+- A chair reserves one adjacent `1 x 1` cell on the employee edge.
+- The far row faces the viewer and the near row faces away.
+- Greater `sortPivot.y` draws later.
+- A desk composite separates its support surface, underframe/base, and
+  foreground occluder.
+- The far actor may be occluded below the torso; its head-safe region remains
+  visible.
+- The near actor draws above the paired workstation group.
+
+## Support, attachment, and seating rules
+
+- A child asset on furniture references a named attachment slot and does not
+  create new floor collision.
+- An attachment slot references exactly one `supportPlane.id` and remains
+  inside that plane.
+- A slot may have one claimant unless its contract explicitly allows capacity.
+- A seat slot declares its facing independently from the furniture bitmap.
+- A character's seated render offset changes visual placement only; its
+  reservation and navigation points remain logical.
+- Wall and ceiling objects never acquire floor placement merely because their
+  images visually overlap floor pixels.
+
+## Orientation rules
+
+- `front` and `back` are exact opposing views; `left` and `right` are strict
+  90-degree profiles.
+- A rectangular footprint swaps width and depth for a 90-degree orientation.
+- Mirroring is allowed only after the asset is proven visually and
+  functionally symmetric.
+- Orientation completeness is evaluated per asset family during audit.
+- No three-quarter or diagonal view may claim a strict orientation.
+
+## Render and occlusion rules
+
+- Bitmap dimensions never define collision.
+- `renderBounds` may be larger or smaller than the footprint projection.
+- `renderOffset` and `verticalExtension` may not move a footprint or slot.
+- Multi-part furniture declares rear, base, and foreground parts explicitly.
+- Occlusion parts are deterministic derivatives or authored components; the
+  renderer must not create an arbitrary percentage clip.
+- Animated frames keep render dimensions and pivots stable unless a future
+  schema version explicitly authorizes a bounded exception.
 
 ## Validation rules
 
-The geometry validator must check footprints, support compatibility, protected
-routes, surface bounds, and duplicate slot claims. It must not reject visual
-overhang that leaves a collision footprint. Debug overlays show the exact
-footprint and support cells; they never resize or clip the sprite.
+The Geometry v3 validator rejects:
 
-Browser acceptance for a paired block covers all of the following:
+- unsupported asset types, planes, or orientations;
+- wall assets with floor footprints;
+- floor decals that enter Y-sort or own slots;
+- floor objects without placement and sort pivots;
+- surface furniture without a support plane;
+- duplicate or out-of-bounds attachment slots;
+- seats without seat slots;
+- characters whose footprint is not `1 x 1`;
+- animated shells without stable base and sort pivots;
+- non-finite or negative geometry where a positive dimension is required.
 
-- ten `5 x 4` desk footprints and ten adjacent `1 x 1` chair footprints;
-- no gap between desk rows and no footprint overlap;
-- five front-facing and five back-facing seated employees;
-- monitor, keyboard, clear center cell, and 6+6 side prop cells per desk;
-- proportionate monitor and keyboard render bounds;
-- near-row occlusion over the far row and unobscured actor heads;
-- stable positions and poses for the full sampling interval.
+The complete asset audit may classify a legacy record as missing Geometry v3
+data. The legacy adapter must not invent unknown support planes, pivots,
+orientations, or occlusion parts.
 
-## Engine references
+## Acceptance
 
-This model follows established 2D scene practices:
+Geometry v3 is accepted when:
 
-- [Godot CanvasItem Y sorting](https://docs.godotengine.org/en/stable/classes/class_canvasitem.html)
-  sorts a later ground Y in front.
-- [Unity Sprite Sort Point](https://docs.unity3d.com/ScriptReference/SpriteSortPoint.html)
-  supports pivot-based sorting instead of center-based sorting.
-- [Unity Sorting Groups](https://docs.unity3d.com/6000.0/Documentation/Manual/sprite/sorting-group/sorting-group-landing.html)
-  describe grouping multi-sprite characters and furniture.
-- [Tiled object layers](https://doc.mapeditor.org/en/stable/manual/objects/)
-  separate placed-object geometry and alignment from tile artwork.
-- [The Sims 4 Build Mode](https://www.ea.com/games/the-sims/the-sims-4/new-player-hub/build-mode)
-  is the interaction reference for grid-based placement; this project keeps
-  its own explicit footprint, support, and depth contracts.
+- one valid fixture exists for each asset type;
+- invalid fixtures cover the known failure modes;
+- the written contract, JSON Schema, and shared TypeScript types agree;
+- the canonical desk's physical scale, footprint, and support plane are
+  independently asserted;
+- the Active Office still uses its legacy manifest unchanged; and
+- `npm run art:geometry:check` and `npm run check` pass.

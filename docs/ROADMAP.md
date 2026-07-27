@@ -127,11 +127,14 @@ passes. The detailed execution order, planned files, validation strategy, and
 acceptance criteria are maintained in
 `docs/art/OFFICE_GEOMETRY_REMEDIATION_ROADMAP.md`.
 
-Implementation status (2026-07-27): Step 1 is complete. The v6 composition
+Implementation status (2026-07-27): Steps 1-2 are complete. The v6 composition
 and its v5 desk inputs are explicitly rejected, preserved as negative
-regression evidence, and covered by automated isolation checks against the
-active map, runtime geometry manifest, and active asset registry. Active
-Office data and visuals remain unchanged.
+regression evidence, and covered by automated isolation checks. Geometry v3
+now has a written contract, JSON Schema, shared TypeScript types, a validator,
+and positive and negative fixtures for all eight asset types. The workstation
+decision independently locks `5 x 4 x 2.4` physical scale, a `5 x 4` floor
+footprint, and a `5 x 3` support plane. Active Office data, renderer behavior,
+and visuals remain unchanged.
 
 ## M2 — One-account Shopee pilot
 

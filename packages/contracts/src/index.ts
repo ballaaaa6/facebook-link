@@ -4,6 +4,7 @@ export * from "./entities.ts";
 export * from "./identity.ts";
 export * from "./jobs.ts";
 export * from "./office.ts";
+export * from "./officeGeometry.ts";
 export * from "./sheets.ts";
 export * from "./storage.ts";
 export * from "./workflow.ts";

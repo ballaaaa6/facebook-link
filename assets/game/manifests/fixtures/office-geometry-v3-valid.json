@@ -1,0 +1,163 @@
+{
+  "version": 1,
+  "schemaVersion": 3,
+  "assets": [
+    {
+      "schemaVersion": 3,
+      "id": "fixture.rug.floor",
+      "assetType": "floor-decal",
+      "placementPlane": "floor",
+      "physicalScale": { "width": 4, "depth": 2, "height": 0, "unit": "tile" },
+      "footprint": null,
+      "supportPlane": null,
+      "basePivot": null,
+      "sortPivot": null,
+      "renderBounds": { "width": 128, "height": 64, "unit": "authoring-pixel" },
+      "renderOffset": { "x": 0, "y": 0, "unit": "authoring-pixel" },
+      "verticalExtension": { "aboveBase": 0, "belowBase": 0, "unit": "tile" },
+      "occlusionParts": [],
+      "attachmentSlots": [],
+      "seatSlots": [],
+      "orientation": "none"
+    },
+    {
+      "schemaVersion": 3,
+      "id": "fixture.plant.upright",
+      "assetType": "upright-floor-object",
+      "placementPlane": "floor",
+      "physicalScale": { "width": 1, "depth": 1, "height": 3, "unit": "tile" },
+      "footprint": { "width": 1, "depth": 1, "unit": "tile" },
+      "supportPlane": null,
+      "basePivot": { "x": 0.5, "y": 1, "unit": "tile" },
+      "sortPivot": { "x": 0.5, "y": 1, "unit": "tile" },
+      "renderBounds": { "width": 64, "height": 96, "unit": "authoring-pixel" },
+      "renderOffset": { "x": -16, "y": -64, "unit": "authoring-pixel" },
+      "verticalExtension": { "aboveBase": 3, "belowBase": 0, "unit": "tile" },
+      "occlusionParts": [],
+      "attachmentSlots": [],
+      "seatSlots": [],
+      "orientation": "front"
+    },
+    {
+      "schemaVersion": 3,
+      "id": "fixture.desk.surface",
+      "assetType": "surface-furniture",
+      "placementPlane": "floor",
+      "physicalScale": { "width": 5, "depth": 4, "height": 2.4, "unit": "tile" },
+      "footprint": { "width": 5, "depth": 4, "unit": "tile" },
+      "supportPlane": { "id": "desk-surface", "width": 5, "depth": 3, "height": 2.4, "unit": "tile" },
+      "basePivot": { "x": 2.5, "y": 4, "unit": "tile" },
+      "sortPivot": { "x": 2.5, "y": 4, "unit": "tile" },
+      "renderBounds": { "width": 224, "height": 160, "unit": "authoring-pixel" },
+      "renderOffset": { "x": -32, "y": -128, "unit": "authoring-pixel" },
+      "verticalExtension": { "aboveBase": 2.4, "belowBase": 0, "unit": "tile" },
+      "occlusionParts": [
+        { "id": "underframe", "role": "base", "assetId": "fixture.desk.surface.underframe" },
+        { "id": "front-occluder", "role": "foreground", "assetId": "fixture.desk.surface.front-occluder" }
+      ],
+      "attachmentSlots": [
+        { "id": "monitor", "surfaceId": "desk-surface", "x": 2, "y": 0, "unit": "tile" },
+        { "id": "keyboard", "surfaceId": "desk-surface", "x": 2, "y": 1, "unit": "tile" }
+      ],
+      "seatSlots": [],
+      "orientation": "front"
+    },
+    {
+      "schemaVersion": 3,
+      "id": "fixture.chair.seat",
+      "assetType": "seat",
+      "placementPlane": "floor",
+      "physicalScale": { "width": 1, "depth": 1, "height": 2, "unit": "tile" },
+      "footprint": { "width": 1, "depth": 1, "unit": "tile" },
+      "supportPlane": null,
+      "basePivot": { "x": 0.5, "y": 1, "unit": "tile" },
+      "sortPivot": { "x": 0.5, "y": 1, "unit": "tile" },
+      "renderBounds": { "width": 48, "height": 64, "unit": "authoring-pixel" },
+      "renderOffset": { "x": -8, "y": -32, "unit": "authoring-pixel" },
+      "verticalExtension": { "aboveBase": 2, "belowBase": 0, "unit": "tile" },
+      "occlusionParts": [
+        { "id": "chair-foreground", "role": "foreground", "assetId": "fixture.chair.seat.foreground" }
+      ],
+      "attachmentSlots": [],
+      "seatSlots": [
+        { "id": "seat", "x": 0.5, "y": 0.5, "unit": "tile", "facing": "front" }
+      ],
+      "orientation": "front"
+    },
+    {
+      "schemaVersion": 3,
+      "id": "fixture.tv.wall",
+      "assetType": "wall-mounted",
+      "placementPlane": "wall",
+      "physicalScale": { "width": 3, "depth": 0, "height": 2, "unit": "tile" },
+      "footprint": null,
+      "supportPlane": null,
+      "basePivot": { "x": 1.5, "y": 0, "unit": "tile" },
+      "sortPivot": null,
+      "renderBounds": { "width": 96, "height": 64, "unit": "authoring-pixel" },
+      "renderOffset": { "x": -48, "y": 0, "unit": "authoring-pixel" },
+      "verticalExtension": { "aboveBase": 0, "belowBase": 2, "unit": "tile" },
+      "occlusionParts": [],
+      "attachmentSlots": [],
+      "seatSlots": [],
+      "orientation": "front"
+    },
+    {
+      "schemaVersion": 3,
+      "id": "fixture.door.opening",
+      "assetType": "structural-opening",
+      "placementPlane": "wall",
+      "physicalScale": { "width": 2, "depth": 0, "height": 3, "unit": "tile" },
+      "footprint": null,
+      "supportPlane": null,
+      "basePivot": { "x": 1, "y": 0, "unit": "tile" },
+      "sortPivot": null,
+      "renderBounds": { "width": 64, "height": 96, "unit": "authoring-pixel" },
+      "renderOffset": { "x": -32, "y": 0, "unit": "authoring-pixel" },
+      "verticalExtension": { "aboveBase": 0, "belowBase": 3, "unit": "tile" },
+      "occlusionParts": [
+        { "id": "door-leaf", "role": "foreground", "assetId": "fixture.door.opening.leaf" }
+      ],
+      "attachmentSlots": [],
+      "seatSlots": [],
+      "orientation": "front"
+    },
+    {
+      "schemaVersion": 3,
+      "id": "fixture.vending.animated",
+      "assetType": "animated-shell",
+      "placementPlane": "floor",
+      "physicalScale": { "width": 2, "depth": 1, "height": 3, "unit": "tile" },
+      "footprint": { "width": 2, "depth": 1, "unit": "tile" },
+      "supportPlane": null,
+      "basePivot": { "x": 1, "y": 1, "unit": "tile" },
+      "sortPivot": { "x": 1, "y": 1, "unit": "tile" },
+      "renderBounds": { "width": 64, "height": 96, "unit": "authoring-pixel" },
+      "renderOffset": { "x": -32, "y": -64, "unit": "authoring-pixel" },
+      "verticalExtension": { "aboveBase": 3, "belowBase": 0, "unit": "tile" },
+      "occlusionParts": [],
+      "attachmentSlots": [],
+      "seatSlots": [],
+      "orientation": "front",
+      "animation": { "frameCount": 4, "stableBasePivot": true, "stableSortPivot": true }
+    },
+    {
+      "schemaVersion": 3,
+      "id": "fixture.agent.character",
+      "assetType": "character",
+      "placementPlane": "floor",
+      "physicalScale": { "width": 1, "depth": 1, "height": 3, "unit": "tile" },
+      "footprint": { "width": 1, "depth": 1, "unit": "tile" },
+      "supportPlane": null,
+      "basePivot": { "x": 0.5, "y": 1, "unit": "tile" },
+      "sortPivot": { "x": 0.5, "y": 1, "unit": "tile" },
+      "renderBounds": { "width": 96, "height": 104, "unit": "authoring-pixel" },
+      "renderOffset": { "x": -32, "y": -72, "unit": "authoring-pixel" },
+      "verticalExtension": { "aboveBase": 3, "belowBase": 0, "unit": "tile" },
+      "occlusionParts": [],
+      "attachmentSlots": [],
+      "seatSlots": [],
+      "orientation": "front"
+    }
+  ]
+}
