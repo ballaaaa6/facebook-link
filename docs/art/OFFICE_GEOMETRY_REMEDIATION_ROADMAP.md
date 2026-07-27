@@ -1,6 +1,6 @@
 # Office Geometry Remediation Roadmap
 
-Status: Steps 1-4 accepted; Steps 5-8 accepted-staging on 2026-07-27
+Status: Steps 1-4 accepted; Steps 5-16 accepted-staging on 2026-07-27
 Approved: 2026-07-27
 Owner: Art, asset-pipeline, shared-contract, and Office-rendering workstreams
 Scope: Reconcile the existing Office asset library with top-down placement,
@@ -477,3 +477,32 @@ one non-workstation furniture family at a time into Geometry v3 staging,
 calibrate the neutral actor contract against representative character
 morphologies, and assemble a larger staging room. Active promotion remains a
 separate owner decision after those wave gates pass.
+
+## 16. Steps 9-12 — Structural staging deployment
+
+Status: Complete on 2026-07-27
+
+Office Map v2, the ten-workstation room, deterministic structural renderer,
+and development-only acceptance lab are complete. Their status and promotion
+boundary are recorded in `docs/OFFICE_TEN_WORKSTATION_ACCEPTANCE.md`.
+
+## 17. Steps 13-16 — Derived furniture and facility waves
+
+Status: Accepted-staging on 2026-07-27
+
+The 77 reviewed `derive-composite` records are closed by one source-hash-locked
+pipeline and four count-preserving waves: 24 static cleanups, 40 animation
+frames, six library composites, and seven legacy runtime composites. The
+pipeline emits 64 clean assets, thirteen exact base layers, twelve foreground
+overlays, and four before/derived/difference boards under one versioned
+staging directory.
+
+Sixteen cleanup records have one coherent alpha component and are deliberately
+recorded as verified no-op derivatives. This prevents an audit group override
+from authorizing speculative pixel deletion. The remaining 48 cleanup records
+remove only the adjacent-cell material outside the primary component envelope.
+
+The development-only derived-asset lab verifies the thirteen composites with
+a neutral actor and Geometry v3 labels. Active Office imports remain unchanged
+and promotion remains a separate owner decision. Detailed evidence is in
+`docs/OFFICE_DERIVED_ASSET_WAVES_ACCEPTANCE.md`.

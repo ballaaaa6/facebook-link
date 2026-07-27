@@ -68,6 +68,15 @@ python tools/art/process_asset_sheet.py \
 
 The processor uses alpha-connected components instead of rigid cell crops, so tall objects can cross visual grid boundaries without contaminating neighboring assets.
 
+Reviewed Office cleanup and composite records use the source-hash-locked
+derivation pipeline. It never overwrites the reviewed source files:
+
+```bash
+npm run art:derived
+npm run art:derived:check
+npm run art:derived:contract:check
+```
+
 ## Asset provenance
 
 Generated office art is original project material. The Petdex pilot is marked `pending-commercial-review` and is limited to internal prototype use until its redistribution and commercial-use terms are recorded. Do not remove provenance fields from character manifests.

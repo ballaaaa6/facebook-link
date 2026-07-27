@@ -1,0 +1,4015 @@
+{
+  "version": 1,
+  "geometrySchemaVersion": 3,
+  "status": "accepted-staging",
+  "activeOfficePromotion": false,
+  "auditSource": "assets/game/manifests/office-asset-geometry-audit.json",
+  "sourcePolicy": "Original reviewed pixels are immutable; cleanup keeps a reviewed component envelope and composites reuse exact source pixels as staging layers.",
+  "counts": {
+    "total": 77,
+    "byWave": {
+      "step-13": 24,
+      "step-14": 40,
+      "step-15": 6,
+      "step-16": 7
+    },
+    "cleanup": 64,
+    "composites": 13,
+    "verifiedNoopCleanup": 16
+  },
+  "records": [
+    {
+      "recordId": "library:env-03-research-creative:camera.tripod",
+      "assetId": "camera.tripod",
+      "wave": "step-13",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-03-research-creative/camera.tripod.png",
+        "sha256": "cc47f997e3d62d7d238f1cd354c82e666d7a8221c37de2a9177800d29e56d4ee",
+        "width": 286,
+        "height": 273,
+        "alphaPixels": 21471,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          8,
+          160,
+          265
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 20228,
+        "removedAlphaPixels": 1243
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-13/env-03-research-creative/camera.tripod.clean.png",
+          "sha256": "d3092a054bf4520de282e4b96fd8122a720d8dbba433de1aafe213c35ae9bdbe",
+          "width": 286,
+          "height": 273,
+          "alphaPixels": 20228
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-03-research-creative:scale.digital",
+      "assetId": "scale.digital",
+      "wave": "step-13",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-03-research-creative/scale.digital.png",
+        "sha256": "b0bf61c15c60efa92ed94a6560ecd97a1457fcd3d4c4bd851da32b9b7ec9028a",
+        "width": 311,
+        "height": 191,
+        "alphaPixels": 32812,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          21,
+          217,
+          183
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 30743,
+        "removedAlphaPixels": 2069
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-13/env-03-research-creative/scale.digital.clean.png",
+          "sha256": "2bdc1b90e2d9606b69112d137e08c3651ba2d18c1f6f8208340b732432023aa0",
+          "width": 311,
+          "height": 191,
+          "alphaPixels": 30743
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-03-research-creative:turntable.display",
+      "assetId": "turntable.display",
+      "wave": "step-13",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-03-research-creative/turntable.display.png",
+        "sha256": "32023bb173db4843774ea3b07e6448dd680aa30c3412ec581163fa769ea402be",
+        "width": 324,
+        "height": 174,
+        "alphaPixels": 27399,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          8,
+          222,
+          153
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 27179,
+        "removedAlphaPixels": 220
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-13/env-03-research-creative/turntable.display.clean.png",
+          "sha256": "5bb20b3e9dea7feef3aefa64ba6bbd1b4d362fb533abbb120452b893ac18d3c0",
+          "width": 324,
+          "height": 174,
+          "alphaPixels": 27179
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-04-release-noc:alert.beacon",
+      "assetId": "alert.beacon",
+      "wave": "step-13",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-04-release-noc/alert.beacon.png",
+        "sha256": "1f1748ad81e882a42251790e3b2322037b0be0fbf9b57fb08c284d167034a66a",
+        "width": 272,
+        "height": 248,
+        "alphaPixels": 34335,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          8,
+          193,
+          240
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 33466,
+        "removedAlphaPixels": 869
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-13/env-04-release-noc/alert.beacon.clean.png",
+          "sha256": "89f472d063b50cd72de8f27102591ede2390ba3911c8f5d7f94b06e07fc0830b",
+          "width": 272,
+          "height": 248,
+          "alphaPixels": 33466
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-04-release-noc:cable.management.tray",
+      "assetId": "cable.management.tray",
+      "wave": "step-13",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-04-release-noc/cable.management.tray.png",
+        "sha256": "e47b52c37366176cf2253c2419ff7b1c57fa86fb85dba49c0243931599e31cbd",
+        "width": 329,
+        "height": 199,
+        "alphaPixels": 44829,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          8,
+          265,
+          191
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 43599,
+        "removedAlphaPixels": 1230
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-13/env-04-release-noc/cable.management.tray.clean.png",
+          "sha256": "92e384942bd318127a47712c3e99c7751eb486bba7238274e98f990c5e6aa2f3",
+          "width": 329,
+          "height": 199,
+          "alphaPixels": 43599
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-04-release-noc:network.router.firewall",
+      "assetId": "network.router.firewall",
+      "wave": "step-13",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-04-release-noc/network.router.firewall.png",
+        "sha256": "7beca51ceb0cb3e12ad2c1534b41ebfc821320b5fdc4c373b187cd9b74a5ad00",
+        "width": 317,
+        "height": 240,
+        "alphaPixels": 37614,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          8,
+          261,
+          230
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 35777,
+        "removedAlphaPixels": 1837
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-13/env-04-release-noc/network.router.firewall.clean.png",
+          "sha256": "67ee78c6dd36a13d8bde1dc740798fb589c412dccf99424085e0d64294b947fb",
+          "width": 317,
+          "height": 240,
+          "alphaPixels": 35777
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-09-phase2-completion-architecture:emergency.light.wall",
+      "assetId": "emergency.light.wall",
+      "wave": "step-13",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-09-phase2-completion-architecture/emergency.light.wall.png",
+        "sha256": "688e2995bb55d3f894c65beed4a99422ae24a65918ef000ee1b31d454248bdcf",
+        "width": 256,
+        "height": 127,
+        "alphaPixels": 10705,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          8,
+          99,
+          107
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 8918,
+        "removedAlphaPixels": 1787
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-13/env-09-phase2-completion-architecture/emergency.light.wall.clean.png",
+          "sha256": "d629a57c7e64c65908b0b54ea6c8f9941436a180ba981c06fd9cd794e4538407",
+          "width": 256,
+          "height": 127,
+          "alphaPixels": 8918
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-09-phase2-completion-architecture:light.wall.decorative",
+      "assetId": "light.wall.decorative",
+      "wave": "step-13",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-09-phase2-completion-architecture/light.wall.decorative.png",
+        "sha256": "6a593f2591f77f97ec49d1c507e26f584eff4ec2c8b956c04ed491267af3af32",
+        "width": 232,
+        "height": 205,
+        "alphaPixels": 9641,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          8,
+          50,
+          175
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 6832,
+        "removedAlphaPixels": 2809
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-13/env-09-phase2-completion-architecture/light.wall.decorative.clean.png",
+          "sha256": "87cf0f5d46b434bc333af3645818548c67f6d6e2591be5146ed45a858a107195",
+          "width": 232,
+          "height": 205,
+          "alphaPixels": 6832
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-09-phase2-completion-architecture:monitor.shell.left",
+      "assetId": "monitor.shell.left",
+      "wave": "step-13",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-09-phase2-completion-architecture/monitor.shell.left.png",
+        "sha256": "9d1b83536c491e612afe045b2cc9b3ab972b7df94aa7f2b2e8876f8f964baea6",
+        "width": 232,
+        "height": 239,
+        "alphaPixels": 14536,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          140,
+          8,
+          224,
+          231
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 11990,
+        "removedAlphaPixels": 2546
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-13/env-09-phase2-completion-architecture/monitor.shell.left.clean.png",
+          "sha256": "24a65a96cfc6c271c3168e601f2a234f245528d78553e668d7e1b0f6ad3c9e86",
+          "width": 232,
+          "height": 239,
+          "alphaPixels": 11990
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-09-phase2-completion-architecture:ornament.small",
+      "assetId": "ornament.small",
+      "wave": "step-13",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-09-phase2-completion-architecture/ornament.small.png",
+        "sha256": "908d76f471b7bf5f360bde46bb0009f3f40440109c19b7e12891d73170eeda6a",
+        "width": 329,
+        "height": 245,
+        "alphaPixels": 35930,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          186,
+          8,
+          321,
+          237
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 28688,
+        "removedAlphaPixels": 7242
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-13/env-09-phase2-completion-architecture/ornament.small.clean.png",
+          "sha256": "4189987644ba55fc402862a97cec1438a1efe97f31a64b8ead07dd4a37ec6af3",
+          "width": 329,
+          "height": 245,
+          "alphaPixels": 28688
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-09-phase2-completion-architecture:partition.glass",
+      "assetId": "partition.glass",
+      "wave": "step-13",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-09-phase2-completion-architecture/partition.glass.png",
+        "sha256": "9cb5537ab363b7ec68df8a2ed4d2680d36d98c4c6e40b4cdb6122a4150d20032",
+        "width": 329,
+        "height": 260,
+        "alphaPixels": 51537,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          8,
+          247,
+          237
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 51391,
+        "removedAlphaPixels": 146
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-13/env-09-phase2-completion-architecture/partition.glass.clean.png",
+          "sha256": "ba8f59898c5d63c7770c8854f073b261d955397f1935fbe1f863a56968cd131a",
+          "width": 329,
+          "height": 260,
+          "alphaPixels": 51391
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-09-phase2-completion-architecture:sign.exit.modern",
+      "assetId": "sign.exit.modern",
+      "wave": "step-13",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-09-phase2-completion-architecture/sign.exit.modern.png",
+        "sha256": "1c39d81203ee35af7fa4a591045e44c6df7b3cb6a27be43d508e348f0bbcc3eb",
+        "width": 279,
+        "height": 188,
+        "alphaPixels": 20863,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          148,
+          59,
+          271,
+          177
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 14365,
+        "removedAlphaPixels": 6498
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-13/env-09-phase2-completion-architecture/sign.exit.modern.clean.png",
+          "sha256": "e2c9e47a3221873b559fdbe3afe6977ffb1389f1d3d70c7e0a80ae2eb5a12fa3",
+          "width": 279,
+          "height": 188,
+          "alphaPixels": 14365
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-10-storage-operations-detail:bin.paper.modern",
+      "assetId": "bin.paper.modern",
+      "wave": "step-13",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-10-storage-operations-detail/bin.paper.modern.png",
+        "sha256": "ab9b2bf21d9b486ffcd3fbd20156736f926324a170df4af0e5056876e1a4ba3a",
+        "width": 180,
+        "height": 329,
+        "alphaPixels": 19252,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          23,
+          187,
+          139,
+          321
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 13938,
+        "removedAlphaPixels": 5314
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-13/env-10-storage-operations-detail/bin.paper.modern.clean.png",
+          "sha256": "e750ec512f83ff78dd19a62e43bfb0bcfad88ad2369b45edf569376bdff5a2f9",
+          "width": 180,
+          "height": 329,
+          "alphaPixels": 13938
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-10-storage-operations-detail:bin.recycling.modern",
+      "assetId": "bin.recycling.modern",
+      "wave": "step-13",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-10-storage-operations-detail/bin.recycling.modern.png",
+        "sha256": "896ed0ebe29055125341e41b575f1528311dd07129d399a58c42584921c751ec",
+        "width": 194,
+        "height": 329,
+        "alphaPixels": 16405,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          28,
+          187,
+          149,
+          321
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 14583,
+        "removedAlphaPixels": 1822
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-13/env-10-storage-operations-detail/bin.recycling.modern.clean.png",
+          "sha256": "20c080bbe7356f4c26e4703ac38214860abae17c12fd4ef86f30fd201ef8262f",
+          "width": 194,
+          "height": 329,
+          "alphaPixels": 14583
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-10-storage-operations-detail:bin.waste.modern",
+      "assetId": "bin.waste.modern",
+      "wave": "step-13",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-10-storage-operations-detail/bin.waste.modern.png",
+        "sha256": "51fe116112ac45a61329551300c0f506c0804620f25a3bb92f880cd2569de960",
+        "width": 182,
+        "height": 329,
+        "alphaPixels": 17988,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          31,
+          190,
+          148,
+          321
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 13571,
+        "removedAlphaPixels": 4417
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-13/env-10-storage-operations-detail/bin.waste.modern.clean.png",
+          "sha256": "6f9b8b47cfb531b86d87139667b3f1f6283505389c52b6c667751143fbf3e4e2",
+          "width": 182,
+          "height": 329,
+          "alphaPixels": 13571
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-10-storage-operations-detail:document.tray",
+      "assetId": "document.tray",
+      "wave": "step-13",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-10-storage-operations-detail/document.tray.png",
+        "sha256": "502d06e731327e204ac7a82627677a12033d29e67214a4f4c369b1ebdd151eb6",
+        "width": 194,
+        "height": 291,
+        "alphaPixels": 19067,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          173,
+          186,
+          283
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 18207,
+        "removedAlphaPixels": 860
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-13/env-10-storage-operations-detail/document.tray.clean.png",
+          "sha256": "25411f1b7e7b105a2a48a3929fd114023a9504c076df3a3af7abcf0a6ecf3112",
+          "width": 194,
+          "height": 291,
+          "alphaPixels": 18207
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-10-storage-operations-detail:drawer.archive",
+      "assetId": "drawer.archive",
+      "wave": "step-13",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-10-storage-operations-detail/drawer.archive.png",
+        "sha256": "617b1d372618656e715f139947d7e76ab95081491462be43b9c33904f67ed3ba",
+        "width": 222,
+        "height": 329,
+        "alphaPixels": 34616,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          28,
+          134,
+          192,
+          321
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 30591,
+        "removedAlphaPixels": 4025
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-13/env-10-storage-operations-detail/drawer.archive.clean.png",
+          "sha256": "0af620af6b3e0ec1a9fcb71f0c99feabfe8a7008386ca99c8f1a89ef122c6315",
+          "width": 222,
+          "height": 329,
+          "alphaPixels": 30591
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-10-storage-operations-detail:first.aid.wall",
+      "assetId": "first.aid.wall",
+      "wave": "step-13",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-10-storage-operations-detail/first.aid.wall.png",
+        "sha256": "b5fec19864926de532344932628515b986b2bf3c632799de2fd1d4bd9a77d38b",
+        "width": 199,
+        "height": 297,
+        "alphaPixels": 25123,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          154,
+          191,
+          289
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 24281,
+        "removedAlphaPixels": 842
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-13/env-10-storage-operations-detail/first.aid.wall.clean.png",
+          "sha256": "4a0c27c22377ec2da9231b2aa4efdbcd34b02350665f375d80886671da0afc51",
+          "width": 199,
+          "height": 297,
+          "alphaPixels": 24281
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-10-storage-operations-detail:label.box",
+      "assetId": "label.box",
+      "wave": "step-13",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-10-storage-operations-detail/label.box.png",
+        "sha256": "044426c9875a1112a4b64336b358bafcbc7280b1717470a93e81d6d3247e538e",
+        "width": 175,
+        "height": 300,
+        "alphaPixels": 20499,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          161,
+          167,
+          292
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 19591,
+        "removedAlphaPixels": 908
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-13/env-10-storage-operations-detail/label.box.clean.png",
+          "sha256": "c1ba025523e8e712ec5d1148220e5a67bb9d0e4eb15b3b0a59e60098cc046442",
+          "width": 175,
+          "height": 300,
+          "alphaPixels": 19591
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-10-storage-operations-detail:mail.sorter",
+      "assetId": "mail.sorter",
+      "wave": "step-13",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-10-storage-operations-detail/mail.sorter.png",
+        "sha256": "54f90fc3bcf3b11bcc648d0bf179a14e23bfce16d37e3d404287eb7ebdc9e0dd",
+        "width": 235,
+        "height": 302,
+        "alphaPixels": 38174,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          122,
+          227,
+          294
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 37513,
+        "removedAlphaPixels": 661
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-13/env-10-storage-operations-detail/mail.sorter.clean.png",
+          "sha256": "8ddeefde6f45972bed6b4ec7ac259284f203e3030c7f73b08afa7591e081ac58",
+          "width": 235,
+          "height": 302,
+          "alphaPixels": 37513
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-11-comfort-personal-detail:coat.hooks.wall",
+      "assetId": "coat.hooks.wall",
+      "wave": "step-13",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-11-comfort-personal-detail/coat.hooks.wall.png",
+        "sha256": "09422058246e6525f8beec513e8bce33a6d324cbc0858adcc73cc4a5a03c94ed",
+        "width": 268,
+        "height": 238,
+        "alphaPixels": 19640,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          152,
+          260,
+          230
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 19596,
+        "removedAlphaPixels": 44
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-13/env-11-comfort-personal-detail/coat.hooks.wall.clean.png",
+          "sha256": "5a94a72b2ef3e7659b98057208d66322763d7f829dc130493cd5d4b1fea5647f",
+          "width": 268,
+          "height": 238,
+          "alphaPixels": 19596
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-11-comfort-personal-detail:footrest.office",
+      "assetId": "footrest.office",
+      "wave": "step-13",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-11-comfort-personal-detail/footrest.office.png",
+        "sha256": "3b18a64c127932c418408c80b3b014d71dd7f054826814aa213c0fcbb780a1b8",
+        "width": 228,
+        "height": 285,
+        "alphaPixels": 23463,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          145,
+          220,
+          277
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 23248,
+        "removedAlphaPixels": 215
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-13/env-11-comfort-personal-detail/footrest.office.clean.png",
+          "sha256": "d032566610effd2377488d8df291759069c8f9cee61769cdbbb22f5837424372",
+          "width": 228,
+          "height": 285,
+          "alphaPixels": 23248
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-11-comfort-personal-detail:stationery.cup",
+      "assetId": "stationery.cup",
+      "wave": "step-13",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-11-comfort-personal-detail/stationery.cup.png",
+        "sha256": "3aee014a9db91c94dba06763a10d3fa95cefc7d44187e8e49e5e50cb0c90eb45",
+        "width": 159,
+        "height": 296,
+        "alphaPixels": 26395,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          8,
+          151,
+          230
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 26285,
+        "removedAlphaPixels": 110
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-13/env-11-comfort-personal-detail/stationery.cup.clean.png",
+          "sha256": "cfb4e461b846168c26397181fe3e1f947d84f4e7c91b7b1bd3e45e8124d3150e",
+          "width": 159,
+          "height": 296,
+          "alphaPixels": 26285
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-11-comfort-personal-detail:stool.side",
+      "assetId": "stool.side",
+      "wave": "step-13",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-11-comfort-personal-detail/stool.side.png",
+        "sha256": "8b12cc013bc49be07fc70fc977a48642eed76c6365eacce6c59f19fcba522e31",
+        "width": 162,
+        "height": 305,
+        "alphaPixels": 16495,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          73,
+          154,
+          297
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 16456,
+        "removedAlphaPixels": 39
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-13/env-11-comfort-personal-detail/stool.side.clean.png",
+          "sha256": "61593d2d71c4adb7e06c81c67a5cd462e7b34b94acdb3894c0711b1c733ac007",
+          "width": 162,
+          "height": 305,
+          "alphaPixels": 16456
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-02-screen-themes:screen.theme.content.a",
+      "assetId": "screen.theme.content.a",
+      "wave": "step-14",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-02-screen-themes/screen.theme.content.a.png",
+        "sha256": "5fedabbb414bf18fc72764022d387ccdd7cb3791b3f91d102bcce70e5d62bac4",
+        "width": 357,
+        "height": 252,
+        "alphaPixels": 69542,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          8,
+          349,
+          205
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 67168,
+        "removedAlphaPixels": 2374
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-02-screen-themes/screen.theme.content.a.clean.png",
+          "sha256": "3661ce8a0787e621f3441fa06dd91f6d6b21b23ee5cacc68bd69ea4f1b577124",
+          "width": 357,
+          "height": 252,
+          "alphaPixels": 67168
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-02-screen-themes:screen.theme.content.b",
+      "assetId": "screen.theme.content.b",
+      "wave": "step-14",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-02-screen-themes/screen.theme.content.b.png",
+        "sha256": "2c108839d057a774c877b3bd7716f523a345c899311f23bbcd91d9b1c6e02b15",
+        "width": 359,
+        "height": 252,
+        "alphaPixels": 69705,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          9,
+          8,
+          351,
+          205
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 67365,
+        "removedAlphaPixels": 2340
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-02-screen-themes/screen.theme.content.b.clean.png",
+          "sha256": "3ff4758f1df9229eafd6de924f2c1f5426125f1b6d69ad20fa90cb84057b8acf",
+          "width": 359,
+          "height": 252,
+          "alphaPixels": 67365
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-02-screen-themes:screen.theme.content.c",
+      "assetId": "screen.theme.content.c",
+      "wave": "step-14",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-02-screen-themes/screen.theme.content.c.png",
+        "sha256": "6947415401bae9f2fbcecdce523bee294a9d1376dacb8cd1ecfc6f9d763a4f1b",
+        "width": 357,
+        "height": 252,
+        "alphaPixels": 69239,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          8,
+          349,
+          205
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 67170,
+        "removedAlphaPixels": 2069
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-02-screen-themes/screen.theme.content.c.clean.png",
+          "sha256": "b2bb4a7d026db2933675b7261b6887f1593a4fabf6fab8ab4e86e386e518b279",
+          "width": 357,
+          "height": 252,
+          "alphaPixels": 67170
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-02-screen-themes:screen.theme.content.d",
+      "assetId": "screen.theme.content.d",
+      "wave": "step-14",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-02-screen-themes/screen.theme.content.d.png",
+        "sha256": "62b19edf394644d16b13ecbda98a77441fc3367b99202dda91b54b34b54458d3",
+        "width": 357,
+        "height": 253,
+        "alphaPixels": 69474,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          10,
+          8,
+          349,
+          206
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 67109,
+        "removedAlphaPixels": 2365
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-02-screen-themes/screen.theme.content.d.clean.png",
+          "sha256": "d90bfe59ed07fb09de69d159ad7683cb82a527ae57cbf910ca87c2e97b89268a",
+          "width": 357,
+          "height": 253,
+          "alphaPixels": 67109
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-02-screen-themes:screen.theme.dashboard.a",
+      "assetId": "screen.theme.dashboard.a",
+      "wave": "step-14",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-02-screen-themes/screen.theme.dashboard.a.png",
+        "sha256": "43a086b0201395065bd08d66e6280a7188177d55093d410b171f67f6f5701f5b",
+        "width": 357,
+        "height": 258,
+        "alphaPixels": 70136,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          49,
+          349,
+          250
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 68441,
+        "removedAlphaPixels": 1695
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-02-screen-themes/screen.theme.dashboard.a.clean.png",
+          "sha256": "44b7e7821aaa63d251f6dd60c97129e4e58e58b9f96dcc1771a269bf515c9f67",
+          "width": 357,
+          "height": 258,
+          "alphaPixels": 68441
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-02-screen-themes:screen.theme.dashboard.b",
+      "assetId": "screen.theme.dashboard.b",
+      "wave": "step-14",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-02-screen-themes/screen.theme.dashboard.b.png",
+        "sha256": "b9949732b0bc081aa29e42c1d89cde968d673fc8551026fea463e06031d5fddc",
+        "width": 358,
+        "height": 258,
+        "alphaPixels": 70543,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          49,
+          350,
+          250
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 68700,
+        "removedAlphaPixels": 1843
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-02-screen-themes/screen.theme.dashboard.b.clean.png",
+          "sha256": "16a00e703334ac62697e290ce12051b20e0ad04bf19e5191e62f67b0492c70e1",
+          "width": 358,
+          "height": 258,
+          "alphaPixels": 68700
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-02-screen-themes:screen.theme.dashboard.c",
+      "assetId": "screen.theme.dashboard.c",
+      "wave": "step-14",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-02-screen-themes/screen.theme.dashboard.c.png",
+        "sha256": "0b47c01865eec3bdd393171984accae9b75f919906fbe301c8c8a1ffd46369b9",
+        "width": 356,
+        "height": 259,
+        "alphaPixels": 70229,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          49,
+          348,
+          251
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 68498,
+        "removedAlphaPixels": 1731
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-02-screen-themes/screen.theme.dashboard.c.clean.png",
+          "sha256": "896272a6995664659c861a9416f8d466fdaa462aabe92208fbc124a4b16deb39",
+          "width": 356,
+          "height": 259,
+          "alphaPixels": 68498
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-02-screen-themes:screen.theme.dashboard.d",
+      "assetId": "screen.theme.dashboard.d",
+      "wave": "step-14",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-02-screen-themes/screen.theme.dashboard.d.png",
+        "sha256": "99cb8781f687d7851d03fab00771d135e7ebcc32578bf14f69e1308510b1f43f",
+        "width": 355,
+        "height": 259,
+        "alphaPixels": 70141,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          50,
+          347,
+          251
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 68126,
+        "removedAlphaPixels": 2015
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-02-screen-themes/screen.theme.dashboard.d.clean.png",
+          "sha256": "ae432c5905232dc0647a6c93359390386427cd83645101cd84f72d5ee1030844",
+          "width": 355,
+          "height": 259,
+          "alphaPixels": 68126
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-02-screen-themes:screen.theme.progress.a",
+      "assetId": "screen.theme.progress.a",
+      "wave": "step-14",
+      "operation": "verified-noop-cleanup",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-02-screen-themes/screen.theme.progress.a.png",
+        "sha256": "025d092b1c72739dc2f3b938359cdb70cfaece9eeff7684c4f06ef98b70ecafe",
+        "width": 356,
+        "height": 213,
+        "alphaPixels": 66641,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": null,
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 66641,
+        "removedAlphaPixels": 0
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-02-screen-themes/screen.theme.progress.a.clean.png",
+          "sha256": "025d092b1c72739dc2f3b938359cdb70cfaece9eeff7684c4f06ef98b70ecafe",
+          "width": 356,
+          "height": 213,
+          "alphaPixels": 66641
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-02-screen-themes:screen.theme.progress.b",
+      "assetId": "screen.theme.progress.b",
+      "wave": "step-14",
+      "operation": "verified-noop-cleanup",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-02-screen-themes/screen.theme.progress.b.png",
+        "sha256": "e10b44bb3e79f05cfd6129e6f692db15c5fc112d112a249aeb2b37058767d29b",
+        "width": 357,
+        "height": 213,
+        "alphaPixels": 66832,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": null,
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 66832,
+        "removedAlphaPixels": 0
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-02-screen-themes/screen.theme.progress.b.clean.png",
+          "sha256": "e10b44bb3e79f05cfd6129e6f692db15c5fc112d112a249aeb2b37058767d29b",
+          "width": 357,
+          "height": 213,
+          "alphaPixels": 66832
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-02-screen-themes:screen.theme.progress.c",
+      "assetId": "screen.theme.progress.c",
+      "wave": "step-14",
+      "operation": "verified-noop-cleanup",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-02-screen-themes/screen.theme.progress.c.png",
+        "sha256": "41c6096938784bc9bf4b81a001d7e13b78d01dc59b58f735494aa521444c1d8a",
+        "width": 355,
+        "height": 213,
+        "alphaPixels": 66445,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": null,
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 66445,
+        "removedAlphaPixels": 0
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-02-screen-themes/screen.theme.progress.c.clean.png",
+          "sha256": "41c6096938784bc9bf4b81a001d7e13b78d01dc59b58f735494aa521444c1d8a",
+          "width": 355,
+          "height": 213,
+          "alphaPixels": 66445
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-02-screen-themes:screen.theme.progress.d",
+      "assetId": "screen.theme.progress.d",
+      "wave": "step-14",
+      "operation": "verified-noop-cleanup",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-02-screen-themes/screen.theme.progress.d.png",
+        "sha256": "92d41f8f374203e12cd5c9493a2c26f151ba99a7310dfac4f38df354cae73091",
+        "width": 353,
+        "height": 212,
+        "alphaPixels": 66047,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": null,
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 66047,
+        "removedAlphaPixels": 0
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-02-screen-themes/screen.theme.progress.d.clean.png",
+          "sha256": "92d41f8f374203e12cd5c9493a2c26f151ba99a7310dfac4f38df354cae73091",
+          "width": 353,
+          "height": 212,
+          "alphaPixels": 66047
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-02-screen-themes:screen.theme.support.a",
+      "assetId": "screen.theme.support.a",
+      "wave": "step-14",
+      "operation": "verified-noop-cleanup",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-02-screen-themes/screen.theme.support.a.png",
+        "sha256": "734f6ba22c95186c4bb41dfd95779ff3281e51e179a28cba07d06e2a4b97afa8",
+        "width": 358,
+        "height": 213,
+        "alphaPixels": 66999,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": null,
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 66999,
+        "removedAlphaPixels": 0
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-02-screen-themes/screen.theme.support.a.clean.png",
+          "sha256": "734f6ba22c95186c4bb41dfd95779ff3281e51e179a28cba07d06e2a4b97afa8",
+          "width": 358,
+          "height": 213,
+          "alphaPixels": 66999
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-02-screen-themes:screen.theme.support.b",
+      "assetId": "screen.theme.support.b",
+      "wave": "step-14",
+      "operation": "verified-noop-cleanup",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-02-screen-themes/screen.theme.support.b.png",
+        "sha256": "cc5ac2558d8cf58c564987985dbb7a5f678180e5472fec982e722609c0c537e4",
+        "width": 359,
+        "height": 214,
+        "alphaPixels": 67570,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": null,
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 67570,
+        "removedAlphaPixels": 0
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-02-screen-themes/screen.theme.support.b.clean.png",
+          "sha256": "cc5ac2558d8cf58c564987985dbb7a5f678180e5472fec982e722609c0c537e4",
+          "width": 359,
+          "height": 214,
+          "alphaPixels": 67570
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-02-screen-themes:screen.theme.support.c",
+      "assetId": "screen.theme.support.c",
+      "wave": "step-14",
+      "operation": "verified-noop-cleanup",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-02-screen-themes/screen.theme.support.c.png",
+        "sha256": "88aaf5935e7d33db3bec89cd0fbfea85200be28b877147ee5e0290fe4bcc2618",
+        "width": 357,
+        "height": 214,
+        "alphaPixels": 67181,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": null,
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 67181,
+        "removedAlphaPixels": 0
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-02-screen-themes/screen.theme.support.c.clean.png",
+          "sha256": "88aaf5935e7d33db3bec89cd0fbfea85200be28b877147ee5e0290fe4bcc2618",
+          "width": 357,
+          "height": 214,
+          "alphaPixels": 67181
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-02-screen-themes:screen.theme.support.d",
+      "assetId": "screen.theme.support.d",
+      "wave": "step-14",
+      "operation": "verified-noop-cleanup",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-02-screen-themes/screen.theme.support.d.png",
+        "sha256": "63efc0438e50589ad88690063f6794e1e964d477add03ec4b2f90bc7daedda27",
+        "width": 355,
+        "height": 214,
+        "alphaPixels": 66788,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": null,
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 66788,
+        "removedAlphaPixels": 0
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-02-screen-themes/screen.theme.support.d.clean.png",
+          "sha256": "63efc0438e50589ad88690063f6794e1e964d477add03ec4b2f90bc7daedda27",
+          "width": 355,
+          "height": 214,
+          "alphaPixels": 66788
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-07-animated-mechanical:machine.arcade.loop.a",
+      "assetId": "machine.arcade.loop.a",
+      "wave": "step-14",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-07-animated-mechanical/machine.arcade.loop.a.png",
+        "sha256": "7a24a321489f59559bf838a16c6c7d974b40b807a63568188d9954a3cf2397bd",
+        "width": 226,
+        "height": 329,
+        "alphaPixels": 52312,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          56,
+          218,
+          321
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 51248,
+        "removedAlphaPixels": 1064
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-07-animated-mechanical/machine.arcade.loop.a.clean.png",
+          "sha256": "3e61cdae944f1b5b2726b2450bc6558f67905fec09606012bfbb4e251d8b733b",
+          "width": 226,
+          "height": 329,
+          "alphaPixels": 51248
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-07-animated-mechanical:machine.arcade.loop.b",
+      "assetId": "machine.arcade.loop.b",
+      "wave": "step-14",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-07-animated-mechanical/machine.arcade.loop.b.png",
+        "sha256": "771add961c16dc7df59fac7c3211a222f4ea7e4cb5ec481bb4ee81fe9d40960c",
+        "width": 227,
+        "height": 329,
+        "alphaPixels": 52150,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          56,
+          219,
+          321
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 51087,
+        "removedAlphaPixels": 1063
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-07-animated-mechanical/machine.arcade.loop.b.clean.png",
+          "sha256": "530e1add92f7fcdf9e8d970b5f87fd6a447f41ecb6a82b111b515fd9e454bdc4",
+          "width": 227,
+          "height": 329,
+          "alphaPixels": 51087
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-07-animated-mechanical:machine.arcade.loop.c",
+      "assetId": "machine.arcade.loop.c",
+      "wave": "step-14",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-07-animated-mechanical/machine.arcade.loop.c.png",
+        "sha256": "16d01da2cabd3b4ac74c6e72e541422d50d02850f1b0b1bec0cbb1083a4cea13",
+        "width": 228,
+        "height": 329,
+        "alphaPixels": 52514,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          56,
+          220,
+          321
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 51451,
+        "removedAlphaPixels": 1063
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-07-animated-mechanical/machine.arcade.loop.c.clean.png",
+          "sha256": "b9e892834205c06fcda8e99a547e0204b658072990dda7c73d4b530858cb1d94",
+          "width": 228,
+          "height": 329,
+          "alphaPixels": 51451
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-07-animated-mechanical:machine.arcade.loop.d",
+      "assetId": "machine.arcade.loop.d",
+      "wave": "step-14",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-07-animated-mechanical/machine.arcade.loop.d.png",
+        "sha256": "943dd1dff8af2cde60df85bc92a3c611e0f2fa8c806c034e676b8ee163dd853a",
+        "width": 228,
+        "height": 329,
+        "alphaPixels": 52404,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          56,
+          220,
+          321
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 51341,
+        "removedAlphaPixels": 1063
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-07-animated-mechanical/machine.arcade.loop.d.clean.png",
+          "sha256": "c627c20f321476b4a5ceb0ddab52825a4923c6d247afcf4740e1a8628f3b0fc8",
+          "width": 228,
+          "height": 329,
+          "alphaPixels": 51341
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-07-animated-mechanical:printer.label.loop.a",
+      "assetId": "printer.label.loop.a",
+      "wave": "step-14",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-07-animated-mechanical/printer.label.loop.a.png",
+        "sha256": "beeca7a43bb74decbc7819b2c6c3ceeadf3396d26990c62e41538c2c574184b3",
+        "width": 240,
+        "height": 272,
+        "alphaPixels": 41796,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          8,
+          232,
+          195
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 39969,
+        "removedAlphaPixels": 1827
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-07-animated-mechanical/printer.label.loop.a.clean.png",
+          "sha256": "ddc9dbeab09a200ccc605fd27d185e3c803f1d4f51cd87f4043886d037b736a0",
+          "width": 240,
+          "height": 272,
+          "alphaPixels": 39969
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-07-animated-mechanical:printer.label.loop.b",
+      "assetId": "printer.label.loop.b",
+      "wave": "step-14",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-07-animated-mechanical/printer.label.loop.b.png",
+        "sha256": "66976efc57dc264288fa96eb84f7e18a6f4c6d4b7df2b37d16086181ba3f51f8",
+        "width": 240,
+        "height": 272,
+        "alphaPixels": 41730,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          8,
+          232,
+          195
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 39903,
+        "removedAlphaPixels": 1827
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-07-animated-mechanical/printer.label.loop.b.clean.png",
+          "sha256": "1a63eb57c125841fe5e2322bd859b9b14deeab2d5d1d0b380e1fce5bec474c75",
+          "width": 240,
+          "height": 272,
+          "alphaPixels": 39903
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-07-animated-mechanical:printer.label.loop.c",
+      "assetId": "printer.label.loop.c",
+      "wave": "step-14",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-07-animated-mechanical/printer.label.loop.c.png",
+        "sha256": "47353a457b176a30900315d9d6c1465bcfb7932a17eb17f838f80591a2ac063c",
+        "width": 238,
+        "height": 272,
+        "alphaPixels": 41418,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          8,
+          230,
+          195
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 39611,
+        "removedAlphaPixels": 1807
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-07-animated-mechanical/printer.label.loop.c.clean.png",
+          "sha256": "c4f081cecaa9243362e46cdb65b4bf2bc9e6f07bb591d6ab68527269bca729d9",
+          "width": 238,
+          "height": 272,
+          "alphaPixels": 39611
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-07-animated-mechanical:printer.label.loop.d",
+      "assetId": "printer.label.loop.d",
+      "wave": "step-14",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-07-animated-mechanical/printer.label.loop.d.png",
+        "sha256": "22a306368415884c2d4c0ae6bfc842539a675d11def8d9bf577788f7acafa4e9",
+        "width": 237,
+        "height": 272,
+        "alphaPixels": 43557,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          8,
+          229,
+          206
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 41753,
+        "removedAlphaPixels": 1804
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-07-animated-mechanical/printer.label.loop.d.clean.png",
+          "sha256": "c5269dca70e9be1db20a08ec06dc44407e35d911c92393627e327f646087b62d",
+          "width": 237,
+          "height": 272,
+          "alphaPixels": 41753
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-07-animated-mechanical:vending.machine.loop.a",
+      "assetId": "vending.machine.loop.a",
+      "wave": "step-14",
+      "operation": "verified-noop-cleanup",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-07-animated-mechanical/vending.machine.loop.a.png",
+        "sha256": "0f01100ea38d0eb03993e25e029b51d87e24ddb0ee9424496108a4b250040ede",
+        "width": 219,
+        "height": 284,
+        "alphaPixels": 53732,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": null,
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 53732,
+        "removedAlphaPixels": 0
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-07-animated-mechanical/vending.machine.loop.a.clean.png",
+          "sha256": "0f01100ea38d0eb03993e25e029b51d87e24ddb0ee9424496108a4b250040ede",
+          "width": 219,
+          "height": 284,
+          "alphaPixels": 53732
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-07-animated-mechanical:vending.machine.loop.b",
+      "assetId": "vending.machine.loop.b",
+      "wave": "step-14",
+      "operation": "verified-noop-cleanup",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-07-animated-mechanical/vending.machine.loop.b.png",
+        "sha256": "a2c6e9d21e357e2e52e113c40e1f291ec1aeb98bae728618e3366dec05e0068a",
+        "width": 217,
+        "height": 284,
+        "alphaPixels": 53420,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": null,
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 53420,
+        "removedAlphaPixels": 0
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-07-animated-mechanical/vending.machine.loop.b.clean.png",
+          "sha256": "a2c6e9d21e357e2e52e113c40e1f291ec1aeb98bae728618e3366dec05e0068a",
+          "width": 217,
+          "height": 284,
+          "alphaPixels": 53420
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-07-animated-mechanical:vending.machine.loop.c",
+      "assetId": "vending.machine.loop.c",
+      "wave": "step-14",
+      "operation": "verified-noop-cleanup",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-07-animated-mechanical/vending.machine.loop.c.png",
+        "sha256": "a922413d85d90606694e0a841c03bd25459ebe7632b186373d1c9272b7d294ec",
+        "width": 218,
+        "height": 284,
+        "alphaPixels": 53607,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": null,
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 53607,
+        "removedAlphaPixels": 0
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-07-animated-mechanical/vending.machine.loop.c.clean.png",
+          "sha256": "a922413d85d90606694e0a841c03bd25459ebe7632b186373d1c9272b7d294ec",
+          "width": 218,
+          "height": 284,
+          "alphaPixels": 53607
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-07-animated-mechanical:vending.machine.loop.d",
+      "assetId": "vending.machine.loop.d",
+      "wave": "step-14",
+      "operation": "verified-noop-cleanup",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-07-animated-mechanical/vending.machine.loop.d.png",
+        "sha256": "387339e3ffcde1ab8c6c57076eb0cee19306573bd48fb67d5c722b1d27f84c10",
+        "width": 217,
+        "height": 284,
+        "alphaPixels": 53451,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": null,
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 53451,
+        "removedAlphaPixels": 0
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-07-animated-mechanical/vending.machine.loop.d.clean.png",
+          "sha256": "387339e3ffcde1ab8c6c57076eb0cee19306573bd48fb67d5c722b1d27f84c10",
+          "width": 217,
+          "height": 284,
+          "alphaPixels": 53451
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-08-animated-ambient:lamp.desk.loop.a",
+      "assetId": "lamp.desk.loop.a",
+      "wave": "step-14",
+      "operation": "verified-noop-cleanup",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-08-animated-ambient/lamp.desk.loop.a.png",
+        "sha256": "2fbc11fb494dd26b34243e85287bceec943ef7ac24d70cc5f83c49f149ac1f4a",
+        "width": 193,
+        "height": 265,
+        "alphaPixels": 19247,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": null,
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 19247,
+        "removedAlphaPixels": 0
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-08-animated-ambient/lamp.desk.loop.a.clean.png",
+          "sha256": "2fbc11fb494dd26b34243e85287bceec943ef7ac24d70cc5f83c49f149ac1f4a",
+          "width": 193,
+          "height": 265,
+          "alphaPixels": 19247
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-08-animated-ambient:lamp.desk.loop.b",
+      "assetId": "lamp.desk.loop.b",
+      "wave": "step-14",
+      "operation": "verified-noop-cleanup",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-08-animated-ambient/lamp.desk.loop.b.png",
+        "sha256": "2d766236ff1196a81685e1be21c1ce50dac07774c5d1eeb62bd82ec4f00b13d3",
+        "width": 194,
+        "height": 265,
+        "alphaPixels": 19448,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": null,
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 19448,
+        "removedAlphaPixels": 0
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-08-animated-ambient/lamp.desk.loop.b.clean.png",
+          "sha256": "2d766236ff1196a81685e1be21c1ce50dac07774c5d1eeb62bd82ec4f00b13d3",
+          "width": 194,
+          "height": 265,
+          "alphaPixels": 19448
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-08-animated-ambient:lamp.desk.loop.c",
+      "assetId": "lamp.desk.loop.c",
+      "wave": "step-14",
+      "operation": "verified-noop-cleanup",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-08-animated-ambient/lamp.desk.loop.c.png",
+        "sha256": "cc92cad116007a96bf79cc80edfb75255448e084de7fe2795eb18674f18e78a1",
+        "width": 195,
+        "height": 264,
+        "alphaPixels": 19537,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": null,
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 19537,
+        "removedAlphaPixels": 0
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-08-animated-ambient/lamp.desk.loop.c.clean.png",
+          "sha256": "cc92cad116007a96bf79cc80edfb75255448e084de7fe2795eb18674f18e78a1",
+          "width": 195,
+          "height": 264,
+          "alphaPixels": 19537
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-08-animated-ambient:lamp.desk.loop.d",
+      "assetId": "lamp.desk.loop.d",
+      "wave": "step-14",
+      "operation": "verified-noop-cleanup",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-08-animated-ambient/lamp.desk.loop.d.png",
+        "sha256": "885837facb91b2c3967b879cf529ab6a7efb99d869b8a826f9db26b13a7b8231",
+        "width": 195,
+        "height": 265,
+        "alphaPixels": 19457,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": null,
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 19457,
+        "removedAlphaPixels": 0
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-08-animated-ambient/lamp.desk.loop.d.clean.png",
+          "sha256": "885837facb91b2c3967b879cf529ab6a7efb99d869b8a826f9db26b13a7b8231",
+          "width": 195,
+          "height": 265,
+          "alphaPixels": 19457
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-08-animated-ambient:machine.coffee.loop.a",
+      "assetId": "machine.coffee.loop.a",
+      "wave": "step-14",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-08-animated-ambient/machine.coffee.loop.a.png",
+        "sha256": "72651ef3503438e0988078f0126eb814b608a2ef1101c67be169eaf1c17cb10f",
+        "width": 210,
+        "height": 329,
+        "alphaPixels": 40726,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          112,
+          202,
+          321
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 37540,
+        "removedAlphaPixels": 3186
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-08-animated-ambient/machine.coffee.loop.a.clean.png",
+          "sha256": "5b9629a1bafe6dd5fb077c42c9c406fa23b474db9fd13a919321106b5032f1d5",
+          "width": 210,
+          "height": 329,
+          "alphaPixels": 37540
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-08-animated-ambient:machine.coffee.loop.b",
+      "assetId": "machine.coffee.loop.b",
+      "wave": "step-14",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-08-animated-ambient/machine.coffee.loop.b.png",
+        "sha256": "7e43c67c09106d7fdbe2d9875c2ccfc85a1f6cdf0d0e8d32c93915c00698011c",
+        "width": 211,
+        "height": 329,
+        "alphaPixels": 40688,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          112,
+          203,
+          321
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 37503,
+        "removedAlphaPixels": 3185
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-08-animated-ambient/machine.coffee.loop.b.clean.png",
+          "sha256": "d03222a0e5af911ef0c9e18031107825596b75ff97a46e435b006e22e445218a",
+          "width": 211,
+          "height": 329,
+          "alphaPixels": 37503
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-08-animated-ambient:machine.coffee.loop.c",
+      "assetId": "machine.coffee.loop.c",
+      "wave": "step-14",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-08-animated-ambient/machine.coffee.loop.c.png",
+        "sha256": "0867f01961c944cdd9d46e3d2c981bd153b09356cecc3e1ceb67fb5df3c1bda9",
+        "width": 210,
+        "height": 329,
+        "alphaPixels": 40886,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          92,
+          202,
+          321
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 37704,
+        "removedAlphaPixels": 3182
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-08-animated-ambient/machine.coffee.loop.c.clean.png",
+          "sha256": "4cf4c23b6644438469205e3b605e9733e2ae256b9c9e3ec7e290ce3de959220d",
+          "width": 210,
+          "height": 329,
+          "alphaPixels": 37704
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-08-animated-ambient:machine.coffee.loop.d",
+      "assetId": "machine.coffee.loop.d",
+      "wave": "step-14",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-08-animated-ambient/machine.coffee.loop.d.png",
+        "sha256": "edb6e0604f70a2d81b0d491754990f2ed7531fc6c62362cd0be5c8ea860c6fc0",
+        "width": 210,
+        "height": 329,
+        "alphaPixels": 40661,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          112,
+          202,
+          321
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 37471,
+        "removedAlphaPixels": 3190
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-08-animated-ambient/machine.coffee.loop.d.clean.png",
+          "sha256": "2c1f35ad61c866cecd31cf037d05f40b7bfc60d922afed2c2e4fa2592ab9eb3e",
+          "width": 210,
+          "height": 329,
+          "alphaPixels": 37471
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-08-animated-ambient:plant.small.loop.a",
+      "assetId": "plant.small.loop.a",
+      "wave": "step-14",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-08-animated-ambient/plant.small.loop.a.png",
+        "sha256": "506e94d727d83bb917749d4857726086ada516c98e52ce98f26d02ffc308a897",
+        "width": 214,
+        "height": 307,
+        "alphaPixels": 23486,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          90,
+          205,
+          299
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 23114,
+        "removedAlphaPixels": 372
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-08-animated-ambient/plant.small.loop.a.clean.png",
+          "sha256": "19f2d8806be45e53d548d69417e123a2eb89b3c52b5e73db8a85599ce48eed1b",
+          "width": 214,
+          "height": 307,
+          "alphaPixels": 23114
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-08-animated-ambient:plant.small.loop.b",
+      "assetId": "plant.small.loop.b",
+      "wave": "step-14",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-08-animated-ambient/plant.small.loop.b.png",
+        "sha256": "c33dd66672649f483d2bfc4f1f9a43654b08a614c9481f208819e253873c4fc1",
+        "width": 213,
+        "height": 307,
+        "alphaPixels": 22977,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          90,
+          204,
+          299
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 22614,
+        "removedAlphaPixels": 363
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-08-animated-ambient/plant.small.loop.b.clean.png",
+          "sha256": "e9cbbf625ee111f5156ed9c544feab3cca4928be66d90d3ce78e04b012c45f79",
+          "width": 213,
+          "height": 307,
+          "alphaPixels": 22614
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-08-animated-ambient:plant.small.loop.c",
+      "assetId": "plant.small.loop.c",
+      "wave": "step-14",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-08-animated-ambient/plant.small.loop.c.png",
+        "sha256": "12a9578839299a0e0607f9ac5efa47a715115df07e0b4f81ce6ed2fb62f80db1",
+        "width": 227,
+        "height": 307,
+        "alphaPixels": 26437,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          61,
+          219,
+          299
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 26070,
+        "removedAlphaPixels": 367
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-08-animated-ambient/plant.small.loop.c.clean.png",
+          "sha256": "74b469154539f4fdd2f266613fbe90a09a122cf12f1db35d9b9fd48d374d7a78",
+          "width": 227,
+          "height": 307,
+          "alphaPixels": 26070
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-08-animated-ambient:plant.small.loop.d",
+      "assetId": "plant.small.loop.d",
+      "wave": "step-14",
+      "operation": "clean-largest-component-bounds",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-08-animated-ambient/plant.small.loop.d.png",
+        "sha256": "4d47e92f54092c91e6d6556e7ec259c1f3e7f92402b3168c68241ca8bc89de9d",
+        "width": 209,
+        "height": 307,
+        "alphaPixels": 24629,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": [
+          8,
+          65,
+          201,
+          299
+        ],
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 24262,
+        "removedAlphaPixels": 367
+      },
+      "outputs": [
+        {
+          "role": "clean",
+          "file": "assets/game/processed/office-derived-v1/step-14/env-08-animated-ambient/plant.small.loop.d.clean.png",
+          "sha256": "628d44a2403395976141f8fa8db1b0d47dd45548b4f77d7831490aa45283c22b",
+          "width": 209,
+          "height": 307,
+          "alphaPixels": 24262
+        }
+      ],
+      "geometry": null
+    },
+    {
+      "recordId": "library:env-05-facility-lounge:sofa.modern.three-seat",
+      "assetId": "sofa.modern.three-seat",
+      "wave": "step-15",
+      "operation": "foreground-overlay-composite",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-05-facility-lounge/sofa.modern.three-seat.png",
+        "sha256": "00eea6dee235320f49e39ad25fc7c99274ea3a28151fd791eb1baf0ecea7df04",
+        "width": 318,
+        "height": 210,
+        "alphaPixels": 53554,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": null,
+        "foregroundRegions": [
+          [
+            0.0,
+            0.48,
+            1.0,
+            1.0
+          ],
+          [
+            0.88,
+            0.18,
+            1.0,
+            0.55
+          ]
+        ]
+      },
+      "metrics": {
+        "retainedAlphaPixels": 53554,
+        "removedAlphaPixels": 0
+      },
+      "outputs": [
+        {
+          "role": "base",
+          "file": "assets/game/processed/office-derived-v1/step-15/env-05-facility-lounge/sofa.modern.three-seat.base.png",
+          "sha256": "00eea6dee235320f49e39ad25fc7c99274ea3a28151fd791eb1baf0ecea7df04",
+          "width": 318,
+          "height": 210,
+          "alphaPixels": 53554
+        },
+        {
+          "role": "foreground",
+          "file": "assets/game/processed/office-derived-v1/step-15/env-05-facility-lounge/sofa.modern.three-seat.foreground.png",
+          "sha256": "b6f6570ebfecac203af62a0df05e724a51d083a1312765efa196c43a600aa857",
+          "width": 318,
+          "height": 210,
+          "alphaPixels": 28499
+        }
+      ],
+      "geometry": {
+        "schemaVersion": 3,
+        "id": "derived.v1.sofa.modern.three-seat",
+        "assetType": "seat",
+        "placementPlane": "floor",
+        "physicalScale": {
+          "width": 4,
+          "depth": 2,
+          "height": 2,
+          "unit": "tile"
+        },
+        "footprint": {
+          "width": 4,
+          "depth": 2,
+          "unit": "tile"
+        },
+        "supportPlane": null,
+        "basePivot": {
+          "x": 2.0,
+          "y": 2.0,
+          "unit": "tile"
+        },
+        "sortPivot": {
+          "x": 2.0,
+          "y": 2.0,
+          "unit": "tile"
+        },
+        "renderBounds": {
+          "width": 318,
+          "height": 210,
+          "unit": "authoring-pixel"
+        },
+        "renderOffset": {
+          "x": 0,
+          "y": 0,
+          "unit": "authoring-pixel"
+        },
+        "verticalExtension": {
+          "aboveBase": 2.0,
+          "belowBase": 0,
+          "unit": "tile"
+        },
+        "occlusionParts": [
+          {
+            "id": "foreground",
+            "role": "foreground",
+            "assetId": "derived.v1.sofa.modern.three-seat.foreground"
+          }
+        ],
+        "attachmentSlots": [],
+        "seatSlots": [
+          {
+            "id": "seat-left",
+            "x": 0.72,
+            "y": 1.08,
+            "unit": "tile",
+            "facing": "front"
+          },
+          {
+            "id": "seat-center",
+            "x": 2.0,
+            "y": 1.08,
+            "unit": "tile",
+            "facing": "front"
+          },
+          {
+            "id": "seat-right",
+            "x": 3.12,
+            "y": 1.08,
+            "unit": "tile",
+            "facing": "front"
+          }
+        ],
+        "orientation": "front"
+      }
+    },
+    {
+      "recordId": "library:env-05-facility-lounge:sofa.modern.two-seat",
+      "assetId": "sofa.modern.two-seat",
+      "wave": "step-15",
+      "operation": "foreground-overlay-composite",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-05-facility-lounge/sofa.modern.two-seat.png",
+        "sha256": "bf1ae714d942037dd2230cd9a9dc75342520c590f32e3a64507d457789f78357",
+        "width": 268,
+        "height": 208,
+        "alphaPixels": 42409,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": null,
+        "foregroundRegions": [
+          [
+            0.0,
+            0.48,
+            1.0,
+            1.0
+          ],
+          [
+            0.86,
+            0.18,
+            1.0,
+            0.55
+          ]
+        ]
+      },
+      "metrics": {
+        "retainedAlphaPixels": 42409,
+        "removedAlphaPixels": 0
+      },
+      "outputs": [
+        {
+          "role": "base",
+          "file": "assets/game/processed/office-derived-v1/step-15/env-05-facility-lounge/sofa.modern.two-seat.base.png",
+          "sha256": "bf1ae714d942037dd2230cd9a9dc75342520c590f32e3a64507d457789f78357",
+          "width": 268,
+          "height": 208,
+          "alphaPixels": 42409
+        },
+        {
+          "role": "foreground",
+          "file": "assets/game/processed/office-derived-v1/step-15/env-05-facility-lounge/sofa.modern.two-seat.foreground.png",
+          "sha256": "f88d001c0e035d0169903b78b96a197d961f86ce69f884a6b54436e3380cea44",
+          "width": 268,
+          "height": 208,
+          "alphaPixels": 23960
+        }
+      ],
+      "geometry": {
+        "schemaVersion": 3,
+        "id": "derived.v1.sofa.modern.two-seat",
+        "assetType": "seat",
+        "placementPlane": "floor",
+        "physicalScale": {
+          "width": 3,
+          "depth": 2,
+          "height": 2,
+          "unit": "tile"
+        },
+        "footprint": {
+          "width": 3,
+          "depth": 2,
+          "unit": "tile"
+        },
+        "supportPlane": null,
+        "basePivot": {
+          "x": 1.5,
+          "y": 2.0,
+          "unit": "tile"
+        },
+        "sortPivot": {
+          "x": 1.5,
+          "y": 2.0,
+          "unit": "tile"
+        },
+        "renderBounds": {
+          "width": 268,
+          "height": 208,
+          "unit": "authoring-pixel"
+        },
+        "renderOffset": {
+          "x": 0,
+          "y": 0,
+          "unit": "authoring-pixel"
+        },
+        "verticalExtension": {
+          "aboveBase": 2.0,
+          "belowBase": 0,
+          "unit": "tile"
+        },
+        "occlusionParts": [
+          {
+            "id": "foreground",
+            "role": "foreground",
+            "assetId": "derived.v1.sofa.modern.two-seat.foreground"
+          }
+        ],
+        "attachmentSlots": [],
+        "seatSlots": [
+          {
+            "id": "seat-left",
+            "x": 0.84,
+            "y": 1.08,
+            "unit": "tile",
+            "facing": "front"
+          },
+          {
+            "id": "seat-right",
+            "x": 2.04,
+            "y": 1.08,
+            "unit": "tile",
+            "facing": "front"
+          }
+        ],
+        "orientation": "front"
+      }
+    },
+    {
+      "recordId": "library:env-05-facility-lounge:table.board-game",
+      "assetId": "table.board-game",
+      "wave": "step-15",
+      "operation": "foreground-overlay-composite",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-05-facility-lounge/table.board-game.png",
+        "sha256": "d0127a07ae41cddfc11f7c8f81e83eeda621958cd2c737c710658c63eecdd623",
+        "width": 303,
+        "height": 237,
+        "alphaPixels": 37874,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": null,
+        "foregroundRegions": [
+          [
+            0.0,
+            0.47,
+            1.0,
+            1.0
+          ]
+        ]
+      },
+      "metrics": {
+        "retainedAlphaPixels": 37874,
+        "removedAlphaPixels": 0
+      },
+      "outputs": [
+        {
+          "role": "base",
+          "file": "assets/game/processed/office-derived-v1/step-15/env-05-facility-lounge/table.board-game.base.png",
+          "sha256": "d0127a07ae41cddfc11f7c8f81e83eeda621958cd2c737c710658c63eecdd623",
+          "width": 303,
+          "height": 237,
+          "alphaPixels": 37874
+        },
+        {
+          "role": "foreground",
+          "file": "assets/game/processed/office-derived-v1/step-15/env-05-facility-lounge/table.board-game.foreground.png",
+          "sha256": "dd8063914c399d092007cb4283192c04154e11f5bd02dd2af4748e5b1c70710d",
+          "width": 303,
+          "height": 237,
+          "alphaPixels": 11437
+        }
+      ],
+      "geometry": {
+        "schemaVersion": 3,
+        "id": "derived.v1.table.board-game",
+        "assetType": "surface-furniture",
+        "placementPlane": "floor",
+        "physicalScale": {
+          "width": 3,
+          "depth": 3,
+          "height": 2,
+          "unit": "tile"
+        },
+        "footprint": {
+          "width": 3,
+          "depth": 3,
+          "unit": "tile"
+        },
+        "supportPlane": {
+          "id": "table.board-game-surface",
+          "width": 3.0,
+          "depth": 3.0,
+          "height": 2.0,
+          "unit": "tile"
+        },
+        "basePivot": {
+          "x": 1.5,
+          "y": 3.0,
+          "unit": "tile"
+        },
+        "sortPivot": {
+          "x": 1.5,
+          "y": 3.0,
+          "unit": "tile"
+        },
+        "renderBounds": {
+          "width": 303,
+          "height": 237,
+          "unit": "authoring-pixel"
+        },
+        "renderOffset": {
+          "x": 0,
+          "y": 0,
+          "unit": "authoring-pixel"
+        },
+        "verticalExtension": {
+          "aboveBase": 2.0,
+          "belowBase": 0,
+          "unit": "tile"
+        },
+        "occlusionParts": [
+          {
+            "id": "foreground",
+            "role": "foreground",
+            "assetId": "derived.v1.table.board-game.foreground"
+          }
+        ],
+        "attachmentSlots": [
+          {
+            "id": "surface-1",
+            "surfaceId": "table.board-game-surface",
+            "x": 0.6,
+            "y": 1.5,
+            "unit": "tile"
+          },
+          {
+            "id": "surface-2",
+            "surfaceId": "table.board-game-surface",
+            "x": 1.2,
+            "y": 1.5,
+            "unit": "tile"
+          },
+          {
+            "id": "surface-3",
+            "surfaceId": "table.board-game-surface",
+            "x": 1.8,
+            "y": 1.5,
+            "unit": "tile"
+          },
+          {
+            "id": "surface-4",
+            "surfaceId": "table.board-game-surface",
+            "x": 2.4,
+            "y": 1.5,
+            "unit": "tile"
+          }
+        ],
+        "seatSlots": [],
+        "orientation": "front"
+      }
+    },
+    {
+      "recordId": "library:env-06-decor-architecture-tv:table.side",
+      "assetId": "table.side",
+      "wave": "step-15",
+      "operation": "foreground-overlay-composite",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-06-decor-architecture-tv/table.side.png",
+        "sha256": "66478bd2dccacf1e91e871ca897f45f87216f04f7db6c6394a315dc1e75c419b",
+        "width": 185,
+        "height": 235,
+        "alphaPixels": 20763,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": null,
+        "foregroundRegions": [
+          [
+            0.0,
+            0.38,
+            1.0,
+            1.0
+          ]
+        ]
+      },
+      "metrics": {
+        "retainedAlphaPixels": 20763,
+        "removedAlphaPixels": 0
+      },
+      "outputs": [
+        {
+          "role": "base",
+          "file": "assets/game/processed/office-derived-v1/step-15/env-06-decor-architecture-tv/table.side.base.png",
+          "sha256": "66478bd2dccacf1e91e871ca897f45f87216f04f7db6c6394a315dc1e75c419b",
+          "width": 185,
+          "height": 235,
+          "alphaPixels": 20763
+        },
+        {
+          "role": "foreground",
+          "file": "assets/game/processed/office-derived-v1/step-15/env-06-decor-architecture-tv/table.side.foreground.png",
+          "sha256": "d6432c856616b786da79efa5b8695ee7daea594c0436ef23d79ed5a1c0335e59",
+          "width": 185,
+          "height": 235,
+          "alphaPixels": 14739
+        }
+      ],
+      "geometry": {
+        "schemaVersion": 3,
+        "id": "derived.v1.table.side",
+        "assetType": "surface-furniture",
+        "placementPlane": "floor",
+        "physicalScale": {
+          "width": 2,
+          "depth": 2,
+          "height": 1,
+          "unit": "tile"
+        },
+        "footprint": {
+          "width": 2,
+          "depth": 2,
+          "unit": "tile"
+        },
+        "supportPlane": {
+          "id": "table.side-surface",
+          "width": 2.0,
+          "depth": 2.0,
+          "height": 1.0,
+          "unit": "tile"
+        },
+        "basePivot": {
+          "x": 1.0,
+          "y": 2.0,
+          "unit": "tile"
+        },
+        "sortPivot": {
+          "x": 1.0,
+          "y": 2.0,
+          "unit": "tile"
+        },
+        "renderBounds": {
+          "width": 185,
+          "height": 235,
+          "unit": "authoring-pixel"
+        },
+        "renderOffset": {
+          "x": 0,
+          "y": 0,
+          "unit": "authoring-pixel"
+        },
+        "verticalExtension": {
+          "aboveBase": 1.0,
+          "belowBase": 0,
+          "unit": "tile"
+        },
+        "occlusionParts": [
+          {
+            "id": "foreground",
+            "role": "foreground",
+            "assetId": "derived.v1.table.side.foreground"
+          }
+        ],
+        "attachmentSlots": [
+          {
+            "id": "surface-1",
+            "surfaceId": "table.side-surface",
+            "x": 1.0,
+            "y": 1.0,
+            "unit": "tile"
+          }
+        ],
+        "seatSlots": [],
+        "orientation": "front"
+      }
+    },
+    {
+      "recordId": "library:env-10-storage-operations-detail:cabinet.storage.low",
+      "assetId": "cabinet.storage.low",
+      "wave": "step-15",
+      "operation": "foreground-overlay-composite",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-10-storage-operations-detail/cabinet.storage.low.png",
+        "sha256": "e1e6100cacbed5f4d38a2965d7851819bd59c3da64d370ca38300bf26df0f91d",
+        "width": 226,
+        "height": 127,
+        "alphaPixels": 22936,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": null,
+        "foregroundRegions": [
+          [
+            0.0,
+            0.3,
+            1.0,
+            1.0
+          ]
+        ]
+      },
+      "metrics": {
+        "retainedAlphaPixels": 22936,
+        "removedAlphaPixels": 0
+      },
+      "outputs": [
+        {
+          "role": "base",
+          "file": "assets/game/processed/office-derived-v1/step-15/env-10-storage-operations-detail/cabinet.storage.low.base.png",
+          "sha256": "e1e6100cacbed5f4d38a2965d7851819bd59c3da64d370ca38300bf26df0f91d",
+          "width": 226,
+          "height": 127,
+          "alphaPixels": 22936
+        },
+        {
+          "role": "foreground",
+          "file": "assets/game/processed/office-derived-v1/step-15/env-10-storage-operations-detail/cabinet.storage.low.foreground.png",
+          "sha256": "b700182cc76a544a2181d4e66c6814f2b0f7400de7b9405e4542f3bf6a2531c0",
+          "width": 226,
+          "height": 127,
+          "alphaPixels": 16686
+        }
+      ],
+      "geometry": {
+        "schemaVersion": 3,
+        "id": "derived.v1.cabinet.storage.low",
+        "assetType": "surface-furniture",
+        "placementPlane": "floor",
+        "physicalScale": {
+          "width": 2,
+          "depth": 1,
+          "height": 2,
+          "unit": "tile"
+        },
+        "footprint": {
+          "width": 2,
+          "depth": 1,
+          "unit": "tile"
+        },
+        "supportPlane": {
+          "id": "cabinet.storage.low-surface",
+          "width": 2.0,
+          "depth": 1.0,
+          "height": 2.0,
+          "unit": "tile"
+        },
+        "basePivot": {
+          "x": 1.0,
+          "y": 1.0,
+          "unit": "tile"
+        },
+        "sortPivot": {
+          "x": 1.0,
+          "y": 1.0,
+          "unit": "tile"
+        },
+        "renderBounds": {
+          "width": 226,
+          "height": 127,
+          "unit": "authoring-pixel"
+        },
+        "renderOffset": {
+          "x": 0,
+          "y": 0,
+          "unit": "authoring-pixel"
+        },
+        "verticalExtension": {
+          "aboveBase": 2.0,
+          "belowBase": 0,
+          "unit": "tile"
+        },
+        "occlusionParts": [
+          {
+            "id": "foreground",
+            "role": "foreground",
+            "assetId": "derived.v1.cabinet.storage.low.foreground"
+          }
+        ],
+        "attachmentSlots": [
+          {
+            "id": "surface-1",
+            "surfaceId": "cabinet.storage.low-surface",
+            "x": 0.6666666666666666,
+            "y": 0.5,
+            "unit": "tile"
+          },
+          {
+            "id": "surface-2",
+            "surfaceId": "cabinet.storage.low-surface",
+            "x": 1.3333333333333333,
+            "y": 0.5,
+            "unit": "tile"
+          }
+        ],
+        "seatSlots": [],
+        "orientation": "front"
+      }
+    },
+    {
+      "recordId": "library:env-10-storage-operations-detail:cart.utility",
+      "assetId": "cart.utility",
+      "wave": "step-15",
+      "operation": "foreground-overlay-composite",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/office-library-modern-bright-v1/env-10-storage-operations-detail/cart.utility.png",
+        "sha256": "7ad547424dbcddfa898751a11b8b95def1c2add8a9f1cbdaddfc26dcf7c96f56",
+        "width": 195,
+        "height": 179,
+        "alphaPixels": 14289,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": null,
+        "foregroundRegions": [
+          [
+            0.0,
+            0.38,
+            1.0,
+            1.0
+          ]
+        ]
+      },
+      "metrics": {
+        "retainedAlphaPixels": 14289,
+        "removedAlphaPixels": 0
+      },
+      "outputs": [
+        {
+          "role": "base",
+          "file": "assets/game/processed/office-derived-v1/step-15/env-10-storage-operations-detail/cart.utility.base.png",
+          "sha256": "7ad547424dbcddfa898751a11b8b95def1c2add8a9f1cbdaddfc26dcf7c96f56",
+          "width": 195,
+          "height": 179,
+          "alphaPixels": 14289
+        },
+        {
+          "role": "foreground",
+          "file": "assets/game/processed/office-derived-v1/step-15/env-10-storage-operations-detail/cart.utility.foreground.png",
+          "sha256": "4e637907bcbf29431cedb96c238fe02c197b30896670cc2a94fe7bee714be72d",
+          "width": 195,
+          "height": 179,
+          "alphaPixels": 9357
+        }
+      ],
+      "geometry": {
+        "schemaVersion": 3,
+        "id": "derived.v1.cart.utility",
+        "assetType": "surface-furniture",
+        "placementPlane": "floor",
+        "physicalScale": {
+          "width": 2,
+          "depth": 1,
+          "height": 2,
+          "unit": "tile"
+        },
+        "footprint": {
+          "width": 2,
+          "depth": 1,
+          "unit": "tile"
+        },
+        "supportPlane": {
+          "id": "cart.utility-surface",
+          "width": 2.0,
+          "depth": 1.0,
+          "height": 2.0,
+          "unit": "tile"
+        },
+        "basePivot": {
+          "x": 1.0,
+          "y": 1.0,
+          "unit": "tile"
+        },
+        "sortPivot": {
+          "x": 1.0,
+          "y": 1.0,
+          "unit": "tile"
+        },
+        "renderBounds": {
+          "width": 195,
+          "height": 179,
+          "unit": "authoring-pixel"
+        },
+        "renderOffset": {
+          "x": 0,
+          "y": 0,
+          "unit": "authoring-pixel"
+        },
+        "verticalExtension": {
+          "aboveBase": 2.0,
+          "belowBase": 0,
+          "unit": "tile"
+        },
+        "occlusionParts": [
+          {
+            "id": "foreground",
+            "role": "foreground",
+            "assetId": "derived.v1.cart.utility.foreground"
+          }
+        ],
+        "attachmentSlots": [
+          {
+            "id": "surface-1",
+            "surfaceId": "cart.utility-surface",
+            "x": 0.6666666666666666,
+            "y": 0.5,
+            "unit": "tile"
+          },
+          {
+            "id": "surface-2",
+            "surfaceId": "cart.utility-surface",
+            "x": 1.3333333333333333,
+            "y": 0.5,
+            "unit": "tile"
+          }
+        ],
+        "seatSlots": [],
+        "orientation": "front"
+      }
+    },
+    {
+      "recordId": "runtime:bookshelf.low",
+      "assetId": "bookshelf.low",
+      "wave": "step-16",
+      "operation": "foreground-overlay-composite",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/core-furniture-c-v1/bookshelf.low.png",
+        "sha256": "0154f8059f67656300c59874aa47498431d47497b6f9cf516b3382e2dd9b7156",
+        "width": 209,
+        "height": 142,
+        "alphaPixels": 24256,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": null,
+        "foregroundRegions": [
+          [
+            0.0,
+            0.38,
+            1.0,
+            1.0
+          ]
+        ]
+      },
+      "metrics": {
+        "retainedAlphaPixels": 24256,
+        "removedAlphaPixels": 0
+      },
+      "outputs": [
+        {
+          "role": "base",
+          "file": "assets/game/processed/office-derived-v1/step-16/active-office-registry/bookshelf.low.base.png",
+          "sha256": "0154f8059f67656300c59874aa47498431d47497b6f9cf516b3382e2dd9b7156",
+          "width": 209,
+          "height": 142,
+          "alphaPixels": 24256
+        },
+        {
+          "role": "foreground",
+          "file": "assets/game/processed/office-derived-v1/step-16/active-office-registry/bookshelf.low.foreground.png",
+          "sha256": "d446612902d188812ba42d1024553e24a3f43d78614cbd036ce27465799b0fc1",
+          "width": 209,
+          "height": 142,
+          "alphaPixels": 15395
+        }
+      ],
+      "geometry": {
+        "schemaVersion": 3,
+        "id": "derived.v1.bookshelf.low",
+        "assetType": "surface-furniture",
+        "placementPlane": "floor",
+        "physicalScale": {
+          "width": 4,
+          "depth": 1,
+          "height": 2,
+          "unit": "tile"
+        },
+        "footprint": {
+          "width": 4,
+          "depth": 1,
+          "unit": "tile"
+        },
+        "supportPlane": {
+          "id": "bookshelf.low-surface",
+          "width": 4.0,
+          "depth": 1.0,
+          "height": 2.0,
+          "unit": "tile"
+        },
+        "basePivot": {
+          "x": 2.0,
+          "y": 1.0,
+          "unit": "tile"
+        },
+        "sortPivot": {
+          "x": 2.0,
+          "y": 1.0,
+          "unit": "tile"
+        },
+        "renderBounds": {
+          "width": 209,
+          "height": 142,
+          "unit": "authoring-pixel"
+        },
+        "renderOffset": {
+          "x": 0,
+          "y": 0,
+          "unit": "authoring-pixel"
+        },
+        "verticalExtension": {
+          "aboveBase": 2.0,
+          "belowBase": 0,
+          "unit": "tile"
+        },
+        "occlusionParts": [
+          {
+            "id": "foreground",
+            "role": "foreground",
+            "assetId": "derived.v1.bookshelf.low.foreground"
+          }
+        ],
+        "attachmentSlots": [
+          {
+            "id": "surface-1",
+            "surfaceId": "bookshelf.low-surface",
+            "x": 1.0,
+            "y": 0.5,
+            "unit": "tile"
+          },
+          {
+            "id": "surface-2",
+            "surfaceId": "bookshelf.low-surface",
+            "x": 2.0,
+            "y": 0.5,
+            "unit": "tile"
+          },
+          {
+            "id": "surface-3",
+            "surfaceId": "bookshelf.low-surface",
+            "x": 3.0,
+            "y": 0.5,
+            "unit": "tile"
+          }
+        ],
+        "seatSlots": [],
+        "orientation": "none"
+      }
+    },
+    {
+      "recordId": "runtime:counter.coffee",
+      "assetId": "counter.coffee",
+      "wave": "step-16",
+      "operation": "foreground-overlay-composite",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/core-furniture-c-v1/counter.coffee.png",
+        "sha256": "e697823ab08877e53d8ce997fd736fba5af774a0258c3f98950c9080f74574a5",
+        "width": 270,
+        "height": 158,
+        "alphaPixels": 32448,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": null,
+        "foregroundRegions": [
+          [
+            0.0,
+            0.32,
+            1.0,
+            1.0
+          ]
+        ]
+      },
+      "metrics": {
+        "retainedAlphaPixels": 32448,
+        "removedAlphaPixels": 0
+      },
+      "outputs": [
+        {
+          "role": "base",
+          "file": "assets/game/processed/office-derived-v1/step-16/active-office-registry/counter.coffee.base.png",
+          "sha256": "9de1be59e6fc80f4c60d16a58bb2d2185e296df690e83f099c3c412bc71d6063",
+          "width": 270,
+          "height": 158,
+          "alphaPixels": 32448
+        },
+        {
+          "role": "foreground",
+          "file": "assets/game/processed/office-derived-v1/step-16/active-office-registry/counter.coffee.foreground.png",
+          "sha256": "512e71f08da5dbc66333c9466929985ee8e857fdded031cbd51305c606e16bc0",
+          "width": 270,
+          "height": 158,
+          "alphaPixels": 24985
+        }
+      ],
+      "geometry": {
+        "schemaVersion": 3,
+        "id": "derived.v1.counter.coffee",
+        "assetType": "surface-furniture",
+        "placementPlane": "floor",
+        "physicalScale": {
+          "width": 4,
+          "depth": 2,
+          "height": 2,
+          "unit": "tile"
+        },
+        "footprint": {
+          "width": 4,
+          "depth": 2,
+          "unit": "tile"
+        },
+        "supportPlane": {
+          "id": "counter.coffee-surface",
+          "width": 4.0,
+          "depth": 2.0,
+          "height": 2.0,
+          "unit": "tile"
+        },
+        "basePivot": {
+          "x": 2.0,
+          "y": 2.0,
+          "unit": "tile"
+        },
+        "sortPivot": {
+          "x": 2.0,
+          "y": 2.0,
+          "unit": "tile"
+        },
+        "renderBounds": {
+          "width": 270,
+          "height": 158,
+          "unit": "authoring-pixel"
+        },
+        "renderOffset": {
+          "x": 0,
+          "y": 0,
+          "unit": "authoring-pixel"
+        },
+        "verticalExtension": {
+          "aboveBase": 2.0,
+          "belowBase": 0,
+          "unit": "tile"
+        },
+        "occlusionParts": [
+          {
+            "id": "foreground",
+            "role": "foreground",
+            "assetId": "derived.v1.counter.coffee.foreground"
+          }
+        ],
+        "attachmentSlots": [
+          {
+            "id": "surface-1",
+            "surfaceId": "counter.coffee-surface",
+            "x": 1.0,
+            "y": 1.0,
+            "unit": "tile"
+          },
+          {
+            "id": "surface-2",
+            "surfaceId": "counter.coffee-surface",
+            "x": 2.0,
+            "y": 1.0,
+            "unit": "tile"
+          },
+          {
+            "id": "surface-3",
+            "surfaceId": "counter.coffee-surface",
+            "x": 3.0,
+            "y": 1.0,
+            "unit": "tile"
+          }
+        ],
+        "seatSlots": [],
+        "orientation": "none"
+      }
+    },
+    {
+      "recordId": "runtime:door.closed",
+      "assetId": "door.closed",
+      "wave": "step-16",
+      "operation": "semantic-structural-composite",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/decor-mechanical-c-v1/door.closed.png",
+        "sha256": "87cfc7d27791b3fa0b2e96dc60d5f8d38db6910abc58e6e5858681edadefeb01",
+        "width": 171,
+        "height": 237,
+        "alphaPixels": 33472,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": null,
+        "foregroundRegions": []
+      },
+      "metrics": {
+        "retainedAlphaPixels": 33472,
+        "removedAlphaPixels": 0
+      },
+      "outputs": [
+        {
+          "role": "base",
+          "file": "assets/game/processed/office-derived-v1/step-16/active-office-registry/door.closed.base.png",
+          "sha256": "87cfc7d27791b3fa0b2e96dc60d5f8d38db6910abc58e6e5858681edadefeb01",
+          "width": 171,
+          "height": 237,
+          "alphaPixels": 33472
+        }
+      ],
+      "geometry": {
+        "schemaVersion": 3,
+        "id": "derived.v1.door.closed",
+        "assetType": "structural-opening",
+        "placementPlane": "wall",
+        "physicalScale": {
+          "width": 2,
+          "depth": 0,
+          "height": 3,
+          "unit": "tile"
+        },
+        "footprint": null,
+        "supportPlane": null,
+        "basePivot": {
+          "x": 1.0,
+          "y": 0,
+          "unit": "tile"
+        },
+        "sortPivot": null,
+        "renderBounds": {
+          "width": 171,
+          "height": 237,
+          "unit": "authoring-pixel"
+        },
+        "renderOffset": {
+          "x": 0,
+          "y": 0,
+          "unit": "authoring-pixel"
+        },
+        "verticalExtension": {
+          "aboveBase": 3.0,
+          "belowBase": 0,
+          "unit": "tile"
+        },
+        "occlusionParts": [],
+        "attachmentSlots": [],
+        "seatSlots": [],
+        "orientation": "none"
+      }
+    },
+    {
+      "recordId": "runtime:sofa.sectional",
+      "assetId": "sofa.sectional",
+      "wave": "step-16",
+      "operation": "foreground-overlay-composite",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/core-furniture-c-v1/sofa.sectional.png",
+        "sha256": "eccd430cd2b92c1ea60f8ac7f3ccb8feaef33eeb39fbf0f4497afd4e652a554d",
+        "width": 220,
+        "height": 228,
+        "alphaPixels": 32611,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": null,
+        "foregroundRegions": [
+          [
+            0.0,
+            0.5,
+            1.0,
+            1.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.34,
+            0.72
+          ]
+        ]
+      },
+      "metrics": {
+        "retainedAlphaPixels": 32611,
+        "removedAlphaPixels": 0
+      },
+      "outputs": [
+        {
+          "role": "base",
+          "file": "assets/game/processed/office-derived-v1/step-16/active-office-registry/sofa.sectional.base.png",
+          "sha256": "eccd430cd2b92c1ea60f8ac7f3ccb8feaef33eeb39fbf0f4497afd4e652a554d",
+          "width": 220,
+          "height": 228,
+          "alphaPixels": 32611
+        },
+        {
+          "role": "foreground",
+          "file": "assets/game/processed/office-derived-v1/step-16/active-office-registry/sofa.sectional.foreground.png",
+          "sha256": "647ca240a761e414af3e8a49032db71a5256839a9c5c9e2d16f6bb7fc03226f4",
+          "width": 220,
+          "height": 228,
+          "alphaPixels": 18294
+        }
+      ],
+      "geometry": {
+        "schemaVersion": 3,
+        "id": "derived.v1.sofa.sectional",
+        "assetType": "seat",
+        "placementPlane": "floor",
+        "physicalScale": {
+          "width": 6,
+          "depth": 3,
+          "height": 2,
+          "unit": "tile"
+        },
+        "footprint": {
+          "width": 6,
+          "depth": 3,
+          "unit": "tile"
+        },
+        "supportPlane": null,
+        "basePivot": {
+          "x": 3.0,
+          "y": 3.0,
+          "unit": "tile"
+        },
+        "sortPivot": {
+          "x": 3.0,
+          "y": 3.0,
+          "unit": "tile"
+        },
+        "renderBounds": {
+          "width": 220,
+          "height": 228,
+          "unit": "authoring-pixel"
+        },
+        "renderOffset": {
+          "x": 0,
+          "y": 0,
+          "unit": "authoring-pixel"
+        },
+        "verticalExtension": {
+          "aboveBase": 2.0,
+          "belowBase": 0,
+          "unit": "tile"
+        },
+        "occlusionParts": [
+          {
+            "id": "foreground",
+            "role": "foreground",
+            "assetId": "derived.v1.sofa.sectional.foreground"
+          }
+        ],
+        "attachmentSlots": [],
+        "seatSlots": [
+          {
+            "id": "seat-left-back",
+            "x": 0.85,
+            "y": 0.9,
+            "unit": "tile",
+            "facing": "front"
+          },
+          {
+            "id": "seat-center-back",
+            "x": 2.15,
+            "y": 0.9,
+            "unit": "tile",
+            "facing": "front"
+          },
+          {
+            "id": "seat-right-back",
+            "x": 3.45,
+            "y": 0.9,
+            "unit": "tile",
+            "facing": "front"
+          },
+          {
+            "id": "seat-left-front",
+            "x": 0.85,
+            "y": 2.05,
+            "unit": "tile",
+            "facing": "right"
+          }
+        ],
+        "orientation": "none"
+      }
+    },
+    {
+      "recordId": "runtime:table.cafe.round",
+      "assetId": "table.cafe.round",
+      "wave": "step-16",
+      "operation": "foreground-overlay-composite",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/core-furniture-c-v2/table.cafe.round.png",
+        "sha256": "ec8dacc8ea4f3e2dce0181789661a4c2d228213b92ced9f7e61d233322f10d25",
+        "width": 218,
+        "height": 211,
+        "alphaPixels": 27452,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": null,
+        "foregroundRegions": [
+          [
+            0.0,
+            0.4,
+            1.0,
+            1.0
+          ]
+        ]
+      },
+      "metrics": {
+        "retainedAlphaPixels": 27452,
+        "removedAlphaPixels": 0
+      },
+      "outputs": [
+        {
+          "role": "base",
+          "file": "assets/game/processed/office-derived-v1/step-16/active-office-registry/table.cafe.round.base.png",
+          "sha256": "57d3cb5466770511a77c25543d3c6f8972b18e905f70706e9d1a37d95020d06f",
+          "width": 218,
+          "height": 211,
+          "alphaPixels": 27452
+        },
+        {
+          "role": "foreground",
+          "file": "assets/game/processed/office-derived-v1/step-16/active-office-registry/table.cafe.round.foreground.png",
+          "sha256": "058b98592e55cc2ca4bca40148c4f898a7e586f2ef2ae5296db1a201332ba698",
+          "width": 218,
+          "height": 211,
+          "alphaPixels": 11863
+        }
+      ],
+      "geometry": {
+        "schemaVersion": 3,
+        "id": "derived.v1.table.cafe.round",
+        "assetType": "surface-furniture",
+        "placementPlane": "floor",
+        "physicalScale": {
+          "width": 2,
+          "depth": 2,
+          "height": 2,
+          "unit": "tile"
+        },
+        "footprint": {
+          "width": 2,
+          "depth": 2,
+          "unit": "tile"
+        },
+        "supportPlane": {
+          "id": "table.cafe.round-surface",
+          "width": 2.0,
+          "depth": 2.0,
+          "height": 2.0,
+          "unit": "tile"
+        },
+        "basePivot": {
+          "x": 1.0,
+          "y": 2.0,
+          "unit": "tile"
+        },
+        "sortPivot": {
+          "x": 1.0,
+          "y": 2.0,
+          "unit": "tile"
+        },
+        "renderBounds": {
+          "width": 218,
+          "height": 211,
+          "unit": "authoring-pixel"
+        },
+        "renderOffset": {
+          "x": 0,
+          "y": 0,
+          "unit": "authoring-pixel"
+        },
+        "verticalExtension": {
+          "aboveBase": 2.0,
+          "belowBase": 0,
+          "unit": "tile"
+        },
+        "occlusionParts": [
+          {
+            "id": "foreground",
+            "role": "foreground",
+            "assetId": "derived.v1.table.cafe.round.foreground"
+          }
+        ],
+        "attachmentSlots": [
+          {
+            "id": "surface-1",
+            "surfaceId": "table.cafe.round-surface",
+            "x": 1.0,
+            "y": 1.0,
+            "unit": "tile"
+          }
+        ],
+        "seatSlots": [],
+        "orientation": "none"
+      }
+    },
+    {
+      "recordId": "runtime:table.coffee",
+      "assetId": "table.coffee",
+      "wave": "step-16",
+      "operation": "foreground-overlay-composite",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/core-furniture-c-v1/table.coffee.png",
+        "sha256": "b2cbe3c1e220ebb0460ac79aeb1efc91251205c32ac9c9377eb87abf42c42755",
+        "width": 152,
+        "height": 123,
+        "alphaPixels": 14277,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": null,
+        "foregroundRegions": [
+          [
+            0.0,
+            0.43,
+            1.0,
+            1.0
+          ]
+        ]
+      },
+      "metrics": {
+        "retainedAlphaPixels": 14277,
+        "removedAlphaPixels": 0
+      },
+      "outputs": [
+        {
+          "role": "base",
+          "file": "assets/game/processed/office-derived-v1/step-16/active-office-registry/table.coffee.base.png",
+          "sha256": "b2cbe3c1e220ebb0460ac79aeb1efc91251205c32ac9c9377eb87abf42c42755",
+          "width": 152,
+          "height": 123,
+          "alphaPixels": 14277
+        },
+        {
+          "role": "foreground",
+          "file": "assets/game/processed/office-derived-v1/step-16/active-office-registry/table.coffee.foreground.png",
+          "sha256": "777995e13bb5bb9b1cb39b1e4eec385d8c9f940ea433b4fc65aa61043dda289a",
+          "width": 152,
+          "height": 123,
+          "alphaPixels": 8162
+        }
+      ],
+      "geometry": {
+        "schemaVersion": 3,
+        "id": "derived.v1.table.coffee",
+        "assetType": "surface-furniture",
+        "placementPlane": "floor",
+        "physicalScale": {
+          "width": 3,
+          "depth": 2,
+          "height": 1,
+          "unit": "tile"
+        },
+        "footprint": {
+          "width": 3,
+          "depth": 2,
+          "unit": "tile"
+        },
+        "supportPlane": {
+          "id": "table.coffee-surface",
+          "width": 3.0,
+          "depth": 2.0,
+          "height": 1.0,
+          "unit": "tile"
+        },
+        "basePivot": {
+          "x": 1.5,
+          "y": 2.0,
+          "unit": "tile"
+        },
+        "sortPivot": {
+          "x": 1.5,
+          "y": 2.0,
+          "unit": "tile"
+        },
+        "renderBounds": {
+          "width": 152,
+          "height": 123,
+          "unit": "authoring-pixel"
+        },
+        "renderOffset": {
+          "x": 0,
+          "y": 0,
+          "unit": "authoring-pixel"
+        },
+        "verticalExtension": {
+          "aboveBase": 1.0,
+          "belowBase": 0,
+          "unit": "tile"
+        },
+        "occlusionParts": [
+          {
+            "id": "foreground",
+            "role": "foreground",
+            "assetId": "derived.v1.table.coffee.foreground"
+          }
+        ],
+        "attachmentSlots": [
+          {
+            "id": "surface-1",
+            "surfaceId": "table.coffee-surface",
+            "x": 1.0,
+            "y": 1.0,
+            "unit": "tile"
+          },
+          {
+            "id": "surface-2",
+            "surfaceId": "table.coffee-surface",
+            "x": 2.0,
+            "y": 1.0,
+            "unit": "tile"
+          }
+        ],
+        "seatSlots": [],
+        "orientation": "none"
+      }
+    },
+    {
+      "recordId": "runtime:table.meeting.empty",
+      "assetId": "table.meeting.empty",
+      "wave": "step-16",
+      "operation": "foreground-overlay-composite",
+      "status": "accepted-staging",
+      "source": {
+        "file": "assets/game/processed/core-furniture-c-v2/table.meeting.empty.png",
+        "sha256": "80db63417f4477fb4072d53b5d3bb091f67b3e6b113204a5d2b3dce3142723f4",
+        "width": 320,
+        "height": 192,
+        "alphaPixels": 43131,
+        "licenseState": "project-generated"
+      },
+      "recipe": {
+        "keepBox": null,
+        "foregroundRegions": [
+          [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        ]
+      },
+      "metrics": {
+        "retainedAlphaPixels": 43131,
+        "removedAlphaPixels": 0
+      },
+      "outputs": [
+        {
+          "role": "base",
+          "file": "assets/game/processed/office-derived-v1/step-16/active-office-registry/table.meeting.empty.base.png",
+          "sha256": "80db63417f4477fb4072d53b5d3bb091f67b3e6b113204a5d2b3dce3142723f4",
+          "width": 320,
+          "height": 192,
+          "alphaPixels": 43131
+        },
+        {
+          "role": "foreground",
+          "file": "assets/game/processed/office-derived-v1/step-16/active-office-registry/table.meeting.empty.foreground.png",
+          "sha256": "7b7994e3ce49cf2fc868459a31ac3bfc2ed1073c21be1989fb5d12b671bc136c",
+          "width": 320,
+          "height": 192,
+          "alphaPixels": 42736
+        }
+      ],
+      "geometry": {
+        "schemaVersion": 3,
+        "id": "derived.v1.table.meeting.empty",
+        "assetType": "surface-furniture",
+        "placementPlane": "floor",
+        "physicalScale": {
+          "width": 6,
+          "depth": 2,
+          "height": 2,
+          "unit": "tile"
+        },
+        "footprint": {
+          "width": 6,
+          "depth": 2,
+          "unit": "tile"
+        },
+        "supportPlane": {
+          "id": "table.meeting.empty-surface",
+          "width": 6.0,
+          "depth": 2.0,
+          "height": 2.0,
+          "unit": "tile"
+        },
+        "basePivot": {
+          "x": 3.0,
+          "y": 2.0,
+          "unit": "tile"
+        },
+        "sortPivot": {
+          "x": 3.0,
+          "y": 2.0,
+          "unit": "tile"
+        },
+        "renderBounds": {
+          "width": 320,
+          "height": 192,
+          "unit": "authoring-pixel"
+        },
+        "renderOffset": {
+          "x": 0,
+          "y": 0,
+          "unit": "authoring-pixel"
+        },
+        "verticalExtension": {
+          "aboveBase": 2.0,
+          "belowBase": 0,
+          "unit": "tile"
+        },
+        "occlusionParts": [
+          {
+            "id": "foreground",
+            "role": "foreground",
+            "assetId": "derived.v1.table.meeting.empty.foreground"
+          }
+        ],
+        "attachmentSlots": [
+          {
+            "id": "surface-1",
+            "surfaceId": "table.meeting.empty-surface",
+            "x": 2.0,
+            "y": 1.0,
+            "unit": "tile"
+          },
+          {
+            "id": "surface-2",
+            "surfaceId": "table.meeting.empty-surface",
+            "x": 4.0,
+            "y": 1.0,
+            "unit": "tile"
+          }
+        ],
+        "seatSlots": [],
+        "orientation": "none"
+      }
+    }
+  ],
+  "qa": {
+    "step-13": "assets/game/processed/office-derived-v1/qa/step-13-before-derived-diff.png",
+    "step-14": "assets/game/processed/office-derived-v1/qa/step-14-before-derived-diff.png",
+    "step-15": "assets/game/processed/office-derived-v1/qa/step-15-before-derived-diff.png",
+    "step-16": "assets/game/processed/office-derived-v1/qa/step-16-before-derived-diff.png"
+  }
+}

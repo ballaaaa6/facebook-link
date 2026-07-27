@@ -18,6 +18,13 @@ equipment, chairs, actors, and monitor content remain separate children under
 `office.workstation.bundle.v1`; none of these staging assets is imported by
 Active Office.
 
+Derived-asset staging gate (2026-07-27): Steps 13-16 resolve all 77 reviewed
+`derive-composite` records under `office-derived-v1`. The versioned outputs
+reuse source pixels only, retain source canvas coordinates, and remain absent
+from the Active Office registry. Sixteen coherent inputs are explicitly
+verified no-op derivatives; their pixels must not be removed without a new
+reviewed mask or disposition.
+
 ## Shared Sheet Contract
 
 - Square contact sheet with a logical 4x4 grid.

@@ -18,6 +18,11 @@ async function renderRoot() {
     root.render(<StrictMode><OfficeTenWorkstationLabPage /></StrictMode>);
     return;
   }
+  if (requestedLab === "office-derived-v1") {
+    const { OfficeDerivedAssetsLabPage } = await import("./features/office/lab/OfficeDerivedAssetsLabPage");
+    root.render(<StrictMode><OfficeDerivedAssetsLabPage /></StrictMode>);
+    return;
+  }
   if (requestedLab === "office-layout") {
     const { OfficeLayoutLabPage } = await import("./features/office/lab/OfficeLayoutLabPage");
     root.render(<StrictMode><OfficeLayoutLabPage /></StrictMode>);

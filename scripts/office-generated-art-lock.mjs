@@ -8,6 +8,7 @@ const lockPath = join(root, "assets/game/manifests/office-generated-art.lock.jso
 const auditPath = "assets/game/manifests/office-asset-geometry-audit.json";
 const contactDirectory = "assets/game/processed/office-geometry-audit-v1/contact-sheets";
 const workstationDirectory = "assets/game/processed/office-workstation-v1";
+const derivedDirectory = "assets/game/processed/office-derived-v1";
 const workstationSource = "assets/art/layout-references/office-workstation-v1/office-workstation-modular-v1-source.png";
 
 const fixedInputs = [
@@ -21,9 +22,14 @@ const fixedInputs = [
   "assets/game/manifests/office-planned-assets.json",
   "assets/game/manifests/office-workstation-bundle-v1.json",
   "assets/game/manifests/office-workstation-bundle.schema.json",
+  "assets/game/manifests/office-derived-assets.schema.json",
+  "packages/contracts/src/officeDerivedAssets.ts",
   "scripts/audit-office-asset-geometry.py",
   "scripts/build-office-camera-scale-board.py",
   "scripts/build-office-workstation-prototype.py",
+  "scripts/build-office-derived-assets.py",
+  "scripts/office_derived_asset_recipes.py",
+  "scripts/office-derived-assets-check.mjs",
   "scripts/office-generated-art-lock.mjs",
   "scripts/office_geometry_audit_inventory.py",
   "scripts/office_geometry_audit_report.py",
@@ -32,6 +38,7 @@ const fixedInputs = [
 
 const fixedOutputs = [
   auditPath,
+  "assets/game/manifests/office-derived-assets-v1.json",
   "assets/art/layout-references/office-camera-scale-calibration-v1.png",
   "docs/art/OFFICE_ASSET_GEOMETRY_AUDIT.md",
 ];
@@ -77,6 +84,21 @@ function workstationOutputs() {
   ];
 }
 
+function recursiveFiles(directory) {
+  const absolute = join(root, directory);
+  if (!existsSync(absolute)) return [];
+  const files = [];
+  function visit(path) {
+    for (const entry of readdirSync(path, { withFileTypes: true })) {
+      const target = join(path, entry.name);
+      if (entry.isDirectory()) visit(target);
+      else if (entry.isFile()) files.push(toRepoPath(target));
+    }
+  }
+  visit(absolute);
+  return files.sort();
+}
+
 function buildLock() {
   if (!existsSync(join(root, auditPath))) {
     throw new Error(`Missing generated audit: ${auditPath}`);
@@ -87,13 +109,15 @@ function buildLock() {
     .filter((path) => typeof path === "string" && path.length > 0);
   const contacts = contactSheets();
   const workstation = workstationOutputs();
+  const derived = recursiveFiles(derivedDirectory);
   return {
     version: 1,
-    purpose: "Portable CI freshness gate for generated Office audit, calibration, and workstation artifacts",
+    purpose: "Portable CI freshness gate for generated Office audit, calibration, workstation, and derived artifacts",
     inputs: hashMap([...fixedInputs, ...sourceFiles]),
-    outputs: hashMap([...fixedOutputs, ...contacts, ...workstation]),
+    outputs: hashMap([...fixedOutputs, ...contacts, ...workstation, ...derived]),
     exactContactSheets: contacts,
     exactWorkstationOutputs: workstation,
+    exactDerivedOutputs: derived,
   };
 }
 
@@ -112,6 +136,9 @@ function validateLock(lock) {
   }
   if (JSON.stringify(workstationOutputs()) !== JSON.stringify(lock.exactWorkstationOutputs)) {
     failures.push("Workstation output list does not match the exact generated directory contents");
+  }
+  if (JSON.stringify(recursiveFiles(derivedDirectory)) !== JSON.stringify(lock.exactDerivedOutputs)) {
+    failures.push("Derived output list does not match the exact generated directory contents");
   }
   return failures;
 }

@@ -200,6 +200,30 @@ in `docs/OFFICE_TEN_WORKSTATION_ACCEPTANCE.md`. Furniture-family migration,
 commercial character calibration, and Active Office promotion remain separate
 future decisions.
 
+### Immediate Office furniture/facility derivation — Steps 13-16 complete in staging
+
+13. A deterministic source-hash-locked pipeline resolves 24 static cleanup
+    records. It preserves source canvas coordinates, removes only pixels
+    outside the reviewed primary component envelope, and emits before,
+    derived, and difference evidence without overwriting source art.
+14. Forty animation records are resolved as ten four-frame families. Frame
+    canvases and timing remain stable. Sixteen reviewed inputs that contain
+    one coherent alpha component are retained as explicit verified no-op
+    derivatives instead of deleting pixels without a defensible boundary.
+15. Six library furniture/facility records now have Geometry v3 staging
+    metadata and exact source-pixel foreground overlays: two sofas, board-game
+    and side tables, low storage, and the utility cart.
+16. Seven legacy runtime records now have isolated staging composites:
+    bookshelf, coffee counter, sectional sofa, three tables, and the semantic
+    door. The development-only `?lab=office-derived-v1` route tests all
+    thirteen composites with a neutral actor, geometry labels, filters, and
+    the four wave evidence boards.
+
+Status on 2026-07-27: `accepted-staging`. All 77 audit records are resolved,
+89 versioned images and four QA boards are locked, browser QA passes at
+desktop, 390 px, and 320 px, and `activeOfficePromotion` remains false. The
+acceptance record is `docs/OFFICE_DERIVED_ASSET_WAVES_ACCEPTANCE.md`.
+
 ## M2 — One-account Shopee pilot
 
 - Import the existing login/session recovery approach through a connector.
