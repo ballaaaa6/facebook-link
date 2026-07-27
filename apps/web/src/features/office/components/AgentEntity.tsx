@@ -2,7 +2,8 @@ import { useRef, type RefObject } from "react";
 import type { OfficeAgentView, OfficeMode } from "@affiliate-ops/contracts";
 import { StatusDot } from "../../../shared/components/StatusDot";
 import { useAgentMotion } from "../motion/useAgentMotion";
-import type { OfficeMapDefinition, OfficeWorkstation } from "../officeTypes";
+import type { CharacterDefinition } from "../characterRegistry";
+import type { AgentPresentation, OfficeMapDefinition, OfficeWorkstation } from "../officeTypes";
 import { AgentActivityBadge } from "./AgentActivityBadge";
 import { AnimatedAgent } from "./AnimatedAgent";
 import type { TooltipPreference } from "./tooltipPlacement";
@@ -22,6 +23,8 @@ export function AgentEntity({
   selected,
   previewed,
   station,
+  characterDefinition,
+  presentationOverride,
   onPreview,
   onPreviewEnd,
   onSelect,
@@ -35,14 +38,26 @@ export function AgentEntity({
   selected: boolean;
   previewed: boolean;
   station: OfficeWorkstation;
+  characterDefinition?: CharacterDefinition;
+  presentationOverride?: AgentPresentation;
   onPreview: (request: AgentPreviewRequest) => void;
   onPreviewEnd: (agentId: string) => void;
   onSelect: (agentId: string) => void;
 }) {
   const trackRef = useRef<HTMLDivElement>(null);
-  const visual = useAgentMotion(trackRef, map, station, agent, agents, mode, sceneStartedAt);
-  const initialX = `${(station.work.x / map.width) * 100}%`;
-  const initialY = `${(station.work.y / map.height) * 100}%`;
+  const visual = useAgentMotion(
+    trackRef,
+    map,
+    station,
+    agent,
+    agents,
+    mode,
+    sceneStartedAt,
+    presentationOverride,
+  );
+  const initialPosition = presentationOverride?.position ?? station.work;
+  const initialX = `${(initialPosition.x / map.width) * 100}%`;
+  const initialY = `${(initialPosition.y / map.height) * 100}%`;
 
   return (
     <div
@@ -54,6 +69,8 @@ export function AgentEntity({
         type="button"
         className={`agent-entity ${visual.seated ? "is-seated" : "is-standing"} ${visual.atDesk ? "is-at-desk" : ""} ${selected ? "is-selected" : ""}`}
         data-agent-id={agent.agentId}
+        data-seated={visual.seated ? "true" : "false"}
+        data-state={visual.state}
         aria-label={`Select ${agent.role}${visual.activityLabel ? `, ${visual.activityLabel}` : ""}`}
         aria-describedby={previewed ? `agent-tooltip-${agent.agentId}` : undefined}
         onClick={() => onSelect(agent.agentId)}
@@ -74,6 +91,7 @@ export function AgentEntity({
           name={agent.displayName}
           sceneStartedAt={sceneStartedAt}
           state={visual.state}
+          characterDefinition={characterDefinition}
         />
         <span className="agent-callout-anchor" data-agent-anchor={agent.agentId} aria-hidden="true" />
       </button>

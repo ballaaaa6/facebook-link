@@ -3,6 +3,7 @@ import {
   characterImageSet,
   characterRegistry,
   getCharacterStateConfig,
+  type CharacterDefinition,
   type CharacterState,
 } from "../characterRegistry";
 import { subscribeToOfficeFrame } from "../motion/frameScheduler";
@@ -12,13 +13,15 @@ export function AnimatedAgent({
   name,
   sceneStartedAt,
   state = "working",
+  characterDefinition,
 }: {
   agentId: string;
   name: string;
   sceneStartedAt: number;
   state?: CharacterState;
+  characterDefinition?: CharacterDefinition;
 }) {
-  const character = characterRegistry[agentId];
+  const character = characterDefinition ?? characterRegistry[agentId];
   const config = getCharacterStateConfig(character, state);
   const spriteRef = useRef<HTMLSpanElement>(null);
   const rowDivisor = (character?.rows ?? 9) - 1;
@@ -61,4 +64,3 @@ export function AnimatedAgent({
     />
   );
 }
-

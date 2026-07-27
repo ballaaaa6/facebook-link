@@ -2,19 +2,22 @@ import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react"
 import type { OfficeAgentView, OfficeMode } from "@affiliate-ops/contracts";
 import "../officeScene.css";
 import activeOfficeMapJson from "../../../../../../assets/game/maps/office-c-v2.json";
+import type { CharacterDefinition } from "../characterRegistry";
 import { resolveOfficeLayout, validateOfficeLayout } from "../layout/officeLayout";
-import type { OfficeMapDefinition } from "../officeTypes";
+import type { AgentPresentation, OfficeMapDefinition } from "../officeTypes";
 import { fittedTileSize } from "../motion/pixelGeometry";
 import { AgentEntity, type AgentPreviewRequest } from "./AgentEntity";
 import { AgentTooltip } from "./AgentTooltip";
 import { CompanionEntity } from "./CompanionEntity";
-import { officeAssetRegistry, officeSlotSets } from "./officeAssetRegistry";
+import { OfficeBackdrop } from "./OfficeBackdrop";
+import { OfficeDebugOverlay } from "./OfficeDebugOverlay";
 import {
-  officeSceneAssets,
-  officeSceneReference,
-  officeSceneTimeAt,
-  officeWindowViewFor,
-} from "./officeSceneRuntime";
+  officeAssetRegistry,
+  officeSlotSets,
+  type OfficeAssetDefinition,
+  type OfficeAssetSlot,
+} from "./officeAssetRegistry";
+import { officeSceneReference, officeSceneTimeAt } from "./officeSceneRuntime";
 import { WorldObject } from "./WorldObject";
 
 const activeOfficeMap = activeOfficeMapJson as unknown as OfficeMapDefinition;
@@ -22,30 +25,56 @@ const activeOfficeMap = activeOfficeMapJson as unknown as OfficeMapDefinition;
 export function OfficeCanvas({
   agents,
   mode,
+  agentPresentations = {},
+  assetRegistry = officeAssetRegistry,
+  backdropMode = "scene",
+  characterDefinitions = {},
+  debugGeometry = false,
   mapDefinition = activeOfficeMap,
+  showAgents = true,
+  showAmbientDecor = true,
   showWorkstationChairs = false,
+  slotSets = officeSlotSets,
+  workstationChairForeground,
+  workstationLayering = "standard",
   selectedId,
   onSelect,
 }: {
   agents: readonly OfficeAgentView[];
   mode: OfficeMode;
+  agentPresentations?: Readonly<Record<string, AgentPresentation>>;
+  assetRegistry?: Record<string, OfficeAssetDefinition>;
+  backdropMode?: "scene" | "structural";
+  characterDefinitions?: Readonly<Record<string, CharacterDefinition>>;
+  debugGeometry?: boolean;
   mapDefinition?: OfficeMapDefinition;
+  showAgents?: boolean;
+  showAmbientDecor?: boolean;
   showWorkstationChairs?: boolean;
+  slotSets?: Record<string, Record<string, OfficeAssetSlot>>;
+  workstationChairForeground?: {
+    id: string;
+    file: string;
+    renderBox: { width: number; height: number };
+  };
+  workstationLayering?: "standard" | "paired-seating";
   selectedId: string;
   onSelect: (id: string) => void;
 }) {
   const officeMap = mapDefinition;
   const resolvedMapObjects = useMemo(() => {
-    const layout = resolveOfficeLayout(officeMap, officeAssetRegistry, officeSlotSets);
-    const issues = validateOfficeLayout(officeMap, officeAssetRegistry, layout);
+    const layout = resolveOfficeLayout(officeMap, assetRegistry, slotSets);
+    const issues = validateOfficeLayout(officeMap, assetRegistry, layout);
     if (issues.length > 0) {
       throw new Error(`Invalid Office layout ${officeMap.id ?? "(unnamed)"}: ${issues.join("; ")}`);
     }
     return layout.objects;
-  }, [officeMap]);
-  const sceneBackdropScale = (
-    officeSceneReference.width / officeSceneReference.height
-  ) / (officeMap.width / officeMap.height);
+  }, [assetRegistry, officeMap, slotSets]);
+  const sceneBackdropScale = backdropMode === "structural"
+    ? 1
+    : (
+      officeSceneReference.width / officeSceneReference.height
+    ) / (officeMap.width / officeMap.height);
   const frameRef = useRef<HTMLDivElement>(null);
   const [preview, setPreview] = useState<AgentPreviewRequest | null>(null);
   const [tileSize, setTileSize] = useState(10);
@@ -57,11 +86,6 @@ export function OfficeCanvas({
   );
   const percentX = (x: number) => `${(x / officeMap.width) * 100}%`;
   const percentY = (y: number) => `${(y / officeMap.height) * 100}%`;
-  const referencePercentX = (x: number) => `${(x / officeSceneReference.width) * 100}%`;
-  const referencePercentY = (y: number) => `${(y / officeSceneReference.height) * 100}%`;
-  const referenceWidth = (width: number) => `${(width / officeSceneReference.width) * 100}%`;
-  const referenceHeight = (height: number) => `${(height / officeSceneReference.height) * 100}%`;
-  const windowView = officeWindowViewFor(sceneTime);
   const mapWidthPx = officeMap.width * tileSize;
   const mapHeightPx = officeMap.height * tileSize;
   const stageWidthPx = Math.round(mapWidthPx * sceneBackdropScale);
@@ -130,65 +154,18 @@ export function OfficeCanvas({
             height: `${mapHeightPx}px`,
           }}
         >
-          <div className="office-backdrop" aria-hidden="true">
-            <img
-              className="office-background-image"
-              src={officeSceneAssets.background}
-              alt=""
-            />
-            <img
-              className="office-window-view"
-              src={windowView}
-              alt=""
-              style={{
-                left: referencePercentX(officeSceneReference.window.x),
-                top: referencePercentY(officeSceneReference.window.y),
-                width: referenceWidth(officeSceneReference.window.width),
-                height: referenceHeight(officeSceneReference.window.height),
-              }}
-            />
-            <img
-              className="office-clock-face"
-              src={officeSceneAssets.clockFace}
-              alt=""
-              style={{
-                left: referencePercentX(officeSceneReference.clock.x),
-                top: referencePercentY(officeSceneReference.clock.y),
-                width: referenceWidth(officeSceneReference.clock.width),
-                height: referenceHeight(officeSceneReference.clock.height),
-              }}
-            />
-            <img
-              className="office-clock-hand office-clock-hour-hand"
-              src={officeSceneAssets.clockHourHand}
-              alt=""
-              style={{
-                left: referencePercentX(officeSceneReference.clock.x + officeSceneReference.clock.width / 2),
-                top: referencePercentY(officeSceneReference.clock.y + officeSceneReference.clock.height / 2),
-                width: referenceWidth(officeSceneReference.clock.width),
-                height: referenceHeight(officeSceneReference.clock.height),
-                transform: `translate(-50%, -50%) rotate(${sceneTime.hourAngle}deg)`,
-              }}
-            />
-            <img
-              className="office-clock-hand office-clock-minute-hand"
-              src={officeSceneAssets.clockMinuteHand}
-              alt=""
-              style={{
-                left: referencePercentX(officeSceneReference.clock.x + officeSceneReference.clock.width / 2),
-                top: referencePercentY(officeSceneReference.clock.y + officeSceneReference.clock.height / 2),
-                width: referenceWidth(officeSceneReference.clock.width),
-                height: referenceHeight(officeSceneReference.clock.height),
-                transform: `translate(-50%, -50%) rotate(${sceneTime.minuteAngle}deg)`,
-              }}
-            />
-          </div>
+          {backdropMode === "scene"
+            ? <OfficeBackdrop sceneTime={sceneTime} showAmbientDecor={showAmbientDecor} />
+            : null}
           <div
             className="office-world"
-            data-scene="modern"
+            data-scene={backdropMode === "structural" ? "structural-lab" : "modern"}
             aria-label="Warm pixel operations office"
             style={{
               "--tile-size": `${tileSize}px`,
+              "--structural-floor-start": percentY(
+                officeMap.surfaces.find(({ support }) => support === "floor")?.y ?? 0,
+              ),
               left: `${Math.round((stageWidthPx - mapWidthPx) / 2)}px`,
               width: `${mapWidthPx}px`,
               height: `${mapHeightPx}px`,
@@ -207,9 +184,10 @@ export function OfficeCanvas({
             }}
           />
         ))}
-        <span className="office-lounge-rug" aria-hidden="true" />
+        {showAmbientDecor ? <span className="office-lounge-rug" aria-hidden="true" /> : null}
         {resolvedMapObjects.map((object) => (
           <WorldObject
+            assetRegistry={assetRegistry}
             key={object.id}
             object={object}
             worldWidth={officeMap.width}
@@ -220,15 +198,25 @@ export function OfficeCanvas({
         ))}
         {officeMap.workstations.map((station) => {
           const agent = agents.find((item) => item.agentId === station.id);
-          const desk = officeAssetRegistry[station.desk];
-          const chair = officeAssetRegistry[station.chair];
-          if (!agent || !desk || !chair) return null;
+          const desk = assetRegistry[station.desk];
+          const chair = assetRegistry[station.chair];
+          if (!desk || !chair) return null;
           const deskDepth = 100 + Math.round(station.y * 20);
+          const nearPairedRow = workstationLayering === "paired-seating" && station.facing === "up";
+          const deskBaseDepth = nearPairedRow ? deskDepth - 4 : deskDepth - 2;
+          const deskForegroundDepth = nearPairedRow ? deskDepth - 4 : deskDepth + 2;
           return (
-            <div className="workstation-rig" key={station.id}>
+            <div
+              className="workstation-rig"
+              data-chair-asset={station.chair}
+              data-desk-asset={station.desk}
+              data-facing={station.facing}
+              key={station.id}
+            >
               <img
                 className="workstation-desk"
                 src={desk.file}
+                data-asset-id={station.desk}
                 alt=""
                 aria-hidden="true"
                 style={{
@@ -236,7 +224,7 @@ export function OfficeCanvas({
                   top: percentY(station.y),
                   width: `${(desk.renderBox.width / officeMap.width) * 100}%`,
                   height: `${(desk.renderBox.height / officeMap.height) * 100}%`,
-                  zIndex: deskDepth - 2,
+                  zIndex: deskBaseDepth,
                 }}
               />
               {showWorkstationChairs
@@ -244,6 +232,7 @@ export function OfficeCanvas({
                   <img
                     className="workstation-chair"
                     src={chair.file}
+                    data-asset-id={station.chair}
                     alt=""
                     aria-hidden="true"
                     style={{
@@ -256,23 +245,48 @@ export function OfficeCanvas({
                   />
                 )
                 : null}
-              <AgentEntity
-                agent={agent}
-                agents={agents}
-                frameRef={frameRef}
-                map={officeMap}
-                mode={mode}
-                sceneStartedAt={sceneStartedAt}
-                selected={selectedId === agent.agentId}
-                previewed={preview?.agentId === agent.agentId}
-                station={station}
-                onPreview={setPreview}
-                onPreviewEnd={endPreview}
-                onSelect={onSelect}
-              />
+              {showAgents && agent
+                ? (
+                  <AgentEntity
+                    agent={agent}
+                    agents={agents}
+                    frameRef={frameRef}
+                    map={officeMap}
+                    mode={mode}
+                    sceneStartedAt={sceneStartedAt}
+                    selected={selectedId === agent.agentId}
+                    previewed={preview?.agentId === agent.agentId}
+                    station={station}
+                    characterDefinition={characterDefinitions[agent.agentId]}
+                    presentationOverride={agentPresentations[agent.agentId]}
+                    onPreview={setPreview}
+                    onPreviewEnd={endPreview}
+                    onSelect={onSelect}
+                  />
+                )
+                : null}
+              {workstationChairForeground
+                ? (
+                  <img
+                    className="workstation-chair workstation-chair-foreground"
+                    src={workstationChairForeground.file}
+                    data-asset-id={workstationChairForeground.id}
+                    alt=""
+                    aria-hidden="true"
+                    style={{
+                      left: percentX(station.seat.x),
+                      top: percentY(station.seat.y),
+                      width: `${(workstationChairForeground.renderBox.width / officeMap.width) * 100}%`,
+                      height: `${(workstationChairForeground.renderBox.height / officeMap.height) * 100}%`,
+                      zIndex: deskDepth - 1,
+                    }}
+                  />
+                )
+                : null}
               <img
                 className="workstation-desk workstation-desk-front"
                 src={desk.file}
+                data-asset-id={station.desk}
                 alt=""
                 aria-hidden="true"
                 style={{
@@ -280,7 +294,7 @@ export function OfficeCanvas({
                   top: percentY(station.y),
                   width: `${(desk.renderBox.width / officeMap.width) * 100}%`,
                   height: `${(desk.renderBox.height / officeMap.height) * 100}%`,
-                  zIndex: deskDepth + 2,
+                  zIndex: deskForegroundDepth,
                 }}
               />
             </div>
@@ -295,6 +309,9 @@ export function OfficeCanvas({
             sceneStartedAt={sceneStartedAt}
           />
         ))}
+        {debugGeometry
+          ? <OfficeDebugOverlay map={officeMap} percentX={percentX} percentY={percentY} />
+          : null}
           </div>
         </div>
       {previewAgent && preview

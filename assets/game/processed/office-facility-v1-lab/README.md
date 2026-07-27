@@ -1,19 +1,28 @@
-# Two-row Office layout lab
+# Part 1 modern paired-workstation lab
 
-This directory records the visual QA result for the isolated Office layout lab.
-The lab is available only in the web development build at
-`/?lab=office-layout`; it does not replace the active Office map.
+This directory records visual QA for the isolated modern workstation lab. The
+lab is available only in the web development build at `/?lab=office-layout`;
+it does not replace the active Office map.
 
-## Acceptance checks
+The original `qa/two-row-office-layout-v1.png` is a rejected historical result.
+It uses the retired lab composition and is not an acceptance reference.
 
-- Ten employee workstations are arranged in two rows of five.
-- Every workstation and floor object is supported by a floor surface.
-- Wall art, the wall display, and the extinguisher are supported by a wall
-  surface.
-- The service, pantry, lounge, and review facilities have unique reservable
-  slots matching their declared capacities.
-- The browser render contains ten selectable employees and no console warnings
-  or errors.
+## Part 1 result
 
-`qa/two-row-office-layout-v1.png` was captured from the local development
-renderer at a 1280 by 720 viewport on 2026-07-27.
+- Ten modern desks form two directly touching rows of five.
+- The far row contains five `working-front-seated` employees.
+- The near row contains five `working-back-seated` employees.
+- The room contains no facility or decorative furniture.
+- The rendered asset list contains no retired desk or chair ids.
+- All ten positions and seated states remain unchanged at 0, 10, 20, and 30
+  seconds.
+- Browser console warnings and errors are both zero.
+
+## Evidence
+
+- `qa/two-row-modern-office-part1-furniture-grid-v2.png`
+- `qa/two-row-modern-office-part1-seated-v2.png`
+- `qa/two-row-modern-office-part1-seated-grid-v2.png`
+
+The three Part 1 images were captured from the local browser renderer at a 1280
+by 720 viewport on 2026-07-27.

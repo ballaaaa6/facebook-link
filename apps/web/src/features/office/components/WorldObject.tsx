@@ -1,11 +1,27 @@
 import type { ResolvedOfficeObject } from "../layout/officeLayout";
 import type { OfficeLayer } from "../officeTypes";
-import { officeAssetRegistry } from "./officeAssetRegistry";
+import { officeAssetRegistry, type OfficeAssetDefinition } from "./officeAssetRegistry";
 
 const layerOffset: Record<OfficeLayer, number> = { wall: 0, furniture: 0, equipment: 6, decor: 8 };
 
-export function WorldObject({ object, worldWidth, worldHeight, percentX, percentY, className = "" }: { object: ResolvedOfficeObject; worldWidth: number; worldHeight: number; percentX: (value: number) => string; percentY: (value: number) => string; className?: string }) {
-  const asset = officeAssetRegistry[object.asset];
+export function WorldObject({
+  object,
+  worldWidth,
+  worldHeight,
+  percentX,
+  percentY,
+  assetRegistry = officeAssetRegistry,
+  className = "",
+}: {
+  object: ResolvedOfficeObject;
+  worldWidth: number;
+  worldHeight: number;
+  percentX: (value: number) => string;
+  percentY: (value: number) => string;
+  assetRegistry?: Record<string, OfficeAssetDefinition>;
+  className?: string;
+}) {
+  const asset = assetRegistry[object.asset];
   if (!asset) return null;
 
   const anchor = object.anchor ?? asset.anchor;
@@ -16,6 +32,7 @@ export function WorldObject({ object, worldWidth, worldHeight, percentX, percent
     <img
       className={`world-object world-object-${anchor} world-layer-${object.layer} world-support-${object.support} ${className}`.trim()}
       src={asset.file}
+      data-asset-id={object.asset}
       alt=""
       aria-hidden="true"
       style={{

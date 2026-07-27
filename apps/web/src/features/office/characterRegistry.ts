@@ -34,6 +34,8 @@ export type CharacterState =
   | "walk-up"
   | "waving"
   | "working-back"
+  | "working-back-seated"
+  | "working-front-seated"
   | "working";
 
 export interface CharacterDefinition {
@@ -65,6 +67,8 @@ export const characterStates9Row: Record<CharacterState, StateConfig> = {
   review: { row: 8, frames: 6, fps: 5, loop: true },
   lounging: { row: 0, frames: 6, fps: 4, loop: true },
   "working-back": { row: 7, frames: 6, fps: 7, loop: true },
+  "working-back-seated": { row: 7, frames: 6, fps: 7, loop: true },
+  "working-front-seated": { row: 7, frames: 6, fps: 7, loop: true },
   "interact-front": { row: 3, frames: 4, fps: 5, loop: true },
   "inspect-front": { row: 0, frames: 6, fps: 4, loop: true },
   "lounge-front": { row: 0, frames: 6, fps: 4, loop: true },
@@ -85,6 +89,8 @@ export const characterStates12Row: Record<CharacterState, StateConfig> = {
   review: { row: 10, frames: 6, fps: 5, loop: true },
   lounging: { row: 11, frames: 6, fps: 3, loop: true },
   "working-back": { row: 9, frames: 6, fps: 7, loop: true },
+  "working-back-seated": { row: 9, frames: 6, fps: 7, loop: true },
+  "working-front-seated": { row: 9, frames: 6, fps: 7, loop: true },
   "interact-front": { row: 5, frames: 4, fps: 5, loop: true },
   "inspect-front": { row: 0, frames: 6, fps: 4, loop: true },
   "lounge-front": { row: 11, frames: 6, fps: 3, loop: true },
@@ -105,6 +111,8 @@ export const characterStates13Row: Record<CharacterState, StateConfig> = {
   review: { row: 8, frames: 6, fps: 5, loop: true },
   lounging: { row: 12, frames: 6, fps: 4, loop: true },
   "working-back": { row: 9, frames: 6, fps: 7, loop: true },
+  "working-back-seated": { row: 9, frames: 6, fps: 7, loop: true },
+  "working-front-seated": { row: 12, frames: 6, fps: 4, loop: true },
   "interact-front": { row: 10, frames: 6, fps: 5, loop: true },
   "inspect-front": { row: 11, frames: 6, fps: 5, loop: true },
   "lounge-front": { row: 12, frames: 6, fps: 4, loop: true },
@@ -115,6 +123,8 @@ export const characterStates15Row: Record<CharacterState, StateConfig> = {
   seated: { row: 14, frames: 6, fps: 4, loop: true },
   lounging: { row: 12, frames: 6, fps: 4, loop: true },
   "working-back": { row: 9, frames: 6, fps: 7, loop: true },
+  "working-back-seated": { row: 13, frames: 6, fps: 6, loop: true },
+  "working-front-seated": { row: 14, frames: 6, fps: 6, loop: true },
   "interact-front": { row: 10, frames: 6, fps: 5, loop: false },
   "inspect-front": { row: 11, frames: 6, fps: 5, loop: true },
   "lounge-front": { row: 12, frames: 6, fps: 4, loop: true },

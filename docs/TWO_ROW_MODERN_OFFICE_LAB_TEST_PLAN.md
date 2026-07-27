@@ -94,16 +94,17 @@ Part 1 uses the following integer-grid targets in the isolated lab:
 | --- | --- |
 | Back wall | `y=0..3` |
 | Required empty clearance row | `y=4` |
-| Row A chair and actor seat anchors | `y=7` |
+| Row A chair and actor seat anchors | `y=8` |
 | Row A desk footprints | `y=8..9` |
 | Row B desk footprints | `y=10..11` |
 | Row B chair and actor seat anchors | `y=14` |
 | Front circulation aisle | begins at `y=15` |
 | Five workstation column anchors | `x=[5, 8, 11, 14, 17]` |
 
-The three-tile character render box for Row A may occupy `y=5..7`, but no
-visible pixel or footprint may enter the required empty row at `y=4`.
-Row A chairs may occupy `y=6..7`. Row B characters may occupy `y=12..14` and
+The pixel-aligned character frame for Row A includes transparent padding near
+the required empty row at `y=4`, but no opaque character pixel or furniture
+footprint may enter that row. Row A chairs may occupy `y=6..8`. Row B
+characters may occupy `y=12..14` and
 Row B chairs may occupy `y=13..14`.
 
 Each three-tile desk footprint occupies one of these horizontal ranges:

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type RefObject } from "react";
 import type { OfficeAgentView, OfficeMode } from "@affiliate-ops/contracts";
 import type { CharacterState } from "../characterRegistry";
-import type { OfficeMapDefinition, OfficeWorkstation } from "../officeTypes";
+import type { AgentPresentation, OfficeMapDefinition, OfficeWorkstation } from "../officeTypes";
 import { subscribeToOfficeFrame } from "./frameScheduler";
 import { presentationsAt } from "./officeMotion";
 import { pixelAlignedCharacterFrame } from "./pixelGeometry";
@@ -21,6 +21,7 @@ export function useAgentMotion(
   agents: readonly OfficeAgentView[],
   mode: OfficeMode,
   sceneStartedAt: number,
+  presentationOverride?: AgentPresentation,
 ): AgentVisualState {
   const [visual, setVisual] = useState<AgentVisualState>({ state: "idle", seated: false, atDesk: true });
   const signature = useRef("");
@@ -28,7 +29,7 @@ export function useAgentMotion(
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const update = (timestamp: number) => {
-      const presentation = presentationsAt(
+      const presentation = presentationOverride ?? presentationsAt(
         (timestamp - sceneStartedAt) / 1_000,
         agents,
         reduceMotion ? "live" : mode,
@@ -66,7 +67,7 @@ export function useAgentMotion(
       }
     };
     return subscribeToOfficeFrame(update);
-  }, [agent.agentId, agents, map, mode, sceneStartedAt, station, trackRef]);
+  }, [agent.agentId, agents, map, mode, presentationOverride, sceneStartedAt, station, trackRef]);
 
   return visual;
 }
