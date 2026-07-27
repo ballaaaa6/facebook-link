@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 2,
+  "id": "office-structure-v2-contract-fixture",
+  "status": "geometry-accepted-staging",
+  "activeOfficePromotion": false,
+  "commercialCharacterApproval": false,
+  "grid": { "width": 12, "height": 10, "tilePixels": 32 },
+  "structures": [
+    {
+      "id": "fixture-floor",
+      "kind": "floor-region",
+      "bounds": { "x": 0, "y": 3, "width": 12, "height": 7 },
+      "material": "floor.grid.cool-gray",
+      "navigationPolicy": "walkable",
+      "collisionOwner": true
+    },
+    {
+      "id": "fixture-wall",
+      "kind": "wall-segment",
+      "bounds": { "x": 0, "y": 0, "width": 12, "height": 3 },
+      "material": "wall.panel.cool-gray",
+      "coordinateSpace": "wall-local",
+      "floorYSort": false
+    },
+    {
+      "id": "fixture-window",
+      "kind": "window-opening",
+      "parentWallId": "fixture-wall",
+      "opening": { "x": 2, "y": 0.5, "width": 5, "height": 2, "coordinateSpace": "wall-local" },
+      "viewport": { "x": 0.25, "y": 0.25, "width": 4.5, "height": 1.5, "coordinateSpace": "viewport-local" },
+      "frameAssetId": "window.frame.v1",
+      "contentSetId": "office.window.seasonal.v2",
+      "floorCollision": false
+    },
+    {
+      "id": "fixture-door",
+      "kind": "door-opening",
+      "parentWallId": "fixture-wall",
+      "portalId": "fixture-portal",
+      "opening": { "x": 9, "y": 1, "width": 2, "height": 2, "coordinateSpace": "wall-local" },
+      "frameAssetId": "door.frame.v1",
+      "leafAssetId": "door.closed.leaf.v1",
+      "state": "closed",
+      "floorYSort": false
+    }
+  ],
+  "portals": [
+    {
+      "id": "fixture-portal",
+      "doorOpeningId": "fixture-door",
+      "cells": [{ "x": 9, "y": 3 }, { "x": 10, "y": 3 }],
+      "statePolicy": { "open": "passable", "closed": "blocked" }
+    }
+  ],
+  "routes": [],
+  "workstationDeployments": [],
+  "acceptance": {
+    "requiredDurationSeconds": 60,
+    "sharedSceneClock": true,
+    "backgroundBitmapAllowed": false
+  }
+}

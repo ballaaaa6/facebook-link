@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "id": "office.workstation.deployment-presets.v1",
+  "status": "staging",
+  "deskFamilyId": "desk.modular.v1",
+  "presets": [
+    {
+      "id": "standard-single",
+      "role": "standard",
+      "deskFamilyId": "desk.modular.v1",
+      "screenThemeId": "screen.theme.system.loop.v1",
+      "equipment": [
+        { "id": "monitor-main", "assetId": "monitor.front", "kind": "monitor-shell", "slot": { "id": "monitor-main", "x": 2.5, "y": 0.75, "surfaceId": "desk-surface" }, "renderRole": "monitor-shell" },
+        { "id": "keyboard-main", "assetId": "keyboard.mouse", "kind": "keyboard", "slot": { "id": "keyboard-main", "x": 2.5, "y": 2, "surfaceId": "desk-surface" }, "renderRole": "surface-equipment" }
+      ]
+    },
+    {
+      "id": "standard-dual",
+      "role": "standard",
+      "deskFamilyId": "desk.modular.v1",
+      "screenThemeId": "screen.theme.system.loop.v1",
+      "equipment": [
+        { "id": "monitor-left", "assetId": "monitor.front", "kind": "monitor-shell", "slot": { "id": "monitor-left", "x": 1.5, "y": 0.75, "surfaceId": "desk-surface" }, "renderRole": "monitor-shell" },
+        { "id": "monitor-right", "assetId": "monitor.front", "kind": "monitor-shell", "slot": { "id": "monitor-right", "x": 3.5, "y": 0.75, "surfaceId": "desk-surface" }, "renderRole": "monitor-shell" },
+        { "id": "keyboard-main", "assetId": "keyboard.mouse", "kind": "keyboard", "slot": { "id": "keyboard-main", "x": 2.5, "y": 2, "surfaceId": "desk-surface" }, "renderRole": "surface-equipment" }
+      ]
+    },
+    {
+      "id": "creative-dual-tablet",
+      "role": "creative",
+      "deskFamilyId": "desk.modular.v1",
+      "screenThemeId": "screen.theme.system.loop.v1",
+      "equipment": [
+        { "id": "monitor-left", "assetId": "monitor.front", "kind": "monitor-shell", "slot": { "id": "monitor-left", "x": 1.5, "y": 0.65, "surfaceId": "desk-surface" }, "renderRole": "monitor-shell" },
+        { "id": "monitor-right", "assetId": "monitor.front", "kind": "monitor-shell", "slot": { "id": "monitor-right", "x": 3.5, "y": 0.65, "surfaceId": "desk-surface" }, "renderRole": "monitor-shell" },
+        { "id": "keyboard-main", "assetId": "keyboard.mouse", "kind": "keyboard", "slot": { "id": "keyboard-main", "x": 3, "y": 2, "surfaceId": "desk-surface" }, "renderRole": "surface-equipment" },
+        { "id": "tablet-left", "assetId": "tablet.drawing", "kind": "tablet", "slot": { "id": "tablet-left", "x": 1, "y": 2, "surfaceId": "desk-surface" }, "renderRole": "surface-equipment" }
+      ]
+    },
+    {
+      "id": "noc-dual-status",
+      "role": "noc",
+      "deskFamilyId": "desk.modular.v1",
+      "screenThemeId": "screen.theme.system.loop.v1",
+      "equipment": [
+        { "id": "monitor-left", "assetId": "monitor.front", "kind": "monitor-shell", "slot": { "id": "monitor-left", "x": 1.5, "y": 0.65, "surfaceId": "desk-surface" }, "renderRole": "monitor-shell" },
+        { "id": "monitor-right", "assetId": "monitor.front", "kind": "monitor-shell", "slot": { "id": "monitor-right", "x": 3.5, "y": 0.65, "surfaceId": "desk-surface" }, "renderRole": "monitor-shell" },
+        { "id": "keyboard-main", "assetId": "keyboard.mouse", "kind": "keyboard", "slot": { "id": "keyboard-main", "x": 2.5, "y": 2, "surfaceId": "desk-surface" }, "renderRole": "surface-equipment" },
+        { "id": "status-phone", "assetId": "phone.desk", "kind": "phone", "slot": { "id": "status-phone", "x": 4.25, "y": 2, "surfaceId": "desk-surface" }, "renderRole": "surface-equipment" }
+      ]
+    }
+  ]
+}
