@@ -6,6 +6,34 @@ import annaPilotSheet from "../../../../../../assets/game/characters/anna/runtim
 import annaPilotSheet2x from "../../../../../../assets/game/characters/anna/runtime-spritesheet-v3@2x.webp";
 import aiWorkbotPilotSheet from "../../../../../../assets/game/characters/ai-workbot/runtime-spritesheet-v3.webp";
 import aiWorkbotPilotSheet2x from "../../../../../../assets/game/characters/ai-workbot/runtime-spritesheet-v3@2x.webp";
+import asukaRosterSheet from "../../../../../../assets/game/characters/asuka-2/runtime-spritesheet-v3.webp";
+import asukaRosterSheet2x from "../../../../../../assets/game/characters/asuka-2/runtime-spritesheet-v3@2x.webp";
+import baobaoRosterSheet from "../../../../../../assets/game/characters/baobao-2/runtime-spritesheet-v3.webp";
+import baobaoRosterSheet2x from "../../../../../../assets/game/characters/baobao-2/runtime-spritesheet-v3@2x.webp";
+import gugugagaRosterSheet from "../../../../../../assets/game/characters/gugugaga/runtime-spritesheet-v3.webp";
+import gugugagaRosterSheet2x from "../../../../../../assets/game/characters/gugugaga/runtime-spritesheet-v3@2x.webp";
+import itachiRosterSheet from "../../../../../../assets/game/characters/itachi/runtime-spritesheet-v3.webp";
+import itachiRosterSheet2x from "../../../../../../assets/game/characters/itachi/runtime-spritesheet-v3@2x.webp";
+import jesusRosterSheet from "../../../../../../assets/game/characters/jesus/runtime-spritesheet-v3.webp";
+import jesusRosterSheet2x from "../../../../../../assets/game/characters/jesus/runtime-spritesheet-v3@2x.webp";
+import lianRosterSheet from "../../../../../../assets/game/characters/lian-3/runtime-spritesheet-v3.webp";
+import lianRosterSheet2x from "../../../../../../assets/game/characters/lian-3/runtime-spritesheet-v3@2x.webp";
+import mikuRosterSheet from "../../../../../../assets/game/characters/miku/runtime-spritesheet-v3.webp";
+import mikuRosterSheet2x from "../../../../../../assets/game/characters/miku/runtime-spritesheet-v3@2x.webp";
+import naiLongRosterSheet from "../../../../../../assets/game/characters/nai-long/runtime-spritesheet-v3.webp";
+import naiLongRosterSheet2x from "../../../../../../assets/game/characters/nai-long/runtime-spritesheet-v3@2x.webp";
+import noirRosterSheet from "../../../../../../assets/game/characters/noir-webling/runtime-spritesheet-v3.webp";
+import noirRosterSheet2x from "../../../../../../assets/game/characters/noir-webling/runtime-spritesheet-v3@2x.webp";
+import qqPenguinRosterSheet from "../../../../../../assets/game/characters/qq-penguin/runtime-spritesheet-v3.webp";
+import qqPenguinRosterSheet2x from "../../../../../../assets/game/characters/qq-penguin/runtime-spritesheet-v3@2x.webp";
+import remRosterSheet from "../../../../../../assets/game/characters/rem-xl/runtime-spritesheet-v3.webp";
+import remRosterSheet2x from "../../../../../../assets/game/characters/rem-xl/runtime-spritesheet-v3@2x.webp";
+import ruriRosterSheet from "../../../../../../assets/game/characters/ruri/runtime-spritesheet-v3.webp";
+import ruriRosterSheet2x from "../../../../../../assets/game/characters/ruri/runtime-spritesheet-v3@2x.webp";
+import taffyRosterSheet from "../../../../../../assets/game/characters/taffy-2/runtime-spritesheet-v3.webp";
+import taffyRosterSheet2x from "../../../../../../assets/game/characters/taffy-2/runtime-spritesheet-v3@2x.webp";
+import yinyueRosterSheet from "../../../../../../assets/game/characters/yinyue-2/runtime-spritesheet-v3.webp";
+import yinyueRosterSheet2x from "../../../../../../assets/game/characters/yinyue-2/runtime-spritesheet-v3@2x.webp";
 import coffeeMug from "../../../../../../assets/game/processed/office-interactions-v1/held-props/coffee-mug.png";
 import envelope from "../../../../../../assets/game/processed/office-interactions-v1/held-props/envelope.png";
 import juiceBox from "../../../../../../assets/game/processed/office-interactions-v1/held-props/juice-box.png";
@@ -82,6 +110,33 @@ export const characterMorphologyPilotAssets = {
     frame: { width: 96, height: 104 },
     status: "staging-only",
   },
+} as const;
+
+const rosterAsset = (sheet: string, sheet2x: string) => ({
+  sheet,
+  sheet2x,
+  rows: 15,
+  columns: 8,
+  frame: { width: 96, height: 104 },
+  status: "staging-only" as const,
+  activeOfficeImported: false,
+});
+
+export const characterRoster8x15StagingAssets = {
+  "asuka-2": rosterAsset(asukaRosterSheet, asukaRosterSheet2x),
+  "baobao-2": rosterAsset(baobaoRosterSheet, baobaoRosterSheet2x),
+  gugugaga: rosterAsset(gugugagaRosterSheet, gugugagaRosterSheet2x),
+  itachi: rosterAsset(itachiRosterSheet, itachiRosterSheet2x),
+  jesus: rosterAsset(jesusRosterSheet, jesusRosterSheet2x),
+  "lian-3": rosterAsset(lianRosterSheet, lianRosterSheet2x),
+  miku: rosterAsset(mikuRosterSheet, mikuRosterSheet2x),
+  "nai-long": rosterAsset(naiLongRosterSheet, naiLongRosterSheet2x),
+  "noir-webling": rosterAsset(noirRosterSheet, noirRosterSheet2x),
+  "qq-penguin": rosterAsset(qqPenguinRosterSheet, qqPenguinRosterSheet2x),
+  "rem-xl": rosterAsset(remRosterSheet, remRosterSheet2x),
+  ruri: rosterAsset(ruriRosterSheet, ruriRosterSheet2x),
+  "taffy-2": rosterAsset(taffyRosterSheet, taffyRosterSheet2x),
+  "yinyue-2": rosterAsset(yinyueRosterSheet, yinyueRosterSheet2x),
 } as const;
 
 export const heldPropAssetCatalog: Record<HeldPropId, string> = {

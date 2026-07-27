@@ -24,6 +24,16 @@ semantics transfer to both a human-like silhouette and a compact non-human
 robot. The active Office registry still imports Doraemon v3, Anna v2, and AI
 Workbot v2; promotion waits for the replacement interior pass.
 
+The remaining fourteen selected characters now also have staging-only v3
+8x15 atlases. Their six generated source strips, 1x/2x packs, previews, derived
+hand anchors, and provisional seat offsets are indexed by
+`assets/game/manifests/character-roster-8x15-batch.json`. Legacy source-only
+packs receive normalized runtime-v2 base files before extension; all decoded
+base rows retain exact visible RGBA and alpha values. RGB beneath zero-alpha
+pixels is canonicalized for comparison because lossless WebP does not preserve
+invisible RGB bytes. These v3 files are not referenced by
+`registry.json` or the active Office character registry.
+
 The office map owns placement. Every agent has a `seat`, `stand`, and desk `collision` rectangle so rendering can keep characters out of furniture and preserve a future pathfinding boundary.
 
 ## Imported Petdex candidate packs

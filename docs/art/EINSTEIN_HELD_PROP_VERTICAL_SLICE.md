@@ -216,6 +216,26 @@ Build measurements and the visual contact sheet are stored in
 `assets/game/manifests/character-morphology-pilot.json`; the repeatable build is
 `scripts/process-character-morphology-pilot.py`.
 
+### Remaining roster batch result
+
+The validated Einstein semantics were then transferred to the remaining
+fourteen selected characters in a staging-only batch:
+
+- 84 generated source strips pass extraction at exactly six active frames.
+- Every character owns rows 9-14 in the canonical order and two empty trailing
+  cells per row.
+- All final v3 atlases are 8x15 at both density tiers and retain exact visible
+  RGBA plus alpha across their accepted 8x9 base rows.
+- Standard-human, stylized-human, compact-costume, and non-human silhouettes
+  were reviewed together in one visual contact sheet.
+- Provisional per-character hand anchors and seat offsets are recorded for
+  furniture-specific calibration during Facility v1 map authoring.
+- The active Office registry and map remain unchanged.
+
+The manifest is
+`assets/game/manifests/character-roster-8x15-batch.json`; the repeatable build
+is `scripts/process-character-roster-batch.py`.
+
 ### Isolated facility lab result
 
 The eight representative facilities were subsequently composed in a separate

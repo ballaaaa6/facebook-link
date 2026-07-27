@@ -76,15 +76,23 @@ Implementation status (2026-07-27):
   preserve their accepted base rows pixel-exactly, contain six active frames
   plus two empty cells per new row, and are available only through the staging
   asset catalog. The active Office registry remains on the prior versions.
+- Complete: extended the remaining fourteen selected PetDex characters across
+  standard-human, stylized-human, compact-costume, and non-human morphology
+  families. All 84 source strips extract to exactly six frames; every v3 atlas
+  is 8x15 at 1x and 2x, preserves visible RGBA and alpha across its nine
+  accepted base rows,
+  records provisional hand/seat calibration data, and is registered only in
+  the staging catalog. The active Office registry and map remain unchanged.
 - Held at the intended gate: none of these staging assets replaces the active
   Office interior yet. The next tranche is facility-by-facility composition
   geometry for the complete 14-object/20-slot Facility v1 set, followed by the
   full interior swap only after the final map validates those slots.
 
-The next character-art tranche is to extend the remaining active PetDex roster
-from the same validated six-row contract. Batch generation can proceed by
-morphology family, while promotion and map placement remain a single later
-interior-swap gate.
+The character-art batch is now closed in staging. The next Office tranche is
+to lock the complete 14-object/20-slot Facility v1 layout, calibrate each
+character's provisional hand and seat offsets against the chosen furniture,
+and then promote the validated character/facility catalog during the single
+replacement-interior swap.
 
 ## M2 — One-account Shopee pilot
 

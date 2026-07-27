@@ -3,6 +3,7 @@ import test from "node:test";
 import interactionAssets from "../../../assets/game/manifests/office-interaction-assets.json" with { type: "json" };
 import interactionLab from "../../../assets/game/manifests/office-interaction-lab.json" with { type: "json" };
 import morphologyPilot from "../../../assets/game/manifests/character-morphology-pilot.json" with { type: "json" };
+import rosterBatch from "../../../assets/game/manifests/character-roster-8x15-batch.json" with { type: "json" };
 import reviewFacility from "../../../assets/game/manifests/review-decor-completion.json" with { type: "json" };
 import {
   characterRows15,
@@ -71,6 +72,64 @@ test("the morphology pilot closes Doraemon and proves human and robot 8x15 atlas
       ?.extensionRows.map(({ state }) => state),
     morphologyPilot.rowOrder,
   );
+});
+
+test("the remaining fourteen characters are complete staging-only 8x15 atlases", () => {
+  assert.equal(rosterBatch.status, "staging-only");
+  assert.equal(rosterBatch.activeOfficeImported, false);
+  assert.equal(rosterBatch.characterCount, 14);
+  assert.deepEqual(rosterBatch.frame1x, [96, 104]);
+  assert.deepEqual(rosterBatch.frame2x, [192, 208]);
+  assert.deepEqual(rosterBatch.rowOrder, [
+    "working-back",
+    "interact-front",
+    "inspect-front",
+    "lounge-front",
+    "working-back-seated",
+    "working-front-seated",
+  ]);
+
+  const expectedCharacters = new Set([
+    "asuka-2",
+    "baobao-2",
+    "gugugaga",
+    "itachi",
+    "jesus",
+    "lian-3",
+    "miku",
+    "nai-long",
+    "noir-webling",
+    "qq-penguin",
+    "rem-xl",
+    "ruri",
+    "taffy-2",
+    "yinyue-2",
+  ]);
+  assert.deepEqual(
+    new Set(rosterBatch.characters.map(({ id }) => id)),
+    expectedCharacters,
+  );
+  for (const character of rosterBatch.characters) {
+    assert.equal(character.status, "staging-only");
+    assert.equal(character.activeOfficeImported, false);
+    assert.equal(character.rows, 15);
+    assert.equal(character.columns, 8);
+    assert.equal(character.baseRows, 9);
+    assert.equal(character.baseRowsPreservedPixelExact, true);
+    assert.equal(character.extensionRows.length, 6);
+    assert.deepEqual(
+      character.extensionRows.map(({ state }) => state),
+      rosterBatch.rowOrder,
+    );
+    assert.ok(character.extensionRows.every(({ activeFrames }) => activeFrames === 6));
+    assert.ok(
+      character.extensionRows.every(
+        ({ emptyTrailingCells }) =>
+          emptyTrailingCells[0] === 6 && emptyTrailingCells[1] === 7,
+      ),
+    );
+    assert.equal(character.interactHandAnchors.length, 6);
+  }
 });
 
 test("the held-prop sheet extracts all 16 declared items", () => {

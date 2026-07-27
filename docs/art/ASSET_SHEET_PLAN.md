@@ -364,6 +364,13 @@ rows are added.
   8x13 sheet with the two seated rows; Anna supplies the human-like proof; AI
   Workbot supplies the non-human robot proof. Their versioned 8x15 atlases are
   cataloged but not imported by the active Office.
+- The follow-on fourteen-character batch is complete in staging. Asuka, Jesus,
+  Miku, Rem, Ruri, Itachi, Lian, Taffy, Yinyue, Noir, Baobao, Gugugaga,
+  Nai-long, and QQ Penguin each add the same six canonical rows. The batch
+  validates 84/84 source strips, retains exactly six active frames and two
+  empty trailing cells per row, and preserves visible RGBA plus the alpha plane
+  across every accepted 8x9 base.
+  See `docs/art/CHARACTER_ROSTER_8X15_BATCH.md`.
 - Einstein defines the semantic row order, standing and seated anchors,
   character-relative prop scale, and interaction hand-anchor contract. Each
   later PetDex character still preserves its own base identity, proportions,
