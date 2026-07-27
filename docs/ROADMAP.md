@@ -40,6 +40,25 @@ clock:
 The locked execution and acceptance contract is maintained in
 `docs/art/EINSTEIN_HELD_PROP_VERTICAL_SLICE.md`.
 
+Implementation status (2026-07-27):
+
+- Complete: generated and packed Einstein's four missing rows plus the two
+  accepted seated rows as an 8x15 staging atlas at 1x and 2x.
+- Complete: generated, extracted, and registered the controlled sixteen-item
+  held-prop sheet.
+- Complete: added the 15-row contract, six measured hand anchors,
+  deterministic facility pools, no-repeat selection, and frames 3-5 visibility
+  policy.
+- Complete: derived five foreground masks from accepted furniture pixels and
+  produced an item-neutral vending tray loop.
+- Complete: added a runtime-ready staging catalog, a React interaction harness,
+  a sixteen-case `interact-front` visual contact sheet, and automated contract
+  tests.
+- Held at the intended gate: none of these staging assets replaces the active
+  Office interior yet. The next tranche is facility-by-facility composition
+  against Water, Vending, Printer, Review, Sofa, Massage, Server, and Arcade,
+  followed by the full interior swap only after those compositions pass.
+
 ## M2 — One-account Shopee pilot
 
 - Import the existing login/session recovery approach through a connector.

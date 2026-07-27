@@ -1,0 +1,805 @@
+{
+  "version": 1,
+  "status": "runtime-ready-staging",
+  "sourcePolicy": "generated sources are immutable; rerun this script for derived assets",
+  "einstein": {
+    "rows": 15,
+    "columns": 8,
+    "frame2x": [
+      192,
+      208
+    ],
+    "frame1x": [
+      96,
+      104
+    ],
+    "sheet2x": "assets/game/characters/einstein/runtime-spritesheet-v3@2x.webp",
+    "sheet1x": "assets/game/characters/einstein/runtime-spritesheet-v3.webp",
+    "preview": "assets/game/characters/einstein/runtime-spritesheet-v3-preview.png",
+    "base": "assets/game/characters/einstein/runtime-spritesheet-v2@2x.webp",
+    "size2x": [
+      1536,
+      3120
+    ],
+    "size1x": [
+      768,
+      1560
+    ],
+    "extensionRows": [
+      {
+        "row": 9,
+        "name": "working-back",
+        "activeFrames": 6,
+        "source": "einstein-working-back-v1-source.png",
+        "frameBounds2x": [
+          [
+            30,
+            5,
+            161,
+            203
+          ],
+          [
+            30,
+            5,
+            161,
+            203
+          ],
+          [
+            30,
+            5,
+            162,
+            203
+          ],
+          [
+            31,
+            5,
+            161,
+            203
+          ],
+          [
+            31,
+            5,
+            161,
+            203
+          ],
+          [
+            31,
+            6,
+            161,
+            203
+          ]
+        ]
+      },
+      {
+        "row": 10,
+        "name": "interact-front",
+        "activeFrames": 6,
+        "source": "einstein-interact-front-v1-source.png",
+        "frameBounds2x": [
+          [
+            30,
+            5,
+            161,
+            203
+          ],
+          [
+            30,
+            5,
+            161,
+            203
+          ],
+          [
+            31,
+            5,
+            161,
+            203
+          ],
+          [
+            31,
+            5,
+            160,
+            203
+          ],
+          [
+            31,
+            5,
+            160,
+            203
+          ],
+          [
+            31,
+            5,
+            160,
+            203
+          ]
+        ]
+      },
+      {
+        "row": 11,
+        "name": "inspect-front",
+        "activeFrames": 6,
+        "source": "einstein-inspect-front-v1-source.png",
+        "frameBounds2x": [
+          [
+            29,
+            5,
+            162,
+            203
+          ],
+          [
+            27,
+            5,
+            165,
+            203
+          ],
+          [
+            28,
+            5,
+            163,
+            203
+          ],
+          [
+            28,
+            5,
+            163,
+            203
+          ],
+          [
+            28,
+            5,
+            163,
+            203
+          ],
+          [
+            29,
+            5,
+            162,
+            203
+          ]
+        ]
+      },
+      {
+        "row": 12,
+        "name": "lounge-front",
+        "activeFrames": 6,
+        "source": "einstein-lounge-front-v1-source.png",
+        "frameBounds2x": [
+          [
+            37,
+            24,
+            155,
+            203
+          ],
+          [
+            37,
+            23,
+            155,
+            203
+          ],
+          [
+            37,
+            23,
+            155,
+            203
+          ],
+          [
+            37,
+            23,
+            155,
+            203
+          ],
+          [
+            37,
+            23,
+            154,
+            203
+          ],
+          [
+            37,
+            23,
+            155,
+            203
+          ]
+        ]
+      },
+      {
+        "row": 13,
+        "name": "working-back-seated",
+        "activeFrames": 6,
+        "source": "einstein-seated-working-v1-source.png",
+        "frameBounds2x": [
+          [
+            36,
+            23,
+            155,
+            203
+          ],
+          [
+            36,
+            23,
+            155,
+            203
+          ],
+          [
+            36,
+            23,
+            156,
+            203
+          ],
+          [
+            36,
+            23,
+            155,
+            203
+          ],
+          [
+            37,
+            23,
+            155,
+            203
+          ],
+          [
+            37,
+            23,
+            155,
+            203
+          ]
+        ]
+      },
+      {
+        "row": 14,
+        "name": "working-front-seated",
+        "activeFrames": 6,
+        "source": "einstein-seated-working-v1-source.png",
+        "frameBounds2x": [
+          [
+            36,
+            23,
+            156,
+            203
+          ],
+          [
+            36,
+            23,
+            156,
+            203
+          ],
+          [
+            35,
+            23,
+            156,
+            203
+          ],
+          [
+            36,
+            23,
+            156,
+            203
+          ],
+          [
+            36,
+            23,
+            155,
+            203
+          ],
+          [
+            36,
+            23,
+            156,
+            203
+          ]
+        ]
+      }
+    ]
+  },
+  "heldProps": {
+    "sheet": "assets/art/layout-references/held-props-modern-bright-v1-source.png",
+    "grid": [
+      4,
+      4
+    ],
+    "count": 16,
+    "assets": [
+      {
+        "id": "held.water-cup-clear",
+        "cell": [
+          0,
+          0
+        ],
+        "file": "assets/game/processed/office-interactions-v1/held-props/water-cup-clear.png",
+        "file2x": "assets/game/processed/office-interactions-v1/held-props/water-cup-clear@2x.png",
+        "bounds2x": [
+          6,
+          4,
+          34,
+          36
+        ]
+      },
+      {
+        "id": "held.water-cup-blue",
+        "cell": [
+          0,
+          1
+        ],
+        "file": "assets/game/processed/office-interactions-v1/held-props/water-cup-blue.png",
+        "file2x": "assets/game/processed/office-interactions-v1/held-props/water-cup-blue@2x.png",
+        "bounds2x": [
+          6,
+          4,
+          34,
+          36
+        ]
+      },
+      {
+        "id": "held.water-bottle",
+        "cell": [
+          0,
+          2
+        ],
+        "file": "assets/game/processed/office-interactions-v1/held-props/water-bottle.png",
+        "file2x": "assets/game/processed/office-interactions-v1/held-props/water-bottle@2x.png",
+        "bounds2x": [
+          13,
+          4,
+          27,
+          36
+        ]
+      },
+      {
+        "id": "held.coffee-mug",
+        "cell": [
+          0,
+          3
+        ],
+        "file": "assets/game/processed/office-interactions-v1/held-props/coffee-mug.png",
+        "file2x": "assets/game/processed/office-interactions-v1/held-props/coffee-mug@2x.png",
+        "bounds2x": [
+          4,
+          5,
+          36,
+          35
+        ]
+      },
+      {
+        "id": "held.takeaway-cup",
+        "cell": [
+          1,
+          0
+        ],
+        "file": "assets/game/processed/office-interactions-v1/held-props/takeaway-cup.png",
+        "file2x": "assets/game/processed/office-interactions-v1/held-props/takeaway-cup@2x.png",
+        "bounds2x": [
+          8,
+          4,
+          31,
+          36
+        ]
+      },
+      {
+        "id": "held.tea-cup",
+        "cell": [
+          1,
+          1
+        ],
+        "file": "assets/game/processed/office-interactions-v1/held-props/tea-cup.png",
+        "file2x": "assets/game/processed/office-interactions-v1/held-props/tea-cup@2x.png",
+        "bounds2x": [
+          4,
+          5,
+          36,
+          35
+        ]
+      },
+      {
+        "id": "held.soda-can",
+        "cell": [
+          1,
+          2
+        ],
+        "file": "assets/game/processed/office-interactions-v1/held-props/soda-can.png",
+        "file2x": "assets/game/processed/office-interactions-v1/held-props/soda-can@2x.png",
+        "bounds2x": [
+          10,
+          4,
+          29,
+          36
+        ]
+      },
+      {
+        "id": "held.juice-box",
+        "cell": [
+          1,
+          3
+        ],
+        "file": "assets/game/processed/office-interactions-v1/held-props/juice-box.png",
+        "file2x": "assets/game/processed/office-interactions-v1/held-props/juice-box@2x.png",
+        "bounds2x": [
+          10,
+          4,
+          30,
+          36
+        ]
+      },
+      {
+        "id": "held.snack-bag",
+        "cell": [
+          2,
+          0
+        ],
+        "file": "assets/game/processed/office-interactions-v1/held-props/snack-bag.png",
+        "file2x": "assets/game/processed/office-interactions-v1/held-props/snack-bag@2x.png",
+        "bounds2x": [
+          5,
+          4,
+          35,
+          36
+        ]
+      },
+      {
+        "id": "held.yogurt-box",
+        "cell": [
+          2,
+          1
+        ],
+        "file": "assets/game/processed/office-interactions-v1/held-props/yogurt-box.png",
+        "file2x": "assets/game/processed/office-interactions-v1/held-props/yogurt-box@2x.png",
+        "bounds2x": [
+          4,
+          4,
+          36,
+          35
+        ]
+      },
+      {
+        "id": "held.paper-sheet",
+        "cell": [
+          2,
+          2
+        ],
+        "file": "assets/game/processed/office-interactions-v1/held-props/paper-sheet.png",
+        "file2x": "assets/game/processed/office-interactions-v1/held-props/paper-sheet@2x.png",
+        "bounds2x": [
+          8,
+          4,
+          32,
+          36
+        ]
+      },
+      {
+        "id": "held.envelope",
+        "cell": [
+          2,
+          3
+        ],
+        "file": "assets/game/processed/office-interactions-v1/held-props/envelope.png",
+        "file2x": "assets/game/processed/office-interactions-v1/held-props/envelope@2x.png",
+        "bounds2x": [
+          4,
+          9,
+          36,
+          30
+        ]
+      },
+      {
+        "id": "held.label-card",
+        "cell": [
+          3,
+          0
+        ],
+        "file": "assets/game/processed/office-interactions-v1/held-props/label-card.png",
+        "file2x": "assets/game/processed/office-interactions-v1/held-props/label-card@2x.png",
+        "bounds2x": [
+          4,
+          7,
+          36,
+          32
+        ]
+      },
+      {
+        "id": "held.tablet",
+        "cell": [
+          3,
+          1
+        ],
+        "file": "assets/game/processed/office-interactions-v1/held-props/tablet.png",
+        "file2x": "assets/game/processed/office-interactions-v1/held-props/tablet@2x.png",
+        "bounds2x": [
+          4,
+          8,
+          36,
+          31
+        ]
+      },
+      {
+        "id": "held.notebook",
+        "cell": [
+          3,
+          2
+        ],
+        "file": "assets/game/processed/office-interactions-v1/held-props/notebook.png",
+        "file2x": "assets/game/processed/office-interactions-v1/held-props/notebook@2x.png",
+        "bounds2x": [
+          8,
+          4,
+          31,
+          36
+        ]
+      },
+      {
+        "id": "held.smartphone",
+        "cell": [
+          3,
+          3
+        ],
+        "file": "assets/game/processed/office-interactions-v1/held-props/smartphone.png",
+        "file2x": "assets/game/processed/office-interactions-v1/held-props/smartphone@2x.png",
+        "bounds2x": [
+          11,
+          4,
+          28,
+          36
+        ]
+      }
+    ]
+  },
+  "foregroundMasks": {
+    "count": 5,
+    "assets": [
+      {
+        "id": "chair.office.modern.foreground",
+        "source": "assets/game/processed/office-library-modern-bright-v1/chair-office-modern-v1/chair.office.modern.front.png",
+        "file": "assets/game/processed/office-interactions-v1/foreground-masks/chair-office-modern-foreground.png",
+        "size": [
+          347,
+          508
+        ],
+        "bounds": [
+          8,
+          183,
+          339,
+          500
+        ],
+        "regions": [
+          [
+            0.0,
+            0.36,
+            0.18,
+            0.66
+          ],
+          [
+            0.82,
+            0.36,
+            1.0,
+            0.66
+          ],
+          [
+            0.08,
+            0.5,
+            0.92,
+            0.64
+          ],
+          [
+            0.0,
+            0.64,
+            1.0,
+            1.0
+          ]
+        ],
+        "seatAnchors": [
+          [
+            0.5,
+            0.53
+          ]
+        ]
+      },
+      {
+        "id": "table.meeting.foreground",
+        "source": "assets/game/processed/core-furniture-c-v2/table.meeting.empty.png",
+        "file": "assets/game/processed/office-interactions-v1/foreground-masks/table-meeting-foreground.png",
+        "size": [
+          320,
+          192
+        ],
+        "bounds": [
+          20,
+          138,
+          299,
+          186
+        ],
+        "regions": [
+          [
+            0.0,
+            0.72,
+            1.0,
+            1.0
+          ]
+        ],
+        "seatAnchors": [
+          [
+            0.2,
+            0.69
+          ],
+          [
+            0.5,
+            0.69
+          ],
+          [
+            0.8,
+            0.69
+          ]
+        ]
+      },
+      {
+        "id": "sofa.modern.three-seat.foreground",
+        "source": "assets/game/processed/office-library-modern-bright-v1/env-05-facility-lounge/sofa.modern.three-seat.png",
+        "file": "assets/game/processed/office-interactions-v1/foreground-masks/sofa-modern-three-seat-foreground.png",
+        "size": [
+          318,
+          210
+        ],
+        "bounds": [
+          8,
+          49,
+          310,
+          202
+        ],
+        "regions": [
+          [
+            0.0,
+            0.48,
+            1.0,
+            1.0
+          ],
+          [
+            0.88,
+            0.18,
+            1.0,
+            0.55
+          ]
+        ],
+        "seatAnchors": [
+          [
+            0.18,
+            0.52
+          ],
+          [
+            0.5,
+            0.52
+          ],
+          [
+            0.78,
+            0.52
+          ]
+        ]
+      },
+      {
+        "id": "sofa.modern.two-seat.foreground",
+        "source": "assets/game/processed/office-library-modern-bright-v1/env-05-facility-lounge/sofa.modern.two-seat.png",
+        "file": "assets/game/processed/office-interactions-v1/foreground-masks/sofa-modern-two-seat-foreground.png",
+        "size": [
+          268,
+          208
+        ],
+        "bounds": [
+          10,
+          48,
+          260,
+          200
+        ],
+        "regions": [
+          [
+            0.0,
+            0.48,
+            1.0,
+            1.0
+          ],
+          [
+            0.86,
+            0.18,
+            1.0,
+            0.55
+          ]
+        ],
+        "seatAnchors": [
+          [
+            0.28,
+            0.52
+          ],
+          [
+            0.68,
+            0.52
+          ]
+        ]
+      },
+      {
+        "id": "chair.massage.modern.foreground",
+        "source": "assets/game/processed/office-library-modern-bright-v1/env-05-facility-lounge/chair.massage.modern.png",
+        "file": "assets/game/processed/office-interactions-v1/foreground-masks/chair-massage-modern-foreground.png",
+        "size": [
+          192,
+          286
+        ],
+        "bounds": [
+          8,
+          46,
+          184,
+          278
+        ],
+        "regions": [
+          [
+            0.0,
+            0.16,
+            0.28,
+            1.0
+          ],
+          [
+            0.72,
+            0.16,
+            1.0,
+            1.0
+          ],
+          [
+            0.18,
+            0.58,
+            0.82,
+            1.0
+          ]
+        ],
+        "seatAnchors": [
+          [
+            0.5,
+            0.48
+          ]
+        ]
+      }
+    ]
+  },
+  "qa": {
+    "interactFrontHeldProps": "assets/game/processed/office-interactions-v1/qa/interact-front-held-props.png",
+    "cases": 16
+  },
+  "facilityOverlays": {
+    "vendingItemNeutral": {
+      "id": "vending.machine.loop.item-neutral",
+      "frames": [
+        "assets/game/processed/office-interactions-v1/facility-overlays/vending.machine.loop.item-neutral.a.png",
+        "assets/game/processed/office-interactions-v1/facility-overlays/vending.machine.loop.item-neutral.b.png",
+        "assets/game/processed/office-interactions-v1/facility-overlays/vending.machine.loop.item-neutral.c.png",
+        "assets/game/processed/office-interactions-v1/facility-overlays/vending.machine.loop.item-neutral.d.png"
+      ],
+      "outputAnchor": {
+        "x": 0.5,
+        "y": 0.78
+      },
+      "policy": "frame d reuses the empty open tray; selected items are overlays"
+    }
+  },
+  "handAnchors1x": {
+    "interact-front": [
+      [
+        48,
+        72
+      ],
+      [
+        34,
+        63
+      ],
+      [
+        43,
+        64
+      ],
+      [
+        42,
+        62
+      ],
+      [
+        39,
+        59
+      ],
+      [
+        43,
+        69
+      ]
+    ]
+  }
+}

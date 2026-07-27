@@ -165,3 +165,34 @@ Validate Einstein in a small staging harness before changing the active Office:
 8. Build and run the staging interaction harness.
 9. Close the acceptance gate before beginning the complete interior swap or
    the remaining PetDex roster.
+
+## Implementation Result — 2026-07-27
+
+The asset and contract tranche is complete:
+
+- Einstein runtime v3 is 8x15 at 768x1560 (1x) and 1536x3120 (2x).
+- Rows 9-14 contain, in order, `working-back`, `interact-front`,
+  `inspect-front`, `lounge-front`, `working-back-seated`, and
+  `working-front-seated`; each row has six active frames and two empty cells.
+- The held-prop source extracted to sixteen transparent 20x20 runtime overlays
+  with 40x40 2x variants.
+- The staging contact sheet exercises all sixteen props against frames 3-5 of
+  Einstein's real `interact-front` row. The first pass exposed props that were
+  too large and too high; the accepted pass uses the corrected 20px box and
+  lower hand anchors.
+- Stable selection, immediate-repeat avoidance, prop visibility, row geometry,
+  mask count, and the eight-facility staging contract have automated tests.
+- Five foreground masks retain exact pixels from the accepted chair, meeting
+  table, two sofas, and massage chair. The vending output loop now reuses its
+  empty open tray instead of a baked item.
+- A runtime-ready staging catalog and isolated React harness exist, but the
+  active Office imports remain unchanged.
+
+Generated runtime files and measurements are indexed by
+`assets/game/manifests/office-interaction-assets.json`. The repeatable build is
+`scripts/process-office-interaction-slice.py`.
+
+The remaining acceptance work is composition QA with the eight real facility
+assets and their final slot geometry. That work belongs immediately before the
+interior swap; it is intentionally not being inferred from the current 10-seat
+active map.

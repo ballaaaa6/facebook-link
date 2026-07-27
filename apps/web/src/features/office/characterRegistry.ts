@@ -110,10 +110,22 @@ export const characterStates13Row: Record<CharacterState, StateConfig> = {
   "lounge-front": { row: 12, frames: 6, fps: 4, loop: true },
 };
 
+export const characterStates15Row: Record<CharacterState, StateConfig> = {
+  ...characterStates13Row,
+  seated: { row: 14, frames: 6, fps: 4, loop: true },
+  lounging: { row: 12, frames: 6, fps: 4, loop: true },
+  "working-back": { row: 9, frames: 6, fps: 7, loop: true },
+  "interact-front": { row: 10, frames: 6, fps: 5, loop: false },
+  "inspect-front": { row: 11, frames: 6, fps: 5, loop: true },
+  "lounge-front": { row: 12, frames: 6, fps: 4, loop: true },
+};
+
 export const characterStates = characterStates9Row;
 
 export function getCharacterStateConfig(character: CharacterDefinition | undefined, state: CharacterState): StateConfig {
-  const table = character?.rows === 13
+  const table = character?.rows === 15
+    ? characterStates15Row
+    : character?.rows === 13
     ? characterStates13Row
     : character?.rows === 12
       ? characterStates12Row
