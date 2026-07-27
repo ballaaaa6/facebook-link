@@ -52,3 +52,13 @@ test("Geometry v3 rejects duplicate slots and unstable animation pivots", () => 
   (shell.animation as { stableBasePivot: boolean }).stableBasePivot = false;
   assert.match(validateOfficeGeometryV3(shell).join("\n"), /animation\.stableBasePivot/);
 });
+
+test("a supported prop inherits collision and sorting from its parent surface", () => {
+  const prop = structuredClone(catalog.assets.find(({ id }) => id === "fixture.plant.upright"));
+  assert.ok(prop);
+  prop.id = "fixture.monitor.supported";
+  prop.placementPlane = "furniture-surface";
+  prop.footprint = null;
+  prop.sortPivot = null;
+  assert.deepEqual(validateOfficeGeometryV3(prop), []);
+});

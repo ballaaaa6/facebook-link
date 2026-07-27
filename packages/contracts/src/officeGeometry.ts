@@ -250,7 +250,12 @@ function validateTypeRules(record: Record<string, unknown>, issues: string[]) {
     requireValue(issues, seats === 0 && attachments === 0, "attachmentSlots", "floor-decal cannot own slots");
   }
   if (type === "upright-floor-object") {
-    requireValue(issues, plane === "floor" && hasFootprint && hasBase && hasSort, "assetType", "upright-floor-object requires floor footprint and pivots");
+    const validFloorObject = plane === "floor" && hasFootprint && hasBase && hasSort;
+    const validSupportedObject = plane === "furniture-surface"
+      && record.footprint === null
+      && hasBase
+      && record.sortPivot === null;
+    requireValue(issues, validFloorObject || validSupportedObject, "assetType", "upright-floor-object requires floor geometry or a parent-surface base pivot");
     requireValue(issues, record.supportPlane === null && seats === 0, "supportPlane", "upright-floor-object cannot own support or seat slots");
   }
   if (type === "surface-furniture") {

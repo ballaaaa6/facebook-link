@@ -59,8 +59,11 @@ and does not participate in Y-sort. Rugs and cable covers use this type.
 
 ### `upright-floor-object`
 
-Requires a floor footprint, base pivot, and sort pivot. It owns no support or
-seat plane. Tall plants, floor lamps, and simple cabinets use this type.
+An object with a visible base on its placement plane. On the floor it requires
+a footprint, base pivot, and sort pivot. On a furniture surface it has no floor
+footprint, uses a local base pivot, and inherits sorting from its parent.
+It owns no support or seat plane. Tall plants, floor lamps, simple cabinets,
+monitors, keyboards, cups, and other supported props use this type.
 
 ### `surface-furniture`
 

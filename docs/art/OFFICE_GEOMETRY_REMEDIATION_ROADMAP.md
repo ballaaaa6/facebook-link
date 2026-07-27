@@ -1,6 +1,6 @@
 # Office Geometry Remediation Roadmap
 
-Status: In progress; Steps 1-2 complete, Steps 3-4 not started
+Status: In progress; Steps 1-3 complete, Step 4 in progress
 Approved: 2026-07-27
 Owner: Art, asset-pipeline, shared-contract, and Office-rendering workstreams
 Scope: Reconcile the existing Office asset library with top-down placement,
@@ -228,6 +228,8 @@ exists in a manifest or lab fixture.
 
 ## 7. Step 3 — Complete asset geometry audit
 
+Status: Complete on 2026-07-27
+
 ### Goal
 
 Produce a reproducible inventory and a reviewed disposition for every Office
@@ -308,6 +310,8 @@ review manifest and both reports are regenerated.
 - Audit check and `npm run check` pass.
 
 ## 8. Step 4 — Camera/Scale Bible and calibration board
+
+Status: In progress
 
 ### Goal
 

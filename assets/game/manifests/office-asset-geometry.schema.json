@@ -88,6 +88,29 @@
       }
     },
     {
+      "if": { "properties": { "assetType": { "const": "upright-floor-object" } } },
+      "then": {
+        "oneOf": [
+          {
+            "properties": {
+              "placementPlane": { "const": "floor" },
+              "footprint": { "$ref": "#/$defs/rectangle" },
+              "basePivot": { "$ref": "#/$defs/tilePoint" },
+              "sortPivot": { "$ref": "#/$defs/tilePoint" }
+            }
+          },
+          {
+            "properties": {
+              "placementPlane": { "const": "furniture-surface" },
+              "footprint": { "type": "null" },
+              "basePivot": { "$ref": "#/$defs/tilePoint" },
+              "sortPivot": { "type": "null" }
+            }
+          }
+        ]
+      }
+    },
+    {
       "if": { "properties": { "assetType": { "const": "surface-furniture" } } },
       "then": {
         "properties": {
