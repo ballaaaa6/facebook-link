@@ -110,37 +110,35 @@
     },
     {
       "id": "review",
-      "asset": "assets/game/processed/core-furniture-c-v2/table.meeting.empty.png",
-      "action": "working-front-seated",
+      "asset": "assets/game/processed/review-facility-completion-v1/table.review.long.modern.png",
+      "action": "front-and-back-seated",
       "durationSeconds": 8,
       "approach": {
         "x": 0,
         "y": 1
       },
-      "interactionFacing": "front",
+      "interactionFacing": "front-and-back",
       "actorAnchor": [
         0.5,
-        0.69
+        0.5
       ],
       "renderSize": [
-        192,
-        96
+        128,
+        32
       ],
       "actorBoundsInCard": [
-        152,
-        76,
-        248,
-        180
+        0,
+        0,
+        360,
+        300
       ],
-      "prop": "tablet",
-      "propPositionInBoard": [
-        1390,
-        127
-      ],
-      "mask": "assets/game/processed/office-interactions-v1/foreground-masks/table-meeting-foreground.png",
+      "prop": "mixed-review-pool",
+      "propPositionInBoard": null,
+      "mask": "per-chair-foreground-masks",
       "support": null,
-      "maskActorOverlapPixels": 290,
-      "geometryPass": true
+      "maskActorOverlapPixels": 1,
+      "geometryPass": true,
+      "reservationCapacity": 4
     },
     {
       "id": "sofa",

@@ -375,6 +375,32 @@ Assign each slot an action family (`interact-use`, `inspect`, `review`, or
 map-layer overlay. The final character rows are then generated against those
 stable anchors; no facility prop is baked into a character cell.
 
+### Review and neutral-facility completion sheet
+
+`review-facility-completion-sheet-modern-bright-v1-source.png` is a controlled
+4x4 source sheet. Every cell has a declared runtime consumer:
+
+| Row | Cells 1-4 |
+| --- | --- |
+| 1 | `table.review.long.modern`, `cabinet.printer.modern`, `hub.table.power`, `speaker.conference` |
+| 2 | `printer.neutral.a` through `printer.neutral.d` |
+| 3 | `dispenser.water.neutral.a` through `dispenser.water.neutral.d` |
+| 4 | `machine.coffee.neutral.a` through `machine.coffee.neutral.d` |
+
+The table is a slim 4x1-tile Modern v3 shell. It has no baked chairs, actors,
+props, or wood texture. Four existing modern office chairs are composed as
+children: two rear seats at x=1 and x=3 use `working-front-seated`; two front
+seats at x=1 and x=3 use `working-back-seated`. There are no head, tail, or
+side-facing seats.
+
+The table and chairs occupy a 4x5 facility envelope. Approach clearance extends
+to 4x7 so each seat has an independent entry and release path. The entire
+group is one facility object with four reservation slots.
+
+Printer, Water, and Coffee frames are item-neutral. Their output animations
+contain no paper, label, cup, bottle, or mug; transient objects remain held-prop
+overlays selected by the visit seed.
+
 ## Extraction Pipeline
 
 1. Remove chroma key from the full sheet.

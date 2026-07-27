@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import interactionAssets from "../../../assets/game/manifests/office-interaction-assets.json" with { type: "json" };
 import interactionLab from "../../../assets/game/manifests/office-interaction-lab.json" with { type: "json" };
+import reviewFacility from "../../../assets/game/manifests/review-facility-completion.json" with { type: "json" };
 import {
   characterRows15,
   facilityPropPools,
@@ -12,6 +13,7 @@ import {
   interactFrontHandAnchors1x,
   selectHeldProp,
 } from "../src/features/office/interactions/officeInteractionContract.ts";
+import { reviewTableModernContract } from "../src/features/office/interactions/reviewTableContract.ts";
 
 test("Einstein has a complete 8x15 staging atlas contract", () => {
   assert.equal(interactionAssets.einstein.rows, 15);
@@ -144,4 +146,52 @@ test("vending uses an item-neutral output tray before prop overlay", () => {
   assert.match(overlay.frames[3]!, /item-neutral\.d\.png$/);
   assert.deepEqual(overlay.outputAnchor, { x: 0.5, y: 0.78 });
   assert.match(overlay.policy, /frame d reuses the empty open tray/i);
+});
+
+test("the new review table replaces the old meeting table in staging", () => {
+  assert.equal(facilityVerticalSlice.review?.assetId, "table.review.long.modern");
+  assert.equal(facilityVerticalSlice.review?.reservationCapacity, 4);
+  assert.deepEqual(facilityVerticalSlice.review?.renderBoxTiles, { width: 4, height: 1 });
+  assert.notEqual(facilityVerticalSlice.review?.assetId, "table.meeting.empty");
+});
+
+test("the four-seat review contract uses only front and back seated rows", () => {
+  assert.equal(reviewTableModernContract.reservationCapacity, 4);
+  assert.equal(reviewTableModernContract.seats.length, 4);
+  assert.deepEqual(
+    reviewTableModernContract.seats.map(({ action }) => action),
+    [
+      "working-front-seated",
+      "working-front-seated",
+      "working-back-seated",
+      "working-back-seated",
+    ],
+  );
+  assert.equal(
+    new Set(reviewTableModernContract.seats.map(({ id }) => id)).size,
+    4,
+  );
+  assert.equal(
+    new Set(reviewTableModernContract.seats.map(({ seat }) => `${seat.x}:${seat.y}`)).size,
+    4,
+  );
+});
+
+test("the review completion sheet extracts 16 useful runtime cells", () => {
+  assert.equal(reviewFacility.activeOfficeImported, false);
+  assert.deepEqual(reviewFacility.grid, [4, 4]);
+  assert.equal(reviewFacility.assetCount, 16);
+  assert.equal(reviewFacility.assets.length, 16);
+  assert.equal(reviewFacility.reviewFacility.reservationCapacity, 4);
+  assert.equal(reviewFacility.qa.allFourActors, true);
+  for (const group of [
+    "printer.neutral",
+    "dispenser.water.neutral",
+    "machine.coffee.neutral",
+  ]) {
+    assert.equal(
+      reviewFacility.assets.filter((asset) => asset.animationGroup === group).length,
+      4,
+    );
+  }
 });

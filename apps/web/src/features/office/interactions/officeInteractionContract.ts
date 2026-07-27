@@ -125,6 +125,8 @@ export interface FacilityVerticalSliceContract {
   facilityOverlay: string | null;
   foregroundMask: string | null;
   supportAssetId?: string;
+  reservationCapacity?: number;
+  seatContractId?: string;
 }
 
 export const facilityVerticalSlice: Record<string, FacilityVerticalSliceContract> = {
@@ -166,16 +168,18 @@ export const facilityVerticalSlice: Record<string, FacilityVerticalSliceContract
     supportAssetId: "cabinet.storage.low",
   },
   review: {
-    assetId: "table.meeting.empty",
+    assetId: "table.review.long.modern",
     approach: { x: 0, y: 1 },
     action: "working-front-seated",
     actorAnchor: { x: 0.5, y: 0.69 },
     durationSeconds: 8,
     propPool: "mission-review",
     interactionFacing: "front",
-    renderBoxTiles: { width: 6, height: 3 },
+    renderBoxTiles: { width: 4, height: 1 },
     facilityOverlay: null,
-    foregroundMask: "table.meeting.foreground",
+    foregroundMask: null,
+    reservationCapacity: 4,
+    seatContractId: "review-table-modern-four-seat",
   },
   sofa: {
     assetId: "sofa.modern.three-seat",

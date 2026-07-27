@@ -20,7 +20,22 @@ import massageMask from "../../../../../../assets/game/processed/office-interact
 import officeChairMask from "../../../../../../assets/game/processed/office-interactions-v1/foreground-masks/chair-office-modern-foreground.png";
 import sofaThreeMask from "../../../../../../assets/game/processed/office-interactions-v1/foreground-masks/sofa-modern-three-seat-foreground.png";
 import sofaTwoMask from "../../../../../../assets/game/processed/office-interactions-v1/foreground-masks/sofa-modern-two-seat-foreground.png";
-import meetingTableMask from "../../../../../../assets/game/processed/office-interactions-v1/foreground-masks/table-meeting-foreground.png";
+import reviewTable from "../../../../../../assets/game/processed/review-facility-completion-v1/table.review.long.modern.png";
+import printerCredenza from "../../../../../../assets/game/processed/review-facility-completion-v1/cabinet.printer.modern.png";
+import tablePowerHub from "../../../../../../assets/game/processed/review-facility-completion-v1/hub.table.power.png";
+import conferenceSpeaker from "../../../../../../assets/game/processed/review-facility-completion-v1/speaker.conference.png";
+import printerNeutralA from "../../../../../../assets/game/processed/review-facility-completion-v1/printer.neutral.a.png";
+import printerNeutralB from "../../../../../../assets/game/processed/review-facility-completion-v1/printer.neutral.b.png";
+import printerNeutralC from "../../../../../../assets/game/processed/review-facility-completion-v1/printer.neutral.c.png";
+import printerNeutralD from "../../../../../../assets/game/processed/review-facility-completion-v1/printer.neutral.d.png";
+import waterNeutralA from "../../../../../../assets/game/processed/review-facility-completion-v1/dispenser.water.neutral.a.png";
+import waterNeutralB from "../../../../../../assets/game/processed/review-facility-completion-v1/dispenser.water.neutral.b.png";
+import waterNeutralC from "../../../../../../assets/game/processed/review-facility-completion-v1/dispenser.water.neutral.c.png";
+import waterNeutralD from "../../../../../../assets/game/processed/review-facility-completion-v1/dispenser.water.neutral.d.png";
+import coffeeNeutralA from "../../../../../../assets/game/processed/review-facility-completion-v1/machine.coffee.neutral.a.png";
+import coffeeNeutralB from "../../../../../../assets/game/processed/review-facility-completion-v1/machine.coffee.neutral.b.png";
+import coffeeNeutralC from "../../../../../../assets/game/processed/review-facility-completion-v1/machine.coffee.neutral.c.png";
+import coffeeNeutralD from "../../../../../../assets/game/processed/review-facility-completion-v1/machine.coffee.neutral.d.png";
 import vendingNeutralA from "../../../../../../assets/game/processed/office-interactions-v1/facility-overlays/vending.machine.loop.item-neutral.a.png";
 import vendingNeutralB from "../../../../../../assets/game/processed/office-interactions-v1/facility-overlays/vending.machine.loop.item-neutral.b.png";
 import vendingNeutralC from "../../../../../../assets/game/processed/office-interactions-v1/facility-overlays/vending.machine.loop.item-neutral.c.png";
@@ -56,7 +71,6 @@ export const heldPropAssetCatalog: Record<HeldPropId, string> = {
 
 export const foregroundMaskAssetCatalog = {
   "chair.office.modern.foreground": officeChairMask,
-  "table.meeting.foreground": meetingTableMask,
   "sofa.modern.three-seat.foreground": sofaThreeMask,
   "sofa.modern.two-seat.foreground": sofaTwoMask,
   "chair.massage.modern.foreground": massageMask,
@@ -65,4 +79,16 @@ export const foregroundMaskAssetCatalog = {
 export const vendingItemNeutralOverlay = {
   frames: [vendingNeutralA, vendingNeutralB, vendingNeutralC, vendingNeutralD],
   outputAnchor: { x: 0.5, y: 0.78 },
+} as const;
+
+export const reviewFacilityStagingAssets = {
+  table: reviewTable,
+  printerCredenza,
+  tablePowerHub,
+  conferenceSpeaker,
+  neutralLoops: {
+    printer: [printerNeutralA, printerNeutralB, printerNeutralC, printerNeutralD],
+    water: [waterNeutralA, waterNeutralB, waterNeutralC, waterNeutralD],
+    coffee: [coffeeNeutralA, coffeeNeutralB, coffeeNeutralC, coffeeNeutralD],
+  },
 } as const;

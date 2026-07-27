@@ -1,0 +1,740 @@
+{
+  "version": 1,
+  "status": "isolated-staging",
+  "activeOfficeImported": false,
+  "source": "assets/art/layout-references/review-facility-completion-sheet-modern-bright-v1-source.png",
+  "keyedSource": "assets/game/processed/review-facility-completion-v1/source-keyed.png",
+  "grid": [
+    4,
+    4
+  ],
+  "assetCount": 16,
+  "assets": [
+    {
+      "id": "table.review.long.modern",
+      "file": "assets/game/processed/review-facility-completion-v1/table.review.long.modern.png",
+      "sourceCell": {
+        "row": 0,
+        "column": 0
+      },
+      "trimBox": [
+        33,
+        91,
+        314,
+        221
+      ],
+      "size": [
+        281,
+        130
+      ],
+      "alphaBounds": [
+        0,
+        0,
+        281,
+        130
+      ],
+      "physicalScale": {
+        "width": 4,
+        "depth": 1,
+        "height": 1
+      },
+      "renderBox": {
+        "width": 4,
+        "height": 1
+      },
+      "footprint": {
+        "width": 4,
+        "depth": 1
+      },
+      "supports": [
+        "floor"
+      ],
+      "layer": "furniture"
+    },
+    {
+      "id": "cabinet.printer.modern",
+      "file": "assets/game/processed/review-facility-completion-v1/cabinet.printer.modern.png",
+      "sourceCell": {
+        "row": 0,
+        "column": 1
+      },
+      "trimBox": [
+        0,
+        87,
+        313,
+        267
+      ],
+      "size": [
+        313,
+        180
+      ],
+      "alphaBounds": [
+        0,
+        0,
+        313,
+        180
+      ],
+      "physicalScale": {
+        "width": 2,
+        "depth": 1,
+        "height": 2
+      },
+      "renderBox": {
+        "width": 2,
+        "height": 2
+      },
+      "footprint": {
+        "width": 2,
+        "depth": 1
+      },
+      "supports": [
+        "floor"
+      ],
+      "layer": "furniture"
+    },
+    {
+      "id": "hub.table.power",
+      "file": "assets/game/processed/review-facility-completion-v1/hub.table.power.png",
+      "sourceCell": {
+        "row": 0,
+        "column": 2
+      },
+      "trimBox": [
+        0,
+        108,
+        293,
+        260
+      ],
+      "size": [
+        293,
+        152
+      ],
+      "alphaBounds": [
+        0,
+        0,
+        293,
+        152
+      ],
+      "physicalScale": {
+        "width": 1,
+        "depth": 0,
+        "height": 1
+      },
+      "renderBox": {
+        "width": 1,
+        "height": 1
+      },
+      "footprint": {
+        "width": 0,
+        "depth": 0
+      },
+      "supports": [
+        "table-surface"
+      ],
+      "layer": "equipment"
+    },
+    {
+      "id": "speaker.conference",
+      "file": "assets/game/processed/review-facility-completion-v1/speaker.conference.png",
+      "sourceCell": {
+        "row": 0,
+        "column": 3
+      },
+      "trimBox": [
+        65,
+        141,
+        247,
+        253
+      ],
+      "size": [
+        182,
+        112
+      ],
+      "alphaBounds": [
+        0,
+        0,
+        182,
+        112
+      ],
+      "physicalScale": {
+        "width": 1,
+        "depth": 0,
+        "height": 1
+      },
+      "renderBox": {
+        "width": 1,
+        "height": 1
+      },
+      "footprint": {
+        "width": 0,
+        "depth": 0
+      },
+      "supports": [
+        "table-surface"
+      ],
+      "layer": "equipment"
+    },
+    {
+      "id": "printer.neutral.a",
+      "file": "assets/game/processed/review-facility-completion-v1/printer.neutral.a.png",
+      "sourceCell": {
+        "row": 1,
+        "column": 0
+      },
+      "trimBox": [
+        48,
+        48,
+        283,
+        313
+      ],
+      "size": [
+        235,
+        265
+      ],
+      "alphaBounds": [
+        0,
+        0,
+        235,
+        265
+      ],
+      "animationGroup": "printer.neutral",
+      "frame": "a",
+      "itemNeutral": true,
+      "renderBox": {
+        "width": 2,
+        "height": 1
+      }
+    },
+    {
+      "id": "printer.neutral.b",
+      "file": "assets/game/processed/review-facility-completion-v1/printer.neutral.b.png",
+      "sourceCell": {
+        "row": 1,
+        "column": 1
+      },
+      "trimBox": [
+        35,
+        48,
+        269,
+        313
+      ],
+      "size": [
+        234,
+        265
+      ],
+      "alphaBounds": [
+        0,
+        0,
+        234,
+        265
+      ],
+      "animationGroup": "printer.neutral",
+      "frame": "b",
+      "itemNeutral": true,
+      "renderBox": {
+        "width": 2,
+        "height": 1
+      }
+    },
+    {
+      "id": "printer.neutral.c",
+      "file": "assets/game/processed/review-facility-completion-v1/printer.neutral.c.png",
+      "sourceCell": {
+        "row": 1,
+        "column": 2
+      },
+      "trimBox": [
+        24,
+        48,
+        259,
+        313
+      ],
+      "size": [
+        235,
+        265
+      ],
+      "alphaBounds": [
+        0,
+        0,
+        235,
+        265
+      ],
+      "animationGroup": "printer.neutral",
+      "frame": "c",
+      "itemNeutral": true,
+      "renderBox": {
+        "width": 2,
+        "height": 1
+      }
+    },
+    {
+      "id": "printer.neutral.d",
+      "file": "assets/game/processed/review-facility-completion-v1/printer.neutral.d.png",
+      "sourceCell": {
+        "row": 1,
+        "column": 3
+      },
+      "trimBox": [
+        28,
+        51,
+        259,
+        313
+      ],
+      "size": [
+        231,
+        262
+      ],
+      "alphaBounds": [
+        0,
+        0,
+        231,
+        262
+      ],
+      "animationGroup": "printer.neutral",
+      "frame": "d",
+      "itemNeutral": true,
+      "renderBox": {
+        "width": 2,
+        "height": 1
+      }
+    },
+    {
+      "id": "dispenser.water.neutral.a",
+      "file": "assets/game/processed/review-facility-completion-v1/dispenser.water.neutral.a.png",
+      "sourceCell": {
+        "row": 2,
+        "column": 0
+      },
+      "trimBox": [
+        81,
+        0,
+        208,
+        265
+      ],
+      "size": [
+        127,
+        265
+      ],
+      "alphaBounds": [
+        0,
+        0,
+        127,
+        265
+      ],
+      "animationGroup": "dispenser.water.neutral",
+      "frame": "a",
+      "itemNeutral": true,
+      "renderBox": {
+        "width": 1,
+        "height": 3
+      }
+    },
+    {
+      "id": "dispenser.water.neutral.b",
+      "file": "assets/game/processed/review-facility-completion-v1/dispenser.water.neutral.b.png",
+      "sourceCell": {
+        "row": 2,
+        "column": 1
+      },
+      "trimBox": [
+        71,
+        0,
+        198,
+        265
+      ],
+      "size": [
+        127,
+        265
+      ],
+      "alphaBounds": [
+        0,
+        0,
+        127,
+        265
+      ],
+      "animationGroup": "dispenser.water.neutral",
+      "frame": "b",
+      "itemNeutral": true,
+      "renderBox": {
+        "width": 1,
+        "height": 3
+      }
+    },
+    {
+      "id": "dispenser.water.neutral.c",
+      "file": "assets/game/processed/review-facility-completion-v1/dispenser.water.neutral.c.png",
+      "sourceCell": {
+        "row": 2,
+        "column": 2
+      },
+      "trimBox": [
+        65,
+        0,
+        193,
+        265
+      ],
+      "size": [
+        128,
+        265
+      ],
+      "alphaBounds": [
+        0,
+        0,
+        128,
+        265
+      ],
+      "animationGroup": "dispenser.water.neutral",
+      "frame": "c",
+      "itemNeutral": true,
+      "renderBox": {
+        "width": 1,
+        "height": 3
+      }
+    },
+    {
+      "id": "dispenser.water.neutral.d",
+      "file": "assets/game/processed/review-facility-completion-v1/dispenser.water.neutral.d.png",
+      "sourceCell": {
+        "row": 2,
+        "column": 3
+      },
+      "trimBox": [
+        58,
+        0,
+        185,
+        265
+      ],
+      "size": [
+        127,
+        265
+      ],
+      "alphaBounds": [
+        0,
+        0,
+        127,
+        265
+      ],
+      "animationGroup": "dispenser.water.neutral",
+      "frame": "d",
+      "itemNeutral": true,
+      "renderBox": {
+        "width": 1,
+        "height": 3
+      }
+    },
+    {
+      "id": "machine.coffee.neutral.a",
+      "file": "assets/game/processed/review-facility-completion-v1/machine.coffee.neutral.a.png",
+      "sourceCell": {
+        "row": 3,
+        "column": 0
+      },
+      "trimBox": [
+        52,
+        21,
+        255,
+        247
+      ],
+      "size": [
+        203,
+        226
+      ],
+      "alphaBounds": [
+        0,
+        0,
+        203,
+        226
+      ],
+      "animationGroup": "machine.coffee.neutral",
+      "frame": "a",
+      "itemNeutral": true,
+      "renderBox": {
+        "width": 1,
+        "height": 3
+      }
+    },
+    {
+      "id": "machine.coffee.neutral.b",
+      "file": "assets/game/processed/review-facility-completion-v1/machine.coffee.neutral.b.png",
+      "sourceCell": {
+        "row": 3,
+        "column": 1
+      },
+      "trimBox": [
+        46,
+        21,
+        250,
+        247
+      ],
+      "size": [
+        204,
+        226
+      ],
+      "alphaBounds": [
+        0,
+        0,
+        204,
+        226
+      ],
+      "animationGroup": "machine.coffee.neutral",
+      "frame": "b",
+      "itemNeutral": true,
+      "renderBox": {
+        "width": 1,
+        "height": 3
+      }
+    },
+    {
+      "id": "machine.coffee.neutral.c",
+      "file": "assets/game/processed/review-facility-completion-v1/machine.coffee.neutral.c.png",
+      "sourceCell": {
+        "row": 3,
+        "column": 2
+      },
+      "trimBox": [
+        38,
+        21,
+        241,
+        247
+      ],
+      "size": [
+        203,
+        226
+      ],
+      "alphaBounds": [
+        0,
+        0,
+        203,
+        226
+      ],
+      "animationGroup": "machine.coffee.neutral",
+      "frame": "c",
+      "itemNeutral": true,
+      "renderBox": {
+        "width": 1,
+        "height": 3
+      }
+    },
+    {
+      "id": "machine.coffee.neutral.d",
+      "file": "assets/game/processed/review-facility-completion-v1/machine.coffee.neutral.d.png",
+      "sourceCell": {
+        "row": 3,
+        "column": 3
+      },
+      "trimBox": [
+        35,
+        21,
+        237,
+        247
+      ],
+      "size": [
+        202,
+        226
+      ],
+      "alphaBounds": [
+        0,
+        0,
+        202,
+        226
+      ],
+      "animationGroup": "machine.coffee.neutral",
+      "frame": "d",
+      "itemNeutral": true,
+      "renderBox": {
+        "width": 1,
+        "height": 3
+      }
+    }
+  ],
+  "reviewFacility": {
+    "id": "review-table-modern-four-seat",
+    "objectCount": 1,
+    "reservationCapacity": 4,
+    "tableRenderBox": {
+      "width": 4,
+      "height": 1
+    },
+    "facilityFootprint": {
+      "width": 4,
+      "depth": 5
+    },
+    "navigationClearance": {
+      "width": 4,
+      "depth": 7
+    },
+    "seats": [
+      {
+        "id": "review.rear-left",
+        "side": "rear",
+        "x": 1,
+        "y": -2,
+        "action": "working-front-seated",
+        "approach": {
+          "x": 1,
+          "y": -3
+        }
+      },
+      {
+        "id": "review.rear-right",
+        "side": "rear",
+        "x": 3,
+        "y": -2,
+        "action": "working-front-seated",
+        "approach": {
+          "x": 3,
+          "y": -3
+        }
+      },
+      {
+        "id": "review.front-left",
+        "side": "front",
+        "x": 1,
+        "y": 2,
+        "action": "working-back-seated",
+        "approach": {
+          "x": 1,
+          "y": 3
+        }
+      },
+      {
+        "id": "review.front-right",
+        "side": "front",
+        "x": 3,
+        "y": 2,
+        "action": "working-back-seated",
+        "approach": {
+          "x": 3,
+          "y": 3
+        }
+      }
+    ],
+    "chairBackMask": "assets/game/processed/review-facility-completion-v1/chair.office.modern.back.foreground.png"
+  },
+  "qa": {
+    "board": "assets/game/processed/review-facility-completion-v1/qa/review-table-four-seat-lab.png",
+    "cases": [
+      {
+        "mode": "empty",
+        "tableBounds": [
+          116,
+          145,
+          244,
+          177
+        ],
+        "rearSeatCenters": [
+          [
+            148,
+            105
+          ],
+          [
+            212,
+            105
+          ]
+        ],
+        "frontSeatCenters": [
+          [
+            148,
+            225
+          ],
+          [
+            212,
+            225
+          ]
+        ],
+        "actors": 0
+      },
+      {
+        "mode": "rear-pair",
+        "tableBounds": [
+          116,
+          145,
+          244,
+          177
+        ],
+        "rearSeatCenters": [
+          [
+            148,
+            105
+          ],
+          [
+            212,
+            105
+          ]
+        ],
+        "frontSeatCenters": [
+          [
+            148,
+            225
+          ],
+          [
+            212,
+            225
+          ]
+        ],
+        "actors": 2
+      },
+      {
+        "mode": "front-pair",
+        "tableBounds": [
+          116,
+          145,
+          244,
+          177
+        ],
+        "rearSeatCenters": [
+          [
+            148,
+            105
+          ],
+          [
+            212,
+            105
+          ]
+        ],
+        "frontSeatCenters": [
+          [
+            148,
+            225
+          ],
+          [
+            212,
+            225
+          ]
+        ],
+        "actors": 2
+      },
+      {
+        "mode": "all-four",
+        "tableBounds": [
+          116,
+          145,
+          244,
+          177
+        ],
+        "rearSeatCenters": [
+          [
+            148,
+            105
+          ],
+          [
+            212,
+            105
+          ]
+        ],
+        "frontSeatCenters": [
+          [
+            148,
+            225
+          ],
+          [
+            212,
+            225
+          ]
+        ],
+        "actors": 4
+      }
+    ],
+    "allFourActors": true
+  }
+}

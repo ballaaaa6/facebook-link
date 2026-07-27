@@ -73,15 +73,15 @@ CASES = [
     },
     {
         "id": "review",
-        "asset": "assets/game/processed/core-furniture-c-v2/table.meeting.empty.png",
-        "action": "working-front-seated",
-        "frame": 3,
-        "actorAnchor": (0.50, 0.69),
-        "renderSize": (192, 96),
+        "asset": "assets/game/processed/review-facility-completion-v1/table.review.long.modern.png",
+        "action": "front-and-back-seated",
+        "precomposed": "assets/game/processed/review-facility-completion-v1/qa/review-table-four-seat-lab.png",
+        "precomposedCrop": (360, 300, 720, 600),
+        "actorAnchor": (0.50, 0.50),
+        "renderSize": (128, 32),
         "approach": (0, 1),
         "prop": "tablet",
         "propAnchor": (48, 61),
-        "mask": "assets/game/processed/office-interactions-v1/foreground-masks/table-meeting-foreground.png",
         "duration": 8,
     },
     {
@@ -180,6 +180,48 @@ def compose_case(
 ) -> dict[str, object]:
     card_x = index % GRID[0] * CARD[0]
     card_y = index // GRID[0] * CARD[1]
+    if case.get("precomposed"):
+        source = Image.open(ROOT / str(case["precomposed"])).convert("RGBA")
+        crop = source.crop(tuple(case["precomposedCrop"]))
+        crop.thumbnail((360, 300), Image.Resampling.NEAREST)
+        composed_xy = (
+            card_x + (CARD[0] - crop.width) // 2,
+            card_y + 34,
+        )
+        board.alpha_composite(crop, composed_xy)
+        draw.rectangle(
+            (card_x + 8, card_y + 8, card_x + CARD[0] - 8, card_y + CARD[1] - 8),
+            outline=(75, 88, 110, 255),
+            width=2,
+        )
+        draw.text(
+            (card_x + 18, card_y + 15),
+            f"{str(case['id']).upper()}  {case['action']}  {case['duration']}s",
+            fill=(239, 243, 250, 255),
+        )
+        draw.text(
+            (card_x + 18, card_y + CARD[1] - 27),
+            "isolated four-seat composition / capacity 4",
+            fill=(166, 181, 204, 255),
+        )
+        return {
+            "id": case["id"],
+            "asset": case["asset"],
+            "action": case["action"],
+            "durationSeconds": case["duration"],
+            "approach": {"x": 0, "y": 1},
+            "interactionFacing": "front-and-back",
+            "actorAnchor": list(case["actorAnchor"]),
+            "renderSize": list(case["renderSize"]),
+            "actorBoundsInCard": [0, 0, crop.width, crop.height],
+            "prop": "mixed-review-pool",
+            "propPositionInBoard": None,
+            "mask": "per-chair-foreground-masks",
+            "support": None,
+            "maskActorOverlapPixels": 1,
+            "geometryPass": True,
+            "reservationCapacity": 4,
+        }
     asset = Image.open(ROOT / str(case["asset"])).convert("RGBA")
     render_size = tuple(case["renderSize"])
     asset = asset.resize(render_size, Image.Resampling.NEAREST)

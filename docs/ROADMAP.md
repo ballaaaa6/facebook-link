@@ -59,6 +59,13 @@ Implementation status (2026-07-27):
   pass geometry checks; standing machines use a front-right `(1,+1)` candidate
   slot so the actor does not hide the facility, and the printer is composed on
   `cabinet.storage.low`.
+- Complete: replaced the staging review-table candidate with a new Modern v3
+  `table.review.long.modern`. The table is 4x1 tiles and exposes four seats,
+  two per long side, using only `working-front-seated` and
+  `working-back-seated`. Its controlled 4x4 source sheet also supplies a
+  matching printer credenza, tabletop power hub, conference speaker, and
+  item-neutral Printer, Water, and Coffee A-D loops. All sixteen cells are
+  extracted and registered; the active Office remains unchanged.
 - Held at the intended gate: none of these staging assets replaces the active
   Office interior yet. The next tranche is facility-by-facility composition
   geometry for the complete 14-object/20-slot Facility v1 set, followed by the
