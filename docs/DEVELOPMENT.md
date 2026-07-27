@@ -25,6 +25,9 @@ npm run check
 ```
 
 This verifies repository shape, import boundaries, file-size budgets, duplicate source blocks, the generated code map, TypeScript, tests, and builds across workspaces.
+Generated Office image freshness is verified through the portable Node lock,
+so CI and Cloudflare do not require Pillow. Install `requirements-art.txt` only
+when regenerating or byte-checking art outputs locally.
 
 Run a single guard while iterating:
 

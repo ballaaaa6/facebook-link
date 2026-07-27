@@ -7,6 +7,8 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const lockPath = join(root, "assets/game/manifests/office-generated-art.lock.json");
 const auditPath = "assets/game/manifests/office-asset-geometry-audit.json";
 const contactDirectory = "assets/game/processed/office-geometry-audit-v1/contact-sheets";
+const workstationDirectory = "assets/game/processed/office-workstation-v1";
+const workstationSource = "assets/art/layout-references/office-workstation-v1/office-workstation-modular-v1-source.png";
 
 const fixedInputs = [
   "apps/web/src/features/office/components/officeAssetRegistry.ts",
@@ -17,8 +19,11 @@ const fixedInputs = [
   "assets/game/manifests/office-camera-scale-bible.json",
   "assets/game/manifests/office-library-sheets.json",
   "assets/game/manifests/office-planned-assets.json",
+  "assets/game/manifests/office-workstation-bundle-v1.json",
+  "assets/game/manifests/office-workstation-bundle.schema.json",
   "scripts/audit-office-asset-geometry.py",
   "scripts/build-office-camera-scale-board.py",
+  "scripts/build-office-workstation-prototype.py",
   "scripts/office-generated-art-lock.mjs",
   "scripts/office_geometry_audit_inventory.py",
   "scripts/office_geometry_audit_report.py",
@@ -60,6 +65,18 @@ function contactSheets() {
     .sort();
 }
 
+function workstationOutputs() {
+  const path = join(root, workstationDirectory);
+  if (!existsSync(path)) return [workstationSource];
+  return [
+    workstationSource,
+    ...readdirSync(path, { withFileTypes: true })
+      .filter((entry) => entry.isFile())
+      .map((entry) => `${workstationDirectory}/${entry.name}`)
+      .sort(),
+  ];
+}
+
 function buildLock() {
   if (!existsSync(join(root, auditPath))) {
     throw new Error(`Missing generated audit: ${auditPath}`);
@@ -69,12 +86,14 @@ function buildLock() {
     .map((record) => record.sourceFile)
     .filter((path) => typeof path === "string" && path.length > 0);
   const contacts = contactSheets();
+  const workstation = workstationOutputs();
   return {
     version: 1,
-    purpose: "Portable CI freshness gate for generated Office audit and calibration artifacts",
+    purpose: "Portable CI freshness gate for generated Office audit, calibration, and workstation artifacts",
     inputs: hashMap([...fixedInputs, ...sourceFiles]),
-    outputs: hashMap([...fixedOutputs, ...contacts]),
+    outputs: hashMap([...fixedOutputs, ...contacts, ...workstation]),
     exactContactSheets: contacts,
+    exactWorkstationOutputs: workstation,
   };
 }
 
@@ -90,6 +109,9 @@ function validateLock(lock) {
   const audit = JSON.parse(readFileSync(join(root, auditPath), "utf8"));
   if (JSON.stringify(audit.contactSheets) !== JSON.stringify(lock.exactContactSheets)) {
     failures.push("Audit contact-sheet list does not match the exact generated directory contents");
+  }
+  if (JSON.stringify(workstationOutputs()) !== JSON.stringify(lock.exactWorkstationOutputs)) {
+    failures.push("Workstation output list does not match the exact generated directory contents");
   }
   return failures;
 }
