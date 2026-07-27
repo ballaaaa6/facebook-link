@@ -80,6 +80,137 @@ the workstation seating calibration. They may be added in a later lab pass
 only from `office-library-modern-bright-v1`, after the paired workstation block
 is approved.
 
+## Part 1: Paired Workstation Seating Test
+
+Part 1 tests only the paired workstation block and the ten seated employees.
+The rest of the room stays empty. This prevents unrelated furniture from
+hiding spacing, orientation, or occlusion mistakes.
+
+### Fixed target geometry
+
+Part 1 uses the following integer-grid targets in the isolated lab:
+
+| Element | Target |
+| --- | --- |
+| Back wall | `y=0..3` |
+| Required empty clearance row | `y=4` |
+| Row A chair and actor seat anchors | `y=7` |
+| Row A desk footprints | `y=8..9` |
+| Row B desk footprints | `y=10..11` |
+| Row B chair and actor seat anchors | `y=14` |
+| Front circulation aisle | begins at `y=15` |
+| Five workstation column anchors | `x=[5, 8, 11, 14, 17]` |
+
+The three-tile character render box for Row A may occupy `y=5..7`, but no
+visible pixel or footprint may enter the required empty row at `y=4`.
+Row A chairs may occupy `y=6..7`. Row B characters may occupy `y=12..14` and
+Row B chairs may occupy `y=13..14`.
+
+Each three-tile desk footprint occupies one of these horizontal ranges:
+
+```text
+column 1: x=4..6
+column 2: x=7..9
+column 3: x=10..12
+column 4: x=13..15
+column 5: x=16..18
+```
+
+This produces one continuous fifteen-tile-wide workstation block with no
+horizontal gaps. The Row A desk bottom edge at `y=9` touches the Row B desk top
+edge at `y=10`, so there is no route or decorative strip between the rows.
+
+### Test 1A: Empty-room and asset-isolation gate
+
+1. Load the lab with only its floor and wall structural surfaces.
+2. Assert that workstations, objects, POIs, facility slots, and companions are
+   empty before the new block is added.
+3. Build the lab asset registry from `office-library-modern-bright-v1`.
+4. Assert that every allowed asset file resolves under
+   `assets/game/processed/office-library-modern-bright-v1/`.
+5. Deliberately request one legacy desk id in a unit test and require the lab
+   registry to reject it. A fallback to an active asset fails Part 1.
+
+Part 1 stops immediately if any old desk, chair, monitor, facility, or decor
+asset can enter the lab.
+
+### Test 1B: Furniture-only geometry gate
+
+1. Place five Row A desks and five Row B desks at the fixed anchors.
+2. Place the ten matching modern chairs without characters.
+3. Attach `monitor.back` to Row A desks and `monitor.front` to Row B desks.
+4. Attach only the modern-library keyboard to each desk.
+5. Run the structural surface, parent-slot, footprint, and overlap validators.
+6. Assert the exact empty row, desk adjacency, aligned columns, and open front
+   aisle described above.
+7. Render a debug-grid screenshot with wall, empty-row, footprint, seat-anchor,
+   and aisle overlays.
+
+This gate verifies the room geometry before character art can conceal a
+mistake.
+
+### Test 1C: Seated-pose and orientation gate
+
+1. Add exactly five Row A employees with `working-front-seated`.
+2. Add exactly five Row B employees with `working-back-seated`.
+3. Force each employee to the matching chair seat anchor.
+4. Disable routine movement, POI selection, random pose selection, and facility
+   reservations.
+5. Assert the Row A modern front-chair variant and Row B modern back-chair
+   variant are used.
+6. Inspect the layer order for chair base, chair foreground, actor, desk,
+   keyboard, and monitor.
+7. Fail if an actor is standing, floating, walking, facing the wrong direction,
+   clipped through the desk, or visually in front of the wrong chair layer.
+
+The normal screenshot is not captured until all ten employees pass this gate.
+
+### Test 1D: Thirty-second stability gate
+
+The lab clock advances for thirty simulated seconds. Automated checks sample
+the scene at `t=0`, `t=10`, `t=20`, and `t=30`.
+
+At every sample:
+
+- all ten actor positions equal their original seat anchors;
+- the pose split remains five front-facing and five rear-facing;
+- no actor enters a walking or facility state;
+- no chair, desk, monitor, or keyboard changes its parent or depth order; and
+- no new object appears in the empty room.
+
+Any movement away from a seat fails Part 1 even if the initial screenshot looks
+correct.
+
+### Test 1E: Real-browser evidence gate
+
+After the automated gates pass, open the development-only lab in the real
+browser renderer at 1280 by 720.
+
+The browser inspection must report:
+
+```text
+employees: 10
+Row A working-front-seated: 5
+Row B working-back-seated: 5
+legacy furniture assets: 0
+facility/decor objects: 0
+console warnings: 0
+console errors: 0
+```
+
+Capture these Part 1 artifacts:
+
+1. `two-row-modern-office-part1-furniture-grid-v2.png` — furniture-only debug
+   geometry from Test 1B.
+2. `two-row-modern-office-part1-seated-v2.png` — normal seated result after the
+   thirty-second stability gate.
+3. `two-row-modern-office-part1-seated-grid-v2.png` — the same seated result
+   with grid and anchor overlays.
+
+Part 1 ends by showing the normal seated screenshot to the user. No service,
+pantry, lounge, review, or decorative furniture is added, and no active Office
+file is changed, until the paired workstation block is approved.
+
 ## Character and Occlusion Contract
 
 All ten employees must be forced into deterministic seated work states in the
