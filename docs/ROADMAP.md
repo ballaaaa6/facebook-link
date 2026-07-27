@@ -60,9 +60,11 @@ Implementation status (2026-07-27):
   slot so the actor does not hide the facility, and the printer is composed on
   `cabinet.storage.low`.
 - Complete: replaced the rejected angled review-table candidate with the
-  straight-front orthographic Modern v3 `table.review.long.modern`. The table
-  has a 4x1 floor footprint, a 4x2 render box, and four seats split two per long
-  side using only `working-front-seated` and `working-back-seated`.
+  centered Modern v3 `table.review.long.modern`. Its authored raised-frontal
+  exception exposes the tabletop and both legs without left/right rotation or
+  perspective convergence. The table has a 4x1 floor footprint, a 4x2 render
+  box, and four seats split two per long side using only
+  `working-front-seated` and `working-back-seated`.
 - Complete: the same controlled 4x4 source provides fifteen library-only decor
   variants: long and low planters, cactus and office-plant families, a floor
   vase, sculptures, an hourglass, a globe, and a terrarium. Existing Printer,

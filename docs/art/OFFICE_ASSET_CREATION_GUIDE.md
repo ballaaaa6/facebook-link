@@ -49,6 +49,11 @@ Lock these values before creating production assets:
   flip of the front shell at 180°, and left/right must be strict 90° profiles.
   Reject any diagonal tilt, visible perspective/foreshortening, three-quarter
   angle, or exposed perspective top surface.
+- Authored exception: `table.review.long.modern` stays at 0° with no left/right
+  yaw, but uses a slightly raised frontal view so a standing character can see
+  the rectangular tabletop and the legs below it. Its front/back and left/right
+  tabletop edges remain parallel; perspective convergence and three-quarter
+  rotation are still rejected.
 - No transparent padding changes between animation frames.
 
 Use the same pixel scale for every view of one asset. Do not create the front at one camera distance and the back at another.

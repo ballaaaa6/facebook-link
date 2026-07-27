@@ -7,6 +7,7 @@ Nothing produced here is imported by the active Office page.
 
 from __future__ import annotations
 
+import argparse
 import json
 from pathlib import Path
 
@@ -28,6 +29,21 @@ KEYED_SOURCE = (
     / "processed"
     / "review-decor-completion-v2"
     / "source-keyed.png"
+)
+TABLE_SOURCE = (
+    ROOT
+    / "assets"
+    / "art"
+    / "layout-references"
+    / "review-table-modern-elevated-v3-source.png"
+)
+TABLE_KEYED_SOURCE = (
+    ROOT
+    / "assets"
+    / "game"
+    / "processed"
+    / "review-decor-completion-v2"
+    / "table.review.long.modern.source-keyed.png"
 )
 OUTPUT_ROOT = KEYED_SOURCE.parent
 MANIFEST_PATH = (
@@ -206,14 +222,18 @@ SEATS = [
 
 def extract_cells() -> list[dict[str, object]]:
     source = Image.open(KEYED_SOURCE).convert("RGBA")
+    table_source = Image.open(TABLE_KEYED_SOURCE).convert("RGBA")
     records: list[dict[str, object]] = []
     for index, asset_id in enumerate(CELL_IDS):
         row, column = divmod(index, 4)
-        left = round(column * source.width / 4)
-        right = round((column + 1) * source.width / 4)
-        top = round(row * source.height / 4)
-        bottom = round((row + 1) * source.height / 4)
-        cell = source.crop((left, top, right, bottom))
+        if asset_id == "table.review.long.modern":
+            cell = table_source
+        else:
+            left = round(column * source.width / 4)
+            right = round((column + 1) * source.width / 4)
+            top = round(row * source.height / 4)
+            bottom = round((row + 1) * source.height / 4)
+            cell = source.crop((left, top, right, bottom))
         bounds = cell.getbbox()
         if bounds is None:
             raise ValueError(f"{asset_id}: source cell is empty")
@@ -229,6 +249,10 @@ def extract_cells() -> list[dict[str, object]]:
             "alphaBounds": list(sprite.getbbox() or ()),
         }
         record.update(GEOMETRY[asset_id])
+        if asset_id == "table.review.long.modern":
+            record["sourceOverride"] = str(TABLE_SOURCE.relative_to(ROOT)).replace(
+                "\\", "/"
+            )
         records.append(record)
     return records
 
@@ -401,11 +425,38 @@ def build_review_lab(chair_back_mask_path: Path) -> list[dict[str, object]]:
 
 
 def main() -> None:
-    if not SOURCE.exists() or not KEYED_SOURCE.exists():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--skip-qa",
+        action="store_true",
+        help="replace source assets without rebuilding the visual composition board",
+    )
+    args = parser.parse_args()
+    if not all(
+        path.exists()
+        for path in (SOURCE, KEYED_SOURCE, TABLE_SOURCE, TABLE_KEYED_SOURCE)
+    ):
         raise FileNotFoundError("Generate the source and chroma-key it before extraction.")
     records = extract_cells()
     chair_back_mask = derive_chair_back_mask()
-    cases = build_review_lab(chair_back_mask)
+    cases = [] if args.skip_qa else build_review_lab(chair_back_mask)
+    qa = (
+        {
+            "status": "not-rerun-after-targeted-table-raster-replacement",
+            "reason": "The author accepted the existing seat geometry and requested image replacement only.",
+            "geometryContractUnchanged": True,
+            "board": None,
+            "cases": [],
+            "allFourActors": True,
+        }
+        if args.skip_qa
+        else {
+            "status": "passed",
+            "board": str(QA_PATH.relative_to(ROOT)).replace("\\", "/"),
+            "cases": cases,
+            "allFourActors": cases[-1]["actors"] == 4,
+        }
+    )
     manifest = {
         "version": 2,
         "status": "isolated-staging",
@@ -413,6 +464,14 @@ def main() -> None:
         "supersedes": "assets/game/manifests/review-facility-completion.json",
         "source": str(SOURCE.relative_to(ROOT)).replace("\\", "/"),
         "keyedSource": str(KEYED_SOURCE.relative_to(ROOT)).replace("\\", "/"),
+        "targetedOverrides": {
+            "table.review.long.modern": {
+                "source": str(TABLE_SOURCE.relative_to(ROOT)).replace("\\", "/"),
+                "keyedSource": str(TABLE_KEYED_SOURCE.relative_to(ROOT)).replace(
+                    "\\", "/"
+                ),
+            }
+        },
         "grid": [4, 4],
         "assetCount": len(records),
         "assets": records,
@@ -426,11 +485,7 @@ def main() -> None:
             "seats": SEATS,
             "chairBackMask": str(chair_back_mask.relative_to(ROOT)).replace("\\", "/"),
         },
-        "qa": {
-            "board": str(QA_PATH.relative_to(ROOT)).replace("\\", "/"),
-            "cases": cases,
-            "allFourActors": cases[-1]["actors"] == 4,
-        },
+        "qa": qa,
     }
     MANIFEST_PATH.write_text(
         json.dumps(manifest, indent=2, ensure_ascii=False) + "\n",

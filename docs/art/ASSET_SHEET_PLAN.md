@@ -20,6 +20,9 @@ Reduce generation latency without sacrificing usable geometry. Static furniture 
   shell at 180°, left/right are strict 90° profile views. Any visible
   three-quarter angle, diagonal tilt, foreshortened depth, or perspective top
   surface is rejected and the sheet must be regenerated.
+- `table.review.long.modern` is the single authored exception: it remains
+  centered at 0° with parallel edges and no side rotation, while a slightly
+  raised frontal camera exposes the tabletop surface and both legs.
 - Every cell manifest includes the locked physical `W x D x H`, integer
   `renderBox`, integer floor `footprint`, support surface, and anchor from the
   Office Scale Bible in `docs/art/OFFICE_ASSET_CREATION_GUIDE.md`.
@@ -387,9 +390,11 @@ stable anchors; no facility prop is baked into a character cell.
 | 3 | `planter.moss.low`, `vase.floor.branch`, `sculpture.arch.ceramic`, `sculpture.rings.metal` |
 | 4 | `sculpture.stones.stack`, `hourglass.desktop`, `globe.desktop`, `terrarium.succulent` |
 
-The table is a slim straight-front orthographic Modern v3 shell with a 4x1
-floor footprint and a 4x2 render box. It has no visible perspective top plane,
-baked chairs, actors, props, or wood texture. Four existing modern office
+The table is a slim centered Modern v3 shell with a 4x1 floor footprint and a
+4x2 render box. Its targeted v3 replacement uses the approved raised frontal
+exception so the tabletop surface and both legs remain readable, without any
+left/right rotation or perspective convergence. It has no baked chairs,
+actors, props, or wood texture. Four existing modern office
 chairs are composed as children: two rear seats at x=1 and x=3 use
 `working-front-seated`; two front seats at x=1 and x=3 use
 `working-back-seated`. There are no head, tail, or side-facing seats.
