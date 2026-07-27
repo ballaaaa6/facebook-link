@@ -68,8 +68,10 @@ The machine-readable record is
 
 ## Promotion gate
 
-The provisional anchors are sufficient for isolated staging composition, not
-final placement. Promotion waits for the 14-object/20-slot Facility v1 map,
-where each selected chair, sofa, review seat, and facility output position can
-calibrate the affected character offsets before the replacement interior is
-activated.
+Owner decision on 2026-07-27 freezes the current character library and completed
+pose assets for internal prototype use. The recorded provisional anchors and
+seat offsets are accepted for prototype integration; promotion does not require
+a full-roster calibration pass. Correct an individual anchor or offset only
+after a reproducible visible placement, occlusion, or interaction defect is
+observed. All affected identities remain `pending-commercial-review`, and this
+prototype acceptance does not authorize public, paid, or commercial use.

@@ -12,6 +12,10 @@
 - Replace fake Sheets transport with a credentialed connector behind the same interface.
 - Office motion, stable inspection, settings, dashboard, mock brain, action proposals, and fake connectors already exist.
 
+Current focus after the 2026-07-27 character-roster freeze is the two incomplete
+M1 items above plus the staging-to-active Office integration defined below. New
+character production is not on the prototype critical path.
+
 ### Immediate Office art tranche — Einstein and transient held props
 
 Before replacing the active Office interior, prepare and validate one complete
@@ -196,9 +200,10 @@ and does not approve the 19 prototype character identities for commercial use.
 
 Status on 2026-07-27: `accepted-staging`, with `activeOfficePromotion: false`
 and `commercialCharacterApproval: false`. The acceptance record is maintained
-in `docs/OFFICE_TEN_WORKSTATION_ACCEPTANCE.md`. Furniture-family migration,
-commercial character calibration, and Active Office promotion remain separate
-future decisions.
+in `docs/OFFICE_TEN_WORKSTATION_ACCEPTANCE.md`. Furniture-family migration and
+Active Office promotion remain separate future decisions. Commercial character
+replacement and batch character calibration are removed from the current
+prototype roadmap by the roster-freeze decision below.
 
 ### Immediate Office furniture/facility derivation — Steps 13-16 complete in staging
 
@@ -223,6 +228,38 @@ Status on 2026-07-27: `accepted-staging`. All 77 audit records are resolved,
 89 versioned images and four QA boards are locked, browser QA passes at
 desktop, 390 px, and 320 px, and `activeOfficePromotion` remains false. The
 acceptance record is `docs/OFFICE_DERIVED_ASSET_WAVES_ACCEPTANCE.md`.
+
+### Owner decision — freeze the current prototype character library
+
+Decision recorded on 2026-07-27:
+
+- Retain the existing nineteen-directory character library and all completed
+  pose assets. The eighteen office-agent identities keep their completed 8x15
+  staging atlases; Boba keeps its existing companion states.
+- Do not create replacement identities, replacement atlases, or additional pose
+  rows during the current prototype phase.
+- Accept the current hand anchors and seated offsets for prototype integration.
+  Make a targeted correction only when a reproducible visible runtime defect is
+  found; do not run a full-roster calibration pass.
+- Keep every affected asset `pending-commercial-review`, keep
+  `commercialCharacterApproval: false`, and do not describe the library as
+  approved for a public, paid, or commercial release.
+- Reopen character rights clearance or replacement only through an explicit
+  owner decision before commercialization, currently represented by M6.
+
+### Next Office tranche — staging-to-active integration
+
+This tranche requires no character generation or batch pose calibration:
+
+1. Create a promotion manifest that selects the accepted Geometry v3 structure,
+   workstation, furniture, and facility composites from Steps 5-16.
+2. Integrate the selected staging assets behind a reversible Active Office
+   feature flag while leaving the current character art unchanged.
+3. Exercise the existing character and companion states against the promoted
+   scene. Fix only verified placement, occlusion, or interaction regressions.
+4. Run contract, production-build, desktop, tablet, and mobile browser QA, then
+   record explicit owner acceptance before setting `activeOfficePromotion` to
+   true.
 
 ## M2 — One-account Shopee pilot
 

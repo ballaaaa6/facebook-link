@@ -472,11 +472,22 @@ Acceptance evidence:
 
 ## 15. Next authorized tranche
 
-Steps 5-8 do not authorize an Active Office swap. The next work should migrate
-one non-workstation furniture family at a time into Geometry v3 staging,
-calibrate the neutral actor contract against representative character
-morphologies, and assemble a larger staging room. Active promotion remains a
-separate owner decision after those wave gates pass.
+Steps 5-16 are complete in accepted staging. The owner froze the existing
+nineteen-directory character library for the internal prototype on 2026-07-27.
+Character replacement, additional pose generation, and batch morphology or
+seated calibration are therefore outside the current tranche. Existing pose
+assets, hand anchors, and seat offsets are accepted for prototype integration;
+a targeted correction is allowed only for a reproducible visible runtime
+defect.
+
+The next Office work is a versioned staging-to-active integration of the
+accepted Geometry v3 structure, workstations, derived furniture, and facility
+composites, with the current character art unchanged. It must use a reversible
+feature flag, retain the existing Active Office as the rollback target, and
+pass contract, production-build, and responsive browser QA. Active promotion
+remains a separate owner decision. Character rights clearance remains deferred
+until an explicit pre-commercialization decision; `commercialCharacterApproval`
+stays false.
 
 ## 16. Steps 9-12 — Structural staging deployment
 

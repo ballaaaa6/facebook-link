@@ -355,6 +355,16 @@ rows are added.
 
 ## Character Sheets
 
+Prototype roster freeze (2026-07-27): use the existing nineteen-directory
+character library and its completed pose assets for the internal prototype.
+The eighteen office-agent identities already have complete 8x15 staging
+atlases, while Boba retains its existing companion states. No replacement
+identity, replacement atlas, additional pose row, or full-roster seated
+calibration is planned in the current phase. Existing anchors and offsets are
+accepted for prototype integration; change one only to correct a reproducible
+visible runtime defect. All affected assets remain `pending-commercial-review`
+and are not approved for public, paid, or commercial release.
+
 - One selected PetDex-compatible character per image-generation call.
 - The imported 8x9 base atlas is the identity anchor and remains unchanged.
 - Generate only missing semantic rows as separate eight-cell horizontal strips.
@@ -377,10 +387,10 @@ rows are added.
   the character's lower body is hidden by a desk foreground mask, but this is
   only an interim compatibility fallback and does not replace the final
   seated-work rows.
-- Einstein is the first golden 8x15 runtime character. Generate its four missing
-  facility rows as separate eight-cell strips, retain the accepted
-  character-only rear/front seated-working sources, then pack and validate the
-  complete atlas before extending any other PetDex identity.
+- Einstein is the first golden 8x15 runtime character. Its four missing
+  facility rows were generated as separate eight-cell strips while retaining
+  the accepted character-only rear/front seated-working sources. The complete
+  atlas was packed and validated before extending any other PetDex identity.
 - The first transfer pilot is accepted in staging: Doraemon closes its existing
   8x13 sheet with the two seated rows; Anna supplies the human-like proof; AI
   Workbot supplies the non-human robot proof. Their versioned 8x15 atlases are

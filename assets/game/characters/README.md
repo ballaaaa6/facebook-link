@@ -8,12 +8,21 @@ sharpening pass; its 192 x 208 px 2x frames preserve detail for high-density
 displays. CSS `image-set` selects the density tier and normal image rendering
 performs any remaining downscale.
 
-These Petdex characters are prototype-only and remain marked `pending-commercial-review`. Before a public or paid release, replace any character whose commercial rights are not explicitly cleared while keeping the same 8x9 sheet geometry and role mapping.
+These Petdex characters are prototype-only and remain marked
+`pending-commercial-review`. The owner froze the current nineteen-directory
+library for internal prototype use on 2026-07-27: keep all existing character
+and companion art, do not create replacements or additional pose rows, and do
+not run a full-roster seated calibration pass. Existing anchors and offsets are
+accepted unless a reproducible visible runtime defect requires a targeted fix.
+Before a public or paid release, reopen the commercial-rights decision and
+replace any character whose rights are not explicitly cleared while keeping the
+same runtime geometry and role mapping.
 
-New character work starts from an approved Petdex-compatible base atlas. Missing
-office actions are added as controlled extension rows and packed into a versioned
-atlas. The interim facility pilot is an 8x13 atlas with four facility rows; the
-final workstation contract is 8x15 after adding the required
+If the owner explicitly reopens character work later, it must start from an
+approved Petdex-compatible base atlas. Missing office actions are added as
+controlled extension rows and packed into a versioned atlas. The interim
+facility pilot is an 8x13 atlas with four facility rows; the final workstation
+contract is 8x15 after adding the required
 `working-back-seated` and `working-front-seated` rows. Einstein's accepted
 seated-working source is the morphology and anchor reference for those rows.
 
