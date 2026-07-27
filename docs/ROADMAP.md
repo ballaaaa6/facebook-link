@@ -173,8 +173,32 @@ The next reuse-first tranche is complete at its intended staging gate:
 
 Status on 2026-07-27: `accepted-staging`. This is not Active Office promotion
 and does not approve the 19 prototype character identities for commercial use.
-The next tranche is furniture-family migration and character calibration in
-small staging waves, followed by a separate explicit promotion decision.
+
+### Immediate Office structural deployment — Steps 9-12 complete in staging
+
+9. Office Map v2 now defines explicit `floor-region`, `wall-segment`,
+   `window-opening`, and `door-opening` structures, structural IDs, portals,
+   and workstation deployments. The legacy Active Office remains readable
+   without changing its map or renderer.
+10. `office-ten-v1.json` assembles the exact ten-agent roster in a 29 x 20
+    staging room. Two edge-touching rows use the accepted 5 x 4 desk footprint,
+    external seats, protected access aisles, and the required Standard,
+    Creative, and NOC split of 7 / 2 / 1.
+11. The staging renderer creates deterministic floor and wall layers, a
+    wall-local window shell with all sixteen viewport-local seasonal views, a
+    semantic door and portal, and workstation composites driven by one shared
+    scene clock. The original door asset remains provenance and is not
+    overwritten.
+12. The development-only `?lab=office-ten-v1` route integrates workstation,
+    equipment, structure, door, window, actor, and debug states. Automated
+    checks and desktop, tablet, 390 px, and 320 px browser QA pass with no
+    horizontal overflow or console errors.
+
+Status on 2026-07-27: `accepted-staging`, with `activeOfficePromotion: false`
+and `commercialCharacterApproval: false`. The acceptance record is maintained
+in `docs/OFFICE_TEN_WORKSTATION_ACCEPTANCE.md`. Furniture-family migration,
+commercial character calibration, and Active Office promotion remain separate
+future decisions.
 
 ## M2 — One-account Shopee pilot
 

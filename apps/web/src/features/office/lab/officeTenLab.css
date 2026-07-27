@@ -1,0 +1,218 @@
+.office-ten-lab {
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding: clamp(12px, 2vw, 28px);
+  color: #e2e8f0;
+  background: radial-gradient(circle at 50% 0, #1e3a5f, #07111f 52%, #020617);
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+.office-ten-header,
+.office-ten-controls,
+.office-ten-viewport,
+.office-ten-footer {
+  margin-inline: auto;
+}
+
+.office-ten-header {
+  display: flex;
+  width: min(928px, 100%);
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 12px;
+}
+
+.office-ten-header > div > span {
+  color: #22d3ee;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .18em;
+}
+
+.office-ten-header h1 { margin: 4px 0; font-size: clamp(22px, 3vw, 38px); }
+.office-ten-header p { margin: 0; color: #94a3b8; }
+.office-ten-header dl { display: flex; gap: 6px; margin: 0; }
+
+.office-ten-header dl div {
+  min-width: 76px;
+  padding: 8px 10px;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  background: #0f172acc;
+}
+
+.office-ten-header dt { color: #64748b; font-size: 9px; text-transform: uppercase; }
+.office-ten-header dd { margin: 2px 0 0; font-size: 13px; font-weight: 900; }
+
+.office-ten-controls {
+  display: flex;
+  width: min(928px, 100%);
+  align-items: end;
+  gap: 7px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.office-ten-control-group { display: flex; gap: 4px; }
+.office-ten-controls label { display: grid; gap: 2px; color: #64748b; font-size: 9px; text-transform: uppercase; }
+
+.office-ten-controls button,
+.office-ten-controls select {
+  min-height: 32px;
+  padding: 6px 9px;
+  color: #cbd5e1;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  background: #0f172a;
+  font: inherit;
+}
+
+.office-ten-controls button { cursor: pointer; text-transform: capitalize; }
+.office-ten-controls button[aria-pressed="true"] { color: #07111f; border-color: #22d3ee; background: #22d3ee; }
+.office-ten-door-control[data-state="open"] { color: #052e16; border-color: #22c55e; background: #86efac; }
+
+.office-ten-viewport {
+  position: relative;
+  width: 928px;
+  height: 640px;
+  overflow: hidden;
+  border: 1px solid #475569;
+  border-radius: 10px;
+  background: #111827;
+  box-shadow: 0 22px 70px #000a;
+}
+
+.office-ten-stage {
+  position: relative;
+  width: 928px;
+  height: 640px;
+  overflow: hidden;
+  transform-origin: top left;
+  image-rendering: pixelated;
+}
+
+.office-ten-floor {
+  position: absolute;
+  z-index: 10;
+  background-color: #52647a;
+  background-image:
+    linear-gradient(#cbd5e124 1px, transparent 1px),
+    linear-gradient(90deg, #cbd5e124 1px, transparent 1px),
+    linear-gradient(135deg, #ffffff08 25%, transparent 25% 75%, #00000008 75%);
+  background-size: 32px 32px, 32px 32px, 64px 64px;
+}
+
+.office-ten-wall {
+  position: absolute;
+  z-index: 100;
+  border-bottom: 4px solid #172033;
+  background:
+    linear-gradient(90deg, #ffffff12 1px, transparent 1px) 0 0 / 96px 100%,
+    linear-gradient(#b9c5d4, #8494a8);
+  box-shadow: inset 0 -9px #6f7f91;
+}
+
+.office-ten-window-content {
+  position: absolute;
+  z-index: 110;
+  object-fit: cover;
+  image-rendering: pixelated;
+}
+
+.office-ten-window-frame {
+  position: absolute;
+  z-index: 120;
+  border: 9px solid #3b4a5c;
+  box-shadow: inset 0 0 0 3px #cbd5e1, 0 3px #1e293b;
+  pointer-events: none;
+}
+
+.office-ten-window-frame::after {
+  position: absolute;
+  inset: 0 50%;
+  width: 4px;
+  background: #3b4a5c;
+  content: "";
+}
+
+.office-ten-door {
+  position: absolute;
+  z-index: 2200;
+}
+
+.office-ten-door-opening { position: absolute; inset: 0; background: #111827; }
+.office-ten-door-leaf { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: fill; image-rendering: pixelated; }
+.office-ten-door-frame { position: absolute; inset: -4px; border: 5px solid #3b4a5c; pointer-events: none; }
+.office-ten-door-threshold { position: absolute; right: -6px; bottom: -5px; left: -6px; height: 7px; background: #d6b98c; }
+.office-ten-door[data-door-state="open"] .office-ten-door-opening { background: linear-gradient(90deg, #020617, #1e293b); }
+
+.office-ten-route-debug,
+.office-ten-portal-debug {
+  position: absolute;
+  z-index: 3000;
+  pointer-events: none;
+}
+
+.office-ten-route-debug { border: 2px dashed #22d3ee; background: #22d3ee22; }
+.office-ten-portal-debug { border: 2px solid #ef4444; background: #ef444466; }
+.office-ten-portal-debug[data-portal-state="passable"] { border-color: #22c55e; background: #22c55e55; }
+
+.office-ten-stage .geometry-workstation { filter: drop-shadow(0 2px 1px #0f172a99); }
+.office-ten-stage .workstation-agent-label {
+  position: absolute;
+  z-index: 1950;
+  top: 90%;
+  left: 50%;
+  padding: 1px 3px;
+  color: #e2e8f0;
+  border-radius: 2px;
+  background: #0f172acc;
+  font-size: 6px;
+  font-weight: 800;
+  line-height: 1.2;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.office-ten-stage .geometry-workstation[data-orientation="back"] .workstation-agent-label { top: 4%; }
+
+.office-ten-footer {
+  display: flex;
+  width: min(928px, 100%);
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 2px;
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+.office-ten-footer strong { color: #22c55e; }
+
+@media (max-width: 1000px) {
+  .office-ten-header,
+  .office-ten-controls,
+  .office-ten-footer { width: min(696px, 100%); }
+  .office-ten-viewport { width: 696px; height: 480px; }
+  .office-ten-stage { transform: scale(.75); }
+}
+
+@media (max-width: 740px) {
+  .office-ten-header { align-items: start; flex-direction: column; }
+  .office-ten-header dl { width: 100%; }
+  .office-ten-header dl div { min-width: 0; flex: 1; }
+  .office-ten-header,
+  .office-ten-controls,
+  .office-ten-footer { width: min(348px, 100%); }
+  .office-ten-viewport { width: 348px; height: 240px; }
+  .office-ten-stage { transform: scale(.375); }
+  .office-ten-footer { flex-wrap: wrap; }
+}
+
+@media (max-width: 370px) {
+  .office-ten-header,
+  .office-ten-controls,
+  .office-ten-footer { width: 290px; }
+  .office-ten-viewport { width: 290px; height: 200px; }
+  .office-ten-stage { transform: scale(.3125); }
+}

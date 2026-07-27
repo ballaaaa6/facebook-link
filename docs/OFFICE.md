@@ -66,6 +66,20 @@ The Office layout validator runs as part of `npm run check`. It rejects overlap,
 route obstruction, unsupported or duplicate attachments, unreachable
 destinations, invalid facility capacity, and missing geometry.
 
+### Structural staging room
+
+Office Map v2 is accepted only in the development staging route
+`?lab=office-ten-v1`. It models `floor-region`, `wall-segment`,
+`window-opening`, and `door-opening` structures separately from the Active
+Office background. Ten canonical 5 x 4 workstations share one scene clock and
+equipment presets without changing `desk.modular.v1` geometry. The accepted
+layout, responsive scales, isolation boundary, and promotion flags are recorded
+in `docs/OFFICE_TEN_WORKSTATION_ACCEPTANCE.md`.
+
+The Active Office continues to read `office-c-v2.json` through the legacy
+surface adapter and continues rendering `OfficeBackdrop`. Map v2 does not
+authorize an Active Office or commercial-character promotion.
+
 ## Pixel rendering
 
 The 192 x 208 source frames remain provenance assets. Runtime v2 provides

@@ -13,6 +13,11 @@ async function renderRoot() {
     root.render(<StrictMode><WorkstationGeometryV1LabPage /></StrictMode>);
     return;
   }
+  if (requestedLab === "office-ten-v1") {
+    const { OfficeTenWorkstationLabPage } = await import("./features/office/lab/OfficeTenWorkstationLabPage");
+    root.render(<StrictMode><OfficeTenWorkstationLabPage /></StrictMode>);
+    return;
+  }
   if (requestedLab === "office-layout") {
     const { OfficeLayoutLabPage } = await import("./features/office/lab/OfficeLayoutLabPage");
     root.render(<StrictMode><OfficeLayoutLabPage /></StrictMode>);
