@@ -15,6 +15,9 @@ interface GeometryManifest {
 const map = JSON.parse(
   readFileSync(new URL("../../../assets/game/maps/office-c-v2.json", import.meta.url), "utf8"),
 ) as OfficeMapDefinition;
+const labMap = JSON.parse(
+  readFileSync(new URL("../../../assets/game/maps/office-facility-v1-lab.json", import.meta.url), "utf8"),
+) as OfficeMapDefinition;
 const geometry = JSON.parse(
   readFileSync(new URL("../../../assets/game/manifests/office-assets.json", import.meta.url), "utf8"),
 ) as GeometryManifest;
@@ -22,6 +25,30 @@ const geometry = JSON.parse(
 test("the Office C map has no occupancy or support violations", () => {
   const resolved = resolveOfficeLayout(map, geometry.assets, geometry.slotSets);
   assert.deepEqual(validateOfficeLayout(map, geometry.assets, resolved), []);
+});
+
+test("the isolated Office lab has valid geometry without replacing the active map", () => {
+  const resolved = resolveOfficeLayout(labMap, geometry.assets, geometry.slotSets);
+  assert.deepEqual(validateOfficeLayout(labMap, geometry.assets, resolved), []);
+  assert.equal(map.id, "office-c-v2-integer");
+  assert.equal(labMap.id, "office-facility-v1-lab");
+});
+
+test("the isolated Office lab arranges ten employees in two rows of five", () => {
+  assert.equal(labMap.workstations.length, 10);
+  const rows = Map.groupBy(labMap.workstations, ({ y }) => y);
+  assert.deepEqual([...rows.keys()], [9, 16]);
+  for (const row of rows.values()) {
+    assert.deepEqual(row.map(({ x }) => x), [3, 8, 13, 18, 23]);
+  }
+});
+
+test("every isolated lab facility has enough unique reservation slots", () => {
+  for (const poi of labMap.pois) {
+    assert.ok(poi.slots);
+    assert.ok(poi.slots.length >= poi.capacity);
+    assert.equal(new Set(poi.slots.map(({ x, y }) => `${x}:${y}`)).size, poi.slots.length);
+  }
 });
 
 test("the Office C map declares distinct floor and wall placement surfaces", () => {

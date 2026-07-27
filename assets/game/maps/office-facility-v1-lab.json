@@ -1,0 +1,96 @@
+{
+  "id": "office-facility-v1-lab",
+  "gridSize": 32,
+  "width": 42,
+  "height": 24,
+  "surfaces": [
+    { "id": "lab-floor", "support": "floor", "x": 0, "y": 3, "width": 42, "height": 21 },
+    { "id": "lab-back-wall", "support": "wall", "x": 0, "y": 0, "width": 42, "height": 4 }
+  ],
+  "zones": [
+    { "id": "two-row-work-floor", "label": "Two-row work floor", "x": 0, "y": 3, "width": 28, "height": 21, "capacity": 10 },
+    { "id": "facility-relax", "label": "Facility and relax", "x": 28, "y": 3, "width": 14, "height": 21, "capacity": 10 }
+  ],
+  "workstations": [
+    { "id": "market-scout", "zone": "two-row-work-floor", "surfaceId": "lab-floor", "desk": "desk.standard.up", "chair": "chair.office.up", "x": 3, "y": 9, "facing": "up", "seat": { "x": 3, "y": 11 }, "work": { "x": 3, "y": 8 }, "approach": { "x": 5, "y": 12 }, "stand": { "x": 3, "y": 7 }, "navNode": "top-1", "previewSide": "right", "collision": { "x": 1, "y": 8, "width": 4, "height": 2 } },
+    { "id": "product-ranker", "zone": "two-row-work-floor", "surfaceId": "lab-floor", "desk": "desk.standard.up", "chair": "chair.office.up", "x": 8, "y": 9, "facing": "up", "seat": { "x": 8, "y": 11 }, "work": { "x": 8, "y": 8 }, "approach": { "x": 10, "y": 12 }, "stand": { "x": 8, "y": 7 }, "navNode": "top-2", "collision": { "x": 6, "y": 8, "width": 4, "height": 2 } },
+    { "id": "growth-strategist", "zone": "two-row-work-floor", "surfaceId": "lab-floor", "desk": "desk.standard.up", "chair": "chair.office.up", "x": 13, "y": 9, "facing": "up", "seat": { "x": 13, "y": 11 }, "work": { "x": 13, "y": 8 }, "approach": { "x": 15, "y": 12 }, "stand": { "x": 13, "y": 7 }, "navNode": "top-3", "collision": { "x": 11, "y": 8, "width": 4, "height": 2 } },
+    { "id": "performance-analyst", "zone": "two-row-work-floor", "surfaceId": "lab-floor", "desk": "desk.standard.up", "chair": "chair.office.up", "x": 18, "y": 9, "facing": "up", "seat": { "x": 18, "y": 11 }, "work": { "x": 18, "y": 8 }, "approach": { "x": 20, "y": 12 }, "stand": { "x": 18, "y": 7 }, "navNode": "top-4", "collision": { "x": 16, "y": 8, "width": 4, "height": 2 } },
+    { "id": "gemini-copywriter", "zone": "two-row-work-floor", "surfaceId": "lab-floor", "desk": "desk.creative.up", "chair": "chair.studio.up", "x": 23, "y": 9, "facing": "up", "seat": { "x": 23, "y": 11 }, "work": { "x": 23, "y": 8 }, "approach": { "x": 25, "y": 12 }, "stand": { "x": 23, "y": 7 }, "navNode": "top-5", "previewSide": "left", "collision": { "x": 21, "y": 8, "width": 4, "height": 2 } },
+    { "id": "flow-visual-producer", "zone": "two-row-work-floor", "surfaceId": "lab-floor", "desk": "desk.creative.up", "chair": "chair.studio.up", "x": 3, "y": 16, "facing": "up", "seat": { "x": 3, "y": 18 }, "work": { "x": 3, "y": 15 }, "approach": { "x": 5, "y": 19 }, "stand": { "x": 3, "y": 14 }, "navNode": "bottom-1", "previewSide": "right", "collision": { "x": 1, "y": 15, "width": 4, "height": 2 } },
+    { "id": "link-attribution", "zone": "two-row-work-floor", "surfaceId": "lab-floor", "desk": "desk.standard.up", "chair": "chair.office.up", "x": 8, "y": 16, "facing": "up", "seat": { "x": 8, "y": 18 }, "work": { "x": 8, "y": 15 }, "approach": { "x": 10, "y": 19 }, "stand": { "x": 8, "y": 14 }, "navNode": "bottom-2", "collision": { "x": 6, "y": 15, "width": 4, "height": 2 } },
+    { "id": "qa-editor", "zone": "two-row-work-floor", "surfaceId": "lab-floor", "desk": "desk.standard.up", "chair": "chair.office.up", "x": 13, "y": 16, "facing": "up", "seat": { "x": 13, "y": 18 }, "work": { "x": 13, "y": 15 }, "approach": { "x": 15, "y": 19 }, "stand": { "x": 13, "y": 14 }, "navNode": "bottom-3", "collision": { "x": 11, "y": 15, "width": 4, "height": 2 } },
+    { "id": "publisher", "zone": "two-row-work-floor", "surfaceId": "lab-floor", "desk": "desk.standard.up", "chair": "chair.office.up", "x": 18, "y": 16, "facing": "up", "seat": { "x": 18, "y": 18 }, "work": { "x": 18, "y": 15 }, "approach": { "x": 20, "y": 19 }, "stand": { "x": 18, "y": 14 }, "navNode": "bottom-4", "collision": { "x": 16, "y": 15, "width": 4, "height": 2 } },
+    { "id": "session-keeper", "zone": "two-row-work-floor", "surfaceId": "lab-floor", "desk": "desk.noc.up", "chair": "chair.office.up", "x": 23, "y": 16, "facing": "up", "seat": { "x": 23, "y": 18 }, "work": { "x": 23, "y": 15 }, "approach": { "x": 25, "y": 19 }, "stand": { "x": 23, "y": 14 }, "navNode": "bottom-5", "previewSide": "left", "collision": { "x": 21, "y": 15, "width": 4, "height": 2 } }
+  ],
+  "companions": [],
+  "pois": [
+    { "id": "printer", "activity": "printer", "point": { "x": 37, "y": 7 }, "slots": [{ "x": 37, "y": 7 }], "navNode": "service", "capacity": 1, "duration": 6, "label": "Collecting a printout" },
+    { "id": "server-check", "activity": "server", "point": { "x": 31, "y": 7 }, "slots": [{ "x": 30, "y": 7 }, { "x": 33, "y": 7 }], "navNode": "service", "capacity": 2, "duration": 8, "label": "Checking infrastructure" },
+    { "id": "water", "activity": "water", "point": { "x": 30, "y": 13 }, "slots": [{ "x": 30, "y": 13 }], "navNode": "pantry", "capacity": 1, "duration": 6, "label": "Drinking water" },
+    { "id": "coffee", "activity": "coffee", "point": { "x": 39, "y": 13 }, "slots": [{ "x": 39, "y": 13 }], "navNode": "pantry", "capacity": 1, "duration": 7, "label": "Getting coffee" },
+    { "id": "lounge-seat", "activity": "lounge", "point": { "x": 32, "y": 18 }, "slots": [{ "x": 30, "y": 18 }, { "x": 32, "y": 18 }, { "x": 34, "y": 18 }], "navNode": "lounge", "capacity": 3, "duration": 10, "label": "Taking a short break" },
+    { "id": "mission-review", "activity": "meeting", "point": { "x": 36, "y": 23 }, "slots": [{ "x": 33, "y": 23 }, { "x": 35, "y": 23 }, { "x": 37, "y": 23 }, { "x": 39, "y": 23 }], "navNode": "review", "capacity": 4, "duration": 9, "label": "Reviewing the handoff" }
+  ],
+  "routes": [
+    { "id": "top-row-access", "x": 1, "y": 12, "width": 27, "height": 1 },
+    { "id": "bottom-row-access", "x": 1, "y": 19, "width": 27, "height": 1 },
+    { "id": "facility-spine", "x": 28, "y": 6, "width": 1, "height": 18 },
+    { "id": "service-access", "x": 28, "y": 7, "width": 12, "height": 1 },
+    { "id": "pantry-access", "x": 28, "y": 13, "width": 14, "height": 1 },
+    { "id": "lounge-access", "x": 28, "y": 19, "width": 14, "height": 1 },
+    { "id": "review-access", "x": 28, "y": 23, "width": 14, "height": 1 }
+  ],
+  "navigation": {
+    "nodes": [
+      { "id": "top-1", "x": 5, "y": 12 },
+      { "id": "top-2", "x": 10, "y": 12 },
+      { "id": "top-3", "x": 15, "y": 12 },
+      { "id": "top-4", "x": 20, "y": 12 },
+      { "id": "top-5", "x": 25, "y": 12 },
+      { "id": "bottom-1", "x": 5, "y": 19 },
+      { "id": "bottom-2", "x": 10, "y": 19 },
+      { "id": "bottom-3", "x": 15, "y": 19 },
+      { "id": "bottom-4", "x": 20, "y": 19 },
+      { "id": "bottom-5", "x": 25, "y": 19 },
+      { "id": "service", "x": 28, "y": 7 },
+      { "id": "pantry", "x": 28, "y": 13 },
+      { "id": "lounge", "x": 28, "y": 19 },
+      { "id": "review", "x": 28, "y": 23 }
+    ],
+    "edges": [
+      ["top-1", "top-2"], ["top-2", "top-3"], ["top-3", "top-4"], ["top-4", "top-5"], ["top-5", "pantry"],
+      ["bottom-1", "bottom-2"], ["bottom-2", "bottom-3"], ["bottom-3", "bottom-4"], ["bottom-4", "bottom-5"], ["bottom-5", "lounge"],
+      ["service", "pantry"], ["pantry", "lounge"], ["lounge", "review"]
+    ]
+  },
+  "objects": [
+    { "id": "wall-art", "asset": "art.wall", "surfaceId": "lab-back-wall", "x": 30, "y": 1, "layer": "wall", "anchor": "wall-top" },
+    { "id": "wall-tv", "asset": "tv.wall", "surfaceId": "lab-back-wall", "x": 35, "y": 1, "layer": "wall", "anchor": "wall-top" },
+    { "id": "wall-extinguisher", "asset": "extinguisher.wall", "surfaceId": "lab-back-wall", "x": 41, "y": 1, "layer": "wall", "anchor": "wall-top" },
+    { "id": "server-a", "asset": "server.rack", "surfaceId": "lab-floor", "x": 30, "y": 5, "layer": "equipment", "anchor": "bottom-center" },
+    { "id": "server-b", "asset": "server.rack", "surfaceId": "lab-floor", "x": 33, "y": 5, "layer": "equipment", "anchor": "bottom-center" },
+    { "id": "printer-credenza", "asset": "bookshelf.low", "surfaceId": "lab-floor", "x": 37, "y": 5, "layer": "furniture", "anchor": "center" },
+    { "id": "printer-device", "asset": "printer.desktop", "parentId": "printer-credenza", "slot": "credenza-center", "layer": "equipment", "anchor": "bottom-center" },
+    { "id": "service-plant", "asset": "plant.tall", "surfaceId": "lab-floor", "x": 41, "y": 5, "layer": "decor", "anchor": "bottom-center" },
+    { "id": "water-dispenser", "asset": "dispenser.water", "surfaceId": "lab-floor", "x": 30, "y": 10, "layer": "equipment", "anchor": "bottom-center" },
+    { "id": "pantry-divider", "asset": "divider.planter", "surfaceId": "lab-floor", "x": 34, "y": 10, "layer": "furniture", "anchor": "center" },
+    { "id": "coffee-counter", "asset": "counter.coffee", "surfaceId": "lab-floor", "x": 39, "y": 10, "layer": "furniture", "anchor": "center" },
+    { "id": "coffee-machine", "asset": "machine.coffee", "parentId": "coffee-counter", "slot": "counter-center", "layer": "equipment", "anchor": "bottom-center" },
+    { "id": "lounge-sofa", "asset": "sofa.sectional", "surfaceId": "lab-floor", "x": 32, "y": 16, "layer": "furniture", "anchor": "center" },
+    { "id": "lounge-table", "asset": "table.coffee", "surfaceId": "lab-floor", "x": 39, "y": 16, "layer": "furniture", "anchor": "center" },
+    { "id": "lounge-lamp", "asset": "lamp.floor", "surfaceId": "lab-floor", "x": 41, "y": 17, "layer": "furniture", "anchor": "bottom-center" },
+    { "id": "review-table", "asset": "table.meeting.empty", "surfaceId": "lab-floor", "x": 36, "y": 21, "layer": "furniture", "anchor": "center" },
+    { "id": "review-plant", "asset": "plant.small", "surfaceId": "lab-floor", "x": 41, "y": 22, "layer": "decor", "anchor": "bottom-center" },
+    { "id": "market-monitor", "asset": "monitor.front.active", "parentId": "market-scout", "slot": "desk-front-center", "layer": "equipment", "anchor": "bottom-center" },
+    { "id": "ranker-monitor", "asset": "monitor.front.active", "parentId": "product-ranker", "slot": "desk-front-center", "layer": "equipment", "anchor": "bottom-center" },
+    { "id": "growth-monitor", "asset": "monitor.front.active", "parentId": "growth-strategist", "slot": "desk-front-center", "layer": "equipment", "anchor": "bottom-center" },
+    { "id": "performance-monitor", "asset": "monitor.dual.active", "parentId": "performance-analyst", "slot": "desk-front-center", "layer": "equipment", "anchor": "bottom-center" },
+    { "id": "copy-monitor", "asset": "monitor.dual.active", "parentId": "gemini-copywriter", "slot": "desk-front-center", "layer": "equipment", "anchor": "bottom-center" },
+    { "id": "flow-monitor", "asset": "monitor.dual.active", "parentId": "flow-visual-producer", "slot": "desk-front-center", "layer": "equipment", "anchor": "bottom-center" },
+    { "id": "link-monitor", "asset": "monitor.front.active", "parentId": "link-attribution", "slot": "desk-front-center", "layer": "equipment", "anchor": "bottom-center" },
+    { "id": "qa-monitor", "asset": "monitor.front.active", "parentId": "qa-editor", "slot": "desk-front-center", "layer": "equipment", "anchor": "bottom-center" },
+    { "id": "publisher-monitor", "asset": "monitor.dual.active", "parentId": "publisher", "slot": "desk-front-center", "layer": "equipment", "anchor": "bottom-center" },
+    { "id": "session-monitor", "asset": "monitor.dual.active", "parentId": "session-keeper", "slot": "desk-front-center", "layer": "equipment", "anchor": "bottom-center" }
+  ]
+}

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import type { OfficeAgentView, OfficeMode } from "@affiliate-ops/contracts";
 import "../officeScene.css";
-import officeMapJson from "../../../../../../assets/game/maps/office-c-v2.json";
+import activeOfficeMapJson from "../../../../../../assets/game/maps/office-c-v2.json";
 import { resolveOfficeLayout, validateOfficeLayout } from "../layout/officeLayout";
 import type { OfficeMapDefinition } from "../officeTypes";
 import { fittedTileSize } from "../motion/pixelGeometry";
@@ -17,28 +17,35 @@ import {
 } from "./officeSceneRuntime";
 import { WorldObject } from "./WorldObject";
 
-const officeMap = officeMapJson as unknown as OfficeMapDefinition;
-const officeLayout = resolveOfficeLayout(officeMap, officeAssetRegistry, officeSlotSets);
-const officeLayoutIssues = validateOfficeLayout(officeMap, officeAssetRegistry, officeLayout);
-if (officeLayoutIssues.length > 0) {
-  throw new Error(`Invalid Office C layout: ${officeLayoutIssues.join("; ")}`);
-}
-const resolvedMapObjects = officeLayout.objects;
-const sceneBackdropScale = (
-  officeSceneReference.width / officeSceneReference.height
-) / (officeMap.width / officeMap.height);
+const activeOfficeMap = activeOfficeMapJson as unknown as OfficeMapDefinition;
 
 export function OfficeCanvas({
   agents,
   mode,
+  mapDefinition = activeOfficeMap,
+  showWorkstationChairs = false,
   selectedId,
   onSelect,
 }: {
   agents: readonly OfficeAgentView[];
   mode: OfficeMode;
+  mapDefinition?: OfficeMapDefinition;
+  showWorkstationChairs?: boolean;
   selectedId: string;
   onSelect: (id: string) => void;
 }) {
+  const officeMap = mapDefinition;
+  const resolvedMapObjects = useMemo(() => {
+    const layout = resolveOfficeLayout(officeMap, officeAssetRegistry, officeSlotSets);
+    const issues = validateOfficeLayout(officeMap, officeAssetRegistry, layout);
+    if (issues.length > 0) {
+      throw new Error(`Invalid Office layout ${officeMap.id ?? "(unnamed)"}: ${issues.join("; ")}`);
+    }
+    return layout.objects;
+  }, [officeMap]);
+  const sceneBackdropScale = (
+    officeSceneReference.width / officeSceneReference.height
+  ) / (officeMap.width / officeMap.height);
   const frameRef = useRef<HTMLDivElement>(null);
   const [preview, setPreview] = useState<AgentPreviewRequest | null>(null);
   const [tileSize, setTileSize] = useState(10);
@@ -214,7 +221,8 @@ export function OfficeCanvas({
         {officeMap.workstations.map((station) => {
           const agent = agents.find((item) => item.agentId === station.id);
           const desk = officeAssetRegistry[station.desk];
-          if (!agent || !desk) return null;
+          const chair = officeAssetRegistry[station.chair];
+          if (!agent || !desk || !chair) return null;
           const deskDepth = 100 + Math.round(station.y * 20);
           return (
             <div className="workstation-rig" key={station.id}>
@@ -231,6 +239,23 @@ export function OfficeCanvas({
                   zIndex: deskDepth - 2,
                 }}
               />
+              {showWorkstationChairs
+                ? (
+                  <img
+                    className="workstation-chair"
+                    src={chair.file}
+                    alt=""
+                    aria-hidden="true"
+                    style={{
+                      left: percentX(station.seat.x),
+                      top: percentY(station.seat.y),
+                      width: `${(chair.renderBox.width / officeMap.width) * 100}%`,
+                      height: `${(chair.renderBox.height / officeMap.height) * 100}%`,
+                      zIndex: deskDepth - 3,
+                    }}
+                  />
+                )
+                : null}
               <AgentEntity
                 agent={agent}
                 agents={agents}

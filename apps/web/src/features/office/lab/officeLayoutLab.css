@@ -1,0 +1,92 @@
+.office-layout-lab {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  min-height: 100dvh;
+  gap: 12px;
+  padding: 16px;
+  color: #173c35;
+  background:
+    radial-gradient(circle at top right, rgba(90, 176, 167, .16), transparent 34%),
+    linear-gradient(150deg, #f7f1df, #dceae4);
+}
+
+.office-layout-lab-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.office-layout-lab-header span {
+  color: #9c5c25;
+  font: 700 11px/1.2 "IBM Plex Mono", monospace;
+  letter-spacing: .08em;
+}
+
+.office-layout-lab-header h1 {
+  margin: 4px 0 0;
+  font-size: clamp(24px, 3vw, 38px);
+}
+
+.office-layout-lab-header dl {
+  display: flex;
+  gap: 8px;
+  margin: 0;
+}
+
+.office-layout-lab-header dl div {
+  min-width: 92px;
+  padding: 8px 11px;
+  border: 1px solid rgba(23, 60, 53, .16);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, .72);
+}
+
+.office-layout-lab-header dt {
+  color: #667b75;
+  font-size: 10px;
+}
+
+.office-layout-lab-header dd {
+  margin: 2px 0 0;
+  font: 700 15px/1.2 "IBM Plex Mono", monospace;
+}
+
+.office-layout-lab-stage {
+  min-width: 0;
+  min-height: 0;
+  padding: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(23, 60, 53, .2);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, .58);
+  box-shadow: 0 18px 50px rgba(37, 65, 57, .16);
+}
+
+.office-layout-lab-stage .office-viewport {
+  height: 100%;
+}
+
+.office-layout-lab footer {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  color: #506963;
+  font: 600 11px/1.2 "IBM Plex Mono", monospace;
+}
+
+.office-layout-lab footer strong {
+  margin-left: auto;
+  padding: 5px 8px;
+  border-radius: 6px;
+  color: #fff8df;
+  background: #9c5c25;
+}
+
+@media (max-width: 760px) {
+  .office-layout-lab { padding: 10px; }
+  .office-layout-lab-header { align-items: start; flex-direction: column; }
+  .office-layout-lab-header dl { width: 100%; }
+  .office-layout-lab-header dl div { flex: 1; min-width: 0; }
+  .office-layout-lab footer span { display: none; }
+}
