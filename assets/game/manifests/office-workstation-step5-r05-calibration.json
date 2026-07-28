@@ -2,7 +2,7 @@
   "version": 5,
   "geometrySchemaVersion": 6,
   "id": "office.workstation.step5.r05.calibration",
-  "status": "owner-anchor-proof-review",
+  "status": "owner-anchor-proof-approved",
   "updatedOn": "2026-07-28",
   "replaces": "office.workstation.step5.single-seat.v4",
   "completedScope": [
@@ -11,7 +11,7 @@
     "R05-2",
     "R05-3A"
   ],
-  "nextScope": "R05-3B-blocked-pending-owner-approval",
+  "nextScope": "R05-3B-authorized",
   "activeOfficeBaseline": {
     "file": "assets/game/maps/office-c-v2.json",
     "sha256": "c40db448eb8e6d0f3fea67a41f716c0108aca63a4136cfad15293534273c618d",
@@ -140,7 +140,7 @@
             0
           ]
         },
-        "status": "owner-review-placeholder-not-polished-art"
+        "status": "owner-approved-calibration-proof-not-runtime-art"
       }
     },
     "monitor": {
@@ -213,7 +213,7 @@
   },
   "measurementEvidence": {
     "file": "assets/game/manifests/office-workstation-step5-r05-measurements.json",
-    "sha256": "fa780973cd2fe91f20dee2f1e7fdb83752d52244408b59934c63630c989ea501"
+    "sha256": "384af9c3d65c2aad56fa40584aef7a386a1cf453c0cdcb230ef6e00b15476827"
   },
   "reviewOutputs": [
     "assets/art/layout-references/office-workstation-v3/step5-r05/01-reservation-vs-visual-pivot.png",
@@ -236,15 +236,17 @@
     "activeOfficePromotion": false
   },
   "ownerGate": {
-    "requiredDecision": "Approve or revise the three R05-3A before/after anchor-proof boards.",
-    "explicitlyNotApproved": [
-      "polished-chair-artwork",
-      "monitor-regeneration-or-final-normalization",
+    "decision": "approved",
+    "approvedScope": [
+      "real-chair-derivatives",
+      "monitor-final-normalization",
       "single-seat-composition",
-      "ten-seat-layout",
+      "ten-seat-isolated-candidate"
+    ],
+    "explicitlyNotApproved": [
       "step6",
       "active-office"
     ],
-    "onApproval": "Begin R05-3B only: create polished chair art from the approved sockets and normalize the monitor against the approved base contact; keep the accepted keyboard unchanged."
+    "onApproval": "Build R05-3B through R05-5 in isolation; keep the accepted keyboard, monitor socket, character pixels, and poses unchanged."
   }
 }

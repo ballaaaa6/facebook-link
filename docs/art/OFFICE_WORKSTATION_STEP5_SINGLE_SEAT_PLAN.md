@@ -1,6 +1,6 @@
 # Office Workstation Step 5 R05 Calibration Gate
 
-Status: R05-0 through R05-3A complete; owner anchor-proof review required
+Status: R05-0 through R05-5 complete; isolated final candidate awaiting owner review
 Updated: 2026-07-28
 
 Current authorities:
@@ -256,10 +256,48 @@ Three additional before/after boards are stored in the same R05 directory:
 2. `05-chair-two-volume-before-after.png`;
 3. `06-person-seat-contact-six-frames.png`.
 
+## R05-3A owner decision
+
+The owner approved the keyboard, centered monitor base, and front/back seated
+contact proof. That approval authorized R05-3B through R05-5 in the isolated
+review environment. It did not authorize new characters, new poses, other
+furniture, or Active Office promotion.
+
+## R05-3B - real chair derivatives
+
+R05-3B does not generate a replacement chair. It reuses the existing front and
+back `64 x 80` chair sources, places them at local `[16,32]` on a `96 x 112`
+canvas without scaling, and derives:
+
+- physical `base-seat` and `backrest-arms` masks;
+- render `rear` and `foreground` masks;
+- exact source-pixel reconstruction checks.
+
+The chair seat socket is `[48,80]`, the floor socket is `[48,112]`, and the
+measured contact error is 0 px in both orientations across six frames.
+
+## R05-4 - isolated single station
+
+The development-only `?lab=office-workstation-r05` route renders one accepted
+workstation from both directions. It uses the accepted `3 x 2` desk, `52 x 40`
+monitor, `48 x 24` keyboard, existing Einstein pose, and the real chair masks.
+Clean and geometry-overlay captures are retained for review.
+
+## R05-5 - isolated ten-seat candidate
+
+The candidate uses two rows of five edge-touching `3 x 2` desks on the
+byte-identical current Office background. It contains five far and five near
+stations, ten existing characters and poses, zero legacy furniture references,
+and no other furniture. All stations remain inside the left 24-tile work zone.
+
+The browser gate ran for 60 seconds with 0 px anchor drift, zero broken images,
+zero console warnings, and zero console errors. Seven consolidated boards and
+four runtime captures are listed by
+`assets/game/manifests/office-workstation-step5-r05-final.json`.
+
 ## Current owner gate
 
-The owner should review the three R05-3A before/after images. Approval permits
-R05-3B only: create polished chair art from the approved sockets and normalize
-the monitor against its approved base contact while leaving the keyboard
-unchanged. Single-seat composition, ten-seat assembly, roster-wide
-calibration, Step 6, and Active Office remain blocked.
+The owner should review the R05 final before/after, single-station, ten-seat,
+and debug evidence. Approval may authorize the next named furniture batch or a
+separate promotion plan. Step 6, other furniture, and Active Office promotion
+remain blocked until that explicit decision.

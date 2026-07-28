@@ -11,11 +11,11 @@ export interface OfficeWorkstationStep5R05Manifest {
   version: 5;
   geometrySchemaVersion: 6;
   id: "office.workstation.step5.r05.calibration";
-  status: "owner-anchor-proof-review";
+  status: "owner-anchor-proof-approved";
   updatedOn: string;
   replaces: "office.workstation.step5.single-seat.v4";
   completedScope: readonly ["R05-0", "R05-1", "R05-2", "R05-3A"];
-  nextScope: "R05-3B-blocked-pending-owner-approval";
+  nextScope: "R05-3B-authorized";
   activeOfficeBaseline: { file: string; sha256: string; mustRemainByteIdentical: true };
   acceptedInputs: {
     desk: {
@@ -61,7 +61,7 @@ export interface OfficeWorkstationStep5R05Manifest {
         seatHeightPixels: 32;
         candidateBasis: string;
         contactErrorPixels: { front: readonly [0, 0]; back: readonly [0, 0] };
-        status: "owner-review-placeholder-not-polished-art";
+        status: "owner-approved-calibration-proof-not-runtime-art";
       };
     };
     monitor: {
@@ -117,12 +117,12 @@ export function validateOfficeWorkstationStep5R05(value: unknown): string[] {
     issues.push("step5R05.version: must use R05 Geometry v6");
   }
   if (value.id !== "office.workstation.step5.r05.calibration"
-    || value.status !== "owner-anchor-proof-review") {
-    issues.push("step5R05.identity: must stop at owner anchor-proof review");
+    || value.status !== "owner-anchor-proof-approved") {
+    issues.push("step5R05.identity: must record the approved anchor proof");
   }
   if (!exact(value.completedScope, ["R05-0", "R05-1", "R05-2", "R05-3A"])
-    || value.nextScope !== "R05-3B-blocked-pending-owner-approval") {
-    issues.push("step5R05.scope: R05-3B must remain blocked");
+    || value.nextScope !== "R05-3B-authorized") {
+    issues.push("step5R05.scope: owner approval must authorize R05-3B");
   }
   const accepted = value.acceptedInputs;
   if (!record(accepted) || !record(accepted.desk)

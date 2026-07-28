@@ -547,7 +547,7 @@
       ]
     },
     "monitor": {
-      "decision": "anchor-proof-required",
+      "decision": "owner-accepted-and-frozen",
       "reservation": [
         3,
         1
@@ -588,8 +588,9 @@
       "proofUsesExistingVisual": true
     },
     "chairPerson": {
-      "decision": "two-volume-anchor-proof-required",
-      "r04ChairPixelsAllowed": false,
+      "decision": "owner-approved-two-volume-anchor-proof",
+      "r04RejectedMasksAllowed": false,
+      "existingChairSourcePixelsAllowed": true,
       "physicalParts": {
         "base-seat": {
           "volume": [
@@ -654,7 +655,7 @@
           0
         ]
       },
-      "candidateStatus": "owner-anchor-proof-review-not-polished-art"
+      "candidateStatus": "owner-approved-calibration-proof-not-runtime-art"
     }
   },
   "gate": {
@@ -664,11 +665,12 @@
       "R05-2",
       "R05-3A"
     ],
-    "blocked": [
+    "authorized": [
       "R05-3B",
-      "polished-artwork",
-      "renderer",
-      "ten-seat",
+      "single-seat-renderer",
+      "ten-seat-isolated-candidate"
+    ],
+    "blocked": [
       "step6",
       "active-office"
     ]

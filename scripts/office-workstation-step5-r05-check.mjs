@@ -63,11 +63,11 @@ if (failures.length === 0) {
   "R04 component history must retain desk-only acceptance");
   add(manifest.version === 5 && manifest.geometrySchemaVersion === 6,
     "R05 must use manifest v5 and Geometry v6");
-  add(manifest.status === "owner-anchor-proof-review", "R05 must stop at owner anchor-proof review");
+  add(manifest.status === "owner-anchor-proof-approved", "R05 must record owner anchor-proof approval");
   add(JSON.stringify(manifest.completedScope) === JSON.stringify(["R05-0", "R05-1", "R05-2", "R05-3A"]),
     "R05 must complete through R05-3A only");
-  add(manifest.nextScope === "R05-3B-blocked-pending-owner-approval",
-    "R05-3B polished art must remain blocked pending owner approval");
+  add(manifest.nextScope === "R05-3B-authorized",
+    "R05-3B must be authorized by owner approval");
   add(manifest.activeOfficeBaseline?.sha256 === activeHash
     && manifest.activeOfficeBaseline?.sha256 === sha256(manifest.activeOfficeBaseline.file),
   "Active Office baseline changed during R05 calibration");
@@ -141,7 +141,8 @@ if (failures.length === 0) {
   const feedback = measurements.ownerFeedbackR05_3A;
   add(feedback?.keyboard?.decision === "accepted-and-frozen"
     && JSON.stringify(feedback?.monitor?.afterCenterErrorPixels) === JSON.stringify({ far: [0, 0], near: [0, 0] })
-    && feedback?.chairPerson?.r04ChairPixelsAllowed === false
+    && feedback?.chairPerson?.r04RejectedMasksAllowed === false
+    && feedback?.chairPerson?.existingChairSourcePixelsAllowed === true
     && JSON.stringify(feedback?.chairPerson?.actorLogicalFloorSocketLocal) === JSON.stringify([48, 112])
     && JSON.stringify(feedback?.chairPerson?.seatPlaneCandidateLocal) === JSON.stringify([48, 80]),
   "R05-3A owner feedback measurements changed");

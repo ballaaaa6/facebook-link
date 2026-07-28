@@ -28,6 +28,7 @@ const step5R03 = readJson("assets/game/manifests/office-workstation-step5-single
 const componentsV3 = readJson("assets/game/manifests/office-workstation-components-v3.json");
 const step5R04 = readJson("assets/game/manifests/office-workstation-step5-single-seat-v4.json");
 const step5R05 = readJson("assets/game/manifests/office-workstation-step5-r05-calibration.json");
+const step5R05Final = readJson("assets/game/manifests/office-workstation-step5-r05-final.json");
 const characterScale = readJson("assets/game/manifests/office-character-scale-standard-v1.json");
 const candidate = readJson("assets/game/manifests/office-candidate-v1.json");
 const review = readJson("assets/game/manifests/office-candidate-review-r01.json");
@@ -232,10 +233,10 @@ add(failures, step5R04.permissions?.tenSeatAssembly === false
 "Step 5 R04 must keep expansion and Active Office blocked");
 add(failures, step5R04.activeOfficeBaseline?.sha256 === assembly.activeOfficeBaseline?.sha256,
   "Step 5 R04 must inherit the exact Active Office baseline hash");
-add(failures, step5R05.status === "owner-anchor-proof-review"
+add(failures, step5R05.status === "owner-anchor-proof-approved"
   && JSON.stringify(step5R05.completedScope) === JSON.stringify(["R05-0", "R05-1", "R05-2", "R05-3A"])
-  && step5R05.nextScope === "R05-3B-blocked-pending-owner-approval",
-"Step 5 R05 must stop after R05-3A at owner anchor-proof review");
+  && step5R05.nextScope === "R05-3B-authorized",
+"Step 5 R05 must record owner approval and authorize R05-3B");
 for (const key of [
   "newArtworkGeneration", "rendererImplementation", "singleSeatAssembly",
   "rosterWideCalibration", "tenSeatAssembly", "step6", "activeOfficePromotion",
@@ -244,6 +245,24 @@ for (const key of [
 }
 add(failures, step5R05.activeOfficeBaseline?.sha256 === assembly.activeOfficeBaseline?.sha256,
   "Step 5 R05 must inherit the exact Active Office baseline hash");
+add(failures, step5R05Final.status === "owner-review-ten-seat-candidate"
+  && JSON.stringify(step5R05Final.completedScope) === JSON.stringify(["R05-3B", "R05-4", "R05-5"]),
+"Step 5 R05 final must stop at consolidated owner review");
+add(failures, step5R05Final.ownerDecision?.r05_3a === "approved",
+  "Step 5 R05 final must inherit owner approval of the anchor proof");
+add(failures, step5R05Final.permissions?.isolatedRenderer === true
+  && step5R05Final.permissions?.singleSeatAssembly === true
+  && step5R05Final.permissions?.tenSeatAssembly === true
+  && step5R05Final.permissions?.newCharacterOrPose === false
+  && step5R05Final.permissions?.otherFurniture === false
+  && step5R05Final.permissions?.step24 === false
+  && step5R05Final.permissions?.activeOfficePromotion === false,
+"Step 5 R05 final must allow isolated assembly while blocking Step 24 and Active Office");
+add(failures, step5R05Final.activeOfficeBaseline?.sha256 === assembly.activeOfficeBaseline?.sha256,
+  "Step 5 R05 final must inherit the exact Active Office baseline hash");
+add(failures, step5R05Final.runtimePolicy?.mockupChairAllowed === false
+  && step5R05Final.runtimePolicy?.legacyCandidateAllowed === false,
+"Step 5 R05 final cannot use the calibration mockup or rejected candidate");
 
 add(failures, candidate.status === "rejected-visual", "Candidate v1 must remain rejected-visual evidence");
 add(failures, candidate.review?.status === "changes-requested", "Candidate v1 must retain owner-requested changes");
@@ -274,6 +293,6 @@ if (failures.length > 0) {
   process.exitCode = 1;
 } else {
   process.stdout.write(
-    "Workstation authority OK: R04 physical composition rejected; R05-3A anchor proof awaits owner review; polished art, expansion, and Active Office blocked.\n",
+    "Workstation authority OK: R04 physical composition rejected; R05-3A anchor proof approved; isolated R05-3B through R05-5 authorized; Active Office blocked.\n",
   );
 }

@@ -1,6 +1,6 @@
 # Office 2D Geometry Principles
 
-Status: Current Geometry v6 workstation principles; R05-3A owner anchor-proof review
+Status: Current Geometry v6 workstation principles; R05 final candidate owner review
 Updated: 2026-07-28
 
 This document defines the shared Office principles. For Step 5 workstation
@@ -14,6 +14,8 @@ Character-scale authority:
 `assets/game/manifests/office-character-scale-standard-v1.json`.
 R05 calibration authority:
 `assets/game/manifests/office-workstation-step5-r05-calibration.json`.
+R05 assembled review authority:
+`assets/game/manifests/office-workstation-step5-r05-final.json`.
 R04 component and assembly manifests are rejected historical evidence except
 for the explicitly accepted desk pixels.
 
@@ -122,10 +124,11 @@ the middle `1 x 1` cell in the actor-near row.
 
 ## Paired ten-seat block
 
-Ten-seat coordinates are intentionally not current authority. R04 validates
-one logical station only. A ten-seat block can be derived only after the owner
-accepts the R04 pixels and renderer. The Active Office background, zone split,
-map, registry, and roster remain unchanged.
+The R05 final candidate contains two rows of five edge-touching `3 x 2` desks.
+Each row uses X origins `[4, 7, 10, 13, 16]`, so its four joins have zero gap
+and zero overlap. Five far-facing and five near-facing stations use ten
+existing characters and poses inside the left 24-tile work zone. The current
+background is byte-identical; Active Office map and registry remain unchanged.
 
 ## Furniture part contract
 
@@ -172,9 +175,8 @@ or contact anchors.
 
 ## Approval gate
 
-R04 physical composition is rejected; coordinate stability did not prove
-seat contact or correct equipment pivots. R05-3A freezes the keyboard, centers
-the monitor base, and proves the chair/person sockets with placeholders.
-R05-3B polished artwork,
-single-seat composition, the other eighteen characters, ten seats, Step 6,
-and Active Office permissions remain false pending owner approval.
+R04 physical composition is rejected; coordinate stability did not prove seat
+contact or correct equipment pivots. The owner approved the corrected R05-3A
+anchors. R05 final reuses real chair pixels, keeps the accepted equipment, and
+validates single- and ten-seat compositions at 0 px drift. Other furniture,
+Step 6, and Active Office permissions remain false pending owner approval.

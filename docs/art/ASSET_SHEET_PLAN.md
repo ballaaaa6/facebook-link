@@ -14,11 +14,13 @@ R04 P4-P6 is rejected physical composition evidence; only its full rectangular
 desk pixels remain accepted. R05-0 through R05-3A define Geometry v6 reservation,
 visual-pivot, and measured-contact contracts in
 `assets/game/manifests/office-workstation-step5-r05-calibration.json`.
-The R05-3A owner proof freezes the keyboard, centers the monitor base, and
-demonstrates two chair volumes plus a y80 person-seat socket without polished
-new art. R05-3B, roster-wide calibration,
-ten-seat outputs, Step 6, and Active Office promotion remain blocked pending
-owner review of the three R05-3A before/after boards.
+The owner approved the R05-3A keyboard, monitor base, and seated-contact proof.
+R05-3B reuses the existing real chair pixels without scaling, splits them into
+physical and render masks, and preserves the y80 seat socket. R05-4 and R05-5
+now provide an isolated single station and a two-by-five, ten-person candidate
+on the byte-identical current background. No character, pose, or unrelated
+furniture was created. Active Office promotion remains blocked pending review
+of the consolidated R05 final evidence.
 
 Derived-asset staging gate (2026-07-27): Steps 13-16 resolve all 77 reviewed
 `derive-composite` records under `office-derived-v1`. The versioned outputs

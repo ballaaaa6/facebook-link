@@ -61,7 +61,8 @@ test("R05-3A separates chair physical volumes from draw masks and aligns the sea
   assert.deepEqual(chair.anchorProof.seatPlaneCandidateLocal, [48, 80]);
   assert.equal(chair.anchorProof.seatHeightPixels, 32);
   assert.deepEqual(chair.anchorProof.contactErrorPixels, { front: [0, 0], back: [0, 0] });
-  assert.equal(measurements.ownerFeedbackR05_3A.chairPerson.r04ChairPixelsAllowed, false);
+  assert.equal(measurements.ownerFeedbackR05_3A.chairPerson.r04RejectedMasksAllowed, false);
+  assert.equal(measurements.ownerFeedbackR05_3A.chairPerson.existingChairSourcePixelsAllowed, true);
 });
 
 test("R05-2 records the measurable R04 failures", () => {
@@ -76,10 +77,11 @@ test("R05-2 records the measurable R04 failures", () => {
   assert.equal(measurements.runtimeCharacter.pelvisContactPivot, null);
 });
 
-test("R05 stops before artwork and preserves Active Office byte-for-byte", () => {
+test("R05 records owner approval while preserving Active Office byte-for-byte", () => {
   const digest = (url: URL) => createHash("sha256").update(readFileSync(url)).digest("hex");
   assert.equal(digest(activeOfficeUrl), manifest.activeOfficeBaseline.sha256);
-  assert.equal(manifest.nextScope, "R05-3B-blocked-pending-owner-approval");
+  assert.equal(manifest.status, "owner-anchor-proof-approved");
+  assert.equal(manifest.nextScope, "R05-3B-authorized");
   assert.equal(manifest.permissions.newArtworkGeneration, false);
   assert.equal(manifest.permissions.singleSeatAssembly, false);
   assert.equal(manifest.permissions.activeOfficePromotion, false);

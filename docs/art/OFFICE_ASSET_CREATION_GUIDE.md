@@ -1,6 +1,6 @@
 # Office Asset Creation Guide
 
-Status: Production guide; Step 5 R05-3A awaiting owner anchor-proof review
+Status: Production guide; Step 5 R05 final workstation candidate awaiting owner review
 Scope: Office assets created for the latest orthographic pixel-art reference
 Current execution plan: `docs/art/OFFICE_GEOMETRY_REMEDIATION_ROADMAP.md`
 Historical migration plan: `docs/art/OFFICE_REF_MIGRATION_ROADMAP.md`
@@ -12,10 +12,12 @@ normalization, semantic layers, and Step 4 QA boards. The owner then authorized
 the Step 5 one-seat lab. R01 and R02 are rejected evidence. R03 corrected the
 logical ruler and measured the failed pixels. R04 chair/person/equipment
 composition was later rejected; only its full-top desk remains accepted.
-R05-3A now freezes the accepted keyboard, centers the monitor base, and shows
-two-volume chair/person anchor proofs without polished new art. R05-3B,
-roster-wide calibration, ten-seat assembly, Step 6, and Active Office
-promotion remain blocked pending owner review.
+The owner approved the R05-3A keyboard, centered monitor base, and two-volume
+chair/person anchor proof. R05-3B reuses the existing real chair pixels without
+scaling, and R05-4/R05-5 assemble one station plus ten existing characters in
+an isolated two-by-five review scene. No new character, pose, or other
+furniture is allowed. Active Office promotion remains blocked pending owner
+review of `office-workstation-step5-r05-final.json`.
 
 ## 1. Purpose
 

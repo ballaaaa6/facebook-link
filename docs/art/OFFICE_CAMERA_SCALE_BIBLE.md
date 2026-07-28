@@ -1,6 +1,6 @@
 # Office Camera and Scale Bible v3
 
-Status: Geometry v5 ruler retained; Step 5 R04 P4-P6 validated
+Status: Geometry v6 ruler retained; Step 5 R05 final candidate under owner review
 Updated: 2026-07-28
 Machine-readable source:
 `assets/game/manifests/office-camera-scale-bible-v3.json`
@@ -39,10 +39,10 @@ The levels describe world stacking. They are not bitmap crop boundaries.
 | Object | Floor footprint | Logical volume | Pixel rule |
 | --- | --- | --- | --- |
 | Current Office person | `1 x 1` | `1 x 1 x 3` | Keep the current `96 x 104` frame at 32 px/tile |
-| Chair | `1 x 1` | `1 x 1 x 2` | R05-3A proves base-seat/backrest sockets; polished R05-3B art blocked |
+| Chair | `1 x 1` | `1 x 1 x 2` | R05 final reuses the real 64 x 80 source on a 96 x 112 canvas without scaling; seat y80, floor y112 |
 | Desk | `3 x 2` | `3 x 2 x 2` | Full support plane is `96 x 64` px at `z = 2` |
-| Monitor | desk child | support child | Reserve actor-far `3 x 1`; target width 72..80 px |
-| Keyboard | desk child | support child | Reserve center `1 x 1`; target 44..48 by 18..20 px |
+| Monitor | desk child | support child | Reserve actor-far `3 x 1`; accepted visual `52 x 40`, base centered with 0 px error |
+| Keyboard | desk child | support child | Reserve center `1 x 1`; accepted visual `48 x 24` |
 
 Visible character, chair, hair, clothing, equipment, or furniture-height pixels
 may overflow a footprint only where declared. Render overflow never creates
@@ -63,8 +63,9 @@ collision cells.
 
 R04 physical composition is rejected; only its desk pixels remain accepted.
 R05 Geometry v6 separates top-down reservation, world support socket, local
-visual pivot, and support height. R05-3A centers the monitor base and proves
-the two-volume chair/person sockets. Its authority is
-`office-workstation-step5-r05-calibration.json`. New component artwork,
-single-seat assembly, ten-seat assembly, roster-wide calibration, Step 6, and
-Active Office promotion remain blocked pending owner review.
+visual pivot, and support height. The R05 final candidate keeps the approved
+desk, monitor, keyboard, and existing poses; it derives chair masks from the
+real source pixels and validates one station plus ten seats for 60 seconds at
+0 px drift. Its authority is `office-workstation-step5-r05-final.json`.
+Step 6, other furniture, and Active Office promotion remain blocked pending
+owner review.

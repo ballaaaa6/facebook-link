@@ -313,7 +313,7 @@ def measurement_data() -> dict[str, Any]:
                 "localVisualPivot": [24, 12],
             },
             "monitor": {
-                "decision": "anchor-proof-required",
+                "decision": "owner-accepted-and-frozen",
                 "reservation": [3, 1],
                 "supportFootprint": [1, 1],
                 "supportAnchorDeskLocal": [1.5, 0.5, 2],
@@ -323,8 +323,9 @@ def measurement_data() -> dict[str, Any]:
                 "proofUsesExistingVisual": True,
             },
             "chairPerson": {
-                "decision": "two-volume-anchor-proof-required",
-                "r04ChairPixelsAllowed": False,
+                "decision": "owner-approved-two-volume-anchor-proof",
+                "r04RejectedMasksAllowed": False,
+                "existingChairSourcePixelsAllowed": True,
                 "physicalParts": {
                     "base-seat": {"volume": [1, 1, 1], "zRange": [0, 1]},
                     "backrest-arms": {"volume": [1, 1, 1], "zRange": [1, 2]},
@@ -339,12 +340,13 @@ def measurement_data() -> dict[str, Any]:
                 "seatHeightPixels": 32,
                 "candidateBasis": "front frame first sustained pants/thigh row; back view inherits the shared seated skeleton anchor because the coat occludes the pelvis",
                 "contactErrorPixels": {"front": [0, 0], "back": [0, 0]},
-                "candidateStatus": "owner-anchor-proof-review-not-polished-art",
+                "candidateStatus": "owner-approved-calibration-proof-not-runtime-art",
             },
         },
         "gate": {
             "completed": ["R05-0", "R05-1", "R05-2", "R05-3A"],
-            "blocked": ["R05-3B", "polished-artwork", "renderer", "ten-seat", "step6", "active-office"],
+            "authorized": ["R05-3B", "single-seat-renderer", "ten-seat-isolated-candidate"],
+            "blocked": ["step6", "active-office"],
         },
     }
 
@@ -840,11 +842,11 @@ def manifest_data(measurement_content: bytes) -> dict[str, Any]:
         "version": 5,
         "geometrySchemaVersion": 6,
         "id": "office.workstation.step5.r05.calibration",
-        "status": "owner-anchor-proof-review",
+        "status": "owner-anchor-proof-approved",
         "updatedOn": "2026-07-28",
         "replaces": "office.workstation.step5.single-seat.v4",
         "completedScope": ["R05-0", "R05-1", "R05-2", "R05-3A"],
-        "nextScope": "R05-3B-blocked-pending-owner-approval",
+        "nextScope": "R05-3B-authorized",
         "activeOfficeBaseline": {
             "file": repo_path(ACTIVE_MAP_PATH),
             "sha256": sha256(ACTIVE_MAP_PATH),
@@ -892,7 +894,7 @@ def manifest_data(measurement_content: bytes) -> dict[str, Any]:
                     "seatHeightPixels": 32,
                     "candidateBasis": "front frame first sustained pants/thigh row; back view inherits the shared seated skeleton anchor because the coat occludes the pelvis",
                     "contactErrorPixels": {"front": [0, 0], "back": [0, 0]},
-                    "status": "owner-review-placeholder-not-polished-art",
+                    "status": "owner-approved-calibration-proof-not-runtime-art",
                 },
             },
             "monitor": {
@@ -938,16 +940,15 @@ def manifest_data(measurement_content: bytes) -> dict[str, Any]:
             "activeOfficePromotion": False,
         },
         "ownerGate": {
-            "requiredDecision": "Approve or revise the three R05-3A before/after anchor-proof boards.",
-            "explicitlyNotApproved": [
-                "polished-chair-artwork",
-                "monitor-regeneration-or-final-normalization",
+            "decision": "approved",
+            "approvedScope": [
+                "real-chair-derivatives",
+                "monitor-final-normalization",
                 "single-seat-composition",
-                "ten-seat-layout",
-                "step6",
-                "active-office",
+                "ten-seat-isolated-candidate",
             ],
-            "onApproval": "Begin R05-3B only: create polished chair art from the approved sockets and normalize the monitor against the approved base contact; keep the accepted keyboard unchanged.",
+            "explicitlyNotApproved": ["step6", "active-office"],
+            "onApproval": "Build R05-3B through R05-5 in isolation; keep the accepted keyboard, monitor socket, character pixels, and poses unchanged.",
         },
     }
 

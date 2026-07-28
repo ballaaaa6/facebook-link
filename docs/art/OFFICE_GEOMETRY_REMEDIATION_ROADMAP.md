@@ -535,23 +535,25 @@ Commercial rights clearance remains a future pre-commercialization gate.
 Nothing in this decision changes the `pending-commercial-review` status of the
 current character art.
 
-## 19. Steps 21-23 — Isolated Office Candidate v1 review
+## 19. Steps 21-23 — Isolated Office candidate review
 
-Status: Complete and awaiting owner review on 2026-07-27
+Status: Candidate v1 rejected; R05 workstation-only replacement awaiting owner review on 2026-07-28
 
-The candidate is isolated behind the development-only
-`?lab=office-candidate-v1` route. It combines the accepted Office Map v2,
-Geometry v3 workstation bundle, structural deployment, derived facility
-composites, the existing eighteen active/alternate character identities, and
-Boba without changing Active Office.
+Candidate v1 remains preserved behind the development-only
+`?lab=office-candidate-v1` route as rejected regression evidence. Its furniture
+composition cannot be promoted.
 
-The review suite covers the live-runtime compatibility view, ten Geometry v3
-workstations, all thirteen derived composites, and the complete frozen roster.
-Revision `r01` contains ten screenshots, a 69-second stability run, zero
-browser console warnings or errors, zero broken images, and responsive checks
-at desktop, tablet, 390 px, and 320 px widths. Machine-readable results are in
-`assets/game/manifests/office-candidate-review-r01.json`; the owner-facing
-summary is in `docs/OFFICE_CANDIDATE_V1_REVIEW.md`.
+The replacement is intentionally narrower. R05 covers only the accepted desk,
+monitor, keyboard, real existing chair, and ten existing seated characters.
+It places two rows of five edge-touching `3 x 2` desks in the left work zone on
+the byte-identical current background. No other furniture, character, or pose
+is part of this candidate. The development route is
+`?lab=office-workstation-r05`; machine-readable results and four runtime
+captures are recorded by
+`assets/game/manifests/office-workstation-step5-r05-final.json`.
+
+The R05 browser gate completed 60 seconds at 0 px anchor drift with zero broken
+images, zero warnings, and zero errors. Active Office remains unchanged.
 
 ## 20. Step 24 — Active Office promotion
 

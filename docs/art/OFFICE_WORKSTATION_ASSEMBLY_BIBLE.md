@@ -1,6 +1,6 @@
 # Office Workstation Assembly Bible v3
 
-Status: Geometry v6 calibration; R05-3A anchor proof awaiting owner review
+Status: Geometry v6; R05 final ten-seat workstation candidate awaiting owner review
 Updated: 2026-07-28
 Machine-readable source:
 `assets/game/manifests/office-workstation-assembly-bible-v3.json`
@@ -8,22 +8,23 @@ Machine-readable source:
 The v2 Assembly Bible and Step 4 desk files remain historical pixel evidence.
 Step 5 R02 is rejected and cannot be used as an assembly or renderer input.
 R03 defines the earlier logical ruler. R04 chair/person/equipment composition
-is rejected; only its desk pixels remain accepted. R05 authority is
-`office-workstation-step5-r05-calibration.json`.
+is rejected; only its desk pixels remain accepted. Calibration authority is
+`office-workstation-step5-r05-calibration.json`; the current assembled review
+authority is `office-workstation-step5-r05-final.json`.
 
 ## Station components
 
 | Component | Spatial contract | Current pixel decision |
 | --- | --- | --- |
 | Person | `1 x 1 x 3`, current frame `96 x 104` px | Reuse current Office character and seated pose |
-| Chair | `1 x 1 x 2`, base-seat `z0..z1`, backrest-arms `z1..z2` | R05-3A placeholder uses seat y80; polished R05-3B art blocked |
+| Chair | `1 x 1 x 2`, base-seat `z0..z1`, backrest-arms `z1..z2` | Existing real 64 x 80 source normalized without scaling; seat y80 and floor y112 on 96 x 112 canvas |
 | Desk | `3 x 2 x 2`, complete `96 x 64` support plane at `z = 2` | R04 `96 x 128`; public and seat sides |
-| Monitor | actor-far `3 x 1` reservation, centered `1 x 1` support | R05-3A base error 0 px; final 72..80 px visual blocked |
+| Monitor | actor-far `3 x 1` reservation, centered `1 x 1` support | Owner-accepted `52 x 40`; base-center error 0 px in both orientations |
 | Keyboard | actor-near center `1 x 1` reservation | Owner-accepted `48 x 24`, pivot `[24,12]`, frozen |
 
 ## Person and chair contact
 
-The required future back-to-front semantic parts are:
+The required back-to-front semantic parts are:
 
 1. `chair-rear`;
 2. `person`;
@@ -31,8 +32,10 @@ The required future back-to-front semantic parts are:
 4. `chair-foreground`.
 
 R04 did not implement this model: its `chair-seat` mask contains the wheel/base
-region. R05-3A separates two physical parts from their derived rear and
-foreground masks. R05-3B must turn the approved sockets into polished art.
+region. R05-3A proved the two physical volumes and R05-3B derives the rear and
+foreground masks from the existing real chair pixels. The two physical masks
+and two render masks reconstruct the source exactly; no mockup chair is a
+runtime input.
 
 The contact rules are:
 
@@ -91,8 +94,9 @@ The three boards under
 2. desk and equipment footprints;
 3. measured character/chair sources and contact semantics.
 
-The approved P4-P6 pass adds six deterministic R04 boards and two browser
-captures. The isolated renderer passes a 30-second zero-drift gate and remains
-development-only. Owner approval now applies to the one R04 station only; it
-does not permit ten-seat assembly, roster-wide calibration, Step 6, or Active
-Office promotion.
+R04 P4-P6 remains rejected evidence. The R05 final pass adds seven deterministic
+boards and four browser captures. Its development-only route validates one
+station in both directions and a two-by-five bank of ten existing characters
+for 60 seconds with 0 px anchor drift, no broken images, and no console
+warnings or errors. Owner review applies to this isolated candidate only; it
+does not permit other furniture, Step 6, or Active Office promotion.
