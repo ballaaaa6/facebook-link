@@ -2,7 +2,13 @@
 
 Date: 2026-07-27
 
-Status: `accepted-staging`
+Status: Historical staging evidence; non-promotable
+
+Furniture reset directive (2026-07-29): the former `accepted-staging` decision
+does not authorize any derived or legacy furniture pixel for a new Office
+candidate. These outputs remain audit evidence only. R05-r02 is the sole
+furniture exception; new families follow
+`docs/art/OFFICE_FURNITURE_PRODUCTION_GATES.md`.
 
 ```text
 activeOfficePromotion: false

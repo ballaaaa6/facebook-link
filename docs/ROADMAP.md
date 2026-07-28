@@ -1,5 +1,13 @@
 # Roadmap
 
+Furniture reset directive (2026-07-29): all reuse, derived-composite, and
+historical accepted-staging statements below are non-promotable for furniture,
+facilities, equipment, and decor in a new Office candidate. Current Active
+Office assets remain rollback evidence only. R05-r02 is the sole approved
+furniture family. New families must follow
+`docs/art/OFFICE_FURNITURE_PRODUCTION_GATES.md` one at a time. Historical
+completion labels do not waive those gates.
+
 Workstation correction (2026-07-28): R01, R02, R04, R05 final, Candidate r01,
 and the former `5 x 4` staging workstations are rejected or historical
 evidence. R05-r02 P0-P3 is the owner-approved baseline: 32 pixels per tile,

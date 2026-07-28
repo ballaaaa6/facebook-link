@@ -1,5 +1,13 @@
 # Agent Office
 
+Furniture reset directive (2026-07-29): no furniture, facility, equipment, or
+decor pixel from the current Active Office, its runtime registry, rejected
+candidates, existing furniture-library crops, or legacy derived outputs may
+enter a new Office candidate. The R05-r02 workstation family is the only
+furniture exception. `docs/art/OFFICE_FURNITURE_PRODUCTION_GATES.md` is the
+current authority; older reuse or staging-acceptance language is historical
+only.
+
 Workstation correction (2026-07-28): the isolated `5 x 4` staging layout,
 Candidate r01, and R05 final ten-seat composition are rejected evidence. The
 owner-approved workstation authority is R05-r02 P0-P3 in

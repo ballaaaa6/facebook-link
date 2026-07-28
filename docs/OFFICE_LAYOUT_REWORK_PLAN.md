@@ -1,5 +1,13 @@
 # Office Integer-Grid Layout
 
+Furniture authority (2026-07-29): this document defines capacity and spatial
+intent only. It does not authorize any existing furniture pixel. New Office
+candidates must contain zero current, legacy, rejected-candidate, or existing
+library-crop furniture, facility, equipment, and decor assets. R05-r02 is the
+sole furniture exception. Every other family must pass
+`docs/art/OFFICE_FURNITURE_PRODUCTION_GATES.md` before it can appear in a
+furniture-only layout candidate.
+
 ## Objective
 
 Office C is a measurable operational scene built on a strict integer tile

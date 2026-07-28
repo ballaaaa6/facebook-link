@@ -6,6 +6,14 @@ Current workstation authority: `docs/art/OFFICE_COORDINATE_SYSTEM.md`
 Next workstation plan: `docs/art/OFFICE_WORKSTATION_TEN_SEAT_NEXT_PLAN.md`
 Historical migration plan: `docs/art/OFFICE_REF_MIGRATION_ROADMAP.md`
 
+Furniture reset gate (2026-07-29): no current Active Office, legacy,
+rejected-candidate, derived, or existing furniture-library crop is promotable
+into a new Office candidate. The R05-r02 workstation family is the only
+furniture exception and must remain pixel-exact. All other furniture,
+facilities, equipment, and decor require clean new sources and the complete
+gate sequence in `docs/art/OFFICE_FURNITURE_PRODUCTION_GATES.md`. Tables in
+this guide describe scale and anatomy; they do not approve an existing file.
+
 Workstation reset gate (2026-07-28): the former `5 x 4` / `5 x 3` workstation
 contract and Candidate r01 are rejected. The owner approved the corrected
 `3 x 2` blueprint and accepted the bare desk v2 source, its front/back
@@ -18,7 +26,9 @@ desk proof on 2026-07-28. R05-r02 replaces R05 final, whose ten-seat
 composition is rejected. Current workstation work must resolve world sockets
 to local sockets, use per-character/per-frame seat contacts, join desk rows at
 64 pixels, and draw far equipment in physical depth order. No new character,
-pose, or furniture art is allowed. Active Office promotion remains blocked.
+pose, or workstation-family art is allowed. This freeze does not authorize
+other existing furniture; non-workstation families must be produced through
+the current furniture gates. Active Office promotion remains blocked.
 
 ## 1. Purpose
 

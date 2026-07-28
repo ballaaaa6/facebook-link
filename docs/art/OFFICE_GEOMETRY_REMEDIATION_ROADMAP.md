@@ -11,6 +11,13 @@ this historical roadmap is revoked. The current workstation source of truth is
 `docs/art/OFFICE_COORDINATE_SYSTEM.md`. Do not execute the old
 workstation steps or promote their artifacts.
 
+Furniture supersession note (2026-07-29): the reuse-first decision, derived
+furniture waves, legacy runtime composites, facility composites, and
+staging-to-active integration described in this historical record cannot feed
+a new Office candidate. They remain audit and rollback evidence only. R05-r02
+is the sole furniture exception. Current furniture production authority is
+`docs/art/OFFICE_FURNITURE_PRODUCTION_GATES.md`.
+
 ## 1. Decision
 
 The Office asset program is reuse-first. It will not regenerate the complete

@@ -1,6 +1,11 @@
 # Einstein and Held-Prop Vertical Slice
 
-Status: Planned next
+Status: Historical interaction evidence; furniture sources non-promotable
+
+Furniture reset directive (2026-07-29): this slice may inform character action
+semantics only. Its furniture, facility, mask, composite, and library pixels
+cannot enter a new Office candidate. New furniture families must follow
+`docs/art/OFFICE_FURNITURE_PRODUCTION_GATES.md`.
 
 ## Objective
 

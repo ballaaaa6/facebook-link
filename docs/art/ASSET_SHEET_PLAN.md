@@ -1,5 +1,14 @@
 # Controlled Asset Sheet Plan
 
+Furniture supersession gate (2026-07-29): existing multi-object furniture
+sheets and their crops are reference-only and cannot feed a new Office
+candidate. A new furniture family starts with one isolated shell per source
+canvas and must pass the contamination, part, placement, reservation, lab, and
+owner-review gates in `docs/art/OFFICE_FURNITURE_PRODUCTION_GATES.md`. A
+multi-cell sheet is allowed only after that family passes and an automated
+extractor proves padding, border clearance, and component isolation for every
+cell. This rule overrides the furniture batching guidance below.
+
 ## Goal
 
 Reduce generation latency without sacrificing usable geometry. Static furniture and props are generated as controlled 4x4 asset sheets. Identity-sensitive character work animations use one character per sheet.

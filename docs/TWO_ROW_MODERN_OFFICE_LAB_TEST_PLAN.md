@@ -2,6 +2,12 @@
 
 Status: Historical and rejected
 
+Current-rule extraction (2026-07-29): although this plan is historical, its
+zero-legacy and no-fallback lesson is now a global Office furniture rule in
+`docs/art/OFFICE_FURNITURE_PRODUCTION_GATES.md`. The current rule is stricter:
+existing modern-bright furniture crops are also reference-only until a clean
+new family passes every production gate.
+
 This test plan documents the path that produced the rejected v6 composition.
 Do not execute it as the current Office migration plan. Preserve it as
 regression context and follow

@@ -1,5 +1,15 @@
 # Warm Studio Office BOM
 
+Status: Historical inventory and capacity reference
+
+Furniture reset directive (2026-07-29): every reuse instruction in this file
+is revoked for new Office candidates. The active map and registry remain
+rollback evidence only. The object counts, capacity targets, and physical
+dimensions below may inform requirements, but none of the named current,
+legacy, derived, or existing library assets is promotable. R05-r02 is the sole
+furniture exception. Follow
+`docs/art/OFFICE_FURNITURE_PRODUCTION_GATES.md` for all new asset work.
+
 ## Production Rule
 
 Only assets referenced by `assets/game/maps/office-c-v2.json` are rendered for the active integer-grid scene. Extra catalog variants remain deferred until a real layout requires them.
