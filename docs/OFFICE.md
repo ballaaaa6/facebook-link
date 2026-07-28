@@ -6,7 +6,12 @@ candidates, existing furniture-library crops, or legacy derived outputs may
 enter a new Office candidate. The R05-r02 workstation family is the only
 furniture exception. `docs/art/OFFICE_FURNITURE_PRODUCTION_GATES.md` is the
 current authority; older reuse or staging-acceptance language is historical
-only.
+only. Original project-created masters are not approved furniture, but an exact
+source marked salvageable in
+`assets/game/manifests/office-furniture-master-audit-v1.json` may be extracted
+again under a new version and must still pass every family gate. The readable
+audit and production order are in
+`docs/art/OFFICE_FURNITURE_MASTER_AUDIT_V1.md`.
 
 Workstation correction (2026-07-28): the isolated `5 x 4` staging layout,
 Candidate r01, and R05 final ten-seat composition are rejected evidence. The

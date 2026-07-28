@@ -1,13 +1,16 @@
 # Controlled Asset Sheet Plan
 
-Furniture supersession gate (2026-07-29): existing multi-object furniture
-sheets and their crops are reference-only and cannot feed a new Office
-candidate. A new furniture family starts with one isolated shell per source
-canvas and must pass the contamination, part, placement, reservation, lab, and
-owner-review gates in `docs/art/OFFICE_FURNITURE_PRODUCTION_GATES.md`. A
-multi-cell sheet is allowed only after that family passes and an automated
-extractor proves padding, border clearance, and component isolation for every
-cell. This rule overrides the furniture batching guidance below.
+Furniture supersession gate (2026-07-29): existing processed furniture crops
+are reference-only and cannot feed a new Office candidate. Original
+project-created master sheets may be re-extracted only when
+`assets/game/manifests/office-furniture-master-audit-v1.json` marks the exact
+source salvageable. A new furniture family starts with one isolated shell or
+one audited full-master extraction and must pass the contamination, part,
+placement, reservation, lab, and owner-review gates in
+`docs/art/OFFICE_FURNITURE_PRODUCTION_GATES.md`. A multi-cell sheet is allowed
+as an authoring source only when automated extraction proves padding, border
+clearance, component ownership, and isolation for every accepted cell. This
+rule overrides the furniture batching guidance below.
 
 ## Goal
 

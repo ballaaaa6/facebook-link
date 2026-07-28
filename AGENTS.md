@@ -28,7 +28,7 @@ Cloudflare coordinates work. It does not run Playwright browser sessions. The au
 6. Human review remains available before publishing and before activating a strategy version.
 7. Do not edit applied database migrations or generated asset reports. The initial migration may change only before the first durable pilot database is created.
 8. Do not regenerate visual assets casually. Follow `docs/art/ASSET_SHEET_PLAN.md` and run asset validation.
-9. A new Office candidate must use zero furniture, facility, equipment, or decor pixels from the current Active Office, its runtime asset registry, legacy runtime directories, rejected candidates, or existing furniture-library crops. Those files are rollback or visual-reference evidence only. The owner-approved R05-r02 workstation family is the sole furniture exception. Every other family must start from a clean new source and pass `docs/art/OFFICE_FURNITURE_PRODUCTION_GATES.md`; missing assets must fail instead of falling back.
+9. A new Office candidate must use zero furniture, facility, equipment, or decor pixels from the current Active Office, its runtime asset registry, legacy runtime directories, rejected candidates, or previously processed furniture-library crops. Those files are rollback or visual-reference evidence only. An original project-created master sheet may supply pixels only through a new versioned extraction when `assets/game/manifests/office-furniture-master-audit-v1.json` marks the exact source salvageable and the family passes `docs/art/OFFICE_FURNITURE_PRODUCTION_GATES.md`. The owner-approved R05-r02 workstation family is the sole already-approved furniture exception. Missing assets must fail instead of falling back.
 10. Petdex assets marked `pending-commercial-review` are prototype-only.
 11. No connector may execute real external actions while its feature flag is disabled.
 12. After completing a requested change and passing the relevant checks, commit the change and push the current branch to its configured remote so the deployed/source-of-truth view is updated. Skip the push only when the user explicitly requests local-only work or provides a different delivery target.
@@ -48,6 +48,8 @@ Cloudflare coordinates work. It does not run Playwright browser sessions. The au
 - Code health: `docs/CODE_STANDARDS.md`
 - Delivery sequence: `docs/ROADMAP.md`
 - Office furniture authority: `docs/art/OFFICE_FURNITURE_PRODUCTION_GATES.md`
+- Office furniture source audit: `assets/game/manifests/office-furniture-master-audit-v1.json`
+- Office furniture audit summary: `docs/art/OFFICE_FURNITURE_MASTER_AUDIT_V1.md`
 
 ## Commands
 

@@ -18,18 +18,20 @@ A new Office candidate must contain zero pixels from:
 - `core-furniture-c-v1`, `core-furniture-c-v2`, `decor-mechanical-c-v1`, and
   `equipment-c-v1`;
 - rejected Office candidates or their derived composites; and
-- existing modern-bright furniture, facility, lounge, side-orientation, or
-  decor crops.
+- previously processed modern-bright furniture, facility, lounge,
+  side-orientation, or decor crops.
 
 Those files remain available only as rollback evidence, dimensional research,
 or visual references. Inventory presence, an audit disposition, extracted
 alpha, a foreground mask, or a historical `accepted-staging` label does not
 authorize a pixel for a new candidate.
 
-The sole furniture exception is the owner-approved R05-r02 workstation family:
-its desk, chair, monitor, keyboard, sockets, foreground order, and ten-seat
-geometry may be carried forward exactly as approved. It may not be redrawn,
-silently substituted, or used to approve another furniture family.
+The sole already-approved furniture exception is the owner-approved R05-r02
+P0-P3 workstation family: its desk, chair, monitor, keyboard, sockets,
+foreground order, and paired-workstation geometry may be carried forward
+exactly as approved. It may not be redrawn, silently substituted, or used to
+approve another furniture family. Rejected P4-P6 ten-seat coordinates are not
+part of this exception.
 
 The owner-approved V8 architecture and the frozen prototype characters are
 separate authorities. Neither authorizes an old furniture pixel.
@@ -44,11 +46,35 @@ or the nearest similarly named asset.
 Layout sketches, highlighted zones, and capacity targets reserve space only.
 They cannot authorize asset pixels or runtime placement.
 
+## Audited-master salvage rule
+
+An original project-created master sheet is source material, not an approved
+asset. It may supply pixels to a new family only when all of these conditions
+hold:
+
+- `assets/game/manifests/office-furniture-master-audit-v1.json` identifies the
+  exact source path, hash, cell, and salvage decision;
+- the complete intended object exists in the master and is not fused with a
+  neighboring object, label, border, cast shadow, or clipped edge;
+- extraction starts from the full master, not from an existing processed crop;
+- a cell-boundary contact is resolved by deterministic full-master ownership,
+  never by blindly retaining or deleting the whole neighboring cell fragment;
+- output is written under a new versioned family and preserves source
+  provenance and hashes;
+- no repainting or generative repair is used to hide contamination; and
+- the resulting family still passes F0-F8 before entering a room candidate.
+
+If the subject is incomplete, fused with another subject, visually inconsistent
+with its family, or incapable of representing the geometry contract, generate
+a clean replacement. A salvage decision authorizes extraction work only; it
+does not authorize placement or promotion.
+
 ## Clean-source rule
 
-The first accepted source for each furniture family must be generated on its
-own canvas. Multi-object sheets are not allowed for a new shell until that
-family has passed the clean extraction gate.
+The first accepted source for each furniture family must either be generated on
+its own canvas or be a new extraction from an original master admitted by the
+audited-master salvage rule. Multi-object sheets are not allowed as unreviewed
+runtime inputs.
 
 Reject a source immediately when:
 
@@ -73,7 +99,8 @@ borrow approval from an earlier one.
 
 - Name one furniture family and its operational purpose.
 - Record required quantity, seats or interaction slots, and exact orientations.
-- Prove that no approved clean asset already exists under this policy.
+- Check the master audit and record whether the family is an R05-r02 authority
+  input, a salvage candidate, a partial family, or a regeneration requirement.
 - Add forbidden-source tests before generating art.
 
 ### F1 — Geometry contract
@@ -84,12 +111,14 @@ borrow approval from an earlier one.
 - Declare every parent surface and child slot.
 - Reserve approach and exit cells without placing the asset in a room.
 
-### F2 — Clean single-source generation
+### F2 — Clean source or audited extraction
 
-- Generate one isolated shell on a uniform removable background.
+- Generate one isolated shell on a uniform removable background, or extract
+  the admitted subject from the full original master.
 - Keep generous empty padding on every side.
 - Generate only required camera-locked orientations.
 - Keep animation, props, actors, text, and output items out of the shell.
+- Never copy a previously processed crop into the new family.
 
 ### F3 — Extraction and contamination gate
 
@@ -97,6 +126,8 @@ borrow approval from an earlier one.
 - Produce one normalized alpha cutout without resampling the shell.
 - Verify transparent corners, complete bounds, and minimum padding.
 - Run connected-component and border-contact checks.
+- For master salvage, prove why every retained component belongs to the subject
+  and why every discarded component does not.
 - Produce an alpha/bounds/contact-sheet review image.
 - Fail on unexplained secondary components or neighboring-cell pixels.
 
@@ -179,6 +210,7 @@ Do not batch the remaining room merely because one family passes.
 Each approved family must retain:
 
 - prompt or source specification;
+- original master path, source cell, and audit decision when salvage is used;
 - original source and keyed source;
 - final transparent cutout;
 - component and foreground files;
@@ -189,3 +221,8 @@ Each approved family must retain:
 - explicit owner decision.
 
 Without the complete evidence set, the family remains non-promotable.
+
+The machine-readable source classification is
+`assets/game/manifests/office-furniture-master-audit-v1.json`; its readable
+decision summary and proposed family order are in
+`docs/art/OFFICE_FURNITURE_MASTER_AUDIT_V1.md`.
