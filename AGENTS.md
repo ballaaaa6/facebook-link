@@ -50,7 +50,8 @@ Cloudflare coordinates work. It does not run Playwright browser sessions. The au
 - Office furniture authority: `docs/art/OFFICE_FURNITURE_PRODUCTION_GATES.md`
 - Office furniture source audit: `assets/game/manifests/office-furniture-master-audit-v1.json`
 - Office furniture audit summary: `docs/art/OFFICE_FURNITURE_MASTER_AUDIT_V1.md`
-- Office massage-chair R01 candidate: `docs/art/OFFICE_FURNITURE_MASSAGE_CHAIR_R01.md`
+- Office massage-chair R01 rejection history: `docs/art/OFFICE_FURNITURE_MASSAGE_CHAIR_R01.md`
+- Office massage-chair R02 candidate: `docs/art/OFFICE_FURNITURE_MASSAGE_CHAIR_R02.md`
 
 ## Commands
 

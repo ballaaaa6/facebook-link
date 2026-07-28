@@ -7,10 +7,13 @@ import {
 } from "../packages/contracts/src/officeFurnitureProduction.ts";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const manifestPath = "assets/game/manifests/office-furniture-chair-massage-r01.json";
+const manifestPath = "assets/game/manifests/office-furniture-chair-massage-r02.json";
 const auditPath = "assets/game/manifests/office-furniture-master-audit-v1.json";
-const processedRoot = "assets/game/processed/office-furniture-family-v1/chair-massage-r01";
-const reviewRoot = "assets/art/layout-references/office-furniture-family-v1/chair-massage-r01";
+const poseAuthorityPath = "assets/game/manifests/office-character-seat-sockets-v1.json";
+const rejectedR01Path = "assets/game/manifests/office-furniture-chair-massage-r01.json";
+const builderPath = "scripts/build-office-furniture-massage-chair-r02.py";
+const processedRoot = "assets/game/processed/office-furniture-family-v1/chair-massage-r02";
+const reviewRoot = "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02";
 const activeRegistryPath = "apps/web/src/features/office/components/officeAssetRegistry.ts";
 const failures = [];
 
@@ -39,25 +42,32 @@ const pngSize = (path) => {
 try {
   const manifest = readJson(manifestPath);
   const audit = readJson(auditPath);
+  const poseAuthority = readJson(poseAuthorityPath);
+  const rejectedR01 = readJson(rejectedR01Path);
   for (const issue of validateOfficeFurnitureFamilyManifest(manifest)) {
     failures.push(`Furniture production contract: ${issue}`);
   }
 
   add(
-    manifest.id === "office.furniture.chair-massage.r01"
+    manifest.id === "office.furniture.chair-massage.r02"
       && manifest.familyId === "chair.massage.modern"
-      && manifest.revision === "r01",
-    "Massage-chair R01 identity changed",
+      && manifest.revision === "r02",
+    "Massage-chair R02 identity changed",
   );
   add(
-    manifest.status === "rejected"
-      && manifest.ownerDecision?.decision === "rejected"
-      && manifest.ownerDecision?.decidedOn === "2026-07-29"
-      && manifest.gates?.F8?.status === "blocked"
-      && manifest.supersededBy === "office.furniture.chair-massage.r02"
+    manifest.status === "owner-review-f8-pending"
+      && manifest.ownerDecision === null
+      && manifest.gates?.F8?.status === "pending-owner-review"
+      && manifest.supersedes === "office.furniture.chair-massage.r01"
       && manifest.developmentOnly === true
       && manifest.activeOfficePromotion === false,
-    "Massage-chair R01 must remain rejected and superseded by R02",
+    "Massage-chair R02 must remain isolated while F8 is pending",
+  );
+  add(
+    rejectedR01.status === "rejected"
+      && rejectedR01.ownerDecision?.decision === "rejected"
+      && rejectedR01.supersededBy === manifest.id,
+    "R01 rejection history must point to R02",
   );
 
   const sourceRecord = audit.records?.find(
@@ -80,7 +90,7 @@ try {
     manifest.source?.path
       === "assets/art/layout-references/facility-lounge-sheet-modern-bright-v1-source.png"
       && !manifest.source.path.includes("/processed/"),
-    "R01 must start from the original full master",
+    "R02 must start from the original full master",
   );
   add(
     JSON.stringify(manifest.source?.sourceBounds) === JSON.stringify([0, 627, 314, 940])
@@ -127,22 +137,22 @@ try {
 
   const expectedParts = {
     shell: [
-      `${processedRoot}/authoring/chair.massage.modern.r01.shell.png`,
-      `${processedRoot}/runtime/chair.massage.modern.r01.shell.png`,
+      `${processedRoot}/authoring/chair.massage.modern.r02.shell.png`,
+      `${processedRoot}/runtime/chair.massage.modern.r02.shell.png`,
     ],
     rear: [
-      `${processedRoot}/authoring/chair.massage.modern.r01.rear.png`,
-      `${processedRoot}/runtime/chair.massage.modern.r01.rear.png`,
+      `${processedRoot}/authoring/chair.massage.modern.r02.rear.png`,
+      `${processedRoot}/runtime/chair.massage.modern.r02.rear.png`,
     ],
     foreground: [
-      `${processedRoot}/authoring/chair.massage.modern.r01.foreground.png`,
-      `${processedRoot}/runtime/chair.massage.modern.r01.foreground.png`,
+      `${processedRoot}/authoring/chair.massage.modern.r02.foreground.png`,
+      `${processedRoot}/runtime/chair.massage.modern.r02.foreground.png`,
     ],
   };
   add(
     JSON.stringify(manifest.parts?.map(({ role }) => role))
       === JSON.stringify(["shell", "rear", "foreground"]),
-    "R01 must contain shell, rear, and foreground parts",
+    "R02 must contain shell, rear, and foreground parts",
   );
   for (const part of manifest.parts ?? []) {
     const paths = expectedParts[part.role];
@@ -160,7 +170,7 @@ try {
       add(JSON.stringify(pngSize(path)) === JSON.stringify(size), `Size mismatch: ${path}`);
     }
   }
-  const ownershipPath = `${processedRoot}/authoring/chair.massage.modern.r01.ownership-mask.png`;
+  const ownershipPath = `${processedRoot}/authoring/chair.massage.modern.r02.ownership-mask.png`;
   add(
     manifest.partEvidence?.ownershipMask?.path === ownershipPath
       && manifest.partEvidence?.ownershipMask?.sha256 === sha256(ownershipPath)
@@ -186,14 +196,41 @@ try {
   );
   add(
     JSON.stringify(slot?.chairSeatAnchorRuntimePixel) === JSON.stringify([32, 50])
-      && JSON.stringify(slot?.actorContactRuntimePixel) === JSON.stringify([48, 75])
-      && slot?.action === "lounge-front",
+      && JSON.stringify(slot?.actorContactRuntimePixel) === JSON.stringify([48, 80])
+      && slot?.action === "use-massage-chair"
+      && slot?.visualPose === "working-front-seated"
+      && slot.action !== slot.visualPose,
     "Chair-to-actor socket changed",
   );
 
   const characters = manifest.rosterValidation?.characters ?? [];
+  const poseRecord = manifest.rosterValidation?.poseAuthority;
+  const authorityCharacters = (poseAuthority.entries ?? [])
+    .filter(({ seatCapability }) => seatCapability === "working-seated");
+  const authorityBySlug = new Map(
+    authorityCharacters.map((entry) => [entry.slug, entry]),
+  );
   add(
-    manifest.rosterValidation?.row === 12
+    poseAuthority.schema === "office-character-seat-sockets"
+      && poseAuthority.status === "owner-approved"
+      && poseAuthority.rules?.newCharacterOrPose === false
+      && poseAuthority.audit?.seatCapableCount === 18
+      && poseAuthority.audit?.seatFrameRecordCount === 216
+      && authorityCharacters.length === 18,
+    "The owner-approved working-seat authority is missing or stale",
+  );
+  add(
+    poseRecord?.id === poseAuthority.schema
+      && poseRecord?.manifest === poseAuthorityPath
+      && poseRecord?.manifestSha256 === sha256(poseAuthorityPath)
+      && poseRecord?.status === "owner-approved"
+      && poseRecord?.orientation === "front"
+      && poseRecord?.row === 14
+      && manifest.rosterValidation?.visualPose === "working-front-seated",
+    "R02 pose-authority provenance is missing or stale",
+  );
+  add(
+    manifest.rosterValidation?.row === 14
       && manifest.rosterValidation?.activeFrames === 6
       && manifest.rosterValidation?.characterCount === 18
       && manifest.rosterValidation?.perCharacterFurnitureScaling === false
@@ -205,15 +242,36 @@ try {
   let validatedFrames = 0;
   let minimumOverlap = Number.POSITIVE_INFINITY;
   for (const character of characters) {
+    const authority = authorityBySlug.get(character.id);
+    const front = authority?.orientations?.front;
     add(!characterIds.has(character.id), `Duplicate character: ${character.id}`);
     characterIds.add(character.id);
-    add(character.sha256 === sha256(character.sheet), `${character.id} staging sheet changed`);
-    add(character.frames?.length === 6, `${character.id} must validate six lounge frames`);
+    add(Boolean(authority), `${character.id} is absent from pose authority`);
+    add(
+      character.sheet === authority?.source?.file
+        && character.sha256 === authority?.source?.sha256
+        && character.sha256 === sha256(character.sheet),
+      `${character.id} authority spritesheet changed`,
+    );
+    add(
+      front?.row === 14
+        && front?.measurementStatus === "owner-approved-visual-baseline"
+        && character.measurementStatus === front.measurementStatus
+        && front?.frames?.length === 6
+        && character.frames?.length === 6,
+      `${character.id} must validate six approved working-front frames`,
+    );
     for (const [frameIndex, frame] of (character.frames ?? []).entries()) {
+      const authorityFrame = front?.frames?.[frameIndex];
       validatedFrames += 1;
       minimumOverlap = Math.min(minimumOverlap, frame.foregroundOverlapPixels);
       add(
         frame.frame === frameIndex
+          && authorityFrame?.frame === frameIndex
+          && JSON.stringify(frame.actorContactLocal)
+            === JSON.stringify(authorityFrame?.seatContactLocal)
+          && JSON.stringify(frame.actorContactLocal) === JSON.stringify([48, 80])
+          && JSON.stringify(frame.actorPosition) === JSON.stringify([32, 26])
           && frame.actorInsideReviewCard === true
           && frame.foregroundOverlapPixels > 0,
         `${character.id} frame ${frameIndex} failed the seat lab`,
@@ -226,6 +284,13 @@ try {
       && manifest.quality?.minimumForegroundOverlapPixels === minimumOverlap
       && minimumOverlap > 0,
     "The 108-frame roster proof is incomplete",
+  );
+  const builder = readFileSync(join(root, builderPath), "utf8");
+  add(
+    !builder.includes("processed/office-furniture-family-v1/chair-massage-r01")
+      && builder.includes("POSE_AUTHORITY_PATH")
+      && builder.includes("select_owned_component"),
+    "R02 builder must re-extract the original master and must not read R01 pixels",
   );
 
   const reservation = manifest.reservationValidation;
@@ -257,9 +322,10 @@ try {
     ["01-source-ownership.png", [1600, 1000]],
     ["02-alpha-parts.png", [1600, 1000]],
     ["03-geometry-grid.png", [1200, 1000]],
-    ["04-six-frame-seat-lab.png", [1600, 1000]],
-    ["05-roster-fit.png", [1600, 900]],
-    ["06-reservation-timeline.png", [1600, 900]],
+    ["04-pose-comparison.png", [1600, 900]],
+    ["05-six-frame-seat-lab.png", [1600, 1000]],
+    ["06-roster-fit.png", [1600, 900]],
+    ["07-reservation-timeline.png", [1600, 900]],
   ].map(([name, size]) => [`${reviewRoot}/${name}`, size]);
   add(
     JSON.stringify(manifest.reviewOutputs)
@@ -286,12 +352,12 @@ try {
   add(
     JSON.stringify(recursiveFiles(processedRoot))
       === JSON.stringify(expectedProcessedFiles),
-    "Processed R01 directory contains missing or unexpected files",
+    "Processed R02 directory contains missing or unexpected files",
   );
   add(
     JSON.stringify(recursiveFiles(reviewRoot))
       === JSON.stringify(expectedReviews.map(([path]) => path).sort()),
-    "R01 review directory contains missing or unexpected files",
+    "R02 review directory contains missing or unexpected files",
   );
 
   const sideRecords = new Map(
@@ -313,8 +379,9 @@ try {
       && manifest.activeOfficeBaseline?.sha256 === sha256(activeRegistryPath)
       && manifest.activeOfficeBaseline?.importsCandidate === false
       && !activeRegistry.includes("office-furniture-family-v1")
-      && !activeRegistry.includes("chair-massage-r01"),
-    "Active Office imported the rejected massage-chair R01 candidate",
+      && !activeRegistry.includes("chair-massage-r01")
+      && !activeRegistry.includes("chair-massage-r02"),
+    "Active Office imported a massage-chair candidate",
   );
 } catch (error) {
   failures.push(error instanceof Error ? error.message : String(error));
@@ -325,8 +392,8 @@ if (failures.length > 0) {
   process.exitCode = 1;
 } else {
   process.stdout.write(
-    "Massage chair R01 OK: audited full-master component, exact 3:1 scale, "
-      + "pixel-exact layers, 108 roster frames, 30-second reservation proof, "
-      + "F8 rejection recorded, and Active Office unchanged.\n",
+    "Massage chair R02 OK: audited full-master component, exact 3:1 scale, "
+      + "pixel-exact layers, 108 owner-approved working-front frames, "
+      + "30-second reservation proof, F8 pending, and Active Office unchanged.\n",
   );
 }

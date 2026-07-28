@@ -26,6 +26,11 @@ export function validateFurnitureRosterEvidence(
     value.perCharacterFurnitureScaling === false,
     "rosterValidation.perCharacterFurnitureScaling must equal false",
   );
+  requireValue(
+    issues,
+    value.perCharacterSeatOffsets === false,
+    "rosterValidation.perCharacterSeatOffsets must equal false",
+  );
   const characters = value.characters;
   requireValue(
     issues,

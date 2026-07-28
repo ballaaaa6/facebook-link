@@ -195,8 +195,11 @@ foreground occlusion, approach, reservation, and actor interaction in one
 vertical slice.
 
 Current first-family evidence:
-`docs/art/OFFICE_FURNITURE_MASSAGE_CHAIR_R01.md`. R01 passes F0-F7 as an
-isolated candidate and remains blocked at F8 pending explicit owner review.
+`docs/art/OFFICE_FURNITURE_MASSAGE_CHAIR_R02.md`. R01 was rejected at F8
+because `lounge-front` was not the intended upright posture. R02 rebuilds the
+chair from the audited original master, uses the owner-approved
+`working-front-seated` pose, passes F0-F7 as an isolated candidate, and remains
+blocked at F8 pending explicit owner review.
 
 After that passes, use this order:
 

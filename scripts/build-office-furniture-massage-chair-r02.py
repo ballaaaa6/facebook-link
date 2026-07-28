@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""Build the first clean Office furniture-family vertical slice.
+"""Build the upright-pose revision of the massage-chair furniture family.
 
 The massage-chair candidate starts from the audited full master, selects one
 connected component, emits a no-resample authoring shell, decomposes that shell
 into rear and foreground layers, derives an exact 3:1 runtime set, and builds
-F0-F7 review evidence. It never imports an existing processed furniture crop
-and never changes Active Office runtime files.
+F0-F7 review evidence with the owner-approved working-front-seated pose. It
+never imports R01 pixels or another processed furniture crop and never changes
+Active Office runtime files.
 """
 
 from __future__ import annotations
@@ -24,7 +25,14 @@ from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[1]
 AUDIT_PATH = ROOT / "assets" / "game" / "manifests" / "office-furniture-master-audit-v1.json"
-MANIFEST_PATH = ROOT / "assets" / "game" / "manifests" / "office-furniture-chair-massage-r01.json"
+MANIFEST_PATH = ROOT / "assets" / "game" / "manifests" / "office-furniture-chair-massage-r02.json"
+POSE_AUTHORITY_PATH = (
+    ROOT
+    / "assets"
+    / "game"
+    / "manifests"
+    / "office-character-seat-sockets-v1.json"
+)
 ACTIVE_REGISTRY = ROOT / "apps" / "web" / "src" / "features" / "office" / "components" / "officeAssetRegistry.ts"
 
 OUTPUT_ROOT = (
@@ -33,7 +41,7 @@ OUTPUT_ROOT = (
     / "game"
     / "processed"
     / "office-furniture-family-v1"
-    / "chair-massage-r01"
+    / "chair-massage-r02"
 )
 AUTHORING_ROOT = OUTPUT_ROOT / "authoring"
 RUNTIME_ROOT = OUTPUT_ROOT / "runtime"
@@ -43,12 +51,12 @@ REVIEW_ROOT = (
     / "art"
     / "layout-references"
     / "office-furniture-family-v1"
-    / "chair-massage-r01"
+    / "chair-massage-r02"
 )
 
 RECORD_ID = "modern-bright-library-v1:env-05-facility-lounge:chair.massage.modern"
 FAMILY_ID = "chair.massage.modern"
-REVISION = "r01"
+REVISION = "r02"
 TILE = 32
 AUTHORING_DIVISOR = 3
 RUNTIME_CANVAS = (64, 96)
@@ -56,34 +64,38 @@ AUTHORING_CANVAS = (
     RUNTIME_CANVAS[0] * AUTHORING_DIVISOR,
     RUNTIME_CANVAS[1] * AUTHORING_DIVISOR,
 )
-LOUNGE_ROW = 12
+WORKING_FRONT_ROW = 14
+LOUNGE_COMPARISON_ROW = 12
 ACTIVE_FRAMES = 6
 ACTOR_FRAME = (96, 104)
-ACTOR_CONTACT = (48, 75)
+LOUNGE_COMPARISON_CONTACT = (48, 75)
 CHAIR_SEAT_ANCHOR = (32, 50)
+INTERACTION_ACTION = "use-massage-chair"
+VISUAL_POSE = "working-front-seated"
 
 PART_PATHS = {
     "shell": (
-        AUTHORING_ROOT / "chair.massage.modern.r01.shell.png",
-        RUNTIME_ROOT / "chair.massage.modern.r01.shell.png",
+        AUTHORING_ROOT / "chair.massage.modern.r02.shell.png",
+        RUNTIME_ROOT / "chair.massage.modern.r02.shell.png",
     ),
     "rear": (
-        AUTHORING_ROOT / "chair.massage.modern.r01.rear.png",
-        RUNTIME_ROOT / "chair.massage.modern.r01.rear.png",
+        AUTHORING_ROOT / "chair.massage.modern.r02.rear.png",
+        RUNTIME_ROOT / "chair.massage.modern.r02.rear.png",
     ),
     "foreground": (
-        AUTHORING_ROOT / "chair.massage.modern.r01.foreground.png",
-        RUNTIME_ROOT / "chair.massage.modern.r01.foreground.png",
+        AUTHORING_ROOT / "chair.massage.modern.r02.foreground.png",
+        RUNTIME_ROOT / "chair.massage.modern.r02.foreground.png",
     ),
 }
-OWNERSHIP_PATH = AUTHORING_ROOT / "chair.massage.modern.r01.ownership-mask.png"
+OWNERSHIP_PATH = AUTHORING_ROOT / "chair.massage.modern.r02.ownership-mask.png"
 REVIEW_PATHS = [
     REVIEW_ROOT / "01-source-ownership.png",
     REVIEW_ROOT / "02-alpha-parts.png",
     REVIEW_ROOT / "03-geometry-grid.png",
-    REVIEW_ROOT / "04-six-frame-seat-lab.png",
-    REVIEW_ROOT / "05-roster-fit.png",
-    REVIEW_ROOT / "06-reservation-timeline.png",
+    REVIEW_ROOT / "04-pose-comparison.png",
+    REVIEW_ROOT / "05-six-frame-seat-lab.png",
+    REVIEW_ROOT / "06-roster-fit.png",
+    REVIEW_ROOT / "07-reservation-timeline.png",
 ]
 
 
@@ -405,69 +417,60 @@ def alpha_overlap(
     )
 
 
-def character_sources() -> list[dict[str, str]]:
-    interaction = json.loads(
-        (
-            ROOT
-            / "assets"
-            / "game"
-            / "manifests"
-            / "office-interaction-assets.json"
-        ).read_text(encoding="utf-8")
-    )
-    morphology = json.loads(
-        (
-            ROOT
-            / "assets"
-            / "game"
-            / "manifests"
-            / "character-morphology-pilot.json"
-        ).read_text(encoding="utf-8")
-    )
-    roster = json.loads(
-        (
-            ROOT
-            / "assets"
-            / "game"
-            / "manifests"
-            / "character-roster-8x15-batch.json"
-        ).read_text(encoding="utf-8")
-    )
-    sources = [
-        {
-            "id": "einstein",
-            "sheet": interaction["einstein"]["sheet1x"],
-        },
-        *[
-            {"id": record["id"], "sheet": record["sheet1x"]}
-            for record in morphology["characters"]
-        ],
-        *[
-            {"id": record["id"], "sheet": record["sheet1x"]}
-            for record in roster["characters"]
-        ],
+def pose_authority() -> tuple[dict[str, Any], list[dict[str, Any]]]:
+    authority = json.loads(POSE_AUTHORITY_PATH.read_text(encoding="utf-8"))
+    if (
+        authority.get("schema") != "office-character-seat-sockets"
+        or authority.get("status") != "owner-approved"
+        or authority.get("audit", {}).get("seatCapableCount") != 18
+    ):
+        raise ValueError("Working-seat pose authority is missing or not approved")
+    entries = [
+        entry
+        for entry in authority["entries"]
+        if entry.get("seatCapability") == "working-seated"
     ]
-    ids = [record["id"] for record in sources]
+    ids = [entry["slug"] for entry in entries]
     if len(ids) != 18 or len(set(ids)) != 18:
         raise ValueError(f"Expected eighteen unique seat-capable characters: {ids}")
-    for record in sources:
-        if not (ROOT / record["sheet"]).exists():
-            raise FileNotFoundError(ROOT / record["sheet"])
-    return sources
+    for entry in entries:
+        source = entry["source"]
+        path = ROOT / source["file"]
+        front = entry["orientations"]["front"]
+        if (
+            not path.exists()
+            or sha256_file(path) != source["sha256"]
+            or entry["framePixels"] != list(ACTOR_FRAME)
+            or front["row"] != WORKING_FRONT_ROW
+            or len(front["frames"]) != ACTIVE_FRAMES
+        ):
+            raise ValueError(f"Stale working-front authority for {entry['slug']}")
+        for frame_index, frame in enumerate(front["frames"]):
+            if (
+                frame["frame"] != frame_index
+                or frame["seatContactLocal"] != [48, 80]
+            ):
+                raise ValueError(
+                    f"Unexpected working-front socket for {entry['slug']} "
+                    f"frame {frame_index}"
+                )
+    return authority, entries
 
 
 def actor_frame(
     sheet: Image.Image,
     frame: int,
+    *,
+    row: int = WORKING_FRONT_ROW,
 ) -> Image.Image:
     if sheet.size != (ACTOR_FRAME[0] * 8, ACTOR_FRAME[1] * 15):
         raise ValueError(f"Unexpected 1x character sheet size: {sheet.size}")
     return sheet.crop(
         (
             frame * ACTOR_FRAME[0],
-            LOUNGE_ROW * ACTOR_FRAME[1],
+            row * ACTOR_FRAME[1],
             (frame + 1) * ACTOR_FRAME[0],
-            (LOUNGE_ROW + 1) * ACTOR_FRAME[1],
+            (row + 1) * ACTOR_FRAME[1],
         )
     )
 
@@ -476,6 +479,7 @@ def compose_seated_case(
     rear: Image.Image,
     foreground: Image.Image,
     actor: Image.Image,
+    actor_contact: tuple[int, int],
     *,
     canvas_size: tuple[int, int] = (160, 160),
 ) -> tuple[Image.Image, dict[str, Any]]:
@@ -489,8 +493,8 @@ def compose_seated_case(
         chair_xy[1] + CHAIR_SEAT_ANCHOR[1],
     )
     actor_xy = (
-        seat_xy[0] - ACTOR_CONTACT[0],
-        seat_xy[1] - ACTOR_CONTACT[1],
+        seat_xy[0] - actor_contact[0],
+        seat_xy[1] - actor_contact[1],
     )
     canvas.alpha_composite(rear, chair_xy)
     canvas.alpha_composite(actor, actor_xy)
@@ -505,6 +509,7 @@ def compose_seated_case(
     overlap = alpha_overlap(actor, actor_xy, foreground, chair_xy)
     return canvas, {
         "actorPosition": list(actor_xy),
+        "actorContactLocal": list(actor_contact),
         "actorFrameBounds": list(actor_bounds) if actor_bounds else None,
         "actorInsideReviewCard": inside,
         "foregroundOverlapPixels": overlap,
@@ -517,17 +522,22 @@ def build_roster_validation(
 ) -> tuple[list[dict[str, Any]], dict[str, list[Image.Image]]]:
     records: list[dict[str, Any]] = []
     frames_by_character: dict[str, list[Image.Image]] = {}
-    for source in character_sources():
-        path = ROOT / source["sheet"]
+    _, entries = pose_authority()
+    for entry in entries:
+        source = entry["source"]
+        path = ROOT / source["file"]
         sheet = Image.open(path).convert("RGBA")
+        front = entry["orientations"]["front"]
         character_frames: list[dict[str, Any]] = []
         rendered_frames: list[Image.Image] = []
         for frame_index in range(ACTIVE_FRAMES):
             actor = actor_frame(sheet, frame_index)
+            actor_contact = tuple(front["frames"][frame_index]["seatContactLocal"])
             composition, metrics = compose_seated_case(
                 rear_runtime,
                 foreground_runtime,
                 actor,
+                actor_contact,
             )
             if not metrics["actorInsideReviewCard"]:
                 raise ValueError(
@@ -542,6 +552,7 @@ def build_roster_validation(
                     "frame": frame_index,
                     "frameBounds": metrics["actorFrameBounds"],
                     "actorPosition": metrics["actorPosition"],
+                    "actorContactLocal": metrics["actorContactLocal"],
                     "actorInsideReviewCard": metrics["actorInsideReviewCard"],
                     "foregroundOverlapPixels": metrics[
                         "foregroundOverlapPixels"
@@ -551,13 +562,14 @@ def build_roster_validation(
             rendered_frames.append(composition)
         records.append(
             {
-                "id": source["id"],
-                "sheet": source["sheet"],
+                "id": entry["slug"],
+                "sheet": source["file"],
                 "sha256": sha256_file(path),
+                "measurementStatus": front["measurementStatus"],
                 "frames": character_frames,
             }
         )
-        frames_by_character[source["id"]] = rendered_frames
+        frames_by_character[entry["slug"]] = rendered_frames
     return records, frames_by_character
 
 
@@ -572,7 +584,7 @@ def review_source_ownership(
     board = Image.new("RGBA", (1600, 1000), (236, 240, 245, 255))
     draw = draw_title(
         board,
-        "Massage Chair R01 — Full-master ownership",
+        "Massage Chair R02 — Full-master ownership",
         "F0/F2/F3 evidence • original master only • no processed crop • no generative repair",
     )
     master_review = source.copy()
@@ -622,7 +634,7 @@ def review_parts(
     board = Image.new("RGBA", (1600, 1000), (234, 238, 244, 255))
     draw = draw_title(
         board,
-        "Massage Chair R01 — Alpha and layer decomposition",
+        "Massage Chair R02 — Alpha and layer decomposition",
         "F3/F4 evidence • shell = rear + foreground pixel-exact • authoring pixels are not resampled",
     )
     items = [
@@ -666,7 +678,7 @@ def review_geometry(
     board = Image.new("RGBA", (1200, 1000), (239, 242, 247, 255))
     draw = draw_title(
         board,
-        "Massage Chair R01 — Geometry and route contract",
+        "Massage Chair R02 — Geometry and route contract",
         "F1/F5 evidence • 2×2 footprint • 2×3 render box • capacity 1 • front orientation",
     )
     grid_origin = (190, 150)
@@ -732,9 +744,82 @@ def review_geometry(
         "Render offset: (-32,-96)",
         "Facing: front",
         "Capacity: 1",
+        "Action: use-massage-chair",
+        "Pose: working-front-seated",
     ]
     for index, value in enumerate(values):
         draw.text((right, 550 + index * 40), value, font=BODY_FONT, fill=(40, 52, 67, 255))
+    return board
+
+
+def review_pose_comparison(
+    lounge: Image.Image,
+    lounge_metrics: dict[str, Any],
+    working: Image.Image,
+    working_metrics: dict[str, Any],
+) -> Image.Image:
+    board = Image.new("RGBA", (1600, 900), (232, 237, 244, 255))
+    draw = draw_title(
+        board,
+        "Massage Chair R02 — Pose decision",
+        "Owner direction • reject lounge-front • use owner-approved working-front-seated",
+    )
+    comparisons = [
+        (
+            "REJECTED R01 POSE",
+            "lounge-front / row 12",
+            lounge,
+            lounge_metrics,
+            (202, 69, 75, 255),
+        ),
+        (
+            "R02 CANDIDATE POSE",
+            "working-front-seated / row 14",
+            working,
+            working_metrics,
+            (45, 158, 103, 255),
+        ),
+    ]
+    for index, (heading, pose, image, metrics, color) in enumerate(comparisons):
+        left = 70 + index * 760
+        top = 125
+        panel = checkerboard((700, 640), cell=24)
+        enlarged = image.resize(
+            (image.width * 3, image.height * 3),
+            Image.Resampling.NEAREST,
+        )
+        panel.alpha_composite(
+            enlarged,
+            ((panel.width - enlarged.width) // 2, 70),
+        )
+        board.alpha_composite(panel, (left, top))
+        draw.rectangle(
+            (left, top, left + panel.width, top + panel.height),
+            outline=color,
+            width=5,
+        )
+        draw.text((left + 20, top + 16), heading, font=HEADING_FONT, fill=color)
+        draw.text(
+            (left + 20, top + 52),
+            pose,
+            font=BODY_FONT,
+            fill=(43, 55, 72, 255),
+        )
+        draw.text(
+            (left + 20, top + 590),
+            (
+                f"actor contact {tuple(metrics['actorContactLocal'])}  •  "
+                f"foreground overlap {metrics['foregroundOverlapPixels']} px"
+            ),
+            font=BODY_FONT,
+            fill=(43, 55, 72, 255),
+        )
+    draw.text(
+        (70, 820),
+        "Both panels use the newly extracted R02 chair. Only the frozen actor row and approved contact socket change.",
+        font=BODY_FONT,
+        fill=(45, 58, 75, 255),
+    )
     return board
 
 
@@ -745,8 +830,8 @@ def review_six_frames(
     board = Image.new("RGBA", (1600, 1000), (232, 237, 244, 255))
     draw = draw_title(
         board,
-        "Massage Chair R01 — Six-frame isolated seat lab",
-        "F4/F7 evidence • Einstein lounge-front • one socket • no actor or furniture scaling",
+        "Massage Chair R02 — Six-frame isolated seat lab",
+        "F4/F7 evidence • Einstein working-front-seated • approved socket • no actor or furniture scaling",
     )
     for index, frame in enumerate(frames):
         column = index % 3
@@ -773,7 +858,7 @@ def review_six_frames(
         )
     draw.text(
         (50, 940),
-        "All six frames share actor contact (48,75), chair seat anchor (32,50), and furniture scale 1.0.",
+        "All six frames use authority contact (48,80), chair seat anchor (32,50), and furniture scale 1.0.",
         font=BODY_FONT,
         fill=(45, 58, 75, 255),
     )
@@ -787,8 +872,8 @@ def review_roster(
     board = Image.new("RGBA", (1600, 900), (232, 237, 244, 255))
     draw = draw_title(
         board,
-        "Massage Chair R01 — Eighteen-character fit",
-        "F7 evidence • frame 3 shown • all 108 lounge frames validated • one chair scale and one seat socket",
+        "Massage Chair R02 — Eighteen-character fit",
+        "F7 evidence • frame 3 shown • all 108 working-front frames validated • one chair scale and one seat socket",
     )
     card_width = 250
     card_height = 250
@@ -898,7 +983,7 @@ def reservation_timeline() -> tuple[dict[str, Any], Image.Image]:
     board = Image.new("RGBA", (1600, 900), (238, 241, 246, 255))
     draw = draw_title(
         board,
-        "Massage Chair R01 — Atomic reservation proof",
+        "Massage Chair R02 — Atomic reservation proof",
         "F6/F7 evidence • two actors • capacity 1 • 30 simulated seconds • release on completion",
     )
     left = 130
@@ -959,6 +1044,7 @@ def reservation_timeline() -> tuple[dict[str, Any], Image.Image]:
 
 def build_manifest_and_images() -> dict[Path, bytes]:
     audit = json.loads(AUDIT_PATH.read_text(encoding="utf-8"))
+    pose_manifest, pose_entries = pose_authority()
     records = [
         record
         for record in audit["records"]
@@ -1023,7 +1109,26 @@ def build_manifest_and_images() -> dict[Path, bytes]:
         runtime_parts["foreground"],
     )
     einstein_frames = roster_frames["einstein"]
-    einstein_metrics = roster_records[0]["frames"]
+    einstein_record = next(
+        item for item in roster_records if item["id"] == "einstein"
+    )
+    einstein_metrics = einstein_record["frames"]
+    einstein_authority = next(
+        item for item in pose_entries if item["slug"] == "einstein"
+    )
+    einstein_sheet = Image.open(
+        ROOT / einstein_authority["source"]["file"]
+    ).convert("RGBA")
+    lounge_comparison, lounge_metrics = compose_seated_case(
+        runtime_parts["rear"],
+        runtime_parts["foreground"],
+        actor_frame(
+            einstein_sheet,
+            0,
+            row=LOUNGE_COMPARISON_ROW,
+        ),
+        LOUNGE_COMPARISON_CONTACT,
+    )
     reservation, reservation_board = reservation_timeline()
 
     review_images = [
@@ -1037,6 +1142,12 @@ def build_manifest_and_images() -> dict[Path, bytes]:
         ),
         review_parts(shell, rear, foreground, padding),
         review_geometry(shell),
+        review_pose_comparison(
+            lounge_comparison,
+            lounge_metrics,
+            einstein_frames[0],
+            einstein_metrics[0],
+        ),
         review_six_frames(einstein_frames, einstein_metrics),
         review_roster(roster_frames, roster_records),
         reservation_board,
@@ -1116,6 +1227,7 @@ def build_manifest_and_images() -> dict[Path, bytes]:
                 repo_path(PART_PATHS["rear"][0]),
                 repo_path(PART_PATHS["foreground"][0]),
                 repo_path(REVIEW_PATHS[3]),
+                repo_path(REVIEW_PATHS[4]),
             ],
         },
         "F5": {
@@ -1128,7 +1240,7 @@ def build_manifest_and_images() -> dict[Path, bytes]:
         "F6": {
             "status": "passed",
             "evidence": [
-                repo_path(REVIEW_PATHS[5]),
+                repo_path(REVIEW_PATHS[6]),
                 "capacity-one atomic reservation with release-on-failure",
             ],
         },
@@ -1138,31 +1250,29 @@ def build_manifest_and_images() -> dict[Path, bytes]:
                 repo_path(REVIEW_PATHS[3]),
                 repo_path(REVIEW_PATHS[4]),
                 repo_path(REVIEW_PATHS[5]),
-                "eighteen characters, 108 lounge frames, 30-second reservation lab",
+                repo_path(REVIEW_PATHS[6]),
+                "eighteen characters, 108 working-front frames, 30-second reservation lab",
             ],
         },
         "F8": {
-            "status": "blocked",
-            "evidence": [
-                *[repo_path(path) for path in REVIEW_PATHS],
-                "Owner rejected lounge-front pose on 2026-07-29; use working-front-seated in R02.",
-            ],
+            "status": "pending-owner-review",
+            "evidence": [repo_path(path) for path in REVIEW_PATHS],
         },
         "F9": {
             "status": "blocked",
-            "evidence": ["Furniture-only room composition is outside R01 scope."],
+            "evidence": ["Furniture-only room composition is outside R02 scope."],
         },
         "F10": {
             "status": "blocked",
-            "evidence": ["Active Office integration is outside R01 scope."],
+            "evidence": ["Active Office integration is outside R02 scope."],
         },
     }
     manifest = {
         "schemaVersion": 1,
-        "id": "office.furniture.chair-massage.r01",
+        "id": "office.furniture.chair-massage.r02",
         "familyId": FAMILY_ID,
         "revision": REVISION,
-        "status": "rejected",
+        "status": "owner-review-f8-pending",
         "developmentOnly": True,
         "activeOfficePromotion": False,
         "sourcePolicy": {
@@ -1286,16 +1396,25 @@ def build_manifest_and_images() -> dict[Path, bytes]:
                     "approach": {"x": 1, "y": 2},
                     "exit": {"x": 1, "y": 3},
                     "facing": "front",
-                    "action": "lounge-front",
-                    "reservationId": "chair-massage-r01.seat-01",
+                    "action": INTERACTION_ACTION,
+                    "visualPose": VISUAL_POSE,
+                    "reservationId": "chair-massage-r02.seat-01",
                     "chairSeatAnchorRuntimePixel": list(CHAIR_SEAT_ANCHOR),
-                    "actorContactRuntimePixel": list(ACTOR_CONTACT),
+                    "actorContactRuntimePixel": [48, 80],
                 }
             ],
         },
         "rosterValidation": {
-            "action": "lounge-front",
-            "row": LOUNGE_ROW,
+            "visualPose": VISUAL_POSE,
+            "poseAuthority": {
+                "id": pose_manifest["schema"],
+                "manifest": repo_path(POSE_AUTHORITY_PATH),
+                "manifestSha256": sha256_file(POSE_AUTHORITY_PATH),
+                "status": pose_manifest["status"],
+                "orientation": "front",
+                "row": WORKING_FRONT_ROW,
+            },
+            "row": WORKING_FRONT_ROW,
             "activeFrames": ACTIVE_FRAMES,
             "characterCount": len(roster_records),
             "perCharacterFurnitureScaling": False,
@@ -1329,21 +1448,14 @@ def build_manifest_and_images() -> dict[Path, bytes]:
             "importsCandidate": False,
         },
         "permissions": {
-            "familyLab": False,
-            "ownerReview": False,
+            "familyLab": True,
+            "ownerReview": True,
             "furnitureOnlyRoom": False,
             "otherFurnitureFamilies": False,
             "activeOfficePromotion": False,
         },
-        "supersededBy": "office.furniture.chair-massage.r02",
-        "ownerDecision": {
-            "decision": "rejected",
-            "decidedOn": "2026-07-29",
-            "notes": (
-                "The lounge-front pose is not the intended electric-chair posture. "
-                "R02 must use the approved working-front-seated pose."
-            ),
-        },
+        "supersedes": "office.furniture.chair-massage.r01",
+        "ownerDecision": None,
     }
     outputs[MANIFEST_PATH] = json_bytes(manifest)
     return outputs
@@ -1383,15 +1495,15 @@ def main() -> None:
             print("\n".join(failures), file=sys.stderr)
             raise SystemExit(1)
         print(
-            "Massage chair R01 OK: full-master extraction, exact 3:1 scale, "
-            "three layers, 108 roster frames, 30-second reservation proof, "
-            "and the F8 rejection record."
+            "Massage chair R02 OK: full-master extraction, exact 3:1 scale, "
+            "three layers, 108 approved working-front frames, and "
+            "30-second reservation proof."
         )
         return
     write_outputs(outputs)
-    print(f"Wrote {len(outputs)} massage-chair R01 files.")
+    print(f"Wrote {len(outputs)} massage-chair R02 files.")
     print(f"Manifest: {repo_path(MANIFEST_PATH)}")
-    print("Status: rejected at F8; superseded by R02; F9/F10 remain blocked.")
+    print("Status: owner-review-f8-pending; F9/F10 remain blocked.")
 
 
 if __name__ == "__main__":

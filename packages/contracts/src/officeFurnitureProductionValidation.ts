@@ -1,7 +1,8 @@
 import { validateOfficeGeometryV3 } from "./officeGeometry.ts";
+import { validateFurnitureGates } from "./officeFurnitureProductionGateValidation.ts";
 import {
-  officeFurnitureProductionGates,
-} from "./officeFurnitureProduction.ts";
+  validateFurniturePoseContract,
+} from "./officeFurnitureProductionPoseValidation.ts";
 import {
   validateFurnitureRosterEvidence,
 } from "./officeFurnitureProductionRosterValidation.ts";
@@ -240,6 +241,11 @@ function validateInteraction(
         && !reservations.has(slot.reservationId),
       `interaction.slots[${index}].reservationId must be unique`,
     );
+    requireValue(
+      issues,
+      typeof slot.action === "string" && slot.action.length > 0,
+      `interaction.slots[${index}].action must name a semantic behavior`,
+    );
     if (typeof slot.reservationId === "string") reservations.add(slot.reservationId);
   }
   requireValue(
@@ -247,41 +253,6 @@ function validateInteraction(
     Array.isArray(geometry.seatSlots)
       && geometry.seatSlots.length === slots.length,
     "interaction slots must match geometry seat slots",
-  );
-}
-
-function validateGates(value: RecordValue, issues: string[]) {
-  for (const gate of officeFurnitureProductionGates) {
-    const record = value[gate];
-    requireValue(issues, isRecord(record), `gates.${gate} must be an object`);
-    if (!isRecord(record)) continue;
-    requireValue(
-      issues,
-      ["passed", "pending-owner-review", "blocked"].includes(String(record.status)),
-      `gates.${gate}.status is unsupported`,
-    );
-    requireValue(
-      issues,
-      Array.isArray(record.evidence),
-      `gates.${gate}.evidence must be an array`,
-    );
-  }
-  for (const gate of officeFurnitureProductionGates.slice(0, 8)) {
-    requireValue(
-      issues,
-      isRecord(value[gate]) && value[gate].status === "passed",
-      `gates.${gate} must pass before owner review`,
-    );
-  }
-  requireValue(
-    issues,
-    isRecord(value.F9) && value.F9.status === "blocked",
-    "gates.F9 must remain blocked",
-  );
-  requireValue(
-    issues,
-    isRecord(value.F10) && value.F10.status === "blocked",
-    "gates.F10 must remain blocked",
   );
 }
 
@@ -342,23 +313,24 @@ export function validateOfficeFurnitureFamilyManifest(
   if (isRecord(value.rosterValidation)) {
     issues.push(...validateFurnitureRosterEvidence(value.rosterValidation));
   }
+  if (
+    value.status !== "rejected"
+    && isRecord(value.interaction)
+    && isRecord(value.rosterValidation)
+  ) {
+    issues.push(...validateFurniturePoseContract(
+      value.interaction,
+      value.rosterValidation,
+    ));
+  }
 
   requireValue(issues, isRecord(value.gates), "gates must be an object");
   if (isRecord(value.gates)) {
-    validateGates(value.gates, issues);
-    if (value.status === "owner-review-f8-pending") {
-      requireValue(
-        issues,
-        isRecord(value.gates.F8)
-          && value.gates.F8.status === "pending-owner-review",
-        "gates.F8 must await owner review",
-      );
-      requireValue(
-        issues,
-        value.ownerDecision === null,
-        "ownerDecision must be null while F8 is pending",
-      );
-    }
+    issues.push(...validateFurnitureGates(
+      value.gates,
+      value.status,
+      value.ownerDecision,
+    ));
   }
 
   const reservation = value.reservationValidation;

@@ -1,6 +1,6 @@
 # Office Furniture Massage Chair R01
 
-Status: F0-F7 evidence complete; F8 owner review pending
+Status: Rejected at F8 on 2026-07-29; superseded by R02
 
 Family: `chair.massage.modern`
 
@@ -15,6 +15,11 @@ workstation. It proves the reusable clean-master pipeline for source ownership,
 no-resample extraction, uniform runtime scaling, occlusion decomposition, seat
 geometry, full-roster fit, and atomic reservation without importing any
 candidate into Active Office.
+
+The owner rejected the `lounge-front` visual pose at F8 on 2026-07-29. The
+chair source and extraction evidence remain audit history, but R01 is not
+placeable and must not be promoted. R02 replaces only the interaction-pose
+decision and rebuilds its furniture pixels from the audited original master.
 
 The machine-readable authority is
 `assets/game/manifests/office-furniture-chair-massage-r01.json`.
@@ -122,7 +127,8 @@ They are stored under:
 ## Gate state
 
 - F0-F7: candidate evidence passed.
-- F8: pending explicit owner review.
+- F8: rejected because `lounge-front` is not the intended upright
+  electric-chair posture.
 - F9: blocked; no furniture-only room authority.
 - F10: blocked; no Active Office or runtime integration authority.
 

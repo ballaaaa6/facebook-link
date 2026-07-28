@@ -13,9 +13,11 @@ again under a new version and must still pass every family gate. The readable
 audit and production order are in
 `docs/art/OFFICE_FURNITURE_MASTER_AUDIT_V1.md`.
 
-The first clean non-workstation furniture candidate is the front-facing
-`chair.massage.modern` R01 family documented in
-`docs/art/OFFICE_FURNITURE_MASSAGE_CHAIR_R01.md`. Its F0-F7 evidence is
+The front-facing `chair.massage.modern` R01 extraction remains rejection
+history because its `lounge-front` pose failed owner review. R02 re-extracts
+the chair from the audited original master and uses the owner-approved
+`working-front-seated` row documented in
+`docs/art/OFFICE_FURNITURE_MASSAGE_CHAIR_R02.md`. R02 F0-F7 evidence is
 complete, while owner approval, furniture-only room composition, and Active
 Office integration remain blocked.
 

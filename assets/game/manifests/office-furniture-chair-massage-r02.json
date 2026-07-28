@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "office.furniture.chair-massage.r01",
+  "id": "office.furniture.chair-massage.r02",
   "familyId": "chair.massage.modern",
-  "revision": "r01",
-  "status": "rejected",
+  "revision": "r02",
+  "status": "owner-review-f8-pending",
   "developmentOnly": true,
   "activeOfficePromotion": false,
   "sourcePolicy": {
@@ -63,7 +63,7 @@
   },
   "geometry": {
     "schemaVersion": 3,
-    "id": "chair.massage.modern.r01",
+    "id": "chair.massage.modern.r02",
     "assetType": "seat",
     "placementPlane": "floor",
     "physicalScale": {
@@ -107,12 +107,12 @@
       {
         "id": "rear",
         "role": "rear",
-        "assetId": "chair.massage.modern.r01.rear"
+        "assetId": "chair.massage.modern.r02.rear"
       },
       {
         "id": "foreground",
         "role": "foreground",
-        "assetId": "chair.massage.modern.r01.foreground"
+        "assetId": "chair.massage.modern.r02.foreground"
       }
     ],
     "attachmentSlots": [],
@@ -129,33 +129,33 @@
   },
   "parts": [
     {
-      "id": "chair.massage.modern.r01.shell",
+      "id": "chair.massage.modern.r02.shell",
       "role": "shell",
-      "authoringFile": "assets/game/processed/office-furniture-family-v1/chair-massage-r01/authoring/chair.massage.modern.r01.shell.png",
+      "authoringFile": "assets/game/processed/office-furniture-family-v1/chair-massage-r02/authoring/chair.massage.modern.r02.shell.png",
       "authoringSha256": "e3683484f8b96c1ad298ce86593d4d5f41fee7e692bbeda9f8865f5a1590a351",
-      "runtimeFile": "assets/game/processed/office-furniture-family-v1/chair-massage-r01/runtime/chair.massage.modern.r01.shell.png",
+      "runtimeFile": "assets/game/processed/office-furniture-family-v1/chair-massage-r02/runtime/chair.massage.modern.r02.shell.png",
       "runtimeSha256": "fcd2012080be479aa09f17b4d7a922ed42fcca04028fa83d29117feb151d7cbc"
     },
     {
-      "id": "chair.massage.modern.r01.rear",
+      "id": "chair.massage.modern.r02.rear",
       "role": "rear",
-      "authoringFile": "assets/game/processed/office-furniture-family-v1/chair-massage-r01/authoring/chair.massage.modern.r01.rear.png",
+      "authoringFile": "assets/game/processed/office-furniture-family-v1/chair-massage-r02/authoring/chair.massage.modern.r02.rear.png",
       "authoringSha256": "eb7d24d856a9d4cdff1461b3191047487b238956081835f10be7eb122fa36c1b",
-      "runtimeFile": "assets/game/processed/office-furniture-family-v1/chair-massage-r01/runtime/chair.massage.modern.r01.rear.png",
+      "runtimeFile": "assets/game/processed/office-furniture-family-v1/chair-massage-r02/runtime/chair.massage.modern.r02.rear.png",
       "runtimeSha256": "278daabb5271e19f68bf05469bf8de14b59ffb3c7adb2b8cff8977b13d296f81"
     },
     {
-      "id": "chair.massage.modern.r01.foreground",
+      "id": "chair.massage.modern.r02.foreground",
       "role": "foreground",
-      "authoringFile": "assets/game/processed/office-furniture-family-v1/chair-massage-r01/authoring/chair.massage.modern.r01.foreground.png",
+      "authoringFile": "assets/game/processed/office-furniture-family-v1/chair-massage-r02/authoring/chair.massage.modern.r02.foreground.png",
       "authoringSha256": "f4b085aff0cc58329445149412955ee6c4290ba193282153799e02125acf0c04",
-      "runtimeFile": "assets/game/processed/office-furniture-family-v1/chair-massage-r01/runtime/chair.massage.modern.r01.foreground.png",
+      "runtimeFile": "assets/game/processed/office-furniture-family-v1/chair-massage-r02/runtime/chair.massage.modern.r02.foreground.png",
       "runtimeSha256": "0e0bc8cfdaf16332c74eb1a23a6504f48bf96cb03f38cc5c4a845f99db3aaa3d"
     }
   ],
   "partEvidence": {
     "ownershipMask": {
-      "path": "assets/game/processed/office-furniture-family-v1/chair-massage-r01/authoring/chair.massage.modern.r01.ownership-mask.png",
+      "path": "assets/game/processed/office-furniture-family-v1/chair-massage-r02/authoring/chair.massage.modern.r02.ownership-mask.png",
       "sha256": "9f85f573735b1d62dc8d59d5b5d22f0afd400216ac8f01fbc29075972b8ec422"
     },
     "foregroundRegionsNormalized": [
@@ -209,218 +209,155 @@
           "y": 3
         },
         "facing": "front",
-        "action": "lounge-front",
-        "reservationId": "chair-massage-r01.seat-01",
+        "action": "use-massage-chair",
+        "visualPose": "working-front-seated",
+        "reservationId": "chair-massage-r02.seat-01",
         "chairSeatAnchorRuntimePixel": [
           32,
           50
         ],
         "actorContactRuntimePixel": [
           48,
-          75
+          80
         ]
       }
     ]
   },
   "rosterValidation": {
-    "action": "lounge-front",
-    "row": 12,
+    "visualPose": "working-front-seated",
+    "poseAuthority": {
+      "id": "office-character-seat-sockets",
+      "manifest": "assets/game/manifests/office-character-seat-sockets-v1.json",
+      "manifestSha256": "45837daa526e9d0142ae09103677fe50b32ff82f36c7a46dba87c26e46f14d75",
+      "status": "owner-approved",
+      "orientation": "front",
+      "row": 14
+    },
+    "row": 14,
     "activeFrames": 6,
     "characterCount": 18,
     "perCharacterFurnitureScaling": false,
     "perCharacterSeatOffsets": false,
     "characters": [
       {
-        "id": "einstein",
-        "sheet": "assets/game/characters/einstein/runtime-spritesheet-v3.webp",
-        "sha256": "5c559c215966641a5a92e55bb2b3cf159b8e4a22b19633c1813c39da58956213",
+        "id": "ai-workbot",
+        "sheet": "assets/game/characters/ai-workbot/runtime-spritesheet-v3.webp",
+        "sha256": "f06bfeae9bf5b439f6f80b416aac1984aee627fd823c21acd90118ae26865935",
+        "measurementStatus": "owner-approved-visual-baseline",
         "frames": [
           {
             "frame": 0,
             "frameBounds": [
               18,
-              12,
+              13,
               77,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1115
+            "foregroundOverlapPixels": 1009
           },
           {
             "frame": 1,
             "frameBounds": [
               18,
-              11,
+              13,
               77,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1118
+            "foregroundOverlapPixels": 1039
           },
           {
             "frame": 2,
             "frameBounds": [
               18,
-              11,
+              13,
               77,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1130
+            "foregroundOverlapPixels": 978
           },
           {
             "frame": 3,
             "frameBounds": [
               18,
-              11,
+              13,
               77,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1096
+            "foregroundOverlapPixels": 1005
           },
           {
             "frame": 4,
             "frameBounds": [
               18,
-              11,
+              13,
               77,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1067
+            "foregroundOverlapPixels": 998
           },
           {
             "frame": 5,
             "frameBounds": [
               18,
-              12,
+              13,
               77,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1109
-          }
-        ]
-      },
-      {
-        "id": "doraemon",
-        "sheet": "assets/game/characters/doraemon/runtime-spritesheet-v4.webp",
-        "sha256": "ad03ecef52dd95d633734fd765a80324a436754876e5a9ba75a3ba6874c1b94f",
-        "frames": [
-          {
-            "frame": 0,
-            "frameBounds": [
-              16,
-              0,
-              79,
-              90
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1288
-          },
-          {
-            "frame": 1,
-            "frameBounds": [
-              16,
-              0,
-              80,
-              90
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1279
-          },
-          {
-            "frame": 2,
-            "frameBounds": [
-              18,
-              0,
-              78,
-              90
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1252
-          },
-          {
-            "frame": 3,
-            "frameBounds": [
-              17,
-              0,
-              78,
-              90
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1241
-          },
-          {
-            "frame": 4,
-            "frameBounds": [
-              14,
-              0,
-              81,
-              90
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1296
-          },
-          {
-            "frame": 5,
-            "frameBounds": [
-              16,
-              0,
-              79,
-              90
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1289
+            "foregroundOverlapPixels": 995
           }
         ]
       },
@@ -428,193 +365,121 @@
         "id": "anna",
         "sheet": "assets/game/characters/anna/runtime-spritesheet-v3.webp",
         "sha256": "75069f368d0fd0806c8978bcf2e5077b82c9306e6c20931617173fd0f88a57bb",
+        "measurementStatus": "owner-approved-visual-baseline",
         "frames": [
           {
             "frame": 0,
             "frameBounds": [
-              17,
-              12,
-              79,
+              20,
+              11,
+              75,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1392
+            "foregroundOverlapPixels": 614
           },
           {
             "frame": 1,
             "frameBounds": [
-              17,
+              20,
               11,
-              78,
+              75,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1357
+            "foregroundOverlapPixels": 607
           },
           {
             "frame": 2,
             "frameBounds": [
-              17,
+              21,
               11,
-              79,
+              74,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1357
+            "foregroundOverlapPixels": 598
           },
           {
             "frame": 3,
             "frameBounds": [
-              17,
+              21,
               11,
-              78,
+              75,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1362
+            "foregroundOverlapPixels": 590
           },
           {
             "frame": 4,
             "frameBounds": [
-              17,
-              12,
-              78,
+              21,
+              11,
+              75,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1396
+            "foregroundOverlapPixels": 617
           },
           {
             "frame": 5,
             "frameBounds": [
-              17,
-              12,
-              78,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1379
-          }
-        ]
-      },
-      {
-        "id": "ai-workbot",
-        "sheet": "assets/game/characters/ai-workbot/runtime-spritesheet-v3.webp",
-        "sha256": "f06bfeae9bf5b439f6f80b416aac1984aee627fd823c21acd90118ae26865935",
-        "frames": [
-          {
-            "frame": 0,
-            "frameBounds": [
-              17,
               20,
-              79,
+              11,
+              75,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1642
-          },
-          {
-            "frame": 1,
-            "frameBounds": [
-              3,
-              20,
-              93,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1592
-          },
-          {
-            "frame": 2,
-            "frameBounds": [
-              17,
-              20,
-              79,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1661
-          },
-          {
-            "frame": 3,
-            "frameBounds": [
-              15,
-              20,
-              80,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1611
-          },
-          {
-            "frame": 4,
-            "frameBounds": [
-              13,
-              20,
-              83,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1621
-          },
-          {
-            "frame": 5,
-            "frameBounds": [
-              17,
-              20,
-              78,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1640
+            "foregroundOverlapPixels": 606
           }
         ]
       },
@@ -622,969 +487,121 @@
         "id": "asuka-2",
         "sheet": "assets/game/characters/asuka-2/runtime-spritesheet-v3.webp",
         "sha256": "b9f71bd45fbd8fb7c28f06c12fa800706c72fc128be48aedd14a3f099fcf064b",
+        "measurementStatus": "owner-approved-visual-baseline",
         "frames": [
           {
             "frame": 0,
             "frameBounds": [
-              12,
-              12,
-              83,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1315
-          },
-          {
-            "frame": 1,
-            "frameBounds": [
-              12,
-              11,
-              83,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1236
-          },
-          {
-            "frame": 2,
-            "frameBounds": [
-              13,
-              11,
-              82,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1310
-          },
-          {
-            "frame": 3,
-            "frameBounds": [
-              11,
-              12,
-              84,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1182
-          },
-          {
-            "frame": 4,
-            "frameBounds": [
-              12,
-              13,
-              83,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1184
-          },
-          {
-            "frame": 5,
-            "frameBounds": [
-              13,
-              13,
-              82,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1313
-          }
-        ]
-      },
-      {
-        "id": "jesus",
-        "sheet": "assets/game/characters/jesus/runtime-spritesheet-v3.webp",
-        "sha256": "ba19dc354e61faddc0ff3df3b0933b7047d374cd206eeee68a6c55ea2971c665",
-        "frames": [
-          {
-            "frame": 0,
-            "frameBounds": [
-              15,
-              11,
-              81,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1525
-          },
-          {
-            "frame": 1,
-            "frameBounds": [
-              13,
-              12,
-              82,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1585
-          },
-          {
-            "frame": 2,
-            "frameBounds": [
-              12,
-              11,
-              83,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1492
-          },
-          {
-            "frame": 3,
-            "frameBounds": [
-              12,
-              12,
-              83,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1587
-          },
-          {
-            "frame": 4,
-            "frameBounds": [
-              15,
-              11,
-              81,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1527
-          },
-          {
-            "frame": 5,
-            "frameBounds": [
-              15,
-              11,
-              81,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1531
-          }
-        ]
-      },
-      {
-        "id": "miku",
-        "sheet": "assets/game/characters/miku/runtime-spritesheet-v3.webp",
-        "sha256": "edbc128700f1135d4f84e3380281db966fba68b27798b4bc87a2a5949f4ae83a",
-        "frames": [
-          {
-            "frame": 0,
-            "frameBounds": [
-              5,
-              11,
-              90,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1327
-          },
-          {
-            "frame": 1,
-            "frameBounds": [
-              5,
-              12,
-              91,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1330
-          },
-          {
-            "frame": 2,
-            "frameBounds": [
-              5,
-              13,
-              91,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1446
-          },
-          {
-            "frame": 3,
-            "frameBounds": [
-              6,
-              15,
-              89,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1497
-          },
-          {
-            "frame": 4,
-            "frameBounds": [
-              5,
-              13,
-              90,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1412
-          },
-          {
-            "frame": 5,
-            "frameBounds": [
-              5,
-              13,
-              90,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1404
-          }
-        ]
-      },
-      {
-        "id": "rem-xl",
-        "sheet": "assets/game/characters/rem-xl/runtime-spritesheet-v3.webp",
-        "sha256": "219034c438a93237d8a89bac6c3ee37d627a85991c9eb70915a682291017bdb1",
-        "frames": [
-          {
-            "frame": 0,
-            "frameBounds": [
-              20,
-              11,
-              75,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 924
-          },
-          {
-            "frame": 1,
-            "frameBounds": [
-              20,
-              11,
-              75,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 916
-          },
-          {
-            "frame": 2,
-            "frameBounds": [
-              20,
-              11,
-              75,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 921
-          },
-          {
-            "frame": 3,
-            "frameBounds": [
-              20,
-              11,
-              75,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 935
-          },
-          {
-            "frame": 4,
-            "frameBounds": [
-              20,
-              11,
-              75,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 933
-          },
-          {
-            "frame": 5,
-            "frameBounds": [
-              20,
-              12,
-              75,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 939
-          }
-        ]
-      },
-      {
-        "id": "ruri",
-        "sheet": "assets/game/characters/ruri/runtime-spritesheet-v3.webp",
-        "sha256": "267c3703e9bc18a1a352159f198f5a33cdf17b9778d7ea9a699a79ae242fc56a",
-        "frames": [
-          {
-            "frame": 0,
-            "frameBounds": [
-              5,
-              11,
-              90,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1596
-          },
-          {
-            "frame": 1,
-            "frameBounds": [
-              6,
-              11,
-              90,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1595
-          },
-          {
-            "frame": 2,
-            "frameBounds": [
-              6,
-              11,
-              90,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1598
-          },
-          {
-            "frame": 3,
-            "frameBounds": [
-              6,
-              12,
-              90,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1587
-          },
-          {
-            "frame": 4,
-            "frameBounds": [
-              5,
-              11,
-              90,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1588
-          },
-          {
-            "frame": 5,
-            "frameBounds": [
-              5,
-              11,
-              90,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1600
-          }
-        ]
-      },
-      {
-        "id": "itachi",
-        "sheet": "assets/game/characters/itachi/runtime-spritesheet-v3.webp",
-        "sha256": "4968e6f23a9a8731f35093e1e8b031203db57cb4312d99a0e416e9ec81fe5f2a",
-        "frames": [
-          {
-            "frame": 0,
-            "frameBounds": [
-              18,
-              12,
-              77,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1406
-          },
-          {
-            "frame": 1,
-            "frameBounds": [
-              17,
-              13,
-              79,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1425
-          },
-          {
-            "frame": 2,
-            "frameBounds": [
-              12,
-              11,
-              83,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1414
-          },
-          {
-            "frame": 3,
-            "frameBounds": [
-              10,
               16,
-              86,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1456
-          },
-          {
-            "frame": 4,
-            "frameBounds": [
-              4,
-              14,
-              91,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1321
-          },
-          {
-            "frame": 5,
-            "frameBounds": [
-              13,
-              14,
-              82,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1580
-          }
-        ]
-      },
-      {
-        "id": "lian-3",
-        "sheet": "assets/game/characters/lian-3/runtime-spritesheet-v3.webp",
-        "sha256": "6ccc7dc580a4f0bd87204711dd3bcf462d0144b3e56e7ff29cbe97428d8371a8",
-        "frames": [
-          {
-            "frame": 0,
-            "frameBounds": [
-              13,
               11,
-              83,
+              79,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1490
+            "foregroundOverlapPixels": 768
           },
           {
             "frame": 1,
             "frameBounds": [
-              12,
-              12,
-              83,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1494
-          },
-          {
-            "frame": 2,
-            "frameBounds": [
-              13,
-              12,
-              82,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1497
-          },
-          {
-            "frame": 3,
-            "frameBounds": [
-              12,
-              12,
-              83,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1521
-          },
-          {
-            "frame": 4,
-            "frameBounds": [
-              13,
-              13,
-              83,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1515
-          },
-          {
-            "frame": 5,
-            "frameBounds": [
-              13,
-              12,
-              83,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1455
-          }
-        ]
-      },
-      {
-        "id": "taffy-2",
-        "sheet": "assets/game/characters/taffy-2/runtime-spritesheet-v3.webp",
-        "sha256": "7685dcb2eb7fd85e61601d3648b1fb3116c2c3a73b44cda30f9656ec0873b8fb",
-        "frames": [
-          {
-            "frame": 0,
-            "frameBounds": [
-              14,
-              11,
-              82,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1552
-          },
-          {
-            "frame": 1,
-            "frameBounds": [
-              13,
-              12,
-              82,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1556
-          },
-          {
-            "frame": 2,
-            "frameBounds": [
-              14,
               16,
-              82,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1570
-          },
-          {
-            "frame": 3,
-            "frameBounds": [
               11,
-              20,
-              84,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1517
-          },
-          {
-            "frame": 4,
-            "frameBounds": [
-              11,
-              26,
-              84,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1512
-          },
-          {
-            "frame": 5,
-            "frameBounds": [
-              10,
-              29,
-              85,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1513
-          }
-        ]
-      },
-      {
-        "id": "yinyue-2",
-        "sheet": "assets/game/characters/yinyue-2/runtime-spritesheet-v3.webp",
-        "sha256": "e738a75240257f3f916f3814deb04d0dfb7e5efb6ce151664870b4d0d9ebd0ec",
-        "frames": [
-          {
-            "frame": 0,
-            "frameBounds": [
-              17,
-              12,
               79,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1815
-          },
-          {
-            "frame": 1,
-            "frameBounds": [
-              17,
-              12,
-              79,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1782
+            "foregroundOverlapPixels": 765
           },
           {
             "frame": 2,
             "frameBounds": [
-              17,
+              16,
               11,
-              78,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1816
-          },
-          {
-            "frame": 3,
-            "frameBounds": [
-              17,
-              11,
-              78,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1770
-          },
-          {
-            "frame": 4,
-            "frameBounds": [
-              17,
-              13,
-              78,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1814
-          },
-          {
-            "frame": 5,
-            "frameBounds": [
-              17,
-              12,
-              78,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1774
-          }
-        ]
-      },
-      {
-        "id": "noir-webling",
-        "sheet": "assets/game/characters/noir-webling/runtime-spritesheet-v3.webp",
-        "sha256": "ca0e5d8683b89bcce8509c06a9e72cc7d3c3cb1cb6c6e32023b7b1e0cf8b69d1",
-        "frames": [
-          {
-            "frame": 0,
-            "frameBounds": [
-              17,
-              14,
               79,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1676
-          },
-          {
-            "frame": 1,
-            "frameBounds": [
-              19,
-              13,
-              77,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1582
-          },
-          {
-            "frame": 2,
-            "frameBounds": [
-              17,
-              13,
-              78,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1605
+            "foregroundOverlapPixels": 764
           },
           {
             "frame": 3,
             "frameBounds": [
-              17,
-              14,
-              78,
+              16,
+              11,
+              79,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1583
+            "foregroundOverlapPixels": 761
           },
           {
             "frame": 4,
             "frameBounds": [
-              17,
-              13,
-              78,
+              16,
+              11,
+              79,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1531
+            "foregroundOverlapPixels": 763
           },
           {
             "frame": 5,
             "frameBounds": [
-              17,
-              14,
-              78,
+              16,
+              11,
+              79,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1657
+            "foregroundOverlapPixels": 760
           }
         ]
       },
@@ -1592,96 +609,365 @@
         "id": "baobao-2",
         "sheet": "assets/game/characters/baobao-2/runtime-spritesheet-v3.webp",
         "sha256": "eff556812cca70ce31e7d2ae429ef941150b2d32670c81b122c991fe50a3a4bf",
+        "measurementStatus": "owner-approved-visual-baseline",
         "frames": [
           {
             "frame": 0,
             "frameBounds": [
-              12,
               15,
-              83,
+              15,
+              81,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1749
+            "foregroundOverlapPixels": 1465
           },
           {
             "frame": 1,
             "frameBounds": [
-              12,
-              17,
-              83,
+              15,
+              15,
+              80,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1781
+            "foregroundOverlapPixels": 1499
           },
           {
             "frame": 2,
             "frameBounds": [
-              13,
-              17,
-              83,
+              15,
+              16,
+              80,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1753
+            "foregroundOverlapPixels": 1512
           },
           {
             "frame": 3,
             "frameBounds": [
-              13,
-              17,
-              83,
+              15,
+              15,
+              80,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1751
+            "foregroundOverlapPixels": 1453
           },
           {
             "frame": 4,
             "frameBounds": [
-              13,
-              22,
-              83,
+              15,
+              15,
+              80,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1822
+            "foregroundOverlapPixels": 1388
           },
           {
             "frame": 5,
             "frameBounds": [
-              13,
-              21,
-              82,
+              15,
+              15,
+              80,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1754
+            "foregroundOverlapPixels": 1462
+          }
+        ]
+      },
+      {
+        "id": "doraemon",
+        "sheet": "assets/game/characters/doraemon/runtime-spritesheet-v4.webp",
+        "sha256": "ad03ecef52dd95d633734fd765a80324a436754876e5a9ba75a3ba6874c1b94f",
+        "measurementStatus": "owner-approved-visual-baseline",
+        "frames": [
+          {
+            "frame": 0,
+            "frameBounds": [
+              20,
+              16,
+              75,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 1233
+          },
+          {
+            "frame": 1,
+            "frameBounds": [
+              20,
+              16,
+              75,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 1171
+          },
+          {
+            "frame": 2,
+            "frameBounds": [
+              20,
+              16,
+              75,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 1188
+          },
+          {
+            "frame": 3,
+            "frameBounds": [
+              20,
+              16,
+              75,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 1172
+          },
+          {
+            "frame": 4,
+            "frameBounds": [
+              20,
+              16,
+              75,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 1175
+          },
+          {
+            "frame": 5,
+            "frameBounds": [
+              20,
+              16,
+              75,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 1216
+          }
+        ]
+      },
+      {
+        "id": "einstein",
+        "sheet": "assets/game/characters/einstein/runtime-spritesheet-v3.webp",
+        "sha256": "5c559c215966641a5a92e55bb2b3cf159b8e4a22b19633c1813c39da58956213",
+        "measurementStatus": "owner-approved-visual-baseline",
+        "frames": [
+          {
+            "frame": 0,
+            "frameBounds": [
+              18,
+              11,
+              78,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 904
+          },
+          {
+            "frame": 1,
+            "frameBounds": [
+              18,
+              11,
+              78,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 895
+          },
+          {
+            "frame": 2,
+            "frameBounds": [
+              17,
+              11,
+              78,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 919
+          },
+          {
+            "frame": 3,
+            "frameBounds": [
+              18,
+              11,
+              78,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 921
+          },
+          {
+            "frame": 4,
+            "frameBounds": [
+              18,
+              11,
+              77,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 892
+          },
+          {
+            "frame": 5,
+            "frameBounds": [
+              18,
+              11,
+              78,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 889
           }
         ]
       },
@@ -1689,6 +975,7 @@
         "id": "gugugaga",
         "sheet": "assets/game/characters/gugugaga/runtime-spritesheet-v3.webp",
         "sha256": "1a7a177fef6190896e66d6d824a1f0a35dd628a4cce0da1e7900183f8cba25ab",
+        "measurementStatus": "owner-approved-visual-baseline",
         "frames": [
           {
             "frame": 0,
@@ -1700,28 +987,55 @@
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1587
+            "foregroundOverlapPixels": 1270
           },
           {
             "frame": 1,
             "frameBounds": [
-              19,
+              20,
               16,
-              76,
+              75,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1573
+            "foregroundOverlapPixels": 1275
           },
           {
             "frame": 2,
+            "frameBounds": [
+              20,
+              16,
+              75,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 1272
+          },
+          {
+            "frame": 3,
             "frameBounds": [
               20,
               15,
@@ -1730,55 +1044,540 @@
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1526
-          },
-          {
-            "frame": 3,
-            "frameBounds": [
-              20,
-              16,
-              75,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1484
+            "foregroundOverlapPixels": 1263
           },
           {
             "frame": 4,
             "frameBounds": [
               20,
               16,
-              76,
-              101
-            ],
-            "actorPosition": [
-              32,
-              31
-            ],
-            "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1575
-          },
-          {
-            "frame": 5,
-            "frameBounds": [
-              20,
-              15,
               75,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1523
+            "foregroundOverlapPixels": 1258
+          },
+          {
+            "frame": 5,
+            "frameBounds": [
+              20,
+              16,
+              75,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 1256
+          }
+        ]
+      },
+      {
+        "id": "itachi",
+        "sheet": "assets/game/characters/itachi/runtime-spritesheet-v3.webp",
+        "sha256": "4968e6f23a9a8731f35093e1e8b031203db57cb4312d99a0e416e9ec81fe5f2a",
+        "measurementStatus": "owner-approved-visual-baseline",
+        "frames": [
+          {
+            "frame": 0,
+            "frameBounds": [
+              24,
+              11,
+              71,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 886
+          },
+          {
+            "frame": 1,
+            "frameBounds": [
+              24,
+              11,
+              71,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 883
+          },
+          {
+            "frame": 2,
+            "frameBounds": [
+              25,
+              11,
+              71,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 841
+          },
+          {
+            "frame": 3,
+            "frameBounds": [
+              25,
+              11,
+              70,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 809
+          },
+          {
+            "frame": 4,
+            "frameBounds": [
+              25,
+              11,
+              71,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 830
+          },
+          {
+            "frame": 5,
+            "frameBounds": [
+              25,
+              11,
+              71,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 836
+          }
+        ]
+      },
+      {
+        "id": "jesus",
+        "sheet": "assets/game/characters/jesus/runtime-spritesheet-v3.webp",
+        "sha256": "ba19dc354e61faddc0ff3df3b0933b7047d374cd206eeee68a6c55ea2971c665",
+        "measurementStatus": "owner-approved-visual-baseline",
+        "frames": [
+          {
+            "frame": 0,
+            "frameBounds": [
+              24,
+              11,
+              71,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 910
+          },
+          {
+            "frame": 1,
+            "frameBounds": [
+              24,
+              11,
+              71,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 903
+          },
+          {
+            "frame": 2,
+            "frameBounds": [
+              24,
+              11,
+              71,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 915
+          },
+          {
+            "frame": 3,
+            "frameBounds": [
+              24,
+              11,
+              71,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 908
+          },
+          {
+            "frame": 4,
+            "frameBounds": [
+              24,
+              11,
+              71,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 907
+          },
+          {
+            "frame": 5,
+            "frameBounds": [
+              24,
+              11,
+              71,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 901
+          }
+        ]
+      },
+      {
+        "id": "lian-3",
+        "sheet": "assets/game/characters/lian-3/runtime-spritesheet-v3.webp",
+        "sha256": "6ccc7dc580a4f0bd87204711dd3bcf462d0144b3e56e7ff29cbe97428d8371a8",
+        "measurementStatus": "owner-approved-visual-baseline",
+        "frames": [
+          {
+            "frame": 0,
+            "frameBounds": [
+              17,
+              11,
+              78,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 888
+          },
+          {
+            "frame": 1,
+            "frameBounds": [
+              17,
+              12,
+              78,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 894
+          },
+          {
+            "frame": 2,
+            "frameBounds": [
+              17,
+              12,
+              78,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 907
+          },
+          {
+            "frame": 3,
+            "frameBounds": [
+              17,
+              12,
+              78,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 889
+          },
+          {
+            "frame": 4,
+            "frameBounds": [
+              17,
+              12,
+              78,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 892
+          },
+          {
+            "frame": 5,
+            "frameBounds": [
+              17,
+              12,
+              78,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 890
+          }
+        ]
+      },
+      {
+        "id": "miku",
+        "sheet": "assets/game/characters/miku/runtime-spritesheet-v3.webp",
+        "sha256": "edbc128700f1135d4f84e3380281db966fba68b27798b4bc87a2a5949f4ae83a",
+        "measurementStatus": "owner-approved-visual-baseline",
+        "frames": [
+          {
+            "frame": 0,
+            "frameBounds": [
+              13,
+              11,
+              82,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 1105
+          },
+          {
+            "frame": 1,
+            "frameBounds": [
+              14,
+              12,
+              81,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 1134
+          },
+          {
+            "frame": 2,
+            "frameBounds": [
+              13,
+              12,
+              82,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 1126
+          },
+          {
+            "frame": 3,
+            "frameBounds": [
+              14,
+              12,
+              81,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 1116
+          },
+          {
+            "frame": 4,
+            "frameBounds": [
+              14,
+              12,
+              82,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 1110
+          },
+          {
+            "frame": 5,
+            "frameBounds": [
+              14,
+              12,
+              81,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 1131
           }
         ]
       },
@@ -1786,96 +1585,243 @@
         "id": "nai-long",
         "sheet": "assets/game/characters/nai-long/runtime-spritesheet-v3.webp",
         "sha256": "f66a67eaf7e43be6a222fbc5b0d7e8163b73d2becc91edfb9a24589ea99f8015",
+        "measurementStatus": "owner-approved-visual-baseline",
         "frames": [
           {
             "frame": 0,
             "frameBounds": [
-              16,
+              15,
               17,
-              79,
+              81,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1680
+            "foregroundOverlapPixels": 1574
           },
           {
             "frame": 1,
             "frameBounds": [
-              16,
+              15,
               17,
+              80,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 1575
+          },
+          {
+            "frame": 2,
+            "frameBounds": [
+              15,
+              17,
+              80,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 1563
+          },
+          {
+            "frame": 3,
+            "frameBounds": [
+              15,
+              17,
+              80,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 1579
+          },
+          {
+            "frame": 4,
+            "frameBounds": [
+              15,
+              17,
+              81,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 1570
+          },
+          {
+            "frame": 5,
+            "frameBounds": [
+              15,
+              17,
+              81,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 1570
+          }
+        ]
+      },
+      {
+        "id": "noir-webling",
+        "sheet": "assets/game/characters/noir-webling/runtime-spritesheet-v3.webp",
+        "sha256": "ca0e5d8683b89bcce8509c06a9e72cc7d3c3cb1cb6c6e32023b7b1e0cf8b69d1",
+        "measurementStatus": "owner-approved-visual-baseline",
+        "frames": [
+          {
+            "frame": 0,
+            "frameBounds": [
+              17,
+              13,
               79,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1687
+            "foregroundOverlapPixels": 1527
+          },
+          {
+            "frame": 1,
+            "frameBounds": [
+              17,
+              13,
+              79,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 1543
           },
           {
             "frame": 2,
             "frameBounds": [
               16,
-              17,
+              14,
               79,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1685
+            "foregroundOverlapPixels": 1589
           },
           {
             "frame": 3,
             "frameBounds": [
               16,
-              17,
+              14,
               79,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1680
+            "foregroundOverlapPixels": 1583
           },
           {
             "frame": 4,
             "frameBounds": [
               16,
-              17,
+              13,
               79,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1677
+            "foregroundOverlapPixels": 1535
           },
           {
             "frame": 5,
             "frameBounds": [
-              16,
               17,
+              14,
               79,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1683
+            "foregroundOverlapPixels": 1530
           }
         ]
       },
@@ -1883,96 +1829,609 @@
         "id": "qq-penguin",
         "sheet": "assets/game/characters/qq-penguin/runtime-spritesheet-v3.webp",
         "sha256": "ba6945e9c1183a9e0ccaebf8320a87357c3c0583ccdd66694f10a65f3ba6e001",
+        "measurementStatus": "owner-approved-visual-baseline",
         "frames": [
           {
             "frame": 0,
             "frameBounds": [
-              9,
+              12,
               19,
-              86,
+              83,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1992
+            "foregroundOverlapPixels": 1725
           },
           {
             "frame": 1,
             "frameBounds": [
-              9,
+              17,
               19,
-              86,
+              78,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1994
+            "foregroundOverlapPixels": 1723
           },
           {
             "frame": 2,
             "frameBounds": [
-              9,
+              13,
               19,
-              86,
+              82,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1991
+            "foregroundOverlapPixels": 1729
           },
           {
             "frame": 3,
             "frameBounds": [
-              10,
+              17,
               19,
-              85,
+              78,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1991
+            "foregroundOverlapPixels": 1724
           },
           {
             "frame": 4,
             "frameBounds": [
-              9,
+              14,
               19,
-              86,
+              82,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1993
+            "foregroundOverlapPixels": 1719
           },
           {
             "frame": 5,
             "frameBounds": [
-              9,
+              13,
               19,
-              86,
+              82,
               101
             ],
             "actorPosition": [
               32,
-              31
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
             ],
             "actorInsideReviewCard": true,
-            "foregroundOverlapPixels": 1992
+            "foregroundOverlapPixels": 1724
+          }
+        ]
+      },
+      {
+        "id": "rem-xl",
+        "sheet": "assets/game/characters/rem-xl/runtime-spritesheet-v3.webp",
+        "sha256": "219034c438a93237d8a89bac6c3ee37d627a85991c9eb70915a682291017bdb1",
+        "measurementStatus": "owner-approved-visual-baseline",
+        "frames": [
+          {
+            "frame": 0,
+            "frameBounds": [
+              22,
+              11,
+              73,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 529
+          },
+          {
+            "frame": 1,
+            "frameBounds": [
+              22,
+              11,
+              73,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 533
+          },
+          {
+            "frame": 2,
+            "frameBounds": [
+              22,
+              11,
+              73,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 517
+          },
+          {
+            "frame": 3,
+            "frameBounds": [
+              22,
+              11,
+              73,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 521
+          },
+          {
+            "frame": 4,
+            "frameBounds": [
+              22,
+              12,
+              73,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 542
+          },
+          {
+            "frame": 5,
+            "frameBounds": [
+              22,
+              12,
+              73,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 541
+          }
+        ]
+      },
+      {
+        "id": "ruri",
+        "sheet": "assets/game/characters/ruri/runtime-spritesheet-v3.webp",
+        "sha256": "267c3703e9bc18a1a352159f198f5a33cdf17b9778d7ea9a699a79ae242fc56a",
+        "measurementStatus": "owner-approved-visual-baseline",
+        "frames": [
+          {
+            "frame": 0,
+            "frameBounds": [
+              22,
+              12,
+              73,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 847
+          },
+          {
+            "frame": 1,
+            "frameBounds": [
+              22,
+              12,
+              73,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 847
+          },
+          {
+            "frame": 2,
+            "frameBounds": [
+              22,
+              11,
+              73,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 872
+          },
+          {
+            "frame": 3,
+            "frameBounds": [
+              22,
+              11,
+              73,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 848
+          },
+          {
+            "frame": 4,
+            "frameBounds": [
+              22,
+              11,
+              73,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 858
+          },
+          {
+            "frame": 5,
+            "frameBounds": [
+              22,
+              11,
+              73,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 856
+          }
+        ]
+      },
+      {
+        "id": "taffy-2",
+        "sheet": "assets/game/characters/taffy-2/runtime-spritesheet-v3.webp",
+        "sha256": "7685dcb2eb7fd85e61601d3648b1fb3116c2c3a73b44cda30f9656ec0873b8fb",
+        "measurementStatus": "owner-approved-visual-baseline",
+        "frames": [
+          {
+            "frame": 0,
+            "frameBounds": [
+              17,
+              12,
+              78,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 925
+          },
+          {
+            "frame": 1,
+            "frameBounds": [
+              17,
+              12,
+              79,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 902
+          },
+          {
+            "frame": 2,
+            "frameBounds": [
+              16,
+              12,
+              79,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 918
+          },
+          {
+            "frame": 3,
+            "frameBounds": [
+              17,
+              12,
+              79,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 907
+          },
+          {
+            "frame": 4,
+            "frameBounds": [
+              16,
+              12,
+              79,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 912
+          },
+          {
+            "frame": 5,
+            "frameBounds": [
+              16,
+              12,
+              79,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 914
+          }
+        ]
+      },
+      {
+        "id": "yinyue-2",
+        "sheet": "assets/game/characters/yinyue-2/runtime-spritesheet-v3.webp",
+        "sha256": "e738a75240257f3f916f3814deb04d0dfb7e5efb6ce151664870b4d0d9ebd0ec",
+        "measurementStatus": "owner-approved-visual-baseline",
+        "frames": [
+          {
+            "frame": 0,
+            "frameBounds": [
+              16,
+              11,
+              79,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 1527
+          },
+          {
+            "frame": 1,
+            "frameBounds": [
+              16,
+              11,
+              79,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 1522
+          },
+          {
+            "frame": 2,
+            "frameBounds": [
+              17,
+              11,
+              79,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 1517
+          },
+          {
+            "frame": 3,
+            "frameBounds": [
+              16,
+              11,
+              79,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 1506
+          },
+          {
+            "frame": 4,
+            "frameBounds": [
+              17,
+              11,
+              79,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 1515
+          },
+          {
+            "frame": 5,
+            "frameBounds": [
+              17,
+              12,
+              79,
+              101
+            ],
+            "actorPosition": [
+              32,
+              26
+            ],
+            "actorContactLocal": [
+              48,
+              80
+            ],
+            "actorInsideReviewCard": true,
+            "foregroundOverlapPixels": 1499
           }
         ]
       }
@@ -2259,7 +2718,7 @@
     "authoringPartRecompositionPixelExact": true,
     "runtimePartRecompositionPixelExact": true,
     "validatedCharacterFrames": 108,
-    "minimumForegroundOverlapPixels": 916,
+    "minimumForegroundOverlapPixels": 517,
     "sourceDimensions": [
       1254,
       1254
@@ -2276,133 +2735,144 @@
     "F1": {
       "status": "passed",
       "evidence": [
-        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r01/03-geometry-grid.png",
+        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/03-geometry-grid.png",
         "2x2 footprint, 2x3 render box, capacity one"
       ]
     },
     "F2": {
       "status": "passed",
       "evidence": [
-        "assets/game/processed/office-furniture-family-v1/chair-massage-r01/authoring/chair.massage.modern.r01.shell.png",
+        "assets/game/processed/office-furniture-family-v1/chair-massage-r02/authoring/chair.massage.modern.r02.shell.png",
         "full-master-component-ownership"
       ]
     },
     "F3": {
       "status": "passed",
       "evidence": [
-        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r01/01-source-ownership.png",
-        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r01/02-alpha-parts.png",
-        "assets/game/processed/office-furniture-family-v1/chair-massage-r01/authoring/chair.massage.modern.r01.ownership-mask.png"
+        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/01-source-ownership.png",
+        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/02-alpha-parts.png",
+        "assets/game/processed/office-furniture-family-v1/chair-massage-r02/authoring/chair.massage.modern.r02.ownership-mask.png"
       ]
     },
     "F4": {
       "status": "passed",
       "evidence": [
-        "assets/game/processed/office-furniture-family-v1/chair-massage-r01/authoring/chair.massage.modern.r01.rear.png",
-        "assets/game/processed/office-furniture-family-v1/chair-massage-r01/authoring/chair.massage.modern.r01.foreground.png",
-        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r01/04-six-frame-seat-lab.png"
+        "assets/game/processed/office-furniture-family-v1/chair-massage-r02/authoring/chair.massage.modern.r02.rear.png",
+        "assets/game/processed/office-furniture-family-v1/chair-massage-r02/authoring/chair.massage.modern.r02.foreground.png",
+        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/04-pose-comparison.png",
+        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/05-six-frame-seat-lab.png"
       ]
     },
     "F5": {
       "status": "passed",
       "evidence": [
-        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r01/03-geometry-grid.png",
+        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/03-geometry-grid.png",
         "base pivot and sort pivot remain (1,2)"
       ]
     },
     "F6": {
       "status": "passed",
       "evidence": [
-        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r01/06-reservation-timeline.png",
+        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/07-reservation-timeline.png",
         "capacity-one atomic reservation with release-on-failure"
       ]
     },
     "F7": {
       "status": "passed",
       "evidence": [
-        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r01/04-six-frame-seat-lab.png",
-        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r01/05-roster-fit.png",
-        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r01/06-reservation-timeline.png",
-        "eighteen characters, 108 lounge frames, 30-second reservation lab"
+        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/04-pose-comparison.png",
+        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/05-six-frame-seat-lab.png",
+        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/06-roster-fit.png",
+        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/07-reservation-timeline.png",
+        "eighteen characters, 108 working-front frames, 30-second reservation lab"
       ]
     },
     "F8": {
-      "status": "blocked",
+      "status": "pending-owner-review",
       "evidence": [
-        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r01/01-source-ownership.png",
-        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r01/02-alpha-parts.png",
-        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r01/03-geometry-grid.png",
-        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r01/04-six-frame-seat-lab.png",
-        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r01/05-roster-fit.png",
-        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r01/06-reservation-timeline.png",
-        "Owner rejected lounge-front pose on 2026-07-29; use working-front-seated in R02."
+        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/01-source-ownership.png",
+        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/02-alpha-parts.png",
+        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/03-geometry-grid.png",
+        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/04-pose-comparison.png",
+        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/05-six-frame-seat-lab.png",
+        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/06-roster-fit.png",
+        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/07-reservation-timeline.png"
       ]
     },
     "F9": {
       "status": "blocked",
       "evidence": [
-        "Furniture-only room composition is outside R01 scope."
+        "Furniture-only room composition is outside R02 scope."
       ]
     },
     "F10": {
       "status": "blocked",
       "evidence": [
-        "Active Office integration is outside R01 scope."
+        "Active Office integration is outside R02 scope."
       ]
     }
   },
   "reviewOutputs": [
-    "assets/art/layout-references/office-furniture-family-v1/chair-massage-r01/01-source-ownership.png",
-    "assets/art/layout-references/office-furniture-family-v1/chair-massage-r01/02-alpha-parts.png",
-    "assets/art/layout-references/office-furniture-family-v1/chair-massage-r01/03-geometry-grid.png",
-    "assets/art/layout-references/office-furniture-family-v1/chair-massage-r01/04-six-frame-seat-lab.png",
-    "assets/art/layout-references/office-furniture-family-v1/chair-massage-r01/05-roster-fit.png",
-    "assets/art/layout-references/office-furniture-family-v1/chair-massage-r01/06-reservation-timeline.png"
+    "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/01-source-ownership.png",
+    "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/02-alpha-parts.png",
+    "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/03-geometry-grid.png",
+    "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/04-pose-comparison.png",
+    "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/05-six-frame-seat-lab.png",
+    "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/06-roster-fit.png",
+    "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/07-reservation-timeline.png"
   ],
   "reviewEvidence": [
     {
-      "path": "assets/art/layout-references/office-furniture-family-v1/chair-massage-r01/01-source-ownership.png",
-      "sha256": "6b8f17115006b57c7cc73b36ca277554b129cd7ebb90c73217d5e2aa12480fc3",
+      "path": "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/01-source-ownership.png",
+      "sha256": "1cd34341136d6580585321aad828651a10090348daef6915d70cff925ef32539",
       "size": [
         1600,
         1000
       ]
     },
     {
-      "path": "assets/art/layout-references/office-furniture-family-v1/chair-massage-r01/02-alpha-parts.png",
-      "sha256": "d00793c527ee21edb86d00fd0fcc986ebbb8e71391ff5bc9b9d895ca61c278d3",
+      "path": "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/02-alpha-parts.png",
+      "sha256": "180c19f0c9e1b9a91de78d2b983da35669cfe49cf246e63ff1cf675a7b6b3616",
       "size": [
         1600,
         1000
       ]
     },
     {
-      "path": "assets/art/layout-references/office-furniture-family-v1/chair-massage-r01/03-geometry-grid.png",
-      "sha256": "d3b7e4b57a1f6c212d2bc7224035f9e3810aae8d3766e7e9f94af350f8bc4b84",
+      "path": "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/03-geometry-grid.png",
+      "sha256": "8bd27d512ea12c0f2c06247e956990d6ffad9267bec8df971ac4b52dba059299",
       "size": [
         1200,
         1000
       ]
     },
     {
-      "path": "assets/art/layout-references/office-furniture-family-v1/chair-massage-r01/04-six-frame-seat-lab.png",
-      "sha256": "01b1875de694f916fa9aef8351b78a013a1e35626699cdfcad213a899a6882d1",
-      "size": [
-        1600,
-        1000
-      ]
-    },
-    {
-      "path": "assets/art/layout-references/office-furniture-family-v1/chair-massage-r01/05-roster-fit.png",
-      "sha256": "c5a35364b1061b5b806b6aeea0e88845d225509a470c918bbcee464d07a7aa37",
+      "path": "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/04-pose-comparison.png",
+      "sha256": "446f9dfa4f663ce545c68c46ff8fa7164302f4cf28a2a099defa585c5e54082e",
       "size": [
         1600,
         900
       ]
     },
     {
-      "path": "assets/art/layout-references/office-furniture-family-v1/chair-massage-r01/06-reservation-timeline.png",
-      "sha256": "3b87ebeaa8a9ca6e403701bf2991880ee66809ee276e4e7e48283c73225da895",
+      "path": "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/05-six-frame-seat-lab.png",
+      "sha256": "ed6a5c8d7dd2d0d3e7adb0671e2aab3ff87b1535de231d431b21a3a66d101c7b",
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/06-roster-fit.png",
+      "sha256": "435f6bc6ac8d8f5a5cab582425302a7ddbe0d772e7afdcff47393a32d7682cd2",
+      "size": [
+        1600,
+        900
+      ]
+    },
+    {
+      "path": "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/07-reservation-timeline.png",
+      "sha256": "3dc7600f04554b1b06b631bf36cbeb6296979acfede3fb71d886f493da3c7d89",
       "size": [
         1600,
         900
@@ -2419,16 +2889,12 @@
     "importsCandidate": false
   },
   "permissions": {
-    "familyLab": false,
-    "ownerReview": false,
+    "familyLab": true,
+    "ownerReview": true,
     "furnitureOnlyRoom": false,
     "otherFurnitureFamilies": false,
     "activeOfficePromotion": false
   },
-  "supersededBy": "office.furniture.chair-massage.r02",
-  "ownerDecision": {
-    "decision": "rejected",
-    "decidedOn": "2026-07-29",
-    "notes": "The lounge-front pose is not the intended electric-chair posture. R02 must use the approved working-front-seated pose."
-  }
+  "supersedes": "office.furniture.chair-massage.r01",
+  "ownerDecision": null
 }

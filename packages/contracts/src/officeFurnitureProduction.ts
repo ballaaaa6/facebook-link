@@ -58,8 +58,20 @@ export interface OfficeFurnitureInteractionSlot {
   approach: { x: number; y: number };
   exit: { x: number; y: number };
   facing: Exclude<OfficeOrientation, "none">;
+  /** Semantic runtime behavior, for example `use-massage-chair`. */
   action: string;
+  /** Frozen visual pose used while the semantic action is active. */
+  visualPose: string;
   reservationId: string;
+}
+
+export interface OfficeFurniturePoseAuthority {
+  id: string;
+  manifest: string;
+  manifestSha256: string;
+  status: "owner-approved";
+  orientation: Exclude<OfficeOrientation, "none">;
+  row: number;
 }
 
 export interface OfficeFurnitureFamilyManifest {
@@ -96,11 +108,13 @@ export interface OfficeFurnitureFamilyManifest {
     slots: readonly OfficeFurnitureInteractionSlot[];
   };
   rosterValidation: {
-    action: string;
+    visualPose: string;
+    poseAuthority: OfficeFurniturePoseAuthority;
     row: number;
     activeFrames: number;
     characterCount: number;
     perCharacterFurnitureScaling: false;
+    perCharacterSeatOffsets: false;
     characters: readonly {
       id: string;
       sheet: string;
@@ -108,6 +122,7 @@ export interface OfficeFurnitureFamilyManifest {
       frames: readonly {
         frame: number;
         frameBounds: readonly [number, number, number, number] | null;
+        actorContactLocal: readonly [number, number];
         actorInsideReviewCard: boolean;
         foregroundOverlapPixels: number;
       }[];
