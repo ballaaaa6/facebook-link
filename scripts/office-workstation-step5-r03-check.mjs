@@ -9,6 +9,7 @@ const paths = {
   assembly: "assets/game/manifests/office-workstation-assembly-bible-v3.json",
   r02: "assets/game/manifests/office-workstation-step5-single-seat-v2.json",
   r03: "assets/game/manifests/office-workstation-step5-single-seat-v3.json",
+  r04: "assets/game/manifests/office-workstation-step5-single-seat-v4.json",
   measurement: "assets/game/manifests/office-workstation-step5-r03-measurements.json",
 };
 const readJson = (path) => JSON.parse(readFileSync(join(root, path), "utf8"));
@@ -120,14 +121,21 @@ const activeRegistry = readFileSync(
 add(!activeRegistry.includes("office-workstation-step5-single-seat-v3")
   && !activeRegistry.includes("office-workstation-v3"),
 "Active Office registry cannot import R03 calibration data or outputs");
-add(!existsSync(join(root, "assets/game/processed/office-workstation-v3")),
-  "P0-P3 cannot create processed workstation v3 artwork");
+const processedR04 = existsSync(join(root, "assets/game/processed/office-workstation-v3/step5-r04"));
+if (processedR04) {
+  add(existsSync(join(root, paths.r04)), "Processed workstation v3 art requires an R04 manifest");
+  if (existsSync(join(root, paths.r04))) {
+    const r04 = readJson(paths.r04);
+    add(exact(r04.completedScope, ["P4", "P5", "P6"]), "Processed workstation v3 art must belong to approved R04 P4-P6");
+    add(r04.permissions?.activeOfficePromotion === false, "R04 art cannot promote itself to Active Office");
+  }
+}
 
 if (failures.length > 0) {
   process.stderr.write(`${failures.join("\n")}\n`);
   process.exitCode = 1;
 } else {
   process.stdout.write(
-    "Step 5 R03 P0-P3 OK: measured spatial authority and three boards; artwork, renderer, Step 6, and Active Office blocked.\n",
+    "Step 5 R03 P0-P3 OK: historical measurements and three boards remain locked; later R04 art stays isolated from Active Office.\n",
   );
 }

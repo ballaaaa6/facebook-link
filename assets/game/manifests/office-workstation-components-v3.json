@@ -1,0 +1,414 @@
+{
+  "version": 3,
+  "geometrySchemaVersion": 5,
+  "id": "office.workstation.components.v3",
+  "status": "isolated-owner-review",
+  "updatedOn": "2026-07-28",
+  "sourceGeneration": {
+    "tool": "built-in-imagegen-plus-deterministic-normalization",
+    "promptRecord": "assets/art/layout-references/office-workstation-v3/source/office-workstation-v3-imagegen-prompts.md",
+    "deskSource": {
+      "path": "assets/art/layout-references/office-workstation-v3/source/desk-workstation-modern-v3-turnaround-alpha.png",
+      "sha256": "f3392fff3190fb9f3e49d5b756b0423e68d9815939124c23f96a3c5af2f94df6"
+    },
+    "chairSource": {
+      "path": "assets/art/layout-references/office-workstation-v3/source/chair-office-modern-v3-turnaround-alpha.png",
+      "sha256": "91b3d326b3e193418e5554978fe3b37818a2db6375da7ada8f74b86c180a8383"
+    },
+    "monitorSource": {
+      "path": "assets/art/layout-references/office-workstation-v3/source/monitor-workstation-modern-v3-turnaround-alpha.png",
+      "sha256": "3287950cd929384c87a0a22a977ff37bfca59023b0ae225e87063bace79749ba"
+    }
+  },
+  "geometry": {
+    "tilePixels": 32,
+    "levels": {
+      "floor": 0,
+      "chairSeat": 1,
+      "deskSupport": 2,
+      "personTop": 3
+    },
+    "person": {
+      "footprint": [
+        1,
+        1
+      ],
+      "logicalVolume": [
+        1,
+        1,
+        3
+      ],
+      "framePixels": [
+        96,
+        104
+      ],
+      "hipAnchorPixels": [
+        48,
+        72
+      ]
+    },
+    "chair": {
+      "footprint": [
+        1,
+        1
+      ],
+      "logicalVolume": [
+        1,
+        1,
+        2
+      ],
+      "renderPixels": [
+        64,
+        80
+      ],
+      "seatOffsetFromFloorPixels": 32
+    },
+    "desk": {
+      "footprint": [
+        3,
+        2
+      ],
+      "logicalVolume": [
+        3,
+        2,
+        2
+      ],
+      "renderPixels": [
+        96,
+        128
+      ],
+      "supportRows": [
+        0,
+        64
+      ]
+    },
+    "monitor": {
+      "reservation": [
+        3,
+        1
+      ],
+      "renderPixels": [
+        52,
+        40
+      ]
+    },
+    "keyboard": {
+      "reservation": [
+        1,
+        1
+      ],
+      "maximumVisualEnvelope": [
+        1.5,
+        1
+      ],
+      "renderPixels": [
+        48,
+        24
+      ]
+    }
+  },
+  "components": {
+    "desk-seat": {
+      "path": "assets/game/processed/office-workstation-v3/step5-r04/desk.workstation.modern.v3.seat.png",
+      "sha256": "3acd2c15ccf5a42baeddb0e65fe614767e65be81f7596185e8574e3516373a4b",
+      "renderPixels": {
+        "width": 96,
+        "height": 128
+      },
+      "alphaBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 96,
+        "height": 128
+      }
+    },
+    "desk-seat-rear": {
+      "path": "assets/game/processed/office-workstation-v3/step5-r04/desk.workstation.modern.v3.seat.rear.png",
+      "sha256": "17cd0c579f21a3f20b63cda5488cbec8f6fe92196fefaebc201df79944658d97",
+      "renderPixels": {
+        "width": 96,
+        "height": 128
+      },
+      "alphaBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 96,
+        "height": 6
+      }
+    },
+    "desk-seat-surface": {
+      "path": "assets/game/processed/office-workstation-v3/step5-r04/desk.workstation.modern.v3.seat.surface.png",
+      "sha256": "991d1689003ccc764c4ef8cc730c07672a48fa29a72a2abf41cd3bcafb31f280",
+      "renderPixels": {
+        "width": 96,
+        "height": 128
+      },
+      "alphaBounds": {
+        "x": 0,
+        "y": 6,
+        "width": 96,
+        "height": 58
+      }
+    },
+    "desk-seat-base": {
+      "path": "assets/game/processed/office-workstation-v3/step5-r04/desk.workstation.modern.v3.seat.base.png",
+      "sha256": "66fb11b1aee08e3161fef251cb865062f4dc04bbf3d56826efc0b220b199ca3f",
+      "renderPixels": {
+        "width": 96,
+        "height": 128
+      },
+      "alphaBounds": {
+        "x": 1,
+        "y": 64,
+        "width": 94,
+        "height": 60
+      }
+    },
+    "desk-seat-foreground": {
+      "path": "assets/game/processed/office-workstation-v3/step5-r04/desk.workstation.modern.v3.seat.foreground.png",
+      "sha256": "eea17b9f67fc1debf75c80dff3718b9bbcd20a9b6655cf1e8046483de2e1844b",
+      "renderPixels": {
+        "width": 96,
+        "height": 128
+      },
+      "alphaBounds": {
+        "x": 1,
+        "y": 124,
+        "width": 94,
+        "height": 4
+      }
+    },
+    "desk-public": {
+      "path": "assets/game/processed/office-workstation-v3/step5-r04/desk.workstation.modern.v3.public.png",
+      "sha256": "63dfc146924a9f71a296e49a0a321bad44be594c3214732878e9d873cf1ad3a7",
+      "renderPixels": {
+        "width": 96,
+        "height": 128
+      },
+      "alphaBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 96,
+        "height": 128
+      }
+    },
+    "desk-public-rear": {
+      "path": "assets/game/processed/office-workstation-v3/step5-r04/desk.workstation.modern.v3.public.rear.png",
+      "sha256": "aa61feabbc48c0a2d52b962105664051b045b383030748089957617b49186d65",
+      "renderPixels": {
+        "width": 96,
+        "height": 128
+      },
+      "alphaBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 96,
+        "height": 6
+      }
+    },
+    "desk-public-surface": {
+      "path": "assets/game/processed/office-workstation-v3/step5-r04/desk.workstation.modern.v3.public.surface.png",
+      "sha256": "528946cc7f8d10031cd8293cb0d3579544cec3213d45d2992f090651d2ae3c88",
+      "renderPixels": {
+        "width": 96,
+        "height": 128
+      },
+      "alphaBounds": {
+        "x": 0,
+        "y": 6,
+        "width": 96,
+        "height": 58
+      }
+    },
+    "desk-public-base": {
+      "path": "assets/game/processed/office-workstation-v3/step5-r04/desk.workstation.modern.v3.public.base.png",
+      "sha256": "a19d01a041d8d90fbf1e32ff32cb6f00578f91af6c59bc9c4c48fe07419eacff",
+      "renderPixels": {
+        "width": 96,
+        "height": 128
+      },
+      "alphaBounds": {
+        "x": 1,
+        "y": 64,
+        "width": 95,
+        "height": 60
+      }
+    },
+    "desk-public-foreground": {
+      "path": "assets/game/processed/office-workstation-v3/step5-r04/desk.workstation.modern.v3.public.foreground.png",
+      "sha256": "ca016b1bdec22e74a0de6833d8e17fbedfa39dab8187778a102989fbee6a5c9e",
+      "renderPixels": {
+        "width": 96,
+        "height": 128
+      },
+      "alphaBounds": {
+        "x": 1,
+        "y": 124,
+        "width": 94,
+        "height": 4
+      }
+    },
+    "chair-front": {
+      "path": "assets/game/processed/office-workstation-v3/step5-r04/chair.office.modern.v3.front.png",
+      "sha256": "ddddc9cdbc478c77085e466b1c504af4e87e7a4169009cd9de57353356ff98f6",
+      "renderPixels": {
+        "width": 64,
+        "height": 80
+      },
+      "alphaBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 64,
+        "height": 80
+      }
+    },
+    "chair-front-rear": {
+      "path": "assets/game/processed/office-workstation-v3/step5-r04/chair.office.modern.v3.front.rear.png",
+      "sha256": "081a736f20284b781258c6a9a4d0aeea27565bae29ec7273fd6382f176334244",
+      "renderPixels": {
+        "width": 64,
+        "height": 80
+      },
+      "alphaBounds": {
+        "x": 11,
+        "y": 0,
+        "width": 42,
+        "height": 48
+      }
+    },
+    "chair-front-seat": {
+      "path": "assets/game/processed/office-workstation-v3/step5-r04/chair.office.modern.v3.front.seat.png",
+      "sha256": "2fc5469bbee4ee534e1dbd93e9511dbff774a56ea2ac3c40965212b029287b2c",
+      "renderPixels": {
+        "width": 64,
+        "height": 80
+      },
+      "alphaBounds": {
+        "x": 1,
+        "y": 48,
+        "width": 62,
+        "height": 32
+      }
+    },
+    "chair-front-foreground": {
+      "path": "assets/game/processed/office-workstation-v3/step5-r04/chair.office.modern.v3.front.foreground.png",
+      "sha256": "d2bf4c8c3c9c8d1a82f5014eb34ee846803f0e6c73a33b09021f6a98f26d4a5a",
+      "renderPixels": {
+        "width": 64,
+        "height": 80
+      },
+      "alphaBounds": {
+        "x": 0,
+        "y": 5,
+        "width": 64,
+        "height": 44
+      }
+    },
+    "chair-back": {
+      "path": "assets/game/processed/office-workstation-v3/step5-r04/chair.office.modern.v3.back.png",
+      "sha256": "a467d0d1a14fa3cab89e0ede2a7b9be8a8c1fc96cd0e8a65b4fe9998a2957440",
+      "renderPixels": {
+        "width": 64,
+        "height": 80
+      },
+      "alphaBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 64,
+        "height": 80
+      }
+    },
+    "chair-back-rear": {
+      "path": "assets/game/processed/office-workstation-v3/step5-r04/chair.office.modern.v3.back.rear.png",
+      "sha256": "421ad66b331400059121cb7273f1856963278e04c7c712ee30ee5fa350f6510b",
+      "renderPixels": {
+        "width": 64,
+        "height": 80
+      },
+      "alphaBounds": {
+        "x": 0,
+        "y": 24,
+        "width": 64,
+        "height": 24
+      }
+    },
+    "chair-back-seat": {
+      "path": "assets/game/processed/office-workstation-v3/step5-r04/chair.office.modern.v3.back.seat.png",
+      "sha256": "0a7b170f4b1ec4a7930a5547578b693587d4f31c16e641808f4338220b50f0af",
+      "renderPixels": {
+        "width": 64,
+        "height": 80
+      },
+      "alphaBounds": {
+        "x": 2,
+        "y": 48,
+        "width": 60,
+        "height": 32
+      }
+    },
+    "chair-back-foreground": {
+      "path": "assets/game/processed/office-workstation-v3/step5-r04/chair.office.modern.v3.back.foreground.png",
+      "sha256": "39f7be8a9682b0f854408099526d5bf2217434c08c5d4bdf10bf1aa1fd0e0196",
+      "renderPixels": {
+        "width": 64,
+        "height": 80
+      },
+      "alphaBounds": {
+        "x": 8,
+        "y": 0,
+        "width": 48,
+        "height": 59
+      }
+    },
+    "monitor-front": {
+      "path": "assets/game/processed/office-workstation-v3/step5-r04/monitor.workstation.v3.front.png",
+      "sha256": "c55c4dd81778182a578b4e85ba651e91a24fd010d7e6a8cad6338b070741cb7e",
+      "renderPixels": {
+        "width": 52,
+        "height": 40
+      },
+      "alphaBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 52,
+        "height": 40
+      }
+    },
+    "monitor-back": {
+      "path": "assets/game/processed/office-workstation-v3/step5-r04/monitor.workstation.v3.back.png",
+      "sha256": "01ce860e4677949176a62c247399e5e3d784715dfc588312ca10be35bc66ab70",
+      "renderPixels": {
+        "width": 52,
+        "height": 40
+      },
+      "alphaBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 52,
+        "height": 40
+      }
+    },
+    "keyboard": {
+      "path": "assets/game/processed/office-workstation-v3/step5-r04/keyboard.workstation.v3.full.png",
+      "sha256": "cb914dab897305b241e99c1272fd7e3ba7d7ec35a1027c9e9d1b5d6592ee9f4c",
+      "renderPixels": {
+        "width": 48,
+        "height": 24
+      },
+      "alphaBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 48,
+        "height": 24
+      }
+    }
+  },
+  "permissions": {
+    "componentArtwork": true,
+    "staticSingleSeatAssembly": true,
+    "isolatedLabRenderer": true,
+    "tenSeatAssembly": false,
+    "step6": false,
+    "activeOfficePromotion": false
+  }
+}

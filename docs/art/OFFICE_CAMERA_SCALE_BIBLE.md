@@ -1,6 +1,6 @@
 # Office Camera and Scale Bible v3
 
-Status: P0-P3 calibration authority; owner approval required
+Status: Geometry v5 ruler retained; Step 5 R04 P4-P6 validated
 Updated: 2026-07-28
 Machine-readable source:
 `assets/game/manifests/office-camera-scale-bible-v3.json`
@@ -39,10 +39,10 @@ The levels describe world stacking. They are not bitmap crop boundaries.
 | Object | Floor footprint | Logical volume | Pixel rule |
 | --- | --- | --- | --- |
 | Current Office person | `1 x 1` | `1 x 1 x 3` | Keep the current `96 x 104` frame at 32 px/tile |
-| Chair | `1 x 1` | `1 x 1 x 2` | Exact render envelope remains unlocked until contact approval |
+| Chair | `1 x 1` | `1 x 1 x 2` | R04 render is `64 x 80` px with cushion 32 px above floor |
 | Desk | `3 x 2` | `3 x 2 x 2` | Full support plane is `96 x 64` px at `z = 2` |
-| Monitor | desk child | support child | Reserve the actor-far `3 x 1` row; reuse the current visual |
-| Keyboard | desk child | support child | Reserve center `1 x 1` near the actor; visual maximum `1.5 x 1`, proposed `48 x 24` px |
+| Monitor | desk child | support child | Reserve actor-far `3 x 1`; R04 visual is `52 x 40` px |
+| Keyboard | desk child | support child | Reserve center `1 x 1` near the actor; R04 visual is `48 x 24` px |
 
 Visible character, chair, hair, clothing, equipment, or furniture-height pixels
 may overflow a footprint only where declared. Render overflow never creates
@@ -61,6 +61,9 @@ collision cells.
 
 ## Current gate
 
-Only deterministic measurement and the three R03 calibration boards are
-authorized. Artwork generation, renderer implementation, one-seat assembly,
-ten-seat assembly, Step 6, and Active Office promotion remain blocked.
+R04 used this ruler to complete new isolated component art, one-seat assembly,
+and the development-only P6 renderer. Its exact pixels and two-direction
+geometry are locked by `office-workstation-components-v3.json` and
+`office-workstation-step5-single-seat-v4.json`. Ten-seat assembly, roster-wide
+calibration, Step 6, and Active Office promotion remain blocked pending owner
+visual review.

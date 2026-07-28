@@ -1,6 +1,6 @@
 # Office 2D Geometry Principles
 
-Status: Current Geometry v5 workstation principles; P0-P3 owner review
+Status: Current Geometry v5 workstation principles; R04 P4-P6 owner review
 Updated: 2026-07-28
 
 This document defines the shared Office principles. For Step 5 workstation
@@ -12,6 +12,10 @@ Machine-readable workstation authority:
 Camera authority: `assets/game/manifests/office-camera-scale-bible-v3.json`.
 Character-scale authority:
 `assets/game/manifests/office-character-scale-standard-v1.json`.
+Component pixel authority:
+`assets/game/manifests/office-workstation-components-v3.json`.
+Single-seat assembly authority:
+`assets/game/manifests/office-workstation-step5-single-seat-v4.json`.
 
 ## Coordinate spaces
 
@@ -115,10 +119,10 @@ the middle `1 x 1` cell in the actor-near row.
 
 ## Paired ten-seat block
 
-Ten-seat coordinates are intentionally not current authority. R03 P0-P3
-calibrates one logical station only. A ten-seat block can be derived after the
-single-station pixels and renderer pass later gates. The Active Office
-background, zone split, and map remain unchanged.
+Ten-seat coordinates are intentionally not current authority. R04 validates
+one logical station only. A ten-seat block can be derived only after the owner
+accepts the R04 pixels and renderer. The Active Office background, zone split,
+map, registry, and roster remain unchanged.
 
 ## Furniture part contract
 
@@ -136,9 +140,9 @@ remain separate from all desk parts.
 
 ## Orientation and occlusion
 
-- Historical `.front` and `.back` filenames are not current semantic
-  authority. P4 must verify drawers, modesty panel, knee space, actor side, and
-  monitor side from visible features before assigning seat/public meanings.
+- Historical `.front` and `.back` filenames are not semantic authority. R04
+  verified drawers, modesty panel, knee space, actor side, and monitor side
+  from visible features before assigning seat/public meanings.
 - Near-row chair and actor layers draw in front of the paired desk bank.
 - Far-row lower-body pixels may be hidden by the desk base or foreground.
 - Greater `sortPivot.y` draws later.
@@ -165,10 +169,9 @@ or contact anchors.
 
 ## Approval gate
 
-Only the R03 logical ruler, source measurements, and three P3 boards are
-present. Exact desk, chair, monitor, and keyboard pixels are not approved by
-this gate. Exact chair contact anchors and desk-side mappings remain unlocked.
-
-Owner approval of the three boards permits P4 normalization for one isolated
-station only. Renderer work, the other eighteen characters, ten seats, Step 6,
-and Active Office permissions remain false.
+R04 contains exact normalized desk, chair, monitor, and keyboard pixels; one
+manifest-driven station in both semantic directions; six deterministic boards;
+and two browser captures. The 30-second runtime gate preserves actor and chair
+coordinates with zero drift. Owner approval applies only to this isolated R04
+station. The other eighteen characters, ten seats, Step 6, and Active Office
+permissions remain false.

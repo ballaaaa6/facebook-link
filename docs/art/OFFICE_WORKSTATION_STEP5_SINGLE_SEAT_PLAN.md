@@ -1,18 +1,19 @@
-# Office Workstation Step 5 R03 Calibration Gate
+# Office Workstation Step 5 R04 Single-Seat Gate
 
-Status: P0-P3 complete; owner calibration review required
+Status: P0-P6 complete; owner visual review required
 Updated: 2026-07-28
 
 Current authorities:
 
 - `assets/game/manifests/office-camera-scale-bible-v3.json`
 - `assets/game/manifests/office-workstation-assembly-bible-v3.json`
-- `assets/game/manifests/office-workstation-step5-single-seat-v3.json`
-- `assets/game/manifests/office-workstation-step5-r03-measurements.json`
+- `assets/game/manifests/office-workstation-components-v3.json`
+- `assets/game/manifests/office-workstation-step5-single-seat-v4.json`
 
-R03 is a measurement and rule-correction pass. It does not create desk, chair,
-monitor, keyboard, character, pose, renderer, ten-seat, Step 6, or Active
-Office output.
+R03 remains the P0-P3 measurement history. The owner approved the next group,
+so R04 completed P4 component normalization, P5 static two-direction assembly,
+and P6 isolated browser validation. R04 creates no new character or pose and
+does not assemble ten seats, begin Step 6, or modify Active Office.
 
 ## Why R02 was rejected
 
@@ -36,7 +37,7 @@ The former tests therefore proved internal agreement between incorrect
 numbers. R03 tests measured pixels and explicitly leave unknown pixel anchors
 unlocked.
 
-## P0 - freeze and permissions
+## Historical P0 - freeze and permissions
 
 R02 retains its files for audit but all implementation permissions are
 revoked. R03 authorizes only deterministic measurement and the three
@@ -54,7 +55,7 @@ The following remain false until a later owner decision:
 The Active Office map must remain byte-identical at SHA-256
 `c40db448eb8e6d0f3fea67a41f716c0108aca63a4136cfad15293534273c618d`.
 
-## P1 - spatial authority
+## Historical P1 - spatial authority
 
 R03 uses a single 32-pixel world ruler:
 
@@ -80,7 +81,7 @@ only where declared. Visual overflow never enlarges collision space. The full
 keyboard visual must remain inside the desk support plane and cannot overlap
 the monitor.
 
-## P2 - measured evidence
+## Historical P2 - measured evidence
 
 The deterministic measurement file records SHA-256, image dimensions, alpha
 bounds, and calibration bounds for:
@@ -98,7 +99,7 @@ back view and 61 px in the front view. These values are evidence, not approved
 chair render dimensions. Exact cushion, pelvis, rear, and foreground pixel
 anchors remain unlocked.
 
-## P3 - owner review boards
+## Historical P3 - calibration boards
 
 Exactly three calibration images are stored under
 `assets/art/layout-references/office-workstation-v3/step5-r03/`:
@@ -115,7 +116,7 @@ The boards distinguish three kinds of information:
 
 They are diagrams and source-pixel evidence. They are not new furniture art.
 
-## Owner gate
+## Historical P3 owner gate
 
 Before P4, the owner must approve or revise:
 
@@ -126,6 +127,62 @@ Before P4, the owner must approve or revise:
 5. the requirement for chair rear, person, chair seat, and chair foreground
    layers.
 
-Approval authorizes P4 only: normalize the four workstation components for
-one isolated station and return new evidence. It does not authorize a
-renderer, ten seats, Step 6, or Active Office.
+That approval authorized the completed R04 P4-P6 work below. It did not
+authorize ten seats, the other eighteen characters, Step 6, or Active Office.
+
+## P4 - normalized component pixels
+
+R04 uses separate render assets and logical reservations:
+
+| Component | Logical rule | R04 pixels |
+| --- | --- | --- |
+| Existing Office person | footprint `1 x 1`, volume `1 x 1 x 3` | existing `96 x 104` seated frame |
+| New chair | footprint `1 x 1`, volume `1 x 1 x 2` | `64 x 80`, cushion 32 px above floor |
+| New desk | footprint `3 x 2`, volume `3 x 2 x 2` | `96 x 128`, support rows `0..63` |
+| New lower-profile monitor | reservation `3 x 1` | `52 x 40` |
+| Normalized keyboard | reservation `1 x 1`, visual maximum `1.5 x 1` | `48 x 24` |
+
+The desk has public and seat sides. Each side is split into `rear`, `surface`,
+`base`, and `foreground`. The chair has front and back directions split into
+`rear`, `seat`, and `foreground`. No character, chair, monitor, or keyboard
+pixels are baked into the desk.
+
+The generated source prompts are recorded in
+`assets/art/layout-references/office-workstation-v3/source/office-workstation-v3-imagegen-prompts.md`.
+
+## P5 - one static station in two directions
+
+Both views read one manifest and use the same component pixels, scale, and
+anchors. `far` means the actor sits beyond the public side: the public modesty
+panel and monitor back face the viewer. `near` means the actor sits on the
+seat side: the chair/actor draw in front of the desk and the monitor front is
+visible.
+
+The monitor and keyboard do not intersect. Both reservations remain inside
+the `96 x 64` support. The chair cushion anchor and person hip anchor are
+identical at `z = 1`. Six deterministic boards are stored under
+`assets/art/layout-references/office-workstation-v3/step5-r04/`.
+
+## P6 - isolated browser validation
+
+The development-only route is
+`/?lab=office-workstation-v3-step5`. It renders one station, two directions,
+clean/overlay/current-background panels, and never imports R04 into the Active
+Office registry.
+
+Browser results:
+
+- 30 seconds of live animation with zero actor or chair coordinate drift;
+- zero contract issues, console errors, warnings, or broken images;
+- desktop runtime review at `1280 x 720`;
+- current-background context review at `1280 x 1100`;
+- `390 x 844` narrow review with zero horizontal overflow;
+- Active Office map SHA-256 remains
+  `c40db448eb8e6d0f3fea67a41f716c0108aca63a4136cfad15293534273c618d`.
+
+## Current owner gate
+
+The owner should review the eight R04 images. Approval applies only to this
+single station and permits planning the ten-seat expansion as a separate
+gate. Until that decision, `tenSeatAssembly`, `rosterWideCalibration`,
+`step6`, and `activeOfficePromotion` remain false.

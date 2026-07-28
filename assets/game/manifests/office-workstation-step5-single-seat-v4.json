@@ -1,0 +1,245 @@
+{
+  "version": 4,
+  "geometrySchemaVersion": 5,
+  "id": "office.workstation.step5.single-seat.v4",
+  "status": "isolated-runtime-owner-review",
+  "updatedOn": "2026-07-28",
+  "replaces": "office.workstation.step5.single-seat.v3",
+  "completedScope": [
+    "P4",
+    "P5",
+    "P6"
+  ],
+  "runtimeScope": "P6-isolated-lab-complete",
+  "componentsAuthority": {
+    "file": "assets/game/manifests/office-workstation-components-v3.json",
+    "sha256": "bcf5ac4a729da7185f7eacf1e1ea7f0a65473ac27e7066ba072a2f1c7a29db4c"
+  },
+  "activeOfficeBaseline": {
+    "file": "assets/game/maps/office-c-v2.json",
+    "sha256": "c40db448eb8e6d0f3fea67a41f716c0108aca63a4136cfad15293534273c618d",
+    "mustRemainByteIdentical": true
+  },
+  "lab": {
+    "route": "/?lab=office-workstation-v3-step5",
+    "developmentOnly": true,
+    "productionReachable": false,
+    "stationCount": 1,
+    "orientationCount": 2
+  },
+  "animation": {
+    "frames": 6,
+    "fps": 6,
+    "rows": {
+      "far": 14,
+      "near": 13
+    },
+    "maximumAnchorDriftPixels": 0
+  },
+  "geometry": {
+    "far": {
+      "desk": {
+        "left": 208,
+        "top": 180,
+        "width": 96,
+        "height": 128
+      },
+      "support": {
+        "left": 208,
+        "top": 180,
+        "width": 96,
+        "height": 64
+      },
+      "deskFloorOrigin": {
+        "x": 208,
+        "y": 244
+      },
+      "actorFloor": {
+        "x": 256,
+        "y": 212
+      },
+      "actor": {
+        "left": 208,
+        "top": 108,
+        "width": 96,
+        "height": 104
+      },
+      "chair": {
+        "left": 224,
+        "top": 132,
+        "width": 64,
+        "height": 80
+      },
+      "seatAnchor": {
+        "x": 256,
+        "y": 180
+      },
+      "hipAnchor": {
+        "x": 256,
+        "y": 180
+      },
+      "monitor": {
+        "left": 230,
+        "top": 204,
+        "width": 52,
+        "height": 40
+      },
+      "keyboard": {
+        "left": 232,
+        "top": 180,
+        "width": 48,
+        "height": 24
+      },
+      "monitorReservation": {
+        "left": 208,
+        "top": 212,
+        "width": 96,
+        "height": 32
+      },
+      "keyboardReservation": {
+        "left": 240,
+        "top": 180,
+        "width": 32,
+        "height": 32
+      }
+    },
+    "near": {
+      "desk": {
+        "left": 208,
+        "top": 180,
+        "width": 96,
+        "height": 128
+      },
+      "support": {
+        "left": 208,
+        "top": 180,
+        "width": 96,
+        "height": 64
+      },
+      "deskFloorOrigin": {
+        "x": 208,
+        "y": 244
+      },
+      "actorFloor": {
+        "x": 256,
+        "y": 308
+      },
+      "actor": {
+        "left": 208,
+        "top": 204,
+        "width": 96,
+        "height": 104
+      },
+      "chair": {
+        "left": 224,
+        "top": 228,
+        "width": 64,
+        "height": 80
+      },
+      "seatAnchor": {
+        "x": 256,
+        "y": 276
+      },
+      "hipAnchor": {
+        "x": 256,
+        "y": 276
+      },
+      "monitor": {
+        "left": 230,
+        "top": 172,
+        "width": 52,
+        "height": 40
+      },
+      "keyboard": {
+        "left": 232,
+        "top": 216,
+        "width": 48,
+        "height": 24
+      },
+      "monitorReservation": {
+        "left": 208,
+        "top": 180,
+        "width": 96,
+        "height": 32
+      },
+      "keyboardReservation": {
+        "left": 240,
+        "top": 212,
+        "width": 32,
+        "height": 32
+      }
+    }
+  },
+  "layerOrder": {
+    "far": [
+      "chair-rear",
+      "chair-seat",
+      "actor",
+      "chair-foreground",
+      "desk-rear",
+      "desk-surface",
+      "monitor-back",
+      "keyboard",
+      "desk-base",
+      "desk-foreground"
+    ],
+    "near": [
+      "desk-rear",
+      "desk-surface",
+      "monitor-front",
+      "keyboard",
+      "desk-base",
+      "desk-foreground",
+      "chair-rear",
+      "chair-seat",
+      "actor",
+      "chair-foreground"
+    ]
+  },
+  "reviewOutputs": [
+    "assets/art/layout-references/office-workstation-v3/step5-r04/01-components-and-semantic-sides.png",
+    "assets/art/layout-references/office-workstation-v3/step5-r04/02-far-front-clean.png",
+    "assets/art/layout-references/office-workstation-v3/step5-r04/03-near-back-clean.png",
+    "assets/art/layout-references/office-workstation-v3/step5-r04/04-footprint-contact-and-z-overlay.png",
+    "assets/art/layout-references/office-workstation-v3/step5-r04/05-six-frame-animation-stability-strip.png",
+    "assets/art/layout-references/office-workstation-v3/step5-r04/06-current-office-context-preview.png",
+    "assets/art/layout-references/office-workstation-v3/step5-r04/07-browser-runtime-review.png",
+    "assets/art/layout-references/office-workstation-v3/step5-r04/08-browser-office-context.png"
+  ],
+  "browserValidation": {
+    "animationSeconds": 30,
+    "desktopViewport": [
+      1280,
+      720
+    ],
+    "contextViewport": [
+      1280,
+      1100
+    ],
+    "narrowViewport": [
+      390,
+      844
+    ],
+    "consoleErrors": 0,
+    "brokenImages": 0,
+    "maximumHorizontalOverflowPixels": 0,
+    "anchorStable": true
+  },
+  "permissions": {
+    "newCharacterOrPose": false,
+    "isolatedLabRenderer": true,
+    "tenSeatAssembly": false,
+    "rosterWideCalibration": false,
+    "step6": false,
+    "activeOfficePromotion": false
+  },
+  "ownerGate": {
+    "decision": "pending",
+    "approveOnly": "one isolated R04 station",
+    "stillBlocked": [
+      "ten-seat-layout",
+      "step6",
+      "active-office"
+    ]
+  }
+}

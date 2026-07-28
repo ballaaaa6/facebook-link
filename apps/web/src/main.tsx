@@ -33,6 +33,11 @@ async function renderRoot() {
     root.render(<StrictMode><OfficeWorkstationStep5LabPage /></StrictMode>);
     return;
   }
+  if (requestedLab === "office-workstation-v3-step5") {
+    const { OfficeWorkstationStep5R04LabPage } = await import("./features/office/lab/workstation-v3-step5/OfficeWorkstationStep5R04LabPage");
+    root.render(<StrictMode><OfficeWorkstationStep5R04LabPage /></StrictMode>);
+    return;
+  }
   if (requestedLab === "office-layout") {
     const { OfficeLayoutLabPage } = await import("./features/office/lab/OfficeLayoutLabPage");
     root.render(<StrictMode><OfficeLayoutLabPage /></StrictMode>);

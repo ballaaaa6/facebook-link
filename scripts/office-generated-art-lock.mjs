@@ -13,6 +13,9 @@ const workstationV2ReviewDirectory = "assets/art/layout-references/office-workst
 const workstationV2Step5ReviewDirectory = "assets/art/layout-references/office-workstation-v2/step5";
 const workstationV2Step5R02ReviewDirectory = "assets/art/layout-references/office-workstation-v2/step5-r02";
 const workstationV3Step5R03ReviewDirectory = "assets/art/layout-references/office-workstation-v3/step5-r03";
+const workstationV3SourceDirectory = "assets/art/layout-references/office-workstation-v3/source";
+const workstationV3Step5R04ReviewDirectory = "assets/art/layout-references/office-workstation-v3/step5-r04";
+const workstationV3Step5R04ProcessedDirectory = "assets/game/processed/office-workstation-v3/step5-r04";
 const derivedDirectory = "assets/game/processed/office-derived-v1";
 const workstationSource = "assets/art/layout-references/office-workstation-v1/office-workstation-modular-v1-source.png";
 
@@ -33,6 +36,8 @@ const fixedInputs = [
   "assets/game/manifests/office-workstation-step5-single-seat-v1.json",
   "assets/game/manifests/office-workstation-step5-single-seat-v2.json",
   "assets/game/manifests/office-workstation-step5-single-seat-v3.json",
+  "assets/game/manifests/office-workstation-components-v3.json",
+  "assets/game/manifests/office-workstation-step5-single-seat-v4.json",
   "assets/game/manifests/office-character-scale-standard-v1.json",
   "assets/game/manifests/office-workstation-bundle.schema.json",
   "assets/game/manifests/office-workstation-bundle-v2.schema.json",
@@ -48,6 +53,7 @@ const fixedInputs = [
   "packages/contracts/src/officeSpatialScale.ts",
   "packages/contracts/src/officeSpatialProjection.ts",
   "packages/contracts/src/officeWorkstationStep5V3.ts",
+  "packages/contracts/src/officeWorkstationStep5R04.ts",
   "scripts/audit-office-asset-geometry.py",
   "scripts/build-office-camera-scale-board.py",
   "scripts/build-office-workstation-assembly-bible.py",
@@ -56,6 +62,7 @@ const fixedInputs = [
   "scripts/build-office-workstation-step5-review.py",
   "scripts/build-office-workstation-step5-r02-assets.py",
   "scripts/build-office-workstation-step5-r03-calibration.py",
+  "scripts/build-office-workstation-step5-r04.py",
   "scripts/build-office-derived-assets.py",
   "scripts/office_derived_asset_recipes.py",
   "scripts/office-derived-assets-check.mjs",
@@ -64,6 +71,12 @@ const fixedInputs = [
   "scripts/office-workstation-v2-check.mjs",
   "scripts/office-workstation-step5-check.mjs",
   "scripts/office-workstation-step5-r03-check.mjs",
+  "scripts/office-workstation-step5-r04-check.mjs",
+  "apps/web/src/features/office/lab/workstation-v3-step5/OfficeWorkstationStep5R04LabPage.tsx",
+  "apps/web/src/features/office/lab/workstation-v3-step5/R04Station.tsx",
+  "apps/web/src/features/office/lab/workstation-v3-step5/r04Assets.ts",
+  "apps/web/src/features/office/lab/workstation-v3-step5/r04Lab.css",
+  "apps/web/src/features/office/lab/workstation-v3-step5/r04Runtime.ts",
   "scripts/office_geometry_audit_inventory.py",
   "scripts/office_geometry_audit_report.py",
   "scripts/office_geometry_audit_visuals.py",
@@ -155,6 +168,9 @@ function buildLock() {
   const workstationV2Step5Review = recursiveFiles(workstationV2Step5ReviewDirectory);
   const workstationV2Step5R02Review = recursiveFiles(workstationV2Step5R02ReviewDirectory);
   const workstationV3Step5R03Review = recursiveFiles(workstationV3Step5R03ReviewDirectory);
+  const workstationV3Source = recursiveFiles(workstationV3SourceDirectory);
+  const workstationV3Step5R04Review = recursiveFiles(workstationV3Step5R04ReviewDirectory);
+  const workstationV3Step5R04Processed = recursiveFiles(workstationV3Step5R04ProcessedDirectory);
   const derived = recursiveFiles(derivedDirectory);
   return {
     version: 1,
@@ -164,6 +180,7 @@ function buildLock() {
       ...fixedOutputs, ...contacts, ...workstation, ...workstationV2,
       ...workstationV2Review, ...workstationV2Step5Review,
       ...workstationV2Step5R02Review, ...workstationV3Step5R03Review, ...derived,
+      ...workstationV3Source, ...workstationV3Step5R04Review, ...workstationV3Step5R04Processed,
     ]),
     exactContactSheets: contacts,
     exactWorkstationOutputs: workstation,
@@ -172,6 +189,9 @@ function buildLock() {
     exactWorkstationV2Step5ReviewOutputs: workstationV2Step5Review,
     exactWorkstationV2Step5R02ReviewOutputs: workstationV2Step5R02Review,
     exactWorkstationV3Step5R03ReviewOutputs: workstationV3Step5R03Review,
+    exactWorkstationV3SourceOutputs: workstationV3Source,
+    exactWorkstationV3Step5R04ReviewOutputs: workstationV3Step5R04Review,
+    exactWorkstationV3Step5R04ProcessedOutputs: workstationV3Step5R04Processed,
     exactDerivedOutputs: derived,
   };
 }
@@ -206,6 +226,15 @@ function validateLock(lock) {
   }
   if (JSON.stringify(recursiveFiles(workstationV3Step5R03ReviewDirectory)) !== JSON.stringify(lock.exactWorkstationV3Step5R03ReviewOutputs)) {
     failures.push("Workstation v3 Step 5 r03 review list does not match the exact generated directory contents");
+  }
+  if (JSON.stringify(recursiveFiles(workstationV3SourceDirectory)) !== JSON.stringify(lock.exactWorkstationV3SourceOutputs)) {
+    failures.push("Workstation v3 source list does not match the exact generated directory contents");
+  }
+  if (JSON.stringify(recursiveFiles(workstationV3Step5R04ReviewDirectory)) !== JSON.stringify(lock.exactWorkstationV3Step5R04ReviewOutputs)) {
+    failures.push("Workstation v3 Step 5 r04 review list does not match the exact generated directory contents");
+  }
+  if (JSON.stringify(recursiveFiles(workstationV3Step5R04ProcessedDirectory)) !== JSON.stringify(lock.exactWorkstationV3Step5R04ProcessedOutputs)) {
+    failures.push("Workstation v3 Step 5 r04 processed list does not match the exact generated directory contents");
   }
   if (JSON.stringify(recursiveFiles(derivedDirectory)) !== JSON.stringify(lock.exactDerivedOutputs)) {
     failures.push("Derived output list does not match the exact generated directory contents");

@@ -5,14 +5,16 @@ evidence. It declared a `3 x 2` desk while exposing only 30 of the required 64
 tabletop-depth pixels, reserved `3 x 1` for the keyboard, compressed the chair,
 and treated unmeasured contact anchors as proof.
 
-R03 P0-P3 now provides the current spatial authority and three owner-review
-boards. The locked ruler is: 32 px per tile; person `1 x 1 x 3` with the
-current `96 x 104` frame; chair `1 x 1 x 2` sharing the person's floor cell;
-desk `3 x 2 x 2` with a full `96 x 64` support plane; monitor reservation
-`3 x 1`; keyboard reservation `1 x 1` with a proposed `48 x 24` visual. Exact
-chair contact pixels remain deliberately unlocked. New artwork, renderer
-work, single-seat/ten-seat assembly, Step 6, and Active Office promotion are
-blocked pending explicit owner approval of the P3 boards.
+R03 P0-P3 is retained as measured calibration history. The approved P4-P6
+execution is now Step 5 R04: a new normalized desk, chair, and lower-profile
+monitor; the existing Office person and seated rows; one `48 x 24` keyboard;
+one isolated station in public/front and seat/back directions; and browser
+evidence. The locked ruler is 32 px per tile: person `1 x 1 x 3`, chair
+`1 x 1 x 2`, desk `3 x 2 x 2` with a full `96 x 64` support plane, monitor
+reservation `3 x 1`, and keyboard reservation `1 x 1`. The 30-second runtime
+gate has zero anchor drift, console errors, broken images, or narrow-layout
+overflow. R04 is awaiting visual owner review. Ten-seat assembly, roster-wide
+calibration, Step 6, and Active Office promotion remain blocked.
 
 ## M0 — Repository foundation (complete)
 
