@@ -43,17 +43,21 @@ function recursiveSource(directory) {
 add(rejected.status === "rejected-visual" && rejected.reviewDecision?.status === "changes-requested",
   "Step 5 v1 must remain rejected visual evidence");
 add(manifest.version === 2 && manifest.geometrySchemaVersion === 4, "Step 5 r02 must use Geometry v4");
-add(manifest.status === "owner-review", "Step 5 r02 must stop at owner review");
-add(manifest.permissions?.isolatedLabRenderer === true && manifest.permissions?.singleSeatAssembly === true,
-  "Step 5 r02 isolated single-seat renderer must be authorized");
-add(manifest.permissions?.deterministicDerivedAssets === true, "Step 5 r02 derived masks/crop must be authorized");
-for (const key of ["newArtworkGeneration", "rosterWideCalibration", "tenSeatSceneAssembly", "activeOfficePromotion"]) {
+add(manifest.status === "rejected-calibration", "Step 5 r02 must remain rejected calibration evidence");
+add(manifest.approvalRecord?.resultDecision === "rejected"
+  && manifest.approvalRecord?.supersededBy === "office.workstation.step5.single-seat.v3",
+"Step 5 r02 must point to R03");
+for (const key of [
+  "isolatedLabRenderer", "singleSeatAssembly", "deterministicDerivedAssets",
+  "newArtworkGeneration", "rosterWideCalibration", "tenSeatSceneAssembly", "activeOfficePromotion",
+]) {
   add(manifest.permissions?.[key] === false, `Step 5 r02 permissions.${key} must remain false`);
 }
 add(manifest.lab?.developmentOnly === true && manifest.lab?.productionReachable === false,
   "Step 5 r02 route must remain development-only");
 add(manifest.lab?.stationCount === 1 && manifest.lab?.reviewViewCount === 2,
   "Step 5 r02 must contain one station rendered in two views");
+add(manifest.lab?.historicalEvidenceOnly === true, "Step 5 r02 lab must be historical evidence only");
 add(manifest.lockedInputs?.length === 24, "Step 5 r02 must lock exactly 24 source and derived inputs");
 
 add(scale.standard?.floorFootprint?.width === 1 && scale.standard?.floorFootprint?.depth === 1,
@@ -124,6 +128,6 @@ if (failures.length > 0) {
   process.exitCode = 1;
 } else {
   process.stdout.write(
-    "Workstation Step 5 r02 check OK: person 1 x 1 x 3, chair 1 x 1 x 2, corrected desk sides, five review images; Active Office unchanged.\n",
+    "Workstation Step 5 r02 check OK: rejected historical evidence remains reproducible; all permissions revoked; Active Office unchanged.\n",
   );
 }

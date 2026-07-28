@@ -1,101 +1,94 @@
-# Office Workstation Assembly Bible v2
+# Office Workstation Assembly Bible v3
 
-Status: Blueprint and Step 4 desk accepted; corrected Step 5 R02 awaiting owner review
+Status: P0-P3 calibration authority; owner approval required
 Updated: 2026-07-28
 Machine-readable source:
-`assets/game/manifests/office-workstation-assembly-bible-v2.json`
+`assets/game/manifests/office-workstation-assembly-bible-v3.json`
 
-This is the approved geometry handoff for the ten-seat workstation block. On
-2026-07-28 the owner approved the blueprint, accepted the elevated-camera Step 4
-desk, rejected the first Step 5 visual result, and authorized a corrected R02.
-The R02 one-station renderer and five review images now exist. Ten-seat
-assembly, roster-wide calibration, and Active Office promotion remain blocked
-until later approvals.
+The v2 Assembly Bible and Step 4 desk files remain historical pixel evidence.
+They do not define R03 spatial geometry. Step 5 R02 is rejected and cannot be
+used as an assembly or renderer input.
 
-## What has been produced
+## Station components
 
-1. `01-target-decomposition-v2.png` separates direct visual observations from
-   normalized runtime geometry. It never treats reference pixels as tile
-   measurements.
-2. `02-furniture-exploded-parts-v2.png` defines rear, surface, base, and
-   foreground desk semantics for both actor sides. It is a schematic, not desk
-   artwork.
-3. `03-assembly-and-adjacency-v2.png` proves chair/actor placement, monitor and
-   keyboard bands, one paired module, two touching modules, and the complete
-   five-by-two bank.
-4. `00-owner-review-contact-sheet-v2.png` places all three boards on one review
-   sheet.
-5. `step4/01-desk-front-back-v2.png` shows the replacement elevated-camera
-   source and the normalized front/back bare desk assets.
-6. `step4/02-semantic-layers-v2.png` proves the rear, surface, base, and
-   foreground layers reconstruct the bare desk exactly.
-7. `step4/03-adjacency-footprint-proof-v2.png` proves two and five full-width
-   rectangular desk tops touch without a triangular gap.
-8. `step4/00-step4-review-contact-sheet-v2.png` records the accepted Step 4
-   evidence set.
+| Component | Spatial contract | Current pixel decision |
+| --- | --- | --- |
+| Person | `1 x 1 x 3`, current frame `96 x 104` px | Reuse current Office character and seated pose |
+| Chair | `1 x 1 x 2`, same floor cell as person, cushion `z = 1` | Exact render dimensions and split anchors unlocked |
+| Desk | `3 x 2 x 2`, complete `96 x 64` support plane at `z = 2` | Existing v2 desk may be measured only |
+| Monitor | actor-far `3 x 1` reservation | Reuse current monitor visual without scaling |
+| Keyboard | actor-near center `1 x 1` reservation | Proposed `48 x 24` visual, maximum `1.5 x 1` |
 
-All labels are English to comply with repository rules. The diagrams use
-simple geometric shapes deliberately: approval here means approval of spatial
-meaning, not approval of a final visual style.
+## Person and chair contact
 
-## What has not been produced
+The required future back-to-front semantic parts are:
 
-- no new chair, monitor, keyboard, prop, or character artwork;
-- no ten-seat scene;
-- no calibration of the other 18 characters;
-- no replacement Office background;
-- no Active Office change;
-- no commercial-use or character-license work.
+1. `chair-rear`;
+2. `person`;
+3. `chair-seat`;
+4. `chair-foreground`.
 
-## Accepted Step 4 criteria
+The ordering is a semantic model, not permission to create those parts in
+P0-P3. Exact pixel splits must be derived from the existing calibration
+composites in P4 after owner approval.
 
-The owner accepted all of the following on 2026-07-28:
+The contact rules are:
 
-- Is one desk exactly a `3 x 2` tabletop and floor footprint?
-- Are desk legs/drawers/vertical faces treated as render height, not footprint?
-- Is the chair centered outside the desk footprint on both sides?
-- Is the monitor centered in the row farthest from the actor?
-- Is the keyboard centered in the row nearest the actor?
-- Do all five columns touch with no gap and no overlap?
-- Do the far and near desk rows touch directly?
-- Does the full block stay inside the current left work zone?
-- Does the current Office background remain unchanged?
-- Does the elevated camera expose enough usable top surface for later monitor
-  and keyboard placement?
-- Are both top edges equal width with vertical sides and square corners?
-- Do the two-module and five-module proofs have one straight seam and no gap?
+- chair and person share one centered floor cell;
+- the pelvis touches the cushion at `z = 1`;
+- the backrest supports the torso;
+- the character head remains above the backrest;
+- bent or hanging legs may extend below the cushion without moving the floor
+  footprint.
 
-Future changes that invalidate any answer require a new version and owner
-review. Do not patch renderer code to compensate for wrong artwork geometry.
+## Desk and equipment plan
 
-## Step 5 owner-review gate
+The desk local origin is the top-left cell. The top contains exactly two
+32-pixel rows.
 
-The owner authorized a detailed isolated single-seat assembly using the
-accepted desk plus the already-created chair, monitor, keyboard, and Einstein
-seated poses. The implementation is available only through the development lab
-route `/?lab=office-workstation-v2-step5`. The full ten-seat scene remains a
-later gate; no characters or poses were replaced.
+For a person above the desk:
 
-The current Office character is the world ruler: it reserves `1 x 1` on the
-floor, has logical height `3`, and retains its current `96 x 104` render at the
-standard 32-pixel tile. Visible hair, head, clothing, and limbs may exceed that
-floor cell without increasing collision or being clipped. The chair reserves
-`1 x 1`, has logical height `2`, and is split into backrest and seat/base
-occlusion parts. The desk remains `3 x 2`.
+```text
+[ person/chair centered outside desk ]
+[ keyboard center 1 x 1 in actor-near row ]
+[ monitor reservation 3 x 1 in actor-far row ]
+```
 
-R01 reversed the semantic desk sides, reduced the actor below current Office
-scale, treated the chair render as one compressed box, and did not show the
-complete keyboard clearly. It is rejected regression evidence only. R02 maps
-the public/modesty-panel side to the far/front view and the seat/drawer side to
-the near/back view, retains the full keyboard, and shares one centered floor
-cell and one hip/seat anchor between actor and chair.
+For a person below the desk:
 
-The reviewable plan, including locked asset hashes, exact anchor equations,
-layer order, evidence images, rejection conditions, and the permitted file
-boundary, is in `docs/art/OFFICE_WORKSTATION_STEP5_SINGLE_SEAT_PLAN.md`.
+```text
+[ monitor reservation 3 x 1 in actor-far row ]
+[ keyboard center 1 x 1 in actor-near row ]
+[ person/chair centered outside desk ]
+```
 
-Machine-readable R02 authority and locked inputs are in
-`assets/game/manifests/office-workstation-step5-single-seat-v2.json`. Character
-scale authority is in
-`assets/game/manifests/office-character-scale-standard-v1.json`. Review images
-are in `assets/art/layout-references/office-workstation-v2/step5-r02/`.
+The keyboard's logical reservation is one cell. A proportional `48 x 24`
+visual may overflow that cell horizontally by eight pixels on each side while
+remaining inside the 96-pixel desk width. It cannot overlap the monitor row.
+
+## Historical R02 failures
+
+- The visible desk support band measured 30 px instead of the required 64 px.
+- The keyboard incorrectly reserved `3 x 1`.
+- The chair was normalized to front/back widths `44/47` px before source
+  contact was measured.
+- A declared hip anchor was accepted without proof from the calibration
+  composite.
+- Filename `front` and `back` values were treated as semantic sides before
+  visual features were verified.
+
+R03 therefore leaves the desk-side pixel mapping and exact chair anchors
+unlocked until P4.
+
+## P0-P3 outputs and gate
+
+The three boards under
+`assets/art/layout-references/office-workstation-v3/step5-r03/` show:
+
+1. world projection and z levels;
+2. desk and equipment footprints;
+3. measured character/chair sources and contact semantics.
+
+Approval of these boards permits P4 normalization for one isolated station
+only. It does not permit renderer implementation, ten-seat assembly, Step 6,
+or Active Office promotion.

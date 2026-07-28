@@ -1,14 +1,18 @@
 # Roadmap
 
-Workstation correction (2026-07-28): all earlier `5 x 4` / `5 x 3`
-workstation acceptance claims and Candidate r01 are revoked. They are
-historical rejected evidence only. Current authority is the `3 x 2`
-Workstation Assembly Bible v2 and the isolated Step 5 R02 manifest. Step 4 desk
-art is accepted. R02 now proves one existing character at current Office scale
-(`1 x 1` floor footprint, logical height `3`, visible overflow allowed), one
-`1 x 1 x 2` chair, correct semantic desk sides, and a complete keyboard. R02
-awaits owner visual approval. Ten-seat assembly, other furniture, roster-wide
-calibration, and Active Office promotion remain blocked.
+Workstation correction (2026-07-28): Step 5 R02 is rejected calibration
+evidence. It declared a `3 x 2` desk while exposing only 30 of the required 64
+tabletop-depth pixels, reserved `3 x 1` for the keyboard, compressed the chair,
+and treated unmeasured contact anchors as proof.
+
+R03 P0-P3 now provides the current spatial authority and three owner-review
+boards. The locked ruler is: 32 px per tile; person `1 x 1 x 3` with the
+current `96 x 104` frame; chair `1 x 1 x 2` sharing the person's floor cell;
+desk `3 x 2 x 2` with a full `96 x 64` support plane; monitor reservation
+`3 x 1`; keyboard reservation `1 x 1` with a proposed `48 x 24` visual. Exact
+chair contact pixels remain deliberately unlocked. New artwork, renderer
+work, single-seat/ten-seat assembly, Step 6, and Active Office promotion are
+blocked pending explicit owner approval of the P3 boards.
 
 ## M0 — Repository foundation (complete)
 

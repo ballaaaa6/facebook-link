@@ -8,12 +8,14 @@ Workstation reset gate (2026-07-28): `desk.modular.v1`, its `5 x 4` footprint,
 its `5 x 3` support plane, and Candidate r01 are rejected regression evidence.
 They cannot seed a new sheet. The owner approved the current `3 x 2` Assembly
 Bible and accepted the bare desk v2 Step 4 workflow recorded by
-`assets/game/manifests/office-workstation-bundle-v2.json`. The owner authorized
-the isolated Step 5 single-seat lab. Its first result is rejected evidence.
-Corrected R02 reuses the existing chair, monitor, full keyboard, and Einstein
-poses without generating new art. Its five `step5-r02` review images are
-awaiting owner approval. Roster-wide calibration, ten-seat outputs, and Active
-Office promotion remain blocked behind that gate.
+`assets/game/manifests/office-workstation-bundle-v2.json`. Step 5 R02 is now
+rejected calibration evidence. R03 P0-P3 performs source-pixel measurement and
+creates three diagrams only; it does not generate an asset sheet or runtime
+art. The current gate requires owner approval of the 32 px projection,
+integer z levels, full `3 x 2` support plane, `1 x 1` keyboard reservation,
+and person/chair contact semantics before any P4 asset normalization.
+Roster-wide calibration, ten-seat outputs, Step 6, and Active Office
+promotion remain blocked.
 
 Derived-asset staging gate (2026-07-27): Steps 13-16 resolve all 77 reviewed
 `derive-composite` records under `office-derived-v1`. The versioned outputs
@@ -43,7 +45,9 @@ reviewed mask or disposition.
   raised frontal camera exposes the tabletop surface and both legs.
 - Every cell manifest includes the locked physical `W x D x H`, integer
   `renderBox`, integer floor `footprint`, support surface, and anchor from
-  `assets/game/manifests/office-camera-scale-bible.json`.
+  relevant current authority. Step 5 workstation cells use
+  `assets/game/manifests/office-camera-scale-bible-v3.json`; other accepted
+  asset families retain their versioned authority until separately migrated.
 - Runtime entries read these values from
   `assets/game/manifests/office-assets.json`; pre-production entries read them
   from `assets/game/manifests/office-planned-assets.json`. Use

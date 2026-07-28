@@ -2,14 +2,14 @@
   "version": 2,
   "geometrySchemaVersion": 4,
   "id": "office.workstation.step5.single-seat.v2",
-  "status": "owner-review",
+  "status": "rejected-calibration",
   "updatedOn": "2026-07-28",
   "replaces": "office.workstation.step5.single-seat.v1",
   "permissions": {
     "ownerPlanApproval": true,
-    "isolatedLabRenderer": true,
-    "singleSeatAssembly": true,
-    "deterministicDerivedAssets": true,
+    "isolatedLabRenderer": false,
+    "singleSeatAssembly": false,
+    "deterministicDerivedAssets": false,
     "newArtworkGeneration": false,
     "rosterWideCalibration": false,
     "tenSeatSceneAssembly": false,
@@ -19,7 +19,11 @@
     "planDecision": "accepted",
     "approvedOn": "2026-07-28",
     "approvedScope": "Rebuild Step 5 using the current Office character scale as a 1 x 1 x 3 world standard",
-    "nextGate": "Owner must accept both corrected clean views before Step 6"
+    "resultDecision": "rejected",
+    "rejectedOn": "2026-07-28",
+    "rejectionReason": "R02 encoded an undersized tabletop support depth, a 3 x 1 keyboard reservation, compressed chair pixels, and unverified person-to-seat contact as passing geometry.",
+    "supersededBy": "office.workstation.step5.single-seat.v3",
+    "nextGate": "R03 P0-P3 calibration boards require owner approval before any new artwork or renderer work"
   },
   "activeOfficeBaseline": {
     "file": "assets/game/maps/office-c-v2.json",
@@ -37,7 +41,8 @@
     "productionReachable": false,
     "background": "neutral-calibration-grid",
     "stationCount": 1,
-    "reviewViewCount": 2
+    "reviewViewCount": 2,
+    "historicalEvidenceOnly": true
   },
   "lockedInputs": [
     { "role": "character-scale-authority", "path": "assets/game/manifests/office-character-scale-standard-v1.json", "sha256": "09556ec5ffdfab4babfeba85424459bfd5dc6ebddc84bc8919680520a686a4a1" },

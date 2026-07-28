@@ -1,76 +1,66 @@
-# Office Camera and Scale Bible
+# Office Camera and Scale Bible v3
 
-Status: Workstation v2 geometry accepted; Step 4 bare desk artwork authorized
+Status: P0-P3 calibration authority; owner approval required
 Updated: 2026-07-28
 Machine-readable source:
-`assets/game/manifests/office-camera-scale-bible.json`
-Calibration board:
-`assets/art/layout-references/office-camera-scale-calibration-v2.png`
+`assets/game/manifests/office-camera-scale-bible-v3.json`
 
-This Bible locks camera, scale, and the corrected compact workstation
-geometry. The owner approved the blueprint on 2026-07-28 and authorized only
-the Step 4 bare desk artwork. Single-seat assembly, renderer implementation,
-ten-seat assembly, and Active Office promotion remain false.
+The prior `office-camera-scale-bible.json` remains Step 4 desk-art evidence.
+Its `2.4` work-surface height, seated-person height `2`, and `3 x 1` keyboard
+reservation are forbidden as Step 5 assembly authority.
 
-## Camera contract
+## Coordinate and projection contract
 
-- One logical tile is 32 authoring pixels.
-- Footprints use a top-down orthographic grid.
-- Visible elevations use strict straight front/back/left/right views.
-- Perspective convergence, isometric, oblique, diagonal, and three-quarter
-  views are rejected.
-- Surface furniture separates the top plane from rear, base, and foreground
-  height parts.
-- All pivots and rendered parts snap to integer authoring pixels.
-- Lighting comes from the upper-left with a two-pixel authoring outline.
-
-## Scale references
-
-| Reference | Locked value |
-| --- | ---: |
-| Standing adult | `1 x 1 x 3` tiles |
-| Seated adult | `1 x 1 x 2` tiles |
-| Chair reservation | `1 x 1` tile |
-| Floor level | `0` tiles |
-| Seat level | `1` tile |
-| Work-surface level | `2.4` tiles |
-| Wall / standing-adult height | `3` tiles |
-
-## Canonical workstation v2
+- One world tile is 32 authoring pixels.
+- World X increases right.
+- World Y increases toward the viewer.
+- World Z increases upward.
+- Coordinates snap to integer authoring pixels.
+- Perspective convergence is not used.
 
 ```text
-physical scale      = 3 x 2 x 2.4 tiles
-floor footprint     = 3 x 2 tiles
-support plane       = 3 x 2 tiles at height 2.4
-employee-edge row   = none
-base + sort pivot   = (1.5, 2)
-generation canvas   = 3 x 4 tiles
-monitor reservation = 3 x 1, far from actor
-keyboard reservation= 3 x 1, near actor
+screenX = worldX * 32
+screenY = worldY * 32 - worldZ * 32
 ```
 
-The monitor and keyboard visuals may occupy fewer pixels than their `3 x 1`
-reservation. The reservation controls stable placement, not stretching.
+## Integer reference levels
 
-The `3 x 4` generation canvas is deliberately taller than the floor
-footprint. The extra height permits visible vertical furniture parts; it may
-not become collision or another support row.
+| Level | Meaning |
+| ---: | --- |
+| `z = 0` | floor and chair wheel contact |
+| `z = 1` | chair cushion and seated pelvis contact |
+| `z = 2` | desk support and chair logical top |
+| `z = 3` | person logical top |
 
-## Superseded v1 decision
+The levels describe world stacking. They are not bitmap crop boundaries.
 
-The former `5 x 4` footprint, `5 x 3` support plane, and fourth employee-edge
-row are rejected. The former v1 calibration board and desk sprites are
-historical regression evidence only. The prompt builder must never substitute
-those dimensions for a new workstation request.
+## Object ruler
 
-## Review and generation gate
+| Object | Floor footprint | Logical volume | Pixel rule |
+| --- | --- | --- | --- |
+| Current Office person | `1 x 1` | `1 x 1 x 3` | Keep the current `96 x 104` frame at 32 px/tile |
+| Chair | `1 x 1` | `1 x 1 x 2` | Exact render envelope remains unlocked until contact approval |
+| Desk | `3 x 2` | `3 x 2 x 2` | Full support plane is `96 x 64` px at `z = 2` |
+| Monitor | desk child | support child | Reserve the actor-far `3 x 1` row; reuse the current visual |
+| Keyboard | desk child | support child | Reserve center `1 x 1` near the actor; visual maximum `1.5 x 1`, proposed `48 x 24` px |
 
-`npm run art:prompt:check` validates that this Bible is internally correct.
-`npm run art:prompt -- <asset-id>` must still refuse every legacy catalog
-workstation prompt. The only authorized Step 4 source workflow is recorded in
-`assets/game/manifests/office-workstation-bundle-v2.json`.
+Visible character, chair, hair, clothing, equipment, or furniture-height pixels
+may overflow a footprint only where declared. Render overflow never creates
+collision cells.
 
-Run `npm run art:geometry:bible` to regenerate the deterministic v2 camera
-board and `npm run art:geometry:bible:check` to verify it. Run
-`npm run art:workstation:bible` for the approved geometry boards and
-`npm run art:workstation:v2` for the bare desk assets and Step 4 review boards.
+## Contact and support rules
+
+- The person and chair reserve the same `1 x 1` floor cell.
+- The pelvis rests on the cushion at `z = 1`.
+- The backrest supports the torso and reaches logical `z = 2`.
+- The head extends above the backrest to logical `z = 3`.
+- The desk top is the complete rectangular `3 x 2` support plane.
+- Legs, drawers, apron, and vertical faces are height, not extra floor rows.
+- The keyboard visual must remain inside the desk support plane and cannot
+  overlap the monitor.
+
+## Current gate
+
+Only deterministic measurement and the three R03 calibration boards are
+authorized. Artwork generation, renderer implementation, one-seat assembly,
+ten-seat assembly, Step 6, and Active Office promotion remain blocked.

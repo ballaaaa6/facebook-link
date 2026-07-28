@@ -34,13 +34,24 @@ the Step 4 source hashes, PNG headers and dimensions, exact processed/review
 output set, permissions, and generated-art lock entries. Use
 `npm run art:workstation:v2` only on an art workstation with Pillow installed.
 
-`npm run art:workstation:step5:check` rejects the superseded Step 5 R01
-manifest and verifies corrected R02: the current Office character `1 x 1 x 3`
-scale, `1 x 1 x 2` chair, semantic public/seat desk sides, all 24 locked input
-hashes, complete keyboard, one-station/two-view permissions, five `step5-r02`
-review images, denied legacy imports, and the byte-identical Active Office
-baseline. The lab is development-only at
-`/?lab=office-workstation-v2-step5`.
+`npm run art:workstation:step5:check` preserves Step 5 R02 as reproducible
+rejected evidence and verifies that all of its implementation permissions are
+revoked.
+
+`npm run art:workstation:step5:r03:check` is the portable P0-P3 gate. It
+validates the Geometry v5 ruler, measured source hashes, the R02 30 px versus
+64 px tabletop failure, person/chair/desk volumes, keyboard `1 x 1`
+reservation, exactly three 1600 x 1000 calibration boards, the absence of v3
+processed artwork, and the byte-identical Active Office baseline. Regenerate
+the measurements and boards locally with:
+
+```bash
+npm run art:workstation:step5:r03
+python scripts/build-office-workstation-step5-r03-calibration.py --check
+```
+
+The historical R02 lab remains development-only at
+`/?lab=office-workstation-v2-step5`; it is not R03 authority.
 
 Run a single guard while iterating:
 

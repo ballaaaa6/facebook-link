@@ -27,20 +27,29 @@ export interface OfficeWorkstationStep5ManifestV2 {
   version: 2;
   geometrySchemaVersion: 4;
   id: "office.workstation.step5.single-seat.v2";
-  status: "owner-review";
+  status: "rejected-calibration";
   updatedOn: string;
   replaces: "office.workstation.step5.single-seat.v1";
   permissions: {
     ownerPlanApproval: true;
-    isolatedLabRenderer: true;
-    singleSeatAssembly: true;
-    deterministicDerivedAssets: true;
+    isolatedLabRenderer: false;
+    singleSeatAssembly: false;
+    deterministicDerivedAssets: false;
     newArtworkGeneration: false;
     rosterWideCalibration: false;
     tenSeatSceneAssembly: false;
     activeOfficePromotion: false;
   };
-  approvalRecord: { planDecision: "accepted"; approvedOn: string; approvedScope: string; nextGate: string };
+  approvalRecord: {
+    planDecision: "accepted";
+    approvedOn: string;
+    approvedScope: string;
+    resultDecision: "rejected";
+    rejectedOn: string;
+    rejectionReason: string;
+    supersededBy: "office.workstation.step5.single-seat.v3";
+    nextGate: string;
+  };
   activeOfficeBaseline: { file: "assets/game/maps/office-c-v2.json"; sha256: string; mustRemainByteIdentical: true };
   characterScaleAuthority: { file: string; id: "office.character.scale.v1"; sha256: string };
   lab: {
@@ -50,6 +59,7 @@ export interface OfficeWorkstationStep5ManifestV2 {
     background: "neutral-calibration-grid";
     stationCount: 1;
     reviewViewCount: 2;
+    historicalEvidenceOnly: true;
   };
   lockedInputs: ReadonlyArray<{ role: string; path: string; sha256: string }>;
   station: {
@@ -119,15 +129,16 @@ export function validateOfficeWorkstationStep5Manifest(value: unknown): string[]
   };
   add(value.version === 2 && value.geometrySchemaVersion === 4, "version", "must use corrected Step 5 Geometry v4");
   add(value.id === "office.workstation.step5.single-seat.v2", "id", "must use the corrected Step 5 id");
-  add(value.status === "owner-review", "status", "must stop at owner review");
+  add(value.status === "rejected-calibration", "status", "must remain rejected calibration evidence");
 
   const permissions = value.permissions;
   add(record(permissions), "permissions", "must be an object");
   if (record(permissions)) {
-    for (const key of ["ownerPlanApproval", "isolatedLabRenderer", "singleSeatAssembly", "deterministicDerivedAssets"]) {
-      add(permissions[key] === true, `permissions.${key}`, "must be explicitly authorized");
-    }
-    for (const key of ["newArtworkGeneration", "rosterWideCalibration", "tenSeatSceneAssembly", "activeOfficePromotion"]) {
+    add(permissions.ownerPlanApproval === true, "permissions.ownerPlanApproval", "must preserve the historical plan approval");
+    for (const key of [
+      "isolatedLabRenderer", "singleSeatAssembly", "deterministicDerivedAssets",
+      "newArtworkGeneration", "rosterWideCalibration", "tenSeatSceneAssembly", "activeOfficePromotion",
+    ]) {
       add(permissions[key] === false, `permissions.${key}`, "must remain blocked");
     }
   }
@@ -141,7 +152,8 @@ export function validateOfficeWorkstationStep5Manifest(value: unknown): string[]
   "activeOfficeBaseline", "must lock Active Office");
   const lab = value.lab;
   add(record(lab) && lab.developmentOnly === true && lab.productionReachable === false
-    && lab.stationCount === 1 && lab.reviewViewCount === 2, "lab", "must remain an isolated one-station lab");
+    && lab.stationCount === 1 && lab.reviewViewCount === 2 && lab.historicalEvidenceOnly === true,
+  "lab", "must remain historical one-station evidence");
 
   const station = value.station;
   add(record(station), "station", "must be an object");

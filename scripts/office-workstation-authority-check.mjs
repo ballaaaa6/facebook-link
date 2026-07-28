@@ -19,9 +19,12 @@ function add(failures, condition, message) {
 
 const camera = readJson("assets/game/manifests/office-camera-scale-bible.json");
 const assembly = readJson("assets/game/manifests/office-workstation-assembly-bible-v2.json");
+const cameraV3 = readJson("assets/game/manifests/office-camera-scale-bible-v3.json");
+const assemblyV3 = readJson("assets/game/manifests/office-workstation-assembly-bible-v3.json");
 const bundleV2 = readJson("assets/game/manifests/office-workstation-bundle-v2.json");
 const rejectedStep5 = readJson("assets/game/manifests/office-workstation-step5-single-seat-v1.json");
 const step5 = readJson("assets/game/manifests/office-workstation-step5-single-seat-v2.json");
+const step5R03 = readJson("assets/game/manifests/office-workstation-step5-single-seat-v3.json");
 const characterScale = readJson("assets/game/manifests/office-character-scale-standard-v1.json");
 const candidate = readJson("assets/game/manifests/office-candidate-v1.json");
 const review = readJson("assets/game/manifests/office-candidate-review-r01.json");
@@ -161,10 +164,13 @@ add(
 add(failures, rejectedStep5.status === "rejected-visual", "Step 5 v1 must remain rejected visual evidence");
 add(failures, rejectedStep5.reviewDecision?.supersededBy === step5.id, "Step 5 v1 must point to the corrected revision");
 add(failures, step5.version === 2 && step5.geometrySchemaVersion === 4, "Step 5 r02 must use Geometry v4");
-add(failures, step5.status === "owner-review", "Step 5 r02 must stop at owner review");
-add(failures, step5.permissions?.singleSeatAssembly === true, "Step 5 must record owner-authorized single-seat assembly");
-add(failures, step5.permissions?.isolatedLabRenderer === true, "Step 5 isolated renderer must be authorized");
-for (const key of ["newArtworkGeneration", "rosterWideCalibration", "tenSeatSceneAssembly", "activeOfficePromotion"]) {
+add(failures, step5.status === "rejected-calibration", "Step 5 r02 must remain rejected calibration evidence");
+add(failures, step5.approvalRecord?.resultDecision === "rejected"
+  && step5.approvalRecord?.supersededBy === step5R03.id, "Step 5 r02 must point to R03");
+for (const key of [
+  "isolatedLabRenderer", "singleSeatAssembly", "deterministicDerivedAssets",
+  "newArtworkGeneration", "rosterWideCalibration", "tenSeatSceneAssembly", "activeOfficePromotion",
+]) {
   add(failures, step5.permissions?.[key] === false, `Step 5 permissions.${key} must remain false`);
 }
 add(failures, step5.lab?.stationCount === 1 && step5.lab?.reviewViewCount === 2,
@@ -183,6 +189,32 @@ add(failures, step5.station?.equipment?.chair?.footprint?.width === 1
 "Step 5 r02 chair must equal 1 x 1 x 2");
 add(failures, step5.orientations?.far?.deskSide === "public-side"
   && step5.orientations?.near?.deskSide === "seat-side", "Step 5 r02 desk sides cannot be reversed");
+
+add(failures, cameraV3.status === "owner-calibration-review", "Camera/Scale Bible v3 must stop at calibration review");
+add(failures, cameraV3.world?.tilePixels === 32
+  && JSON.stringify(cameraV3.world?.levels) === JSON.stringify({
+    floor: 0, chairSeat: 1, deskSupport: 2, personTop: 3,
+  }), "Camera/Scale Bible v3 must use 32 px tiles and z levels 0/1/2/3");
+add(failures, cameraV3.standards?.desk?.logicalVolume?.height === 2
+  && cameraV3.standards?.desk?.requiredSupportPixels?.depth === 64,
+"Camera/Scale Bible v3 desk must be 3 x 2 x 2 with a full 64 px support depth");
+add(failures, assemblyV3.equipment?.keyboard?.reservation?.width === 1
+  && assemblyV3.equipment?.keyboard?.reservation?.depth === 1
+  && assemblyV3.equipment?.keyboard?.proposedRenderPixels?.width === 48,
+"Assembly Bible v3 keyboard must reserve 1 x 1 with a 48 px visual");
+add(failures, assemblyV3.personChair?.pixelAnchors === "unlocked-pending-owner-contact-approval",
+  "Assembly Bible v3 must not invent person/chair pixel anchors");
+add(failures, step5R03.status === "owner-calibration-review"
+  && step5R03.nextScope === "P4-blocked-pending-owner-approval",
+"Step 5 R03 must stop after P3 at owner calibration review");
+for (const key of [
+  "newArtworkGeneration", "rendererImplementation", "singleSeatAssembly",
+  "rosterWideCalibration", "tenSeatAssembly", "step6", "activeOfficePromotion",
+]) {
+  add(failures, step5R03.permissions?.[key] === false, `Step 5 R03 permissions.${key} must remain false`);
+}
+add(failures, step5R03.activeOfficeBaseline?.sha256 === assembly.activeOfficeBaseline?.sha256,
+  "Step 5 R03 must inherit the exact Active Office baseline hash");
 
 add(failures, candidate.status === "rejected-visual", "Candidate v1 must remain rejected-visual evidence");
 add(failures, candidate.review?.status === "changes-requested", "Candidate v1 must retain owner-requested changes");
@@ -212,6 +244,6 @@ if (failures.length > 0) {
   process.exitCode = 1;
 } else {
   process.stdout.write(
-    "Workstation authority OK: accepted 3 x 2 desk, current Office person 1 x 1 x 3, corrected Step 5 r02 owner review, ten-seat and promotion blocked.\n",
+    "Workstation authority OK: Step 4 pixels retained as history; R02 rejected; R03 P0-P3 calibration authority active; implementation and promotion blocked.\n",
   );
 }

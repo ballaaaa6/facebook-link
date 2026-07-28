@@ -1,16 +1,15 @@
 # Office 2D Geometry Principles
 
-Status: Current Geometry v3 principles with Workstation Rule v2
+Status: Current Geometry v5 workstation principles; P0-P3 owner review
 Updated: 2026-07-28
 
-This document is the current geometry source of truth for Office assets.
-Workstation Rule v2 supersedes every earlier `5 x 4` footprint, `5 x 3`
-support plane, and employee-edge footprint-row decision. Those values remain
-only in explicitly rejected v1 fixtures for regression evidence.
+This document defines the shared Office principles. For Step 5 workstation
+work, Geometry v5 supersedes the former fractional-height and full-row
+keyboard rules. Earlier workstation rules remain historical evidence only.
 
 Machine-readable workstation authority:
-`assets/game/manifests/office-workstation-assembly-bible-v2.json`.
-Camera authority: `assets/game/manifests/office-camera-scale-bible.json`.
+`assets/game/manifests/office-workstation-assembly-bible-v3.json`.
+Camera authority: `assets/game/manifests/office-camera-scale-bible-v3.json`.
 Character-scale authority:
 `assets/game/manifests/office-character-scale-standard-v1.json`.
 
@@ -18,7 +17,10 @@ Character-scale authority:
 
 - World X increases to the right.
 - World Y increases toward the viewer.
+- World Z increases upward.
 - One logical tile is 32 authoring pixels.
+- Workstation projection is `screenX = worldX * 32` and
+  `screenY = worldY * 32 - worldZ * 32`.
 - `footprint` is top-down physical floor reservation and collision.
 - `supportPlane` is the top-down furniture surface that accepts children.
 - `renderBounds` and `renderOffset` place visible pixels; they never add
@@ -72,17 +74,17 @@ tabletops touch in plan. The nearer desk's visible legs can hide the farther
 desk's legs, but neither desk gains another floor row merely because its legs
 are tall.
 
-## Workstation Rule v2
+## Workstation Rule v3
 
 ```text
-desk physical scale = 3 x 2 x 2.4 tiles
+desk physical scale = 3 x 2 x 2 tiles
 desk footprint      = 3 x 2 tiles
-support plane       = 3 x 2 tiles at height 2.4
+support plane       = 3 x 2 tiles at z = 2 (96 x 64 pixels)
 employee-edge row   = none
 base pivot          = (1.5, 2)
 sort pivot          = (1.5, 2)
 authoring canvas    = 3 x 4 tiles
-chair footprint     = separate 1 x 1 tile
+chair footprint     = shared person/chair 1 x 1 floor cell
 chair volume        = 1 x 1 x 2 tiles
 character volume    = 1 x 1 x 3 tiles
 ```
@@ -96,43 +98,27 @@ Equipment is the variant; desk geometry is not.
 
 ## Monitor and keyboard reservations
 
-Both reservations use `3 x 1` logical surface bands for simple deterministic
-placement. The artwork may be smaller than the reserved band and must remain
-centered.
+The monitor reserves the actor-far `3 x 1` band. The keyboard reserves only
+the middle `1 x 1` cell in the actor-near row.
 
 - The monitor uses the desk row farthest from the seated actor.
-- The keyboard uses the adjacent desk row nearest the seated actor.
+- The keyboard uses the center cell of the adjacent row nearest the seated
+  actor.
 - For the far actor north of the desk, keyboard local Y is `0` and monitor
   local Y is `1`.
 - For the near actor south of the desk, monitor local Y is `0` and keyboard
   local Y is `1`.
 - A monitor is never stretched to fill all three tiles.
+- The proposed keyboard visual is `48 x 24` pixels. Its `1.5 x 1` visual
+  maximum may overflow the reservation horizontally while remaining inside
+  the desk top.
 
 ## Paired ten-seat block
 
-The normalized review geometry uses the existing `36 x 24` Active Office grid
-without modifying its background or zone split. The work zone remains
-`x=0..23`.
-
-```text
-desk origins X = [4, 7, 10, 13, 16]
-far chairs     = y 5
-far desks      = y 6..7
-near desks     = y 8..9
-near chairs    = y 10
-desk bank      = x 4..18, y 6..9
-```
-
-The five columns touch horizontally because each origin is exactly three
-tiles apart. The two rows touch vertically because the near row begins at Y 8,
-immediately after the far row ends at Y 8. Chairs stay outside the desk
-footprints and are centered on the middle tile of each desk.
-
-These coordinates and the Step 4 desk artwork are accepted. The owner rejected
-the first Step 5 visual result and authorized corrected R02. Its isolated
-renderer and review boards are complete and awaiting owner review, while
-ten-seat assembly, roster-wide calibration, and Active Office promotion remain
-false.
+Ten-seat coordinates are intentionally not current authority. R03 P0-P3
+calibrates one logical station only. A ten-seat block can be derived after the
+single-station pixels and renderer pass later gates. The Active Office
+background, zone split, and map remain unchanged.
 
 ## Furniture part contract
 
@@ -150,10 +136,9 @@ remain separate from all desk parts.
 
 ## Orientation and occlusion
 
-- The far row uses the semantic `public-side` desk assembly (the existing
-  `.back` pixels), an actor facing down, and the back of the monitor visible.
-- The near row uses the semantic `seat-side` desk assembly (the existing
-  `.front` pixels), an actor facing up, and the monitor front visible.
+- Historical `.front` and `.back` filenames are not current semantic
+  authority. P4 must verify drawers, modesty panel, knee space, actor side, and
+  monitor side from visible features before assigning seat/public meanings.
 - Near-row chair and actor layers draw in front of the paired desk bank.
 - Far-row lower-body pixels may be hidden by the desk base or foreground.
 - Greater `sortPivot.y` draws later.
@@ -174,20 +159,16 @@ The following cannot feed new art, new layout, or Active Office promotion:
 Historical v1 labs and screenshots may remain readable only as rejected
 regression evidence. They are not current examples.
 
-The Step 5 R01 manifest and images are also rejected evidence. They cannot be
-used to infer actor scale, chair geometry, desk-side meaning, or keyboard crop.
+The Step 5 R01 and R02 manifests and images are rejected evidence. They cannot
+define actor scale, chair geometry, desk-side meaning, keyboard reservation,
+or contact anchors.
 
 ## Approval gate
 
-The geometry boards and replacement elevated-camera Step 4 desk are approved.
-The owner also approved the isolated single-seat plan, its exact assets,
-anchors, layer order, validation boards, and rejection gates.
+Only the R03 logical ruler, source measurements, and three P3 boards are
+present. Exact desk, chair, monitor, and keyboard pixels are not approved by
+this gate. Exact chair contact anchors and desk-side mappings remain unlocked.
 
-1. exact approved desk/chair/monitor/keyboard/character sources;
-2. front and back anchor equations and layer order;
-3. one-seat collision, support, occlusion, and head-safe checks;
-4. Step 5 review-board set and rollback boundary.
-
-The one-seat result is now at owner visual review. Until that result is accepted,
-the other 18 characters, ten-seat scene, and Active Office permissions stay
-false.
+Owner approval of the three boards permits P4 normalization for one isolated
+station only. Renderer work, the other eighteen characters, ten seats, Step 6,
+and Active Office permissions remain false.

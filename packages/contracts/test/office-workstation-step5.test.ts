@@ -31,10 +31,14 @@ test("Step 5 r02 locks the current Office person as a 1 x 1 x 3 standard", () =>
   assert.equal(scale.renderPolicy.clipToFootprint, false);
 });
 
-test("Step 5 r02 authorizes only deterministic one-seat review work", () => {
+test("Step 5 r02 is frozen as rejected calibration evidence", () => {
   assert.deepEqual(validateOfficeWorkstationStep5Manifest(manifest), []);
-  assert.equal(manifest.permissions.singleSeatAssembly, true);
-  assert.equal(manifest.permissions.deterministicDerivedAssets, true);
+  assert.equal(manifest.status, "rejected-calibration");
+  assert.equal(manifest.approvalRecord.resultDecision, "rejected");
+  assert.equal(manifest.approvalRecord.supersededBy, "office.workstation.step5.single-seat.v3");
+  assert.equal(manifest.permissions.isolatedLabRenderer, false);
+  assert.equal(manifest.permissions.singleSeatAssembly, false);
+  assert.equal(manifest.permissions.deterministicDerivedAssets, false);
   assert.equal(manifest.permissions.newArtworkGeneration, false);
   assert.equal(manifest.permissions.tenSeatSceneAssembly, false);
   assert.equal(manifest.permissions.activeOfficePromotion, false);
@@ -42,7 +46,7 @@ test("Step 5 r02 authorizes only deterministic one-seat review work", () => {
   assert.equal(rejected.reviewDecision.supersededBy, manifest.id);
 });
 
-test("Step 5 r02 corrects public and seat desk sides", () => {
+test("Step 5 r02 retains its desk-side claims only as regression evidence", () => {
   assert.equal(manifest.orientations.far.deskSide, "public-side");
   assert.equal(manifest.deskSides["public-side"].assetView, "back");
   assert.equal(manifest.orientations.near.deskSide, "seat-side");
