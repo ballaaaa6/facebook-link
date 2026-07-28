@@ -66,7 +66,8 @@ def require(condition: bool, message: str) -> None:
 
 def validate_manifest(manifest: dict[str, Any]) -> None:
     require(manifest.get("version") == 2, "bundle version must equal 2")
-    require(manifest.get("status") == "step4-artwork-review", "bundle must remain in Step 4 review")
+    require(manifest.get("status") == "step4-accepted", "bundle must record the accepted Step 4 desk")
+    require(manifest.get("approvalRecord", {}).get("decision") == "accepted", "Step 4 approval record is missing")
     permissions = manifest.get("permissions", {})
     require(permissions.get("bareDeskArtwork") is True, "bare desk artwork must be authorized")
     for key in ("singleSeatAssembly", "tenSeatSceneAssembly", "rendererImplementation", "activeOfficePromotion"):
@@ -268,15 +269,15 @@ def board_adjacency(composites: dict[str, Image.Image]) -> Image.Image:
 def contact_sheet(boards: list[Image.Image]) -> Image.Image:
     board = Image.new("RGBA", (1600, 1100), BACKGROUND)
     draw = ImageDraw.Draw(board)
-    label(draw, (30, 22), "OWNER REVIEW / STEP 4 BARE DESK v2", 36)
-    label(draw, (30, 70), "REPLACED LOW-CAMERA SOURCE / STEP 5 REMAINS BLOCKED", 19, AMBER)
+    label(draw, (30, 22), "OWNER-APPROVED / STEP 4 BARE DESK v2", 36)
+    label(draw, (30, 70), "ELEVATED-CAMERA SOURCE ACCEPTED / STEP 5 REMAINS BLOCKED", 19, AMBER)
     positions = ((35, 125), (815, 125), (425, 600))
     sizes = ((750, 450), (750, 439), (750, 482))
     for image, position, size in zip(boards, positions, sizes, strict=True):
         preview = image.resize(size, Image.Resampling.LANCZOS)
         board.alpha_composite(preview, position)
         draw.rectangle((position[0], position[1], position[0] + size[0], position[1] + size[1]), outline=(71, 85, 105, 255), width=3)
-    label(draw, (30, 1060), "GATE: bare desk review only | no chair | no monitor | no person | no renderer | no office promotion", 18, RED)
+    label(draw, (30, 1060), "GATE: Step 4 accepted | Step 5=false | no chair/monitor/person assembly | no renderer | no office promotion", 18, RED)
     return board
 
 

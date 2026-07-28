@@ -1,14 +1,15 @@
 # Office Workstation Assembly Bible v2
 
-Status: Blueprint approved; Step 4 bare desk artwork authorized
+Status: Blueprint and Step 4 bare desk artwork accepted; Step 5 planning only
 Updated: 2026-07-28
 Machine-readable source:
 `assets/game/manifests/office-workstation-assembly-bible-v2.json`
 
 This is the approved geometry handoff for the ten-seat workstation block. On
-2026-07-28 the owner approved the blueprint and authorized Step 4 bare desk v2
-artwork only. Renderer code, single-seat lab work, ten-seat assembly, and
-Active Office promotion remain blocked.
+2026-07-28 the owner approved the blueprint and then accepted the elevated-camera
+Step 4 bare desk v2 artwork. Step 5 planning is allowed, but single-seat lab
+execution, renderer code, ten-seat assembly, and Active Office promotion remain
+blocked until separate approvals.
 
 ## What has been produced
 
@@ -29,8 +30,8 @@ Active Office promotion remain blocked.
    foreground layers reconstruct the bare desk exactly.
 7. `step4/03-adjacency-footprint-proof-v2.png` proves two and five full-width
    rectangular desk tops touch without a triangular gap.
-8. `step4/00-step4-review-contact-sheet-v2.png` collects the Step 4 evidence for
-   the next owner decision.
+8. `step4/00-step4-review-contact-sheet-v2.png` records the accepted Step 4
+   evidence set.
 
 All labels are English to comply with repository rules. The diagrams use
 simple geometric shapes deliberately: approval here means approval of spatial
@@ -46,9 +47,9 @@ meaning, not approval of a final visual style.
 - no Active Office change;
 - no commercial-use or character-license work.
 
-## Step 4 review questions
+## Accepted Step 4 criteria
 
-The owner review must answer yes to all of the following before the next phase:
+The owner accepted all of the following on 2026-07-28:
 
 - Is one desk exactly a `3 x 2` tabletop and floor footprint?
 - Are desk legs/drawers/vertical faces treated as render height, not footprint?
@@ -64,13 +65,17 @@ The owner review must answer yes to all of the following before the next phase:
 - Are both top edges equal width with vertical sides and square corners?
 - Do the two-module and five-module proofs have one straight seam and no gap?
 
-If any answer is no, update the manifest and regenerate these diagrams. Do not
-patch artwork or renderer code to compensate for a wrong blueprint.
+Future changes that invalidate any answer require a new version and owner
+review. Do not patch renderer code to compensate for wrong artwork geometry.
 
-## Next phase after Step 4 explicit approval
+## Step 5 planning gate
 
-Authorize one isolated Step 5 single-seat assembly using the approved bare desk
-plus the already-created chair, monitor, keyboard, and one existing character
-pose. The full ten-seat scene remains a later gate. Existing 19 characters and
-completed poses are reused; this plan does not create replacement characters
-or poses.
+Prepare a detailed isolated single-seat assembly plan using the accepted bare
+desk plus the already-created chair, monitor, keyboard, and one existing
+character pose. Execution starts only after the owner approves that Step 5
+plan. The full ten-seat scene remains a later gate. Existing 19 characters and
+completed poses are reused; this plan does not create replacements.
+
+The reviewable plan, including locked asset hashes, exact anchor equations,
+layer order, evidence images, rejection conditions, and the permitted file
+boundary, is in `docs/art/OFFICE_WORKSTATION_STEP5_SINGLE_SEAT_PLAN.md`.

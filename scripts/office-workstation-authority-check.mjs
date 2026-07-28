@@ -59,7 +59,7 @@ for (const [key, value] of Object.entries(camera.acceptance ?? {})) {
 }
 
 add(failures, assembly.version === 2, "Assembly Bible must be version 2");
-add(failures, assembly.status === "desk-artwork-authorized", "Assembly Bible must record Step 4 authorization");
+add(failures, assembly.status === "desk-artwork-accepted", "Assembly Bible must record accepted Step 4 artwork");
 for (const [key, value] of Object.entries(assembly.permissions ?? {})) {
   const expected = key === "ownerApproval" || key === "deskArtworkGeneration";
   add(failures, value === expected, `Assembly Bible permissions.${key} has the wrong Step 4 permission`);
@@ -78,9 +78,11 @@ add(failures, assembly.desk?.employeeEdgeRow === null, "Assembly Bible cannot re
 add(
   failures,
   assembly.desk?.partContract?.length === 4
-    && assembly.desk.partContract.every((part) => part.changesFootprint === false && part.artworkStatus === "step4-review"),
-  "Every Assembly Bible desk part must remain footprint-neutral and in Step 4 review",
+    && assembly.desk.partContract.every((part) => part.changesFootprint === false && part.artworkStatus === "accepted"),
+  "Every Assembly Bible desk part must remain footprint-neutral and accepted",
 );
+add(failures, assembly.approvalRecord?.step4ArtworkDecision === "accepted",
+  "Assembly Bible must retain the owner-approved Step 4 decision");
 add(
   failures,
   assembly.equipment?.monitor?.reservation?.width === 3
@@ -115,7 +117,8 @@ add(
 );
 
 add(failures, bundleV2.version === 2, "Workstation Bundle v2 must be version 2");
-add(failures, bundleV2.status === "step4-artwork-review", "Workstation Bundle v2 must remain in Step 4 review");
+add(failures, bundleV2.status === "step4-accepted", "Workstation Bundle v2 must record accepted Step 4 artwork");
+add(failures, bundleV2.approvalRecord?.decision === "accepted", "Workstation Bundle v2 must retain owner acceptance");
 add(failures, bundleV2.permissions?.bareDeskArtwork === true, "Workstation Bundle v2 must authorize the bare desk");
 for (const key of ["singleSeatAssembly", "tenSeatSceneAssembly", "rendererImplementation", "activeOfficePromotion"]) {
   add(failures, bundleV2.permissions?.[key] === false, `Workstation Bundle v2 permissions.${key} must remain false`);

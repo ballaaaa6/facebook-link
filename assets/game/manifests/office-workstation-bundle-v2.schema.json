@@ -4,13 +4,24 @@
   "title": "Office Workstation Bundle v2 Step 4 bare desk",
   "type": "object",
   "additionalProperties": false,
-  "required": ["version", "geometrySchemaVersion", "id", "status", "updatedOn", "permissions", "source", "deskFamily", "qa"],
+  "required": ["version", "geometrySchemaVersion", "id", "status", "updatedOn", "approvalRecord", "permissions", "source", "deskFamily", "qa"],
   "properties": {
     "version": { "const": 2 },
     "geometrySchemaVersion": { "const": 3 },
     "id": { "const": "office.workstation.bundle.v2" },
-    "status": { "const": "step4-artwork-review" },
+    "status": { "const": "step4-accepted" },
     "updatedOn": { "type": "string", "format": "date" },
+    "approvalRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["approvedOn", "approvedScope", "decision", "nextGate"],
+      "properties": {
+        "approvedOn": { "type": "string", "format": "date" },
+        "approvedScope": { "type": "string", "minLength": 1 },
+        "decision": { "const": "accepted" },
+        "nextGate": { "type": "string", "minLength": 1 }
+      }
+    },
     "permissions": {
       "type": "object",
       "additionalProperties": false,

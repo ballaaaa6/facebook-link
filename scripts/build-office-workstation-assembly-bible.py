@@ -252,7 +252,7 @@ def draw_exploded_parts(manifest: dict, manifest_hash: str) -> Image.Image:
         y = 910 + index * 36
         text(draw, (70, y), name, 17, color)
         text(draw, (245, y), description, 17, MUTED)
-    text(draw, (1300, 1015), "STEP 4 DESK ART AUTHORIZED", 16, GREEN)
+    text(draw, (1300, 1015), "STEP 4 DESK ART ACCEPTED", 16, GREEN)
     return image
 
 
@@ -332,7 +332,7 @@ def draw_assembly_and_adjacency(manifest: dict, manifest_hash: str) -> Image.Ima
 def draw_contact_sheet(boards: list[tuple[str, Image.Image]], manifest_hash: str) -> Image.Image:
     image = Image.new("RGB", (1800, 1400), BACKGROUND)
     draw = ImageDraw.Draw(image)
-    header(draw, "OWNER REVIEW / WORKSTATION BLUEPRINT v2", "GEOMETRY APPROVED / STEP 4 BARE DESK ART ONLY", manifest_hash)
+    header(draw, "OWNER REVIEW / WORKSTATION BLUEPRINT v2", "GEOMETRY + STEP 4 DESK ACCEPTED / STEP 5 PLAN GATE", manifest_hash)
     placements = [(40, 140), (920, 140), (480, 735)]
     preview_size = (840, 513)
     for (title, board), position in zip(boards, placements, strict=True):
@@ -340,7 +340,7 @@ def draw_contact_sheet(boards: list[tuple[str, Image.Image]], manifest_hash: str
         image.paste(preview, position)
         draw.rectangle((position[0], position[1], position[0] + preview_size[0], position[1] + preview_size[1]), outline="#475569", width=3)
         text(draw, (position[0] + 12, position[1] - 30), title, 18, TEXT)
-    text(draw, (40, 1325), "GATE: ownerApproval=true | desk artwork=true | Step 5=false | renderer=false | Active Office unchanged", 19, RED)
+    text(draw, (40, 1325), "GATE: Step 4 accepted | Step 5 execution=false | renderer=false | Active Office unchanged", 19, RED)
     return image
 
 
@@ -356,8 +356,8 @@ def file_sha256(path: Path) -> str:
 
 def validate(manifest: dict) -> list[str]:
     failures: list[str] = []
-    if manifest.get("version") != 2 or manifest.get("status") != "desk-artwork-authorized":
-        failures.append("Assembly Bible must remain version 2 with Step 4 desk artwork authorized")
+    if manifest.get("version") != 2 or manifest.get("status") != "desk-artwork-accepted":
+        failures.append("Assembly Bible must remain version 2 with Step 4 desk artwork accepted")
     permissions = manifest.get("permissions", {})
     for key, value in permissions.items():
         expected = key in ("ownerApproval", "deskArtworkGeneration")
@@ -373,8 +373,8 @@ def validate(manifest: dict) -> list[str]:
     if desk.get("employeeEdgeRow") is not None:
         failures.append("desk employeeEdgeRow must remain null")
     for part in desk.get("partContract", []):
-        if part.get("artworkStatus") != "step4-review" or part.get("changesFootprint") is not False:
-            failures.append("desk parts must be footprint-neutral and in Step 4 review")
+        if part.get("artworkStatus") != "accepted" or part.get("changesFootprint") is not False:
+            failures.append("desk parts must be footprint-neutral and accepted")
     source = ROOT / manifest.get("sourceReference", {}).get("file", "")
     if not source.exists() or file_sha256(source) != manifest.get("sourceReference", {}).get("sha256"):
         failures.append("source reference is missing or its SHA-256 changed")
@@ -430,7 +430,7 @@ def main() -> int:
         OUTPUT_DIRECTORY.mkdir(parents=True, exist_ok=True)
         for path, payload in outputs.items():
             path.write_bytes(payload)
-    print("Workstation Assembly Bible v2 OK: approved geometry boards current; Step 4 desk artwork authorized.")
+    print("Workstation Assembly Bible v2 OK: geometry and Step 4 desk artwork accepted; Step 5 blocked.")
     return 0
 
 

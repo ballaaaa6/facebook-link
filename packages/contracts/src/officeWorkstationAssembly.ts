@@ -25,7 +25,7 @@ export interface OfficeWorkstationAssemblyBibleV2 {
   version: 2;
   geometrySchemaVersion: 3;
   id: "office.workstation.assembly-bible.v2";
-  status: "desk-artwork-authorized";
+  status: "desk-artwork-accepted";
   updatedOn: string;
   permissions: {
     ownerApproval: true;
@@ -39,6 +39,8 @@ export interface OfficeWorkstationAssemblyBibleV2 {
   approvalRecord: {
     approvedOn: string;
     approvedScope: string;
+    step4ArtworkDecision: "accepted";
+    step4ArtworkApprovedOn: string;
     nextStepBlocked: string;
   };
   sourceReference: {
@@ -74,7 +76,7 @@ export interface OfficeWorkstationAssemblyBibleV2 {
       meaning: string;
       changesFootprint: false;
       mayOverflowFootprint: boolean;
-      artworkStatus: "step4-review";
+      artworkStatus: "accepted";
     }>;
   };
   equipment: {
@@ -186,7 +188,7 @@ function validateDesk(value: Record<string, unknown>, issues: string[]) {
       `desk.partContract[${index}].role`, "must be a unique semantic part role");
     roles.add(role);
     add(issues, candidate.changesFootprint === false, `desk.partContract[${index}].changesFootprint`, "must remain false");
-    add(issues, candidate.artworkStatus === "step4-review", `desk.partContract[${index}].artworkStatus`, "must remain in Step 4 review");
+    add(issues, candidate.artworkStatus === "accepted", `desk.partContract[${index}].artworkStatus`, "must record accepted Step 4 artwork");
   });
 }
 
@@ -259,7 +261,10 @@ export function validateOfficeWorkstationAssemblyBibleV2(value: unknown): string
   add(issues, value.version === 2, "version", "must equal 2");
   add(issues, value.geometrySchemaVersion === 3, "geometrySchemaVersion", "must equal 3");
   add(issues, value.id === "office.workstation.assembly-bible.v2", "id", "must equal the v2 authority ID");
-  add(issues, value.status === "desk-artwork-authorized", "status", "must record the Step 4 desk-artwork gate");
+  add(issues, value.status === "desk-artwork-accepted", "status", "must record accepted Step 4 desk artwork");
+  const approval = value.approvalRecord;
+  add(issues, isRecord(approval) && approval.step4ArtworkDecision === "accepted"
+    && typeof approval.step4ArtworkApprovedOn === "string", "approvalRecord", "must record Step 4 artwork acceptance");
   validatePermissions(value, issues);
   validateDesk(value, issues);
   validateEquipment(value, issues);

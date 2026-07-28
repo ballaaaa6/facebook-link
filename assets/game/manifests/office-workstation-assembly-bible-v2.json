@@ -2,7 +2,7 @@
   "version": 2,
   "geometrySchemaVersion": 3,
   "id": "office.workstation.assembly-bible.v2",
-  "status": "desk-artwork-authorized",
+  "status": "desk-artwork-accepted",
   "updatedOn": "2026-07-28",
   "permissions": {
     "ownerApproval": true,
@@ -16,6 +16,8 @@
   "approvalRecord": {
     "approvedOn": "2026-07-28",
     "approvedScope": "Step 4 bare desk v2 artwork, semantic layers, manifest, and QA boards only",
+    "step4ArtworkDecision": "accepted",
+    "step4ArtworkApprovedOn": "2026-07-28",
     "nextStepBlocked": "Step 5 single-seat lab requires a separate owner approval"
   },
   "sourceReference": {
@@ -52,28 +54,28 @@
         "meaning": "back rim or structure that must render behind supported equipment and the actor",
         "changesFootprint": false,
         "mayOverflowFootprint": true,
-        "artworkStatus": "step4-review"
+        "artworkStatus": "accepted"
       },
       {
         "role": "surface",
         "meaning": "the visible top plane corresponding exactly to the 3 x 2 support plane",
         "changesFootprint": false,
         "mayOverflowFootprint": false,
-        "artworkStatus": "step4-review"
+        "artworkStatus": "accepted"
       },
       {
         "role": "base",
         "meaning": "legs, drawers, apron, and vertical mass below the tabletop; height only",
         "changesFootprint": false,
         "mayOverflowFootprint": true,
-        "artworkStatus": "step4-review"
+        "artworkStatus": "accepted"
       },
       {
         "role": "foreground",
         "meaning": "front lip or occlusion mask that may cover the seated lower body but never the head-safe region",
         "changesFootprint": false,
         "mayOverflowFootprint": true,
-        "artworkStatus": "step4-review"
+        "artworkStatus": "accepted"
       }
     ]
   },
@@ -169,6 +171,6 @@
       "owner confirms chair and actor are outside the 3 x 2 desk footprint",
       "owner confirms five-by-two adjacency"
     ],
-    "nextPhaseWhenApproved": "After the owner approves the Step 4 bare-desk review boards, authorize Step 5 single-seat assembly in an isolated lab; do not assemble all ten seats yet."
+    "nextPhaseWhenApproved": "Prepare the Step 5 isolated single-seat plan for owner review; do not execute it, assemble all ten seats, or change Active Office yet."
   }
 }

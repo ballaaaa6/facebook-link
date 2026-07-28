@@ -29,6 +29,11 @@ Generated Office image freshness is verified through the portable Node lock,
 so CI and Cloudflare do not require Pillow. Install `requirements-art.txt` only
 when regenerating or byte-checking art outputs locally.
 
+`npm run art:workstation:v2:check` is also a Node-only CI guard. It validates
+the Step 4 source hashes, PNG headers and dimensions, exact processed/review
+output set, permissions, and generated-art lock entries. Use
+`npm run art:workstation:v2` only on an art workstation with Pillow installed.
+
 Run a single guard while iterating:
 
 ```bash

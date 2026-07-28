@@ -105,9 +105,9 @@ tiles apart. The two rows touch vertically because the near row begins at Y 8,
 immediately after the far row ends at Y 8. Chairs stay outside the desk
 footprints and are centered on the middle tile of each desk.
 
-These coordinates are the approved blueprint. Only Step 4 bare desk artwork is
-authorized. Single-seat assembly, renderer work, ten-seat assembly, and Active
-Office promotion remain false.
+These coordinates and the Step 4 bare desk artwork are accepted. Step 5 planning
+is allowed, but single-seat execution, renderer work, ten-seat assembly, and
+Active Office promotion remain false.
 
 ## Furniture part contract
 
@@ -151,14 +151,14 @@ regression evidence. They are not current examples.
 
 ## Approval gate
 
-The geometry boards are approved and the Step 4 bare desk is now in owner
-review. Before Step 5, the owner must approve the replacement elevated-camera
-desk, its semantic layers, and its zero-gap adjacency proofs.
+The geometry boards and replacement elevated-camera Step 4 desk are approved.
+Before Step 5 execution, the owner must approve the isolated single-seat plan,
+its exact assets, anchors, layer order, validation boards, and rejection gates.
 
-1. replacement source plus normalized front/back desk;
-2. front/back semantic layer proof;
-3. two- and five-module adjacency proof;
-4. Step 4 contact sheet.
+1. exact approved desk/chair/monitor/keyboard/character sources;
+2. front and back anchor equations and layer order;
+3. one-seat collision, support, occlusion, and head-safe checks;
+4. Step 5 review-board set and rollback boundary.
 
-Until that approval is recorded, chair/monitor/keyboard assembly, renderer,
+Until that approval is recorded, the one-seat implementation, renderer,
 ten-seat scene, and Active Office permissions stay false.

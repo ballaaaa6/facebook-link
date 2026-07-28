@@ -11,6 +11,8 @@ const bible = JSON.parse(readFileSync(manifestUrl, "utf8"));
 
 test("Workstation Assembly Bible v2 authorizes only Step 4 bare desk artwork", () => {
   assert.deepEqual(validateOfficeWorkstationAssemblyBibleV2(bible), []);
+  assert.equal(bible.status, "desk-artwork-accepted");
+  assert.equal(bible.approvalRecord.step4ArtworkDecision, "accepted");
   assert.equal(bible.permissions.ownerApproval, true);
   assert.equal(bible.permissions.deskArtworkGeneration, true);
   assert.equal(bible.permissions.rendererImplementation, false);

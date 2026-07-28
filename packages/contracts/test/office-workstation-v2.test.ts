@@ -11,6 +11,8 @@ const bundle = JSON.parse(readFileSync(manifestUrl, "utf8"));
 
 test("Workstation Bundle v2 contains only the Step 4 bare desk", () => {
   assert.deepEqual(validateOfficeWorkstationBundleV2(bundle), []);
+  assert.equal(bundle.status, "step4-accepted");
+  assert.equal(bundle.approvalRecord.decision, "accepted");
   assert.deepEqual(bundle.deskFamily.contains, ["bare-desk"]);
   assert.equal(bundle.permissions.singleSeatAssembly, false);
   assert.equal(bundle.permissions.activeOfficePromotion, false);
@@ -41,4 +43,13 @@ test("Workstation Bundle v2 keeps Step 5 and the renderer blocked", () => {
   const issues = validateOfficeWorkstationBundleV2(invalid).join("\n");
   assert.match(issues, /singleSeatAssembly/);
   assert.match(issues, /rendererImplementation/);
+});
+
+test("Workstation Bundle v2 requires a separate Step 5 approval", () => {
+  const invalid = structuredClone(bundle);
+  invalid.approvalRecord.decision = "step5-authorized";
+  invalid.permissions.singleSeatAssembly = true;
+  const issues = validateOfficeWorkstationBundleV2(invalid).join("\n");
+  assert.match(issues, /approvalRecord/);
+  assert.match(issues, /singleSeatAssembly/);
 });

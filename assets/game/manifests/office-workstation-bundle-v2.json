@@ -2,8 +2,14 @@
   "version": 2,
   "geometrySchemaVersion": 3,
   "id": "office.workstation.bundle.v2",
-  "status": "step4-artwork-review",
+  "status": "step4-accepted",
   "updatedOn": "2026-07-28",
+  "approvalRecord": {
+    "approvedOn": "2026-07-28",
+    "approvedScope": "Step 4 elevated-camera bare desk v2 source, normalized front/back assets, semantic layers, and adjacency proofs",
+    "decision": "accepted",
+    "nextGate": "Step 5 isolated single-seat plan requires separate owner approval before execution"
+  },
   "permissions": {
     "bareDeskArtwork": true,
     "singleSeatAssembly": false,

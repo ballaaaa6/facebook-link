@@ -14,8 +14,14 @@ export interface OfficeWorkstationBundleV2 {
   version: 2;
   geometrySchemaVersion: 3;
   id: "office.workstation.bundle.v2";
-  status: "step4-artwork-review";
+  status: "step4-accepted";
   updatedOn: string;
+  approvalRecord: {
+    approvedOn: string;
+    approvedScope: string;
+    decision: "accepted";
+    nextGate: string;
+  };
   permissions: {
     bareDeskArtwork: true;
     singleSeatAssembly: false;
@@ -175,7 +181,11 @@ export function validateOfficeWorkstationBundleV2(value: unknown): string[] {
   add(issues, value.version === 2, "version", "must equal 2");
   add(issues, value.geometrySchemaVersion === 3, "geometrySchemaVersion", "must equal 3");
   add(issues, value.id === "office.workstation.bundle.v2", "id", "must use the v2 bundle id");
-  add(issues, value.status === "step4-artwork-review", "status", "must remain in Step 4 artwork review");
+  add(issues, value.status === "step4-accepted", "status", "must record the accepted Step 4 desk");
+  const approval = value.approvalRecord;
+  add(issues, isRecord(approval) && approval.decision === "accepted"
+    && typeof approval.approvedOn === "string" && typeof approval.approvedScope === "string"
+    && typeof approval.nextGate === "string", "approvalRecord", "must record Step 4 acceptance and the separate Step 5 gate");
   validatePermissions(value, issues);
   validateSource(value, issues);
   validateDesk(value, issues);

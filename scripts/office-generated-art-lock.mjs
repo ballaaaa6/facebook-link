@@ -45,6 +45,7 @@ const fixedInputs = [
   "scripts/office-derived-assets-check.mjs",
   "scripts/office-generated-art-lock.mjs",
   "scripts/office-workstation-authority-check.mjs",
+  "scripts/office-workstation-v2-check.mjs",
   "scripts/office_geometry_audit_inventory.py",
   "scripts/office_geometry_audit_report.py",
   "scripts/office_geometry_audit_visuals.py",

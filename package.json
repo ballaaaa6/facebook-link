@@ -33,7 +33,7 @@
     "art:workstation:bible": "python scripts/build-office-workstation-assembly-bible.py",
     "art:workstation:bible:check": "python scripts/build-office-workstation-assembly-bible.py --check",
     "art:workstation:v2": "python scripts/build-office-workstation-v2.py",
-    "art:workstation:v2:check": "python scripts/build-office-workstation-v2.py --check",
+    "art:workstation:v2:check": "node scripts/office-workstation-v2-check.mjs",
     "art:workstation:authority:check": "node scripts/office-workstation-authority-check.mjs",
     "art:geometry:lock": "node scripts/office-generated-art-lock.mjs --write",
     "art:geometry:generated:check": "node scripts/office-generated-art-lock.mjs --check",
