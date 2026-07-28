@@ -1,26 +1,24 @@
 {
   "schemaVersion": 1,
-  "id": "office-semantic-grid-v4",
-  "status": "superseded-by-v5",
-  "supersedes": "office-semantic-grid-v3",
-  "supersededBy": "office-semantic-grid-v5",
+  "id": "office-semantic-grid-v5",
+  "status": "complete-current",
+  "supersedes": "office-semantic-grid-v4",
   "developmentOnly": false,
-  "activeOfficePromotion": false,
+  "activeOfficePromotion": true,
   "completedOn": "2026-07-29",
-  "supersededOn": "2026-07-29",
-  "sourceBackground": {
-    "file": "assets/art/backgrounds/office-c-background-modern-v4-candidate.png",
-    "sha256": "5ab56afc20ec4540d5ad613079e6fa4f9c940982988bf34720869d606cf63289",
-    "mustRemainByteIdentical": true
+  "generatedSource": {
+    "file": "assets/art/layout-references/office-semantic-grid-v5/00-imagegen-source.png",
+    "sha256": "dade3612f571d7717d9b760e82b6aae5899b0fb8f0e3af056cbfd2a5126a9bf4",
+    "method": "built-in-image-generation"
   },
-  "rejectedBackground": {
-    "file": "assets/art/backgrounds/office-c-background-modern-v5-pillar-aligned-candidate.png",
-    "sha256": "f69ec2c23ae2673f9452ee0a5f9dbe90def7738b51960092e57016dc1e2d13ee",
-    "reason": "left-pillar-base-underfill"
-  },
-  "currentBackground": {
+  "previousBackground": {
     "file": "assets/art/backgrounds/office-c-background-modern-v6-current.png",
     "sha256": "035a850a9b878b9ae623eb1afac34b78fb51101992bddf0415c76cb5f02e53a5",
+    "reasonSuperseded": "localized-pillar-repairs-were-visually-inconsistent"
+  },
+  "currentBackground": {
+    "file": "assets/art/backgrounds/office-c-background-modern-v7-current.png",
+    "sha256": "57b72564ad5a483402cec55bbe46d53f50b89b6eb526188a1529646b3e1baa01",
     "pixels": [
       1672,
       941
@@ -1149,36 +1147,6 @@
     "AP24": "relax-floor",
     "AQ24": "relax-floor"
   },
-  "inheritedPhysicalEdits": {
-    "source": {
-      "file": "assets/game/maps/office-semantic-grid-v2.json",
-      "sha256": "b6075b3ff4fc0e499d16a667ecfc1c06dc56faa68568da3ddb78ba55d0eea00c"
-    },
-    "window": {
-      "oldCells": "N4-AA9",
-      "newCells": "N4-Z9",
-      "restoredOfficeWallCells": "AA4-AA9",
-      "sourcePixels": [
-        510,
-        119,
-        1050,
-        359
-      ],
-      "targetPixels": [
-        510,
-        119,
-        1011,
-        353
-      ],
-      "newRightGridBoundaryX": 1011
-    },
-    "floor": {
-      "recoveredRelaxationCells": "AB12-AB24",
-      "oldBoundaryX": 1065,
-      "newBoundaryX": 1050,
-      "gridBoundary": "AA|AB"
-    }
-  },
   "pillarAlignments": [
     {
       "id": "pillar-left",
@@ -1187,79 +1155,172 @@
         0,
         0,
         84,
-        416
+        445
       ],
       "targetPixels": [
         0,
         0,
         78,
         431
-      ],
-      "correction": "stretch-wood-through-row-11-without-floor-pixels",
-      "targetWidth": 78,
-      "targetHeight": 431
+      ]
     },
     {
       "id": "pillar-center",
       "range": "AB1-AD11",
       "sourcePixels": [
-        1065,
+        1038,
         0,
         1146,
-        442
+        445
       ],
       "targetPixels": [
         1050,
         0,
         1167,
         431
-      ],
-      "correction": "retain-v3-grid-alignment",
-      "targetWidth": 117,
-      "targetHeight": 431
+      ]
     },
     {
       "id": "pillar-right",
       "range": "AP1-AQ11",
       "sourcePixels": [
-        1585,
+        1584,
         0,
         1672,
-        442
+        445
       ],
       "targetPixels": [
         1594,
         0,
         1672,
         431
-      ],
-      "correction": "retain-v3-grid-alignment",
-      "targetWidth": 78,
-      "targetHeight": 431
+      ]
     }
   ],
-  "correction": {
-    "issue": "left-pillar-base-underfill",
-    "rejectedSourcePixels": [
-      0,
-      0,
-      84,
-      442
+  "wallDisplays": [
+    {
+      "id": "work-status-whiteboard",
+      "supportRange": "AF4-AN9",
+      "contentRange": "AG5-AM8",
+      "supportPixels": [
+        1205,
+        118,
+        1555,
+        353
+      ],
+      "renderedFramePixels": [
+        1205,
+        136,
+        1555,
+        331
+      ],
+      "contentPixels": [
+        1244,
+        157,
+        1516,
+        314
+      ],
+      "kind": "dynamic-work-status-display",
+      "baseZone": "relax-wall",
+      "initialState": "blank",
+      "futureContent": [
+        "workflow",
+        "stage",
+        "progress",
+        "review-state",
+        "updated-at"
+      ]
+    }
+  ],
+  "geometryNormalization": {
+    "method": "whole-scene-piecewise-resampling-at-architectural-boundaries",
+    "xControls": [
+      {
+        "source": 0,
+        "target": 0,
+        "landmark": "canvas-left"
+      },
+      {
+        "source": 84,
+        "target": 78,
+        "landmark": "left-pillar-right"
+      },
+      {
+        "source": 498,
+        "target": 510,
+        "landmark": "window-left"
+      },
+      {
+        "source": 998,
+        "target": 1011,
+        "landmark": "window-right"
+      },
+      {
+        "source": 1038,
+        "target": 1050,
+        "landmark": "center-pillar-and-floor-left"
+      },
+      {
+        "source": 1146,
+        "target": 1167,
+        "landmark": "center-pillar-right"
+      },
+      {
+        "source": 1175,
+        "target": 1205,
+        "landmark": "whiteboard-left"
+      },
+      {
+        "source": 1548,
+        "target": 1555,
+        "landmark": "whiteboard-right"
+      },
+      {
+        "source": 1584,
+        "target": 1594,
+        "landmark": "right-pillar-left"
+      },
+      {
+        "source": 1672,
+        "target": 1672,
+        "landmark": "canvas-right"
+      }
     ],
-    "correctedSourcePixels": [
-      0,
-      0,
-      84,
-      416
+    "yControls": [
+      {
+        "source": 0,
+        "target": 0,
+        "landmark": "canvas-top"
+      },
+      {
+        "source": 123,
+        "target": 118,
+        "landmark": "window-top"
+      },
+      {
+        "source": 366,
+        "target": 353,
+        "landmark": "window-bottom"
+      },
+      {
+        "source": 445,
+        "target": 431,
+        "landmark": "wall-floor-and-pillar-bottom"
+      },
+      {
+        "source": 941,
+        "target": 941,
+        "landmark": "canvas-bottom"
+      }
     ],
-    "method": "stretch-only-the-original-left-pillar-wood-and-base-to-A1:B11"
+    "localizedPatchCompositing": false
   },
   "rules": {
     "allCellsClassified": true,
     "pillarArtMatchesSemanticRanges": true,
-    "leftPillarBaseFillsRow11": true,
     "pillarPixelsEndBeforeRow12": true,
-    "activeOfficePromotion": false,
+    "whiteboardContentRemainsBlankInBackground": true,
+    "activeOfficePromotion": true,
     "newCharacterOrFurniture": false
   }
 }

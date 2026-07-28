@@ -1,9 +1,9 @@
 # Office Semantic Grid v4
 
-Status: Complete and current
+Status: Superseded by Office Semantic Grid v5
 Updated: 2026-07-29
 
-Office Semantic Grid v4 is the Active Office background. It preserves all
+Office Semantic Grid v4 was the Active Office background. It preserves all
 1,032 semantic cell assignments and the v2 window and floor corrections while
 fixing the rejected v3 left-pillar base.
 
@@ -19,9 +19,9 @@ The left source crop ends immediately after the original wood base. Only that
 wood and base are stretched to fill `A1:B11`; carpet pixels are not included.
 Row 12 begins at pixel `y=431`, so all three pillars stop before it.
 
-## Active runtime
+## Historical runtime
 
-- Current background:
+- Historical background:
   `assets/art/backgrounds/office-c-background-modern-v6-current.png`
 - Runtime consumer:
   `apps/web/src/features/office/components/officeSceneRuntime.ts`
@@ -31,6 +31,7 @@ Row 12 begins at pixel `y=431`, so all three pillars stop before it.
   `assets/game/maps/office-c-v2.json`; this promotion changes the background
   and its overlay references, not gameplay geometry.
 
-Run `npm run art:office-semantic-grid:v4` to rebuild the completed background
-and review images. Run `npm run art:office-semantic-grid:v4:check` for the
-portable hash and contract check used by CI.
+V4 was superseded after the owner rejected the visible quality of its localized
+pillar edits. V5 uses a clean native rerender and whole-scene architectural
+normalization instead. Run `npm run art:office-semantic-grid:v4` to rebuild the
+historical evidence and `npm run art:office-semantic-grid:v4:check` to verify it.

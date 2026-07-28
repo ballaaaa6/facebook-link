@@ -133,11 +133,13 @@ def map_data(current_content: bytes) -> dict[str, Any]:
     return {
         "schemaVersion": 1,
         "id": "office-semantic-grid-v4",
-        "status": "complete-current",
+        "status": "superseded-by-v5",
         "supersedes": "office-semantic-grid-v3",
+        "supersededBy": "office-semantic-grid-v5",
         "developmentOnly": False,
-        "activeOfficePromotion": True,
+        "activeOfficePromotion": False,
         "completedOn": "2026-07-29",
+        "supersededOn": "2026-07-29",
         "sourceBackground": {
             "file": V3.repo_path(SOURCE_PATH),
             "sha256": V3.sha256(SOURCE_PATH),
@@ -182,7 +184,7 @@ def map_data(current_content: bytes) -> dict[str, Any]:
             "pillarArtMatchesSemanticRanges": True,
             "leftPillarBaseFillsRow11": True,
             "pillarPixelsEndBeforeRow12": True,
-            "activeOfficePromotion": True,
+            "activeOfficePromotion": False,
             "newCharacterOrFurniture": False,
         },
     }
@@ -196,9 +198,10 @@ def manifest_data(
     return {
         "version": 1,
         "id": "office.semantic-grid.v4",
-        "status": "complete-current",
+        "status": "superseded-by-v5",
         "updatedOn": "2026-07-29",
         "supersedes": "office.semantic-grid.v3",
+        "supersededBy": "office.semantic-grid.v5",
         "map": {"file": V3.repo_path(MAP_PATH), "sha256": V3.sha256_bytes(map_content)},
         "currentBackground": {
             "file": V3.repo_path(CURRENT_PATH),
@@ -210,11 +213,12 @@ def manifest_data(
         ],
         "permissions": {
             "completedBackground": True,
-            "activeOfficePromotion": True,
+            "activeOfficePromotion": False,
+            "previouslyPromoted": True,
             "backgroundOnly": True,
             "newCharacterOrFurniture": False,
         },
-        "runtime": {
+        "historicalRuntime": {
             "file": V3.repo_path(RUNTIME_PATH),
             "backgroundImport": V3.repo_path(CURRENT_PATH),
         },
@@ -254,8 +258,8 @@ def write_or_check(outputs: dict[Path, bytes], check: bool) -> None:
         raise SystemExit("Stale Office semantic-grid v4 outputs: " + ", ".join(stale))
     action = "verified" if check else "built"
     print(
-        f"Office semantic-grid v4 {action}: current background complete; "
-        "left pillar wood fills A1:B11 and ends before row 12."
+        f"Office semantic-grid v4 superseded evidence {action}: "
+        "left pillar geometry retained; V5 is current."
     )
 
 

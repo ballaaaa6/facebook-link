@@ -1,12 +1,13 @@
 {
   "version": 1,
   "id": "office.semantic-grid.v4",
-  "status": "complete-current",
+  "status": "superseded-by-v5",
   "updatedOn": "2026-07-29",
   "supersedes": "office.semantic-grid.v3",
+  "supersededBy": "office.semantic-grid.v5",
   "map": {
     "file": "assets/game/maps/office-semantic-grid-v4.json",
-    "sha256": "a155ac426d641b5acc0e90ecc1d6940d6da8350cc3f9458d47550a1e69525aaa"
+    "sha256": "29b1c8248618a4b1206261a2888f791d3566263c3e95da24ac8aeb7fe818662f"
   },
   "currentBackground": {
     "file": "assets/art/backgrounds/office-c-background-modern-v6-current.png",
@@ -24,11 +25,12 @@
   ],
   "permissions": {
     "completedBackground": true,
-    "activeOfficePromotion": true,
+    "activeOfficePromotion": false,
+    "previouslyPromoted": true,
     "backgroundOnly": true,
     "newCharacterOrFurniture": false
   },
-  "runtime": {
+  "historicalRuntime": {
     "file": "apps/web/src/features/office/components/officeSceneRuntime.ts",
     "backgroundImport": "assets/art/backgrounds/office-c-background-modern-v6-current.png"
   }

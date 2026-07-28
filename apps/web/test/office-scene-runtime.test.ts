@@ -9,10 +9,12 @@ const runtimeSource = readFileSync(
   "utf8",
 );
 
-test("uses the completed semantic-grid v4 background and aligned overlays", () => {
-  assert.match(runtimeSource, /office-c-background-modern-v6-current\.png/);
+test("uses the completed semantic-grid v5 background and aligned overlays", () => {
+  assert.match(runtimeSource, /office-c-background-modern-v7-current\.png/);
   assert.match(runtimeSource, /window: \{ x: 527, y: 133, width: 470, height: 204 \}/);
   assert.match(runtimeSource, /clock: \{ x: 1069, y: 90, width: 80, height: 80 \}/);
+  assert.match(runtimeSource, /whiteboard: \{ x: 1205, y: 136, width: 350, height: 195 \}/);
+  assert.match(runtimeSource, /whiteboardContent: \{ x: 1244, y: 157, width: 272, height: 157 \}/);
 });
 
 test("calculates live clock hand angles in the configured timezone", () => {

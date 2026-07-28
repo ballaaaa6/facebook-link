@@ -84,6 +84,7 @@ const fixedInputs = [
   "scripts/build-office-c12-ten-seat-v1.py",
   "scripts/build-office-semantic-grid-v3.py",
   "scripts/build-office-semantic-grid-v4.py",
+  "scripts/build-office-semantic-grid-v5.py",
   "scripts/build-office-derived-assets.py",
   "scripts/office_derived_asset_recipes.py",
   "scripts/office-derived-assets-check.mjs",
@@ -100,6 +101,9 @@ const fixedInputs = [
   "scripts/office-workstation-ten-seat-r05-r02-check.mjs",
   "docs/OFFICE_C12_TEN_SEAT_V1.md",
   "docs/OFFICE_SEMANTIC_GRID_V4.md",
+  "docs/OFFICE_SEMANTIC_GRID_V5.md",
+  "assets/art/layout-references/office-semantic-grid-v5/00-imagegen-source.png",
+  "assets/art/layout-references/office-semantic-grid-v5/IMAGEGEN_PROMPT.md",
   "apps/web/src/features/office/lab/workstation-v3-step5/OfficeWorkstationStep5R04LabPage.tsx",
   "apps/web/src/features/office/lab/workstation-v3-step5/R04Station.tsx",
   "apps/web/src/features/office/lab/workstation-v3-step5/r04Assets.ts",
@@ -143,6 +147,12 @@ const fixedOutputs = [
   "assets/art/backgrounds/office-c-background-modern-v6-current.png",
   "assets/game/manifests/office-semantic-grid-v4.json",
   "assets/game/maps/office-semantic-grid-v4.json",
+  "assets/art/backgrounds/office-c-background-modern-v7-current.png",
+  "assets/art/layout-references/office-semantic-grid-v5/01-current-scene-grid.png",
+  "assets/art/layout-references/office-semantic-grid-v5/02-v6-v7-before-after.png",
+  "assets/art/layout-references/office-semantic-grid-v5/03-whiteboard-viewport-grid.png",
+  "assets/game/manifests/office-semantic-grid-v5.json",
+  "assets/game/maps/office-semantic-grid-v5.json",
 ];
 
 function toRepoPath(path) {

@@ -10,10 +10,11 @@ the isolated `office-c12-ten-seat-v1` review candidate documented in
 geometry on the semantic grid and does not authorize Active Office promotion.
 The `office-semantic-grid-v3` pillar candidate is rejected because its left
 crop included floor pixels and left the visible wood base short of row 11.
-The completed `office-semantic-grid-v4` correction stretches only the original
-left-pillar wood and base through `A1:B11`, keeps all 1,032 semantic cell
-assignments, and is now the Active Office background
-`office-c-background-modern-v6-current.png`.
+V4 corrected the geometry but its localized edits were later rejected for
+visual inconsistency. The completed `office-semantic-grid-v5` scene uses a
+clean native architectural rerender, keeps all 1,032 semantic cell assignments,
+adds a blank work-status whiteboard on the right wall, and is now the Active
+Office background `office-c-background-modern-v7-current.png`.
 
 The active spatial, facility-reservation, asset-addition, and layout delivery
 plan is documented in `docs/OFFICE_LAYOUT_REWORK_PLAN.md`.

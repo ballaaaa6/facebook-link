@@ -99,10 +99,10 @@ function checkSemanticV4() {
   const manifest = readJson("assets/game/manifests/office-semantic-grid-v4.json");
   const map = readJson("assets/game/maps/office-semantic-grid-v4.json");
   add(manifest.id === "office.semantic-grid.v4", "Unexpected semantic-grid v4 manifest id");
-  add(manifest.status === "complete-current", "Semantic-grid v4 manifest must be complete and current");
-  add(map.status === "complete-current", "Semantic-grid v4 map must be complete and current");
-  add(map.activeOfficePromotion === true, "Semantic-grid v4 must be promoted");
-  add(manifest.permissions?.activeOfficePromotion === true, "V4 promotion permission must be recorded");
+  add(manifest.status === "superseded-by-v5", "Semantic-grid v4 manifest must be superseded");
+  add(map.status === "superseded-by-v5", "Semantic-grid v4 map must be superseded");
+  add(manifest.supersededBy === "office.semantic-grid.v5", "Semantic-grid v4 must point to v5");
+  add(map.activeOfficePromotion === false, "Superseded semantic-grid v4 cannot remain active");
   checkGrid(map);
   const left = map.pillarAlignments?.find((pillar) => pillar.id === "pillar-left");
   add(JSON.stringify(left?.sourcePixels) === "[0,0,84,416]", "Left pillar must exclude floor pixels");
@@ -114,10 +114,37 @@ function checkSemanticV4() {
   checkRecord(map.sourceBackground, "semantic-grid v4 source", true);
   checkRecord(map.rejectedBackground, "semantic-grid v4 rejected evidence", true);
   checkRecord(map.activeOfficeMap, "semantic-grid v4 active map");
+}
+
+function checkSemanticV5() {
+  const manifest = readJson("assets/game/manifests/office-semantic-grid-v5.json");
+  const map = readJson("assets/game/maps/office-semantic-grid-v5.json");
+  add(manifest.id === "office.semantic-grid.v5", "Unexpected semantic-grid v5 manifest id");
+  add(manifest.status === "complete-current", "Semantic-grid v5 manifest must be complete and current");
+  add(map.status === "complete-current", "Semantic-grid v5 map must be complete and current");
+  add(map.activeOfficePromotion === true, "Semantic-grid v5 must be promoted");
+  add(manifest.permissions?.dynamicWhiteboardViewport === true, "V5 whiteboard viewport must be authorized");
+  checkGrid(map);
+  const left = map.pillarAlignments?.find((pillar) => pillar.id === "pillar-left");
+  const center = map.pillarAlignments?.find((pillar) => pillar.id === "pillar-center");
+  const right = map.pillarAlignments?.find((pillar) => pillar.id === "pillar-right");
+  add(JSON.stringify(left?.targetPixels) === "[0,0,78,431]", "V5 left pillar must fill A1:B11");
+  add(JSON.stringify(center?.targetPixels) === "[1050,0,1167,431]", "V5 center pillar must fill AB1:AD11");
+  add(JSON.stringify(right?.targetPixels) === "[1594,0,1672,431]", "V5 right pillar must fill AP1:AQ11");
+  const whiteboard = map.wallDisplays?.find((display) => display.id === "work-status-whiteboard");
+  add(whiteboard?.supportRange === "AF4-AN9", "Whiteboard support range must be AF4:AN9");
+  add(whiteboard?.contentRange === "AG5-AM8", "Whiteboard content range must be AG5:AM8");
+  add(JSON.stringify(whiteboard?.contentPixels) === "[1244,157,1516,314]", "Whiteboard content pixels changed");
+  checkRecord(manifest.map, "semantic-grid v5 map");
+  checkRecord(manifest.generatedSource, "semantic-grid v5 generated source", true);
+  checkRecord(manifest.currentBackground, "semantic-grid v5 current background", true);
+  checkRecords(manifest.reviewOutputs, "semantic-grid v5 review outputs");
+  checkRecord(map.previousBackground, "semantic-grid v5 previous background", true);
+  checkRecord(map.activeOfficeMap, "semantic-grid v5 active map");
   const runtime = readFileSync(projectPath(manifest.runtime?.file ?? ""), "utf8");
-  add(runtime.includes("office-c-background-modern-v6-current.png"), "Runtime must import the current v6 background");
-  add(runtime.includes("window: { x: 527, y: 133, width: 470, height: 204 }"), "Runtime window bounds must match v4");
-  add(runtime.includes("clock: { x: 1069, y: 90, width: 80, height: 80 }"), "Runtime clock must be centered on the aligned pillar");
+  add(runtime.includes("office-c-background-modern-v7-current.png"), "Runtime must import the current v7 background");
+  add(runtime.includes("whiteboard: { x: 1205, y: 136, width: 350, height: 195 }"), "Runtime whiteboard frame changed");
+  add(runtime.includes("whiteboardContent: { x: 1244, y: 157, width: 272, height: 157 }"), "Runtime whiteboard viewport changed");
 }
 
 function checkC12() {
@@ -140,6 +167,7 @@ const checks = {
   "semantic-v2": checkSemanticV2,
   "semantic-v3": checkSemanticV3,
   "semantic-v4": checkSemanticV4,
+  "semantic-v5": checkSemanticV5,
   "c12-ten-seat": checkC12,
 };
 const mode = process.argv[2];
