@@ -147,6 +147,53 @@ function checkSemanticV5() {
   add(runtime.includes("whiteboardContent: { x: 1244, y: 157, width: 272, height: 157 }"), "Runtime whiteboard viewport changed");
 }
 
+function checkSemanticV6() {
+  const manifest = readJson("assets/game/manifests/office-semantic-grid-v6.json");
+  const map = readJson("assets/game/maps/office-semantic-grid-v6.json");
+  add(manifest.id === "office.semantic-grid.v6", "Unexpected semantic-grid v6 manifest id");
+  add(manifest.status === "owner-review", "Semantic-grid v6 manifest must remain in owner review");
+  add(map.status === "owner-review", "Semantic-grid v6 map must remain in owner review");
+  add(map.activeOfficePromotion === false, "Semantic-grid v6 cannot be active before owner approval");
+  add(manifest.permissions?.isolatedOwnerReview === true, "Semantic-grid v6 must remain isolated");
+  add(manifest.permissions?.runtimeChange === false, "Semantic-grid v6 cannot authorize a runtime change");
+  checkGrid(map);
+  const left = map.pillarAlignments?.find((pillar) => pillar.id === "pillar-left");
+  const center = map.pillarAlignments?.find((pillar) => pillar.id === "pillar-center");
+  const right = map.pillarAlignments?.find((pillar) => pillar.id === "pillar-right");
+  add(JSON.stringify(left?.targetPixels) === "[0,0,78,431]", "V6 left pillar must fill A1:B11");
+  add(JSON.stringify(center?.targetPixels) === "[1050,0,1167,431]", "V6 center pillar must fill AB1:AD11");
+  add(JSON.stringify(right?.targetPixels) === "[1594,0,1672,431]", "V6 right pillar must fill AP1:AQ11");
+  const whiteboard = map.wallDisplays?.find((display) => display.id === "work-status-whiteboard");
+  add(whiteboard?.supportRange === "D4-L9", "V6 whiteboard support range must be D4:L9");
+  add(whiteboard?.contentRange === "E5-K8", "V6 whiteboard content range must be E5:K8");
+  add(JSON.stringify(whiteboard?.supportPixels) === "[117,118,467,353]", "V6 whiteboard support pixels changed");
+  add(JSON.stringify(whiteboard?.contentPixels) === "[156,157,428,314]", "V6 whiteboard content pixels changed");
+  add(map.floorReplacement?.material === "light-warm-oak-spc", "V6 Office floor must use light warm oak SPC");
+  add(map.floorReplacement?.pattern === "herringbone", "V6 Office floor must use a herringbone pattern");
+  add(
+    JSON.stringify(map.floorReplacement?.ranges) === '["C11-AA11","A12-AA24"]',
+    "V6 Office floor replacement ranges changed",
+  );
+  add(map.floorReplacement?.relaxationFloorUnchanged === true, "V6 relaxation floor must remain unchanged");
+  checkRecord(manifest.map, "semantic-grid v6 map");
+  checkRecord(manifest.ownerMarkup, "semantic-grid v6 owner markup", true);
+  checkRecord(manifest.generatedSource, "semantic-grid v6 generated source", true);
+  checkRecord(manifest.candidateBackground, "semantic-grid v6 candidate", true);
+  checkRecords(manifest.reviewOutputs, "semantic-grid v6 review outputs");
+  checkRecord(map.generationPrompt, "semantic-grid v6 generation prompt");
+  checkRecord(map.baseBackground, "semantic-grid v6 base background", true);
+  checkRecord(map.activeOfficeBaseline?.semanticMap, "semantic-grid v6 active semantic map");
+  checkRecord(map.activeOfficeBaseline?.runtimeMap, "semantic-grid v6 active runtime map");
+  checkRecord(map.activeOfficeBaseline?.background, "semantic-grid v6 active background", true);
+  const runtimePath = map.activeOfficeBaseline?.runtimeConsumer ?? "";
+  add(typeof runtimePath === "string" && runtimePath.length > 0, "Semantic-grid v6 runtime consumer is missing");
+  if (typeof runtimePath === "string" && runtimePath.length > 0 && existsSync(projectPath(runtimePath))) {
+    const runtime = readFileSync(projectPath(runtimePath), "utf8");
+    add(runtime.includes("office-c-background-modern-v7-current.png"), "Runtime must remain on the current v7 background");
+    add(!runtime.includes("office-c-background-modern-v8-owner-review.png"), "Owner-review V8 must not enter runtime");
+  }
+}
+
 function checkC12() {
   const manifest = readJson("assets/game/manifests/office-c12-ten-seat-v1.json");
   const map = readJson("assets/game/maps/office-c12-ten-seat-v1.json");
@@ -168,6 +215,7 @@ const checks = {
   "semantic-v3": checkSemanticV3,
   "semantic-v4": checkSemanticV4,
   "semantic-v5": checkSemanticV5,
+  "semantic-v6": checkSemanticV6,
   "c12-ten-seat": checkC12,
 };
 const mode = process.argv[2];

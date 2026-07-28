@@ -85,6 +85,7 @@ const fixedInputs = [
   "scripts/build-office-semantic-grid-v3.py",
   "scripts/build-office-semantic-grid-v4.py",
   "scripts/build-office-semantic-grid-v5.py",
+  "scripts/build-office-semantic-grid-v6.py",
   "scripts/build-office-derived-assets.py",
   "scripts/office_derived_asset_recipes.py",
   "scripts/office-derived-assets-check.mjs",
@@ -102,8 +103,12 @@ const fixedInputs = [
   "docs/OFFICE_C12_TEN_SEAT_V1.md",
   "docs/OFFICE_SEMANTIC_GRID_V4.md",
   "docs/OFFICE_SEMANTIC_GRID_V5.md",
+  "docs/OFFICE_SEMANTIC_GRID_V6.md",
   "assets/art/layout-references/office-semantic-grid-v5/00-imagegen-source.png",
   "assets/art/layout-references/office-semantic-grid-v5/IMAGEGEN_PROMPT.md",
+  "assets/art/layout-references/office-semantic-grid-v6/00-owner-markup.png",
+  "assets/art/layout-references/office-semantic-grid-v6/01-imagegen-source.png",
+  "assets/art/layout-references/office-semantic-grid-v6/IMAGEGEN_PROMPT.md",
   "apps/web/src/features/office/lab/workstation-v3-step5/OfficeWorkstationStep5R04LabPage.tsx",
   "apps/web/src/features/office/lab/workstation-v3-step5/R04Station.tsx",
   "apps/web/src/features/office/lab/workstation-v3-step5/r04Assets.ts",
@@ -153,6 +158,12 @@ const fixedOutputs = [
   "assets/art/layout-references/office-semantic-grid-v5/03-whiteboard-viewport-grid.png",
   "assets/game/manifests/office-semantic-grid-v5.json",
   "assets/game/maps/office-semantic-grid-v5.json",
+  "assets/art/backgrounds/office-c-background-modern-v8-owner-review.png",
+  "assets/art/layout-references/office-semantic-grid-v6/02-candidate-grid.png",
+  "assets/art/layout-references/office-semantic-grid-v6/03-v4-v8-before-after.png",
+  "assets/art/layout-references/office-semantic-grid-v6/04-change-zones-grid.png",
+  "assets/game/manifests/office-semantic-grid-v6.json",
+  "assets/game/maps/office-semantic-grid-v6.json",
 ];
 
 function toRepoPath(path) {

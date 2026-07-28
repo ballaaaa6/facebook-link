@@ -15,6 +15,12 @@ visual inconsistency. The completed `office-semantic-grid-v5` scene uses a
 clean native architectural rerender, keeps all 1,032 semantic cell assignments,
 adds a blank work-status whiteboard on the right wall, and is now the Active
 Office background `office-c-background-modern-v7-current.png`.
+The isolated `office-semantic-grid-v6` owner-review candidate replaces the
+three left wall panels with a blank whiteboard at `D4:L9`, rerenders all three
+wood-slat pillars inside their existing semantic boxes, and changes only the
+Office floor to light warm-oak herringbone SPC. It remains non-active as
+`office-c-background-modern-v8-owner-review.png`; V5/V7 stays authoritative
+until explicit owner approval.
 
 The active spatial, facility-reservation, asset-addition, and layout delivery
 plan is documented in `docs/OFFICE_LAYOUT_REWORK_PLAN.md`.
