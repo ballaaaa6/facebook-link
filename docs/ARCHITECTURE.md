@@ -57,6 +57,11 @@ review surface for assigning future floor, wall, pillar, furniture, and route
 zones. The grid itself infers no zones. The Active Office map remains a
 separate runtime boundary.
 
+`docs/OFFICE_SEMANTIC_GRID_V2.md` records the isolated semantic candidate
+derived from those owner assignments. Its revised background, window, and
+floor boundary remain review-only and cannot replace Active Office without a
+separate promotion decision.
+
 ## Scale path
 
 Scale accounts by adding isolated profile workers and queue partitions, not by increasing concurrency inside one browser profile. Scale dashboards independently from browser runners.
