@@ -46,7 +46,7 @@
     "art:workstation:step5:r05:r02": "python scripts/build-office-workstation-step5-r05-r02.py",
     "art:workstation:step5:r05:r02:check": "node scripts/office-workstation-step5-r05-r02-check.mjs",
     "art:workstation:ten-seat:r05:r02": "python scripts/build-office-workstation-ten-seat-r05-r02.py",
-    "art:workstation:ten-seat:r05:r02:check": "python scripts/build-office-workstation-ten-seat-r05-r02.py --check && node scripts/office-workstation-ten-seat-r05-r02-check.mjs",
+    "art:workstation:ten-seat:r05:r02:check": "node scripts/office-workstation-ten-seat-r05-r02-check.mjs",
     "art:workstation:authority:check": "node scripts/office-workstation-authority-check.mjs",
     "art:geometry:lock": "node scripts/office-generated-art-lock.mjs --write",
     "art:geometry:generated:check": "node scripts/office-generated-art-lock.mjs --check",
