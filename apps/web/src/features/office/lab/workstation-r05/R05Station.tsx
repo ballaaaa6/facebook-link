@@ -5,7 +5,7 @@ import { r05ChairParts, r05DeskParts, r05Equipment } from "./r05Assets";
 import {
   r05FrameForTick,
   r05Geometry,
-  r05Manifest,
+  r05LayerOrder,
   type R05Orientation,
 } from "./r05Runtime";
 
@@ -53,12 +53,13 @@ export function R05StationStage({
   orientation: R05Orientation;
   tick: number;
 }) {
-  const geometry = r05Geometry(orientation);
+  const character = modernOfficeLabCharacters[agentId] ?? fallbackCharacter;
+  const frame = r05FrameForTick(tick);
+  const geometry = r05Geometry(orientation, character.sourceSlug, frame);
   const desk = r05DeskParts[orientation === "far" ? "public" : "seat"];
   const chair = r05ChairParts[orientation === "far" ? "front" : "back"];
-  const character = modernOfficeLabCharacters[agentId] ?? fallbackCharacter;
   const nodes: Record<string, ReactNode> = {
-    "chair-rear": <LayerImage layer="chair-rear" src={chair.rear} style={rect(geometry.chair)} />,
+    "chair-behind": <LayerImage layer="chair-behind" src={chair.rear} style={rect(geometry.chair)} />,
     actor: <span className="r05-actor-layer" data-layer="actor" style={rect(geometry.actor)}><Actor character={character} orientation={orientation} tick={tick} /></span>,
     "chair-foreground": <LayerImage layer="chair-foreground" src={chair.foreground} style={rect(geometry.chair)} />,
     "desk-rear": <LayerImage layer="desk-rear" src={desk.rear} style={rect(geometry.desk)} />,
@@ -78,7 +79,7 @@ export function R05StationStage({
       data-orientation={orientation}
     >
       {!context && <div className="r05-grid" />}
-      {r05Manifest.station.layerOrder[orientation].map((layer, index) => (
+      {r05LayerOrder(orientation).map((layer, index) => (
         <span className="r05-layer-slot" data-layer-slot={layer} key={layer} style={{ zIndex: 10 + index }}>
           {nodes[layer]}
         </span>
@@ -89,6 +90,7 @@ export function R05StationStage({
           <i className="r05-debug-rect is-monitor" style={rect(geometry.monitorReservation)}>monitor 3×1</i>
           <i className="r05-debug-rect is-keyboard" style={rect(geometry.keyboardReservation)}>keyboard 1×1</i>
           <i className="r05-debug-point is-seat" style={{ left: geometry.seatSocket.x, top: geometry.seatSocket.y }}>seat</i>
+          <i className="r05-debug-point is-actor-seat" style={{ left: geometry.actor.left + geometry.actorSeatSocketLocal.x, top: geometry.actor.top + geometry.actorSeatSocketLocal.y }}>pelvis</i>
           <i className="r05-debug-point is-floor" style={{ left: geometry.floorSocket.x, top: geometry.floorSocket.y }}>floor</i>
           <i className="r05-debug-point is-monitor-point" style={{ left: geometry.monitorSocket.x, top: geometry.monitorSocket.y }}>base</i>
         </div>
@@ -109,7 +111,7 @@ export function R05StationCard({ debug, orientation, tick }: {
         <span>real chair · frame {r05FrameForTick(tick)} · drift 0 px</span>
       </header>
       <R05StationStage debug={debug} orientation={orientation} tick={tick} />
-      <footer>{r05Manifest.station.layerOrder[orientation].join(" → ")}</footer>
+      <footer>{r05LayerOrder(orientation).join(" → ")}</footer>
     </article>
   );
 }

@@ -14,13 +14,16 @@ R04 P4-P6 is rejected physical composition evidence; only its full rectangular
 desk pixels remain accepted. R05-0 through R05-3A define Geometry v6 reservation,
 visual-pivot, and measured-contact contracts in
 `assets/game/manifests/office-workstation-step5-r05-calibration.json`.
-The owner approved the R05-3A keyboard, monitor base, and seated-contact proof.
-R05-3B reuses the existing real chair pixels without scaling, splits them into
-physical and render masks, and preserves the y80 seat socket. R05-4 and R05-5
-now provide an isolated single station and a two-by-five, ten-person candidate
-on the byte-identical current background. No character, pose, or unrelated
-furniture was created. Active Office promotion remains blocked pending review
-of the consolidated R05 final evidence.
+The owner approved the R05-3A keyboard, monitor base, and provisional
+seated-contact proof. R05 final is now rejected compositor evidence: it joined
+depthwise desks by the 128-pixel render canvas instead of the 64-pixel
+footprint, drew the far keyboard over the monitor, and aligned the back-facing
+actor and chair by a shared top-left origin. R05-r02 P0-P3 introduces explicit
+world/support/local-socket/depth contracts, audits all nineteen character
+directories, and stops at one paired workstation proof. Eighteen existing
+8x15 atlases receive seat-socket records; Boba remains a non-seated 11-row
+companion. No character, pose, hand socket, or unrelated furniture is created.
+Active Office promotion and ten-seat expansion remain blocked.
 
 Derived-asset staging gate (2026-07-27): Steps 13-16 resolve all 77 reviewed
 `derive-composite` records under `office-derived-v1`. The versioned outputs
@@ -368,11 +371,13 @@ Prototype roster freeze (2026-07-27): use the existing nineteen-directory
 character library and its completed pose assets for the internal prototype.
 The eighteen office-agent identities already have complete 8x15 staging
 atlases, while Boba retains its existing companion states. No replacement
-identity, replacement atlas, additional pose row, or full-roster seated
-calibration is planned in the current phase. Existing anchors and offsets are
-accepted for prototype integration; change one only to correct a reproducible
-visible runtime defect. All affected assets remain `pending-commercial-review`
-and are not approved for public, paid, or commercial release.
+identity, replacement atlas, or additional pose row is authorized. The
+R05-r02 reproducible back-seat defect authorizes a metadata-only socket audit
+of every directory: eighteen seat-capable atlases record front/back six-frame
+contacts and Boba records `not-applicable`. This audit may change draw origins
+but never character pixels. All affected assets remain
+`pending-commercial-review` and are not approved for public, paid, or
+commercial release.
 
 - One selected PetDex-compatible character per image-generation call.
 - The imported 8x9 base atlas is the identity anchor and remains unchanged.

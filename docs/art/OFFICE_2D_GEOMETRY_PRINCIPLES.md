@@ -1,6 +1,6 @@
 # Office 2D Geometry Principles
 
-Status: Current Geometry v6 workstation principles; R05 final candidate owner review
+Status: Current Geometry v8 workstation principles; R05-r02 P0-P3 owner review
 Updated: 2026-07-28
 
 This document defines the shared Office principles. For Step 5 workstation
@@ -14,8 +14,12 @@ Character-scale authority:
 `assets/game/manifests/office-character-scale-standard-v1.json`.
 R05 calibration authority:
 `assets/game/manifests/office-workstation-step5-r05-calibration.json`.
-R05 assembled review authority:
+Rejected R05 assembled evidence:
 `assets/game/manifests/office-workstation-step5-r05-final.json`.
+Current coordinate/socket review authority:
+`assets/game/manifests/office-workstation-step5-r05-r02.json`.
+Roster seat-socket authority:
+`assets/game/manifests/office-character-seat-sockets-v1.json`.
 R04 component and assembly manifests are rejected historical evidence except
 for the explicitly accepted desk pixels.
 
@@ -32,8 +36,10 @@ for the explicitly accepted desk pixels.
 - `renderBounds` and `renderOffset` place visible pixels; they never add
   collision cells.
 - `basePivot` places an asset. `sortPivot` controls front-to-back order.
-- The placement formula is
-  `drawOrigin = worldReservationCenter - localVisualPivot`.
+- Static support placement uses
+  `drawOrigin = project(worldSupportSocket.xyz) - localSupportSocket.xy`.
+- Seated actor placement uses
+  `actorDrawOrigin = project(chairSeatSocketWorld.xyz) - actorSeatContactLocal.xy`.
 - Front/back art cannot add orientation-specific placement offsets.
 - A visible leg, drawer, apron, monitor stand, chair back, or actor head is
   height or render overflow. None of those parts expands a footprint.
@@ -56,9 +62,17 @@ world scale. Furniture dimensions must be evaluated beside this ruler, not
 against the transparent canvas or alpha bounds of one sprite.
 
 For seating, the chair reserves `1 x 1` on the floor and has logical height
-`2`. Actor and chair share that one floor cell. The chair seat anchor and actor
-hip anchor share one world point. Backrest, seat/base, actor frame, collision
-footprint, and logical volume remain separate data.
+`2`. Actor and chair share that one floor cell. The chair seat socket and actor
+seat-contact socket resolve to one world point, but their bitmap origins are
+independent. Never align a character and chair by assigning the same top-left
+pixel. Backrest, seat/base, actor frame, collision footprint, support plane,
+local sockets, and logical volume remain separate data.
+
+Seat contacts are recorded per character, orientation, and animation frame.
+The current library contains eighteen seat-capable 8x15 actor atlases. Boba is
+the nineteenth character directory but owns an 11-row companion atlas with no
+seated-working rows, so its seat capability is explicitly `not-applicable`.
+No pose may be invented to make a directory satisfy a seat count.
 
 ## Independent geometry concepts
 
@@ -122,13 +136,14 @@ the middle `1 x 1` cell in the actor-near row.
   maximum may overflow the reservation horizontally while remaining inside
   the desk top.
 
-## Paired ten-seat block
+## Depthwise desk pairing
 
-The R05 final candidate contains two rows of five edge-touching `3 x 2` desks.
-Each row uses X origins `[4, 7, 10, 13, 16]`, so its four joins have zero gap
-and zero overlap. Five far-facing and five near-facing stations use ten
-existing characters and poses inside the left 24-tile work zone. The current
-background is byte-identical; Active Office map and registry remain unchanged.
+A depthwise pair advances by the desk footprint depth, exactly two tiles or
+64 pixels. It does not advance by the 128-pixel authoring canvas. The nearer
+tabletop occupies the same projected screen band as the farther desk's base,
+so normal painter ordering hides the farther legs and drawers while preserving
+both complete 3x2 tabletops. The accepted proof stops at one paired column;
+five-column and ten-person expansion remain blocked pending owner review.
 
 ## Furniture part contract
 
@@ -151,6 +166,8 @@ remain separate from all desk parts.
   from visible features before assigning seat/public meanings.
 - Near-row chair and actor layers draw in front of the paired desk bank.
 - Far-row lower-body pixels may be hidden by the desk base or foreground.
+- In the far row, the keyboard draws before the upright monitor because the
+  monitor is closer to the viewer and occludes any projected overlap.
 - Greater `sortPivot.y` draws later.
 - No diagonal, isometric, oblique, or three-quarter asset can satisfy a strict
   front/back orientation.
@@ -176,7 +193,10 @@ or contact anchors.
 ## Approval gate
 
 R04 physical composition is rejected; coordinate stability did not prove seat
-contact or correct equipment pivots. The owner approved the corrected R05-3A
-anchors. R05 final reuses real chair pixels, keeps the accepted equipment, and
-validates single- and ten-seat compositions at 0 px drift. Other furniture,
-Step 6, and Active Office permissions remain false pending owner approval.
+contact or correct equipment pivots. R05 final is retained as rejected
+composition evidence because it used a shared actor/chair top-left origin,
+placed depthwise desks 128 pixels apart, and drew the far keyboard over the
+monitor. R05-r02 replaces those rules with per-frame seat sockets, a 64-pixel
+footprint join, and physical equipment depth order. It stops after P0-P3 and
+one paired workstation proof. Ten-seat expansion, other furniture, hand
+sockets, Step 6, and Active Office promotion remain false pending owner review.

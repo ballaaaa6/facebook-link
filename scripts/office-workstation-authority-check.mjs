@@ -29,6 +29,8 @@ const componentsV3 = readJson("assets/game/manifests/office-workstation-componen
 const step5R04 = readJson("assets/game/manifests/office-workstation-step5-single-seat-v4.json");
 const step5R05 = readJson("assets/game/manifests/office-workstation-step5-r05-calibration.json");
 const step5R05Final = readJson("assets/game/manifests/office-workstation-step5-r05-final.json");
+const step5R05R02 = readJson("assets/game/manifests/office-workstation-step5-r05-r02.json");
+const seatSockets = readJson("assets/game/manifests/office-character-seat-sockets-v1.json");
 const characterScale = readJson("assets/game/manifests/office-character-scale-standard-v1.json");
 const candidate = readJson("assets/game/manifests/office-candidate-v1.json");
 const review = readJson("assets/game/manifests/office-candidate-review-r01.json");
@@ -263,6 +265,32 @@ add(failures, step5R05Final.activeOfficeBaseline?.sha256 === assembly.activeOffi
 add(failures, step5R05Final.runtimePolicy?.mockupChairAllowed === false
   && step5R05Final.runtimePolicy?.legacyCandidateAllowed === false,
 "Step 5 R05 final cannot use the calibration mockup or rejected candidate");
+add(failures, step5R05R02.status === "owner-review-p0-p3"
+  && JSON.stringify(step5R05R02.completedScope) === JSON.stringify(["P0", "P1", "P2", "P3"])
+  && step5R05R02.stopGate === "paired-workstation-owner-review",
+"Step 5 R05-r02 must stop after the isolated paired proof");
+add(failures, step5R05R02.components?.desk?.supportPixels?.[1] === 64
+  && step5R05R02.components?.monitor?.farLayerOrder === "keyboard-before-monitor",
+"Step 5 R05-r02 must use footprint depth and physical far equipment order");
+add(failures, step5R05R02.permissions?.isolatedCoordinateRenderer === true
+  && step5R05R02.permissions?.rosterSeatSocketAudit === true
+  && step5R05R02.permissions?.pairedWorkstationProof === true
+  && step5R05R02.permissions?.tenSeatExpansion === false
+  && step5R05R02.permissions?.handSockets === false
+  && step5R05R02.permissions?.newCharacterOrPose === false
+  && step5R05R02.permissions?.otherFurniture === false
+  && step5R05R02.permissions?.activeOfficePromotion === false,
+"Step 5 R05-r02 permissions must remain limited to P0-P3");
+add(failures, step5R05R02.activeOfficeBaseline?.sha256 === assembly.activeOfficeBaseline?.sha256,
+  "Step 5 R05-r02 must inherit the exact Active Office baseline hash");
+add(failures, seatSockets.audit?.directoryCount === 19
+  && seatSockets.audit?.seatCapableCount === 18
+  && seatSockets.audit?.companionNotApplicableCount === 1
+  && seatSockets.audit?.seatFrameRecordCount === 216,
+"Seat socket authority must audit eighteen seated atlases plus the Boba companion");
+add(failures, seatSockets.rules?.newCharacterOrPose === false
+  && seatSockets.rules?.handSocketsInScope === false,
+"Seat socket authority cannot create poses or enter hand-socket scope");
 
 add(failures, candidate.status === "rejected-visual", "Candidate v1 must remain rejected-visual evidence");
 add(failures, candidate.review?.status === "changes-requested", "Candidate v1 must retain owner-requested changes");
@@ -293,6 +321,6 @@ if (failures.length > 0) {
   process.exitCode = 1;
 } else {
   process.stdout.write(
-    "Workstation authority OK: R04 physical composition rejected; R05-3A anchor proof approved; isolated R05-3B through R05-5 authorized; Active Office blocked.\n",
+    "Workstation authority OK: R05 final retained as rejected composition evidence; R05-r02 P0-P3 coordinate/socket pair proof authorized; ten-seat expansion, hand sockets, and Active Office blocked.\n",
   );
 }

@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 4,
+  "id": "office-workstation-pair-r05-r02",
+  "status": "owner-review-p0-p3",
+  "developmentOnly": true,
+  "activeOfficePromotion": false,
+  "grid": {
+    "tilePixels": 32
+  },
+  "deskPair": {
+    "footprint": [
+      3,
+      2,
+      2
+    ],
+    "farOrigin": [
+      8,
+      5,
+      0
+    ],
+    "nearOrigin": [
+      8,
+      7,
+      0
+    ],
+    "originDeltaTiles": [
+      0,
+      2,
+      0
+    ],
+    "originDeltaPixels": [
+      0,
+      64
+    ],
+    "topGapPixels": 0,
+    "rearBaseVisibleBehindNearTopPixels": 0
+  },
+  "occupants": {
+    "far": {
+      "agentId": "product-ranker",
+      "slug": "einstein"
+    },
+    "near": {
+      "agentId": "flow-visual-producer",
+      "slug": "taffy-2"
+    }
+  },
+  "sourceBackground": {
+    "file": "assets/art/backgrounds/office-c-background-modern-v3.png",
+    "sha256": "7325e5bba84fa0656430fcde690b527dc97be7d86398825fbbb4bde33cc9a290",
+    "usedInPairProof": false
+  },
+  "activeOfficeBaseline": {
+    "file": "assets/game/maps/office-c-v2.json",
+    "sha256": "c40db448eb8e6d0f3fea67a41f716c0108aca63a4136cfad15293534273c618d",
+    "mustRemainByteIdentical": true
+  }
+}
