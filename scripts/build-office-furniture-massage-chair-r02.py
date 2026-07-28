@@ -1255,8 +1255,11 @@ def build_manifest_and_images() -> dict[Path, bytes]:
             ],
         },
         "F8": {
-            "status": "pending-owner-review",
-            "evidence": [repo_path(path) for path in REVIEW_PATHS],
+            "status": "passed",
+            "evidence": [
+                *[repo_path(path) for path in REVIEW_PATHS],
+                "Owner approved the R02 working-front-seated family on 2026-07-29.",
+            ],
         },
         "F9": {
             "status": "blocked",
@@ -1272,7 +1275,7 @@ def build_manifest_and_images() -> dict[Path, bytes]:
         "id": "office.furniture.chair-massage.r02",
         "familyId": FAMILY_ID,
         "revision": REVISION,
-        "status": "owner-review-f8-pending",
+        "status": "owner-approved",
         "developmentOnly": True,
         "activeOfficePromotion": False,
         "sourcePolicy": {
@@ -1449,13 +1452,20 @@ def build_manifest_and_images() -> dict[Path, bytes]:
         },
         "permissions": {
             "familyLab": True,
-            "ownerReview": True,
+            "ownerReview": False,
             "furnitureOnlyRoom": False,
             "otherFurnitureFamilies": False,
             "activeOfficePromotion": False,
         },
         "supersedes": "office.furniture.chair-massage.r01",
-        "ownerDecision": None,
+        "ownerDecision": {
+            "decision": "approved",
+            "decidedOn": "2026-07-29",
+            "notes": (
+                "Owner approved the upright working-front-seated R02 result "
+                "as the preserved massage-chair family."
+            ),
+        },
     }
     outputs[MANIFEST_PATH] = json_bytes(manifest)
     return outputs
@@ -1503,7 +1513,7 @@ def main() -> None:
     write_outputs(outputs)
     print(f"Wrote {len(outputs)} massage-chair R02 files.")
     print(f"Manifest: {repo_path(MANIFEST_PATH)}")
-    print("Status: owner-review-f8-pending; F9/F10 remain blocked.")
+    print("Status: owner-approved at F8; F9/F10 remain blocked.")
 
 
 if __name__ == "__main__":

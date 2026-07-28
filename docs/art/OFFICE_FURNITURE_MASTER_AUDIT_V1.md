@@ -207,8 +207,9 @@ The following rules carry the successful R05 method to every other family:
    `chair.massage.modern`. R01 is rejected pose history. R02 rebuilds the clean
    full-master extraction, two occlusion layers, seat socket, approach/exit
    cells, reservation contract, and isolated lab with the owner-approved
-   `working-front-seated` pose. F0-F7 evidence passes; F8 owner review remains
-   pending in `docs/art/OFFICE_FURNITURE_MASSAGE_CHAIR_R02.md`.
+   `working-front-seated` pose. R02 passed F0-F8 on 2026-07-29 and remains
+   blocked from F9-F10 in
+   `docs/art/OFFICE_FURNITURE_MASSAGE_CHAIR_R02.md`.
 3. Process upright facilities using their preferred front masters:
    vending machine, refrigerator, arcade machine, server rack, printer, water
    dispenser, and coffee machine. Add neutral output and effect layers where

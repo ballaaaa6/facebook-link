@@ -3,7 +3,7 @@
   "id": "office.furniture.chair-massage.r02",
   "familyId": "chair.massage.modern",
   "revision": "r02",
-  "status": "owner-review-f8-pending",
+  "status": "owner-approved",
   "developmentOnly": true,
   "activeOfficePromotion": false,
   "sourcePolicy": {
@@ -2788,7 +2788,7 @@
       ]
     },
     "F8": {
-      "status": "pending-owner-review",
+      "status": "passed",
       "evidence": [
         "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/01-source-ownership.png",
         "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/02-alpha-parts.png",
@@ -2796,7 +2796,8 @@
         "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/04-pose-comparison.png",
         "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/05-six-frame-seat-lab.png",
         "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/06-roster-fit.png",
-        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/07-reservation-timeline.png"
+        "assets/art/layout-references/office-furniture-family-v1/chair-massage-r02/07-reservation-timeline.png",
+        "Owner approved the R02 working-front-seated family on 2026-07-29."
       ]
     },
     "F9": {
@@ -2890,11 +2891,15 @@
   },
   "permissions": {
     "familyLab": true,
-    "ownerReview": true,
+    "ownerReview": false,
     "furnitureOnlyRoom": false,
     "otherFurnitureFamilies": false,
     "activeOfficePromotion": false
   },
   "supersedes": "office.furniture.chair-massage.r01",
-  "ownerDecision": null
+  "ownerDecision": {
+    "decision": "approved",
+    "decidedOn": "2026-07-29",
+    "notes": "Owner approved the upright working-front-seated R02 result as the preserved massage-chair family."
+  }
 }

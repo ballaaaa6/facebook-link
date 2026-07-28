@@ -55,13 +55,14 @@ try {
     "Massage-chair R02 identity changed",
   );
   add(
-    manifest.status === "owner-review-f8-pending"
-      && manifest.ownerDecision === null
-      && manifest.gates?.F8?.status === "pending-owner-review"
+    manifest.status === "owner-approved"
+      && manifest.ownerDecision?.decision === "approved"
+      && manifest.ownerDecision?.decidedOn === "2026-07-29"
+      && manifest.gates?.F8?.status === "passed"
       && manifest.supersedes === "office.furniture.chair-massage.r01"
       && manifest.developmentOnly === true
       && manifest.activeOfficePromotion === false,
-    "Massage-chair R02 must remain isolated while F8 is pending",
+    "Massage-chair R02 approval record is missing or stale",
   );
   add(
     rejectedR01.status === "rejected"
@@ -394,6 +395,6 @@ if (failures.length > 0) {
   process.stdout.write(
     "Massage chair R02 OK: audited full-master component, exact 3:1 scale, "
       + "pixel-exact layers, 108 owner-approved working-front frames, "
-      + "30-second reservation proof, F8 pending, and Active Office unchanged.\n",
+      + "30-second reservation proof, F8 approved, and Active Office unchanged.\n",
   );
 }

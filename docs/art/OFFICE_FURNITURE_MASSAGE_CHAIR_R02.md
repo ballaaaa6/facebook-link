@@ -1,12 +1,12 @@
 # Office Furniture Massage Chair R02
 
-Status: F0-F7 evidence complete; F8 owner review pending
+Status: Owner-approved at F8 on 2026-07-29
 
 Family: `chair.massage.modern`
 
 Revision: `r02`
 
-Active Office promotion: blocked
+Active Office promotion: blocked pending F9-F10
 
 ## Purpose
 
@@ -118,12 +118,13 @@ The rejected pose is evidence only and is not a runtime R02 input.
 ## Gate state
 
 - F0-F7: passed for the exact R02 hashes.
-- F8: pending explicit owner review.
+- F8: owner-approved on 2026-07-29.
 - F9: blocked.
 - F10: blocked.
 
-R02 is not registered in Active Office and cannot enter a room candidate until
-the owner explicitly approves this exact family revision.
+R02 is the approved massage-chair family, but it is not registered in Active
+Office. It may enter a future furniture-only F9 candidate; Active promotion
+still requires the complete room to pass F9-F10.
 
 ## Reproduction
 

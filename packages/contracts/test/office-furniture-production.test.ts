@@ -27,8 +27,9 @@ test("rejected massage chair r01 remains valid audit history", () => {
 
 test("massage chair r02 separates behavior from its approved visual pose", () => {
   assert.deepEqual(validateOfficeFurnitureFamilyManifest(manifest), []);
-  assert.equal(manifest.status, "owner-review-f8-pending");
-  assert.equal(manifest.gates.F8.status, "pending-owner-review");
+  assert.equal(manifest.status, "owner-approved");
+  assert.equal(manifest.gates.F8.status, "passed");
+  assert.equal(manifest.ownerDecision?.decision, "approved");
   assert.equal(manifest.interaction.slots[0]?.action, "use-massage-chair");
   assert.equal(manifest.interaction.slots[0]?.visualPose, "working-front-seated");
   assert.equal(manifest.rosterValidation.visualPose, "working-front-seated");

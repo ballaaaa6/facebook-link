@@ -17,9 +17,9 @@ The front-facing `chair.massage.modern` R01 extraction remains rejection
 history because its `lounge-front` pose failed owner review. R02 re-extracts
 the chair from the audited original master and uses the owner-approved
 `working-front-seated` row documented in
-`docs/art/OFFICE_FURNITURE_MASSAGE_CHAIR_R02.md`. R02 F0-F7 evidence is
-complete, while owner approval, furniture-only room composition, and Active
-Office integration remain blocked.
+`docs/art/OFFICE_FURNITURE_MASSAGE_CHAIR_R02.md`. R02 is owner-approved at F8.
+Furniture-only room composition and Active Office integration remain blocked
+at F9-F10.
 
 Workstation correction (2026-07-28): the isolated `5 x 4` staging layout,
 Candidate r01, and R05 final ten-seat composition are rejected evidence. The

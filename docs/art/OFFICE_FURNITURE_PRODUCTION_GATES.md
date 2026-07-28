@@ -198,8 +198,8 @@ Current first-family evidence:
 `docs/art/OFFICE_FURNITURE_MASSAGE_CHAIR_R02.md`. R01 was rejected at F8
 because `lounge-front` was not the intended upright posture. R02 rebuilds the
 chair from the audited original master, uses the owner-approved
-`working-front-seated` pose, passes F0-F7 as an isolated candidate, and remains
-blocked at F8 pending explicit owner review.
+`working-front-seated` pose, and passed F0-F8 on 2026-07-29. F9 furniture-only
+room composition and F10 Active Office integration remain blocked.
 
 After that passes, use this order:
 
