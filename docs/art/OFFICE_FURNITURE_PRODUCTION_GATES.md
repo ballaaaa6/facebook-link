@@ -135,6 +135,12 @@ borrow approval from an earlier one.
 
 - Separate immutable base, support surface, foreground occlusion, and animated
   viewport or output overlay.
+- For a seat using an upright working pose, follow the approved R05 layer
+  principle: keep the backrest, support, base, and furniture legs behind the
+  actor; keep only the narrow seat lip and required arm sections in front.
+- Measure the actor at and below the approved seat contact in every supported
+  frame. The seat foreground must preserve 100% of those lower-body pixels so
+  the butt rests on the cushion and both legs hang naturally in front.
 - Keep chairs and people separate from desks and tables.
 - Keep held props and dispensed items separate from machines and characters.
 - Record source rectangles and hashes for every derived part.
@@ -211,6 +217,14 @@ After that passes, use this order:
 6. full furniture-only room composition.
 
 Do not batch the remaining room merely because one family passes.
+
+Current seating execution:
+`docs/art/OFFICE_FURNITURE_SEATING_S01.md` uses shared tooling for seven
+seat-capable families while preserving an independent manifest and F8 decision
+for every family. The batch covers reading chair, pouf, beanbag, stool,
+two-seat sofa, three-seat sofa, and the front/back four-seat review table.
+All seven passed F0-F7 on 2026-07-29 and remain blocked at F8-F10. This is not
+a room-level batch and does not weaken the per-family rule above.
 
 ## Required evidence per family
 

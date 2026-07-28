@@ -21,6 +21,7 @@ function isIntegerPair(value: unknown): boolean {
 export function validateFurniturePoseContract(
   interaction: RecordValue,
   roster: RecordValue,
+  coveredSlotIds?: ReadonlySet<string>,
 ): string[] {
   const issues: string[] = [];
   requireValue(
@@ -73,6 +74,11 @@ export function validateFurniturePoseContract(
   if (Array.isArray(slots)) {
     for (const [index, slot] of slots.entries()) {
       if (!isRecord(slot)) continue;
+      if (
+        coveredSlotIds
+        && typeof slot.id === "string"
+        && !coveredSlotIds.has(slot.id)
+      ) continue;
       requireValue(
         issues,
         typeof slot.visualPose === "string"

@@ -12,6 +12,15 @@ as an authoring source only when automated extraction proves padding, border
 clearance, component ownership, and isolation for every accepted cell. This
 rule overrides the furniture batching guidance below.
 
+Seating execution gate (2026-07-29): the seven-family Seating S01 batch
+re-extracts reading chair, pouf, beanbag, stool, two sofas, and the V3 review
+table from exact salvageable masters. Shared tooling does not share approval:
+each family has its own manifest and F8 stop gate. Front slots use
+`working-front-seated`; only the two near review-table slots use
+`working-back-seated`. Left/right seating, mirroring, processed-crop reuse,
+room composition, and Active Office promotion remain blocked. See
+`docs/art/OFFICE_FURNITURE_SEATING_S01.md`.
+
 ## Goal
 
 Reduce generation latency without sacrificing usable geometry. Static furniture and props are generated as controlled 4x4 asset sheets. Identity-sensitive character work animations use one character per sheet.

@@ -1,0 +1,136 @@
+{
+  "version": 1,
+  "id": "office-furniture-seating-s01",
+  "status": "owner-review-f8-pending",
+  "createdOn": "2026-07-29",
+  "scope": "isolated-furniture-family-labs",
+  "familyCount": 7,
+  "candidateSeatCapacity": 13,
+  "existingApprovedMassageChairCapacity": 1,
+  "validatedSeatFrameCases": 1404,
+  "orientationPolicy": {
+    "front": "working-front-seated row 14",
+    "back": "working-back-seated row 13",
+    "left": "blocked",
+    "right": "blocked",
+    "mirroringAllowed": false
+  },
+  "productionPolicy": {
+    "sharedBatchTooling": true,
+    "perFamilyF8Decision": true,
+    "imageGenerationUsed": false,
+    "reason": "Every selected silhouette was complete in an audited salvageable original master; deterministic extraction preserved project art.",
+    "processedCropDirectReuse": false,
+    "activeOfficePromotion": false
+  },
+  "families": [
+    {
+      "id": "office.furniture.chair-reading-r01",
+      "familyId": "chair.reading",
+      "label": "Reading chair",
+      "capacity": 1,
+      "manifest": "assets/game/manifests/office-furniture-chair-reading-r01.json",
+      "manifestSha256": "a2664607d26225221f654e84fde5eac71a61b5e89e1195a261e6022703c25b18",
+      "status": "owner-review-f8-pending",
+      "orientations": [
+        "front"
+      ],
+      "validatedSeatFrameCases": 108
+    },
+    {
+      "id": "office.furniture.pouf-lounge-r01",
+      "familyId": "pouf.lounge",
+      "label": "Lounge pouf",
+      "capacity": 1,
+      "manifest": "assets/game/manifests/office-furniture-pouf-lounge-r01.json",
+      "manifestSha256": "2b90630453a457e10d17641c8964b5e616b1cbbde989849e8eb7a0955de798ef",
+      "status": "owner-review-f8-pending",
+      "orientations": [
+        "front"
+      ],
+      "validatedSeatFrameCases": 108
+    },
+    {
+      "id": "office.furniture.beanbag-lounge-r01",
+      "familyId": "beanbag.lounge",
+      "label": "Lounge beanbag",
+      "capacity": 1,
+      "manifest": "assets/game/manifests/office-furniture-beanbag-lounge-r01.json",
+      "manifestSha256": "2d246763aa7d99baff35d77b3bfe68041bf7ad27c9ccb089733e0e6d4fe9cf89",
+      "status": "owner-review-f8-pending",
+      "orientations": [
+        "front"
+      ],
+      "validatedSeatFrameCases": 108
+    },
+    {
+      "id": "office.furniture.stool-side-r01",
+      "familyId": "stool.side",
+      "label": "Tall stool",
+      "capacity": 1,
+      "manifest": "assets/game/manifests/office-furniture-stool-side-r01.json",
+      "manifestSha256": "40ac117c12861367d4ded4a3f05a0274878d52737932be1a9b4df3edaacac34f",
+      "status": "owner-review-f8-pending",
+      "orientations": [
+        "front"
+      ],
+      "validatedSeatFrameCases": 108
+    },
+    {
+      "id": "office.furniture.sofa-modern-two-seat-r01",
+      "familyId": "sofa.modern.two-seat",
+      "label": "Two-seat sofa",
+      "capacity": 2,
+      "manifest": "assets/game/manifests/office-furniture-sofa-modern-two-seat-r01.json",
+      "manifestSha256": "a9683bd1aa7e2e940c24665d49119984f84911902b73661ad882d82a3f9307c4",
+      "status": "owner-review-f8-pending",
+      "orientations": [
+        "front"
+      ],
+      "validatedSeatFrameCases": 216
+    },
+    {
+      "id": "office.furniture.sofa-modern-three-seat-r01",
+      "familyId": "sofa.modern.three-seat",
+      "label": "Three-seat sofa",
+      "capacity": 3,
+      "manifest": "assets/game/manifests/office-furniture-sofa-modern-three-seat-r01.json",
+      "manifestSha256": "3f9dae654695f085a062fb85774f5d4069ac271ad6cdf702b03d676c89858b70",
+      "status": "owner-review-f8-pending",
+      "orientations": [
+        "front"
+      ],
+      "validatedSeatFrameCases": 324
+    },
+    {
+      "id": "office.furniture.table-review-long-r01",
+      "familyId": "table.review.long.modern",
+      "label": "Four-seat review table",
+      "capacity": 4,
+      "manifest": "assets/game/manifests/office-furniture-table-review-long-r01.json",
+      "manifestSha256": "47128c5011165c12939d3ecee74d69ea3ac9a83913ef1d05067a41ba11874332",
+      "status": "owner-review-f8-pending",
+      "orientations": [
+        "back",
+        "front"
+      ],
+      "validatedSeatFrameCases": 432
+    }
+  ],
+  "reviewOutputs": [
+    {
+      "path": "assets/art/layout-references/office-furniture-family-v1/seating-s01/00-batch-overview.png",
+      "sha256": "0b06ac4fc3d291bb19fbfda9361765fd71bb234704b962270398f58f5288a0a9",
+      "size": [
+        1800,
+        1180
+      ]
+    }
+  ],
+  "permissions": {
+    "familyLabs": true,
+    "ownerReview": true,
+    "furnitureOnlyRoom": false,
+    "activeOfficePromotion": false
+  }
+}

@@ -214,10 +214,13 @@ The following rules carry the successful R05 method to every other family:
    vending machine, refrigerator, arcade machine, server rack, printer, water
    dispenser, and coffee machine. Add neutral output and effect layers where
    required.
-4. Process lounge seating: two-seat sofa, three-seat sofa, beanbag, pouf,
-   reading chair, and stool.
-5. Process the isolated V3 review table with independent approved chairs and
-   props.
+4. Lounge seating is now built in the isolated Seating S01 batch: two-seat
+   sofa, three-seat sofa, beanbag, pouf, reading chair, and stool passed F0-F7
+   and await independent F8 decisions.
+5. The isolated V3 review table is also in Seating S01. Its two rear seats use
+   the approved front working pose; its two front seats use the approved back
+   working pose. Exact R05-r02 front/back chair layers are context evidence
+   only, and the new review-table context awaits its own F8 decision.
 6. Process storage, wall, surface, and floor-decor families in small batches
    that share the same contract type.
 7. Generate only the two unrecoverable table shells and only the side

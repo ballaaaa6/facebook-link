@@ -40,6 +40,11 @@ export interface OfficeFurnitureSourceEvidence {
     touchesNominalCellBoundary: boolean;
     touchesMasterBoundary: boolean;
     sourcePixelsResampled: false;
+    boundaryReview?: {
+      status: "passed-complete-silhouette";
+      reason: string;
+      evidence: string;
+    };
   };
 }
 
@@ -72,6 +77,39 @@ export interface OfficeFurniturePoseAuthority {
   status: "owner-approved";
   orientation: Exclude<OfficeOrientation, "none">;
   row: number;
+}
+
+export interface OfficeFurnitureRosterValidation {
+  visualPose: string;
+  poseAuthority: OfficeFurniturePoseAuthority;
+  /** Slots covered by this orientation. Omitted only by legacy single-pose manifests. */
+  slotIds?: readonly string[];
+  row: number;
+  activeFrames: number;
+  characterCount: number;
+  perCharacterFurnitureScaling: false;
+  perCharacterSeatOffsets: false;
+  characters: readonly {
+    id: string;
+    sheet: string;
+    sha256: string;
+    frames: readonly {
+      frame: number;
+      frameBounds: readonly [number, number, number, number] | null;
+      actorContactLocal: readonly [number, number];
+      actorInsideReviewCard: boolean;
+      foregroundOverlapPixels: number;
+      /** Per-slot evidence used by multi-seat candidates. */
+      slots?: readonly {
+        slotId: string;
+        actorInsideReviewCard: boolean;
+        foregroundOverlapPixels: number;
+        lowerBodyPixels: number;
+        visibleLowerBodyPixels: number;
+        lowerBodyVisibilityRatio: number;
+      }[];
+    }[];
+  }[];
 }
 
 export interface OfficeFurnitureFamilyManifest {
@@ -107,27 +145,10 @@ export interface OfficeFurnitureFamilyManifest {
     states: readonly string[];
     slots: readonly OfficeFurnitureInteractionSlot[];
   };
-  rosterValidation: {
-    visualPose: string;
-    poseAuthority: OfficeFurniturePoseAuthority;
-    row: number;
-    activeFrames: number;
-    characterCount: number;
-    perCharacterFurnitureScaling: false;
-    perCharacterSeatOffsets: false;
-    characters: readonly {
-      id: string;
-      sheet: string;
-      sha256: string;
-      frames: readonly {
-        frame: number;
-        frameBounds: readonly [number, number, number, number] | null;
-        actorContactLocal: readonly [number, number];
-        actorInsideReviewCard: boolean;
-        foregroundOverlapPixels: number;
-      }[];
-    }[];
-  };
+  /** Legacy/single-orientation form. Exactly one roster form must be present. */
+  rosterValidation?: OfficeFurnitureRosterValidation;
+  /** Multi-slot and mixed front/back evidence for seating families. */
+  rosterValidations?: readonly OfficeFurnitureRosterValidation[];
   reservationValidation: {
     durationSeconds: number;
     actorCount: number;

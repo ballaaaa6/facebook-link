@@ -81,6 +81,33 @@ export function validateFurnitureRosterEvidence(
           && (frame.foregroundOverlapPixels as number) > 0,
         `rosterValidation.characters[${characterIndex}].frames[${frameIndex}] misses the foreground`,
       );
+      if (frame.slots === undefined) continue;
+      requireValue(
+        issues,
+        Array.isArray(frame.slots) && frame.slots.length > 0,
+        `rosterValidation.characters[${characterIndex}].frames[${frameIndex}].slots must contain seat-layer evidence`,
+      );
+      if (!Array.isArray(frame.slots)) continue;
+      for (const [slotIndex, slot] of frame.slots.entries()) {
+        requireValue(
+          issues,
+          isRecord(slot),
+          `rosterValidation.characters[${characterIndex}].frames[${frameIndex}].slots[${slotIndex}] must be an object`,
+        );
+        if (!isRecord(slot)) continue;
+        requireValue(
+          issues,
+          Number.isInteger(slot.lowerBodyPixels)
+            && (slot.lowerBodyPixels as number) > 0,
+          `rosterValidation.characters[${characterIndex}].frames[${frameIndex}].slots[${slotIndex}] must measure lower-body pixels`,
+        );
+        requireValue(
+          issues,
+          slot.visibleLowerBodyPixels === slot.lowerBodyPixels
+            && slot.lowerBodyVisibilityRatio === 1,
+          `rosterValidation.characters[${characterIndex}].frames[${frameIndex}].slots[${slotIndex}] hides lower-body pixels behind the seat foreground`,
+        );
+      }
     }
   }
   return issues;

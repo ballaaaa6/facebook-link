@@ -21,6 +21,16 @@ the chair from the audited original master and uses the owner-approved
 Furniture-only room composition and Active Office integration remain blocked
 at F9-F10.
 
+The remaining seat-capable families are now built as the isolated Seating S01
+owner-review batch documented in
+`docs/art/OFFICE_FURNITURE_SEATING_S01.md`. Reading chair, pouf, beanbag,
+stool, two-seat sofa, three-seat sofa, and the four-seat review table each
+passed F0-F7 with the approved working-seated character rows. The seven
+families provide 13 candidate slots and 1,404 character-frame-slot checks.
+Each family still awaits its own F8 owner decision; F9 room composition, F10
+Active Office integration, left/right poses, and silent expansion of the
+R05-r02 chair beyond its approved workstation scope remain blocked.
+
 Workstation correction (2026-07-28): the isolated `5 x 4` staging layout,
 Candidate r01, and R05 final ten-seat composition are rejected evidence. The
 owner-approved workstation authority is R05-r02 P0-P3 in

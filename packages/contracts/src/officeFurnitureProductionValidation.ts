@@ -1,11 +1,8 @@
 import { validateOfficeGeometryV3 } from "./officeGeometry.ts";
 import { validateFurnitureGates } from "./officeFurnitureProductionGateValidation.ts";
 import {
-  validateFurniturePoseContract,
-} from "./officeFurnitureProductionPoseValidation.ts";
-import {
-  validateFurnitureRosterEvidence,
-} from "./officeFurnitureProductionRosterValidation.ts";
+  validateFurnitureRosterSet,
+} from "./officeFurnitureProductionRosterSetValidation.ts";
 
 type RecordValue = Record<string, unknown>;
 
@@ -78,9 +75,22 @@ function validateSource(value: RecordValue, issues: string[]) {
   );
   requireValue(
     issues,
-    extraction.touchesNominalCellBoundary === false,
-    "selected source pixels touch the nominal cell boundary",
+    typeof extraction.touchesNominalCellBoundary === "boolean",
+    "source.extraction.touchesNominalCellBoundary must be boolean",
   );
+  if (extraction.touchesNominalCellBoundary === true) {
+    const review = extraction.boundaryReview;
+    requireValue(
+      issues,
+      isRecord(review)
+        && review.status === "passed-complete-silhouette"
+        && typeof review.reason === "string"
+        && review.reason.length > 0
+        && typeof review.evidence === "string"
+        && review.evidence.length > 0,
+      "source.extraction.boundaryReview must prove a complete silhouette",
+    );
+  }
   requireValue(
     issues,
     extraction.touchesMasterBoundary === false,
@@ -305,24 +315,7 @@ export function validateOfficeFurnitureFamilyManifest(
   if (isRecord(value.interaction) && isRecord(value.geometry)) {
     validateInteraction(value.interaction, value.geometry, issues);
   }
-  requireValue(
-    issues,
-    isRecord(value.rosterValidation),
-    "rosterValidation must be an object",
-  );
-  if (isRecord(value.rosterValidation)) {
-    issues.push(...validateFurnitureRosterEvidence(value.rosterValidation));
-  }
-  if (
-    value.status !== "rejected"
-    && isRecord(value.interaction)
-    && isRecord(value.rosterValidation)
-  ) {
-    issues.push(...validateFurniturePoseContract(
-      value.interaction,
-      value.rosterValidation,
-    ));
-  }
+  issues.push(...validateFurnitureRosterSet(value));
 
   requireValue(issues, isRecord(value.gates), "gates must be an object");
   if (isRecord(value.gates)) {
@@ -348,8 +341,16 @@ export function validateOfficeFurnitureFamilyManifest(
     );
     requireValue(
       issues,
-      reservation.maximumConcurrentReservations === 1,
-      "reservation validation must prove capacity one",
+      isRecord(value.interaction)
+        && reservation.maximumConcurrentReservations === value.interaction.capacity,
+      "reservation validation must prove the declared interaction capacity",
+    );
+    requireValue(
+      issues,
+      Number.isInteger(reservation.actorCount)
+        && isRecord(value.interaction)
+        && (reservation.actorCount as number) > (value.interaction.capacity as number),
+      "reservation validation must include at least one waiting actor",
     );
     requireValue(
       issues,
