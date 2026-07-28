@@ -204,8 +204,10 @@ The following rules carry the successful R05 method to every other family:
 1. Freeze the audit and forbidden-source checks. This prevents an old crop from
    returning while new families are being prepared.
 2. Prove the decomposition pipeline with one vertical slice:
-   `chair.massage.modern`. Produce its clean extraction, two occlusion layers,
-   seat socket, approach/exit cells, reservation contract, and isolated lab.
+   `chair.massage.modern`. R01 now contains the clean full-master extraction,
+   two occlusion layers, seat socket, approach/exit cells, reservation contract,
+   and isolated lab. F0-F7 evidence passes; F8 owner review remains pending in
+   `docs/art/OFFICE_FURNITURE_MASSAGE_CHAIR_R01.md`.
 3. Process upright facilities using their preferred front masters:
    vending machine, refrigerator, arcade machine, server rack, printer, water
    dispenser, and coffee machine. Add neutral output and effect layers where

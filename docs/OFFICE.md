@@ -13,6 +13,12 @@ again under a new version and must still pass every family gate. The readable
 audit and production order are in
 `docs/art/OFFICE_FURNITURE_MASTER_AUDIT_V1.md`.
 
+The first clean non-workstation furniture candidate is the front-facing
+`chair.massage.modern` R01 family documented in
+`docs/art/OFFICE_FURNITURE_MASSAGE_CHAIR_R01.md`. Its F0-F7 evidence is
+complete, while owner approval, furniture-only room composition, and Active
+Office integration remain blocked.
+
 Workstation correction (2026-07-28): the isolated `5 x 4` staging layout,
 Candidate r01, and R05 final ten-seat composition are rejected evidence. The
 owner-approved workstation authority is R05-r02 P0-P3 in

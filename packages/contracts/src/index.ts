@@ -10,6 +10,7 @@ export * from "./officeGeometry.ts";
 export * from "./officeSpatialScale.ts";
 export * from "./officeSpatialProjection.ts";
 export * from "./officeFullGrid.ts";
+export * from "./officeFurnitureProduction.ts";
 export * from "./officeSemanticGridV2.ts";
 export * from "./officeStructure.ts";
 export * from "./officeWorkstation.ts";
