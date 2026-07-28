@@ -1,25 +1,25 @@
 # Office Workstation Assembly Bible v3
 
-Status: Geometry v5 baseline; R04 P4-P6 exact pixels awaiting owner review
+Status: Geometry v6 calibration; R05-0..R05-2 awaiting owner review
 Updated: 2026-07-28
 Machine-readable source:
 `assets/game/manifests/office-workstation-assembly-bible-v3.json`
 
 The v2 Assembly Bible and Step 4 desk files remain historical pixel evidence.
 Step 5 R02 is rejected and cannot be used as an assembly or renderer input.
-R03 defines the logical ruler; exact R04 pixels and rendering are defined by
-`office-workstation-components-v3.json` and
-`office-workstation-step5-single-seat-v4.json`.
+R03 defines the earlier logical ruler. R04 chair/person/equipment composition
+is rejected; only its desk pixels remain accepted. R05 authority is
+`office-workstation-step5-r05-calibration.json`.
 
 ## Station components
 
 | Component | Spatial contract | Current pixel decision |
 | --- | --- | --- |
 | Person | `1 x 1 x 3`, current frame `96 x 104` px | Reuse current Office character and seated pose |
-| Chair | `1 x 1 x 2`, same floor cell as person, cushion `z = 1` | R04 `64 x 80`; floor-to-seat 32 px |
+| Chair | `1 x 1 x 2`, base-seat `z0..z1`, backrest `z1..z2` | R05-3 blocked; measured part masks and pivots required |
 | Desk | `3 x 2 x 2`, complete `96 x 64` support plane at `z = 2` | R04 `96 x 128`; public and seat sides |
-| Monitor | actor-far `3 x 1` reservation | R04 `52 x 40`; front and back |
-| Keyboard | actor-near center `1 x 1` reservation | R04 `48 x 24`, maximum `1.5 x 1` |
+| Monitor | actor-far `3 x 1` reservation | R05-3 target 72..80 px wide; base-contact-center pivot |
+| Keyboard | actor-near center `1 x 1` reservation | R05-3 target 44..48 by 18..20 px with clearance |
 
 ## Person and chair contact
 
@@ -30,8 +30,9 @@ The required future back-to-front semantic parts are:
 3. `chair-seat`;
 4. `chair-foreground`.
 
-R04 implements this semantic model with explicit rear, seat, actor, and
-foreground layers. The manifest locks the exact order for far and near views.
+R04 did not implement this model: its `chair-seat` mask contains the wheel/base
+region. R05-3 must provide `base-seat`, `backrest-rear`, and
+`backrest-foreground` masks and measured floor, seat, back, and pelvis pivots.
 
 The contact rules are:
 

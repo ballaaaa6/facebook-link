@@ -37,13 +37,13 @@ export function OfficeWorkstationStep5R04LabPage() {
     <main className="r04-lab" data-active-office-promotion="false" data-capture={capture} data-contract-issues={issues.length}>
       <header className="r04-header">
         <div>
-          <span>STEP 5 R04 / P4-P6 ISOLATED VALIDATION</span>
-          <h1>One correctly scaled workstation before ten seats.</h1>
-          <p>Person 1×1×3 / chair 1×1×2 / desk 3×2×2 / support 96×64 px</p>
+          <span>STEP 5 R04 / REJECTED HISTORICAL EVIDENCE</span>
+          <h1>Stable coordinates did not prove physical contact.</h1>
+          <p>Desk retained / chair, person contact, monitor pivot, and keyboard placement rejected</p>
         </div>
         <dl>
           <div><dt>Desk top</dt><dd>96×64</dd></div>
-          <div><dt>Seat=hip</dt><dd>z1</dd></div>
+          <div><dt>Seat=hip</dt><dd>declared only</dd></div>
           <div><dt>Max drift</dt><dd>0 px</dd></div>
         </dl>
       </header>
@@ -75,7 +75,7 @@ export function OfficeWorkstationStep5R04LabPage() {
         <span>Contract: {issues.length === 0 ? "PASS" : `${issues.length} ISSUES`}</span>
         <span>Anchors: {stable ? "STABLE" : "DRIFT"}</span>
         <span>Promoted seats: 0/10</span>
-        <strong>{issues.length === 0 && stable ? "OWNER VISUAL REVIEW" : "R04 BLOCKED"}</strong>
+        <strong>R04 REJECTED / R05 CALIBRATION IS AUTHORITY</strong>
       </footer>
     </main>
   );

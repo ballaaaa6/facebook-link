@@ -27,6 +27,7 @@ const step5 = readJson("assets/game/manifests/office-workstation-step5-single-se
 const step5R03 = readJson("assets/game/manifests/office-workstation-step5-single-seat-v3.json");
 const componentsV3 = readJson("assets/game/manifests/office-workstation-components-v3.json");
 const step5R04 = readJson("assets/game/manifests/office-workstation-step5-single-seat-v4.json");
+const step5R05 = readJson("assets/game/manifests/office-workstation-step5-r05-calibration.json");
 const characterScale = readJson("assets/game/manifests/office-character-scale-standard-v1.json");
 const candidate = readJson("assets/game/manifests/office-candidate-v1.json");
 const review = readJson("assets/game/manifests/office-candidate-review-r01.json");
@@ -217,13 +218,13 @@ for (const key of [
 }
 add(failures, step5R03.activeOfficeBaseline?.sha256 === assembly.activeOfficeBaseline?.sha256,
   "Step 5 R03 must inherit the exact Active Office baseline hash");
-add(failures, componentsV3.status === "isolated-owner-review"
+add(failures, componentsV3.status === "partially-rejected-physical-composition"
   && componentsV3.geometry?.desk?.renderPixels?.[0] === 96
   && componentsV3.geometry?.desk?.renderPixels?.[1] === 128,
-"R04 component authority must contain the isolated full-top desk");
-add(failures, step5R04.status === "isolated-runtime-owner-review"
+"R04 component history must retain the accepted full-top desk and partial rejection");
+add(failures, step5R04.status === "rejected-physical-composition"
   && JSON.stringify(step5R04.completedScope) === JSON.stringify(["P4", "P5", "P6"]),
-"Step 5 R04 must stop after isolated P4-P6 at owner visual review");
+"Step 5 R04 must retain rejected P4-P6 evidence");
 add(failures, step5R04.permissions?.tenSeatAssembly === false
   && step5R04.permissions?.rosterWideCalibration === false
   && step5R04.permissions?.step6 === false
@@ -231,6 +232,18 @@ add(failures, step5R04.permissions?.tenSeatAssembly === false
 "Step 5 R04 must keep expansion and Active Office blocked");
 add(failures, step5R04.activeOfficeBaseline?.sha256 === assembly.activeOfficeBaseline?.sha256,
   "Step 5 R04 must inherit the exact Active Office baseline hash");
+add(failures, step5R05.status === "owner-calibration-review"
+  && JSON.stringify(step5R05.completedScope) === JSON.stringify(["R05-0", "R05-1", "R05-2"])
+  && step5R05.nextScope === "R05-3-blocked-pending-owner-approval",
+"Step 5 R05 must stop after R05-2 at owner calibration review");
+for (const key of [
+  "newArtworkGeneration", "rendererImplementation", "singleSeatAssembly",
+  "rosterWideCalibration", "tenSeatAssembly", "step6", "activeOfficePromotion",
+]) {
+  add(failures, step5R05.permissions?.[key] === false, `Step 5 R05 permissions.${key} must remain false`);
+}
+add(failures, step5R05.activeOfficeBaseline?.sha256 === assembly.activeOfficeBaseline?.sha256,
+  "Step 5 R05 must inherit the exact Active Office baseline hash");
 
 add(failures, candidate.status === "rejected-visual", "Candidate v1 must remain rejected-visual evidence");
 add(failures, candidate.review?.status === "changes-requested", "Candidate v1 must retain owner-requested changes");
@@ -261,6 +274,6 @@ if (failures.length > 0) {
   process.exitCode = 1;
 } else {
   process.stdout.write(
-    "Workstation authority OK: R02 rejected; R03 measurements retained; R04 P4-P6 isolated for owner review; expansion and Active Office blocked.\n",
+    "Workstation authority OK: R04 physical composition rejected; R05-0 through R05-2 await owner calibration review; expansion and Active Office blocked.\n",
   );
 }

@@ -63,17 +63,26 @@ if (failures.length === 0) {
   const manifest = readJson(manifestPath);
   add(components.version === 3 && components.geometrySchemaVersion === 5, "Components v3 must use Geometry v5");
   add(manifest.version === 4 && manifest.geometrySchemaVersion === 5, "Step 5 R04 must use Geometry v5");
+  add(components.status === "partially-rejected-physical-composition"
+    && components.historicalEvidenceOnly === true, "R04 components must retain the partial physical rejection");
+  add(manifest.status === "rejected-physical-composition"
+    && manifest.historicalEvidenceOnly === true, "R04 must remain rejected historical evidence");
   add(manifest.replaces === "office.workstation.step5.single-seat.v3", "R04 must replace the R03 calibration gate");
   add(manifest.lab?.developmentOnly === true && manifest.lab?.productionReachable === false, "R04 lab must remain development-only");
   add(manifest.lab?.stationCount === 1 && manifest.lab?.orientationCount === 2, "R04 is one station in exactly two directions");
   add(manifest.permissions?.tenSeatAssembly === false, "R04 cannot assemble ten seats");
+  add(manifest.permissions?.isolatedLabRenderer === false, "Rejected R04 cannot authorize the isolated renderer");
   add(manifest.permissions?.step6 === false, "R04 cannot begin Step 6");
   add(manifest.permissions?.activeOfficePromotion === false, "R04 cannot modify Active Office");
   add(JSON.stringify(manifest.completedScope) === JSON.stringify(["P4", "P5", "P6"]), "R04 must complete P4-P6 only");
-  add(manifest.runtimeScope === "P6-isolated-lab-complete", "R04 P6 browser validation is not complete");
+  add(manifest.runtimeScope === "historical-dev-lab-disabled-for-authority", "R04 must be disabled as an authority");
   add(manifest.browserValidation?.animationSeconds === 30 && manifest.browserValidation?.anchorStable === true, "R04 must pass the 30-second anchor gate");
   add(manifest.browserValidation?.consoleErrors === 0 && manifest.browserValidation?.brokenImages === 0, "R04 browser validation must be clean");
   add(manifest.browserValidation?.maximumHorizontalOverflowPixels === 0, "R04 narrow validation must not overflow horizontally");
+  add(manifest.browserValidation?.physicalCorrectness === false, "R04 must not claim physical correctness");
+  add(manifest.reviewDecision?.decision === "rejected"
+    && manifest.reviewDecision?.supersededBy === "office.workstation.step5.r05.calibration",
+  "R04 must point to the R05 calibration replacement");
   add(manifest.componentsAuthority?.sha256 === sha256(componentsPath), "R04 component-authority hash changed");
   add(manifest.activeOfficeBaseline?.sha256 === sha256(manifest.activeOfficeBaseline.file), "Active Office changed during R04");
 
@@ -102,7 +111,8 @@ if (failures.length === 0) {
   for (const orientation of ["far", "near"]) {
     const geometry = manifest.geometry[orientation];
     add(JSON.stringify(manifest.layerOrder[orientation]) === JSON.stringify(expectedLayerOrder[orientation]), `${orientation} layer order changed`);
-    add(geometry.seatAnchor.x === geometry.hipAnchor.x && geometry.seatAnchor.y === geometry.hipAnchor.y, `${orientation} hip does not contact chair seat`);
+    add(geometry.seatAnchor.x === geometry.hipAnchor.x && geometry.seatAnchor.y === geometry.hipAnchor.y,
+      `${orientation} rejected declaration evidence changed`);
     add(manifest.animation.maximumAnchorDriftPixels === 0, `${orientation} animation permits anchor drift`);
     add(inside(geometry.keyboard, geometry.support), `${orientation} keyboard pixels leave the desk support`);
     add(!intersects(geometry.monitor, geometry.keyboard), `${orientation} monitor pixels overlap keyboard pixels`);
@@ -128,5 +138,5 @@ if (failures.length > 0) {
   process.stderr.write(`${failures.join("\n")}\n`);
   process.exitCode = 1;
 } else {
-  process.stdout.write("Step 5 R04 P4-P6 check OK: component scale, two-direction assembly, browser evidence, and Active Office isolation are locked.\n");
+  process.stdout.write("Step 5 R04 historical check OK: desk pixels retained; physical composition rejected; all implementation and Active Office promotion blocked.\n");
 }

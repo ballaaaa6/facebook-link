@@ -39,10 +39,10 @@ The levels describe world stacking. They are not bitmap crop boundaries.
 | Object | Floor footprint | Logical volume | Pixel rule |
 | --- | --- | --- | --- |
 | Current Office person | `1 x 1` | `1 x 1 x 3` | Keep the current `96 x 104` frame at 32 px/tile |
-| Chair | `1 x 1` | `1 x 1 x 2` | R04 render is `64 x 80` px with cushion 32 px above floor |
+| Chair | `1 x 1` | `1 x 1 x 2` | R05-3 blocked; base-seat and backrest require measured pivots |
 | Desk | `3 x 2` | `3 x 2 x 2` | Full support plane is `96 x 64` px at `z = 2` |
-| Monitor | desk child | support child | Reserve actor-far `3 x 1`; R04 visual is `52 x 40` px |
-| Keyboard | desk child | support child | Reserve center `1 x 1` near the actor; R04 visual is `48 x 24` px |
+| Monitor | desk child | support child | Reserve actor-far `3 x 1`; target width 72..80 px |
+| Keyboard | desk child | support child | Reserve center `1 x 1`; target 44..48 by 18..20 px |
 
 Visible character, chair, hair, clothing, equipment, or furniture-height pixels
 may overflow a footprint only where declared. Render overflow never creates
@@ -61,9 +61,9 @@ collision cells.
 
 ## Current gate
 
-R04 used this ruler to complete new isolated component art, one-seat assembly,
-and the development-only P6 renderer. Its exact pixels and two-direction
-geometry are locked by `office-workstation-components-v3.json` and
-`office-workstation-step5-single-seat-v4.json`. Ten-seat assembly, roster-wide
-calibration, Step 6, and Active Office promotion remain blocked pending owner
-visual review.
+R04 physical composition is rejected; only its desk pixels remain accepted.
+R05 Geometry v6 separates top-down reservation, measured local visual pivot,
+and support height. Its authority is
+`office-workstation-step5-r05-calibration.json`. New component artwork,
+single-seat assembly, ten-seat assembly, roster-wide calibration, Step 6, and
+Active Office promotion remain blocked pending owner review.

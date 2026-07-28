@@ -1,21 +1,21 @@
 # Office 2D Geometry Principles
 
-Status: Current Geometry v5 workstation principles; R04 P4-P6 owner review
+Status: Current Geometry v6 workstation principles; R05-0..R05-2 owner review
 Updated: 2026-07-28
 
 This document defines the shared Office principles. For Step 5 workstation
-work, Geometry v5 supersedes the former fractional-height and full-row
-keyboard rules. Earlier workstation rules remain historical evidence only.
+work, Geometry v6 supersedes declaration-only anchor equality. Earlier
+workstation rules remain historical evidence only.
 
 Machine-readable workstation authority:
 `assets/game/manifests/office-workstation-assembly-bible-v3.json`.
 Camera authority: `assets/game/manifests/office-camera-scale-bible-v3.json`.
 Character-scale authority:
 `assets/game/manifests/office-character-scale-standard-v1.json`.
-Component pixel authority:
-`assets/game/manifests/office-workstation-components-v3.json`.
-Single-seat assembly authority:
-`assets/game/manifests/office-workstation-step5-single-seat-v4.json`.
+R05 calibration authority:
+`assets/game/manifests/office-workstation-step5-r05-calibration.json`.
+R04 component and assembly manifests are rejected historical evidence except
+for the explicitly accepted desk pixels.
 
 ## Coordinate spaces
 
@@ -30,6 +30,9 @@ Single-seat assembly authority:
 - `renderBounds` and `renderOffset` place visible pixels; they never add
   collision cells.
 - `basePivot` places an asset. `sortPivot` controls front-to-back order.
+- The placement formula is
+  `drawOrigin = worldReservationCenter - localVisualPivot`.
+- Front/back art cannot add orientation-specific placement offsets.
 - A visible leg, drawer, apron, monitor stand, chair back, or actor head is
   height or render overflow. None of those parts expands a footprint.
 
@@ -169,9 +172,8 @@ or contact anchors.
 
 ## Approval gate
 
-R04 contains exact normalized desk, chair, monitor, and keyboard pixels; one
-manifest-driven station in both semantic directions; six deterministic boards;
-and two browser captures. The 30-second runtime gate preserves actor and chair
-coordinates with zero drift. Owner approval applies only to this isolated R04
-station. The other eighteen characters, ten seats, Step 6, and Active Office
-permissions remain false.
+R04 physical composition is rejected; coordinate stability did not prove
+seat contact or correct equipment pivots. R05-0 through R05-2 provide
+measurement evidence and three calibration boards only. R05-3 artwork,
+single-seat composition, the other eighteen characters, ten seats, Step 6,
+and Active Office permissions remain false pending owner approval.

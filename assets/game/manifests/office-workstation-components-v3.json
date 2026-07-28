@@ -2,8 +2,27 @@
   "version": 3,
   "geometrySchemaVersion": 5,
   "id": "office.workstation.components.v3",
-  "status": "isolated-owner-review",
+  "status": "partially-rejected-physical-composition",
   "updatedOn": "2026-07-28",
+  "historicalEvidenceOnly": true,
+  "componentDecisions": {
+    "desk": {
+      "decision": "accepted",
+      "scope": "existing full rectangular 3x2 support and public/seat-side pixels only"
+    },
+    "chair": {
+      "decision": "rejected",
+      "reason": "R04 seat layer contains the wheel/base region and does not measure cushion-to-pelvis contact."
+    },
+    "monitor": {
+      "decision": "rejected-placement",
+      "reason": "The visual pivot was placed on a reservation edge instead of center-to-center."
+    },
+    "keyboard": {
+      "decision": "rejected-placement",
+      "reason": "The visual used asymmetric orientation offsets and did not enforce clearance inside its reservation."
+    }
+  },
   "sourceGeneration": {
     "tool": "built-in-imagegen-plus-deterministic-normalization",
     "promptRecord": "assets/art/layout-references/office-workstation-v3/source/office-workstation-v3-imagegen-prompts.md",
@@ -22,6 +41,7 @@
   },
   "geometry": {
     "tilePixels": 32,
+    "evidenceStatus": "declaration-only-not-physical-authority",
     "levels": {
       "floor": 0,
       "chairSeat": 1,
@@ -404,9 +424,9 @@
     }
   },
   "permissions": {
-    "componentArtwork": true,
-    "staticSingleSeatAssembly": true,
-    "isolatedLabRenderer": true,
+    "componentArtwork": false,
+    "staticSingleSeatAssembly": false,
+    "isolatedLabRenderer": false,
     "tenSeatAssembly": false,
     "step6": false,
     "activeOfficePromotion": false

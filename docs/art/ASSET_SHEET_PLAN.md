@@ -10,15 +10,13 @@ They cannot seed a new sheet. The owner approved the current `3 x 2` Assembly
 Bible and accepted the bare desk v2 Step 4 workflow recorded by
 `assets/game/manifests/office-workstation-bundle-v2.json`. Step 5 R02 is now
 rejected calibration evidence. R03 P0-P3 remains measured calibration history.
-The owner-approved P4-P6 pass is Step 5 R04. It generated only the isolated
-desk/chair/monitor source replacements required by failed scale checks,
-normalized the `48 x 24` keyboard, and validated one station in two directions.
-Current pixel authority is
-`assets/game/manifests/office-workstation-components-v3.json`; assembly and
-browser authority is
-`assets/game/manifests/office-workstation-step5-single-seat-v4.json`.
-Roster-wide calibration, ten-seat outputs, Step 6, and Active Office promotion
-remain blocked pending owner review of R04.
+R04 P4-P6 is rejected physical composition evidence; only its full rectangular
+desk pixels remain accepted. R05-0 through R05-2 define Geometry v6 reservation,
+visual-pivot, and measured-contact contracts in
+`assets/game/manifests/office-workstation-step5-r05-calibration.json`.
+No R05 component art or renderer exists yet. R05-3, roster-wide calibration,
+ten-seat outputs, Step 6, and Active Office promotion remain blocked pending
+owner review of the three R05 calibration boards.
 
 Derived-asset staging gate (2026-07-27): Steps 13-16 resolve all 77 reviewed
 `derive-composite` records under `office-derived-v1`. The versioned outputs

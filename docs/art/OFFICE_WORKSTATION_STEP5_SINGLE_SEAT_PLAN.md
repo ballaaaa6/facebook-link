@@ -1,6 +1,6 @@
-# Office Workstation Step 5 R04 Single-Seat Gate
+# Office Workstation Step 5 R05 Calibration Gate
 
-Status: P0-P6 complete; owner visual review required
+Status: R05-0 through R05-2 complete; owner calibration review required
 Updated: 2026-07-28
 
 Current authorities:
@@ -9,11 +9,15 @@ Current authorities:
 - `assets/game/manifests/office-workstation-assembly-bible-v3.json`
 - `assets/game/manifests/office-workstation-components-v3.json`
 - `assets/game/manifests/office-workstation-step5-single-seat-v4.json`
+- `assets/game/manifests/office-workstation-step5-r05-measurements.json`
+- `assets/game/manifests/office-workstation-step5-r05-calibration.json`
 
-R03 remains the P0-P3 measurement history. The owner approved the next group,
-so R04 completed P4 component normalization, P5 static two-direction assembly,
-and P6 isolated browser validation. R04 creates no new character or pose and
-does not assemble ten seats, begin Step 6, or modify Active Office.
+R03 remains the P0-P3 measurement history. R04 P4-P6 is now rejected physical
+composition evidence. Only its full rectangular desk pixels are retained.
+R05-0 freezes that decision, R05-1 replaces declaration-based geometry with
+reservation/pivot/support contracts, and R05-2 records the measured failures
+and exactly three owner-review boards. R05 creates no new furniture, character,
+or pose and does not run a single-seat renderer.
 
 ## Why R02 was rejected
 
@@ -130,27 +134,27 @@ Before P4, the owner must approve or revise:
 That approval authorized the completed R04 P4-P6 work below. It did not
 authorize ten seats, the other eighteen characters, Step 6, or Active Office.
 
-## P4 - normalized component pixels
+## Rejected historical P4 - normalized component pixels
 
 R04 uses separate render assets and logical reservations:
 
 | Component | Logical rule | R04 pixels |
 | --- | --- | --- |
 | Existing Office person | footprint `1 x 1`, volume `1 x 1 x 3` | existing `96 x 104` seated frame |
-| New chair | footprint `1 x 1`, volume `1 x 1 x 2` | `64 x 80`, cushion 32 px above floor |
+| Rejected chair | footprint `1 x 1`, volume `1 x 1 x 2` | `64 x 80`; claimed cushion contact was not measured |
 | New desk | footprint `3 x 2`, volume `3 x 2 x 2` | `96 x 128`, support rows `0..63` |
-| New lower-profile monitor | reservation `3 x 1` | `52 x 40` |
-| Normalized keyboard | reservation `1 x 1`, visual maximum `1.5 x 1` | `48 x 24` |
+| Rejected monitor placement | reservation `3 x 1` | `52 x 40`; base contact is 16 px off row center |
+| Rejected keyboard placement | reservation `1 x 1`, visual maximum `1.5 x 1` | `48 x 24`; far/near centers differ by 4 px |
 
-The desk has public and seat sides. Each side is split into `rear`, `surface`,
-`base`, and `foreground`. The chair has front and back directions split into
-`rear`, `seat`, and `foreground`. No character, chair, monitor, or keyboard
-pixels are baked into the desk.
+The desk has public and seat sides and remains accepted. The R04 chair split
+is rejected because the layer named `seat` begins at local row 48 and contains
+the wheel/base region. The measured lower upholstery bands end at row 44, so
+the layer name and declared contact line do not describe the visible cushion.
 
 The generated source prompts are recorded in
 `assets/art/layout-references/office-workstation-v3/source/office-workstation-v3-imagegen-prompts.md`.
 
-## P5 - one static station in two directions
+## Rejected historical P5 - one static station in two directions
 
 Both views read one manifest and use the same component pixels, scale, and
 anchors. `far` means the actor sits beyond the public side: the public modesty
@@ -158,19 +162,21 @@ panel and monitor back face the viewer. `near` means the actor sits on the
 seat side: the chair/actor draw in front of the desk and the monitor front is
 visible.
 
-The monitor and keyboard do not intersect. Both reservations remain inside
-the `96 x 64` support. The chair cushion anchor and person hip anchor are
-identical at `z = 1`. Six deterministic boards are stored under
-`assets/art/layout-references/office-workstation-v3/step5-r04/`.
+R04 set the chair cushion and person hip coordinates to the same value before
+validation. Equality therefore proved only that two declarations matched, not
+that the visible pelvis sat on the visible cushion. Its images remain under
+`assets/art/layout-references/office-workstation-v3/step5-r04/` as rejected
+regression evidence.
 
-## P6 - isolated browser validation
+## Rejected historical P6 - isolated browser validation
 
 The development-only route is
 `/?lab=office-workstation-v3-step5`. It renders one station, two directions,
 clean/overlay/current-background panels, and never imports R04 into the Active
 Office registry.
 
-Browser results:
+The browser results proved stable drawing coordinates and a clean development
+route, but did not prove physical composition:
 
 - 30 seconds of live animation with zero actor or chair coordinate drift;
 - zero contract issues, console errors, warnings, or broken images;
@@ -180,9 +186,51 @@ Browser results:
 - Active Office map SHA-256 remains
   `c40db448eb8e6d0f3fea67a41f716c0108aca63a4136cfad15293534273c618d`.
 
+## R05-0 - freeze the rejected implementation
+
+`office-workstation-step5-single-seat-v4.json` is now
+`rejected-physical-composition`. The component manifest is
+`partially-rejected-physical-composition`: desk pixels are accepted while
+chair, monitor placement, and keyboard placement are rejected. Every R04
+implementation permission is false.
+
+## R05-1 - Geometry v6 authority
+
+Reservation, visual pixels, and support height are independent:
+
+```text
+worldAnchor = center(topDownReservation)
+drawOrigin = worldAnchor - measuredLocalVisualPivot
+```
+
+- A person reserves `1 x 1`, has logical height 3, and may visually overflow.
+- A chair reserves `1 x 1 x 2`. Its base-and-seat occupies `z0..z1`; its
+  backrest occupies `z1..z2`.
+- The seat plane and pelvis contact must be measured from actual pixels.
+- A monitor reserves `3 x 1`; its visual target is 72..80 px wide and uses a
+  measured base-contact-center pivot.
+- A keyboard reserves `1 x 1`; its target is 44..48 by 18..20 px, leaves at
+  least 6 px front/back clearance, and may overhang at most 8 px per side.
+- Front/back art may differ, but orientation-specific placement offsets are
+  forbidden.
+
+## R05-2 - measured evidence and review boards
+
+The measurements record:
+
+- chair lower upholstery rows `35..44` front and `40..44` back;
+- rejected chair split start row 48 and `seatLayerContainsCushion = false`;
+- monitor base-to-reservation-center error `(0,16)` px in both orientations;
+- keyboard center error `(0,-4)` px far and `(0,0)` px near;
+- the existing six-frame seated rows and alpha bounds;
+- `pelvisContactPivot = null` because R04 never measured it.
+
+Exactly three boards are stored under
+`assets/art/layout-references/office-workstation-v3/step5-r05/`.
+
 ## Current owner gate
 
-The owner should review the eight R04 images. Approval applies only to this
-single station and permits planning the ten-seat expansion as a separate
-gate. Until that decision, `tenSeatAssembly`, `rosterWideCalibration`,
-`step6`, and `activeOfficePromotion` remain false.
+The owner should review the three R05 images. Approval permits R05-3 only:
+create and measure corrected chair, monitor, and keyboard parts against the
+retained desk and existing seated poses. Single-seat composition, ten-seat
+assembly, roster-wide calibration, Step 6, and Active Office remain blocked.

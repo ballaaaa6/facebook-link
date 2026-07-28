@@ -43,11 +43,12 @@ export interface OfficeWorkstationStep5ManifestV4 {
   version: 4;
   geometrySchemaVersion: 5;
   id: "office.workstation.step5.single-seat.v4";
-  status: "isolated-runtime-owner-review";
+  status: "rejected-physical-composition";
   updatedOn: string;
   replaces: "office.workstation.step5.single-seat.v3";
+  historicalEvidenceOnly: true;
   completedScope: readonly ["P4", "P5", "P6"];
-  runtimeScope: "P6-isolated-lab-complete";
+  runtimeScope: "historical-dev-lab-disabled-for-authority";
   componentsAuthority: { file: string; sha256: string };
   activeOfficeBaseline: { file: string; sha256: string; mustRemainByteIdentical: true };
   lab: {
@@ -75,16 +76,23 @@ export interface OfficeWorkstationStep5ManifestV4 {
     brokenImages: 0;
     maximumHorizontalOverflowPixels: 0;
     anchorStable: true;
+    physicalCorrectness: false;
+    note: string;
   };
   permissions: {
     newCharacterOrPose: false;
-    isolatedLabRenderer: true;
+    isolatedLabRenderer: false;
     tenSeatAssembly: false;
     rosterWideCalibration: false;
     step6: false;
     activeOfficePromotion: false;
   };
-  ownerGate: { decision: "pending"; approveOnly: string; stillBlocked: readonly string[] };
+  reviewDecision: {
+    decision: "rejected";
+    supersededBy: "office.workstation.step5.r05.calibration";
+    reasons: readonly string[];
+  };
+  ownerGate: { decision: "rejected"; approveOnly: string; stillBlocked: readonly string[] };
 }
 
 function record(value: unknown): value is Record<string, unknown> {
@@ -100,7 +108,10 @@ export function validateOfficeWorkstationComponentsV3(value: unknown): string[] 
   const issues: string[] = [];
   const geometry = value.geometry;
   if (value.version !== 3 || value.geometrySchemaVersion !== 5) issues.push("componentsV3.version: must use Geometry v5");
-  if (value.status !== "isolated-owner-review") issues.push("componentsV3.status: must stop at owner review");
+  if (value.status !== "partially-rejected-physical-composition") {
+    issues.push("componentsV3.status: must retain the R04 partial rejection");
+  }
+  if (value.historicalEvidenceOnly !== true) issues.push("componentsV3: must be historical evidence only");
   if (!record(geometry)) return [...issues, "componentsV3.geometry: must be an object"];
   if (!exact(geometry.person, { footprint: [1, 1], logicalVolume: [1, 1, 3], framePixels: [96, 104], hipAnchorPixels: [48, 72] })) {
     issues.push("componentsV3.person: must preserve current Office scale");
@@ -113,10 +124,17 @@ export function validateOfficeWorkstationComponentsV3(value: unknown): string[] 
   if (!record(geometry.keyboard) || !exact(geometry.keyboard.reservation, [1, 1])
     || !exact(geometry.keyboard.renderPixels, [48, 24])) issues.push("componentsV3.keyboard: must reserve 1 x 1 and render 48 x 24");
   const permissions = value.permissions;
-  if (!record(permissions) || permissions.componentArtwork !== true
-    || permissions.staticSingleSeatAssembly !== true || permissions.isolatedLabRenderer !== true
+  if (!record(permissions) || permissions.componentArtwork !== false
+    || permissions.staticSingleSeatAssembly !== false || permissions.isolatedLabRenderer !== false
     || permissions.tenSeatAssembly !== false || permissions.step6 !== false
-    || permissions.activeOfficePromotion !== false) issues.push("componentsV3.permissions: only isolated Step 5 work is authorized");
+    || permissions.activeOfficePromotion !== false) issues.push("componentsV3.permissions: rejected R04 components cannot authorize implementation");
+  const decisions = value.componentDecisions;
+  if (!record(decisions) || !record(decisions.desk) || decisions.desk.decision !== "accepted"
+    || !record(decisions.chair) || decisions.chair.decision !== "rejected"
+    || !record(decisions.monitor) || decisions.monitor.decision !== "rejected-placement"
+    || !record(decisions.keyboard) || decisions.keyboard.decision !== "rejected-placement") {
+    issues.push("componentsV3.componentDecisions: desk-only acceptance and rejected chair/equipment must be explicit");
+  }
   return issues;
 }
 
@@ -125,12 +143,14 @@ export function validateOfficeWorkstationStep5ManifestV4(value: unknown): string
   const issues: string[] = [];
   if (value.version !== 4 || value.geometrySchemaVersion !== 5) issues.push("step5R04.version: must use Geometry v5");
   if (value.id !== "office.workstation.step5.single-seat.v4") issues.push("step5R04.id: has the wrong identity");
-  if (value.status !== "isolated-runtime-owner-review") issues.push("step5R04.status: must stop at owner review");
-  if (!exact(value.completedScope, ["P4", "P5", "P6"]) || value.runtimeScope !== "P6-isolated-lab-complete") {
-    issues.push("step5R04.scope: must contain P4-P6 only");
+  if (value.status !== "rejected-physical-composition") issues.push("step5R04.status: must be rejected");
+  if (value.historicalEvidenceOnly !== true) issues.push("step5R04: must be historical evidence only");
+  if (!exact(value.completedScope, ["P4", "P5", "P6"])
+    || value.runtimeScope !== "historical-dev-lab-disabled-for-authority") {
+    issues.push("step5R04.scope: must retain rejected P4-P6 history");
   }
   const permissions = value.permissions;
-  if (!record(permissions) || permissions.isolatedLabRenderer !== true
+  if (!record(permissions) || permissions.isolatedLabRenderer !== false
     || permissions.newCharacterOrPose !== false || permissions.tenSeatAssembly !== false
     || permissions.rosterWideCalibration !== false || permissions.step6 !== false
     || permissions.activeOfficePromotion !== false) issues.push("step5R04.permissions: implementation escaped the isolated lab");
@@ -168,8 +188,14 @@ export function validateOfficeWorkstationStep5ManifestV4(value: unknown): string
     narrowViewport: [390, 844],
     consoleErrors: 0,
     brokenImages: 0,
-    maximumHorizontalOverflowPixels: 0,
-    anchorStable: true,
+    maximumHorizontalOverflowPixels: 0, anchorStable: true, physicalCorrectness: false,
+    note: "Coordinate stability was measured; seat contact and equipment pivots were only declared and are rejected.",
   })) issues.push("step5R04.browserValidation: P6 evidence changed");
+  const decision = value.reviewDecision;
+  if (!record(decision) || decision.decision !== "rejected"
+    || decision.supersededBy !== "office.workstation.step5.r05.calibration"
+    || !Array.isArray(decision.reasons) || decision.reasons.length !== 4) {
+    issues.push("step5R04.reviewDecision: must explain the R04 physical rejection");
+  }
   return issues;
 }

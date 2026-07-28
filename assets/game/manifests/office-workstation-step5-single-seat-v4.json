@@ -2,18 +2,19 @@
   "version": 4,
   "geometrySchemaVersion": 5,
   "id": "office.workstation.step5.single-seat.v4",
-  "status": "isolated-runtime-owner-review",
+  "status": "rejected-physical-composition",
   "updatedOn": "2026-07-28",
   "replaces": "office.workstation.step5.single-seat.v3",
+  "historicalEvidenceOnly": true,
   "completedScope": [
     "P4",
     "P5",
     "P6"
   ],
-  "runtimeScope": "P6-isolated-lab-complete",
+  "runtimeScope": "historical-dev-lab-disabled-for-authority",
   "componentsAuthority": {
     "file": "assets/game/manifests/office-workstation-components-v3.json",
-    "sha256": "bcf5ac4a729da7185f7eacf1e1ea7f0a65473ac27e7066ba072a2f1c7a29db4c"
+    "sha256": "d87dfbbbbd47cd87ab3b71ebf13912b9ab3b2b15ca1f2cfec1616e90e37a318f"
   },
   "activeOfficeBaseline": {
     "file": "assets/game/maps/office-c-v2.json",
@@ -223,20 +224,35 @@
     "consoleErrors": 0,
     "brokenImages": 0,
     "maximumHorizontalOverflowPixels": 0,
-    "anchorStable": true
+    "anchorStable": true,
+    "physicalCorrectness": false,
+    "note": "Coordinate stability was measured; seat contact and equipment pivots were only declared and are rejected."
   },
   "permissions": {
     "newCharacterOrPose": false,
-    "isolatedLabRenderer": true,
+    "isolatedLabRenderer": false,
     "tenSeatAssembly": false,
     "rosterWideCalibration": false,
     "step6": false,
     "activeOfficePromotion": false
   },
+  "reviewDecision": {
+    "decision": "rejected",
+    "supersededBy": "office.workstation.step5.r05.calibration",
+    "reasons": [
+      "seat and hip coordinates were declared equal without measuring visible pixel contact",
+      "chair seat masks contain the wheel/base region instead of an isolated cushion",
+      "monitor base pivots land on reservation edges rather than reservation centers",
+      "keyboard placement uses asymmetric orientation offsets and lacks required clearance"
+    ]
+  },
   "ownerGate": {
-    "decision": "pending",
-    "approveOnly": "one isolated R04 station",
+    "decision": "rejected",
+    "approveOnly": "nothing in R04 except the existing desk pixels",
     "stillBlocked": [
+      "new-chair-art",
+      "equipment-regeneration",
+      "single-seat-runtime",
       "ten-seat-layout",
       "step6",
       "active-office"
