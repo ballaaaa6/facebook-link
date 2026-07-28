@@ -13,8 +13,10 @@ const digest = (path: string) => createHash("sha256").update(readFileSync(new UR
 const manifest = readJson("assets/game/manifests/office-workstation-ten-seat-r05-r02.json");
 const map = readJson("assets/game/maps/office-workstation-ten-seat-r05-r02.json");
 
-test("ten-seat R05-r02 places the current ten upper-left and reserves ten below", () => {
+test("rejected ten-seat R05-r02 retains its historical placement evidence", () => {
   assert.deepEqual(validateOfficeWorkstationTenSeatR05R02(manifest, map), []);
+  assert.equal(map.status, "rejected-floor-map");
+  assert.equal(map.supersededBy, "office-full-grid-v1");
   assert.deepEqual(map.capacity, { currentEmployees: 10, reservedEmployees: 10, totalPlannedEmployees: 20 });
   assert.deepEqual(map.placement.deskOriginsX, [2, 5, 8, 11, 14]);
   assert.deepEqual(map.placement.currentDeskOriginsY, { far: 11, near: 13 });
@@ -38,4 +40,10 @@ test("ten-seat R05-r02 remains isolated and keeps all evidence available", () =>
   assert.equal(digest(manifest.activeOfficeBaseline.file), manifest.activeOfficeBaseline.sha256);
   assert.deepEqual(manifest.reviewOutputs, workstationTenSeatR05R02ReviewOutputs);
   for (const path of manifest.reviewOutputs) assert.doesNotThrow(() => readFileSync(new URL(path, root)));
+});
+
+test("ten-seat R05-r02 records the footprint and coordinate failure", () => {
+  assert.equal(map.rejection.canonicalWorldOffsetOmitted, true);
+  assert.deepEqual(map.rejection.historicalFootprint, { x: 2, y: 10, width: 15, height: 6 });
+  assert.deepEqual(map.rejection.historicalProtectedEnvelope, { x: 1, y: 9, width: 17, height: 8 });
 });

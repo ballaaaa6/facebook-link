@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "id": "office.full-grid.v1",
+  "status": "owner-coordinate-review",
+  "updatedOn": "2026-07-28",
+  "map": {
+    "file": "assets/game/maps/office-full-grid-v1.json",
+    "sha256": "51b759d6ea7dadb77b35a3d97e5e31cc6ce606acf72500421bf321111b2bb5ff"
+  },
+  "reviewOutput": {
+    "file": "assets/art/layout-references/office-full-grid-v1/01-office-full-grid-a1.png",
+    "sha256": "1fb19d7b7d5af1c5966bf567c486a221430366a10838b6be39665ab57999e077"
+  },
+  "permissions": {
+    "deterministicFullImageGrid": true,
+    "zoneClassification": false,
+    "newCharacterOrPose": false,
+    "newFurnitureOrArt": false,
+    "activeOfficePromotion": false
+  },
+  "activeOfficeBaseline": {
+    "file": "assets/game/maps/office-c-v2.json",
+    "sha256": "c40db448eb8e6d0f3fea67a41f716c0108aca63a4136cfad15293534273c618d",
+    "mustRemainByteIdentical": true
+  }
+}

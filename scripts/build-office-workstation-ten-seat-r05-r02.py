@@ -183,7 +183,8 @@ def ten_seat_map_data() -> dict[str, Any]:
     return {
         "schemaVersion": 1,
         "id": "office-workstation-ten-seat-r05-r02",
-        "status": "owner-review-p4-p6",
+        "status": "rejected-floor-map",
+        "supersededBy": "office-full-grid-v1",
         "developmentOnly": True,
         "activeOfficePromotion": False,
         "stagePixels": list(STAGE_SIZE),
@@ -215,6 +216,13 @@ def ten_seat_map_data() -> dict[str, Any]:
             "renderFutureEmployees": False,
             "newCharacterOrPose": False,
             "otherFurniture": False,
+        },
+        "rejection": {
+            "decidedOn": "2026-07-28",
+            "reason": "far-row-standing-and-clearance-cells-overlap-wall",
+            "canonicalWorldOffsetOmitted": True,
+            "historicalFootprint": {"x": 2, "y": 10, "width": 15, "height": 6},
+            "historicalProtectedEnvelope": {"x": 1, "y": 9, "width": 17, "height": 8},
         },
         "sourceBackground": {"file": repo_path(BACKGROUND_PATH), "sha256": sha256(BACKGROUND_PATH), "mustRemainByteIdentical": True},
         "seatSockets": {"file": repo_path(SOCKETS_PATH), "sha256": sha256(SOCKETS_PATH)},
@@ -318,7 +326,8 @@ def manifest_data(map_content: bytes) -> dict[str, Any]:
     return {
         "version": 1,
         "id": "office.workstation.ten-seat.r05.r02",
-        "status": "owner-review-p4-p6",
+        "status": "rejected-floor-map",
+        "supersededBy": "office-full-grid-v1",
         "updatedOn": "2026-07-28",
         "derivesFrom": "office.workstation.step5.r05.r02",
         "scope": ["P4-four-station-preflight", "P5-ten-seat-upper-left", "P6-capacity-and-browser-qa"],

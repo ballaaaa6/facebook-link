@@ -11,8 +11,9 @@ const add = (condition, message) => { if (!condition) failures.push(message); };
 const same = (value, expected) => JSON.stringify(value) === JSON.stringify(expected);
 const sha256 = (path) => createHash("sha256").update(readFileSync(join(root, path))).digest("hex");
 
-add(manifest.status === "owner-review-p4-p6", "ten-seat manifest must stop at owner review");
-add(map.status === "owner-review-p4-p6" && map.developmentOnly === true, "ten-seat map must remain development-only owner review");
+add(manifest.status === "rejected-floor-map", "ten-seat manifest must record the owner's floor-map rejection");
+add(map.status === "rejected-floor-map" && map.developmentOnly === true, "ten-seat map must remain rejected development-only evidence");
+add(manifest.supersededBy === "office-full-grid-v1" && map.supersededBy === "office-full-grid-v1", "rejected composition must defer to the canonical full-image grid");
 add(map.activeOfficePromotion === false && manifest.permissions?.activeOfficePromotion === false, "Active Office promotion must remain false");
 add(same(map.stagePixels, [1365, 768]) && map.grid?.tilePixels === 32, "stage and tile scale changed");
 add(map.placement?.zone === "upper-left" && same(map.placement?.deskOriginsX, [2, 5, 8, 11, 14]), "current ten must remain in five upper-left columns");
@@ -27,6 +28,9 @@ const contacts = map.currentWorkstations?.flatMap((station) => station.seatConta
 add(contacts.length === 60 && contacts.every((contact) => same(contact.resolvedDeltaPixels, [0, 0])), "all sixty seat contacts must resolve at zero error");
 add(map.rules?.deriveFromApprovedPair === true && map.rules?.importRejectedTenSeatCoordinates === false, "new map must derive from the approved pair and reject old ten-seat coordinates");
 add(map.rules?.newCharacterOrPose === false && map.rules?.otherFurniture === false, "new characters, poses, and other furniture remain out of scope");
+add(map.rejection?.canonicalWorldOffsetOmitted === true, "rejection must record the omitted canonical X offset");
+add(same(map.rejection?.historicalFootprint, { x: 2, y: 10, width: 15, height: 6 }), "historical footprint evidence changed");
+add(same(map.rejection?.historicalProtectedEnvelope, { x: 1, y: 9, width: 17, height: 8 }), "historical protected envelope evidence changed");
 add(sha256(manifest.map.file) === manifest.map.sha256, "ten-seat map hash mismatch");
 add(sha256(manifest.activeOfficeBaseline.file) === manifest.activeOfficeBaseline.sha256, "Active Office baseline changed");
 add(sha256(map.sourceBackground.file) === map.sourceBackground.sha256, "approved background changed");
@@ -43,5 +47,5 @@ if (failures.length) {
   process.stderr.write(`${failures.join("\n")}\n`);
   process.exitCode = 1;
 } else {
-  process.stdout.write("Ten-seat R05-r02 OK: 10 current upper-left, 10 empty reservations below, 13 zero-gap joins, 60/60 seat contacts, Active Office unchanged.\n");
+  process.stdout.write("Ten-seat R05-r02 rejection OK: visual joins and seats retained as evidence; floor-map failure recorded; Active Office unchanged.\n");
 }

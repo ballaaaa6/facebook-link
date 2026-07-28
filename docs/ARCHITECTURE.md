@@ -50,6 +50,13 @@ All meaningful changes produce an append-only audit event. Current state is stor
 - SQLite is authoritative; sheet sync is idempotent by record ID and version.
 - Chat providers may answer or propose actions, but cannot execute tools directly.
 
+## Office spatial authority
+
+The neutral full-image coordinates in `docs/OFFICE_FULL_GRID.md` are the owner
+review surface for assigning future floor, wall, pillar, furniture, and route
+zones. The grid itself infers no zones. The Active Office map remains a
+separate runtime boundary.
+
 ## Scale path
 
 Scale accounts by adding isolated profile workers and queue partitions, not by increasing concurrency inside one browser profile. Scale dashboards independently from browser runners.

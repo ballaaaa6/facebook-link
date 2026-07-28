@@ -14,7 +14,7 @@ asset-generation instruction, layer order, map position, or permission.
 | `docs/art/OFFICE_COORDINATE_SYSTEM.md` | Owner-approved workstation placement, sockets, scale, equipment depth, and desk joins |
 | `docs/art/OFFICE_2D_GEOMETRY_PRINCIPLES.md` | Shared geometry concepts for all Office asset families |
 | `docs/art/OFFICE_ASSET_CREATION_GUIDE.md` | General asset workflow; workstation sections defer to the coordinate system |
-| `docs/art/OFFICE_WORKSTATION_TEN_SEAT_NEXT_PLAN.md` | Implemented P4-P6 ten-seat upper-left candidate; awaiting P7 owner review |
+| `docs/OFFICE_FULL_GRID.md` | Neutral full-image owner coordinate surface; no zones inferred |
 | `docs/ROADMAP.md` | Product-level delivery sequence and promotion gates |
 
 ## Current machine-readable authority
@@ -24,8 +24,8 @@ asset-generation instruction, layer order, map position, or permission.
 | `assets/game/manifests/office-workstation-step5-r05-r02.json` | `owner-approved-p0-p3` |
 | `assets/game/manifests/office-character-seat-sockets-v1.json` | `owner-approved` |
 | `assets/game/maps/office-workstation-pair-r05-r02.json` | `owner-approved-p0-p3`, development-only |
-| `assets/game/manifests/office-workstation-ten-seat-r05-r02.json` | `owner-review-p4-p6`, development-only |
-| `assets/game/maps/office-workstation-ten-seat-r05-r02.json` | Current ten upper-left plus ten empty lower reservations; no Active Office promotion |
+| `assets/game/manifests/office-full-grid-v1.json` | `owner-coordinate-review`, development-only |
+| `assets/game/maps/office-full-grid-v1.json` | Full-image A1-style grid; no classifications |
 
 ## Historical or rejected documents
 
@@ -36,6 +36,7 @@ asset-generation instruction, layer order, map position, or permission.
 | `docs/art/OFFICE_WORKSTATION_STEP5_SINGLE_SEAT_PLAN.md` | Superseded execution history |
 | `docs/OFFICE_WORKSTATION_R05_REVIEW.md` | Rejected R05 final composition review |
 | `docs/OFFICE_TEN_WORKSTATION_ACCEPTANCE.md` | Rejected `5 x 4` structural staging record |
+| `docs/art/OFFICE_WORKSTATION_TEN_SEAT_NEXT_PLAN.md` | Rejected P4-P6 floor-map composition |
 | `docs/OFFICE_CANDIDATE_V1_REVIEW.md` | Rejected Candidate r01 review |
 | `docs/TWO_ROW_MODERN_OFFICE_LAB_TEST_PLAN.md` | Rejected earlier two-row plan |
 | `docs/art/OFFICE_GEOMETRY_REMEDIATION_ROADMAP.md` | Historical execution record |

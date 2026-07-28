@@ -2,7 +2,7 @@
 
 Status: Owner-approved placement authority
 Approved: 2026-07-28
-Revision: R05-r02 P0-P6 (P0-P3 owner-approved baseline; P4-P6 owner-review candidate)
+Revision: R05-r02 P0-P3 owner-approved baseline; P4-P6 rejected floor map
 
 This document is the authoritative manual for composing the current Office
 desk, monitor, keyboard, real chair, and existing seated characters. The
@@ -194,10 +194,12 @@ nextDeskOrigin = currentDeskOrigin + [3, 0, 0] tiles
 Each tabletop remains its own physical object. Their edges touch without a
 gap or footprint overlap.
 
-## Current ten-seat derived layout
+## Rejected ten-seat historical layout
 
-The development-only P4-P6 candidate derives from the approved pair. It does
-not change the pair authority or Active Office.
+The development-only P4-P6 composition derived from the approved pair but was
+rejected at owner review. The far-row standing and clearance cells overlap the
+wall because the composition omitted a canonical world offset. These
+coordinates remain negative evidence only and must not be used for placement.
 
 ```text
 current desk X origins = [2, 5, 8, 11, 14]
@@ -207,11 +209,11 @@ reserved far/near Y     = 18 / 20
 reserved chair Y        = 17 / 22
 ```
 
-The current ten seats occupy the upper-left in five columns by two opposing
-seats. The lower coordinates reserve ten future employee positions. A
-reservation is collision/capacity metadata only: it must not render an empty
-desk, chair, monitor, keyboard, character, or pose. The total planned capacity
-is twenty while the rendered current roster remains exactly ten.
+The attempted ten seats occupied the upper-left in five columns by two
+opposing seats. The lower coordinates attempted to reserve ten future employee
+positions for historical planned capacity twenty. Neither block is an
+approved floor placement. Use `docs/OFFICE_FULL_GRID.md` for the neutral
+coordinate surface and wait for owner zone assignments.
 
 ## Acceptance invariants
 

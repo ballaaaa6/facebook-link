@@ -11,7 +11,7 @@ export function R05UpperLeftTenSeatScene({ debug, tick }: { debug: boolean; tick
       <div
         className="r05-ten-stage"
         data-active-office-promotion="false"
-        data-contract-pass="true"
+        data-spatial-contract-pass="false"
         data-current-employee-capacity={r05TenSeatMap.capacity.currentEmployees}
         data-reserved-employee-capacity={r05TenSeatMap.capacity.reservedEmployees}
         data-total-planned-capacity={r05TenSeatMap.capacity.totalPlannedEmployees}
@@ -61,9 +61,9 @@ export function R05UpperLeftTenSeatScene({ debug, tick }: { debug: boolean; tick
           </div>
         )}
         <aside className="r05-candidate-stamp">
-          <strong>CURRENT 10 · UPPER-LEFT</strong>
-          <span>5 columns × 2 opposing seats</span>
-          <span>lower block reserved for future 10</span>
+          <strong>REJECTED · FLOOR MAP FAILURE</strong>
+          <span>far standing cells overlap wall</span>
+          <span>canonical world X offset was omitted</span>
           <span>Active Office unchanged</span>
         </aside>
       </div>

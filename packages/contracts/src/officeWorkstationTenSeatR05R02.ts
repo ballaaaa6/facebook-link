@@ -31,7 +31,8 @@ export interface WorkstationTenSeatPlacement {
 export interface OfficeWorkstationTenSeatR05R02Map {
   schemaVersion: 1;
   id: "office-workstation-ten-seat-r05-r02";
-  status: "owner-review-p4-p6";
+  status: "rejected-floor-map";
+  supersededBy: "office-full-grid-v1";
   developmentOnly: true;
   activeOfficePromotion: false;
   stagePixels: readonly [1365, 768];
@@ -68,6 +69,13 @@ export interface OfficeWorkstationTenSeatR05R02Map {
     newCharacterOrPose: false;
     otherFurniture: false;
   };
+  rejection: {
+    decidedOn: "2026-07-28";
+    reason: "far-row-standing-and-clearance-cells-overlap-wall";
+    canonicalWorldOffsetOmitted: true;
+    historicalFootprint: { x: 2; y: 10; width: 15; height: 6 };
+    historicalProtectedEnvelope: { x: 1; y: 9; width: 17; height: 8 };
+  };
   sourceBackground: { file: string; sha256: string; mustRemainByteIdentical: true };
   seatSockets: { file: string; sha256: string };
   activeOfficeBaseline: { file: string; sha256: string; mustRemainByteIdentical: true };
@@ -76,7 +84,8 @@ export interface OfficeWorkstationTenSeatR05R02Map {
 export interface OfficeWorkstationTenSeatR05R02Manifest {
   version: 1;
   id: "office.workstation.ten-seat.r05.r02";
-  status: "owner-review-p4-p6";
+  status: "rejected-floor-map";
+  supersededBy: "office-full-grid-v1";
   derivesFrom: "office.workstation.step5.r05.r02";
   scope: readonly ["P4-four-station-preflight", "P5-ten-seat-upper-left", "P6-capacity-and-browser-qa"];
   layoutDecision: {
@@ -120,8 +129,9 @@ export function validateOfficeWorkstationTenSeatR05R02(
   map: OfficeWorkstationTenSeatR05R02Map,
 ): string[] {
   const issues: string[] = [];
-  if (manifest.id !== "office.workstation.ten-seat.r05.r02" || manifest.status !== "owner-review-p4-p6") issues.push("invalid ten-seat manifest identity");
-  if (map.id !== "office-workstation-ten-seat-r05-r02" || map.status !== "owner-review-p4-p6") issues.push("invalid ten-seat map identity");
+  if (manifest.id !== "office.workstation.ten-seat.r05.r02" || manifest.status !== "rejected-floor-map") issues.push("invalid rejected ten-seat manifest identity");
+  if (map.id !== "office-workstation-ten-seat-r05-r02" || map.status !== "rejected-floor-map") issues.push("invalid rejected ten-seat map identity");
+  if (manifest.supersededBy !== "office-full-grid-v1" || map.supersededBy !== "office-full-grid-v1") issues.push("rejected ten-seat evidence must defer to the Office full-image grid");
   if (!same(map.stagePixels, [1365, 768]) || map.grid.tilePixels !== 32) issues.push("invalid stage or tile size");
   if (map.placement.zone !== "upper-left" || !same(map.placement.deskOriginsX, [2, 5, 8, 11, 14])) issues.push("current roster is not locked to five upper-left columns");
   if (!same(map.placement.currentDeskOriginsY, { far: 11, near: 13 })) issues.push("current desk rows do not touch at the approved 64 px depth delta");
@@ -135,6 +145,11 @@ export function validateOfficeWorkstationTenSeatR05R02(
   if (map.futureReservations.some((slot) => slot.employeeAssigned || slot.artRendered)) issues.push("future capacity must remain empty and unrendered");
   if (map.activeOfficePromotion || manifest.permissions.activeOfficePromotion) issues.push("Active Office promotion is forbidden during owner review");
   if (map.rules.importRejectedTenSeatCoordinates || map.rules.newCharacterOrPose || map.rules.otherFurniture) issues.push("rejected coordinates, new poses, and other furniture are forbidden");
+  if (!map.rejection.canonicalWorldOffsetOmitted
+    || !same(map.rejection.historicalFootprint, { x: 2, y: 10, width: 15, height: 6 })
+    || !same(map.rejection.historicalProtectedEnvelope, { x: 1, y: 9, width: 17, height: 8 })) {
+    issues.push("rejected floor-map evidence changed");
+  }
   if (!same(manifest.reviewOutputs, workstationTenSeatR05R02ReviewOutputs)) issues.push("review output list mismatch");
   if (manifest.browserValidation.result !== "passed" || manifest.browserValidation.durationSeconds !== 60 || manifest.browserValidation.warningsAndErrors !== 0 || !manifest.browserValidation.sampledActorSeatDeltasAllZero) issues.push("browser validation must record the completed 60-second zero-error run");
   return issues;

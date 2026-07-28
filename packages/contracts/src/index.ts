@@ -9,6 +9,7 @@ export * from "./officeDerivedAssets.ts";
 export * from "./officeGeometry.ts";
 export * from "./officeSpatialScale.ts";
 export * from "./officeSpatialProjection.ts";
+export * from "./officeFullGrid.ts";
 export * from "./officeStructure.ts";
 export * from "./officeWorkstation.ts";
 export * from "./officeWorkstationAssembly.ts";

@@ -311,10 +311,10 @@ add(failures, seatSockets.status === "owner-approved",
 add(failures, seatSockets.rules?.newCharacterOrPose === false
   && seatSockets.rules?.handSocketsInScope === false,
 "Seat socket authority cannot create poses or enter hand-socket scope");
-add(failures, tenSeatR05R02.status === "owner-review-p4-p6"
-  && tenSeatMapR05R02.status === "owner-review-p4-p6"
-  && tenSeatMapR05R02.developmentOnly === true,
-"Ten-seat R05-r02 P4-P6 must remain an isolated owner-review candidate");
+add(failures, tenSeatR05R02.status === "rejected-floor-map" && tenSeatMapR05R02.status === "rejected-floor-map"
+  && tenSeatMapR05R02.developmentOnly === true && tenSeatR05R02.supersededBy === "office-full-grid-v1"
+  && tenSeatMapR05R02.supersededBy === "office-full-grid-v1" && tenSeatMapR05R02.rejection?.canonicalWorldOffsetOmitted === true,
+"Ten-seat R05-r02 P4-P6 must remain rejected floor-map evidence");
 add(failures, JSON.stringify(tenSeatMapR05R02.capacity) === JSON.stringify({
   currentEmployees: 10, reservedEmployees: 10, totalPlannedEmployees: 20,
 }), "Ten-seat capacity must remain current ten plus reserved ten");
@@ -372,10 +372,10 @@ add(failures, geometryGuide.includes("R05-r02 P0-P3 owner-approved")
 add(failures, authorityIndex.includes("Status: Current")
   && authorityIndex.includes("Historical or rejected documents"),
 "Workstation document authority index is missing or stale");
-add(failures, nextPlan.includes("Status: P4-P6 implemented in an isolated lab; awaiting P7 owner review")
+add(failures, nextPlan.includes("Status: Rejected after P7 owner review; floor-map coordinates are invalid")
   && nextPlan.includes("must not patch, offset, or import the rejected")
   && nextPlan.includes("planned capacity of twenty"),
-"Ten-seat plan must record P4-P6 owner review, capacity twenty, and deny reuse of the rejected composition");
+"Ten-seat plan must record the P4-P6 rejection, historical capacity, and deny reuse of the rejected composition");
 add(failures, cameraHistory.includes("Status: Superseded; do not use for workstation placement")
   && assemblyHistory.includes("Status: Superseded; do not use as assembly authority")
   && step5History.includes("Status: Superseded execution history; do not implement from this file")
@@ -414,6 +414,6 @@ if (failures.length > 0) {
   process.exitCode = 1;
 } else {
   process.stdout.write(
-    "Workstation authority OK: R05-r02 P0-P3 pair proof is owner-approved; P4-P6 places ten current staff upper-left and reserves ten below for owner review; hand sockets, other furniture, and Active Office remain blocked.\n",
+    "Workstation authority OK: R05-r02 P0-P3 pair proof remains owner-approved; P4-P6 is rejected floor-map evidence superseded by the neutral full-image grid; Active Office remains blocked.\n",
   );
 }

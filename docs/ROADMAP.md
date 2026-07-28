@@ -8,12 +8,11 @@ monitor `3 x 1` reservation centered by its base, keyboard `1 x 1`
 reservation, per-character/per-frame seat sockets, and a 64-pixel depthwise
 desk join with physical occlusion order.
 
-P4-P6 now rebuild the five-column by two-row ten-person block from that
-approved pair inside a development-only simulated Office. The current ten are
-in the upper-left, and a lower empty block reserves ten future employee
-positions for total planned capacity twenty. The four-station preflight,
-deterministic geometry evidence, runtime lab, and browser evidence are the P7
-owner-review package in `docs/art/OFFICE_WORKSTATION_TEN_SEAT_NEXT_PLAN.md`.
+P4-P6 is rejected floor-map evidence. Although its visual desk joins and seat
+contacts passed, its far-row standing and clearance cells overlap the wall
+because the composition omitted a canonical world offset. The neutral
+full-image grid in `docs/OFFICE_FULL_GRID.md` now provides owner-labelled
+coordinates without inferring floor, wall, pillar, furniture, or route zones.
 Other furniture and Active Office promotion remain blocked.
 
 ## M0 — Repository foundation (complete)

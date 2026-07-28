@@ -1,15 +1,15 @@
 # Office Workstation Ten-Seat Isolated Validation Plan
 
-Status: P4-P6 implemented in an isolated lab; awaiting P7 owner review
+Status: Rejected after P7 owner review; floor-map coordinates are invalid
 Baseline: Owner-approved R05-r02 P0-P3
 Updated: 2026-07-28
 
-## Objective
+## Historical objective
 
-Expand the approved one-column workstation pair into a five-column,
-two-row, ten-person block on the unchanged current Office background. The work
-remains a development-only simulated Office. It does not modify the Active
-Office map, register other furniture, create art, or authorize promotion.
+This file records the rejected attempt to expand the approved one-column
+workstation pair into a five-column, two-row, ten-person block. It remains
+development-only evidence and does not modify the Active Office map, register
+other furniture, create art, or authorize promotion.
 
 This phase rebuilds the ten-seat composition from the accepted coordinate and
 socket system. It must not patch, offset, or import the rejected
@@ -232,7 +232,15 @@ If P7 is rejected, correct only the failed coordinate, socket, layer, or
 occlusion contract and regenerate the affected proof. Do not compensate with
 unrecorded visual offsets.
 
-## Implemented P4-P6 result
+## Rejected P4-P6 review result
+
+- The far-row standing and clearance cells overlap the wall.
+- The composition omitted a canonical world offset and therefore cannot define
+  valid floor placement.
+- The attempted `15 x 6` block and its `17 x 8` protected envelope are
+  historical evidence only.
+- Future placement must use owner-labelled cells from the neutral full-image
+  grid and must not inherit these coordinates.
 
 - The current ten people are placed in the upper-left as five columns by two
   opposing seats.

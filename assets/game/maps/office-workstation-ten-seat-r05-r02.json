@@ -1,7 +1,8 @@
 {
   "schemaVersion": 1,
   "id": "office-workstation-ten-seat-r05-r02",
-  "status": "owner-review-p4-p6",
+  "status": "rejected-floor-map",
+  "supersededBy": "office-full-grid-v1",
   "developmentOnly": true,
   "activeOfficePromotion": false,
   "stagePixels": [
@@ -1607,6 +1608,23 @@
     "renderFutureEmployees": false,
     "newCharacterOrPose": false,
     "otherFurniture": false
+  },
+  "rejection": {
+    "decidedOn": "2026-07-28",
+    "reason": "far-row-standing-and-clearance-cells-overlap-wall",
+    "canonicalWorldOffsetOmitted": true,
+    "historicalFootprint": {
+      "x": 2,
+      "y": 10,
+      "width": 15,
+      "height": 6
+    },
+    "historicalProtectedEnvelope": {
+      "x": 1,
+      "y": 9,
+      "width": 17,
+      "height": 8
+    }
   },
   "sourceBackground": {
     "file": "assets/art/backgrounds/office-c-background-modern-v3.png",

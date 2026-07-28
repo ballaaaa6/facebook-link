@@ -30,12 +30,12 @@ export function OfficeWorkstationR05LabPage() {
   }, []);
 
   return (
-    <main className="r05-lab" data-review-status={r05Manifest.status}>
+    <main className="r05-lab" data-review-status={r05Manifest.status} data-ten-seat-status={r05TenSeatMap.status}>
       <header className="r05-header">
         <div>
-          <span>STEP 5 · R05-r02 · P4–P6 · OWNER REVIEW</span>
-          <h1>Ten current seats, upper-left</h1>
-          <p>Approved pair expanded to 5 columns · lower block reserved for 10 future employees</p>
+          <span>STEP 5 · R05-r02 · REJECTED FLOOR MAP</span>
+          <h1>Historical ten-seat composition</h1>
+          <p>Negative evidence only · standing cells overlap the wall · superseded by Office Full Grid v1</p>
         </div>
         <dl>
           <div><dt>Directories</dt><dd>19 audited</dd></div>
