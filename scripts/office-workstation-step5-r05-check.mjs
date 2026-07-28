@@ -63,11 +63,11 @@ if (failures.length === 0) {
   "R04 component history must retain desk-only acceptance");
   add(manifest.version === 5 && manifest.geometrySchemaVersion === 6,
     "R05 must use manifest v5 and Geometry v6");
-  add(manifest.status === "owner-calibration-review", "R05 must stop at owner calibration review");
-  add(JSON.stringify(manifest.completedScope) === JSON.stringify(["R05-0", "R05-1", "R05-2"]),
-    "R05 must complete R05-0 through R05-2 only");
-  add(manifest.nextScope === "R05-3-blocked-pending-owner-approval",
-    "R05-3 must remain blocked pending owner approval");
+  add(manifest.status === "owner-anchor-proof-review", "R05 must stop at owner anchor-proof review");
+  add(JSON.stringify(manifest.completedScope) === JSON.stringify(["R05-0", "R05-1", "R05-2", "R05-3A"]),
+    "R05 must complete through R05-3A only");
+  add(manifest.nextScope === "R05-3B-blocked-pending-owner-approval",
+    "R05-3B polished art must remain blocked pending owner approval");
   add(manifest.activeOfficeBaseline?.sha256 === activeHash
     && manifest.activeOfficeBaseline?.sha256 === sha256(manifest.activeOfficeBaseline.file),
   "Active Office baseline changed during R05 calibration");
@@ -94,7 +94,7 @@ if (failures.length === 0) {
   "R04 chair seat-layer semantic failure must stay explicit");
   add(measurements.runtimeCharacter?.pelvisContactPivot === null
     && measurements.runtimeCharacter?.pivotStatus === "unmeasured-r04-declaration-rejected",
-  "R05 must not invent a pelvis contact pivot");
+  "R05 must retain the rejected R04 pelvis declaration as historical evidence");
 
   const equipment = measurements.rejectedR04Equipment;
   add(JSON.stringify(equipment.far.monitor.centerErrorPixels) === JSON.stringify({ x: 0, y: 16 })
@@ -106,20 +106,45 @@ if (failures.length === 0) {
 
   const coordinates = manifest.coordinateContract;
   add(coordinates?.reservationSpace === "top-down-world-grid"
-    && coordinates?.worldAnchor === "reservation-center"
-    && coordinates?.drawFormula === "drawOrigin = worldReservationCenter - localVisualPivot"
+    && coordinates?.supportAnchorDefault === "reservation-center"
+    && coordinates?.supportAnchorOverride === "explicit-semantic-socket-inside-reservation-only"
+    && coordinates?.drawFormula === "drawOrigin = project(worldSupportAnchor.xyz) - localVisualPivot.xy"
     && coordinates?.orientationSpecificMagicOffsets === "forbidden",
   "R05 reservation/pivot coordinate authority changed");
   add(JSON.stringify(manifest.componentContracts?.chair?.baseAndSeatVolume) === JSON.stringify([1, 1, 1])
     && JSON.stringify(manifest.componentContracts?.chair?.backrestVolume) === JSON.stringify([1, 1, 1]),
   "R05 chair must separate base-seat and backrest 1 x 1 x 1 volumes");
-  add(JSON.stringify(manifest.componentContracts?.monitor?.reservation) === JSON.stringify([3, 1])
-    && JSON.stringify(manifest.componentContracts?.monitor?.targetVisualWidthPixels) === JSON.stringify([72, 80]),
-  "R05 monitor reservation or target visual width changed");
-  add(JSON.stringify(manifest.componentContracts?.keyboard?.reservation) === JSON.stringify([1, 1])
-    && JSON.stringify(manifest.componentContracts?.keyboard?.targetVisualPixels)
-      === JSON.stringify({ width: [44, 48], depth: [18, 20] }),
-  "R05 keyboard reservation or clearance envelope changed");
+  const chairProof = manifest.componentContracts?.chair?.anchorProof;
+  add(JSON.stringify(manifest.componentContracts?.chair?.physicalParts) === JSON.stringify([
+    { id: "base-seat", volume: [1, 1, 1], zRange: [0, 1] },
+    { id: "backrest-arms", volume: [1, 1, 1], zRange: [1, 2] },
+  ]) && JSON.stringify(chairProof?.actorLogicalFloorSocketLocal) === JSON.stringify([48, 112])
+    && JSON.stringify(chairProof?.seatPlaneCandidateLocal) === JSON.stringify([48, 80])
+    && chairProof?.seatHeightPixels === 32
+    && JSON.stringify(chairProof?.contactErrorPixels) === JSON.stringify({ front: [0, 0], back: [0, 0] }),
+  "R05-3A chair physical parts or socket proof changed");
+  const monitor = manifest.componentContracts?.monitor;
+  add(JSON.stringify(monitor?.reservation) === JSON.stringify([3, 1])
+    && JSON.stringify(monitor?.supportFootprint) === JSON.stringify([1, 1])
+    && JSON.stringify(monitor?.supportAnchorDeskLocal) === JSON.stringify([1.5, 0.5, 2])
+    && JSON.stringify(monitor?.targetVisualWidthPixels) === JSON.stringify([72, 80])
+    && JSON.stringify(monitor?.afterCenterErrorPixels) === JSON.stringify({ far: [0, 0], near: [0, 0] }),
+  "R05 monitor reservation, support socket, or after alignment changed");
+  const keyboard = manifest.componentContracts?.keyboard;
+  add(keyboard?.decision === "owner-accepted-and-frozen"
+    && JSON.stringify(keyboard?.reservation) === JSON.stringify([1, 1])
+    && JSON.stringify(keyboard?.renderPixels) === JSON.stringify([48, 24])
+    && JSON.stringify(keyboard?.localVisualPivot) === JSON.stringify([24, 12])
+    && typeof keyboard?.asset?.path === "string"
+    && keyboard?.asset?.sha256 === sha256(keyboard.asset.path),
+  "R05 keyboard acceptance, pixels, or pivot changed");
+  const feedback = measurements.ownerFeedbackR05_3A;
+  add(feedback?.keyboard?.decision === "accepted-and-frozen"
+    && JSON.stringify(feedback?.monitor?.afterCenterErrorPixels) === JSON.stringify({ far: [0, 0], near: [0, 0] })
+    && feedback?.chairPerson?.r04ChairPixelsAllowed === false
+    && JSON.stringify(feedback?.chairPerson?.actorLogicalFloorSocketLocal) === JSON.stringify([48, 112])
+    && JSON.stringify(feedback?.chairPerson?.seatPlaneCandidateLocal) === JSON.stringify([48, 80]),
+  "R05-3A owner feedback measurements changed");
 
   for (const key of [
     "newArtworkGeneration", "rendererImplementation", "singleSeatAssembly",
@@ -134,11 +159,14 @@ if (failures.length === 0) {
     `${reviewDirectory}/01-reservation-vs-visual-pivot.png`,
     `${reviewDirectory}/02-chair-person-contact-measurement.png`,
     `${reviewDirectory}/03-equipment-center-pivot-calibration.png`,
+    `${reviewDirectory}/04-monitor-base-socket-before-after.png`,
+    `${reviewDirectory}/05-chair-two-volume-before-after.png`,
+    `${reviewDirectory}/06-person-seat-contact-six-frames.png`,
   ];
   add(JSON.stringify(manifest.reviewOutputs) === JSON.stringify(expectedBoards),
-    "R05 manifest must list exactly the three calibration boards");
+    "R05 manifest must list the three calibration and three before/after boards");
   add(JSON.stringify(recursiveFiles(reviewDirectory)) === JSON.stringify(expectedBoards),
-    "R05 review directory must contain exactly three boards");
+    "R05 review directory must contain exactly six boards");
   for (const path of expectedBoards) {
     add(existsSync(join(root, path)), `Missing R05 board: ${path}`);
     if (existsSync(join(root, path))) {
@@ -148,9 +176,9 @@ if (failures.length === 0) {
   }
 
   add(!existsSync(join(root, "assets/game/processed/office-workstation-v3/step5-r05")),
-    "R05-0..R05-2 cannot create processed R05 component artwork");
+    "R05-0..R05-3A cannot create processed R05 component artwork");
   add(!existsSync(join(root, "apps/web/src/features/office/lab/workstation-v3-step5-r05")),
-    "R05-0..R05-2 cannot create an R05 runtime lab");
+    "R05-0..R05-3A cannot create an R05 runtime lab");
   const activeRegistry = readFileSync(join(root, activeRegistryPath), "utf8");
   add(!activeRegistry.includes("step5-r05"), "Active Office registry imports R05 calibration files");
 }
@@ -160,6 +188,6 @@ if (failures.length > 0) {
   process.exitCode = 1;
 } else {
   process.stdout.write(
-    "Step 5 R05-0..R05-2 check OK: R04 rejected, measured reservation/pivot/contact contracts locked, exactly three owner boards, Active Office unchanged.\n",
+    "Step 5 R05-0..R05-3A check OK: keyboard frozen, monitor base centered, chair/person socket proof locked, six owner boards, Active Office unchanged.\n",
   );
 }

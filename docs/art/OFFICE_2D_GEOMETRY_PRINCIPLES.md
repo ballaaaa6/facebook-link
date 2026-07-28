@@ -1,6 +1,6 @@
 # Office 2D Geometry Principles
 
-Status: Current Geometry v6 workstation principles; R05-0..R05-2 owner review
+Status: Current Geometry v6 workstation principles; R05-3A owner anchor-proof review
 Updated: 2026-07-28
 
 This document defines the shared Office principles. For Step 5 workstation
@@ -173,7 +173,8 @@ or contact anchors.
 ## Approval gate
 
 R04 physical composition is rejected; coordinate stability did not prove
-seat contact or correct equipment pivots. R05-0 through R05-2 provide
-measurement evidence and three calibration boards only. R05-3 artwork,
+seat contact or correct equipment pivots. R05-3A freezes the keyboard, centers
+the monitor base, and proves the chair/person sockets with placeholders.
+R05-3B polished artwork,
 single-seat composition, the other eighteen characters, ten seats, Step 6,
 and Active Office permissions remain false pending owner approval.

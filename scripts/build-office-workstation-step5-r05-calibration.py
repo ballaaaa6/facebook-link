@@ -114,6 +114,19 @@ def board(title: str, subtitle: str) -> tuple[Image.Image, ImageDraw.ImageDraw]:
     return image, draw
 
 
+def checker(size: tuple[int, int], cell: int = 16) -> Image.Image:
+    image = Image.new("RGBA", size, (229, 237, 242, 255))
+    draw = ImageDraw.Draw(image)
+    for y in range(0, size[1], cell):
+        for x in range(0, size[0], cell):
+            if (x // cell + y // cell) % 2:
+                draw.rectangle(
+                    (x, y, min(size[0] - 1, x + cell - 1), min(size[1] - 1, y + cell - 1)),
+                    fill=(209, 222, 230, 255),
+                )
+    return image
+
+
 def alpha_bounds(image: Image.Image) -> dict[str, int]:
     bounds = image.getchannel("A").getbbox()
     if bounds is None:
@@ -292,9 +305,46 @@ def measurement_data() -> dict[str, Any]:
                 "maximumSideOverhangPixels": 8,
             },
         },
+        "ownerFeedbackR05_3A": {
+            "keyboard": {
+                "decision": "accepted-and-frozen",
+                "reservation": [1, 1],
+                "renderPixels": [48, 24],
+                "localVisualPivot": [24, 12],
+            },
+            "monitor": {
+                "decision": "anchor-proof-required",
+                "reservation": [3, 1],
+                "supportFootprint": [1, 1],
+                "supportAnchorDeskLocal": [1.5, 0.5, 2],
+                "temporaryVisualPivot": [26, 40],
+                "beforeCenterErrorPixels": {"far": [0, 16], "near": [0, 16]},
+                "afterCenterErrorPixels": {"far": [0, 0], "near": [0, 0]},
+                "proofUsesExistingVisual": True,
+            },
+            "chairPerson": {
+                "decision": "two-volume-anchor-proof-required",
+                "r04ChairPixelsAllowed": False,
+                "physicalParts": {
+                    "base-seat": {"volume": [1, 1, 1], "zRange": [0, 1]},
+                    "backrest-arms": {"volume": [1, 1, 1], "zRange": [1, 2]},
+                },
+                "personSegments": {
+                    "legs": {"zRange": [0, 1]},
+                    "torso": {"zRange": [1, 2]},
+                    "head": {"zRange": [2, 3]},
+                },
+                "actorLogicalFloorSocketLocal": [48, 112],
+                "seatPlaneCandidateLocal": [48, 80],
+                "seatHeightPixels": 32,
+                "candidateBasis": "front frame first sustained pants/thigh row; back view inherits the shared seated skeleton anchor because the coat occludes the pelvis",
+                "contactErrorPixels": {"front": [0, 0], "back": [0, 0]},
+                "candidateStatus": "owner-anchor-proof-review-not-polished-art",
+            },
+        },
         "gate": {
-            "completed": ["R05-0", "R05-1", "R05-2"],
-            "blocked": ["R05-3", "new-artwork", "renderer", "ten-seat", "step6", "active-office"],
+            "completed": ["R05-0", "R05-1", "R05-2", "R05-3A"],
+            "blocked": ["R05-3B", "polished-artwork", "renderer", "ten-seat", "step6", "active-office"],
         },
     }
 
@@ -362,14 +412,14 @@ def board_reservation_contract() -> Image.Image:
     label(draw, (505, 704), "Purple outline = 3 x 1 monitor reservation", 17, COLORS["purple"], True)
     label(draw, (505, 748), "Amber outline = 1 x 1 keyboard reservation", 17, COLORS["amber"], True)
     label(draw, (505, 792), "Solid shape = visual envelope; it does not fill the reservation", 17)
-    label(draw, (505, 836), "Red cross = center-to-center world anchor", 17, COLORS["red"], True)
+    label(draw, (505, 836), "Red cross = world support anchor (default: reservation center)", 16, COLORS["red"], True)
     label(draw, (150, 635), "TOP-DOWN OCCUPANCY IS NOT THE PERSPECTIVE SPRITE IMAGE", 17, COLORS["green"], True)
 
     panel(draw, (1035, 120, 1562, 950), "B. R05 GEOMETRY AUTHORITY")
     rules = [
         ("1", "Reserve from the top-down world grid.", COLORS["cyan"]),
         ("2", "Give every visual a measured local pivot.", COLORS["purple"]),
-        ("3", "Place center-to-center with one formula.", COLORS["amber"]),
+        ("3", "Attach a semantic support socket inside the reservation.", COLORS["amber"]),
         ("4", "Apply support height z separately.", COLORS["green"]),
         ("5", "Allow visual overflow without changing collision.", COLORS["pink"]),
     ]
@@ -381,7 +431,7 @@ def board_reservation_contract() -> Image.Image:
         y += 88
     draw.rounded_rectangle((1070, 660, 1528, 785), radius=12, fill=COLORS["panel2"], outline=COLORS["cyan"], width=2)
     label(draw, (1092, 682), "drawOrigin =", 21, COLORS["cyan"], True)
-    label(draw, (1092, 718), "worldReservationCenter", 19, bold=True)
+    label(draw, (1092, 718), "project(worldSupportAnchor)", 17, bold=True)
     label(draw, (1092, 750), "- localVisualPivot", 19, COLORS["amber"], True)
     wrapped(
         draw,
@@ -562,8 +612,8 @@ def board_equipment_pivots(data: dict[str, Any]) -> Image.Image:
             1060,
             "ONE PLACEMENT FORMULA",
             [
-                "world anchor = reservation center",
-                "draw = world anchor - local pivot",
+                "support anchor defaults to reservation center",
+                "draw = project(support anchor) - local pivot",
                 "orientation-specific magic offsets = forbidden",
             ],
             COLORS["cyan"],
@@ -576,21 +626,225 @@ def board_equipment_pivots(data: dict[str, Any]) -> Image.Image:
     return image
 
 
+def draw_monitor_anchor_case(
+    canvas: Image.Image,
+    draw: ImageDraw.ImageDraw,
+    origin: tuple[int, int],
+    orientation: str,
+    corrected: bool,
+    scale: int = 3,
+) -> None:
+    r04 = json.loads(R04_MANIFEST_PATH.read_text(encoding="utf-8"))
+    geometry = r04["geometry"][orientation]
+    support = geometry["support"]
+    reservation = geometry["monitorReservation"]
+    left, top = origin
+    width, depth = 96 * scale, 64 * scale
+    draw.rectangle((left, top, left + width, top + depth), fill="#e5edf2", outline=COLORS["cyan"], width=3)
+    for x in (32, 64):
+        draw.line((left + x * scale, top, left + x * scale, top + depth), fill="#7f93aa", width=2)
+    draw.line((left, top + 32 * scale, left + width, top + 32 * scale), fill="#7f93aa", width=2)
+    reservation_left = left + (reservation["left"] - support["left"]) * scale
+    reservation_top = top + (reservation["top"] - support["top"]) * scale
+    draw.rectangle(
+        (reservation_left + 2, reservation_top + 2,
+         reservation_left + reservation["width"] * scale - 2,
+         reservation_top + reservation["height"] * scale - 2),
+        outline=COLORS["purple"], width=4,
+    )
+    center_cell_left = left + 32 * scale
+    draw.rectangle(
+        (center_cell_left + 7, reservation_top + 7,
+         center_cell_left + 32 * scale - 7, reservation_top + 32 * scale - 7),
+        outline=COLORS["green"], width=3,
+    )
+    target = {
+        "x": reservation["left"] + reservation["width"] // 2,
+        "y": reservation["top"] + reservation["height"] // 2,
+    }
+    monitor_geometry = geometry["monitor"]
+    if corrected:
+        monitor_left = target["x"] - 26
+        monitor_top = target["y"] - 40
+    else:
+        monitor_left = monitor_geometry["left"]
+        monitor_top = monitor_geometry["top"]
+    asset_name = f"monitor.workstation.v3.{'back' if orientation == 'far' else 'front'}.png"
+    monitor = Image.open(R04_DIR / asset_name).convert("RGBA").resize((52 * scale, 40 * scale), Image.Resampling.NEAREST)
+    x = left + (monitor_left - support["left"]) * scale
+    y = top + (monitor_top - support["top"]) * scale
+    canvas.paste(monitor.convert("RGB"), (x, y), monitor)
+    current_base = {"x": monitor_left + 26, "y": monitor_top + 40}
+    points = ((target, COLORS["green"]),) if corrected else (
+        (target, COLORS["green"]), (current_base, COLORS["red"]),
+    )
+    for point, color in points:
+        px = left + (point["x"] - support["left"]) * scale
+        py = top + (point["y"] - support["top"]) * scale
+        draw.line((px - 10, py, px + 10, py), fill=color, width=3)
+        draw.line((px, py - 10, px, py + 10), fill=color, width=3)
+
+
+def board_monitor_anchor_before_after() -> Image.Image:
+    image, draw = board(
+        "STEP 5 R05-3A / MONITOR BASE-SOCKET BEFORE + AFTER",
+        "SAME TEMPORARY MONITOR PIXELS / ONLY SUPPORT ANCHOR CHANGES / KEYBOARD ACCEPTED AND FROZEN",
+    )
+    cases = [
+        (38, 120, "far", False),
+        (812, 120, "far", True),
+        (38, 535, "near", False),
+        (812, 535, "near", True),
+    ]
+    for left, top, orientation, corrected in cases:
+        title = f"{'AFTER' if corrected else 'BEFORE'} / {orientation.upper()}"
+        panel(draw, (left, top, left + 750, top + 385), title)
+        draw_monitor_anchor_case(image, draw, (left + 225, top + 105), orientation, corrected)
+        error = 0 if corrected else 16
+        label(
+            draw,
+            (left + 42, top + 330),
+            f"base-to-support-center error = {error} px",
+            18,
+            COLORS["green"] if corrected else COLORS["red"],
+            True,
+        )
+        label(draw, (left + 410, top + 330), "green box = central 1 x 1 support footprint", 14, COLORS["muted"])
+    label(draw, (42, 950), "RESULT: reservation remains 3 x 1; the stand base attaches to the center of its middle support cell in both views.",
+          17, COLORS["green"], True)
+    return image
+
+
+def chair_anchor_layers(orientation: str) -> dict[str, Image.Image]:
+    rear = Image.new("RGBA", (96, 112), (0, 0, 0, 0))
+    foreground = Image.new("RGBA", (96, 112), (0, 0, 0, 0))
+    rear_draw = ImageDraw.Draw(rear)
+    front_draw = ImageDraw.Draw(foreground)
+    outline = "#172033"
+    upholstery = "#294d78"
+    upholstery_light = "#3e6b9c"
+    metal = "#46556a"
+    wheel = "#1f2937"
+
+    # Physical part A: base + seat occupies z0..z1 and exposes a seat socket at local y=80.
+    rear_draw.rounded_rectangle((24, 80, 72, 88), radius=4, fill=upholstery_light, outline=outline, width=2)
+    rear_draw.rectangle((45, 87, 51, 105), fill=metal, outline=outline, width=1)
+    rear_draw.rectangle((31, 104, 65, 108), fill=metal, outline=outline, width=1)
+    rear_draw.rectangle((18, 106, 36, 109), fill=metal, outline=outline, width=1)
+    rear_draw.rectangle((60, 106, 78, 109), fill=metal, outline=outline, width=1)
+    rear_draw.rounded_rectangle((15, 107, 23, 111), radius=2, fill=wheel, outline=outline, width=1)
+    rear_draw.rounded_rectangle((73, 107, 81, 111), radius=2, fill=wheel, outline=outline, width=1)
+
+    # Physical part B: backrest + arms occupies z1..z2. Its depth decides whether it is rear or foreground.
+    backrest_draw = rear_draw if orientation == "front" else front_draw
+    backrest_draw.rounded_rectangle((24, 48, 72, 79), radius=7, fill=upholstery, outline=outline, width=3)
+    backrest_draw.line((29, 76, 67, 76), fill=upholstery_light, width=2)
+
+    # Foreground masks are derived from the two physical masters; they are not extra logical volumes.
+    front_draw.rounded_rectangle((23, 85, 73, 90), radius=3, fill=upholstery, outline=outline, width=2)
+    front_draw.rectangle((18, 64, 24, 84), fill=metal, outline=outline, width=1)
+    front_draw.rectangle((72, 64, 78, 84), fill=metal, outline=outline, width=1)
+    front_draw.rounded_rectangle((16, 62, 26, 67), radius=2, fill=upholstery, outline=outline, width=1)
+    front_draw.rounded_rectangle((70, 62, 80, 67), radius=2, fill=upholstery, outline=outline, width=1)
+    return {"rear": rear, "foreground": foreground}
+
+
+def compose_chair_anchor_proof(orientation: str, frame: int = 0) -> Image.Image:
+    actor_sheet = Image.open(ACTOR_PATH).convert("RGBA")
+    actor = actor_frame(actor_sheet, 14 if orientation == "front" else 13, frame)
+    chair = chair_anchor_layers(orientation)
+    image = checker((96, 112), 16)
+    image.alpha_composite(chair["rear"])
+    image.alpha_composite(actor, (0, 0))
+    image.alpha_composite(chair["foreground"])
+    return image
+
+
+def board_chair_two_volume_before_after() -> Image.Image:
+    image, draw = board(
+        "STEP 5 R05-3A / CHAIR TWO-VOLUME BEFORE + AFTER",
+        "AFTER IS AN ANCHOR PROOF, NOT POLISHED CHAIR ART / CURRENT CHARACTER AND POSE PIXELS ARE UNCHANGED",
+    )
+    panel(draw, (38, 120, 780, 735), "BEFORE / REJECTED R04 CHAIR MASKS")
+    panel(draw, (818, 120, 1562, 735), "AFTER / TWO PHYSICAL PARTS + DERIVED OCCLUSION MASKS")
+    for column, orientation in enumerate(("front", "back")):
+        x_before = 90 + column * 335
+        x_after = 870 + column * 335
+        y = 205
+        before_canvas = checker((96, 112), 16)
+        before_canvas.alpha_composite(compose_rejected_chair_actor(orientation))
+        before = before_canvas.resize((288, 336), Image.Resampling.NEAREST)
+        after = compose_chair_anchor_proof(orientation).resize((288, 336), Image.Resampling.NEAREST)
+        image.paste(before.convert("RGB"), (x_before, y))
+        image.paste(after.convert("RGB"), (x_after, y))
+        seat_y = y + 80 * 3
+        draw.line((x_before, seat_y, x_before + 288, seat_y), fill=COLORS["red"], width=4)
+        draw.line((x_after, seat_y, x_after + 288, seat_y), fill=COLORS["green"], width=4)
+        label(draw, (x_before, 540), orientation.upper(), 16, COLORS["red"], True)
+        label(draw, (x_after, 540), orientation.upper(), 16, COLORS["green"], True)
+        label(draw, (x_before, 574), "declared line / wrong mask", 14, COLORS["muted"])
+        label(draw, (x_after, 590), "pelvis = cushion surface @ y80", 14, COLORS["text"])
+
+    panel(draw, (38, 760, 1562, 950), "XYZ SOCKET MODEL / PHYSICAL VOLUME IS NOT THE SAME THING AS A DRAW MASK")
+    rules = [
+        (72, "z0..z1", "BASE + SEAT 1 x 1 x 1", "floor socket z0 / cushion socket z1", COLORS["cyan"]),
+        (565, "z1..z2", "BACKREST + ARMS 1 x 1 x 1", "back-support socket / head remains above", COLORS["purple"]),
+        (1060, "z0..z3", "PERSON 1 x 1 x 3", "legs / torso / head; pelvis socket at z1", COLORS["amber"]),
+    ]
+    for left, level, title, note, color in rules:
+        draw.rounded_rectangle((left, 812, left + 430, 918), radius=12, fill=COLORS["panel2"], outline=color, width=3)
+        label(draw, (left + 20, 830), level, 18, color, True)
+        label(draw, (left + 120, 830), title, 16, COLORS["text"], True)
+        label(draw, (left + 20, 875), note, 14, COLORS["muted"])
+    return image
+
+
+def board_contact_stability_before_after() -> Image.Image:
+    image, draw = board(
+        "STEP 5 R05-3A / PERSON-SEAT CONTACT ACROSS SIX FRAMES",
+        "ONE FIXED FLOOR SOCKET + ONE FIXED SEAT SOCKET / NO CHARACTER OR POSE REGENERATION",
+    )
+    for row_index, orientation in enumerate(("front", "back")):
+        panel_top = 120 + row_index * 415
+        panel(draw, (38, panel_top, 1562, panel_top + 385), f"{orientation.upper()} / BEFORE FRAME 0 + AFTER FRAMES 0..5")
+        label(draw, (65, panel_top + 68), "BEFORE", 15, COLORS["red"], True)
+        before_canvas = checker((96, 112), 16)
+        before_canvas.alpha_composite(compose_rejected_chair_actor(orientation))
+        before = before_canvas.resize((192, 224), Image.Resampling.NEAREST)
+        image.paste(before.convert("RGB"), (65, panel_top + 105))
+        draw.line((65, panel_top + 105 + 160, 257, panel_top + 105 + 160), fill=COLORS["red"], width=3)
+        for frame in range(6):
+            x = 330 + frame * 198
+            after = compose_chair_anchor_proof(orientation, frame).resize((192, 224), Image.Resampling.NEAREST)
+            image.paste(after.convert("RGB"), (x, panel_top + 105))
+            seat_y = panel_top + 105 + 160
+            draw.line((x, seat_y, x + 192, seat_y), fill=COLORS["green"], width=3)
+            label(draw, (x + 70, panel_top + 340), f"F{frame}", 14, COLORS["muted"], True)
+        label(draw, (65, panel_top + 340), "R04 mask does not contain cushion", 13, COLORS["red"])
+        label(draw, (330, panel_top + 68), "AFTER / contact error 0 px / anchor drift 0 px", 16, COLORS["green"], True)
+    label(draw, (42, 955), "Green line = measured pose boundary and seat socket at local y80; logical floor socket is local y112, exactly one 32 px z level below.",
+          16, COLORS["green"], True)
+    return image
+
+
 def manifest_data(measurement_content: bytes) -> dict[str, Any]:
     outputs = [
         REVIEW_DIR / "01-reservation-vs-visual-pivot.png",
         REVIEW_DIR / "02-chair-person-contact-measurement.png",
         REVIEW_DIR / "03-equipment-center-pivot-calibration.png",
+        REVIEW_DIR / "04-monitor-base-socket-before-after.png",
+        REVIEW_DIR / "05-chair-two-volume-before-after.png",
+        REVIEW_DIR / "06-person-seat-contact-six-frames.png",
     ]
     return {
         "version": 5,
         "geometrySchemaVersion": 6,
         "id": "office.workstation.step5.r05.calibration",
-        "status": "owner-calibration-review",
+        "status": "owner-anchor-proof-review",
         "updatedOn": "2026-07-28",
         "replaces": "office.workstation.step5.single-seat.v4",
-        "completedScope": ["R05-0", "R05-1", "R05-2"],
-        "nextScope": "R05-3-blocked-pending-owner-approval",
+        "completedScope": ["R05-0", "R05-1", "R05-2", "R05-3A"],
+        "nextScope": "R05-3B-blocked-pending-owner-approval",
         "activeOfficeBaseline": {
             "file": repo_path(ACTIVE_MAP_PATH),
             "sha256": sha256(ACTIVE_MAP_PATH),
@@ -614,8 +868,9 @@ def manifest_data(measurement_content: bytes) -> dict[str, Any]:
             "reservationSpace": "top-down-world-grid",
             "visualSpace": "perspective-alpha-envelope-independent-from-reservation",
             "supportHeight": "world-z-independent-from-top-down-reservation",
-            "worldAnchor": "reservation-center",
-            "drawFormula": "drawOrigin = worldReservationCenter - localVisualPivot",
+            "supportAnchorDefault": "reservation-center",
+            "supportAnchorOverride": "explicit-semantic-socket-inside-reservation-only",
+            "drawFormula": "drawOrigin = project(worldSupportAnchor.xyz) - localVisualPivot.xy",
             "orientationSpecificMagicOffsets": "forbidden",
         },
         "componentContracts": {
@@ -625,19 +880,42 @@ def manifest_data(measurement_content: bytes) -> dict[str, Any]:
                 "baseAndSeatVolume": [1, 1, 1],
                 "backrestVolume": [1, 1, 1],
                 "levels": {"floor": 0, "seatPlane": 1, "backrestTop": 2},
-                "requiredPartMasks": ["base-seat", "backrest-rear", "backrest-foreground"],
+                "physicalParts": [
+                    {"id": "base-seat", "volume": [1, 1, 1], "zRange": [0, 1]},
+                    {"id": "backrest-arms", "volume": [1, 1, 1], "zRange": [1, 2]},
+                ],
+                "derivedRenderMasks": ["base-seat-rear", "seat-front-lip", "backrest-rear", "backrest-foreground", "armrests-foreground"],
                 "requiredMeasuredPivots": ["floor-contact", "seat-plane", "back-support", "person-pelvis-contact"],
+                "anchorProof": {
+                    "actorLogicalFloorSocketLocal": [48, 112],
+                    "seatPlaneCandidateLocal": [48, 80],
+                    "seatHeightPixels": 32,
+                    "candidateBasis": "front frame first sustained pants/thigh row; back view inherits the shared seated skeleton anchor because the coat occludes the pelvis",
+                    "contactErrorPixels": {"front": [0, 0], "back": [0, 0]},
+                    "status": "owner-review-placeholder-not-polished-art",
+                },
             },
             "monitor": {
                 "reservation": [3, 1],
+                "supportFootprint": [1, 1],
+                "supportAnchorDeskLocal": [1.5, 0.5, 2],
                 "targetVisualWidthPixels": [72, 80],
                 "pivot": "base-contact-center",
+                "temporaryProofVisualPivot": [26, 40],
+                "beforeCenterErrorPixels": {"far": [0, 16], "near": [0, 16]},
+                "afterCenterErrorPixels": {"far": [0, 0], "near": [0, 0]},
                 "maximumOppositeSideClearanceDeltaPixels": 1,
             },
             "keyboard": {
+                "decision": "owner-accepted-and-frozen",
                 "reservation": [1, 1],
-                "targetVisualPixels": {"width": [44, 48], "depth": [18, 20]},
+                "renderPixels": [48, 24],
+                "asset": {
+                    "path": repo_path(R04_DIR / "keyboard.workstation.v3.full.png"),
+                    "sha256": sha256(R04_DIR / "keyboard.workstation.v3.full.png"),
+                },
                 "pivot": "visual-alpha-center",
+                "localVisualPivot": [24, 12],
                 "minimumFrontBackClearancePixels": 6,
                 "maximumSideOverhangPixels": 8,
             },
@@ -650,6 +928,7 @@ def manifest_data(measurement_content: bytes) -> dict[str, Any]:
         "permissions": {
             "deterministicMeasurement": True,
             "calibrationBoards": True,
+            "anchorProofBoards": True,
             "newArtworkGeneration": False,
             "rendererImplementation": False,
             "singleSeatAssembly": False,
@@ -659,16 +938,16 @@ def manifest_data(measurement_content: bytes) -> dict[str, Any]:
             "activeOfficePromotion": False,
         },
         "ownerGate": {
-            "requiredDecision": "Approve or revise all three R05 calibration boards.",
+            "requiredDecision": "Approve or revise the three R05-3A before/after anchor-proof boards.",
             "explicitlyNotApproved": [
-                "new-chair-artwork",
-                "monitor-or-keyboard-regeneration",
+                "polished-chair-artwork",
+                "monitor-regeneration-or-final-normalization",
                 "single-seat-composition",
                 "ten-seat-layout",
                 "step6",
                 "active-office",
             ],
-            "onApproval": "Begin R05-3 only: create and measure corrected chair, monitor, and keyboard parts against the retained desk and current seated poses.",
+            "onApproval": "Begin R05-3B only: create polished chair art from the approved sockets and normalize the monitor against the approved base contact; keep the accepted keyboard unchanged.",
         },
     }
 
@@ -680,6 +959,9 @@ def build_outputs() -> dict[Path, bytes]:
         REVIEW_DIR / "01-reservation-vs-visual-pivot.png": board_reservation_contract(),
         REVIEW_DIR / "02-chair-person-contact-measurement.png": board_chair_contact(measurement),
         REVIEW_DIR / "03-equipment-center-pivot-calibration.png": board_equipment_pivots(measurement),
+        REVIEW_DIR / "04-monitor-base-socket-before-after.png": board_monitor_anchor_before_after(),
+        REVIEW_DIR / "05-chair-two-volume-before-after.png": board_chair_two_volume_before_after(),
+        REVIEW_DIR / "06-person-seat-contact-six-frames.png": board_contact_stability_before_after(),
     }
     outputs = {path: png_bytes(image) for path, image in reviews.items()}
     outputs[MEASUREMENT_PATH] = measurement_content
@@ -697,12 +979,12 @@ def main() -> int:
         if stale:
             print("R05 calibration outputs are stale or missing: " + ", ".join(stale))
             return 1
-        print(f"R05-0..R05-2 outputs are byte-exact: {len(outputs)} files.")
+        print(f"R05-0..R05-3A outputs are byte-exact: {len(outputs)} files.")
         return 0
     for path, content in outputs.items():
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(content)
-    print(f"Built R05-0..R05-2 measurement evidence and owner boards: {len(outputs)} files.")
+    print(f"Built R05-0..R05-3A measurement evidence and owner boards: {len(outputs)} files.")
     return 0
 
 

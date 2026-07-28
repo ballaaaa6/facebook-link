@@ -1,6 +1,6 @@
 # Office Workstation Step 5 R05 Calibration Gate
 
-Status: R05-0 through R05-2 complete; owner calibration review required
+Status: R05-0 through R05-3A complete; owner anchor-proof review required
 Updated: 2026-07-28
 
 Current authorities:
@@ -228,9 +228,38 @@ The measurements record:
 Exactly three boards are stored under
 `assets/art/layout-references/office-workstation-v3/step5-r05/`.
 
+## R05-3A - owner-feedback anchor proof
+
+The keyboard is owner-accepted and frozen at `48 x 24` pixels with a centered
+`[24,12]` local visual pivot. The monitor remains a `3 x 1` reservation but
+uses a centered `1 x 1` support footprint and the desk-local support socket
+`[1.5,0.5,2]`. Reattaching the existing temporary monitor visual to that
+socket reduces the measured base error from 16 px to 0 px in both views.
+
+The chair proof uses two physical volumes:
+
+- `base-seat` is `1 x 1 x 1` from `z0..z1`;
+- `backrest-arms` is `1 x 1 x 1` from `z1..z2`.
+
+These two physical parts derive multiple rear and foreground draw masks; a
+draw mask never creates another logical volume. The current seated character
+and pose pixels remain unchanged. The front pose begins its sustained
+pants/thigh region at local y80, so the owner-review seat socket is `[48,80]`.
+The seated logical floor socket is `[48,112]`, one 32 px z level below. The
+back view inherits the same skeleton socket because the coat visually occludes
+its pelvis. The placeholder proof records 0 px contact error and 0 px anchor
+drift across all six frames; it is not polished chair artwork.
+
+Three additional before/after boards are stored in the same R05 directory:
+
+1. `04-monitor-base-socket-before-after.png`;
+2. `05-chair-two-volume-before-after.png`;
+3. `06-person-seat-contact-six-frames.png`.
+
 ## Current owner gate
 
-The owner should review the three R05 images. Approval permits R05-3 only:
-create and measure corrected chair, monitor, and keyboard parts against the
-retained desk and existing seated poses. Single-seat composition, ten-seat
-assembly, roster-wide calibration, Step 6, and Active Office remain blocked.
+The owner should review the three R05-3A before/after images. Approval permits
+R05-3B only: create polished chair art from the approved sockets and normalize
+the monitor against its approved base contact while leaving the keyboard
+unchanged. Single-seat composition, ten-seat assembly, roster-wide
+calibration, Step 6, and Active Office remain blocked.

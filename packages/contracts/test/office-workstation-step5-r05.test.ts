@@ -25,16 +25,43 @@ test("R05-0 freezes the R04 failures without replacing accepted inputs", () => {
 
 test("R05-1 separates reservation, visual pivot, and support height", () => {
   assert.equal(manifest.coordinateContract.reservationSpace, "top-down-world-grid");
-  assert.equal(manifest.coordinateContract.worldAnchor, "reservation-center");
+  assert.equal(manifest.coordinateContract.supportAnchorDefault, "reservation-center");
   assert.equal(
     manifest.coordinateContract.drawFormula,
-    "drawOrigin = worldReservationCenter - localVisualPivot",
+    "drawOrigin = project(worldSupportAnchor.xyz) - localVisualPivot.xy",
   );
   assert.equal(manifest.coordinateContract.orientationSpecificMagicOffsets, "forbidden");
   assert.deepEqual(manifest.componentContracts.chair.baseAndSeatVolume, [1, 1, 1]);
   assert.deepEqual(manifest.componentContracts.chair.backrestVolume, [1, 1, 1]);
   assert.deepEqual(manifest.componentContracts.monitor.reservation, [3, 1]);
   assert.deepEqual(manifest.componentContracts.keyboard.reservation, [1, 1]);
+});
+
+test("R05-3A accepts the keyboard and centers the monitor base in both views", () => {
+  assert.equal(manifest.componentContracts.keyboard.decision, "owner-accepted-and-frozen");
+  assert.deepEqual(manifest.componentContracts.keyboard.renderPixels, [48, 24]);
+  assert.deepEqual(manifest.componentContracts.keyboard.localVisualPivot, [24, 12]);
+  assert.deepEqual(manifest.componentContracts.monitor.supportFootprint, [1, 1]);
+  assert.deepEqual(manifest.componentContracts.monitor.supportAnchorDeskLocal, [1.5, 0.5, 2]);
+  assert.deepEqual(manifest.componentContracts.monitor.beforeCenterErrorPixels, {
+    far: [0, 16], near: [0, 16],
+  });
+  assert.deepEqual(manifest.componentContracts.monitor.afterCenterErrorPixels, {
+    far: [0, 0], near: [0, 0],
+  });
+});
+
+test("R05-3A separates chair physical volumes from draw masks and aligns the seated pose", () => {
+  const chair = manifest.componentContracts.chair;
+  assert.deepEqual(chair.physicalParts, [
+    { id: "base-seat", volume: [1, 1, 1], zRange: [0, 1] },
+    { id: "backrest-arms", volume: [1, 1, 1], zRange: [1, 2] },
+  ]);
+  assert.deepEqual(chair.anchorProof.actorLogicalFloorSocketLocal, [48, 112]);
+  assert.deepEqual(chair.anchorProof.seatPlaneCandidateLocal, [48, 80]);
+  assert.equal(chair.anchorProof.seatHeightPixels, 32);
+  assert.deepEqual(chair.anchorProof.contactErrorPixels, { front: [0, 0], back: [0, 0] });
+  assert.equal(measurements.ownerFeedbackR05_3A.chairPerson.r04ChairPixelsAllowed, false);
 });
 
 test("R05-2 records the measurable R04 failures", () => {
@@ -52,9 +79,9 @@ test("R05-2 records the measurable R04 failures", () => {
 test("R05 stops before artwork and preserves Active Office byte-for-byte", () => {
   const digest = (url: URL) => createHash("sha256").update(readFileSync(url)).digest("hex");
   assert.equal(digest(activeOfficeUrl), manifest.activeOfficeBaseline.sha256);
-  assert.equal(manifest.nextScope, "R05-3-blocked-pending-owner-approval");
+  assert.equal(manifest.nextScope, "R05-3B-blocked-pending-owner-approval");
   assert.equal(manifest.permissions.newArtworkGeneration, false);
   assert.equal(manifest.permissions.singleSeatAssembly, false);
   assert.equal(manifest.permissions.activeOfficePromotion, false);
-  assert.equal(manifest.reviewOutputs.length, 3);
+  assert.equal(manifest.reviewOutputs.length, 6);
 });

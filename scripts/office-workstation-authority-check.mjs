@@ -232,10 +232,10 @@ add(failures, step5R04.permissions?.tenSeatAssembly === false
 "Step 5 R04 must keep expansion and Active Office blocked");
 add(failures, step5R04.activeOfficeBaseline?.sha256 === assembly.activeOfficeBaseline?.sha256,
   "Step 5 R04 must inherit the exact Active Office baseline hash");
-add(failures, step5R05.status === "owner-calibration-review"
-  && JSON.stringify(step5R05.completedScope) === JSON.stringify(["R05-0", "R05-1", "R05-2"])
-  && step5R05.nextScope === "R05-3-blocked-pending-owner-approval",
-"Step 5 R05 must stop after R05-2 at owner calibration review");
+add(failures, step5R05.status === "owner-anchor-proof-review"
+  && JSON.stringify(step5R05.completedScope) === JSON.stringify(["R05-0", "R05-1", "R05-2", "R05-3A"])
+  && step5R05.nextScope === "R05-3B-blocked-pending-owner-approval",
+"Step 5 R05 must stop after R05-3A at owner anchor-proof review");
 for (const key of [
   "newArtworkGeneration", "rendererImplementation", "singleSeatAssembly",
   "rosterWideCalibration", "tenSeatAssembly", "step6", "activeOfficePromotion",
@@ -274,6 +274,6 @@ if (failures.length > 0) {
   process.exitCode = 1;
 } else {
   process.stdout.write(
-    "Workstation authority OK: R04 physical composition rejected; R05-0 through R05-2 await owner calibration review; expansion and Active Office blocked.\n",
+    "Workstation authority OK: R04 physical composition rejected; R05-3A anchor proof awaits owner review; polished art, expansion, and Active Office blocked.\n",
   );
 }

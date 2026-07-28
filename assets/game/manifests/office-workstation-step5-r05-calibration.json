@@ -2,15 +2,16 @@
   "version": 5,
   "geometrySchemaVersion": 6,
   "id": "office.workstation.step5.r05.calibration",
-  "status": "owner-calibration-review",
+  "status": "owner-anchor-proof-review",
   "updatedOn": "2026-07-28",
   "replaces": "office.workstation.step5.single-seat.v4",
   "completedScope": [
     "R05-0",
     "R05-1",
-    "R05-2"
+    "R05-2",
+    "R05-3A"
   ],
-  "nextScope": "R05-3-blocked-pending-owner-approval",
+  "nextScope": "R05-3B-blocked-pending-owner-approval",
   "activeOfficeBaseline": {
     "file": "assets/game/maps/office-c-v2.json",
     "sha256": "c40db448eb8e6d0f3fea67a41f716c0108aca63a4136cfad15293534273c618d",
@@ -48,8 +49,9 @@
     "reservationSpace": "top-down-world-grid",
     "visualSpace": "perspective-alpha-envelope-independent-from-reservation",
     "supportHeight": "world-z-independent-from-top-down-reservation",
-    "worldAnchor": "reservation-center",
-    "drawFormula": "drawOrigin = worldReservationCenter - localVisualPivot",
+    "supportAnchorDefault": "reservation-center",
+    "supportAnchorOverride": "explicit-semantic-socket-inside-reservation-only",
+    "drawFormula": "drawOrigin = project(worldSupportAnchor.xyz) - localVisualPivot.xy",
     "orientationSpecificMagicOffsets": "forbidden"
   },
   "componentContracts": {
@@ -78,62 +80,153 @@
         "seatPlane": 1,
         "backrestTop": 2
       },
-      "requiredPartMasks": [
-        "base-seat",
+      "physicalParts": [
+        {
+          "id": "base-seat",
+          "volume": [
+            1,
+            1,
+            1
+          ],
+          "zRange": [
+            0,
+            1
+          ]
+        },
+        {
+          "id": "backrest-arms",
+          "volume": [
+            1,
+            1,
+            1
+          ],
+          "zRange": [
+            1,
+            2
+          ]
+        }
+      ],
+      "derivedRenderMasks": [
+        "base-seat-rear",
+        "seat-front-lip",
         "backrest-rear",
-        "backrest-foreground"
+        "backrest-foreground",
+        "armrests-foreground"
       ],
       "requiredMeasuredPivots": [
         "floor-contact",
         "seat-plane",
         "back-support",
         "person-pelvis-contact"
-      ]
+      ],
+      "anchorProof": {
+        "actorLogicalFloorSocketLocal": [
+          48,
+          112
+        ],
+        "seatPlaneCandidateLocal": [
+          48,
+          80
+        ],
+        "seatHeightPixels": 32,
+        "candidateBasis": "front frame first sustained pants/thigh row; back view inherits the shared seated skeleton anchor because the coat occludes the pelvis",
+        "contactErrorPixels": {
+          "front": [
+            0,
+            0
+          ],
+          "back": [
+            0,
+            0
+          ]
+        },
+        "status": "owner-review-placeholder-not-polished-art"
+      }
     },
     "monitor": {
       "reservation": [
         3,
         1
       ],
+      "supportFootprint": [
+        1,
+        1
+      ],
+      "supportAnchorDeskLocal": [
+        1.5,
+        0.5,
+        2
+      ],
       "targetVisualWidthPixels": [
         72,
         80
       ],
       "pivot": "base-contact-center",
+      "temporaryProofVisualPivot": [
+        26,
+        40
+      ],
+      "beforeCenterErrorPixels": {
+        "far": [
+          0,
+          16
+        ],
+        "near": [
+          0,
+          16
+        ]
+      },
+      "afterCenterErrorPixels": {
+        "far": [
+          0,
+          0
+        ],
+        "near": [
+          0,
+          0
+        ]
+      },
       "maximumOppositeSideClearanceDeltaPixels": 1
     },
     "keyboard": {
+      "decision": "owner-accepted-and-frozen",
       "reservation": [
         1,
         1
       ],
-      "targetVisualPixels": {
-        "width": [
-          44,
-          48
-        ],
-        "depth": [
-          18,
-          20
-        ]
+      "renderPixels": [
+        48,
+        24
+      ],
+      "asset": {
+        "path": "assets/game/processed/office-workstation-v3/step5-r04/keyboard.workstation.v3.full.png",
+        "sha256": "cb914dab897305b241e99c1272fd7e3ba7d7ec35a1027c9e9d1b5d6592ee9f4c"
       },
       "pivot": "visual-alpha-center",
+      "localVisualPivot": [
+        24,
+        12
+      ],
       "minimumFrontBackClearancePixels": 6,
       "maximumSideOverhangPixels": 8
     }
   },
   "measurementEvidence": {
     "file": "assets/game/manifests/office-workstation-step5-r05-measurements.json",
-    "sha256": "1ad6a1d3fe7fffb655ed96767b3bcfcaf7cf2a0ecb603fb5a08ddc9ecbe9bb58"
+    "sha256": "fa780973cd2fe91f20dee2f1e7fdb83752d52244408b59934c63630c989ea501"
   },
   "reviewOutputs": [
     "assets/art/layout-references/office-workstation-v3/step5-r05/01-reservation-vs-visual-pivot.png",
     "assets/art/layout-references/office-workstation-v3/step5-r05/02-chair-person-contact-measurement.png",
-    "assets/art/layout-references/office-workstation-v3/step5-r05/03-equipment-center-pivot-calibration.png"
+    "assets/art/layout-references/office-workstation-v3/step5-r05/03-equipment-center-pivot-calibration.png",
+    "assets/art/layout-references/office-workstation-v3/step5-r05/04-monitor-base-socket-before-after.png",
+    "assets/art/layout-references/office-workstation-v3/step5-r05/05-chair-two-volume-before-after.png",
+    "assets/art/layout-references/office-workstation-v3/step5-r05/06-person-seat-contact-six-frames.png"
   ],
   "permissions": {
     "deterministicMeasurement": true,
     "calibrationBoards": true,
+    "anchorProofBoards": true,
     "newArtworkGeneration": false,
     "rendererImplementation": false,
     "singleSeatAssembly": false,
@@ -143,15 +236,15 @@
     "activeOfficePromotion": false
   },
   "ownerGate": {
-    "requiredDecision": "Approve or revise all three R05 calibration boards.",
+    "requiredDecision": "Approve or revise the three R05-3A before/after anchor-proof boards.",
     "explicitlyNotApproved": [
-      "new-chair-artwork",
-      "monitor-or-keyboard-regeneration",
+      "polished-chair-artwork",
+      "monitor-regeneration-or-final-normalization",
       "single-seat-composition",
       "ten-seat-layout",
       "step6",
       "active-office"
     ],
-    "onApproval": "Begin R05-3 only: create and measure corrected chair, monitor, and keyboard parts against the retained desk and current seated poses."
+    "onApproval": "Begin R05-3B only: create polished chair art from the approved sockets and normalize the monitor against the approved base contact; keep the accepted keyboard unchanged."
   }
 }

@@ -530,15 +530,143 @@
       "maximumSideOverhangPixels": 8
     }
   },
+  "ownerFeedbackR05_3A": {
+    "keyboard": {
+      "decision": "accepted-and-frozen",
+      "reservation": [
+        1,
+        1
+      ],
+      "renderPixels": [
+        48,
+        24
+      ],
+      "localVisualPivot": [
+        24,
+        12
+      ]
+    },
+    "monitor": {
+      "decision": "anchor-proof-required",
+      "reservation": [
+        3,
+        1
+      ],
+      "supportFootprint": [
+        1,
+        1
+      ],
+      "supportAnchorDeskLocal": [
+        1.5,
+        0.5,
+        2
+      ],
+      "temporaryVisualPivot": [
+        26,
+        40
+      ],
+      "beforeCenterErrorPixels": {
+        "far": [
+          0,
+          16
+        ],
+        "near": [
+          0,
+          16
+        ]
+      },
+      "afterCenterErrorPixels": {
+        "far": [
+          0,
+          0
+        ],
+        "near": [
+          0,
+          0
+        ]
+      },
+      "proofUsesExistingVisual": true
+    },
+    "chairPerson": {
+      "decision": "two-volume-anchor-proof-required",
+      "r04ChairPixelsAllowed": false,
+      "physicalParts": {
+        "base-seat": {
+          "volume": [
+            1,
+            1,
+            1
+          ],
+          "zRange": [
+            0,
+            1
+          ]
+        },
+        "backrest-arms": {
+          "volume": [
+            1,
+            1,
+            1
+          ],
+          "zRange": [
+            1,
+            2
+          ]
+        }
+      },
+      "personSegments": {
+        "legs": {
+          "zRange": [
+            0,
+            1
+          ]
+        },
+        "torso": {
+          "zRange": [
+            1,
+            2
+          ]
+        },
+        "head": {
+          "zRange": [
+            2,
+            3
+          ]
+        }
+      },
+      "actorLogicalFloorSocketLocal": [
+        48,
+        112
+      ],
+      "seatPlaneCandidateLocal": [
+        48,
+        80
+      ],
+      "seatHeightPixels": 32,
+      "candidateBasis": "front frame first sustained pants/thigh row; back view inherits the shared seated skeleton anchor because the coat occludes the pelvis",
+      "contactErrorPixels": {
+        "front": [
+          0,
+          0
+        ],
+        "back": [
+          0,
+          0
+        ]
+      },
+      "candidateStatus": "owner-anchor-proof-review-not-polished-art"
+    }
+  },
   "gate": {
     "completed": [
       "R05-0",
       "R05-1",
-      "R05-2"
+      "R05-2",
+      "R05-3A"
     ],
     "blocked": [
-      "R05-3",
-      "new-artwork",
+      "R05-3B",
+      "polished-artwork",
       "renderer",
       "ten-seat",
       "step6",

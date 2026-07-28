@@ -11,12 +11,14 @@ Bible and accepted the bare desk v2 Step 4 workflow recorded by
 `assets/game/manifests/office-workstation-bundle-v2.json`. Step 5 R02 is now
 rejected calibration evidence. R03 P0-P3 remains measured calibration history.
 R04 P4-P6 is rejected physical composition evidence; only its full rectangular
-desk pixels remain accepted. R05-0 through R05-2 define Geometry v6 reservation,
+desk pixels remain accepted. R05-0 through R05-3A define Geometry v6 reservation,
 visual-pivot, and measured-contact contracts in
 `assets/game/manifests/office-workstation-step5-r05-calibration.json`.
-No R05 component art or renderer exists yet. R05-3, roster-wide calibration,
+The R05-3A owner proof freezes the keyboard, centers the monitor base, and
+demonstrates two chair volumes plus a y80 person-seat socket without polished
+new art. R05-3B, roster-wide calibration,
 ten-seat outputs, Step 6, and Active Office promotion remain blocked pending
-owner review of the three R05 calibration boards.
+owner review of the three R05-3A before/after boards.
 
 Derived-asset staging gate (2026-07-27): Steps 13-16 resolve all 77 reviewed
 `derive-composite` records under `office-derived-v1`. The versioned outputs

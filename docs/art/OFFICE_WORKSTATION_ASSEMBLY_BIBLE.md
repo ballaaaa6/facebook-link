@@ -1,6 +1,6 @@
 # Office Workstation Assembly Bible v3
 
-Status: Geometry v6 calibration; R05-0..R05-2 awaiting owner review
+Status: Geometry v6 calibration; R05-3A anchor proof awaiting owner review
 Updated: 2026-07-28
 Machine-readable source:
 `assets/game/manifests/office-workstation-assembly-bible-v3.json`
@@ -16,10 +16,10 @@ is rejected; only its desk pixels remain accepted. R05 authority is
 | Component | Spatial contract | Current pixel decision |
 | --- | --- | --- |
 | Person | `1 x 1 x 3`, current frame `96 x 104` px | Reuse current Office character and seated pose |
-| Chair | `1 x 1 x 2`, base-seat `z0..z1`, backrest `z1..z2` | R05-3 blocked; measured part masks and pivots required |
+| Chair | `1 x 1 x 2`, base-seat `z0..z1`, backrest-arms `z1..z2` | R05-3A placeholder uses seat y80; polished R05-3B art blocked |
 | Desk | `3 x 2 x 2`, complete `96 x 64` support plane at `z = 2` | R04 `96 x 128`; public and seat sides |
-| Monitor | actor-far `3 x 1` reservation | R05-3 target 72..80 px wide; base-contact-center pivot |
-| Keyboard | actor-near center `1 x 1` reservation | R05-3 target 44..48 by 18..20 px with clearance |
+| Monitor | actor-far `3 x 1` reservation, centered `1 x 1` support | R05-3A base error 0 px; final 72..80 px visual blocked |
+| Keyboard | actor-near center `1 x 1` reservation | Owner-accepted `48 x 24`, pivot `[24,12]`, frozen |
 
 ## Person and chair contact
 
@@ -31,8 +31,8 @@ The required future back-to-front semantic parts are:
 4. `chair-foreground`.
 
 R04 did not implement this model: its `chair-seat` mask contains the wheel/base
-region. R05-3 must provide `base-seat`, `backrest-rear`, and
-`backrest-foreground` masks and measured floor, seat, back, and pelvis pivots.
+region. R05-3A separates two physical parts from their derived rear and
+foreground masks. R05-3B must turn the approved sockets into polished art.
 
 The contact rules are:
 

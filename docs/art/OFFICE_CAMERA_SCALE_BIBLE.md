@@ -39,7 +39,7 @@ The levels describe world stacking. They are not bitmap crop boundaries.
 | Object | Floor footprint | Logical volume | Pixel rule |
 | --- | --- | --- | --- |
 | Current Office person | `1 x 1` | `1 x 1 x 3` | Keep the current `96 x 104` frame at 32 px/tile |
-| Chair | `1 x 1` | `1 x 1 x 2` | R05-3 blocked; base-seat and backrest require measured pivots |
+| Chair | `1 x 1` | `1 x 1 x 2` | R05-3A proves base-seat/backrest sockets; polished R05-3B art blocked |
 | Desk | `3 x 2` | `3 x 2 x 2` | Full support plane is `96 x 64` px at `z = 2` |
 | Monitor | desk child | support child | Reserve actor-far `3 x 1`; target width 72..80 px |
 | Keyboard | desk child | support child | Reserve center `1 x 1`; target 44..48 by 18..20 px |
@@ -62,8 +62,9 @@ collision cells.
 ## Current gate
 
 R04 physical composition is rejected; only its desk pixels remain accepted.
-R05 Geometry v6 separates top-down reservation, measured local visual pivot,
-and support height. Its authority is
+R05 Geometry v6 separates top-down reservation, world support socket, local
+visual pivot, and support height. R05-3A centers the monitor base and proves
+the two-volume chair/person sockets. Its authority is
 `office-workstation-step5-r05-calibration.json`. New component artwork,
 single-seat assembly, ten-seat assembly, roster-wide calibration, Step 6, and
 Active Office promotion remain blocked pending owner review.
