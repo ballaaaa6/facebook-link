@@ -1,7 +1,7 @@
 {
   "version": 1,
   "id": "office-workstation-v1-vertical-slice",
-  "status": "accepted-staging",
+  "status": "rejected-geometry",
   "activeOfficePromotion": false,
   "bundleId": "office.workstation.bundle.v1",
   "grid": { "width": 15, "height": 15, "tilePixels": 32 },

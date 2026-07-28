@@ -1,5 +1,12 @@
 # Roadmap
 
+Workstation correction (2026-07-28): all earlier `5 x 4` / `5 x 3`
+workstation acceptance claims and Candidate r01 are revoked. They are
+historical rejected evidence only. Current pre-artwork authority is the `3 x 2`
+Workstation Assembly Bible v2; artwork, renderer work, ten-seat assembly, and
+Active Office promotion remain blocked pending owner approval of its review
+boards.
+
 ## M0 — Repository foundation (complete)
 
 - Monorepo boundaries, contracts, workflow state machine, database migration, local object storage, code-health gates, configuration, security rules, CI, art pipeline, and responsive three-route prototype.

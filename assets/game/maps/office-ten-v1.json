@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "id": "office-ten-v1",
-  "status": "accepted-staging",
+  "status": "rejected-geometry",
   "activeOfficePromotion": false,
   "commercialCharacterApproval": false,
   "grid": { "width": 29, "height": 20, "tilePixels": 32 },

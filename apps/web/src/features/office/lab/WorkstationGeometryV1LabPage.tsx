@@ -70,7 +70,7 @@ export function WorkstationGeometryV1LabPage() {
       <footer className="workstation-v1-footer">
         <span>Far: down-facing · Near: up-facing</span>
         <span>5×4 footprint · 5×3 support · 1×1 seat</span>
-        <strong>{issues.length === 0 ? "ACCEPTED-STAGING" : `${issues.length} CONTRACT ISSUES`}</strong>
+        <strong>{issues.length === 0 ? "REJECTED-GEOMETRY / FIXTURE VALID" : `${issues.length} CONTRACT ISSUES`}</strong>
       </footer>
     </main>
   );

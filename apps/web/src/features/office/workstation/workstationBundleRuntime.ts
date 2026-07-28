@@ -20,7 +20,7 @@ export interface WorkstationLabStation {
 export interface WorkstationLabMap {
   version: 1;
   id: string;
-  status: "accepted-staging";
+  status: "rejected-geometry";
   activeOfficePromotion: false;
   bundleId: string;
   grid: { width: number; height: number; tilePixels: number };
@@ -55,8 +55,8 @@ export function validateWorkstationLabMap(
   bundle: OfficeWorkstationBundleV1,
 ) {
   const issues: string[] = [];
-  if (map.status !== "accepted-staging" || map.activeOfficePromotion !== false) {
-    issues.push("lab must remain accepted-staging with Active Office promotion disabled");
+  if (map.status !== "rejected-geometry" || map.activeOfficePromotion !== false) {
+    issues.push("lab must remain rejected-geometry evidence with Active Office promotion disabled");
   }
   if (map.bundleId !== bundle.id) issues.push("lab bundleId must reference Workstation Bundle v1");
   if (map.stations.length !== 2) issues.push("vertical slice must contain exactly two workstations");

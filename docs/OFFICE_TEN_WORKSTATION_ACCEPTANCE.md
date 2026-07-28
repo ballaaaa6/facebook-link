@@ -2,7 +2,10 @@
 
 ## Status
 
-The Office Map v2 staging room is `accepted-staging`.
+Rejected on 2026-07-28. The former Office Map v2 `5 x 4` room is retained only
+as regression evidence. It is not an accepted layout and cannot feed new
+artwork or Active Office promotion. Current review-only geometry is defined by
+`docs/art/OFFICE_WORKSTATION_ASSEMBLY_BIBLE.md`.
 
 ```text
 activeOfficePromotion: false

@@ -17,11 +17,15 @@ export const workstationCompositeOrder = [
 type WorkstationOrientation = Exclude<OfficeOrientation, "none">;
 type WorkstationRole = (typeof workstationRoles)[number];
 
+/**
+ * @deprecated Rejected 5 x 4 geometry fixture retained only for visual-regression labs.
+ * New workstation work must use OfficeWorkstationAssemblyBibleV2.
+ */
 export interface OfficeWorkstationBundleV1 {
   version: 1;
   geometrySchemaVersion: 3;
   id: string;
-  status: "staging";
+  status: "rejected-geometry";
   deskFamily: {
     id: string;
     physicalScale: { width: 5; depth: 4; height: 2.4; unit: "tile" };
@@ -176,7 +180,7 @@ export function validateOfficeWorkstationBundleV1(value: unknown): string[] {
   const issues: string[] = [];
   add(issues, value.version === 1, "version", "must equal 1");
   add(issues, value.geometrySchemaVersion === 3, "geometrySchemaVersion", "must equal 3");
-  add(issues, value.status === "staging", "status", "must equal staging until explicit promotion");
+  add(issues, value.status === "rejected-geometry", "status", "must remain rejected-geometry evidence");
   add(issues, typeof value.id === "string" && value.id.length > 0, "id", "must be a non-empty string");
   validateCanonicalDesk(value, issues);
   validateSlots(value, issues);

@@ -6,7 +6,7 @@ import { validateOfficeWorkstationBundleV1 } from "../src/officeWorkstation.ts";
 const manifestUrl = new URL("../../../assets/game/manifests/office-workstation-bundle-v1.json", import.meta.url);
 const bundle = JSON.parse(readFileSync(manifestUrl, "utf8"));
 
-test("Workstation Bundle v1 validates the canonical staging bundle", () => {
+test("rejected Workstation Bundle v1 remains valid regression evidence", () => {
   assert.deepEqual(validateOfficeWorkstationBundleV1(bundle), []);
 });
 

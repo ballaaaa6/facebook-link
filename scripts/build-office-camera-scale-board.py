@@ -11,7 +11,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST_PATH = ROOT / "assets" / "game" / "manifests" / "office-camera-scale-bible.json"
-BOARD_PATH = ROOT / "assets" / "art" / "layout-references" / "office-camera-scale-calibration-v1.png"
+BOARD_PATH = ROOT / "assets" / "art" / "layout-references" / "office-camera-scale-calibration-v2.png"
 WIDTH = 1600
 HEIGHT = 1100
 
@@ -20,178 +20,160 @@ def font(size: int) -> ImageFont.FreeTypeFont:
     return ImageFont.load_default(size=size)
 
 
-def text(draw: ImageDraw.ImageDraw, xy: tuple[int, int], value: str, size: int, fill: str) -> None:
+def label(draw: ImageDraw.ImageDraw, xy: tuple[int, int], value: str, size: int, fill: str) -> None:
     draw.text(xy, value, font=font(size), fill=fill)
 
 
 def panel(draw: ImageDraw.ImageDraw, bounds: tuple[int, int, int, int], title: str, colors: dict) -> None:
     draw.rounded_rectangle(bounds, radius=16, fill=colors["panel"], outline="#475569", width=2)
-    text(draw, (bounds[0] + 20, bounds[1] + 16), title, 24, "#f8fafc")
+    label(draw, (bounds[0] + 20, bounds[1] + 16), title, 24, "#f8fafc")
 
 
-def grid(
+def cell_grid(
     draw: ImageDraw.ImageDraw,
     origin: tuple[int, int],
     columns: int,
     rows: int,
     cell: int,
-    colors: dict,
-    fills: dict[tuple[int, int], str] | None = None,
+    fill: str,
+    grid_color: str,
 ) -> None:
-    fills = fills or {}
     x0, y0 = origin
     for row in range(rows):
         for column in range(columns):
             x = x0 + column * cell
             y = y0 + row * cell
-            draw.rectangle(
-                (x, y, x + cell, y + cell),
-                fill=fills.get((column, row), colors["footprint"]),
-                outline=colors["grid"],
-                width=1,
-            )
+            draw.rectangle((x, y, x + cell, y + cell), fill=fill, outline=grid_color, width=2)
 
 
-def cross(draw: ImageDraw.ImageDraw, point: tuple[int, int], color: str, radius: int = 8) -> None:
+def cross(draw: ImageDraw.ImageDraw, point: tuple[int, int], color: str) -> None:
     x, y = point
-    draw.ellipse((x - radius, y - radius, x + radius, y + radius), outline=color, width=3)
-    draw.line((x - radius - 4, y, x + radius + 4, y), fill=color, width=2)
-    draw.line((x, y - radius - 4, x, y + radius + 4), fill=color, width=2)
+    draw.ellipse((x - 9, y - 9, x + 9, y + 9), outline=color, width=3)
+    draw.line((x - 14, y, x + 14, y), fill=color, width=2)
+    draw.line((x, y - 14, x, y + 14), fill=color, width=2)
 
 
-def draw_person(draw: ImageDraw.ImageDraw, x: int, floor_y: int, scale: float, color: str, seated: bool = False) -> None:
-    head = int(13 * scale)
-    body_height = int((42 if seated else 62) * scale)
-    draw.ellipse((x - head, floor_y - body_height - head * 2, x + head, floor_y - body_height), fill=color, outline="#0f172a", width=2)
-    draw.rounded_rectangle((x - int(16 * scale), floor_y - body_height, x + int(16 * scale), floor_y - int(12 * scale)), radius=8, fill="#94a3b8", outline="#0f172a", width=2)
+def person(draw: ImageDraw.ImageDraw, x: int, floor_y: int, seated: bool, color: str) -> None:
+    body_top = floor_y - (92 if seated else 140)
+    draw.ellipse((x - 20, body_top - 40, x + 20, body_top), fill=color, outline="#0f172a", width=2)
+    draw.rounded_rectangle((x - 25, body_top, x + 25, floor_y - 25), radius=10, fill="#94a3b8", outline="#0f172a", width=2)
     if seated:
-        draw.line((x, floor_y - 16, x + int(26 * scale), floor_y - 4), fill=color, width=max(2, int(5 * scale)))
+        draw.line((x, floor_y - 34, x + 36, floor_y - 12), fill=color, width=7)
     else:
-        draw.line((x - int(8 * scale), floor_y - 14, x - int(10 * scale), floor_y), fill=color, width=max(2, int(5 * scale)))
-        draw.line((x + int(8 * scale), floor_y - 14, x + int(10 * scale), floor_y), fill=color, width=max(2, int(5 * scale)))
+        draw.line((x - 10, floor_y - 28, x - 12, floor_y), fill=color, width=7)
+        draw.line((x + 10, floor_y - 28, x + 12, floor_y), fill=color, width=7)
 
 
-def blueprint(draw: ImageDraw.ImageDraw, bible: dict) -> None:
+def draw_top_down_contract(draw: ImageDraw.ImageDraw, bible: dict) -> None:
     colors = bible["palette"]
-    panel(draw, (30, 110, 780, 565), "A. TOP-DOWN GEOMETRY / 32 PX TILE", colors)
-    samples = bible["requiredFootprintSamples"]
-    sample_x = 65
-    for sample in samples:
-        label = f"{sample['width']} x {sample['depth']}"
-        text(draw, (sample_x, 160), label, 18, "#cbd5e1")
-        grid(draw, (sample_x, 192), sample["width"], sample["depth"], 38, colors)
-        sample_x += 145
-
+    panel(draw, (30, 110, 780, 535), "A. WORKSTATION v2 / TOP-DOWN PHYSICS", colors)
     desk = bible["canonicalDesk"]
-    origin = (65, 325)
-    fills = {}
-    for row in range(desk["footprint"]["depth"]):
-        for column in range(desk["footprint"]["width"]):
-            fills[(column, row)] = colors["supportPlane"] if row < desk["supportPlane"]["depth"] else colors["employeeEdge"]
-    grid(draw, origin, 5, 4, 44, colors, fills)
-    text(draw, (310, 332), "CANONICAL DESK", 22, "#f8fafc")
-    text(draw, (310, 370), "5 x 4 footprint", 18, "#cbd5e1")
-    text(draw, (310, 399), "5 x 3 support plane", 18, colors["supportPlane"])
-    text(draw, (310, 428), "1-row employee edge", 18, colors["employeeEdge"])
-    text(draw, (310, 457), "physical: 5 x 4 x 2.4", 18, "#cbd5e1")
-    pivot = (origin[0] + 110, origin[1] + 176)
-    cross(draw, pivot, colors["pivot"])
-    text(draw, (310, 494), "base + sort pivot = (2.5, 4)", 18, colors["pivot"])
-    text(draw, (560, 185), "CYAN = SUPPORT", 16, colors["supportPlane"])
-    text(draw, (560, 215), "AMBER = EMPLOYEE EDGE", 16, colors["employeeEdge"])
-    text(draw, (560, 245), "SLATE = COLLISION", 16, "#cbd5e1")
+    origin = (75, 220)
+    cell = 82
+    cell_grid(
+        draw,
+        origin,
+        desk["footprint"]["width"],
+        desk["footprint"]["depth"],
+        cell,
+        colors["supportPlane"],
+        colors["grid"],
+    )
+    label(draw, (75, 162), "ONE DESK = COMPLETE 3 x 2 TABLETOP", 24, "#f8fafc")
+    label(draw, (365, 228), "FOOTPRINT  3 x 2", 22, "#f8fafc")
+    label(draw, (365, 270), "SUPPORT    3 x 2", 22, colors["supportPlane"])
+    label(draw, (365, 312), "HEIGHT     2.4", 22, "#cbd5e1")
+    label(draw, (365, 354), "EXTRA FLOOR ROW  NONE", 22, colors["accepted"])
+    label(draw, (365, 396), "BASE / SORT PIVOT  (1.5, 2)", 20, colors["pivot"])
+    cross(draw, (origin[0] + int(1.5 * cell), origin[1] + 2 * cell), colors["pivot"])
+    label(draw, (75, 460), "Legs + drawers = visible height, never footprint", 20, "#cbd5e1")
 
 
-def rendered_scale(draw: ImageDraw.ImageDraw, bible: dict) -> None:
+def draw_levels(draw: ImageDraw.ImageDraw, bible: dict) -> None:
     colors = bible["palette"]
-    panel(draw, (810, 110, 1570, 565), "B. STRAIGHT ELEVATION + LEVELS", colors)
-    floor_y = 510
+    panel(draw, (810, 110, 1570, 535), "B. STRAIGHT ELEVATION / LEVELS", colors)
+    floor_y = 470
     draw.line((850, floor_y, 1530, floor_y), fill="#94a3b8", width=3)
-    levels = bible["referenceLevels"]
-    scale_y = 92
-    for label, value in [("SEAT 1.0", levels["seat"]), ("WORK 2.4", levels["workSurface"]), ("WALL / ADULT 3.0", levels["wall"])]:
-        y = floor_y - int(value * scale_y)
+    for value, title in [(1, "SEAT 1.0"), (2.4, "WORK 2.4"), (3, "ADULT / WALL 3.0")]:
+        y = floor_y - int(value * 100)
         draw.line((850, y, 1530, y), fill="#475569", width=1)
-        text(draw, (855, y - 24), label, 16, "#94a3b8")
-    draw_person(draw, 955, floor_y, 1.25, colors["character"])
-    text(draw, (895, 525), "STANDING 1 x 1 x 3", 17, "#f8fafc")
-    draw_person(draw, 1130, floor_y, 1.05, colors["character"], seated=True)
-    draw.rectangle((1090, 420, 1168, 438), fill="#0ea5e9", outline="#0f172a", width=2)
-    draw.line((1100, 438, 1100, floor_y), fill="#94a3b8", width=6)
-    draw.line((1158, 438, 1158, floor_y), fill="#94a3b8", width=6)
-    text(draw, (1058, 525), "SEATED 1 x 1 x 2", 17, "#f8fafc")
-    desk_x0, desk_x1 = 1260, 1515
-    surface_y = floor_y - int(levels["workSurface"] * scale_y)
-    draw.rectangle((desk_x0, surface_y, desk_x1, surface_y + 22), fill=colors["supportPlane"], outline="#0f172a", width=3)
-    draw.line((desk_x0 + 20, surface_y + 22, desk_x0 + 20, floor_y), fill="#64748b", width=8)
-    draw.line((desk_x1 - 20, surface_y + 22, desk_x1 - 20, floor_y), fill="#64748b", width=8)
-    draw.rectangle((desk_x0, surface_y + 22, desk_x1, surface_y + 55), outline=colors["overflow"], width=3)
-    text(draw, (1265, 525), "SURFACE + UNDERFRAME", 17, "#f8fafc")
+        label(draw, (855, y - 24), title, 16, "#94a3b8")
+    person(draw, 980, floor_y, False, colors["actor"])
+    person(draw, 1160, floor_y, True, colors["actor"])
+    surface_y = floor_y - 240
+    draw.rectangle((1270, surface_y, 1505, surface_y + 24), fill=colors["supportPlane"], outline="#0f172a", width=3)
+    draw.line((1295, surface_y + 24, 1295, floor_y), fill="#64748b", width=8)
+    draw.line((1480, surface_y + 24, 1480, floor_y), fill="#64748b", width=8)
+    draw.rectangle((1245, surface_y - 28, 1530, floor_y + 8), outline=colors["overflow"], width=3)
+    label(draw, (890, 492), "STANDING", 17, "#f8fafc")
+    label(draw, (1090, 492), "SEATED", 17, "#f8fafc")
+    label(draw, (1260, 492), "3 x 4 CANVAS / 3 x 2 FLOOR", 17, "#f8fafc")
 
 
-def geometry_anatomy(draw: ImageDraw.ImageDraw, bible: dict) -> None:
+def draw_equipment(draw: ImageDraw.ImageDraw, bible: dict) -> None:
     colors = bible["palette"]
-    panel(draw, (30, 595, 780, 855), "C. PIVOTS, BOUNDS, AND OVERFLOW", colors)
-    footprint = (80, 680, 360, 800)
-    render = (55, 635, 390, 820)
-    draw.rectangle(render, outline=colors["overflow"], width=4)
-    draw.rectangle(footprint, fill="#334155", outline="#94a3b8", width=2)
-    draw.polygon([(100, 790), (190, 660), (335, 790)], fill="#64748b", outline="#0f172a")
-    cross(draw, (220, 800), colors["pivot"])
-    text(draw, (420, 652), "PURPLE: render bounds", 18, colors["overflow"])
-    text(draw, (420, 690), "SLATE: floor footprint", 18, "#cbd5e1")
-    text(draw, (420, 728), "PINK: base / sort pivot", 18, colors["pivot"])
-    text(draw, (420, 766), "Overflow changes pixels,", 18, "#f8fafc")
-    text(draw, (420, 794), "never collision.", 18, "#f8fafc")
+    panel(draw, (30, 565, 780, 855), "C. ORIENTATION-AWARE EQUIPMENT BANDS", colors)
+    cell = 48
+    for title, x, monitor_row, keyboard_row, actor_row in [
+        ("FAR ACTOR / FACES DOWN", 80, 1, 0, -1),
+        ("NEAR ACTOR / FACES UP", 420, 0, 1, 2),
+    ]:
+        label(draw, (x, 620), title, 18, "#f8fafc")
+        y0 = 690
+        for row in range(2):
+            fill = colors["monitorReservation"] if row == monitor_row else colors["keyboardReservation"]
+            cell_grid(draw, (x, y0 + row * cell), 3, 1, cell, fill, colors["grid"])
+            label(draw, (x + 160, y0 + row * cell + 12), "MONITOR 3 x 1" if row == monitor_row else "KEYBOARD 3 x 1", 14, fill)
+        actor_y = y0 + actor_row * cell
+        draw.ellipse((x + 54, actor_y + 6, x + 90, actor_y + 42), fill=colors["actor"], outline="#0f172a", width=2)
+    label(draw, (80, 815), "Reservation = placement lane; artwork stays centered and may be smaller.", 17, "#cbd5e1")
 
 
-def acceptance_pairs(draw: ImageDraw.ImageDraw, bible: dict) -> None:
+def draw_pair_and_rejection(draw: ImageDraw.ImageDraw, bible: dict) -> None:
     colors = bible["palette"]
-    panel(draw, (810, 595, 1570, 855), "D. ACCEPT / REJECT", colors)
-    text(draw, (850, 650), "ACCEPT", 20, colors["accepted"])
-    grid(draw, (850, 690), 5, 2, 26, colors, {(c, r): colors["supportPlane"] for c in range(5) for r in range(2)})
-    grid(draw, (980, 690), 5, 2, 26, colors, {(c, r): colors["supportPlane"] for c in range(5) for r in range(2)})
-    text(draw, (850, 760), "Touching edges; no overlap", 16, "#cbd5e1")
-    text(draw, (1210, 650), "REJECT", 20, colors["rejected"])
-    draw.rectangle((1210, 690, 1505, 780), fill="#475569", outline=colors["rejected"], width=4)
-    draw.rectangle((1230, 720, 1485, 745), fill="#94a3b8")
-    draw.line((1230, 690, 1485, 780), fill=colors["rejected"], width=5)
-    draw.line((1485, 690, 1230, 780), fill=colors["rejected"], width=5)
-    text(draw, (1210, 795), "Front bitmap stretched to 5 x 4", 16, "#cbd5e1")
+    panel(draw, (810, 565, 1570, 855), "D. PAIRED MODULE + REJECTED v1", colors)
+    cell = 32
+    origin = (855, 690)
+    cell_grid(draw, origin, 3, 2, cell, colors["supportPlane"], colors["grid"])
+    cell_grid(draw, (origin[0], origin[1] + 2 * cell), 3, 2, cell, colors["supportPlane"], colors["grid"])
+    draw.rectangle((origin[0] + cell, origin[1] - cell, origin[0] + 2 * cell, origin[1]), fill=colors["seat"], outline=colors["grid"], width=2)
+    draw.rectangle((origin[0] + cell, origin[1] + 4 * cell, origin[0] + 2 * cell, origin[1] + 5 * cell), fill=colors["seat"], outline=colors["grid"], width=2)
+    label(draw, (855, 625), "ACCEPT: 3 x 2 + 3 x 2 TOUCH", 18, colors["accepted"])
+    label(draw, (990, 700), "chairs outside", 16, "#cbd5e1")
+    label(draw, (990, 735), "no gap between rows", 16, "#cbd5e1")
+    label(draw, (990, 770), "no overlap", 16, "#cbd5e1")
+    draw.rectangle((1260, 665, 1515, 790), fill="#334155", outline=colors["rejected"], width=4)
+    draw.line((1260, 665, 1515, 790), fill=colors["rejected"], width=6)
+    draw.line((1515, 665, 1260, 790), fill=colors["rejected"], width=6)
+    label(draw, (1270, 625), "REJECT", 18, colors["rejected"])
+    label(draw, (1280, 805), "5 x 4 / 5 x 3 / extra row", 16, "#cbd5e1")
 
 
-def orientations(draw: ImageDraw.ImageDraw, bible: dict) -> None:
+def draw_gate(draw: ImageDraw.ImageDraw, bible: dict) -> None:
     colors = bible["palette"]
-    panel(draw, (30, 885, 1570, 1065), "E. ORIENTATION AND OCCLUSION GATE", colors)
-    labels = [("FRONT 0°", 135), ("BACK 180°", 405), ("LEFT -90°", 675), ("RIGHT 90°", 945)]
-    for label, x in labels:
-        draw.rectangle((x, 950, x + 100, 1025), fill="#64748b", outline="#0f172a", width=2)
-        if "LEFT" in label or "RIGHT" in label:
-            draw.rectangle((x + 38, 930, x + 62, 1025), fill=colors["supportPlane"], outline="#0f172a", width=2)
-        else:
-            draw.rectangle((x, 930, x + 100, 955), fill=colors["supportPlane"], outline="#0f172a", width=2)
-        text(draw, (x - 5, 1032), label, 16, "#f8fafc")
-    draw_person(draw, 1285, 1030, 0.7, colors["character"])
-    draw.rectangle((1235, 990, 1335, 1016), fill="#0ea5e9", outline="#0f172a", width=2)
-    draw.rectangle((1235, 1016, 1335, 1040), fill="#334155", outline="#0f172a", width=2)
-    text(draw, (1360, 945), "Foreground may cover", 16, "#cbd5e1")
-    text(draw, (1360, 972), "lower body; head stays", 16, "#cbd5e1")
-    text(draw, (1360, 999), "visible and sortable.", 16, "#cbd5e1")
+    panel(draw, (30, 885, 1570, 1065), "E. OWNER GATE", colors)
+    label(draw, (70, 945), "BLUEPRINT REVIEW", 28, colors["keyboardReservation"])
+    label(draw, (390, 940), "NO DESK ART", 22, colors["rejected"])
+    label(draw, (390, 980), "NO RENDERER", 22, colors["rejected"])
+    label(draw, (700, 940), "NO 10-SEAT SCENE", 22, colors["rejected"])
+    label(draw, (700, 980), "ACTIVE OFFICE UNCHANGED", 22, colors["accepted"])
+    label(draw, (1100, 940), "NEXT AFTER APPROVAL:", 18, "#f8fafc")
+    label(draw, (1100, 976), "one bare desk + one seat", 18, "#cbd5e1")
 
 
 def render_board(bible: dict, manifest_bytes: bytes) -> bytes:
     colors = bible["palette"]
     image = Image.new("RGB", (WIDTH, HEIGHT), colors["background"])
     draw = ImageDraw.Draw(image)
-    text(draw, (30, 24), "OFFICE CAMERA / SCALE CALIBRATION v1", 38, "#f8fafc")
-    text(draw, (30, 72), "GEOMETRY v3  |  ACCEPTED  |  1 TILE = 32 PX  |  NO PERSPECTIVE", 20, colors["accepted"])
+    label(draw, (30, 22), "OFFICE CAMERA / SCALE BIBLE v2", 38, "#f8fafc")
+    label(draw, (30, 70), "WORKSTATION RULE v2  |  BLUEPRINT REVIEW  |  1 TILE = 32 PX", 20, colors["keyboardReservation"])
     digest = hashlib.sha256(manifest_bytes).hexdigest()[:12]
-    text(draw, (1320, 42), f"MANIFEST {digest}", 16, "#94a3b8")
-    blueprint(draw, bible)
-    rendered_scale(draw, bible)
-    geometry_anatomy(draw, bible)
-    acceptance_pairs(draw, bible)
-    orientations(draw, bible)
+    label(draw, (1320, 42), f"MANIFEST {digest}", 16, "#94a3b8")
+    draw_top_down_contract(draw, bible)
+    draw_levels(draw, bible)
+    draw_equipment(draw, bible)
+    draw_pair_and_rejection(draw, bible)
+    draw_gate(draw, bible)
     payload = io.BytesIO()
     image.save(payload, format="PNG", optimize=False, compress_level=9)
     return payload.getvalue()
@@ -199,39 +181,46 @@ def render_board(bible: dict, manifest_bytes: bytes) -> bytes:
 
 def validate(bible: dict) -> list[str]:
     failures = []
-    if bible.get("status") != "accepted":
-        failures.append("Bible status must equal accepted")
+    if bible.get("version") != 2:
+        failures.append("Bible version must equal 2")
+    if bible.get("workstationRuleVersion") != 2:
+        failures.append("Bible workstationRuleVersion must equal 2")
+    if bible.get("status") != "blueprint-review":
+        failures.append("Bible status must remain blueprint-review before owner approval")
+    acceptance = bible.get("acceptance", {})
+    for field in [
+        "ownerApproval",
+        "artworkGenerationAuthorized",
+        "rendererImplementationAuthorized",
+        "activeOfficePromotionAuthorized",
+    ]:
+        if acceptance.get(field) is not False:
+            failures.append(f"Bible acceptance.{field} must remain false")
     if bible.get("geometrySchemaVersion") != 3:
         failures.append("Bible geometrySchemaVersion must equal 3")
     if bible.get("authoring", {}).get("tilePixels") != 32:
         failures.append("Bible tilePixels must equal 32")
     desk = bible.get("canonicalDesk", {})
-    expected = {
-        "physicalScale": {"width": 5, "depth": 4, "height": 2.4},
-        "footprint": {"width": 5, "depth": 4},
-    }
-    for field, value in expected.items():
-        if desk.get(field) != value:
-            failures.append(f"Bible canonicalDesk.{field} does not match Geometry v3")
+    if desk.get("physicalScale") != {"width": 3, "depth": 2, "height": 2.4}:
+        failures.append("Bible canonical desk scale must equal 3 x 2 x 2.4")
+    if desk.get("footprint") != {"width": 3, "depth": 2}:
+        failures.append("Bible canonical desk footprint must equal 3 x 2")
     support = desk.get("supportPlane", {})
-    if (support.get("width"), support.get("depth"), support.get("height")) != (5, 3, 2.4):
-        failures.append("Bible canonical desk support plane must equal 5 x 3 at 2.4")
+    if (support.get("width"), support.get("depth"), support.get("height")) != (3, 2, 2.4):
+        failures.append("Bible support plane must equal 3 x 2 at 2.4")
+    if desk.get("employeeEdge") is not None:
+        failures.append("Bible employeeEdge must be null")
     if bible.get("camera", {}).get("perspectiveConvergence") is not False:
         failures.append("Bible must disable perspective convergence")
     return failures
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Build or verify the Office Camera/Scale calibration board")
+    parser = argparse.ArgumentParser(description="Build or verify the Office Camera/Scale v2 board")
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
     bible = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
-    manifest_bytes = json.dumps(
-        bible,
-        ensure_ascii=False,
-        sort_keys=True,
-        separators=(",", ":"),
-    ).encode("utf-8")
+    manifest_bytes = json.dumps(bible, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
     failures = validate(bible)
     if failures:
         print("\n".join(f"- {failure}" for failure in failures))
@@ -247,7 +236,7 @@ def main() -> int:
     else:
         BOARD_PATH.parent.mkdir(parents=True, exist_ok=True)
         BOARD_PATH.write_bytes(board)
-    print("Office Camera/Scale Bible OK: accepted Geometry v3, deterministic board current.")
+    print("Office Camera/Scale Bible OK: Workstation Rule v2 blueprint board current.")
     return 0
 
 

@@ -69,7 +69,10 @@ function validateAsset(id, asset) {
 function validateBible() {
   if (bibleLoadFailure) return [bibleLoadFailure];
   const failures = [];
-  if (bible.status !== "accepted") failures.push("Camera/Scale Bible status must equal accepted");
+  if (!["blueprint-review", "accepted"].includes(bible.status)) {
+    failures.push("Camera/Scale Bible status must equal blueprint-review or accepted");
+  }
+  if (bible.workstationRuleVersion !== 2) failures.push("Camera/Scale Bible must target Workstation Rule v2");
   if (bible.geometrySchemaVersion !== 3) failures.push("Camera/Scale Bible must target Geometry v3");
   if (bible.authoring?.tilePixels !== 32) failures.push("Camera/Scale Bible tilePixels must equal 32");
   if (bible.camera?.perspectiveConvergence !== false) {
@@ -80,11 +83,26 @@ function validateBible() {
     failures.push("Camera/Scale Bible standing adult must equal 1 x 1 x 3");
   }
   const desk = bible.canonicalDesk;
-  if (desk?.physicalScale?.width !== 5 || desk?.physicalScale?.depth !== 4
-      || desk?.physicalScale?.height !== 2.4 || desk?.footprint?.width !== 5
-      || desk?.footprint?.depth !== 4 || desk?.supportPlane?.width !== 5
-      || desk?.supportPlane?.depth !== 3) {
-    failures.push("Camera/Scale Bible desk must equal 5 x 4 x 2.4 with a 5 x 3 support plane");
+  if (desk?.physicalScale?.width !== 3 || desk?.physicalScale?.depth !== 2
+      || desk?.physicalScale?.height !== 2.4 || desk?.footprint?.width !== 3
+      || desk?.footprint?.depth !== 2 || desk?.supportPlane?.width !== 3
+      || desk?.supportPlane?.depth !== 2 || desk?.employeeEdge !== null) {
+    failures.push("Camera/Scale Bible desk must equal 3 x 2 x 2.4 with one complete 3 x 2 support plane and no employee-edge row");
+  }
+  return failures;
+}
+
+function workstationGenerationGate(asset) {
+  if (asset.slotSet !== "workstation") return [];
+  const failures = [];
+  if (bible.status !== "accepted") {
+    failures.push("Workstation artwork is blocked while the Camera/Scale Bible is in blueprint review");
+  }
+  if (bible.acceptance?.ownerApproval !== true) {
+    failures.push("Workstation artwork requires explicit owner approval of the Assembly Bible boards");
+  }
+  if (bible.acceptance?.artworkGenerationAuthorized !== true) {
+    failures.push("Workstation artworkGenerationAuthorized must be true before prompt creation");
   }
   return failures;
 }
@@ -176,6 +194,12 @@ if (args.includes("--check")) {
     );
     process.exitCode = 1;
   } else {
+    const gateFailures = workstationGenerationGate(catalog[id]);
+    if (gateFailures.length > 0) {
+      process.stderr.write(`${gateFailures.join("\n")}\n`);
+      process.exitCode = 1;
+      process.exit();
+    }
     const orientationArg = args.find((arg) => arg.startsWith("--orientations="));
     const orientations = orientationArg
       ? orientationArg.slice("--orientations=".length).split(",").filter(Boolean)

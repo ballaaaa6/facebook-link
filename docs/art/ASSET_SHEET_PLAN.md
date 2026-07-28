@@ -4,19 +4,13 @@
 
 Reduce generation latency without sacrificing usable geometry. Static furniture and props are generated as controlled 4x4 asset sheets. Identity-sensitive character work animations use one character per sheet.
 
-Execution gate (2026-07-27): Steps 1-4 in
-`docs/art/OFFICE_GEOMETRY_REMEDIATION_ROADMAP.md` are complete. A new Office
-sheet requires an approved `regenerate` audit record; deterministic cleanup or
-composition requires `derive-composite`. Every sheet reads the accepted
-Camera/Scale Bible. Active Office promotion remains a separate later gate.
-
-Workstation staging gate (2026-07-27): Steps 5-8 are accepted-staging. The
-canonical `desk.modular.v1` prototype is project-authored and deterministic,
-not an image-generation sheet. It is one bare physical family with four
-orthographic orientations and four compositing parts per orientation. Role
-equipment, chairs, actors, and monitor content remain separate children under
-`office.workstation.bundle.v1`; none of these staging assets is imported by
-Active Office.
+Workstation reset gate (2026-07-28): `desk.modular.v1`, its `5 x 4` footprint,
+its `5 x 3` support plane, and Candidate r01 are rejected regression evidence.
+They cannot seed a new sheet. The current authority is the review-only `3 x 2`
+Assembly Bible in `docs/art/OFFICE_WORKSTATION_ASSEMBLY_BIBLE.md`. New desk,
+chair, monitor, renderer, and ten-seat outputs remain blocked until the owner
+approves the deterministic blueprint boards. Active Office promotion remains
+a separate later gate.
 
 Derived-asset staging gate (2026-07-27): Steps 13-16 resolve all 77 reviewed
 `derive-composite` records under `office-derived-v1`. The versioned outputs

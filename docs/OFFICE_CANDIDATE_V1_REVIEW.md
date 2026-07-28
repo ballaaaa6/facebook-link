@@ -1,8 +1,9 @@
 # Office Candidate v1 Review
 
 Date: 2026-07-27
+Rejected: 2026-07-28
 
-Status: `awaiting-owner-review`
+Status: `rejected-visual` — regression evidence only
 
 ```text
 candidateRevision: r01
@@ -11,13 +12,20 @@ commercialCharacterApproval: false
 ownerApproval: false
 ```
 
+The owner rejected r01 because the employees and chairs were not calibrated to
+the seat anchors, the approved current Office background was replaced, and the
+`5 x 4` workstation geometry was oversized. This route must not be promoted or
+used as a source for v2 artwork. Its captures remain only to prevent regression
+back to the same failure.
+
 ## Scope
 
-Steps 21-23 build and inspect a development-only Office Candidate without
-changing the Active Office. The Candidate locks the accepted structural map,
-workstation bundle, deployment presets, and all 77 derived-asset records by
-hash. It exercises ten active agent roles, eight alternate prototype identities,
-and Boba while retaining the complete prototype-only licensing boundary.
+Steps 21-23 built and inspected a development-only Office Candidate without
+changing the Active Office. The rejected evidence now locks the historical
+structural map, workstation bundle, deployment presets, and all 77
+derived-asset records by hash. It exercises ten active agent roles, eight
+alternate prototype identities, and Boba while retaining the complete
+prototype-only licensing boundary.
 
 The route is `?lab=office-candidate-v1` and exposes four deterministic review
 scenarios:

@@ -91,7 +91,7 @@ export function CandidateWorkstationScene({
           );
         })}
         <aside className="candidate-stage-stamp">
-          <strong>Candidate r01</strong>
+          <strong>Rejected evidence r01</strong>
           <span>{season} · {timeOfDay} · door {doorState}</span>
         </aside>
       </div>

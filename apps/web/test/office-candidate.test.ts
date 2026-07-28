@@ -33,7 +33,7 @@ const review = JSON.parse(source(
   captures: Array<{ file: string; sha256: string }>;
 };
 
-test("Candidate v1 locks all selected staging sources by hash", () => {
+test("rejected Candidate v1 locks all historical sources by hash", () => {
   assert.deepEqual(validateOfficeCandidateManifest(manifest), []);
   for (const reference of Object.values(manifest.sources)) {
     assert.equal(sha256(reference.file), reference.sha256, reference.file);
@@ -69,8 +69,8 @@ test("Candidate review exposes all frozen prototype identities", () => {
   assert.deepEqual(manifest.roster.companionIds, ["boba"]);
 });
 
-test("Candidate r01 preserves every browser capture by hash", () => {
-  assert.equal(review.status, "awaiting-owner-review");
+test("Rejected Candidate r01 preserves every browser capture by hash", () => {
+  assert.equal(review.status, "rejected-visual");
   assert.equal(review.ownerApproval, false);
   assert.equal(review.captures.length, manifest.review.savedImageCount);
   assert.equal(review.results.activeOfficeBaselineHashMatch, true);

@@ -46,8 +46,8 @@ export function OfficeTenWorkstationLabPage() {
     <main className="office-ten-lab" data-status={map.status}>
       <header className="office-ten-header">
         <div>
-          <span>OFFICE MAP V2 · STAGING ONLY</span>
-          <h1>Ten-workstation structural acceptance lab</h1>
+          <span>OFFICE MAP V2 · REJECTED EVIDENCE</span>
+          <h1>Historical ten-workstation regression lab</h1>
           <p>29×20 semantic room · shared scene clock · Active Office promotion disabled</p>
         </div>
         <dl>
@@ -128,7 +128,7 @@ export function OfficeTenWorkstationLabPage() {
       <footer className="office-ten-footer">
         <span>Window: {season} / {timeOfDay}</span>
         <span>Portal: {doorState === "open" ? "passable" : "blocked"}</span>
-        <strong>{issues.length === 0 ? "ACCEPTED-STAGING" : `${issues.length} CONTRACT ISSUES`}</strong>
+        <strong>{issues.length === 0 ? "REJECTED-GEOMETRY / FIXTURE VALID" : `${issues.length} CONTRACT ISSUES`}</strong>
       </footer>
     </main>
   );

@@ -1,87 +1,74 @@
 # Office Camera and Scale Bible
 
-Status: Accepted for Geometry v3 prototype production
-Accepted: 2026-07-27
+Status: Workstation v2 blueprint review; artwork generation blocked
+Updated: 2026-07-28
 Machine-readable source:
 `assets/game/manifests/office-camera-scale-bible.json`
 Calibration board:
-`assets/art/layout-references/office-camera-scale-calibration-v1.png`
+`assets/art/layout-references/office-camera-scale-calibration-v2.png`
 
-This Bible is the generation and visual-calibration source of truth for Office
-assets. Geometry fields remain governed by Geometry v3. The board is generated
-from the JSON manifest and must never be edited independently.
+This Bible locks camera, scale, and the corrected compact workstation
+geometry. It does not authorize artwork, renderer implementation, ten-seat
+assembly, or Active Office promotion. Those permissions remain false until the
+owner approves the Workstation Assembly Bible images.
 
 ## Camera contract
 
-- One logical tile is 32 authoring pixels; exports may be 1x or 2x.
-- World footprints use a top-down orthographic grid.
-- Sprite elevations use straight orthographic front, back, left, and right
-  views with no perspective convergence.
-- Surface furniture is a composite: a top-down support-plane component plus
-  straight elevation underframe and foreground-occluder components.
-- Isometric, oblique, diagonal, three-quarter, and perspective views are
-  rejected.
-- All anchors and rendered parts snap to integer authoring pixels.
+- One logical tile is 32 authoring pixels.
+- Footprints use a top-down orthographic grid.
+- Visible elevations use strict straight front/back/left/right views.
+- Perspective convergence, isometric, oblique, diagonal, and three-quarter
+  views are rejected.
+- Surface furniture separates the top plane from rear, base, and foreground
+  height parts.
+- All pivots and rendered parts snap to integer authoring pixels.
 - Lighting comes from the upper-left with a two-pixel authoring outline.
 
-This split projection is intentional. A floor footprint cannot be inferred
-from a straight elevation bitmap, and a top-down surface cannot replace the
-front/back occlusion parts required around an actor.
-
-## Scale and levels
+## Scale references
 
 | Reference | Locked value |
 | --- | ---: |
 | Standing adult | `1 x 1 x 3` tiles |
 | Seated adult | `1 x 1 x 2` tiles |
+| Chair reservation | `1 x 1` tile |
 | Floor level | `0` tiles |
 | Seat level | `1` tile |
 | Work-surface level | `2.4` tiles |
 | Wall / standing-adult height | `3` tiles |
 
-The required calibration footprints are `1 x 1`, `2 x 1`, and `2 x 2`.
-Character render pixels may use the declared morphology-safe overflow, but the
-standing and seated reservation remains `1 x 1`.
-
-## Canonical workstation
+## Canonical workstation v2
 
 ```text
-physical scale    = 5 x 4 x 2.4 tiles
-floor footprint   = 5 x 4 tiles
-support plane     = 5 x 3 tiles at height 2.4
-employee edge     = fourth depth row; zero attachment slots
-base pivot        = (2.5, 4)
-sort pivot        = (2.5, 4)
-generation canvas = 5 x 5 tiles
+physical scale      = 3 x 2 x 2.4 tiles
+floor footprint     = 3 x 2 tiles
+support plane       = 3 x 2 tiles at height 2.4
+employee-edge row   = none
+base + sort pivot   = (1.5, 2)
+generation canvas   = 3 x 4 tiles
+monitor reservation = 3 x 1, far from actor
+keyboard reservation= 3 x 1, near actor
 ```
 
-The surface must be a real `5 x 3` plan component. The employee-edge row is
-physical floor depth, not extra tabletop. A straight-front bitmap may not be
-stretched or filled across the `5 x 4` footprint. The desk composite names
-`rear`, `surface`, `base`, and `foreground` parts so support placement and
-actor occlusion remain independent.
+The monitor and keyboard visuals may occupy fewer pixels than their `3 x 1`
+reservation. The reservation controls stable placement, not stretching.
 
-## Acceptance rules
+The `3 x 4` generation canvas is deliberately taller than the floor
+footprint. The extra height permits visible vertical furniture parts; it may
+not become collision or another support row.
 
-- Adjacent footprints may touch edges but may not overlap.
-- Greater `sortPivot.y` draws later.
-- A foreground part may cover the lower body; the actor head-safe region must
-  remain visible.
-- Render pixels may cross footprint edges only through declared render bounds
-  and offsets; overflow never changes collision.
-- Front/back and left/right views preserve one physical design and scale.
-- The prompt builder must stop when this manifest is missing or its status is
-  not `accepted`.
+## Superseded v1 decision
 
-Acceptance is limited to prototype Office geometry calibration. It does not
-approve character licenses, authorize Active Office promotion, or approve any
-future generated sheet without the normal asset review.
+The former `5 x 4` footprint, `5 x 3` support plane, and fourth employee-edge
+row are rejected. The former v1 calibration board and desk sprites are
+historical regression evidence only. The prompt builder must never substitute
+those dimensions for a new workstation request.
 
-## Reproduction
+## Review and generation gate
 
-Run `npm run art:geometry:bible` to regenerate the board and
-`npm run art:geometry:bible:check` to verify that the committed image matches
-the accepted manifest. After regenerating the board or audit, run
-`npm run art:geometry:lock` to refresh the portable CI freshness lock. The
-repository gate uses that lock so Cloudflare and GitHub can verify exact inputs
-and outputs without installing image-processing libraries.
+`npm run art:prompt:check` validates that this Bible is internally correct.
+`npm run art:prompt -- <asset-id>` must still refuse to produce a workstation
+prompt while status is `blueprint-review` or owner approval is false.
+
+Run `npm run art:geometry:bible` to regenerate the deterministic v2 camera
+board and `npm run art:geometry:bible:check` to verify it. Run
+`npm run art:workstation:bible` for the three owner-review images.

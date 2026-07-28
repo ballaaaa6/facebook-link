@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "office-workstation-bundle.schema.json",
-  "title": "Office Workstation Bundle v1",
+  "title": "Historical rejected Office Workstation Bundle v1",
   "type": "object",
   "additionalProperties": false,
   "required": ["version", "geometrySchemaVersion", "id", "status", "deskFamily", "attachmentSlots", "chairFamily", "actorCalibration", "monitorFamily", "screenLoop", "roleVariants", "compositeOrder"],
@@ -9,7 +9,7 @@
     "version": { "const": 1 },
     "geometrySchemaVersion": { "const": 3 },
     "id": { "type": "string", "minLength": 1 },
-    "status": { "const": "staging" },
+    "status": { "const": "rejected-geometry" },
     "deskFamily": {
       "type": "object",
       "required": ["id", "physicalScale", "footprint", "supportPlane", "employeeEdge", "generationRenderBox", "basePivot", "sortPivot", "orientations"],

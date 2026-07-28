@@ -57,10 +57,11 @@ export interface OfficePortal {
   statePolicy: { open: "passable"; closed: "blocked" };
 }
 
+/** @deprecated Rejected 5 x 4 staging map retained only for regression evidence. */
 export interface OfficeMapV2 {
   schemaVersion: 2;
   id: string;
-  status: "geometry-accepted-staging" | "accepted-staging";
+  status: "rejected-geometry";
   activeOfficePromotion: false;
   commercialCharacterApproval: false;
   grid: { width: number; height: number; tilePixels: number };
@@ -102,6 +103,7 @@ function add(issues: string[], condition: boolean, path: string, message: string
 export function validateOfficeMapV2(map: OfficeMapV2) {
   const issues: string[] = [];
   add(issues, map.schemaVersion === 2, "schemaVersion", "must equal 2");
+  add(issues, map.status === "rejected-geometry", "status", "must remain rejected-geometry evidence");
   add(issues, map.activeOfficePromotion === false, "activeOfficePromotion", "must remain disabled");
   add(issues, map.commercialCharacterApproval === false, "commercialCharacterApproval", "must remain disabled");
   const structureIds = new Set<string>();

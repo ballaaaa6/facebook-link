@@ -1,15 +1,16 @@
 # Office Asset Creation Guide
 
-Status: Production guide
+Status: Production guide; Workstation v2 artwork blocked pending owner review
 Scope: Office assets created for the latest orthographic pixel-art reference
 Current execution plan: `docs/art/OFFICE_GEOMETRY_REMEDIATION_ROADMAP.md`
 Historical migration plan: `docs/art/OFFICE_REF_MIGRATION_ROADMAP.md`
 
-Execution gate (2026-07-27): Steps 1-4 of the current execution plan are
-complete. New replacement work may start only from a `regenerate` audit record
-or an approved `derive-composite` record and must use the accepted
-machine-readable Camera/Scale Bible. This does not authorize Active Office
-promotion or broad regeneration of the library.
+Workstation reset gate (2026-07-28): the former `5 x 4` / `5 x 3` workstation
+contract and Candidate r01 are rejected. No workstation artwork, renderer, or
+ten-seat assembly may start until the owner approves
+`docs/art/OFFICE_WORKSTATION_ASSEMBLY_BIBLE.md` and its three review boards.
+Unrelated asset work still follows its normal audit disposition. This does not
+authorize Active Office promotion or broad regeneration of the library.
 
 ## 1. Purpose
 
@@ -153,9 +154,9 @@ metadata, parent slots, and layout validation are the enforceable contract.
 
 | Asset or family | Locked W x D x H | Render box W x H | Floor footprint W x D | Seats / support |
 | --- | ---: | ---: | ---: | --- |
-| Standard desk | `5 x 4 x 2.4` | `5 x 5` generation canvas | `5 x 4` | Separate `5 x 3` support plane; employee-edge row has no slots. |
-| Creative desk | `5 x 4 x 2.4` | `5 x 5` generation canvas | `5 x 4` | Same contract as the standard desk; equipment changes the role. |
-| NOC desk | `5 x 4 x 2.4` | `5 x 5` generation canvas | `5 x 4` | Same contract as the standard desk; equipment changes the role. |
+| Standard desk | `3 x 2 x 2.4` | `3 x 4` generation canvas | `3 x 2` | Complete `3 x 2` support plane; no employee-edge footprint row. Artwork blocked pending blueprint approval. |
+| Creative desk | `3 x 2 x 2.4` | `3 x 4` generation canvas | `3 x 2` | Same physical family; role equipment changes, geometry does not. |
+| NOC desk | `3 x 2 x 2.4` | `3 x 4` generation canvas | `3 x 2` | Same physical family; role equipment changes, geometry does not. |
 | Office task chair | `1 x 1 x 2` | `1 x 2` | `1 x 1` | One seat slot. |
 | Studio task chair | `1 x 1 x 2` | `1 x 2` | `1 x 1` | One seat slot. |
 | Cafe / meeting chair | `1 x 1 x 2` | `1 x 2` | `1 x 1` | One review or cafe seat. |

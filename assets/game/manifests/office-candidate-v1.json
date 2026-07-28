@@ -1,21 +1,21 @@
 {
   "version": 1,
   "id": "office-candidate-v1",
-  "status": "review-candidate",
+  "status": "rejected-visual",
   "activeOfficePromotion": false,
   "commercialCharacterApproval": false,
   "sources": {
     "structuralMap": {
       "file": "assets/game/maps/office-ten-v1.json",
-      "sha256": "603859b468061017023b2c4720f8d082bf9b8a46306c82dcd49cd416cc94c63d"
+      "sha256": "d1d1c061f981478737c8581e76c4c0ec91c897a1dc02dd90cf78f9cf5ed1c997"
     },
     "workstationBundle": {
       "file": "assets/game/manifests/office-workstation-bundle-v1.json",
-      "sha256": "7d0e8071db12a1288e4aaf41ad88fe623d7cc877e564269dc713f5e3bd1db5e0"
+      "sha256": "bd9a882ad6dcebcfd79396d94f6a8c9bdd9d796fc6658fad4e971b47e5daf82e"
     },
     "workstationDeployment": {
       "file": "assets/game/manifests/office-workstation-deployment-v1.json",
-      "sha256": "f522b6b88ebf6654fe19335c88d03826694b6472c835f037f1fd6f86447eeff4"
+      "sha256": "6d5b782c6201bc03d83179696cab5767c369e15b55cf1b5bb572829bb69d0289"
     },
     "derivedAssets": {
       "file": "assets/game/manifests/office-derived-assets-v1.json",
@@ -83,10 +83,16 @@
   "scenarios": ["live", "workstations", "facilities", "roster"],
   "review": {
     "revision": "r01",
-    "status": "awaiting-owner-review",
+    "status": "changes-requested",
     "ownerApproval": false,
     "captureDirectory": "assets/game/processed/office-candidate-v1/qa/review-r01",
-    "savedImageCount": 10
+    "savedImageCount": 10,
+    "rejectionReasons": [
+      "employees and chairs are not calibrated to the seat anchors",
+      "the isolated scene replaced the already-approved Active Office background",
+      "the 5 x 4 workstation footprint is oversized and invalid",
+      "desk modules do not follow the required compact 3 x 2 paired-bank composition"
+    ]
   },
   "acceptance": {
     "activeAgentCount": 10,

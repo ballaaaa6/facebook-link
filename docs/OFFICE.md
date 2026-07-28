@@ -1,5 +1,10 @@
 # Agent Office
 
+Workstation correction (2026-07-28): the isolated `5 x 4` staging layout and
+Candidate r01 are rejected evidence. The current pre-artwork authority is the
+`3 x 2` Workstation Assembly Bible v2. The active Office background and map
+remain unchanged while the owner reviews the blueprint images.
+
 The active spatial, facility-reservation, asset-addition, and layout delivery
 plan is documented in `docs/OFFICE_LAYOUT_REWORK_PLAN.md`.
 

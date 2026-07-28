@@ -26,14 +26,16 @@ export interface OfficeWorkstationPreset {
   equipment: readonly WorkstationEquipment[];
 }
 
+/** @deprecated Rejected v1 geometry fixture; do not use for new layouts. */
 export interface OfficeWorkstationDeploymentManifestV1 {
   schemaVersion: 1;
   id: string;
-  status: "staging";
+  status: "rejected-geometry";
   deskFamilyId: "desk.modular.v1";
   presets: readonly OfficeWorkstationPreset[];
 }
 
+/** @deprecated Rejected v1 geometry fixture; do not use for new layouts. */
 export interface WorkstationDeploymentV1 {
   id: string;
   agentId: string;
@@ -67,7 +69,7 @@ export function validateOfficeWorkstationDeploymentManifestV1(
   if (!isRecord(value)) return ["manifest: must be an object"];
   const issues: string[] = [];
   issue(issues, value.schemaVersion === 1, "schemaVersion", "must equal 1");
-  issue(issues, value.status === "staging", "status", "must remain staging");
+  issue(issues, value.status === "rejected-geometry", "status", "must remain rejected-geometry evidence");
   issue(issues, value.deskFamilyId === bundle.deskFamily.id, "deskFamilyId", "must reference the canonical desk family");
   const presets = Array.isArray(value.presets) ? value.presets : [];
   issue(issues, presets.length === workstationPresetIds.length, "presets", "must define all four presets");

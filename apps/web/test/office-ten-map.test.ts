@@ -45,10 +45,10 @@ function overlaps(
     && left.y < right.y + right.depth && left.y + left.depth > right.y;
 }
 
-test("the ten-workstation staging map passes its structural contract", () => {
+test("the rejected ten-workstation map remains valid structural regression evidence", () => {
   assert.deepEqual(validateOfficeMapV2(map), []);
   assert.equal(map.schemaVersion, 2);
-  assert.equal(map.status, "accepted-staging");
+  assert.equal(map.status, "rejected-geometry");
   assert.equal(map.activeOfficePromotion, false);
   assert.deepEqual(map.grid, { width: 29, height: 20, tilePixels: 32 });
 });

@@ -11,8 +11,10 @@ const manifest = JSON.parse(readFileSync(new URL(
   import.meta.url,
 ), "utf8")) as OfficeCandidateManifestV1;
 
-test("Office Candidate v1 remains review-only and contract-valid", () => {
+test("Office Candidate v1 remains rejected evidence and contract-valid", () => {
   assert.deepEqual(validateOfficeCandidateManifest(manifest), []);
+  assert.equal(manifest.status, "rejected-visual");
+  assert.equal(manifest.review.status, "changes-requested");
   assert.equal(manifest.activeOfficePromotion, false);
   assert.equal(manifest.commercialCharacterApproval, false);
   assert.equal(manifest.review.ownerApproval, false);

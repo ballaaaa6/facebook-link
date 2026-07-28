@@ -1,0 +1,169 @@
+{
+  "version": 2,
+  "geometrySchemaVersion": 3,
+  "id": "office.workstation.assembly-bible.v2",
+  "status": "blueprint-review",
+  "updatedOn": "2026-07-28",
+  "permissions": {
+    "ownerApproval": false,
+    "deskArtworkGeneration": false,
+    "chairArtworkGeneration": false,
+    "monitorArtworkGeneration": false,
+    "rendererImplementation": false,
+    "tenSeatSceneAssembly": false,
+    "activeOfficePromotion": false
+  },
+  "sourceReference": {
+    "file": "assets/art/layout-references/office-modern-operations-target-v2.png",
+    "sha256": "15b778f876d9a8419233b976eaa37422e373d186bc4275620cf55a811221ae54",
+    "observationCrop": { "x": 0, "y": 0, "width": 1900, "height": 900 },
+    "measurementPolicy": "composition-reference-not-runtime-pixel-measurement"
+  },
+  "activeOfficeBaseline": {
+    "file": "assets/game/maps/office-c-v2.json",
+    "sha256": "c40db448eb8e6d0f3fea67a41f716c0108aca63a4136cfad15293534273c618d",
+    "grid": { "width": 36, "height": 24, "tilePixels": 32 },
+    "workZone": { "x": 0, "y": 0, "width": 24, "height": 24 },
+    "mustRemainUnchangedDuringBlueprintReview": true
+  },
+  "coordinateConvention": {
+    "x": "increases-right",
+    "y": "increases-toward-viewer",
+    "localOrigin": "desk-footprint-top-left",
+    "footprintMeaning": "top-down physical floor reservation only",
+    "renderOverflowMeaning": "visible height or occlusion pixels only; never collision"
+  },
+  "desk": {
+    "familyId": "desk.workstation.modern.v2",
+    "footprint": { "width": 3, "depth": 2, "unit": "tile" },
+    "supportPlane": { "id": "desk-surface", "x": 0, "y": 0, "width": 3, "depth": 2, "height": 2.4, "unit": "tile" },
+    "generationRenderBox": { "width": 3, "height": 4, "unit": "tile" },
+    "basePivot": { "x": 1.5, "y": 2, "unit": "tile" },
+    "sortPivot": { "x": 1.5, "y": 2, "unit": "tile" },
+    "employeeEdgeRow": null,
+    "partContract": [
+      {
+        "role": "rear",
+        "meaning": "back rim or structure that must render behind supported equipment and the actor",
+        "changesFootprint": false,
+        "mayOverflowFootprint": true,
+        "artworkStatus": "not-created"
+      },
+      {
+        "role": "surface",
+        "meaning": "the visible top plane corresponding exactly to the 3 x 2 support plane",
+        "changesFootprint": false,
+        "mayOverflowFootprint": false,
+        "artworkStatus": "not-created"
+      },
+      {
+        "role": "base",
+        "meaning": "legs, drawers, apron, and vertical mass below the tabletop; height only",
+        "changesFootprint": false,
+        "mayOverflowFootprint": true,
+        "artworkStatus": "not-created"
+      },
+      {
+        "role": "foreground",
+        "meaning": "front lip or occlusion mask that may cover the seated lower body but never the head-safe region",
+        "changesFootprint": false,
+        "mayOverflowFootprint": true,
+        "artworkStatus": "not-created"
+      }
+    ]
+  },
+  "equipment": {
+    "monitor": {
+      "reservation": { "width": 3, "depth": 1, "unit": "tile" },
+      "visualMayUseLessThanReservation": true,
+      "anchor": { "x": 1.5, "unit": "tile" },
+      "rule": "centered at the desk edge farthest from the actor"
+    },
+    "keyboard": {
+      "reservation": { "width": 3, "depth": 1, "unit": "tile" },
+      "visualMayUseLessThanReservation": true,
+      "anchor": { "x": 1.5, "unit": "tile" },
+      "rule": "centered in the desk row nearest the actor"
+    }
+  },
+  "orientations": {
+    "far": {
+      "deskView": "front",
+      "actorFacing": "down",
+      "chairFootprintRelative": { "x": 1, "y": -1, "width": 1, "depth": 1 },
+      "monitorReservationRelative": { "x": 0, "y": 1, "width": 3, "depth": 1 },
+      "keyboardReservationRelative": { "x": 0, "y": 0, "width": 3, "depth": 1 },
+      "monitorVisibleSide": "back",
+      "assemblyOrderBackToFront": [
+        "desk-rear",
+        "chair-base",
+        "desk-surface",
+        "keyboard",
+        "actor",
+        "chair-foreground",
+        "monitor-back",
+        "desk-base",
+        "desk-foreground"
+      ]
+    },
+    "near": {
+      "deskView": "back",
+      "actorFacing": "up",
+      "chairFootprintRelative": { "x": 1, "y": 2, "width": 1, "depth": 1 },
+      "monitorReservationRelative": { "x": 0, "y": 0, "width": 3, "depth": 1 },
+      "keyboardReservationRelative": { "x": 0, "y": 1, "width": 3, "depth": 1 },
+      "monitorVisibleSide": "front",
+      "assemblyOrderBackToFront": [
+        "desk-rear",
+        "desk-surface",
+        "monitor-front",
+        "keyboard",
+        "desk-base",
+        "desk-foreground",
+        "chair-base",
+        "actor",
+        "chair-foreground"
+      ]
+    }
+  },
+  "normalizedTenSeatBlock": {
+    "targetSeatCount": 10,
+    "columnCount": 5,
+    "deskOriginsX": [4, 7, 10, 13, 16],
+    "farDeskOriginY": 6,
+    "nearDeskOriginY": 8,
+    "farChairOriginY": 5,
+    "nearChairOriginY": 10,
+    "deskBankBounds": { "x": 4, "y": 6, "width": 15, "depth": 4 },
+    "rules": [
+      "all horizontal desk edges touch",
+      "far and near desk rows touch directly",
+      "chairs remain outside desk footprints",
+      "every chair is centered on its three-tile desk",
+      "all ten stations remain inside the existing left work zone",
+      "the current Office background is not replaced"
+    ]
+  },
+  "legacyDenyList": {
+    "deskFamilyIds": ["desk.modular.v1", "desk.standard.up", "desk.creative.up", "desk.noc.up"],
+    "chairAssetIds": ["chair.office.up", "chair.studio.up"],
+    "geometryRules": ["5x4-workstation-footprint", "5x3-workstation-support-plane", "employee-edge-footprint-row"],
+    "policy": "Historical fixtures may be opened only as rejected regression evidence. They cannot feed v2 generation, assembly, or Active Office promotion."
+  },
+  "reviewOutputs": [
+    "assets/art/layout-references/office-workstation-v2/01-target-decomposition-v2.png",
+    "assets/art/layout-references/office-workstation-v2/02-furniture-exploded-parts-v2.png",
+    "assets/art/layout-references/office-workstation-v2/03-assembly-and-adjacency-v2.png",
+    "assets/art/layout-references/office-workstation-v2/00-owner-review-contact-sheet-v2.png"
+  ],
+  "approvalGate": {
+    "requiredBeforeArtwork": [
+      "owner confirms target decomposition",
+      "owner confirms front and back semantic parts",
+      "owner confirms monitor and keyboard rows",
+      "owner confirms chair and actor are outside the 3 x 2 desk footprint",
+      "owner confirms five-by-two adjacency"
+    ],
+    "nextPhaseWhenApproved": "Create one bare v2 desk and one single-seat assembly in an isolated lab; do not assemble all ten seats yet."
+  }
+}

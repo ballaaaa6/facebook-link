@@ -16,7 +16,7 @@ const map = readJson("../../../assets/game/manifests/fixtures/office-structure-v
 const bundle = readJson("../../../assets/game/manifests/office-workstation-bundle-v1.json") as OfficeWorkstationBundleV1;
 const presets = readJson("../../../assets/game/manifests/office-workstation-deployment-v1.json");
 
-test("Office Map v2 accepts the structural contract fixture", () => {
+test("rejected Office Map v2 remains valid structural regression evidence", () => {
   assert.deepEqual(validateOfficeMapV2(map), []);
   assert.deepEqual(validateOfficeWorkstationDeploymentManifestV1(presets, bundle), []);
 });

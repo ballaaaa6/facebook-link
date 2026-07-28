@@ -16,7 +16,7 @@
   "properties": {
     "schemaVersion": { "const": 2 },
     "id": { "type": "string" },
-    "status": { "enum": ["geometry-accepted-staging", "accepted-staging"] },
+    "status": { "const": "rejected-geometry" },
     "activeOfficePromotion": { "const": false },
     "commercialCharacterApproval": { "const": false },
     "grid": {

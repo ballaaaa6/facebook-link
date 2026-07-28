@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "id": "office-structure-v2-contract-fixture",
-  "status": "geometry-accepted-staging",
+  "status": "rejected-geometry",
   "activeOfficePromotion": false,
   "commercialCharacterApproval": false,
   "grid": { "width": 12, "height": 10, "tilePixels": 32 },

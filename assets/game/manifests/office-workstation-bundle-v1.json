@@ -2,7 +2,7 @@
   "version": 1,
   "geometrySchemaVersion": 3,
   "id": "office.workstation.bundle.v1",
-  "status": "staging",
+  "status": "rejected-geometry",
   "deskFamily": {
     "id": "desk.modular.v1",
     "physicalScale": { "width": 5, "depth": 4, "height": 2.4, "unit": "tile" },

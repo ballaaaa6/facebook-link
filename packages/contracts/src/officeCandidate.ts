@@ -8,7 +8,7 @@ export interface OfficeCandidateFileReference {
 export interface OfficeCandidateManifestV1 {
   version: 1;
   id: string;
-  status: "review-candidate";
+  status: "rejected-visual";
   activeOfficePromotion: false;
   commercialCharacterApproval: false;
   sources: {
@@ -27,10 +27,11 @@ export interface OfficeCandidateManifestV1 {
   scenarios: readonly OfficeCandidateScenario[];
   review: {
     revision: string;
-    status: "draft" | "awaiting-owner-review" | "changes-requested" | "owner-approved";
+    status: "changes-requested";
     ownerApproval: false;
     captureDirectory: string;
     savedImageCount: number;
+    rejectionReasons: readonly string[];
   };
   acceptance: {
     activeAgentCount: 10;
@@ -64,7 +65,7 @@ export function validateOfficeCandidateManifest(manifest: OfficeCandidateManifes
   const issues: string[] = [];
   add(issues, manifest.version === 1, "version", "must equal 1");
   add(issues, manifest.id === "office-candidate-v1", "id", "must equal office-candidate-v1");
-  add(issues, manifest.status === "review-candidate", "status", "must remain review-candidate");
+  add(issues, manifest.status === "rejected-visual", "status", "must remain rejected-visual evidence");
   add(issues, manifest.activeOfficePromotion === false, "activeOfficePromotion", "must remain disabled");
   add(issues, manifest.commercialCharacterApproval === false, "commercialCharacterApproval", "must remain disabled");
 
@@ -95,6 +96,8 @@ export function validateOfficeCandidateManifest(manifest: OfficeCandidateManifes
   add(issues, manifest.acceptance.consoleWarningsAllowed === 0, "acceptance.consoleWarningsAllowed", "must equal 0");
   add(issues, manifest.acceptance.consoleErrorsAllowed === 0, "acceptance.consoleErrorsAllowed", "must equal 0");
   add(issues, manifest.review.ownerApproval === false, "review.ownerApproval", "cannot be approved before owner review");
+  add(issues, manifest.review.status === "changes-requested", "review.status", "must record the owner's requested changes");
+  add(issues, manifest.review.rejectionReasons.length >= 4, "review.rejectionReasons", "must preserve the visual rejection causes");
   add(issues, /^r\d{2}$/.test(manifest.review.revision), "review.revision", "must use rNN format");
   add(issues, manifest.review.captureDirectory.includes(manifest.review.revision), "review.captureDirectory", "must include the revision");
   add(

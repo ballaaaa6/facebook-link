@@ -27,16 +27,16 @@ const activeRegistrySource = readFileSync(new URL(
   import.meta.url,
 ), "utf8");
 
-test("the Workstation v1 vertical slice is valid and remains isolated from Active Office", () => {
+test("the rejected Workstation v1 slice remains valid evidence and isolated from Active Office", () => {
   assert.deepEqual(validateWorkstationLabMap(map, bundle), []);
-  assert.equal(map.status, "accepted-staging");
+  assert.equal(map.status, "rejected-geometry");
   assert.equal(map.activeOfficePromotion, false);
   assert.equal(activeMap.id, "office-c-v2-integer");
   assert.notEqual(activeMap.id, map.id);
   assert.equal(activeRegistrySource.includes("desk.modular.v1"), false);
 });
 
-test("the two canonical footprints touch without overlap and keep external seats", () => {
+test("the two rejected v1 footprints remain stable regression evidence", () => {
   const [far, near] = map.stations;
   assert.ok(far && near);
   assert.deepEqual(far.footprint, { x: 5, y: 3, width: 5, depth: 4 });
@@ -73,7 +73,7 @@ test("the viewport-local four-frame loop is stable over the thirty-second gate",
   assert.equal(samples.at(-1), 30_000);
 });
 
-test("all sixteen deterministic desk parts exist and retain the 5-tile render box", () => {
+test("all sixteen rejected v1 desk parts remain preserved by exact render size", () => {
   for (const orientation of ["front", "back", "left", "right"] as const) {
     for (const part of ["rear", "surface", "base", "foreground"] as const) {
       const file = new URL(

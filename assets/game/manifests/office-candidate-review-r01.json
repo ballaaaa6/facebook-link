@@ -3,10 +3,15 @@
   "candidateId": "office-candidate-v1",
   "revision": "r01",
   "capturedAt": "2026-07-27T23:28:16+07:00",
-  "status": "awaiting-owner-review",
+  "status": "rejected-visual",
   "ownerApproval": false,
   "activeOfficePromotion": false,
   "commercialCharacterApproval": false,
+  "rejection": {
+    "rejectedOn": "2026-07-28",
+    "reason": "Owner rejected the seating, scale, background replacement, and 5 x 4 workstation geometry.",
+    "allowedUse": "historical-regression-evidence-only"
+  },
   "results": {
     "contractIssues": 0,
     "consoleWarnings": 0,

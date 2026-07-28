@@ -1,10 +1,15 @@
 # Office Geometry Remediation Roadmap
 
-Status: Steps 1-4 accepted; Steps 5-16 accepted-staging; Steps 21-23 review-candidate on 2026-07-27
+Status: Historical execution record; workstation geometry and Candidate r01 rejected on 2026-07-28
 Approved: 2026-07-27
 Owner: Art, asset-pipeline, shared-contract, and Office-rendering workstreams
 Scope: Reconcile the existing Office asset library with top-down placement,
 surface support, depth sorting, and compositing before any interior replacement
+
+Supersession note: every `5 x 4` / `5 x 3` workstation acceptance statement in
+this historical roadmap is revoked. The current workstation source of truth is
+`docs/art/OFFICE_WORKSTATION_ASSEMBLY_BIBLE.md`. Do not execute the old
+workstation steps or promote their artifacts.
 
 ## 1. Decision
 
