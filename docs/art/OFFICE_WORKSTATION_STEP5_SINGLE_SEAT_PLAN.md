@@ -1,8 +1,17 @@
 # Office Workstation Step 5 Single-Seat Plan
 
-Status: Owner review required; implementation is not authorized
+Status: Implemented in an isolated lab; owner visual review required
 Updated: 2026-07-28
 Depends on: `assets/game/manifests/office-workstation-assembly-bible-v2.json`
+
+Implementation record:
+`assets/game/manifests/office-workstation-step5-single-seat-v1.json`
+
+The owner authorized this plan on 2026-07-28. The one-station lab, focused
+contracts/tests, portable CI check, and five review images are complete. Step 5
+is not accepted until the owner approves both clean orientation views. The
+other 18 characters, ten-seat assembly, and Active Office promotion remain
+blocked.
 
 ## Objective
 
@@ -109,7 +118,7 @@ If this source-of-truth order produces a visual contradiction, Step 5 stops and
 the assembly manifest is corrected and reviewed. The renderer must not hide a
 wrong geometry rule with per-scene offsets.
 
-## Execution sequence after approval
+## Executed sequence
 
 ### 5.1 Asset and contract preflight
 
@@ -203,9 +212,9 @@ Reject Step 5 immediately if any of the following appears:
 - any per-character offset is introduced before the one-seat contract is
   accepted.
 
-## Planned file boundary
+## Implemented file boundary
 
-After explicit approval, Step 5 may add or modify only:
+The approved Step 5 implementation added or modified only:
 
 - a new manifest under `assets/game/manifests/` for the single-seat lab;
 - a new isolated feature folder under

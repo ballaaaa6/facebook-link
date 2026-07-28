@@ -1,6 +1,6 @@
 # Office Asset Creation Guide
 
-Status: Production guide; Step 4 Workstation v2 bare desk accepted, Step 5 planning only
+Status: Production guide; Step 4 accepted, isolated Step 5 awaiting owner review
 Scope: Office assets created for the latest orthographic pixel-art reference
 Current execution plan: `docs/art/OFFICE_GEOMETRY_REMEDIATION_ROADMAP.md`
 Historical migration plan: `docs/art/OFFICE_REF_MIGRATION_ROADMAP.md`
@@ -8,10 +8,10 @@ Historical migration plan: `docs/art/OFFICE_REF_MIGRATION_ROADMAP.md`
 Workstation reset gate (2026-07-28): the former `5 x 4` / `5 x 3` workstation
 contract and Candidate r01 are rejected. The owner approved the corrected
 `3 x 2` blueprint and accepted the bare desk v2 source, its front/back
-normalization, semantic layers, and Step 4 QA boards. A Step 5 single-seat plan
-may now be prepared. Chair, monitor, keyboard, character assembly, the lab
-implementation, renderer, ten-seat assembly, and Active Office promotion remain
-blocked until the plan is separately approved.
+normalization, semantic layers, and Step 4 QA boards. The owner then authorized
+the Step 5 one-seat lab. It reuses the existing chair, monitor, keyboard, and
+Einstein poses and generated no replacement art. Roster-wide calibration,
+ten-seat assembly, and Active Office promotion remain blocked until later gates.
 
 ## 1. Purpose
 

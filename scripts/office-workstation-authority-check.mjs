@@ -20,6 +20,7 @@ function add(failures, condition, message) {
 const camera = readJson("assets/game/manifests/office-camera-scale-bible.json");
 const assembly = readJson("assets/game/manifests/office-workstation-assembly-bible-v2.json");
 const bundleV2 = readJson("assets/game/manifests/office-workstation-bundle-v2.json");
+const step5 = readJson("assets/game/manifests/office-workstation-step5-single-seat-v1.json");
 const candidate = readJson("assets/game/manifests/office-candidate-v1.json");
 const review = readJson("assets/game/manifests/office-candidate-review-r01.json");
 const historicalBundle = readJson("assets/game/manifests/office-workstation-bundle-v1.json");
@@ -155,6 +156,17 @@ add(
   "Active Office baseline changed during blueprint review",
 );
 
+add(failures, step5.status === "owner-review", "Step 5 must stop at owner review");
+add(failures, step5.permissions?.singleSeatAssembly === true, "Step 5 must record owner-authorized single-seat assembly");
+add(failures, step5.permissions?.isolatedLabRenderer === true, "Step 5 isolated renderer must be authorized");
+for (const key of ["newArtworkGeneration", "rosterWideCalibration", "tenSeatSceneAssembly", "activeOfficePromotion"]) {
+  add(failures, step5.permissions?.[key] === false, `Step 5 permissions.${key} must remain false`);
+}
+add(failures, step5.lab?.stationCount === 1 && step5.lab?.reviewViewCount === 2,
+  "Step 5 must remain one station with two review views");
+add(failures, step5.activeOfficeBaseline?.sha256 === assembly.activeOfficeBaseline?.sha256,
+  "Step 5 must inherit the exact Active Office baseline hash");
+
 add(failures, candidate.status === "rejected-visual", "Candidate v1 must remain rejected-visual evidence");
 add(failures, candidate.review?.status === "changes-requested", "Candidate v1 must retain owner-requested changes");
 add(failures, candidate.activeOfficePromotion === false, "Candidate v1 cannot promote Active Office");
@@ -183,6 +195,6 @@ if (failures.length > 0) {
   process.exitCode = 1;
 } else {
   process.stdout.write(
-    "Workstation authority OK: 3 x 2 Step 4 bare desk current, v1/r01 rejected, Step 5 and promotion blocked.\n",
+    "Workstation authority OK: accepted 3 x 2 desk, isolated Step 5 owner review, ten-seat and promotion blocked.\n",
   );
 }

@@ -11,6 +11,7 @@ export * from "./officeStructure.ts";
 export * from "./officeWorkstation.ts";
 export * from "./officeWorkstationAssembly.ts";
 export * from "./officeWorkstationV2.ts";
+export * from "./officeWorkstationStep5.ts";
 export * from "./officeWorkstationDeployment.ts";
 export * from "./sheets.ts";
 export * from "./storage.ts";

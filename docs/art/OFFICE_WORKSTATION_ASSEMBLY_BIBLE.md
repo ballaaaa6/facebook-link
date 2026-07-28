@@ -1,15 +1,15 @@
 # Office Workstation Assembly Bible v2
 
-Status: Blueprint and Step 4 bare desk artwork accepted; Step 5 planning only
+Status: Blueprint and Step 4 desk accepted; isolated Step 5 lab awaiting owner review
 Updated: 2026-07-28
 Machine-readable source:
 `assets/game/manifests/office-workstation-assembly-bible-v2.json`
 
 This is the approved geometry handoff for the ten-seat workstation block. On
-2026-07-28 the owner approved the blueprint and then accepted the elevated-camera
-Step 4 bare desk v2 artwork. Step 5 planning is allowed, but single-seat lab
-execution, renderer code, ten-seat assembly, and Active Office promotion remain
-blocked until separate approvals.
+2026-07-28 the owner approved the blueprint, accepted the elevated-camera Step 4
+desk, and authorized the isolated Step 5 plan. The one-station renderer and five
+review images now exist. Ten-seat assembly, roster-wide calibration, and Active
+Office promotion remain blocked until later approvals.
 
 ## What has been produced
 
@@ -40,9 +40,8 @@ meaning, not approval of a final visual style.
 ## What has not been produced
 
 - no new chair, monitor, keyboard, prop, or character artwork;
-- no single-seat person/chair/monitor/keyboard assembly;
-- no renderer or compositor;
 - no ten-seat scene;
+- no calibration of the other 18 characters;
 - no replacement Office background;
 - no Active Office change;
 - no commercial-use or character-license work.
@@ -68,14 +67,18 @@ The owner accepted all of the following on 2026-07-28:
 Future changes that invalidate any answer require a new version and owner
 review. Do not patch renderer code to compensate for wrong artwork geometry.
 
-## Step 5 planning gate
+## Step 5 owner-review gate
 
-Prepare a detailed isolated single-seat assembly plan using the accepted bare
-desk plus the already-created chair, monitor, keyboard, and one existing
-character pose. Execution starts only after the owner approves that Step 5
-plan. The full ten-seat scene remains a later gate. Existing 19 characters and
-completed poses are reused; this plan does not create replacements.
+The owner authorized a detailed isolated single-seat assembly using the
+accepted desk plus the already-created chair, monitor, keyboard, and Einstein
+seated poses. The implementation is available only through the development lab
+route `/?lab=office-workstation-v2-step5`. The full ten-seat scene remains a
+later gate; no characters or poses were replaced.
 
 The reviewable plan, including locked asset hashes, exact anchor equations,
 layer order, evidence images, rejection conditions, and the permitted file
 boundary, is in `docs/art/OFFICE_WORKSTATION_STEP5_SINGLE_SEAT_PLAN.md`.
+
+Machine-readable Step 5 authority and locked inputs are in
+`assets/game/manifests/office-workstation-step5-single-seat-v1.json`. Review
+images are in `assets/art/layout-references/office-workstation-v2/step5/`.
