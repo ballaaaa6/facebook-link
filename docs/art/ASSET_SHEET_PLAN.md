@@ -6,11 +6,11 @@ Reduce generation latency without sacrificing usable geometry. Static furniture 
 
 Workstation reset gate (2026-07-28): `desk.modular.v1`, its `5 x 4` footprint,
 its `5 x 3` support plane, and Candidate r01 are rejected regression evidence.
-They cannot seed a new sheet. The current authority is the review-only `3 x 2`
-Assembly Bible in `docs/art/OFFICE_WORKSTATION_ASSEMBLY_BIBLE.md`. New desk,
-chair, monitor, renderer, and ten-seat outputs remain blocked until the owner
-approves the deterministic blueprint boards. Active Office promotion remains
-a separate later gate.
+They cannot seed a new sheet. The owner approved the current `3 x 2` Assembly
+Bible and authorized only the bare desk v2 Step 4 workflow recorded by
+`assets/game/manifests/office-workstation-bundle-v2.json`. Chair, monitor,
+keyboard, character, single-seat assembly, renderer, ten-seat outputs, and
+Active Office promotion remain blocked behind later owner gates.
 
 Derived-asset staging gate (2026-07-27): Steps 13-16 resolve all 77 reviewed
 `derive-composite` records under `office-derived-v1`. The versioned outputs

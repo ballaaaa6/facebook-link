@@ -2,16 +2,21 @@
   "version": 2,
   "geometrySchemaVersion": 3,
   "id": "office.workstation.assembly-bible.v2",
-  "status": "blueprint-review",
+  "status": "desk-artwork-authorized",
   "updatedOn": "2026-07-28",
   "permissions": {
-    "ownerApproval": false,
-    "deskArtworkGeneration": false,
+    "ownerApproval": true,
+    "deskArtworkGeneration": true,
     "chairArtworkGeneration": false,
     "monitorArtworkGeneration": false,
     "rendererImplementation": false,
     "tenSeatSceneAssembly": false,
     "activeOfficePromotion": false
+  },
+  "approvalRecord": {
+    "approvedOn": "2026-07-28",
+    "approvedScope": "Step 4 bare desk v2 artwork, semantic layers, manifest, and QA boards only",
+    "nextStepBlocked": "Step 5 single-seat lab requires a separate owner approval"
   },
   "sourceReference": {
     "file": "assets/art/layout-references/office-modern-operations-target-v2.png",
@@ -47,28 +52,28 @@
         "meaning": "back rim or structure that must render behind supported equipment and the actor",
         "changesFootprint": false,
         "mayOverflowFootprint": true,
-        "artworkStatus": "not-created"
+        "artworkStatus": "step4-review"
       },
       {
         "role": "surface",
         "meaning": "the visible top plane corresponding exactly to the 3 x 2 support plane",
         "changesFootprint": false,
         "mayOverflowFootprint": false,
-        "artworkStatus": "not-created"
+        "artworkStatus": "step4-review"
       },
       {
         "role": "base",
         "meaning": "legs, drawers, apron, and vertical mass below the tabletop; height only",
         "changesFootprint": false,
         "mayOverflowFootprint": true,
-        "artworkStatus": "not-created"
+        "artworkStatus": "step4-review"
       },
       {
         "role": "foreground",
         "meaning": "front lip or occlusion mask that may cover the seated lower body but never the head-safe region",
         "changesFootprint": false,
         "mayOverflowFootprint": true,
-        "artworkStatus": "not-created"
+        "artworkStatus": "step4-review"
       }
     ]
   },
@@ -164,6 +169,6 @@
       "owner confirms chair and actor are outside the 3 x 2 desk footprint",
       "owner confirms five-by-two adjacency"
     ],
-    "nextPhaseWhenApproved": "Create one bare v2 desk and one single-seat assembly in an isolated lab; do not assemble all ten seats yet."
+    "nextPhaseWhenApproved": "After the owner approves the Step 4 bare-desk review boards, authorize Step 5 single-seat assembly in an isolated lab; do not assemble all ten seats yet."
   }
 }

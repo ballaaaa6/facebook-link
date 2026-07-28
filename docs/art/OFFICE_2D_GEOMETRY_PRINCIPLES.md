@@ -105,13 +105,13 @@ tiles apart. The two rows touch vertically because the near row begins at Y 8,
 immediately after the far row ends at Y 8. Chairs stay outside the desk
 footprints and are centered on the middle tile of each desk.
 
-These coordinates are a blueprint for owner review. The v2 permission flags
-for artwork, renderer work, ten-seat assembly, and Active Office promotion all
-remain false.
+These coordinates are the approved blueprint. Only Step 4 bare desk artwork is
+authorized. Single-seat assembly, renderer work, ten-seat assembly, and Active
+Office promotion remain false.
 
 ## Furniture part contract
 
-Each desk orientation is specified as semantic parts before artwork exists:
+Each desk orientation is exported as explicit semantic parts:
 
 - `rear`: rim or structure behind equipment and actor;
 - `surface`: the visible top plane corresponding to the `3 x 2` support plane;
@@ -151,12 +151,14 @@ regression evidence. They are not current examples.
 
 ## Approval gate
 
-Before creating any desk, chair, monitor, renderer, or ten-seat scene, the
-owner must approve the three deterministic v2 review boards:
+The geometry boards are approved and the Step 4 bare desk is now in owner
+review. Before Step 5, the owner must approve the replacement elevated-camera
+desk, its semantic layers, and its zero-gap adjacency proofs.
 
-1. target decomposition;
-2. front/back exploded semantic parts;
-3. assembly order and adjacency proof.
+1. replacement source plus normalized front/back desk;
+2. front/back semantic layer proof;
+3. two- and five-module adjacency proof;
+4. Step 4 contact sheet.
 
-Until that approval is recorded, all v2 artwork and implementation permission
-flags stay false and the Active Office stays unchanged.
+Until that approval is recorded, chair/monitor/keyboard assembly, renderer,
+ten-seat scene, and Active Office permissions stay false.

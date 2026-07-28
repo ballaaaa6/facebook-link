@@ -187,7 +187,7 @@ def draw_source_decomposition(manifest: dict, manifest_hash: str) -> Image.Image
         "One chair/actor reservation is 1 x 1 outside the desk.",
         "Monitor and keyboard each reserve a centered 3 x 1 band.",
         "Five columns occupy x=4..18 in the existing 24-tile work zone.",
-        "These are blueprint decisions; no artwork has been generated.",
+        "These approved decisions govern the separate Step 4 bare-desk artwork.",
     ]
     for index, item in enumerate(decisions):
         text(draw, (940, 815 + index * 44), f"{index + 1}. {item}", 18, MUTED)
@@ -196,16 +196,16 @@ def draw_source_decomposition(manifest: dict, manifest_hash: str) -> Image.Image
 
 def desk_part(draw: ImageDraw.ImageDraw, center_x: int, y: int, role: str, color: str) -> None:
     if role == "rear":
-        draw.rectangle((center_x - 145, y + 34, center_x + 145, y + 52), fill=color, outline="#0f172a", width=3)
+        draw.rectangle((center_x - 150, y + 34, center_x + 150, y + 52), fill=color, outline="#0f172a", width=3)
     elif role == "surface":
-        draw.polygon([(center_x - 150, y + 30), (center_x - 110, y - 30), (center_x + 150, y - 30), (center_x + 110, y + 30)], fill=color, outline="#0f172a")
+        draw.rectangle((center_x - 150, y - 30, center_x + 150, y + 30), fill=color, outline="#0f172a", width=3)
     elif role == "base":
         draw.rectangle((center_x - 125, y - 26, center_x + 125, y - 2), fill=color, outline="#0f172a", width=3)
         draw.rectangle((center_x - 120, y, center_x - 100, y + 72), fill=color, outline="#0f172a", width=2)
         draw.rectangle((center_x + 100, y, center_x + 120, y + 72), fill=color, outline="#0f172a", width=2)
         draw.rectangle((center_x + 36, y, center_x + 96, y + 55), fill="#334155", outline="#0f172a", width=2)
     else:
-        draw.rectangle((center_x - 145, y, center_x + 145, y + 25), fill=color, outline="#0f172a", width=3)
+        draw.rectangle((center_x - 150, y, center_x + 150, y + 25), fill=color, outline="#0f172a", width=3)
 
 
 def draw_exploded_stack(draw: ImageDraw.ImageDraw, x0: int, title: str, monitor_side: str, actor_side: str) -> None:
@@ -238,7 +238,7 @@ def draw_exploded_stack(draw: ImageDraw.ImageDraw, x0: int, title: str, monitor_
 def draw_exploded_parts(manifest: dict, manifest_hash: str) -> Image.Image:
     image = Image.new("RGB", BOARD_SIZE, BACKGROUND)
     draw = ImageDraw.Draw(image)
-    header(draw, "2 / FURNITURE EXPLODED-PART BLUEPRINT", "SEMANTIC PARTS BEFORE ARTWORK / FRONT AND BACK", manifest_hash)
+    header(draw, "2 / FURNITURE EXPLODED-PART BLUEPRINT", "APPROVED SEMANTIC PARTS / FRONT AND BACK / STEP 4 DESK ONLY", manifest_hash)
     draw_exploded_stack(draw, 30, "A. FAR ROW / FRONT DESK VIEW", "back visible", "faces down")
     draw_exploded_stack(draw, 820, "B. NEAR ROW / BACK DESK VIEW", "front visible", "faces up")
     panel(draw, (30, 855, 1770, 1065), "C. NON-NEGOTIABLE PART RULES")
@@ -252,7 +252,7 @@ def draw_exploded_parts(manifest: dict, manifest_hash: str) -> Image.Image:
         y = 910 + index * 36
         text(draw, (70, y), name, 17, color)
         text(draw, (245, y), description, 17, MUTED)
-    text(draw, (1375, 1015), "BLUEPRINT ONLY / NO ART", 16, RED)
+    text(draw, (1300, 1015), "STEP 4 DESK ART AUTHORIZED", 16, GREEN)
     return image
 
 
@@ -325,14 +325,14 @@ def draw_assembly_and_adjacency(manifest: dict, manifest_hash: str) -> Image.Ima
     ]
     for index, item in enumerate(proof):
         text(draw, (1040, 705 + index * 38), f"PASS  {item}", 17, GREEN if index >= 2 else MUTED)
-    text(draw, (1430, 1020), "NO ART / NO RENDERER", 15, RED)
+    text(draw, (1350, 1020), "STEP 5 + RENDERER BLOCKED", 15, RED)
     return image
 
 
 def draw_contact_sheet(boards: list[tuple[str, Image.Image]], manifest_hash: str) -> Image.Image:
     image = Image.new("RGB", (1800, 1400), BACKGROUND)
     draw = ImageDraw.Draw(image)
-    header(draw, "OWNER REVIEW / WORKSTATION BLUEPRINT v2", "APPROVE GEOMETRY BEFORE ANY ARTWORK OR RENDERER WORK", manifest_hash)
+    header(draw, "OWNER REVIEW / WORKSTATION BLUEPRINT v2", "GEOMETRY APPROVED / STEP 4 BARE DESK ART ONLY", manifest_hash)
     placements = [(40, 140), (920, 140), (480, 735)]
     preview_size = (840, 513)
     for (title, board), position in zip(boards, placements, strict=True):
@@ -340,7 +340,7 @@ def draw_contact_sheet(boards: list[tuple[str, Image.Image]], manifest_hash: str
         image.paste(preview, position)
         draw.rectangle((position[0], position[1], position[0] + preview_size[0], position[1] + preview_size[1]), outline="#475569", width=3)
         text(draw, (position[0] + 12, position[1] - 30), title, 18, TEXT)
-    text(draw, (40, 1325), "GATE: ownerApproval=false | artwork=false | renderer=false | ten-seat scene=false | Active Office unchanged", 19, RED)
+    text(draw, (40, 1325), "GATE: ownerApproval=true | desk artwork=true | Step 5=false | renderer=false | Active Office unchanged", 19, RED)
     return image
 
 
@@ -356,12 +356,13 @@ def file_sha256(path: Path) -> str:
 
 def validate(manifest: dict) -> list[str]:
     failures: list[str] = []
-    if manifest.get("version") != 2 or manifest.get("status") != "blueprint-review":
-        failures.append("Assembly Bible must remain version 2 in blueprint-review")
+    if manifest.get("version") != 2 or manifest.get("status") != "desk-artwork-authorized":
+        failures.append("Assembly Bible must remain version 2 with Step 4 desk artwork authorized")
     permissions = manifest.get("permissions", {})
     for key, value in permissions.items():
-        if value is not False:
-            failures.append(f"permissions.{key} must remain false")
+        expected = key in ("ownerApproval", "deskArtworkGeneration")
+        if value is not expected:
+            failures.append(f"permissions.{key} has the wrong Step 4 permission")
     desk = manifest.get("desk", {})
     footprint = desk.get("footprint", {})
     support = desk.get("supportPlane", {})
@@ -371,6 +372,9 @@ def validate(manifest: dict) -> list[str]:
         failures.append("desk support plane must equal 3 x 2")
     if desk.get("employeeEdgeRow") is not None:
         failures.append("desk employeeEdgeRow must remain null")
+    for part in desk.get("partContract", []):
+        if part.get("artworkStatus") != "step4-review" or part.get("changesFootprint") is not False:
+            failures.append("desk parts must be footprint-neutral and in Step 4 review")
     source = ROOT / manifest.get("sourceReference", {}).get("file", "")
     if not source.exists() or file_sha256(source) != manifest.get("sourceReference", {}).get("sha256"):
         failures.append("source reference is missing or its SHA-256 changed")
@@ -426,7 +430,7 @@ def main() -> int:
         OUTPUT_DIRECTORY.mkdir(parents=True, exist_ok=True)
         for path, payload in outputs.items():
             path.write_bytes(payload)
-    print("Workstation Assembly Bible v2 OK: four deterministic review images current; artwork remains blocked.")
+    print("Workstation Assembly Bible v2 OK: approved geometry boards current; Step 4 desk artwork authorized.")
     return 0
 
 

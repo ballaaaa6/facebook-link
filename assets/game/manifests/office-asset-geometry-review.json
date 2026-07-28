@@ -441,7 +441,7 @@
       "proposedPlacementPlane": "floor",
       "disposition": "regenerate",
       "visualFinding": "Reviewed the source sheet: desks are straight-front and lack canonical depth; the remaining equipment and props have separable bases.",
-      "reason": "Regenerate after Step 4 because the visible bitmap cannot represent the approved 5 x 4 footprint and 5 x 3 support plane.",
+      "reason": "Use only as a material/style reference for Step 4. The straight-elevation bitmap cannot represent the owner-approved 3 x 2 tabletop plan and must not be stretched.",
       "confidence": "high"
     },
     {
@@ -453,7 +453,7 @@
       "proposedPlacementPlane": "floor",
       "disposition": "regenerate",
       "visualFinding": "Reviewed the source sheet: desks are straight-front and lack canonical depth; the remaining equipment and props have separable bases.",
-      "reason": "Regenerate after Step 4 because the visible bitmap cannot represent the approved 5 x 4 footprint and 5 x 3 support plane.",
+      "reason": "Use only as a material/style reference for Step 4. The straight-elevation bitmap cannot represent the owner-approved 3 x 2 tabletop plan and must not be stretched.",
       "confidence": "high"
     },
     {
@@ -1965,7 +1965,7 @@
       "proposedPlacementPlane": "floor",
       "disposition": "regenerate",
       "visualFinding": "Reviewed the source sheet: side desks still omit top-down depth; monitor profiles and architecture objects remain isolated.",
-      "reason": "Regenerate after Step 4 because the visible bitmap cannot represent the approved 5 x 4 footprint and 5 x 3 support plane.",
+      "reason": "Not required by the current front/back scene. A future side orientation must independently represent the 3 x 2 tabletop plan and cannot reuse this flat-depth bitmap.",
       "confidence": "high"
     },
     {
@@ -1977,7 +1977,7 @@
       "proposedPlacementPlane": "floor",
       "disposition": "regenerate",
       "visualFinding": "Reviewed the source sheet: side desks still omit top-down depth; monitor profiles and architecture objects remain isolated.",
-      "reason": "Regenerate after Step 4 because the visible bitmap cannot represent the approved 5 x 4 footprint and 5 x 3 support plane.",
+      "reason": "Not required by the current front/back scene. A future side orientation must independently represent the 3 x 2 tabletop plan and cannot reuse this flat-depth bitmap.",
       "confidence": "high"
     },
     {

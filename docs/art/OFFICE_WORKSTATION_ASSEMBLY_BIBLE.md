@@ -1,13 +1,14 @@
 # Office Workstation Assembly Bible v2
 
-Status: Owner review required; Steps 1-3 only
+Status: Blueprint approved; Step 4 bare desk artwork authorized
 Updated: 2026-07-28
 Machine-readable source:
 `assets/game/manifests/office-workstation-assembly-bible-v2.json`
 
-This is the pre-artwork handoff for the ten-seat workstation block. It exists
-so the project owner can verify the geometry and semantic part interpretation
-before any new furniture image or renderer code is created.
+This is the approved geometry handoff for the ten-seat workstation block. On
+2026-07-28 the owner approved the blueprint and authorized Step 4 bare desk v2
+artwork only. Renderer code, single-seat lab work, ten-seat assembly, and
+Active Office promotion remain blocked.
 
 ## What has been produced
 
@@ -22,6 +23,14 @@ before any new furniture image or renderer code is created.
    five-by-two bank.
 4. `00-owner-review-contact-sheet-v2.png` places all three boards on one review
    sheet.
+5. `step4/01-desk-front-back-v2.png` shows the replacement elevated-camera
+   source and the normalized front/back bare desk assets.
+6. `step4/02-semantic-layers-v2.png` proves the rear, surface, base, and
+   foreground layers reconstruct the bare desk exactly.
+7. `step4/03-adjacency-footprint-proof-v2.png` proves two and five full-width
+   rectangular desk tops touch without a triangular gap.
+8. `step4/00-step4-review-contact-sheet-v2.png` collects the Step 4 evidence for
+   the next owner decision.
 
 All labels are English to comply with repository rules. The diagrams use
 simple geometric shapes deliberately: approval here means approval of spatial
@@ -29,14 +38,15 @@ meaning, not approval of a final visual style.
 
 ## What has not been produced
 
-- no new desk, chair, monitor, keyboard, or character artwork;
+- no new chair, monitor, keyboard, prop, or character artwork;
+- no single-seat person/chair/monitor/keyboard assembly;
 - no renderer or compositor;
 - no ten-seat scene;
 - no replacement Office background;
 - no Active Office change;
 - no commercial-use or character-license work.
 
-## Review questions
+## Step 4 review questions
 
 The owner review must answer yes to all of the following before the next phase:
 
@@ -49,12 +59,18 @@ The owner review must answer yes to all of the following before the next phase:
 - Do the far and near desk rows touch directly?
 - Does the full block stay inside the current left work zone?
 - Does the current Office background remain unchanged?
+- Does the elevated camera expose enough usable top surface for later monitor
+  and keyboard placement?
+- Are both top edges equal width with vertical sides and square corners?
+- Do the two-module and five-module proofs have one straight seam and no gap?
 
 If any answer is no, update the manifest and regenerate these diagrams. Do not
 patch artwork or renderer code to compensate for a wrong blueprint.
 
-## Next phase after explicit approval
+## Next phase after Step 4 explicit approval
 
-Create one bare v2 desk and one isolated single-seat assembly first. The full
-ten-seat scene remains a later gate. Existing 19 characters and completed
-poses are reused; this plan does not create replacement characters or poses.
+Authorize one isolated Step 5 single-seat assembly using the approved bare desk
+plus the already-created chair, monitor, keyboard, and one existing character
+pose. The full ten-seat scene remains a later gate. Existing 19 characters and
+completed poses are reused; this plan does not create replacement characters
+or poses.

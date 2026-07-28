@@ -8,6 +8,8 @@ const lockPath = join(root, "assets/game/manifests/office-generated-art.lock.jso
 const auditPath = "assets/game/manifests/office-asset-geometry-audit.json";
 const contactDirectory = "assets/game/processed/office-geometry-audit-v1/contact-sheets";
 const workstationDirectory = "assets/game/processed/office-workstation-v1";
+const workstationV2Directory = "assets/game/processed/office-workstation-v2";
+const workstationV2ReviewDirectory = "assets/art/layout-references/office-workstation-v2/step4";
 const derivedDirectory = "assets/game/processed/office-derived-v1";
 const workstationSource = "assets/art/layout-references/office-workstation-v1/office-workstation-modular-v1-source.png";
 
@@ -22,7 +24,9 @@ const fixedInputs = [
   "assets/game/manifests/office-library-sheets.json",
   "assets/game/manifests/office-planned-assets.json",
   "assets/game/manifests/office-workstation-bundle-v1.json",
+  "assets/game/manifests/office-workstation-bundle-v2.json",
   "assets/game/manifests/office-workstation-bundle.schema.json",
+  "assets/game/manifests/office-workstation-bundle-v2.schema.json",
   "assets/game/manifests/office-workstation-deployment-v1.json",
   "assets/game/manifests/office-workstation-deployment.schema.json",
   "assets/game/manifests/office-map.schema.json",
@@ -30,10 +34,12 @@ const fixedInputs = [
   "assets/game/manifests/office-derived-assets.schema.json",
   "packages/contracts/src/officeDerivedAssets.ts",
   "packages/contracts/src/officeWorkstationAssembly.ts",
+  "packages/contracts/src/officeWorkstationV2.ts",
   "scripts/audit-office-asset-geometry.py",
   "scripts/build-office-camera-scale-board.py",
   "scripts/build-office-workstation-assembly-bible.py",
   "scripts/build-office-workstation-prototype.py",
+  "scripts/build-office-workstation-v2.py",
   "scripts/build-office-derived-assets.py",
   "scripts/office_derived_asset_recipes.py",
   "scripts/office-derived-assets-check.mjs",
@@ -42,6 +48,9 @@ const fixedInputs = [
   "scripts/office_geometry_audit_inventory.py",
   "scripts/office_geometry_audit_report.py",
   "scripts/office_geometry_audit_visuals.py",
+  "assets/art/layout-references/office-workstation-v2/source/desk-workstation-modern-v2-prompt.md",
+  "assets/art/layout-references/office-workstation-v2/source/desk-workstation-modern-v2-turnaround-chroma.png",
+  "assets/art/layout-references/office-workstation-v2/source/desk-workstation-modern-v2-turnaround-alpha.png",
 ];
 
 const fixedOutputs = [
@@ -121,14 +130,18 @@ function buildLock() {
     .filter((path) => typeof path === "string" && path.length > 0);
   const contacts = contactSheets();
   const workstation = workstationOutputs();
+  const workstationV2 = recursiveFiles(workstationV2Directory);
+  const workstationV2Review = recursiveFiles(workstationV2ReviewDirectory);
   const derived = recursiveFiles(derivedDirectory);
   return {
     version: 1,
     purpose: "Portable CI freshness gate for generated Office audit, calibration, workstation, and derived artifacts",
     inputs: hashMap([...fixedInputs, ...sourceFiles]),
-    outputs: hashMap([...fixedOutputs, ...contacts, ...workstation, ...derived]),
+    outputs: hashMap([...fixedOutputs, ...contacts, ...workstation, ...workstationV2, ...workstationV2Review, ...derived]),
     exactContactSheets: contacts,
     exactWorkstationOutputs: workstation,
+    exactWorkstationV2Outputs: workstationV2,
+    exactWorkstationV2ReviewOutputs: workstationV2Review,
     exactDerivedOutputs: derived,
   };
 }
@@ -148,6 +161,12 @@ function validateLock(lock) {
   }
   if (JSON.stringify(workstationOutputs()) !== JSON.stringify(lock.exactWorkstationOutputs)) {
     failures.push("Workstation output list does not match the exact generated directory contents");
+  }
+  if (JSON.stringify(recursiveFiles(workstationV2Directory)) !== JSON.stringify(lock.exactWorkstationV2Outputs)) {
+    failures.push("Workstation v2 output list does not match the exact generated directory contents");
+  }
+  if (JSON.stringify(recursiveFiles(workstationV2ReviewDirectory)) !== JSON.stringify(lock.exactWorkstationV2ReviewOutputs)) {
+    failures.push("Workstation v2 review list does not match the exact generated directory contents");
   }
   if (JSON.stringify(recursiveFiles(derivedDirectory)) !== JSON.stringify(lock.exactDerivedOutputs)) {
     failures.push("Derived output list does not match the exact generated directory contents");

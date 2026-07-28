@@ -2,14 +2,15 @@
   "version": 2,
   "geometrySchemaVersion": 3,
   "workstationRuleVersion": 2,
-  "status": "blueprint-review",
+  "status": "accepted",
   "updatedOn": "2026-07-28",
   "acceptance": {
-    "ownerApproval": false,
-    "artworkGenerationAuthorized": false,
+    "ownerApproval": true,
+    "artworkGenerationAuthorized": true,
     "rendererImplementationAuthorized": false,
     "activeOfficePromotionAuthorized": false,
-    "scope": "Workstation geometry and assembly-blueprint review only"
+    "approvedOn": "2026-07-28",
+    "scope": "Bare desk v2 artwork only; renderer and scene assembly remain blocked"
   },
   "supersedes": {
     "rule": "Workstation v1 5 x 4 footprint with 5 x 3 support plane",

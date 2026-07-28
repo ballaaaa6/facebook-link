@@ -1,6 +1,6 @@
 # Office Camera and Scale Bible
 
-Status: Workstation v2 blueprint review; artwork generation blocked
+Status: Workstation v2 geometry accepted; Step 4 bare desk artwork authorized
 Updated: 2026-07-28
 Machine-readable source:
 `assets/game/manifests/office-camera-scale-bible.json`
@@ -8,9 +8,9 @@ Calibration board:
 `assets/art/layout-references/office-camera-scale-calibration-v2.png`
 
 This Bible locks camera, scale, and the corrected compact workstation
-geometry. It does not authorize artwork, renderer implementation, ten-seat
-assembly, or Active Office promotion. Those permissions remain false until the
-owner approves the Workstation Assembly Bible images.
+geometry. The owner approved the blueprint on 2026-07-28 and authorized only
+the Step 4 bare desk artwork. Single-seat assembly, renderer implementation,
+ten-seat assembly, and Active Office promotion remain false.
 
 ## Camera contract
 
@@ -66,9 +66,11 @@ those dimensions for a new workstation request.
 ## Review and generation gate
 
 `npm run art:prompt:check` validates that this Bible is internally correct.
-`npm run art:prompt -- <asset-id>` must still refuse to produce a workstation
-prompt while status is `blueprint-review` or owner approval is false.
+`npm run art:prompt -- <asset-id>` must still refuse every legacy catalog
+workstation prompt. The only authorized Step 4 source workflow is recorded in
+`assets/game/manifests/office-workstation-bundle-v2.json`.
 
 Run `npm run art:geometry:bible` to regenerate the deterministic v2 camera
 board and `npm run art:geometry:bible:check` to verify it. Run
-`npm run art:workstation:bible` for the three owner-review images.
+`npm run art:workstation:bible` for the approved geometry boards and
+`npm run art:workstation:v2` for the bare desk assets and Step 4 review boards.

@@ -92,19 +92,11 @@ function validateBible() {
   return failures;
 }
 
-function workstationGenerationGate(asset) {
+function workstationGenerationGate(id, asset) {
   if (asset.slotSet !== "workstation") return [];
-  const failures = [];
-  if (bible.status !== "accepted") {
-    failures.push("Workstation artwork is blocked while the Camera/Scale Bible is in blueprint review");
-  }
-  if (bible.acceptance?.ownerApproval !== true) {
-    failures.push("Workstation artwork requires explicit owner approval of the Assembly Bible boards");
-  }
-  if (bible.acceptance?.artworkGenerationAuthorized !== true) {
-    failures.push("Workstation artworkGenerationAuthorized must be true before prompt creation");
-  }
-  return failures;
+  return [
+    `${id}: legacy catalog workstation prompts remain blocked; Step 4 creates only desk.workstation.modern.v2 from its versioned source workflow`,
+  ];
 }
 
 function generationAsset(asset) {
@@ -194,7 +186,7 @@ if (args.includes("--check")) {
     );
     process.exitCode = 1;
   } else {
-    const gateFailures = workstationGenerationGate(catalog[id]);
+    const gateFailures = workstationGenerationGate(id, catalog[id]);
     if (gateFailures.length > 0) {
       process.stderr.write(`${gateFailures.join("\n")}\n`);
       process.exitCode = 1;

@@ -1,16 +1,17 @@
 # Office Asset Creation Guide
 
-Status: Production guide; Workstation v2 artwork blocked pending owner review
+Status: Production guide; Step 4 Workstation v2 bare desk artwork in owner review
 Scope: Office assets created for the latest orthographic pixel-art reference
 Current execution plan: `docs/art/OFFICE_GEOMETRY_REMEDIATION_ROADMAP.md`
 Historical migration plan: `docs/art/OFFICE_REF_MIGRATION_ROADMAP.md`
 
 Workstation reset gate (2026-07-28): the former `5 x 4` / `5 x 3` workstation
-contract and Candidate r01 are rejected. No workstation artwork, renderer, or
-ten-seat assembly may start until the owner approves
-`docs/art/OFFICE_WORKSTATION_ASSEMBLY_BIBLE.md` and its three review boards.
-Unrelated asset work still follows its normal audit disposition. This does not
-authorize Active Office promotion or broad regeneration of the library.
+contract and Candidate r01 are rejected. The owner approved the corrected
+`3 x 2` blueprint and authorized one bare desk v2 source, its front/back
+normalization, semantic layers, and Step 4 QA boards. Chair, monitor, keyboard,
+character, single-seat lab, renderer, ten-seat assembly, and Active Office
+promotion remain blocked. Unrelated asset work still follows its normal audit
+disposition.
 
 ## 1. Purpose
 
@@ -62,6 +63,11 @@ Lock these values before creating production assets:
   the rectangular tabletop and the legs below it. Its front/back and left/right
   tabletop edges remain parallel; perspective convergence and three-quarter
   rotation are still rejected.
+- Authored exception: `desk.workstation.modern.v2` uses an elevated straight
+  front/back camera so its complete rectangular `3 x 2` top remains a broad,
+  usable support plane. Its far/near edges stay horizontal and equal length;
+  its left/right edges stay vertical and equal depth. Trapezoids, narrowed far
+  edges, diagonal yaw, and perspective convergence remain rejected.
 - No transparent padding changes between animation frames.
 
 Use the same pixel scale for every view of one asset. Do not create the front at one camera distance and the back at another.

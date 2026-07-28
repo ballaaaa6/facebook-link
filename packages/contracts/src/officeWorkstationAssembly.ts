@@ -25,16 +25,21 @@ export interface OfficeWorkstationAssemblyBibleV2 {
   version: 2;
   geometrySchemaVersion: 3;
   id: "office.workstation.assembly-bible.v2";
-  status: "blueprint-review";
+  status: "desk-artwork-authorized";
   updatedOn: string;
   permissions: {
-    ownerApproval: false;
-    deskArtworkGeneration: false;
+    ownerApproval: true;
+    deskArtworkGeneration: true;
     chairArtworkGeneration: false;
     monitorArtworkGeneration: false;
     rendererImplementation: false;
     tenSeatSceneAssembly: false;
     activeOfficePromotion: false;
+  };
+  approvalRecord: {
+    approvedOn: string;
+    approvedScope: string;
+    nextStepBlocked: string;
   };
   sourceReference: {
     file: string;
@@ -69,7 +74,7 @@ export interface OfficeWorkstationAssemblyBibleV2 {
       meaning: string;
       changesFootprint: false;
       mayOverflowFootprint: boolean;
-      artworkStatus: "not-created";
+      artworkStatus: "step4-review";
     }>;
   };
   equipment: {
@@ -140,16 +145,16 @@ function validatePermissions(value: Record<string, unknown>, issues: string[]) {
   add(issues, isRecord(permissions), "permissions", "must be an object");
   if (!isRecord(permissions)) return;
   for (const key of [
-    "ownerApproval",
-    "deskArtworkGeneration",
     "chairArtworkGeneration",
     "monitorArtworkGeneration",
     "rendererImplementation",
     "tenSeatSceneAssembly",
     "activeOfficePromotion",
   ]) {
-    add(issues, permissions[key] === false, `permissions.${key}`, "must remain false during blueprint review");
+    add(issues, permissions[key] === false, `permissions.${key}`, "must remain false during Step 4");
   }
+  add(issues, permissions.ownerApproval === true, "permissions.ownerApproval", "must record the owner's Step 4 approval");
+  add(issues, permissions.deskArtworkGeneration === true, "permissions.deskArtworkGeneration", "must authorize only bare desk artwork");
 }
 
 function validateDesk(value: Record<string, unknown>, issues: string[]) {
@@ -181,7 +186,7 @@ function validateDesk(value: Record<string, unknown>, issues: string[]) {
       `desk.partContract[${index}].role`, "must be a unique semantic part role");
     roles.add(role);
     add(issues, candidate.changesFootprint === false, `desk.partContract[${index}].changesFootprint`, "must remain false");
-    add(issues, candidate.artworkStatus === "not-created", `desk.partContract[${index}].artworkStatus`, "must remain not-created before approval");
+    add(issues, candidate.artworkStatus === "step4-review", `desk.partContract[${index}].artworkStatus`, "must remain in Step 4 review");
   });
 }
 
@@ -254,7 +259,7 @@ export function validateOfficeWorkstationAssemblyBibleV2(value: unknown): string
   add(issues, value.version === 2, "version", "must equal 2");
   add(issues, value.geometrySchemaVersion === 3, "geometrySchemaVersion", "must equal 3");
   add(issues, value.id === "office.workstation.assembly-bible.v2", "id", "must equal the v2 authority ID");
-  add(issues, value.status === "blueprint-review", "status", "must remain blueprint-review until owner approval");
+  add(issues, value.status === "desk-artwork-authorized", "status", "must record the Step 4 desk-artwork gate");
   validatePermissions(value, issues);
   validateDesk(value, issues);
   validateEquipment(value, issues);

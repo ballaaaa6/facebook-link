@@ -9,10 +9,10 @@ const manifestUrl = new URL(
 );
 const bible = JSON.parse(readFileSync(manifestUrl, "utf8"));
 
-test("Workstation Assembly Bible v2 locks the review-only 3 x 2 contract", () => {
+test("Workstation Assembly Bible v2 authorizes only Step 4 bare desk artwork", () => {
   assert.deepEqual(validateOfficeWorkstationAssemblyBibleV2(bible), []);
-  assert.equal(bible.permissions.ownerApproval, false);
-  assert.equal(bible.permissions.deskArtworkGeneration, false);
+  assert.equal(bible.permissions.ownerApproval, true);
+  assert.equal(bible.permissions.deskArtworkGeneration, true);
   assert.equal(bible.permissions.rendererImplementation, false);
   assert.equal(bible.permissions.tenSeatSceneAssembly, false);
 });

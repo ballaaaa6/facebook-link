@@ -1,0 +1,102 @@
+{
+  "version": 2,
+  "geometrySchemaVersion": 3,
+  "id": "office.workstation.bundle.v2",
+  "status": "step4-artwork-review",
+  "updatedOn": "2026-07-28",
+  "permissions": {
+    "bareDeskArtwork": true,
+    "singleSeatAssembly": false,
+    "tenSeatSceneAssembly": false,
+    "rendererImplementation": false,
+    "activeOfficePromotion": false
+  },
+  "source": {
+    "generationMode": "built-in-imagegen",
+    "license": "project-authored-ai-assisted",
+    "commercialReviewRequired": true,
+    "promptFile": "assets/art/layout-references/office-workstation-v2/source/desk-workstation-modern-v2-prompt.md",
+    "chromaFile": "assets/art/layout-references/office-workstation-v2/source/desk-workstation-modern-v2-turnaround-chroma.png",
+    "chromaSha256": "a2abd261c2db7895559968fd355ef8d0783389e2ada308ff4c76ffd71533f08a",
+    "alphaFile": "assets/art/layout-references/office-workstation-v2/source/desk-workstation-modern-v2-turnaround-alpha.png",
+    "alphaSha256": "7f8908702f3e6a59b3ff256458b9c6ca467c7fc2221cf86b897fea321094db5d",
+    "sheetPixels": { "width": 1604, "height": 981 },
+    "cells": {
+      "front": {
+        "sheetBounds": { "x": 0, "y": 0, "width": 802, "height": 981 },
+        "contentBounds": { "x": 92, "y": 245, "width": 631, "height": 475 }
+      },
+      "back": {
+        "sheetBounds": { "x": 802, "y": 0, "width": 802, "height": 981 },
+        "contentBounds": { "x": 79, "y": 245, "width": 630, "height": 475 }
+      }
+    }
+  },
+  "deskFamily": {
+    "id": "desk.workstation.modern.v2",
+    "contains": ["bare-desk"],
+    "excludes": ["monitor", "keyboard", "mouse", "chair", "character", "prop"],
+    "physicalScale": { "width": 3, "depth": 2, "height": 2.4, "unit": "tile" },
+    "footprint": { "width": 3, "depth": 2, "unit": "tile" },
+    "supportPlane": { "id": "desk-surface", "width": 3, "depth": 2, "height": 2.4, "unit": "tile" },
+    "employeeEdge": null,
+    "generationRenderBox": { "width": 3, "height": 4, "unit": "tile" },
+    "renderBounds": { "width": 96, "height": 128, "unit": "authoring-pixel" },
+    "basePivot": { "x": 1.5, "y": 2, "unit": "tile" },
+    "sortPivot": { "x": 1.5, "y": 2, "unit": "tile" },
+    "normalization": {
+      "contentPixels": { "width": 96, "height": 72 },
+      "contentOrigin": { "x": 0, "y": 40 },
+      "baselineY": 112,
+      "resampling": "nearest",
+      "edgeRepair": "extend-nearest-active-pixel-across-full-tabletop-width",
+      "tabletopRows": { "start": 40, "endExclusive": 75 },
+      "tabletopHeightRatio": 0.4861111111
+    },
+    "semanticRows": {
+      "rear": { "start": 40, "endExclusive": 42 },
+      "surface": { "start": 42, "endExclusive": 72 },
+      "foreground": { "start": 72, "endExclusive": 75 },
+      "base": { "start": 75, "endExclusive": 112 }
+    },
+    "orientations": {
+      "front": {
+        "compositeAssetId": "desk.workstation.modern.v2.front",
+        "compositeFile": "assets/game/processed/office-workstation-v2/desk.workstation.modern.v2.front.png",
+        "parts": {
+          "rear": "assets/game/processed/office-workstation-v2/desk.workstation.modern.v2.front.rear.png",
+          "surface": "assets/game/processed/office-workstation-v2/desk.workstation.modern.v2.front.surface.png",
+          "base": "assets/game/processed/office-workstation-v2/desk.workstation.modern.v2.front.base.png",
+          "foreground": "assets/game/processed/office-workstation-v2/desk.workstation.modern.v2.front.foreground.png"
+        }
+      },
+      "back": {
+        "compositeAssetId": "desk.workstation.modern.v2.back",
+        "compositeFile": "assets/game/processed/office-workstation-v2/desk.workstation.modern.v2.back.png",
+        "parts": {
+          "rear": "assets/game/processed/office-workstation-v2/desk.workstation.modern.v2.back.rear.png",
+          "surface": "assets/game/processed/office-workstation-v2/desk.workstation.modern.v2.back.surface.png",
+          "base": "assets/game/processed/office-workstation-v2/desk.workstation.modern.v2.back.base.png",
+          "foreground": "assets/game/processed/office-workstation-v2/desk.workstation.modern.v2.back.foreground.png"
+        }
+      }
+    }
+  },
+  "qa": {
+    "requiredChecks": [
+      "source hashes match",
+      "front and back normalize to the same 96 x 128 render box",
+      "semantic layers are pairwise disjoint and reconstruct the composite exactly",
+      "tabletop occupies at least 40 percent of visible desk height",
+      "tabletop covers all 96 columns throughout its interior rows",
+      "two and five identical modules meet with zero horizontal gap",
+      "Step 5 and Active Office remain blocked"
+    ],
+    "reviewOutputs": [
+      "assets/art/layout-references/office-workstation-v2/step4/01-desk-front-back-v2.png",
+      "assets/art/layout-references/office-workstation-v2/step4/02-semantic-layers-v2.png",
+      "assets/art/layout-references/office-workstation-v2/step4/03-adjacency-footprint-proof-v2.png",
+      "assets/art/layout-references/office-workstation-v2/step4/00-step4-review-contact-sheet-v2.png"
+    ]
+  }
+}

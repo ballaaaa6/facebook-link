@@ -152,13 +152,13 @@ def draw_pair_and_rejection(draw: ImageDraw.ImageDraw, bible: dict) -> None:
 def draw_gate(draw: ImageDraw.ImageDraw, bible: dict) -> None:
     colors = bible["palette"]
     panel(draw, (30, 885, 1570, 1065), "E. OWNER GATE", colors)
-    label(draw, (70, 945), "BLUEPRINT REVIEW", 28, colors["keyboardReservation"])
-    label(draw, (390, 940), "NO DESK ART", 22, colors["rejected"])
+    label(draw, (70, 945), "GEOMETRY APPROVED", 28, colors["accepted"])
+    label(draw, (390, 940), "STEP 4 DESK ART", 22, colors["keyboardReservation"])
     label(draw, (390, 980), "NO RENDERER", 22, colors["rejected"])
     label(draw, (700, 940), "NO 10-SEAT SCENE", 22, colors["rejected"])
     label(draw, (700, 980), "ACTIVE OFFICE UNCHANGED", 22, colors["accepted"])
-    label(draw, (1100, 940), "NEXT AFTER APPROVAL:", 18, "#f8fafc")
-    label(draw, (1100, 976), "one bare desk + one seat", 18, "#cbd5e1")
+    label(draw, (1100, 940), "NEXT OWNER GATE:", 18, "#f8fafc")
+    label(draw, (1100, 976), "Step 5 one-seat lab", 18, "#cbd5e1")
 
 
 def render_board(bible: dict, manifest_bytes: bytes) -> bytes:
@@ -166,7 +166,7 @@ def render_board(bible: dict, manifest_bytes: bytes) -> bytes:
     image = Image.new("RGB", (WIDTH, HEIGHT), colors["background"])
     draw = ImageDraw.Draw(image)
     label(draw, (30, 22), "OFFICE CAMERA / SCALE BIBLE v2", 38, "#f8fafc")
-    label(draw, (30, 70), "WORKSTATION RULE v2  |  BLUEPRINT REVIEW  |  1 TILE = 32 PX", 20, colors["keyboardReservation"])
+    label(draw, (30, 70), "WORKSTATION RULE v2  |  GEOMETRY APPROVED / STEP 4 ONLY  |  1 TILE = 32 PX", 20, colors["keyboardReservation"])
     digest = hashlib.sha256(manifest_bytes).hexdigest()[:12]
     label(draw, (1320, 42), f"MANIFEST {digest}", 16, "#94a3b8")
     draw_top_down_contract(draw, bible)
@@ -185,17 +185,18 @@ def validate(bible: dict) -> list[str]:
         failures.append("Bible version must equal 2")
     if bible.get("workstationRuleVersion") != 2:
         failures.append("Bible workstationRuleVersion must equal 2")
-    if bible.get("status") != "blueprint-review":
-        failures.append("Bible status must remain blueprint-review before owner approval")
+    if bible.get("status") != "accepted":
+        failures.append("Bible status must record the approved Step 4 geometry")
     acceptance = bible.get("acceptance", {})
-    for field in [
-        "ownerApproval",
-        "artworkGenerationAuthorized",
-        "rendererImplementationAuthorized",
-        "activeOfficePromotionAuthorized",
-    ]:
-        if acceptance.get(field) is not False:
-            failures.append(f"Bible acceptance.{field} must remain false")
+    expected_acceptance = {
+        "ownerApproval": True,
+        "artworkGenerationAuthorized": True,
+        "rendererImplementationAuthorized": False,
+        "activeOfficePromotionAuthorized": False,
+    }
+    for field, expected in expected_acceptance.items():
+        if acceptance.get(field) is not expected:
+            failures.append(f"Bible acceptance.{field} has the wrong Step 4 permission")
     if bible.get("geometrySchemaVersion") != 3:
         failures.append("Bible geometrySchemaVersion must equal 3")
     if bible.get("authoring", {}).get("tilePixels") != 32:
@@ -236,7 +237,7 @@ def main() -> int:
     else:
         BOARD_PATH.parent.mkdir(parents=True, exist_ok=True)
         BOARD_PATH.write_bytes(board)
-    print("Office Camera/Scale Bible OK: Workstation Rule v2 blueprint board current.")
+    print("Office Camera/Scale Bible OK: Workstation Rule v2 Step 4 board current.")
     return 0
 
 

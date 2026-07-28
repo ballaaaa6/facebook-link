@@ -19,6 +19,7 @@ function add(failures, condition, message) {
 
 const camera = readJson("assets/game/manifests/office-camera-scale-bible.json");
 const assembly = readJson("assets/game/manifests/office-workstation-assembly-bible-v2.json");
+const bundleV2 = readJson("assets/game/manifests/office-workstation-bundle-v2.json");
 const candidate = readJson("assets/game/manifests/office-candidate-v1.json");
 const review = readJson("assets/game/manifests/office-candidate-review-r01.json");
 const historicalBundle = readJson("assets/game/manifests/office-workstation-bundle-v1.json");
@@ -28,7 +29,7 @@ const failures = [];
 
 add(failures, camera.version === 2, "Camera/Scale Bible must be version 2");
 add(failures, camera.workstationRuleVersion === 2, "Camera/Scale Bible must target Workstation Rule v2");
-add(failures, camera.status === "blueprint-review", "Camera/Scale Bible must remain in blueprint review");
+add(failures, camera.status === "accepted", "Camera/Scale Bible must record the approved Step 4 geometry");
 add(
   failures,
   camera.canonicalDesk?.physicalScale?.width === 3
@@ -52,14 +53,16 @@ add(failures, camera.canonicalDesk?.employeeEdge === null, "Camera/Scale Bible c
 
 for (const [key, value] of Object.entries(camera.acceptance ?? {})) {
   if (key.endsWith("Authorized") || key === "ownerApproval") {
-    add(failures, value === false, `Camera/Scale Bible acceptance.${key} must remain false`);
+    const expected = key === "ownerApproval" || key === "artworkGenerationAuthorized";
+    add(failures, value === expected, `Camera/Scale Bible acceptance.${key} has the wrong Step 4 permission`);
   }
 }
 
 add(failures, assembly.version === 2, "Assembly Bible must be version 2");
-add(failures, assembly.status === "blueprint-review", "Assembly Bible must remain in blueprint review");
+add(failures, assembly.status === "desk-artwork-authorized", "Assembly Bible must record Step 4 authorization");
 for (const [key, value] of Object.entries(assembly.permissions ?? {})) {
-  add(failures, value === false, `Assembly Bible permissions.${key} must remain false`);
+  const expected = key === "ownerApproval" || key === "deskArtworkGeneration";
+  add(failures, value === expected, `Assembly Bible permissions.${key} has the wrong Step 4 permission`);
 }
 add(
   failures,
@@ -75,8 +78,8 @@ add(failures, assembly.desk?.employeeEdgeRow === null, "Assembly Bible cannot re
 add(
   failures,
   assembly.desk?.partContract?.length === 4
-    && assembly.desk.partContract.every((part) => part.changesFootprint === false && part.artworkStatus === "not-created"),
-  "Every Assembly Bible desk part must remain footprint-neutral and not-created",
+    && assembly.desk.partContract.every((part) => part.changesFootprint === false && part.artworkStatus === "step4-review"),
+  "Every Assembly Bible desk part must remain footprint-neutral and in Step 4 review",
 );
 add(
   failures,
@@ -111,6 +114,31 @@ add(
   "Assembly Bible must deny the rejected v1 family and geometry",
 );
 
+add(failures, bundleV2.version === 2, "Workstation Bundle v2 must be version 2");
+add(failures, bundleV2.status === "step4-artwork-review", "Workstation Bundle v2 must remain in Step 4 review");
+add(failures, bundleV2.permissions?.bareDeskArtwork === true, "Workstation Bundle v2 must authorize the bare desk");
+for (const key of ["singleSeatAssembly", "tenSeatSceneAssembly", "rendererImplementation", "activeOfficePromotion"]) {
+  add(failures, bundleV2.permissions?.[key] === false, `Workstation Bundle v2 permissions.${key} must remain false`);
+}
+add(
+  failures,
+  bundleV2.deskFamily?.footprint?.width === 3
+    && bundleV2.deskFamily?.footprint?.depth === 2
+    && bundleV2.deskFamily?.supportPlane?.width === 3
+    && bundleV2.deskFamily?.supportPlane?.depth === 2,
+  "Workstation Bundle v2 desk and full tabletop must equal 3 x 2",
+);
+add(failures, bundleV2.deskFamily?.normalization?.tabletopHeightRatio >= 0.4,
+  "Workstation Bundle v2 must preserve the elevated-camera tabletop ratio");
+add(failures, bundleV2.deskFamily?.employeeEdge === null, "Workstation Bundle v2 cannot recreate an employee edge");
+add(failures, bundleV2.source?.commercialReviewRequired === true,
+  "Workstation Bundle v2 must remain blocked from future commercial use until separately reviewed");
+for (const [fileField, hashField] of [["chromaFile", "chromaSha256"], ["alphaFile", "alphaSha256"]]) {
+  const path = bundleV2.source?.[fileField];
+  add(failures, typeof path === "string" && sha256(path) === bundleV2.source?.[hashField],
+    `Workstation Bundle v2 ${fileField} is missing or changed`);
+}
+
 const sourcePath = assembly.sourceReference?.file;
 const baselinePath = assembly.activeOfficeBaseline?.file;
 add(
@@ -143,8 +171,8 @@ const promptBuilder = readFileSync(join(root, "scripts/office-asset-prompt.mjs")
 add(
   failures,
   promptBuilder.includes("workstationGenerationGate")
-    && promptBuilder.includes("Workstation artwork is blocked while the Camera/Scale Bible is in blueprint review"),
-  "Prompt builder must retain the blueprint-review generation gate",
+    && promptBuilder.includes("legacy catalog workstation prompts remain blocked"),
+  "Prompt builder must retain the rejected legacy-workstation generation gate",
 );
 
 if (failures.length > 0) {
@@ -152,6 +180,6 @@ if (failures.length > 0) {
   process.exitCode = 1;
 } else {
   process.stdout.write(
-    "Workstation authority OK: 3 x 2 blueprint current, v1/r01 rejected, artwork and promotion blocked.\n",
+    "Workstation authority OK: 3 x 2 Step 4 bare desk current, v1/r01 rejected, Step 5 and promotion blocked.\n",
   );
 }
