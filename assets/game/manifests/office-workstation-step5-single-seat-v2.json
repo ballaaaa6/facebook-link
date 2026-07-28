@@ -1,0 +1,135 @@
+{
+  "version": 2,
+  "geometrySchemaVersion": 4,
+  "id": "office.workstation.step5.single-seat.v2",
+  "status": "owner-review",
+  "updatedOn": "2026-07-28",
+  "replaces": "office.workstation.step5.single-seat.v1",
+  "permissions": {
+    "ownerPlanApproval": true,
+    "isolatedLabRenderer": true,
+    "singleSeatAssembly": true,
+    "deterministicDerivedAssets": true,
+    "newArtworkGeneration": false,
+    "rosterWideCalibration": false,
+    "tenSeatSceneAssembly": false,
+    "activeOfficePromotion": false
+  },
+  "approvalRecord": {
+    "planDecision": "accepted",
+    "approvedOn": "2026-07-28",
+    "approvedScope": "Rebuild Step 5 using the current Office character scale as a 1 x 1 x 3 world standard",
+    "nextGate": "Owner must accept both corrected clean views before Step 6"
+  },
+  "activeOfficeBaseline": {
+    "file": "assets/game/maps/office-c-v2.json",
+    "sha256": "c40db448eb8e6d0f3fea67a41f716c0108aca63a4136cfad15293534273c618d",
+    "mustRemainByteIdentical": true
+  },
+  "characterScaleAuthority": {
+    "file": "assets/game/manifests/office-character-scale-standard-v1.json",
+    "id": "office.character.scale.v1",
+    "sha256": "09556ec5ffdfab4babfeba85424459bfd5dc6ebddc84bc8919680520a686a4a1"
+  },
+  "lab": {
+    "route": "/?lab=office-workstation-v2-step5",
+    "developmentOnly": true,
+    "productionReachable": false,
+    "background": "neutral-calibration-grid",
+    "stationCount": 1,
+    "reviewViewCount": 2
+  },
+  "lockedInputs": [
+    { "role": "character-scale-authority", "path": "assets/game/manifests/office-character-scale-standard-v1.json", "sha256": "09556ec5ffdfab4babfeba85424459bfd5dc6ebddc84bc8919680520a686a4a1" },
+    { "role": "desk-seat-side-composite", "path": "assets/game/processed/office-workstation-v2/desk.workstation.modern.v2.front.png", "sha256": "b00fbe29b1fa207bae60cdbcfd24c95044a535864a5077e31faf2a5ca6bf30d1" },
+    { "role": "desk-public-side-composite", "path": "assets/game/processed/office-workstation-v2/desk.workstation.modern.v2.back.png", "sha256": "cae9981d8bc3c01fccd9214f146708c76aa590668cd25814ccafbe49392b7e15" },
+    { "role": "desk-seat-side-rear", "path": "assets/game/processed/office-workstation-v2/desk.workstation.modern.v2.front.rear.png", "sha256": "194546bf12c96d353d3c10740ecfffb03a437125315e15183e2b496bc93c8304" },
+    { "role": "desk-seat-side-surface", "path": "assets/game/processed/office-workstation-v2/desk.workstation.modern.v2.front.surface.png", "sha256": "50e29922d2419b3bdff559ded7dda22e4afb3b8c68578e8155a1ce6229ea5ae9" },
+    { "role": "desk-seat-side-base", "path": "assets/game/processed/office-workstation-v2/desk.workstation.modern.v2.front.base.png", "sha256": "c4d23c956f34eae0aa6580216cfa483b6f1b90dba15156eb71b309eb1b6e851d" },
+    { "role": "desk-seat-side-foreground", "path": "assets/game/processed/office-workstation-v2/desk.workstation.modern.v2.front.foreground.png", "sha256": "91bc1ffd67d5ae84463c0bc1654ffb999b3782accf7f2e2e18006da2e71c8c54" },
+    { "role": "desk-public-side-rear", "path": "assets/game/processed/office-workstation-v2/desk.workstation.modern.v2.back.rear.png", "sha256": "bcc66b0b19b6b40e7daa8909ed164b2fd89a95150dd5345458f6a8ab26031342" },
+    { "role": "desk-public-side-surface", "path": "assets/game/processed/office-workstation-v2/desk.workstation.modern.v2.back.surface.png", "sha256": "9b21bef42b146953103eb9b1a5fdd3b255a6e6e64b08ecebbac3a3339b81a07c" },
+    { "role": "desk-public-side-base", "path": "assets/game/processed/office-workstation-v2/desk.workstation.modern.v2.back.base.png", "sha256": "dc06cd17d3367fbb65b9b6cab097d59142551ef31e86de47f447a25cb9a40e39" },
+    { "role": "desk-public-side-foreground", "path": "assets/game/processed/office-workstation-v2/desk.workstation.modern.v2.back.foreground.png", "sha256": "6faae580175074927b49a3567f6b8c3ff1af17bbba581162ad5c4b53908b97c7" },
+    { "role": "chair-front-source", "path": "assets/game/processed/office-library-modern-bright-v1/chair-office-modern-v1/chair.office.modern.front.png", "sha256": "b438553d2c578ac2b20a7a3c52c46096427fc9ca9214cc5b4fa3101da05c6dc7" },
+    { "role": "chair-back-source", "path": "assets/game/processed/office-library-modern-bright-v1/chair-office-modern-v1/chair.office.modern.back.png", "sha256": "86ca5fac6f7736f64f0749b1e8fd24fd9609482c32b17f72fe5b459788821511" },
+    { "role": "chair-front-mask-source", "path": "assets/game/processed/office-interactions-v1/foreground-masks/chair-office-modern-foreground.png", "sha256": "bdfd8d277adcaa58c8ec12903d884ebec6a36e62623dde97f2b03a97379ee512" },
+    { "role": "chair-front-backrest", "path": "assets/game/processed/office-workstation-v2/step5-r02/chair.office.modern.front.backrest.png", "sha256": "ddfd38741db7ea15bcc40d8e4b72546285bf00fd1c1bb61d89c0fdce4a67aab7" },
+    { "role": "chair-front-seat-base", "path": "assets/game/processed/office-workstation-v2/step5-r02/chair.office.modern.front.seat-base.png", "sha256": "f935fd02d87b543b899cfd0167cab0c0bd91c5d896054ca083d2b5f1829117cb" },
+    { "role": "chair-back-backrest", "path": "assets/game/processed/office-workstation-v2/step5-r02/chair.office.modern.back.backrest.png", "sha256": "25505012ac42433f06b20d4a9618493dff2f17ed28230ca4a12e264f7aab0bda" },
+    { "role": "chair-back-seat-base", "path": "assets/game/processed/office-workstation-v2/step5-r02/chair.office.modern.back.seat-base.png", "sha256": "7691010e977576e07891c1e21013397e71bcdefc718f31a2298ba00f6d8a4241" },
+    { "role": "monitor-front", "path": "assets/game/processed/office-library-modern-bright-v1/env-01-workstation-static/monitor.front.png", "sha256": "47aa00e068ac2a5e0efe5316f0c9084cdb6f0a6b833a47bd1dcf44ada97478a8" },
+    { "role": "monitor-back", "path": "assets/game/processed/office-library-modern-bright-v1/env-01-workstation-static/monitor.back.png", "sha256": "f6bd888cf6a7a551cec21a66dcbee131b18cdd23daf3afa54eaff815da1743cf" },
+    { "role": "keyboard-source", "path": "assets/game/processed/office-facility-v1-lab/derived/keyboard.only.png", "sha256": "92277422c2a6879817adfe15d014eb69e81ef815006d79b2d3bbf1fa78d707db" },
+    { "role": "keyboard-full-tight", "path": "assets/game/processed/office-workstation-v2/step5-r02/keyboard.workstation.full-tight.png", "sha256": "d2e4e83c6f7b8da0f81a1358bf9ae3c9d771df125bb6498e8dcd67b9089117ad" },
+    { "role": "einstein-1x", "path": "assets/game/characters/einstein/runtime-spritesheet-v3.webp", "sha256": "5c559c215966641a5a92e55bb2b3cf159b8e4a22b19633c1813c39da58956213" },
+    { "role": "einstein-2x", "path": "assets/game/characters/einstein/runtime-spritesheet-v3@2x.webp", "sha256": "61400db1cc2a240059d34e08003e32adbf298235e3ef0bdd75464383835db069" }
+  ],
+  "station": {
+    "character": {
+      "id": "einstein",
+      "rows": 15,
+      "columns": 8,
+      "floorFootprint": { "width": 1, "depth": 1 },
+      "logicalVolume": { "width": 1, "depth": 1, "height": 3 },
+      "framePixels": { "width": 96, "height": 104 },
+      "hipAnchorPixels": { "x": 48, "y": 72 },
+      "visualOverflowAllowed": true
+    },
+    "desk": {
+      "origin": { "x": 2, "y": 4 },
+      "footprint": { "width": 3, "depth": 2 },
+      "basePivot": { "x": 1.5, "y": 2 },
+      "renderPixels": { "width": 96, "height": 128 },
+      "sourcePivotPixels": { "x": 48, "y": 112 },
+      "surfaceRows": { "start": 42, "endExclusive": 72 }
+    },
+    "canvas": { "width": 7, "height": 8, "tilePixels": 32 },
+    "equipment": {
+      "monitor": { "reservation": { "width": 3, "depth": 1 }, "renderPixels": { "width": 52, "height": 52 } },
+      "keyboard": { "reservation": { "width": 3, "depth": 1 }, "renderPixels": { "width": 72, "height": 37 }, "fullSpriteRequired": true },
+      "chair": {
+        "footprint": { "width": 1, "depth": 1 },
+        "logicalVolume": { "width": 1, "depth": 1, "height": 2 },
+        "seatAnchor": { "z": 1, "screenOffsetFromFloorPixels": 32 },
+        "renderPixels": { "front": { "width": 44, "height": 64 }, "back": { "width": 47, "height": 64 } },
+        "visualOverflowAllowed": true
+      }
+    }
+  },
+  "deskSides": {
+    "public-side": { "assetView": "back", "visual": "modesty-panel", "usedBy": "far" },
+    "seat-side": { "assetView": "front", "visual": "drawers-and-knee-space", "usedBy": "near" }
+  },
+  "orientations": {
+    "far": {
+      "deskSide": "public-side",
+      "chairView": "front",
+      "actorState": "working-front-seated",
+      "actorFacing": "down",
+      "chairFootprintRelative": { "x": 1, "y": -1, "width": 1, "depth": 1 },
+      "monitorReservationRelative": { "x": 0, "y": 1, "width": 3, "depth": 1 },
+      "keyboardReservationRelative": { "x": 0, "y": 0, "width": 3, "depth": 1 },
+      "assemblyOrderBackToFront": ["chair-backrest", "actor", "chair-seat-base", "desk-rear", "desk-surface", "keyboard", "monitor-back", "desk-base", "desk-foreground"]
+    },
+    "near": {
+      "deskSide": "seat-side",
+      "chairView": "back",
+      "actorState": "working-back-seated",
+      "actorFacing": "up",
+      "chairFootprintRelative": { "x": 1, "y": 2, "width": 1, "depth": 1 },
+      "monitorReservationRelative": { "x": 0, "y": 0, "width": 3, "depth": 1 },
+      "keyboardReservationRelative": { "x": 0, "y": 1, "width": 3, "depth": 1 },
+      "assemblyOrderBackToFront": ["desk-rear", "desk-surface", "monitor-front", "keyboard", "desk-base", "desk-foreground", "actor", "chair-backrest", "chair-seat-base"]
+    }
+  },
+  "animation": { "sampleTicks": [0, 10, 20, 30], "frames": 6, "fps": 6, "anchorMustRemainStable": true },
+  "denyList": ["desk.workstation.viewer-front.v5", "desk.workstation.viewer-back.v5", "desk.modular.v1", "desk.standard.up", "desk.creative.up", "desk.noc.up", "office-c-background-modern-v3"],
+  "reviewOutputs": [
+    "assets/art/layout-references/office-workstation-v2/step5-r02/01-character-scale-and-parts.png",
+    "assets/art/layout-references/office-workstation-v2/step5-r02/02-far-front-corrected.png",
+    "assets/art/layout-references/office-workstation-v2/step5-r02/03-near-back-corrected.png",
+    "assets/art/layout-references/office-workstation-v2/step5-r02/04-volume-anchor-overlay.png",
+    "assets/art/layout-references/office-workstation-v2/step5-r02/05-step5-r02-owner-contact-sheet.png"
+  ]
+}

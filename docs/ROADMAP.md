@@ -2,10 +2,13 @@
 
 Workstation correction (2026-07-28): all earlier `5 x 4` / `5 x 3`
 workstation acceptance claims and Candidate r01 are revoked. They are
-historical rejected evidence only. Current pre-artwork authority is the `3 x 2`
-Workstation Assembly Bible v2; artwork, renderer work, ten-seat assembly, and
-Active Office promotion remain blocked pending owner approval of its review
-boards.
+historical rejected evidence only. Current authority is the `3 x 2`
+Workstation Assembly Bible v2 and the isolated Step 5 R02 manifest. Step 4 desk
+art is accepted. R02 now proves one existing character at current Office scale
+(`1 x 1` floor footprint, logical height `3`, visible overflow allowed), one
+`1 x 1 x 2` chair, correct semantic desk sides, and a complete keyboard. R02
+awaits owner visual approval. Ten-seat assembly, other furniture, roster-wide
+calibration, and Active Office promotion remain blocked.
 
 ## M0 — Repository foundation (complete)
 
@@ -157,9 +160,11 @@ accepted workstation generation values without changing the legacy Active
 Office manifest. The combined Steps 1-4 gate passes; Active Office data,
 renderer behavior, and visuals remain unchanged.
 
-### Immediate Office workstation vertical slice — Steps 5-8 complete in staging
+### Historical rejected Office workstation vertical slice — former Steps 5-8
 
-The next reuse-first tranche is complete at its intended staging gate:
+The following 2026-07-27 tranche is preserved for audit only. Its `5 x 4` desk
+contract is superseded by the current `3 x 2` authority and none of its former
+acceptance claims authorize current or Active Office work:
 
 5. `Workstation Bundle v1` now composes the canonical desk, four orientation
    part sets, support slots, the accepted chair and monitor families, a neutral
@@ -182,10 +187,11 @@ The next reuse-first tranche is complete at its intended staging gate:
    Active Office isolation. Desktop and 390 px mobile visual QA passed with no
    horizontal overflow.
 
-Status on 2026-07-27: `accepted-staging`. This is not Active Office promotion
-and does not approve the 19 prototype character identities for commercial use.
+Historical status on 2026-07-27 was `accepted-staging`; it is now
+`rejected-superseded`. This is not Active Office promotion and does not approve
+the 19 prototype character identities for commercial use.
 
-### Immediate Office structural deployment — Steps 9-12 complete in staging
+### Historical rejected Office structural deployment — former Steps 9-12
 
 9. Office Map v2 now defines explicit `floor-region`, `wall-segment`,
    `window-opening`, and `door-opening` structures, structural IDs, portals,
@@ -205,7 +211,8 @@ and does not approve the 19 prototype character identities for commercial use.
     checks and desktop, tablet, 390 px, and 320 px browser QA pass with no
     horizontal overflow or console errors.
 
-Status on 2026-07-27: `accepted-staging`, with `activeOfficePromotion: false`
+Historical status on 2026-07-27 was `accepted-staging`; it is now
+`rejected-superseded`, with `activeOfficePromotion: false`
 and `commercialCharacterApproval: false`. The acceptance record is maintained
 in `docs/OFFICE_TEN_WORKSTATION_ACCEPTANCE.md`. Furniture-family migration and
 Active Office promotion remain separate future decisions. Commercial character

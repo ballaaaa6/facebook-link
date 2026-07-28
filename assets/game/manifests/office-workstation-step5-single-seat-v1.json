@@ -2,7 +2,7 @@
   "version": 1,
   "geometrySchemaVersion": 3,
   "id": "office.workstation.step5.single-seat.v1",
-  "status": "owner-review",
+  "status": "rejected-visual",
   "updatedOn": "2026-07-28",
   "permissions": {
     "ownerPlanApproval": true,
@@ -18,6 +18,17 @@
     "approvedOn": "2026-07-28",
     "approvedScope": "Step 5 isolated single-seat front/back calibration and five review images only",
     "nextGate": "Owner must accept the Step 5 review images before any roster-wide or ten-seat work"
+  },
+  "reviewDecision": {
+    "status": "changes-requested",
+    "decidedOn": "2026-07-28",
+    "reasons": [
+      "far and near desk sides were reversed",
+      "the chair 1 x 1 floor footprint was incorrectly used as its render width",
+      "the actor was hard-coded to 52 x 56 instead of the current Office character scale",
+      "the full keyboard was undersized and insufficiently visible"
+    ],
+    "supersededBy": "office.workstation.step5.single-seat.v2"
   },
   "activeOfficeBaseline": {
     "file": "assets/game/maps/office-c-v2.json",

@@ -20,7 +20,9 @@ function add(failures, condition, message) {
 const camera = readJson("assets/game/manifests/office-camera-scale-bible.json");
 const assembly = readJson("assets/game/manifests/office-workstation-assembly-bible-v2.json");
 const bundleV2 = readJson("assets/game/manifests/office-workstation-bundle-v2.json");
-const step5 = readJson("assets/game/manifests/office-workstation-step5-single-seat-v1.json");
+const rejectedStep5 = readJson("assets/game/manifests/office-workstation-step5-single-seat-v1.json");
+const step5 = readJson("assets/game/manifests/office-workstation-step5-single-seat-v2.json");
+const characterScale = readJson("assets/game/manifests/office-character-scale-standard-v1.json");
 const candidate = readJson("assets/game/manifests/office-candidate-v1.json");
 const review = readJson("assets/game/manifests/office-candidate-review-r01.json");
 const historicalBundle = readJson("assets/game/manifests/office-workstation-bundle-v1.json");
@@ -156,16 +158,31 @@ add(
   "Active Office baseline changed during blueprint review",
 );
 
-add(failures, step5.status === "owner-review", "Step 5 must stop at owner review");
+add(failures, rejectedStep5.status === "rejected-visual", "Step 5 v1 must remain rejected visual evidence");
+add(failures, rejectedStep5.reviewDecision?.supersededBy === step5.id, "Step 5 v1 must point to the corrected revision");
+add(failures, step5.version === 2 && step5.geometrySchemaVersion === 4, "Step 5 r02 must use Geometry v4");
+add(failures, step5.status === "owner-review", "Step 5 r02 must stop at owner review");
 add(failures, step5.permissions?.singleSeatAssembly === true, "Step 5 must record owner-authorized single-seat assembly");
 add(failures, step5.permissions?.isolatedLabRenderer === true, "Step 5 isolated renderer must be authorized");
 for (const key of ["newArtworkGeneration", "rosterWideCalibration", "tenSeatSceneAssembly", "activeOfficePromotion"]) {
   add(failures, step5.permissions?.[key] === false, `Step 5 permissions.${key} must remain false`);
 }
 add(failures, step5.lab?.stationCount === 1 && step5.lab?.reviewViewCount === 2,
-  "Step 5 must remain one station with two review views");
+  "Step 5 r02 must remain one station with two review views");
 add(failures, step5.activeOfficeBaseline?.sha256 === assembly.activeOfficeBaseline?.sha256,
-  "Step 5 must inherit the exact Active Office baseline hash");
+  "Step 5 r02 must inherit the exact Active Office baseline hash");
+add(failures, characterScale.standard?.floorFootprint?.width === 1
+  && characterScale.standard?.floorFootprint?.depth === 1
+  && characterScale.standard?.logicalVolume?.height === 3,
+"Character scale authority must equal 1 x 1 x 3");
+add(failures, characterScale.standard?.sourceFramePixels?.width === 96
+  && characterScale.standard?.sourceFramePixels?.height === 104,
+"Character scale authority must preserve the current Office 96 x 104 frame at tile 32");
+add(failures, step5.station?.equipment?.chair?.footprint?.width === 1
+  && step5.station?.equipment?.chair?.logicalVolume?.height === 2,
+"Step 5 r02 chair must equal 1 x 1 x 2");
+add(failures, step5.orientations?.far?.deskSide === "public-side"
+  && step5.orientations?.near?.deskSide === "seat-side", "Step 5 r02 desk sides cannot be reversed");
 
 add(failures, candidate.status === "rejected-visual", "Candidate v1 must remain rejected-visual evidence");
 add(failures, candidate.review?.status === "changes-requested", "Candidate v1 must retain owner-requested changes");
@@ -195,6 +212,6 @@ if (failures.length > 0) {
   process.exitCode = 1;
 } else {
   process.stdout.write(
-    "Workstation authority OK: accepted 3 x 2 desk, isolated Step 5 owner review, ten-seat and promotion blocked.\n",
+    "Workstation authority OK: accepted 3 x 2 desk, current Office person 1 x 1 x 3, corrected Step 5 r02 owner review, ten-seat and promotion blocked.\n",
   );
 }

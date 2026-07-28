@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "id": "office.character.scale.v1",
+  "status": "owner-approved-current-office-baseline",
+  "updatedOn": "2026-07-28",
+  "standard": {
+    "id": "office.character.scale.v1",
+    "floorFootprint": { "width": 1, "depth": 1 },
+    "logicalVolume": { "width": 1, "depth": 1, "height": 3 },
+    "sourceFramePixels": { "width": 96, "height": 104 },
+    "renderEnvelopeTiles": { "width": 3, "height": 3.25 },
+    "seatedHipAnchorPixels": { "x": 48, "y": 72 }
+  },
+  "renderPolicy": {
+    "visualOverflowAllowed": true,
+    "clipToFootprint": false,
+    "collisionUsesFloorFootprintOnly": true,
+    "depthSortAnchor": "floor-pivot-bottom-center",
+    "perCharacterScaleOverrides": false
+  },
+  "runtimeAuthority": {
+    "file": "apps/web/src/features/office/motion/pixelGeometry.ts",
+    "function": "pixelAlignedCharacterFrame",
+    "minimumFrameWidthPixels": 36,
+    "maximumFrameWidthPixels": 96
+  }
+}

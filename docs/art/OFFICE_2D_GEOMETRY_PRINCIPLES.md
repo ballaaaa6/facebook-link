@@ -11,6 +11,8 @@ only in explicitly rejected v1 fixtures for regression evidence.
 Machine-readable workstation authority:
 `assets/game/manifests/office-workstation-assembly-bible-v2.json`.
 Camera authority: `assets/game/manifests/office-camera-scale-bible.json`.
+Character-scale authority:
+`assets/game/manifests/office-character-scale-standard-v1.json`.
 
 ## Coordinate spaces
 
@@ -27,6 +29,25 @@ Camera authority: `assets/game/manifests/office-camera-scale-bible.json`.
 
 The visible bitmap is not a collision rectangle. Transparent canvas size and
 the alpha bounds are also not collision geometry.
+
+## Character-relative world scale
+
+The current Active Office character scale is the comparison ruler for all new
+Office geometry. A character reserves a `1 x 1` floor footprint and has a
+logical `1 x 1 x 3` volume. At a 32-pixel tile, the current renderer displays
+its frame at `96 x 104` pixels. That visible envelope is deliberately larger
+than the collision footprint.
+
+Hair, head, clothing, arms, and seated legs may overlap neighboring screen
+pixels in the same way they do in other tile-based games. Do not clip those
+pixels, stretch the footprint, or give individual characters a different
+world scale. Furniture dimensions must be evaluated beside this ruler, not
+against the transparent canvas or alpha bounds of one sprite.
+
+For seating, the chair reserves `1 x 1` on the floor and has logical height
+`2`. Actor and chair share that one floor cell. The chair seat anchor and actor
+hip anchor share one world point. Backrest, seat/base, actor frame, collision
+footprint, and logical volume remain separate data.
 
 ## Independent geometry concepts
 
@@ -62,6 +83,8 @@ base pivot          = (1.5, 2)
 sort pivot          = (1.5, 2)
 authoring canvas    = 3 x 4 tiles
 chair footprint     = separate 1 x 1 tile
+chair volume        = 1 x 1 x 2 tiles
+character volume    = 1 x 1 x 3 tiles
 ```
 
 The complete tabletop occupies the `3 x 2` plan. The render canvas may be
@@ -105,10 +128,11 @@ tiles apart. The two rows touch vertically because the near row begins at Y 8,
 immediately after the far row ends at Y 8. Chairs stay outside the desk
 footprints and are centered on the middle tile of each desk.
 
-These coordinates and the Step 4 desk artwork are accepted. The owner authorized
-one isolated Step 5 single-seat implementation. Its renderer and review boards
-are complete, while ten-seat assembly, roster-wide calibration, and Active
-Office promotion remain false.
+These coordinates and the Step 4 desk artwork are accepted. The owner rejected
+the first Step 5 visual result and authorized corrected R02. Its isolated
+renderer and review boards are complete and awaiting owner review, while
+ten-seat assembly, roster-wide calibration, and Active Office promotion remain
+false.
 
 ## Furniture part contract
 
@@ -126,10 +150,10 @@ remain separate from all desk parts.
 
 ## Orientation and occlusion
 
-- The far row uses the front-facing desk assembly, an actor facing down, and
-  the back of the monitor visible to the viewer.
-- The near row uses the back-facing desk assembly, an actor facing up, and the
-  monitor front visible to the viewer.
+- The far row uses the semantic `public-side` desk assembly (the existing
+  `.back` pixels), an actor facing down, and the back of the monitor visible.
+- The near row uses the semantic `seat-side` desk assembly (the existing
+  `.front` pixels), an actor facing up, and the monitor front visible.
 - Near-row chair and actor layers draw in front of the paired desk bank.
 - Far-row lower-body pixels may be hidden by the desk base or foreground.
 - Greater `sortPivot.y` draws later.
@@ -149,6 +173,9 @@ The following cannot feed new art, new layout, or Active Office promotion:
 
 Historical v1 labs and screenshots may remain readable only as rejected
 regression evidence. They are not current examples.
+
+The Step 5 R01 manifest and images are also rejected evidence. They cannot be
+used to infer actor scale, chair geometry, desk-side meaning, or keyboard crop.
 
 ## Approval gate
 

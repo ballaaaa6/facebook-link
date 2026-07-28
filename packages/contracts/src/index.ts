@@ -7,6 +7,7 @@ export * from "./office.ts";
 export * from "./officeCandidate.ts";
 export * from "./officeDerivedAssets.ts";
 export * from "./officeGeometry.ts";
+export * from "./officeSpatialScale.ts";
 export * from "./officeStructure.ts";
 export * from "./officeWorkstation.ts";
 export * from "./officeWorkstationAssembly.ts";

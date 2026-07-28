@@ -1,3 +1,5 @@
+import { officeCharacterFrameForTile } from "@affiliate-ops/contracts";
+
 export interface PixelFrameSize {
   width: number;
   height: number;
@@ -17,9 +19,5 @@ export function pixelAlignedCharacterFrame(
   tileSize: number,
   devicePixelRatio = 1,
 ): PixelFrameSize {
-  const physicalScale = Math.max(1, devicePixelRatio);
-  const targetWidth = Math.max(36, Math.min(96, tileSize * 3));
-  const width = (Math.round((targetWidth * physicalScale) / 2) * 2) / physicalScale;
-  const height = Math.round(width * (52 / 48) * physicalScale) / physicalScale;
-  return { width, height };
+  return officeCharacterFrameForTile(tileSize, devicePixelRatio);
 }

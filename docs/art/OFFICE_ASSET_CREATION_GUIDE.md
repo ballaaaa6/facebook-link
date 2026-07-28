@@ -1,6 +1,6 @@
 # Office Asset Creation Guide
 
-Status: Production guide; Step 4 accepted, isolated Step 5 awaiting owner review
+Status: Production guide; Step 4 accepted, corrected Step 5 R02 awaiting owner review
 Scope: Office assets created for the latest orthographic pixel-art reference
 Current execution plan: `docs/art/OFFICE_GEOMETRY_REMEDIATION_ROADMAP.md`
 Historical migration plan: `docs/art/OFFICE_REF_MIGRATION_ROADMAP.md`
@@ -9,9 +9,10 @@ Workstation reset gate (2026-07-28): the former `5 x 4` / `5 x 3` workstation
 contract and Candidate r01 are rejected. The owner approved the corrected
 `3 x 2` blueprint and accepted the bare desk v2 source, its front/back
 normalization, semantic layers, and Step 4 QA boards. The owner then authorized
-the Step 5 one-seat lab. It reuses the existing chair, monitor, keyboard, and
-Einstein poses and generated no replacement art. Roster-wide calibration,
-ten-seat assembly, and Active Office promotion remain blocked until later gates.
+the Step 5 one-seat lab. The first visual result was rejected; corrected R02
+reuses the existing chair, monitor, full keyboard, and Einstein poses and
+generates no replacement art. Roster-wide calibration, ten-seat assembly, and
+Active Office promotion remain blocked until R02 is approved.
 
 ## 1. Purpose
 
@@ -111,6 +112,20 @@ standing adult:
 adult = 1 wide x 1 deep x 3 high
 1 tile = 32 authoring pixels
 ```
+
+The current Active Office actor visual is the scale authority, not a new
+calibration drawing. At 32 pixels per tile it renders at `96 x 104` pixels,
+while reserving only a `1 x 1` floor cell. Hair, head, clothing, arms, and
+seated limbs may visibly overflow that cell. Do not clip the sprite or enlarge
+collision to match its render envelope. Per-character scale overrides are
+forbidden for the current 19-character prototype roster.
+
+Every object must record three independent values: floor footprint, logical
+`W x D x H` volume, and visible render envelope. A workstation chair is
+`1 x 1 x 2` even though its backrest visibly rises above its `1 x 1` floor
+footprint. Its backrest and seat/base must remain separable for actor
+occlusion. Desk code must request `public-side` or `seat-side`; do not infer
+spatial meaning from historical `.front` or `.back` filenames.
 
 `W x D x H` describes the intended physical mass used in prompts and layout
 planning. `renderBox` describes the integer tile canvas used to draw the

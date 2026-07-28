@@ -1,103 +1,112 @@
-# Office Workstation Step 5 Single-Seat Plan
+# Office Workstation Step 5 Single-Seat Plan R02
 
 Status: Implemented in an isolated lab; owner visual review required
 Updated: 2026-07-28
 Depends on: `assets/game/manifests/office-workstation-assembly-bible-v2.json`
 
-Implementation record:
-`assets/game/manifests/office-workstation-step5-single-seat-v1.json`
+Current machine-readable authority:
+`assets/game/manifests/office-workstation-step5-single-seat-v2.json`
 
-The owner authorized this plan on 2026-07-28. The one-station lab, focused
-contracts/tests, portable CI check, and five review images are complete. Step 5
-is not accepted until the owner approves both clean orientation views. The
-other 18 characters, ten-seat assembly, and Active Office promotion remain
-blocked.
+Character-scale authority:
+`assets/game/manifests/office-character-scale-standard-v1.json`
 
-## Objective
+The original Step 5 R01 result is rejected visual evidence. Its manifest remains
+at `assets/game/manifests/office-workstation-step5-single-seat-v1.json` only so
+tests can prevent the reversed desk sides, undersized actor, compressed chair,
+and incomplete keyboard from returning. It is not an implementation input.
 
-Step 5 proves one complete workstation before any ten-seat composition is
-attempted. It assembles the accepted Step 4 desk with one existing chair, one
-existing monitor, one existing keyboard, and one seated pose from the existing
-19-character roster. The proof runs only in a new isolated lab. It does not
-modify the Active Office map, its background, the runtime office route, or any
-existing office furniture registry.
+## Objective and boundary
 
-The lab must show both orientations of the same one-seat module:
+Step 5 proves one existing character seated at one accepted `3 x 2` desk in two
+directions before any ten-seat assembly is attempted. The lab reuses the
+accepted Step 4 desk, existing chair, monitor, keyboard, and Einstein seated
+frames. It creates no new character, pose, furniture identity, background, or
+decorative art.
 
-- `far/front`: the actor sits above the desk and faces down toward the viewer;
-- `near/back`: the actor sits below the desk and faces up away from the viewer.
+The two review views are:
 
-These are two review views of one station contract, not authorization to build
-two runtime seats. No new character, pose, desk, chair, monitor, keyboard,
-background, or decorative art may be generated in Step 5.
+- `far/front`: actor north of the desk, facing the viewer;
+- `near/back`: actor south of the desk, facing away from the viewer.
 
-## Locked inputs
+This work is reachable only through the development query
+`/?lab=office-workstation-v2-step5`. It must not change the Active Office map,
+background, registry, route, or current 19-character roster.
 
-Implementation may read only the following visual inputs. Their hashes are
-captured here so a similarly named historical asset cannot be substituted.
+## World ruler: current Office character
 
-| Role | Path | SHA-256 |
-| --- | --- | --- |
-| Accepted desk, front | `assets/game/processed/office-workstation-v2/desk.workstation.modern.v2.front.png` | `b00fbe29b1fa207bae60cdbcfd24c95044a535864a5077e31faf2a5ca6bf30d1` |
-| Accepted desk, back | `assets/game/processed/office-workstation-v2/desk.workstation.modern.v2.back.png` | `cae9981d8bc3c01fccd9214f146708c76aa590668cd25814ccafbe49392b7e15` |
-| Existing chair, front | `assets/game/processed/office-library-modern-bright-v1/chair-office-modern-v1/chair.office.modern.front.png` | `b438553d2c578ac2b20a7a3c52c46096427fc9ca9214cc5b4fa3101da05c6dc7` |
-| Existing chair, back | `assets/game/processed/office-library-modern-bright-v1/chair-office-modern-v1/chair.office.modern.back.png` | `86ca5fac6f7736f64f0749b1e8fd24fd9609482c32b17f72fe5b459788821511` |
-| Existing chair foreground mask | `assets/game/processed/office-interactions-v1/foreground-masks/chair-office-modern-foreground.png` | `bdfd8d277adcaa58c8ec12903d884ebec6a36e62623dde97f2b03a97379ee512` |
-| Existing monitor, front | `assets/game/processed/office-library-modern-bright-v1/env-01-workstation-static/monitor.front.png` | `47aa00e068ac2a5e0efe5316f0c9084cdb6f0a6b833a47bd1dcf44ada97478a8` |
-| Existing monitor, back | `assets/game/processed/office-library-modern-bright-v1/env-01-workstation-static/monitor.back.png` | `f6bd888cf6a7a551cec21a66dcbee131b18cdd23daf3afa54eaff815da1743cf` |
-| Existing keyboard | `assets/game/processed/office-facility-v1-lab/derived/keyboard.only.png` | `92277422c2a6879817adfe15d014eb69e81ef815006d79b2d3bbf1fa78d707db` |
-| Existing Einstein pose sheet, 1x | `assets/game/characters/einstein/runtime-spritesheet-v3.webp` | `5c559c215966641a5a92e55bb2b3cf159b8e4a22b19633c1813c39da58956213` |
-| Existing Einstein pose sheet, 2x | `assets/game/characters/einstein/runtime-spritesheet-v3@2x.webp` | `61400db1cc2a240059d34e08003e32adbf298235e3ef0bdd75464383835db069` |
+The visible scale already used by Active Office is the scale authority. At the
+standard 32-pixel tile, a character frame renders at `96 x 104` pixels.
 
-Einstein is the calibration subject because both `working-front-seated` and
-`working-back-seated` already exist in the v3 sheet. This choice does not change
-the frozen 19-character roster and does not authorize any roster-wide work.
+These four concepts must remain independent:
 
-All semantic desk parts must come from
-`assets/game/processed/office-workstation-v2/` and reconstruct the locked front
-or back desk exactly. Historical `desk.workstation.viewer-*.v5`,
-`desk.modular.v1`, `desk.standard.up`, `desk.creative.up`, and `desk.noc.up`
-assets are denied even as hidden inputs. Current Active Office furniture is
-also denied. Historical files may be displayed only as labelled rejection
-evidence outside the runtime assembly.
+| Object | Floor footprint | Logical volume | Visible render envelope | Rule |
+| --- | --- | --- | --- | --- |
+| Character | `1 x 1` | `1 x 1 x 3` | `96 x 104` px at 32 px/tile | Hair, head, clothing, and limbs may overflow; never enlarge collision or clip the sprite |
+| Chair | `1 x 1` | `1 x 1 x 2` | front `44 x 64` px; back `47 x 64` px | Seat/base and backrest are separate occlusion parts |
+| Desk | `3 x 2` | `3 x 2 x 2.4` | `96 x 128` px | Render height below the top is not another floor row |
+| Monitor | desk child | surface child | existing sprite | Centered on the far `3 x 1` reservation |
+| Keyboard | desk child | surface child | full tight sprite `72 x 37` px | Centered on the actor-near `3 x 1` reservation |
 
-## Geometry contract
+The actor and chair reserve the same centered `1 x 1` floor cell outside the
+desk. The actor pelvis/hip anchor and chair seat anchor must be the same world
+point. The chair's first vertical unit covers its base through its seat; its
+second covers the backrest. The actor's seated legs occupy the first logical
+unit, torso the second, and head the third. These logical units guide scale and
+occlusion; they are not clipping rectangles.
 
-The desk local origin is the top-left of its top-down footprint. X increases to
-the right and Y increases toward the viewer. One desk reserves exactly `3 x 2`
-tiles. Its accepted generation box is `96 x 128` pixels at 32 pixels per tile;
-the extra render height is not collision space. Both the base and sort pivot are
-`(1.5, 2)` tiles.
+No per-character scale correction or wider collision box is allowed in Step 5.
 
-The following placements are equations relative to a desk origin `(dx, dy)`:
+## Desk-side semantics
 
-| View | Desk | Chair footprint | Monitor reservation | Keyboard reservation | Actor state |
-| --- | --- | --- | --- | --- | --- |
-| `far/front` | `(dx, dy, 3, 2)` | `(dx + 1, dy - 1, 1, 1)` | `(dx, dy + 1, 3, 1)` | `(dx, dy, 3, 1)` | `working-front-seated`, facing down |
-| `near/back` | `(dx, dy, 3, 2)` | `(dx + 1, dy + 2, 1, 1)` | `(dx, dy, 3, 1)` | `(dx, dy + 1, 3, 1)` | `working-back-seated`, facing up |
+Filename-facing labels from the source art are not used as spatial authority.
+R02 assigns explicit semantic sides:
 
-The monitor and keyboard each reserve a `3 x 1` desk row for placement logic,
-but their visible pixels may be narrower. Both use the desk centerline
-`x = dx + 1.5`. The monitor belongs at the edge farthest from the actor; the
-keyboard belongs in the row nearest the actor. Their feet and keys must touch
-the visible tabletop support plane, never the desk's vertical front face or the
-floor. The chair and actor remain outside the `3 x 2` desk footprint and are
-centered on the middle desk tile.
+| Semantic side | Existing accepted pixels | Used when | Visible meaning |
+| --- | --- | --- | --- |
+| `public-side` | `desk.workstation.modern.v2.back.png` | `far/front` | modesty panel faces the viewer |
+| `seat-side` | `desk.workstation.modern.v2.front.png` | `near/back` | drawers and knee opening face the seated actor/viewer |
 
-## Required layer order
+This mapping corrects R01, where the front and back meanings were reversed.
+Renderer code must request semantic sides and must not infer meaning from the
+historical filename.
 
-The isolated renderer must use semantic parts, not one guessed monolithic
-sprite. Back-to-front order is locked as follows and must be made visible in a
-debug overlay:
+## Geometry and equipment placement
+
+The desk local origin is its top-left floor cell. X increases right and Y
+increases toward the viewer. With desk origin `(dx, dy)`:
+
+| View | Desk footprint | Shared actor/chair footprint | Monitor row | Keyboard row |
+| --- | --- | --- | --- | --- |
+| `far/front` | `(dx, dy, 3, 2)` | `(dx + 1, dy - 1, 1, 1)` | local Y `1` | local Y `0` |
+| `near/back` | `(dx, dy, 3, 2)` | `(dx + 1, dy + 2, 1, 1)` | local Y `0` | local Y `1` |
+
+Monitor and keyboard reservations are each `3 x 1`, but their artwork is not
+stretched to fill three tiles. The monitor is at the tabletop edge farthest
+from the actor. The full keyboard is between actor and monitor. Both touch the
+tabletop support plane, never the vertical desk face or floor.
+
+## Chair derivation and occlusion
+
+R02 does not generate a new chair. The existing front and back chair images
+are deterministically split into:
+
+- `chair-backrest`: the part that can sit behind the actor torso;
+- `chair-seat-base`: seat, support, and wheels that remain under/in front of
+  the seated body where the view requires it.
+
+The derived pixels and their source hashes are locked in the R02 manifest.
+Changing the split requires a new version and new owner evidence.
+
+Required back-to-front layer order:
 
 `far/front`
 
-1. `desk-rear`
-2. `chair-base`
-3. `desk-surface`
-4. `keyboard`
-5. `actor`
-6. `chair-foreground`
+1. `chair-backrest`
+2. `actor`
+3. `chair-seat-base`
+4. `desk-rear`
+5. `desk-surface`
+6. `keyboard`
 7. `monitor-back`
 8. `desk-base`
 9. `desk-foreground`
@@ -110,120 +119,58 @@ debug overlay:
 4. `keyboard`
 5. `desk-base`
 6. `desk-foreground`
-7. `chair-base`
-8. `actor`
-9. `chair-foreground`
+7. `actor`
+8. `chair-backrest`
+9. `chair-seat-base`
 
-If this source-of-truth order produces a visual contradiction, Step 5 stops and
-the assembly manifest is corrected and reviewed. The renderer must not hide a
-wrong geometry rule with per-scene offsets.
+Clean and debug views must use identical coordinates and layers. A wrong
+result must be fixed in the shared contract, never hidden with a view-specific
+or character-specific offset.
 
-## Executed sequence
+## R02 implementation sequence
 
-### 5.1 Asset and contract preflight
+1. Lock the current Active Office character scale as `1 x 1 x 3`, while
+   retaining its current `96 x 104` render at a 32-pixel tile.
+2. Reject R01 explicitly and introduce the R02 manifest with semantic desk
+   sides, distinct logical/render geometry, and locked hashes.
+3. Derive the two chair occlusion parts for each direction and a tight crop of
+   the complete existing keyboard. Do not redraw pixels.
+4. Rebuild the isolated station renderer from manifest data and the shared
+   character-scale formula.
+5. Prove the shared chair/person footprint, hip/seat anchor, logical volumes,
+   desk footprint, equipment rows, semantic desk side, and animation stability
+   in automated tests.
+6. Capture the five owner-review images and stop at the owner gate.
 
-1. Create a Step 5 lab manifest that records every allowed path, hash, footprint,
-   anchor, orientation, pose state, and layer order above.
-2. Add a deny-list assertion for old desk families and all Active Office
-   furniture inputs.
-3. Record the Active Office baseline hash
-   `c40db448eb8e6d0f3fea67a41f716c0108aca63a4136cfad15293534273c618d`.
-4. Produce an asset-provenance board showing the exact desk, chair, monitor,
-   keyboard, and Einstein frames at nearest-neighbour scale.
-5. Stop if any file hash or dimension differs. Do not regenerate a substitute.
+## Review evidence
 
-### 5.2 Static one-seat assembly
+R02 evidence is stored under
+`assets/art/layout-references/office-workstation-v2/step5-r02/`:
 
-1. Build one local station component from manifest data only.
-2. Render `far/front` and `near/back` side by side on a neutral checker/grid lab
-   background; do not copy or replace the Office background.
-3. Draw optional debug overlays for the `3 x 2` desk footprint, `3 x 1`
-   equipment rows, `1 x 1` chair footprint, centerline, pivots, sprite bounds,
-   and named semantic layers.
-4. Verify that the actor pelvis/seat anchor and chair center share the same
-   world point while the actor's head remains unobstructed.
-5. Save static evidence before adding animation.
+1. `01-character-scale-and-parts.png`
+2. `02-far-front-corrected.png`
+3. `03-near-back-corrected.png`
+4. `04-volume-anchor-overlay.png`
+5. `05-step5-r02-owner-contact-sheet.png`
 
-### 5.3 Isolated interactive lab
+The evidence must show the current Office character scale, public/seat desk
+sides, full keyboard, chair parts, clean views, and logical-volume overlay.
+The Active Office map hash remains
+`c40db448eb8e6d0f3fea67a41f716c0108aca63a4136cfad15293534273c618d`.
 
-1. Add a dedicated query route such as
-   `/?lab=office-workstation-v2-step5`; it must be unreachable from the normal
-   Active Office route unless the explicit lab query is present.
-2. Provide controls only for orientation, debug overlay, zoom `1x/2x`, and
-   animation pause. Do not add furniture selection or placement editing.
-3. Drive the existing seated animation from the character sheet without
-   changing the pose art or adding character-specific correction offsets.
-4. Capture frames at `t = 0, 10, 20, 30` animation ticks. Chair, desk,
-   equipment, actor anchor, and sort pivot must not drift between frames.
+## Owner gate and rejection conditions
 
-### 5.4 Tests and review evidence
+R02 remains `owner-review` until the owner approves both clean views. Until
+that approval:
 
-The approved implementation must produce these five images under
-`assets/art/layout-references/office-workstation-v2/step5/`:
-
-1. `01-asset-provenance-and-scale.png`
-2. `02-front-seat-layer-stack.png`
-3. `03-back-seat-layer-stack.png`
-4. `04-anchor-occlusion-overlay.png`
-5. `05-step5-owner-contact-sheet.png`
-
-The contact sheet must include clean and overlay views at `1x` and `2x`, the
-Active Office before/after hash, and a visible `STEP 5 LAB ONLY` label. Automated
-tests must prove:
-
-- only allowed locked inputs are loaded;
-- desk footprint is `3 x 2` and chair footprint is outside it;
-- monitor and keyboard are centered and entirely assigned to their correct
-  support rows;
-- front/back pose and sprite side match each orientation;
-- layer names and order exactly match the manifest;
-- the four sampled animation ticks have identical station anchors;
-- nearest-neighbour rendering is used and no sprite is stretched;
-- the Active Office map, background, runtime registry, and default route are
-  byte-for-byte unchanged;
-- all repository checks pass without requiring Pillow in CI.
-
-### 5.5 Owner gate
-
-Step 5 ends with the five review images and the isolated lab URL. It is accepted
-only after the owner confirms both orientation views. Until then:
-
-- do not duplicate the station into 10 seats;
-- do not calibrate the other 18 roster members;
+- do not compose ten seats or start Step 6;
+- do not calibrate the other 18 characters;
 - do not add other furniture or props;
-- do not change the Office background or map;
-- do not promote any Step 5 code or asset into Active Office.
+- do not promote anything into Active Office.
 
-## Rejection conditions
-
-Reject Step 5 immediately if any of the following appears:
-
-- the person or chair is placed in the middle of the desk footprint;
-- the chair is not centered on the middle desk tile;
-- the monitor is not at the far edge from the actor;
-- the keyboard is not between the actor and monitor;
-- equipment appears attached to a vertical desk face or floating off the top;
-- the monitor, keyboard, actor, or chair is stretched to fit the desk;
-- the rectangular top is narrowed, tilted, clipped, separated, or replaced;
-- a historical/current Office furniture asset or a newly generated asset is
-  used;
-- the Office background changes;
-- clean and debug views require different placement offsets;
-- any per-character offset is introduced before the one-seat contract is
-  accepted.
-
-## Implemented file boundary
-
-The approved Step 5 implementation added or modified only:
-
-- a new manifest under `assets/game/manifests/` for the single-seat lab;
-- a new isolated feature folder under
-  `apps/web/src/features/office/lab/workstation-v2-step5/`;
-- the smallest query-route registration needed to open that lab;
-- focused contracts and tests for this one-seat assembly;
-- the five review images listed above;
-- generated-art/geometry locks needed to verify those new outputs;
-- this document and the assembly bible to record the review result.
-
-It must not edit `assets/game/maps/office-c-v2.json`, Active Office placement
-data, the 19-character source art, or current production furniture mappings.
+Reject R02 if the desk side is reversed, actor or chair enters the desk
+footprint, actor and chair do not share one centered floor cell, the pelvis and
+seat anchors differ, the actor is scaled down from current Office, visible
+overflow is clipped, the chair is flattened into one render tile, the keyboard
+is partial, equipment leaves the tabletop, any sprite is stretched, the full
+rectangular desk top changes, or Active Office changes.

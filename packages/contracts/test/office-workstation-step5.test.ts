@@ -2,45 +2,67 @@ import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import test from "node:test";
-import { validateOfficeWorkstationStep5Manifest } from "../src/officeWorkstationStep5.ts";
+import {
+  officeCharacterFrameForTile,
+  validateOfficeCharacterScaleManifest,
+  validateOfficeWorkstationStep5Manifest,
+} from "../src/index.ts";
 
 const manifestUrl = new URL(
+  "../../../assets/game/manifests/office-workstation-step5-single-seat-v2.json",
+  import.meta.url,
+);
+const rejectedUrl = new URL(
   "../../../assets/game/manifests/office-workstation-step5-single-seat-v1.json",
   import.meta.url,
 );
+const scaleUrl = new URL("../../../assets/game/manifests/office-character-scale-standard-v1.json", import.meta.url);
 const activeOfficeUrl = new URL("../../../assets/game/maps/office-c-v2.json", import.meta.url);
 const manifest = JSON.parse(readFileSync(manifestUrl, "utf8"));
+const rejected = JSON.parse(readFileSync(rejectedUrl, "utf8"));
+const scale = JSON.parse(readFileSync(scaleUrl, "utf8"));
 
-test("Step 5 authorizes only an isolated one-seat review lab", () => {
+test("Step 5 r02 locks the current Office person as a 1 x 1 x 3 standard", () => {
+  assert.deepEqual(validateOfficeCharacterScaleManifest(scale), []);
+  assert.deepEqual(officeCharacterFrameForTile(32, 1), { width: 96, height: 104 });
+  assert.deepEqual(scale.standard.floorFootprint, { width: 1, depth: 1 });
+  assert.deepEqual(scale.standard.logicalVolume, { width: 1, depth: 1, height: 3 });
+  assert.equal(scale.renderPolicy.visualOverflowAllowed, true);
+  assert.equal(scale.renderPolicy.clipToFootprint, false);
+});
+
+test("Step 5 r02 authorizes only deterministic one-seat review work", () => {
   assert.deepEqual(validateOfficeWorkstationStep5Manifest(manifest), []);
   assert.equal(manifest.permissions.singleSeatAssembly, true);
+  assert.equal(manifest.permissions.deterministicDerivedAssets, true);
   assert.equal(manifest.permissions.newArtworkGeneration, false);
-  assert.equal(manifest.permissions.rosterWideCalibration, false);
   assert.equal(manifest.permissions.tenSeatSceneAssembly, false);
   assert.equal(manifest.permissions.activeOfficePromotion, false);
-  assert.equal(manifest.lab.stationCount, 1);
-  assert.equal(manifest.lab.reviewViewCount, 2);
+  assert.equal(rejected.status, "rejected-visual");
+  assert.equal(rejected.reviewDecision.supersededBy, manifest.id);
 });
 
-test("Step 5 preserves the Active Office baseline", () => {
-  const hash = createHash("sha256").update(readFileSync(activeOfficeUrl)).digest("hex");
-  assert.equal(hash, manifest.activeOfficeBaseline.sha256);
+test("Step 5 r02 corrects public and seat desk sides", () => {
+  assert.equal(manifest.orientations.far.deskSide, "public-side");
+  assert.equal(manifest.deskSides["public-side"].assetView, "back");
+  assert.equal(manifest.orientations.near.deskSide, "seat-side");
+  assert.equal(manifest.deskSides["seat-side"].assetView, "front");
 });
 
-test("Step 5 rejects a chair inside the desk or a swapped equipment row", () => {
+test("Step 5 r02 preserves Active Office and character-scale authority hashes", () => {
+  const activeHash = createHash("sha256").update(readFileSync(activeOfficeUrl)).digest("hex");
+  const scaleHash = createHash("sha256").update(readFileSync(scaleUrl)).digest("hex");
+  assert.equal(activeHash, manifest.activeOfficeBaseline.sha256);
+  assert.equal(scaleHash, manifest.characterScaleAuthority.sha256);
+});
+
+test("Step 5 r02 rejects footprint, volume, and desk-side regressions", () => {
   const invalid = structuredClone(manifest);
-  invalid.orientations.far.chairFootprintRelative.y = 0;
-  invalid.orientations.near.monitorReservationRelative.y = 1;
+  invalid.station.character.floorFootprint.width = 3;
+  invalid.station.equipment.chair.logicalVolume.height = 1;
+  invalid.orientations.far.deskSide = "seat-side";
   const issues = validateOfficeWorkstationStep5Manifest(invalid).join("\n");
-  assert.match(issues, /chairFootprintRelative/);
-  assert.match(issues, /monitorReservationRelative/);
-});
-
-test("Step 5 rejects ten-seat and Active Office permissions", () => {
-  const invalid = structuredClone(manifest);
-  invalid.permissions.tenSeatSceneAssembly = true;
-  invalid.permissions.activeOfficePromotion = true;
-  const issues = validateOfficeWorkstationStep5Manifest(invalid).join("\n");
-  assert.match(issues, /tenSeatSceneAssembly/);
-  assert.match(issues, /activeOfficePromotion/);
+  assert.match(issues, /station.character/);
+  assert.match(issues, /station.equipment.chair/);
+  assert.match(issues, /wrong physical desk/);
 });

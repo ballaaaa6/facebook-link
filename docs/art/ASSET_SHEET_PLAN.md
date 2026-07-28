@@ -9,10 +9,11 @@ its `5 x 3` support plane, and Candidate r01 are rejected regression evidence.
 They cannot seed a new sheet. The owner approved the current `3 x 2` Assembly
 Bible and accepted the bare desk v2 Step 4 workflow recorded by
 `assets/game/manifests/office-workstation-bundle-v2.json`. The owner authorized
-the isolated Step 5 single-seat lab, which reuses the existing chair, monitor,
-keyboard, and Einstein poses without generating art. Its five review images are
+the isolated Step 5 single-seat lab. Its first result is rejected evidence.
+Corrected R02 reuses the existing chair, monitor, full keyboard, and Einstein
+poses without generating new art. Its five `step5-r02` review images are
 awaiting owner approval. Roster-wide calibration, ten-seat outputs, and Active
-Office promotion remain blocked behind later owner gates.
+Office promotion remain blocked behind that gate.
 
 Derived-asset staging gate (2026-07-27): Steps 13-16 resolve all 77 reviewed
 `derive-composite` records under `office-derived-v1`. The versioned outputs
@@ -49,6 +50,9 @@ reviewed mask or disposition.
   `npm run art:prompt -- <asset-id>` instead of transcribing scale values.
 - All prompts compare the object against the canonical `1 x 1 x 3` standing
   adult without drawing the adult inside the exported asset cell.
+- That adult reserves `1 x 1` collision space but retains the current Active
+  Office `96 x 104` visible frame at a 32-pixel tile. Visible overflow never
+  enlarges the footprint or authorizes clipping.
 - Cell order is defined outside the image in a JSON manifest.
 - Failed cells are regenerated as a targeted row or smaller sheet; accepted cells are not regenerated.
 

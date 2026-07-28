@@ -1,15 +1,16 @@
 # Office Workstation Assembly Bible v2
 
-Status: Blueprint and Step 4 desk accepted; isolated Step 5 lab awaiting owner review
+Status: Blueprint and Step 4 desk accepted; corrected Step 5 R02 awaiting owner review
 Updated: 2026-07-28
 Machine-readable source:
 `assets/game/manifests/office-workstation-assembly-bible-v2.json`
 
 This is the approved geometry handoff for the ten-seat workstation block. On
 2026-07-28 the owner approved the blueprint, accepted the elevated-camera Step 4
-desk, and authorized the isolated Step 5 plan. The one-station renderer and five
-review images now exist. Ten-seat assembly, roster-wide calibration, and Active
-Office promotion remain blocked until later approvals.
+desk, rejected the first Step 5 visual result, and authorized a corrected R02.
+The R02 one-station renderer and five review images now exist. Ten-seat
+assembly, roster-wide calibration, and Active Office promotion remain blocked
+until later approvals.
 
 ## What has been produced
 
@@ -75,10 +76,26 @@ seated poses. The implementation is available only through the development lab
 route `/?lab=office-workstation-v2-step5`. The full ten-seat scene remains a
 later gate; no characters or poses were replaced.
 
+The current Office character is the world ruler: it reserves `1 x 1` on the
+floor, has logical height `3`, and retains its current `96 x 104` render at the
+standard 32-pixel tile. Visible hair, head, clothing, and limbs may exceed that
+floor cell without increasing collision or being clipped. The chair reserves
+`1 x 1`, has logical height `2`, and is split into backrest and seat/base
+occlusion parts. The desk remains `3 x 2`.
+
+R01 reversed the semantic desk sides, reduced the actor below current Office
+scale, treated the chair render as one compressed box, and did not show the
+complete keyboard clearly. It is rejected regression evidence only. R02 maps
+the public/modesty-panel side to the far/front view and the seat/drawer side to
+the near/back view, retains the full keyboard, and shares one centered floor
+cell and one hip/seat anchor between actor and chair.
+
 The reviewable plan, including locked asset hashes, exact anchor equations,
 layer order, evidence images, rejection conditions, and the permitted file
 boundary, is in `docs/art/OFFICE_WORKSTATION_STEP5_SINGLE_SEAT_PLAN.md`.
 
-Machine-readable Step 5 authority and locked inputs are in
-`assets/game/manifests/office-workstation-step5-single-seat-v1.json`. Review
-images are in `assets/art/layout-references/office-workstation-v2/step5/`.
+Machine-readable R02 authority and locked inputs are in
+`assets/game/manifests/office-workstation-step5-single-seat-v2.json`. Character
+scale authority is in
+`assets/game/manifests/office-character-scale-standard-v1.json`. Review images
+are in `assets/art/layout-references/office-workstation-v2/step5-r02/`.

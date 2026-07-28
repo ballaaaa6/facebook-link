@@ -34,10 +34,13 @@ the Step 4 source hashes, PNG headers and dimensions, exact processed/review
 output set, permissions, and generated-art lock entries. Use
 `npm run art:workstation:v2` only on an art workstation with Pillow installed.
 
-`npm run art:workstation:step5:check` verifies the isolated Step 5 manifest,
-all 18 locked input hashes, one-station/two-view permissions, five review
-images, denied legacy imports, and the byte-identical Active Office baseline.
-The lab is development-only at `/?lab=office-workstation-v2-step5`.
+`npm run art:workstation:step5:check` rejects the superseded Step 5 R01
+manifest and verifies corrected R02: the current Office character `1 x 1 x 3`
+scale, `1 x 1 x 2` chair, semantic public/seat desk sides, all 24 locked input
+hashes, complete keyboard, one-station/two-view permissions, five `step5-r02`
+review images, denied legacy imports, and the byte-identical Active Office
+baseline. The lab is development-only at
+`/?lab=office-workstation-v2-step5`.
 
 Run a single guard while iterating:
 
