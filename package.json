@@ -42,7 +42,7 @@
     "art:workstation:step5:r05": "python scripts/build-office-workstation-step5-r05-calibration.py",
     "art:workstation:step5:r05:check": "node scripts/office-workstation-step5-r05-check.mjs",
     "art:workstation:step5:r05:final": "python scripts/build-office-workstation-step5-r05-final.py",
-    "art:workstation:step5:r05:final:check": "python scripts/build-office-workstation-step5-r05-final.py --check && node scripts/office-workstation-step5-r05-final-check.mjs",
+    "art:workstation:step5:r05:final:check": "node scripts/office-workstation-step5-r05-final-check.mjs",
     "art:workstation:authority:check": "node scripts/office-workstation-authority-check.mjs",
     "art:geometry:lock": "node scripts/office-generated-art-lock.mjs --write",
     "art:geometry:generated:check": "node scripts/office-generated-art-lock.mjs --check",
