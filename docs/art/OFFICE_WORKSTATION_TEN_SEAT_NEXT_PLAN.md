@@ -1,6 +1,6 @@
 # Office Workstation Ten-Seat Isolated Validation Plan
 
-Status: Planned; execution requires a separate owner start
+Status: P4-P6 implemented in an isolated lab; awaiting P7 owner review
 Baseline: Owner-approved R05-r02 P0-P3
 Updated: 2026-07-28
 
@@ -45,12 +45,12 @@ Create a new versioned map and contract before implementing the renderer.
 
 ### P4.1 World layout
 
-Use five desk columns:
+Use five desk columns in the upper-left work zone:
 
 ```text
-desk origins X = [4, 7, 10, 13, 16]
-far desk Y     = 7
-near desk Y    = 9
+desk origins X = [2, 5, 8, 11, 14]
+far desk Y     = 11
+near desk Y    = 13
 ```
 
 This produces:
@@ -60,22 +60,35 @@ This produces:
 - eight horizontal tabletop joins;
 - five depthwise tabletop joins;
 - no gap and no footprint overlap at every join;
-- a complete block from world X `4..19`, inside the left 24-tile work zone.
+- a complete block from world X `2..17`, inside the upper-left work zone.
 
 Actor/chair cells are derived from desk orientation:
 
 ```text
-far actor/chair Y  = 6
-near actor/chair Y = 11
+far actor/chair Y  = 10
+near actor/chair Y = 15
 actor/chair X      = desk X + 1
 ```
 
 Equipment cells are actor-relative:
 
 ```text
-far row:  keyboard Y=7, monitor band Y=8
-near row: monitor band Y=9, keyboard Y=10
+far row:  keyboard is actor-near; monitor is actor-far
+near row: monitor is actor-far; keyboard is actor-near
 ```
+
+The lower work zone is reserved, but not rendered, for a second ten-person
+block:
+
+```text
+future far desk Y     = 18
+future near desk Y    = 20
+future far chair Y    = 17
+future near chair Y   = 22
+```
+
+This is capacity metadata only. It does not create desks, chairs, equipment,
+characters, or poses for the future employees.
 
 ### P4.2 Contract fields
 
@@ -186,15 +199,16 @@ Run the development lab for at least 60 seconds and verify:
 Return this exact evidence set:
 
 1. `01-four-station-intersection-clean-debug.png`;
-2. `02-ten-seat-clean.png`;
-3. `03-ten-seat-grid-and-sockets.png`;
-4. `04-ten-seat-layer-order.png`;
-5. `05-rejected-r05-final-vs-approved-rebuild.png`;
-6. desktop clean browser capture;
-7. desktop debug browser capture;
-8. mobile clean browser capture;
-9. mobile debug browser capture;
-10. a short machine-readable acceptance summary.
+2. `02-ten-seat-upper-left-clean.png`;
+3. `03-ten-seat-upper-left-debug.png`;
+4. `04-ten-seat-seat-contact-matrix.png`;
+5. `05-rejected-r05-final-vs-upper-left-rebuild.png`;
+6. `06-capacity-20-reservation-plan.png`;
+7. desktop clean browser capture;
+8. desktop debug browser capture;
+9. mobile clean browser capture;
+10. mobile debug browser capture;
+11. a short machine-readable acceptance summary.
 
 The before/after board must compare the rejected 128-pixel desk-row step and
 shared actor/chair origin against the rebuilt 64-pixel step and socket-based
@@ -217,6 +231,20 @@ It does not authorize:
 If P7 is rejected, correct only the failed coordinate, socket, layer, or
 occlusion contract and regenerate the affected proof. Do not compensate with
 unrecorded visual offsets.
+
+## Implemented P4-P6 result
+
+- The current ten people are placed in the upper-left as five columns by two
+  opposing seats.
+- The lower block reserves ten additional employee positions, for a total
+  planned capacity of twenty; those positions remain empty and unrendered.
+- All eight horizontal desk joins and all five depth joins have zero tabletop
+  gap; every depth join uses the approved 64-pixel origin delta.
+- All sixty current actor-frame seat contacts resolve with `[0,0]` error.
+- The renderer imports the R05-r02 pair authority and does not import
+  `office-ten-r05.json`.
+- The current background and Active Office map remain byte-identical.
+- No new character, pose, furniture, equipment, or background art was made.
 
 ## Work after P7 approval
 

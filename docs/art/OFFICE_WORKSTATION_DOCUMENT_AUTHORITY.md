@@ -14,7 +14,7 @@ asset-generation instruction, layer order, map position, or permission.
 | `docs/art/OFFICE_COORDINATE_SYSTEM.md` | Owner-approved workstation placement, sockets, scale, equipment depth, and desk joins |
 | `docs/art/OFFICE_2D_GEOMETRY_PRINCIPLES.md` | Shared geometry concepts for all Office asset families |
 | `docs/art/OFFICE_ASSET_CREATION_GUIDE.md` | General asset workflow; workstation sections defer to the coordinate system |
-| `docs/art/OFFICE_WORKSTATION_TEN_SEAT_NEXT_PLAN.md` | Planned next phase; not authorized for execution until separately started |
+| `docs/art/OFFICE_WORKSTATION_TEN_SEAT_NEXT_PLAN.md` | Implemented P4-P6 ten-seat upper-left candidate; awaiting P7 owner review |
 | `docs/ROADMAP.md` | Product-level delivery sequence and promotion gates |
 
 ## Current machine-readable authority
@@ -24,6 +24,8 @@ asset-generation instruction, layer order, map position, or permission.
 | `assets/game/manifests/office-workstation-step5-r05-r02.json` | `owner-approved-p0-p3` |
 | `assets/game/manifests/office-character-seat-sockets-v1.json` | `owner-approved` |
 | `assets/game/maps/office-workstation-pair-r05-r02.json` | `owner-approved-p0-p3`, development-only |
+| `assets/game/manifests/office-workstation-ten-seat-r05-r02.json` | `owner-review-p4-p6`, development-only |
+| `assets/game/maps/office-workstation-ten-seat-r05-r02.json` | Current ten upper-left plus ten empty lower reservations; no Active Office promotion |
 
 ## Historical or rejected documents
 

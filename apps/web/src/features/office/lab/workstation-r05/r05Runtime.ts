@@ -6,7 +6,12 @@ import type {
 import manifestJson from "../../../../../../../assets/game/manifests/office-workstation-step5-r05-r02.json";
 import socketsJson from "../../../../../../../assets/game/manifests/office-character-seat-sockets-v1.json";
 import pairMapJson from "../../../../../../../assets/game/maps/office-workstation-pair-r05-r02.json";
-import rejectedTenMapJson from "../../../../../../../assets/game/maps/office-ten-r05.json";
+import tenSeatManifestJson from "../../../../../../../assets/game/manifests/office-workstation-ten-seat-r05-r02.json";
+import tenSeatMapJson from "../../../../../../../assets/game/maps/office-workstation-ten-seat-r05-r02.json";
+import type {
+  OfficeWorkstationTenSeatR05R02Manifest,
+  OfficeWorkstationTenSeatR05R02Map,
+} from "@affiliate-ops/contracts";
 
 export type R05Orientation = "far" | "near";
 
@@ -51,28 +56,11 @@ export interface R05PairMap {
   occupants: Record<R05Orientation, { agentId: string; slug: string }>;
 }
 
-export interface R05MapStation {
-  id: string;
-  agentId: string;
-  characterSlug: string;
-  orientation: R05Orientation;
-  desk: { x: number; y: number; width: 3; depth: 2 };
-}
-
-export interface R05RejectedTenSeatMap {
-  status: "rejected-composition";
-  workstations: R05MapStation[];
-  renderProjection: {
-    stagePixels: [number, number];
-    worldOffsetX: number;
-    deskTopPixels: Record<R05Orientation, number>;
-  };
-}
-
 export const r05Manifest = manifestJson as unknown as OfficeWorkstationStep5R05R02Manifest;
 export const r05SeatSockets = socketsJson as unknown as OfficeCharacterSeatSocketsManifest;
 export const r05PairMap = pairMapJson as unknown as R05PairMap;
-export const r05TenSeatMap = rejectedTenMapJson as unknown as R05RejectedTenSeatMap;
+export const r05TenSeatManifest = tenSeatManifestJson as unknown as OfficeWorkstationTenSeatR05R02Manifest;
+export const r05TenSeatMap = tenSeatMapJson as unknown as OfficeWorkstationTenSeatR05R02Map;
 
 const seatedSocketEntries = Object.fromEntries(
   r05SeatSockets.entries
@@ -133,10 +121,9 @@ export function r05LayerOrder(orientation: R05Orientation) {
   return r05Manifest.station.layerOrder[orientation];
 }
 
-export function r05DeskRenderPoint(station: R05MapStation) {
-  const projection = r05TenSeatMap.renderProjection;
+export function r05DeskRenderPoint(station: OfficeWorkstationTenSeatR05R02Map["currentWorkstations"][number]) {
   return {
-    left: projection.worldOffsetX + station.desk.x * 32,
-    top: projection.deskTopPixels[station.orientation],
+    left: station.deskDrawOriginPixels[0],
+    top: station.deskDrawOriginPixels[1],
   };
 }

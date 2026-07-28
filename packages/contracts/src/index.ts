@@ -19,6 +19,7 @@ export * from "./officeWorkstationStep5R04.ts";
 export * from "./officeWorkstationStep5R05.ts";
 export * from "./officeWorkstationStep5R05Final.ts";
 export * from "./officeWorkstationStep5R05R02.ts";
+export * from "./officeWorkstationTenSeatR05R02.ts";
 export * from "./officeWorkstationDeployment.ts";
 export * from "./sheets.ts";
 export * from "./storage.ts";

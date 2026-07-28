@@ -36,6 +36,8 @@ const step5R05Final = readJson("assets/game/manifests/office-workstation-step5-r
 const step5R05R02 = readJson("assets/game/manifests/office-workstation-step5-r05-r02.json");
 const seatSockets = readJson("assets/game/manifests/office-character-seat-sockets-v1.json");
 const pairR05R02 = readJson("assets/game/maps/office-workstation-pair-r05-r02.json");
+const tenSeatR05R02 = readJson("assets/game/manifests/office-workstation-ten-seat-r05-r02.json");
+const tenSeatMapR05R02 = readJson("assets/game/maps/office-workstation-ten-seat-r05-r02.json");
 const characterScale = readJson("assets/game/manifests/office-character-scale-standard-v1.json");
 const candidate = readJson("assets/game/manifests/office-candidate-v1.json");
 const review = readJson("assets/game/manifests/office-candidate-review-r01.json");
@@ -309,6 +311,36 @@ add(failures, seatSockets.status === "owner-approved",
 add(failures, seatSockets.rules?.newCharacterOrPose === false
   && seatSockets.rules?.handSocketsInScope === false,
 "Seat socket authority cannot create poses or enter hand-socket scope");
+add(failures, tenSeatR05R02.status === "owner-review-p4-p6"
+  && tenSeatMapR05R02.status === "owner-review-p4-p6"
+  && tenSeatMapR05R02.developmentOnly === true,
+"Ten-seat R05-r02 P4-P6 must remain an isolated owner-review candidate");
+add(failures, JSON.stringify(tenSeatMapR05R02.capacity) === JSON.stringify({
+  currentEmployees: 10, reservedEmployees: 10, totalPlannedEmployees: 20,
+}), "Ten-seat capacity must remain current ten plus reserved ten");
+add(failures, tenSeatMapR05R02.placement?.zone === "upper-left"
+  && JSON.stringify(tenSeatMapR05R02.placement?.deskOriginsX) === JSON.stringify([2, 5, 8, 11, 14])
+  && JSON.stringify(tenSeatMapR05R02.placement?.currentDeskOriginsY) === JSON.stringify({ far: 11, near: 13 })
+  && JSON.stringify(tenSeatMapR05R02.placement?.reservedDeskOriginsY) === JSON.stringify({ far: 18, near: 20 }),
+"Ten-seat current and future blocks must remain at the reviewed upper-left coordinates");
+add(failures, tenSeatMapR05R02.currentWorkstations?.length === 10
+  && tenSeatMapR05R02.futureReservations?.length === 10
+  && tenSeatMapR05R02.futureReservations.every((slot) => slot.employeeAssigned === false && slot.artRendered === false),
+"Ten-seat map must render ten current staff while keeping ten future reservations empty");
+add(failures, tenSeatMapR05R02.joins?.horizontal?.length === 8
+  && tenSeatMapR05R02.joins?.depth?.length === 5
+  && tenSeatMapR05R02.currentWorkstations.flatMap((station) => station.seatContacts).every(
+    (contact) => JSON.stringify(contact.resolvedDeltaPixels) === JSON.stringify([0, 0]),
+  ), "Ten-seat candidate must preserve thirteen joins and zero-error seat contacts");
+add(failures, tenSeatMapR05R02.rules?.importRejectedTenSeatCoordinates === false
+  && tenSeatMapR05R02.rules?.newCharacterOrPose === false
+  && tenSeatMapR05R02.rules?.otherFurniture === false
+  && tenSeatMapR05R02.activeOfficePromotion === false
+  && tenSeatR05R02.permissions?.activeOfficePromotion === false,
+"Ten-seat candidate cannot import rejected coordinates, create art, add furniture, or promote Active Office");
+add(failures, tenSeatMapR05R02.activeOfficeBaseline?.sha256 === assembly.activeOfficeBaseline?.sha256
+  && tenSeatR05R02.activeOfficeBaseline?.sha256 === assembly.activeOfficeBaseline?.sha256,
+"Ten-seat candidate must inherit the exact Active Office baseline hash");
 
 add(failures, candidate.status === "rejected-visual", "Candidate v1 must remain rejected-visual evidence");
 add(failures, candidate.review?.status === "changes-requested", "Candidate v1 must retain owner-requested changes");
@@ -330,7 +362,6 @@ const step5History = readText("docs/art/OFFICE_WORKSTATION_STEP5_SINGLE_SEAT_PLA
 const rejectedR05Review = readText("docs/OFFICE_WORKSTATION_R05_REVIEW.md");
 const generatedAudit = readText("docs/art/OFFICE_ASSET_GEOMETRY_AUDIT.md");
 const roadmap = readText("docs/ROADMAP.md");
-
 add(failures, coordinateGuide.includes("Status: Owner-approved placement authority")
   && coordinateGuide.includes("actorDrawOrigin = project(chairSeatSocketWorld)")
   && coordinateGuide.includes("nearDeskOrigin = farDeskOrigin + [0, 2, 0] tiles"),
@@ -341,9 +372,10 @@ add(failures, geometryGuide.includes("R05-r02 P0-P3 owner-approved")
 add(failures, authorityIndex.includes("Status: Current")
   && authorityIndex.includes("Historical or rejected documents"),
 "Workstation document authority index is missing or stale");
-add(failures, nextPlan.includes("Status: Planned; execution requires a separate owner start")
-  && nextPlan.includes("must not patch, offset, or import the rejected"),
-"Ten-seat next plan must remain planned and deny reuse of the rejected composition");
+add(failures, nextPlan.includes("Status: P4-P6 implemented in an isolated lab; awaiting P7 owner review")
+  && nextPlan.includes("must not patch, offset, or import the rejected")
+  && nextPlan.includes("planned capacity of twenty"),
+"Ten-seat plan must record P4-P6 owner review, capacity twenty, and deny reuse of the rejected composition");
 add(failures, cameraHistory.includes("Status: Superseded; do not use for workstation placement")
   && assemblyHistory.includes("Status: Superseded; do not use as assembly authority")
   && step5History.includes("Status: Superseded execution history; do not implement from this file")
@@ -382,6 +414,6 @@ if (failures.length > 0) {
   process.exitCode = 1;
 } else {
   process.stdout.write(
-    "Workstation authority OK: R05 final is rejected composition evidence; R05-r02 P0-P3 coordinate/socket pair proof is owner-approved; ten-seat execution, hand sockets, and Active Office remain blocked.\n",
+    "Workstation authority OK: R05-r02 P0-P3 pair proof is owner-approved; P4-P6 places ten current staff upper-left and reserves ten below for owner review; hand sockets, other furniture, and Active Office remain blocked.\n",
   );
 }

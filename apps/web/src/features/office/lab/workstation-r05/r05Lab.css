@@ -55,8 +55,13 @@
 .r05-ten-background { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: fill; }
 .r05-ten-station { position: absolute; width: 512px; height: 420px; }
 .r05-station-stage.is-context { margin: 0; overflow: visible; }
-.r05-work-zone-debug { position: absolute; z-index: 100; top: 0; bottom: 0; left: 107px; width: 768px; box-sizing: border-box; border: 3px solid #22d3ee; color: #083344; background-image: linear-gradient(#22d3ee44 1px, transparent 1px), linear-gradient(90deg, #22d3ee44 1px, transparent 1px); background-size: 32px 32px; font: 900 13px/1.4 ui-monospace, monospace; pointer-events: none; }
-.r05-candidate-stamp { position: absolute; z-index: 200; right: 12px; bottom: 12px; display: grid; gap: 2px; padding: 8px 10px; border: 1px solid #22d3ee99; border-radius: 7px; color: #cffafe; background: #083344dd; font-size: 10px; }
+.r05-capacity-debug { position: absolute; z-index: 90; inset: 0; pointer-events: none; }
+.r05-future-desk,
+.r05-future-chair { position: absolute; box-sizing: border-box; border: 2px dashed #a78bfa; background: #a78bfa16; }
+.r05-future-desk { width: 96px; height: 64px; }
+.r05-future-chair { width: 32px; height: 32px; }
+.r05-capacity-debug > strong { position: absolute; top: 495px; left: 70px; color: #7c3aed; font: 900 13px/1.4 ui-monospace, monospace; }
+.r05-candidate-stamp { position: absolute; z-index: 200; top: 268px; left: 590px; display: grid; gap: 2px; padding: 8px 10px; border: 1px solid #22d3ee99; border-radius: 7px; color: #cffafe; background: #083344dd; font-size: 10px; }
 .r05-candidate-stamp span { color: #67e8f9; }
 
 .r05-pair-viewport { width: min(640px, 100%); height: 520px; margin-inline: auto; overflow: hidden; border: 2px solid #22d3ee; border-radius: 10px; background: #dce8ee; }

@@ -8,12 +8,13 @@ monitor `3 x 1` reservation centered by its base, keyboard `1 x 1`
 reservation, per-character/per-frame seat sockets, and a 64-pixel depthwise
 desk join with physical occlusion order.
 
-The next proposed work rebuilds a five-column by two-row ten-person block from
-that approved pair inside a development-only simulated Office. It starts with
-a four-station join preflight, then adds the ten-person scene, deterministic
-geometry checks, 60-second browser QA, and an owner gate. The plan is
-`docs/art/OFFICE_WORKSTATION_TEN_SEAT_NEXT_PLAN.md`. It has not started. Other
-furniture and Active Office promotion remain blocked.
+P4-P6 now rebuild the five-column by two-row ten-person block from that
+approved pair inside a development-only simulated Office. The current ten are
+in the upper-left, and a lower empty block reserves ten future employee
+positions for total planned capacity twenty. The four-station preflight,
+deterministic geometry evidence, runtime lab, and browser evidence are the P7
+owner-review package in `docs/art/OFFICE_WORKSTATION_TEN_SEAT_NEXT_PLAN.md`.
+Other furniture and Active Office promotion remain blocked.
 
 ## M0 — Repository foundation (complete)
 

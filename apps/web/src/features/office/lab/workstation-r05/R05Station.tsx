@@ -72,7 +72,7 @@ export function R05StationStage({
   };
   return (
     <div
-      aria-label={`${orientation} R05 final workstation`}
+      aria-label={`${orientation} R05-r02 approved workstation geometry`}
       className={`r05-station-stage${context ? " is-context" : ""}`}
       data-anchor-drift="0"
       data-agent-id={agentId}
