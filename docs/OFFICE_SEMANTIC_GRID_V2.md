@@ -1,6 +1,6 @@
 # Office Semantic Grid v2
 
-Status: Isolated owner-review candidate
+Status: Superseded by Office Semantic Grid v3 pillar-alignment review
 Updated: 2026-07-29
 
 Office Semantic Grid v2 turns the owner's full-image highlights into one

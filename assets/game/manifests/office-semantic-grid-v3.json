@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "id": "office.semantic-grid.v3",
+  "status": "owner-review",
+  "updatedOn": "2026-07-29",
+  "supersedes": "office.semantic-grid.v2",
+  "map": {
+    "file": "assets/game/maps/office-semantic-grid-v3.json",
+    "sha256": "f92d3214345dbc7831fcce13d076d921f31785dfe779aaff55d8d3c86e05fedc"
+  },
+  "candidateBackground": {
+    "file": "assets/art/backgrounds/office-c-background-modern-v5-pillar-aligned-candidate.png",
+    "sha256": "f69ec2c23ae2673f9452ee0a5f9dbe90def7738b51960092e57016dc1e2d13ee"
+  },
+  "reviewOutputs": [
+    {
+      "file": "assets/art/layout-references/office-semantic-grid-v3/01-pillar-aligned-grid.png",
+      "sha256": "965b5574522cb352c5d2682f9e50c839223d0e667327caf2e3e268ba133d1364"
+    },
+    {
+      "file": "assets/art/layout-references/office-semantic-grid-v3/02-before-after.png",
+      "sha256": "51d7b538cad185297b35c0c9978ebe035a1cc1a4662cbb6615f710f8d2ba9c21"
+    }
+  ],
+  "permissions": {
+    "isolatedBackgroundCandidate": true,
+    "pillarAlignmentReview": true,
+    "activeOfficePromotion": false,
+    "newCharacterOrFurniture": false
+  },
+  "activeOfficeBaseline": {
+    "file": "assets/game/maps/office-c-v2.json",
+    "sha256": "c40db448eb8e6d0f3fea67a41f716c0108aca63a4136cfad15293534273c618d",
+    "mustRemainByteIdentical": true
+  }
+}
