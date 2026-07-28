@@ -29,7 +29,7 @@ export function OfficeWorkstationR05LabPage() {
     <main className="r05-lab" data-review-status={r05Manifest.status}>
       <header className="r05-header">
         <div>
-          <span>STEP 5 · R05-r02 · P0–P3 · ISOLATED OWNER REVIEW</span>
+          <span>STEP 5 · R05-r02 · P0–P3 · OWNER-APPROVED BASELINE</span>
           <h1>World-coordinate and seat-socket proof</h1>
           <p>Per-character seat contact · 64 px desk depth · corrected far equipment order</p>
         </div>

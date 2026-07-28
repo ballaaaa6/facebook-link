@@ -46,7 +46,7 @@ export interface WorkstationSeatIncapableCompanion {
 export interface OfficeCharacterSeatSocketsManifest {
   version: 1;
   schema: "office-character-seat-sockets";
-  status: "owner-review";
+  status: "owner-approved";
   tilePixels: 32;
   placementFormula: string;
   rules: {
@@ -70,9 +70,15 @@ export interface OfficeWorkstationStep5R05R02Manifest {
   version: 7;
   geometrySchemaVersion: 8;
   id: "office.workstation.step5.r05.r02";
-  status: "owner-review-p0-p3";
+  status: "owner-approved-p0-p3";
+  supersedesForPlacementAuthority: "office.workstation.step5.r05.final";
+  ownerDecision: {
+    decision: "approved";
+    approvedOn: "2026-07-28";
+    approvedScope: readonly ["coordinate-system", "seat-sockets", "equipment-depth", "paired-workstation"];
+  };
   completedScope: readonly ["P0", "P1", "P2", "P3"];
-  stopGate: "paired-workstation-owner-review";
+  stopGate: "approved-awaiting-ten-seat-plan-execution";
   rosterSockets: {
     file: string;
     sha256: string;
@@ -128,7 +134,7 @@ export function validateOfficeCharacterSeatSockets(value: unknown): string[] {
   if (!record(value)) return ["seatSockets: must be an object"];
   const issues: string[] = [];
   if (value.version !== 1 || value.schema !== "office-character-seat-sockets"
-    || value.status !== "owner-review" || value.tilePixels !== 32) {
+    || value.status !== "owner-approved" || value.tilePixels !== 32) {
     issues.push("seatSockets.identity: invalid coordinate manifest identity");
   }
   if (!record(value.rules) || value.rules.canvasBoundsAreFootprint !== false
@@ -180,12 +186,19 @@ export function validateOfficeWorkstationStep5R05R02(value: unknown): string[] {
   const issues: string[] = [];
   if (value.version !== 7 || value.geometrySchemaVersion !== 8
     || value.id !== "office.workstation.step5.r05.r02"
-    || value.status !== "owner-review-p0-p3") {
-    issues.push("step5R05R02.identity: invalid isolated coordinate review");
+    || value.status !== "owner-approved-p0-p3") {
+    issues.push("step5R05R02.identity: invalid approved coordinate baseline");
+  }
+  if (value.supersedesForPlacementAuthority !== "office.workstation.step5.r05.final"
+    || !record(value.ownerDecision) || value.ownerDecision.decision !== "approved"
+    || value.ownerDecision.approvedOn !== "2026-07-28"
+    || !exact(value.ownerDecision.approvedScope,
+      ["coordinate-system", "seat-sockets", "equipment-depth", "paired-workstation"])) {
+    issues.push("step5R05R02.ownerDecision: owner approval record is missing or stale");
   }
   if (!exact(value.completedScope, ["P0", "P1", "P2", "P3"])
-    || value.stopGate !== "paired-workstation-owner-review") {
-    issues.push("step5R05R02.scope: must stop after the paired P0-P3 proof");
+    || value.stopGate !== "approved-awaiting-ten-seat-plan-execution") {
+    issues.push("step5R05R02.scope: approved P0-P3 must await the named ten-seat execution phase");
   }
   if (!record(value.rosterSockets) || value.rosterSockets.directoriesAudited !== 19
     || value.rosterSockets.seatCapableCharacters !== 18

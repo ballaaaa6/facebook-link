@@ -2,16 +2,26 @@
   "version": 7,
   "geometrySchemaVersion": 8,
   "id": "office.workstation.step5.r05.r02",
-  "status": "owner-review-p0-p3",
+  "status": "owner-approved-p0-p3",
   "updatedOn": "2026-07-28",
-  "supersedesForReview": "office.workstation.step5.r05.final",
+  "supersedesForPlacementAuthority": "office.workstation.step5.r05.final",
+  "ownerDecision": {
+    "decision": "approved",
+    "approvedOn": "2026-07-28",
+    "approvedScope": [
+      "coordinate-system",
+      "seat-sockets",
+      "equipment-depth",
+      "paired-workstation"
+    ]
+  },
   "completedScope": [
     "P0",
     "P1",
     "P2",
     "P3"
   ],
-  "stopGate": "paired-workstation-owner-review",
+  "stopGate": "approved-awaiting-ten-seat-plan-execution",
   "coordinateContract": {
     "tilePixels": 32,
     "worldAxes": {
@@ -31,7 +41,7 @@
   },
   "rosterSockets": {
     "file": "assets/game/manifests/office-character-seat-sockets-v1.json",
-    "sha256": "ad1e44d3729f3c78de669e0779984d0184ecafaaa9008a6aacb78a14aa75f06c",
+    "sha256": "45837daa526e9d0142ae09103677fe50b32ff82f36c7a46dba87c26e46f14d75",
     "directoriesAudited": 19,
     "seatCapableCharacters": 18,
     "frameRecords": 216
@@ -141,7 +151,7 @@
   },
   "pairMap": {
     "file": "assets/game/maps/office-workstation-pair-r05-r02.json",
-    "sha256": "9f5ca00741c7929f060bfcb1825b4afbe9950ff5534cd6830027361afe30dd14"
+    "sha256": "bef8d9991020f3e189f6d5dd713de2ccddd6ce0ad85163a6b01bde78fdf741ef"
   },
   "reviewOutputs": [
     "assets/art/layout-references/office-workstation-v3/step5-r05-r02/01-coordinate-contract.png",

@@ -47,20 +47,27 @@ try {
   const pair = readJson(pairPath);
   add(manifest.version === 7 && manifest.geometrySchemaVersion === 8
     && manifest.id === "office.workstation.step5.r05.r02"
-    && manifest.status === "owner-review-p0-p3",
-  "R05-r02 must be the Geometry v8 P0-P3 owner review");
+    && manifest.status === "owner-approved-p0-p3",
+  "R05-r02 must be the owner-approved Geometry v8 P0-P3 baseline");
   add(JSON.stringify(manifest.completedScope) === JSON.stringify(["P0", "P1", "P2", "P3"])
-    && manifest.stopGate === "paired-workstation-owner-review",
-  "R05-r02 must stop at the paired proof");
+    && manifest.stopGate === "approved-awaiting-ten-seat-plan-execution",
+  "R05-r02 must remain approved while awaiting the named ten-seat execution phase");
+  add(manifest.supersedesForPlacementAuthority === "office.workstation.step5.r05.final"
+    && manifest.ownerDecision?.decision === "approved"
+    && manifest.ownerDecision?.approvedOn === "2026-07-28",
+  "R05-r02 owner approval record is missing or stale");
   add(manifest.activeOfficeBaseline?.sha256 === sha256(manifest.activeOfficeBaseline.file),
     "Active Office changed during R05-r02 work");
   add(manifest.rosterSockets?.file === socketsPath && manifest.rosterSockets?.sha256 === sha256(socketsPath),
     "R05-r02 socket manifest is missing or stale");
   add(manifest.pairMap?.file === pairPath && manifest.pairMap?.sha256 === sha256(pairPath),
     "R05-r02 pair map is missing or stale");
+  add(pair.status === "owner-approved-p0-p3"
+    && pair.developmentOnly === true && pair.activeOfficePromotion === false,
+  "R05-r02 pair map must be owner-approved and development-only");
 
   add(sockets.version === 1 && sockets.schema === "office-character-seat-sockets"
-    && sockets.status === "owner-review" && sockets.tilePixels === 32,
+    && sockets.status === "owner-approved" && sockets.tilePixels === 32,
   "Seat socket manifest identity changed");
   add(sockets.audit?.directoryCount === 19 && sockets.audit?.seatCapableCount === 18
     && sockets.audit?.companionNotApplicableCount === 1 && sockets.audit?.seatFrameRecordCount === 216,
@@ -163,6 +170,6 @@ if (failures.length > 0) {
   process.exitCode = 1;
 } else {
   process.stdout.write(
-    "Step 5 R05-r02 check OK: nineteen directories audited, 216 seat-frame sockets, 64 px desk depth join, corrected far equipment order, paired proof only, and Active Office unchanged.\n",
+    "Step 5 R05-r02 check OK: owner-approved P0-P3 baseline, nineteen directories audited, 216 seat-frame sockets, 64 px desk depth join, corrected far equipment order, and Active Office unchanged.\n",
   );
 }

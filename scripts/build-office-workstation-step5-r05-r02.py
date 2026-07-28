@@ -176,7 +176,7 @@ def socket_manifest_data() -> dict[str, Any]:
             "orientations": {
                 orientation: {
                     "row": 14 if orientation == "front" else 13,
-                    "measurementStatus": "owner-approved-visual-baseline" if orientation == "front" else "measured-r05-r02-review",
+                    "measurementStatus": "owner-approved-visual-baseline" if orientation == "front" else "owner-approved-r05-r02",
                     "frames": [frame_socket_record(slug, orientation, frame) for frame in range(6)],
                 }
                 for orientation in ("front", "back")
@@ -194,7 +194,7 @@ def socket_manifest_data() -> dict[str, Any]:
     return {
         "version": 1,
         "schema": "office-character-seat-sockets",
-        "status": "owner-review",
+        "status": "owner-approved",
         "updatedOn": "2026-07-28",
         "tilePixels": TILE,
         "coordinateSpaces": {
@@ -492,7 +492,7 @@ def board_pair() -> Image.Image:
     debug = compose_pair(0, True)
     image.paste(clean.convert("RGB"), (90, 195))
     image.paste(debug.convert("RGB"), (870, 195))
-    LEGACY.label(draw, (55, 940), "STOP GATE: review this paired proof before any 5-column / 10-person expansion.", 17, COLORS["amber"], True)
+    LEGACY.label(draw, (55, 940), "OWNER-APPROVED BASELINE: any 5-column / 10-person expansion must derive from this pair.", 17, COLORS["green"], True)
     return image
 
 
@@ -500,7 +500,7 @@ def pair_map_data() -> dict[str, Any]:
     return {
         "schemaVersion": 4,
         "id": "office-workstation-pair-r05-r02",
-        "status": "owner-review-p0-p3",
+        "status": "owner-approved-p0-p3",
         "developmentOnly": True,
         "activeOfficePromotion": False,
         "grid": {"tilePixels": TILE},
@@ -524,11 +524,16 @@ def manifest_data(socket_content: bytes, pair_map_content: bytes, review_paths: 
         "version": 7,
         "geometrySchemaVersion": 8,
         "id": "office.workstation.step5.r05.r02",
-        "status": "owner-review-p0-p3",
+        "status": "owner-approved-p0-p3",
         "updatedOn": "2026-07-28",
-        "supersedesForReview": "office.workstation.step5.r05.final",
+        "supersedesForPlacementAuthority": "office.workstation.step5.r05.final",
+        "ownerDecision": {
+            "decision": "approved",
+            "approvedOn": "2026-07-28",
+            "approvedScope": ["coordinate-system", "seat-sockets", "equipment-depth", "paired-workstation"],
+        },
         "completedScope": ["P0", "P1", "P2", "P3"],
-        "stopGate": "paired-workstation-owner-review",
+        "stopGate": "approved-awaiting-ten-seat-plan-execution",
         "coordinateContract": {
             "tilePixels": TILE,
             "worldAxes": {"x": "right", "y": "toward-viewer", "z": "up"},

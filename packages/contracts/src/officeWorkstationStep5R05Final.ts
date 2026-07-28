@@ -45,7 +45,10 @@ export interface OfficeWorkstationStep5R05FinalManifest {
   version: 6;
   geometrySchemaVersion: 7;
   id: "office.workstation.step5.r05.final";
-  status: "owner-review-ten-seat-candidate";
+  status: "rejected-composition";
+  rejectedOn: "2026-07-28";
+  supersededBy: "office.workstation.step5.r05.r02";
+  rejectionReasons: readonly string[];
   completedScope: readonly ["R05-3B", "R05-4", "R05-5"];
   activeOfficeBaseline: { file: string; sha256: string; mustRemainByteIdentical: true };
   sourceBackground: { file: string; sha256: string; mustRemainByteIdentical: true };
@@ -101,9 +104,10 @@ export interface OfficeWorkstationStep5R05FinalManifest {
   };
   permissions: {
     deterministicChairDerivatives: true;
-    isolatedRenderer: true;
-    singleSeatAssembly: true;
-    tenSeatAssembly: true;
+    historicalRegressionEvidence: true;
+    isolatedRenderer: false;
+    singleSeatAssembly: false;
+    tenSeatAssembly: false;
     newCharacterOrPose: false;
     otherFurniture: false;
     step24: false;
@@ -129,8 +133,13 @@ export function validateOfficeWorkstationStep5R05Final(value: unknown): string[]
   const issues: string[] = [];
   if (value.version !== 6 || value.geometrySchemaVersion !== 7
     || value.id !== "office.workstation.step5.r05.final"
-    || value.status !== "owner-review-ten-seat-candidate") {
-    issues.push("step5R05Final.identity: must be the isolated R05 final review candidate");
+    || value.status !== "rejected-composition") {
+    issues.push("step5R05Final.identity: must remain rejected composition evidence");
+  }
+  if (value.rejectedOn !== "2026-07-28"
+    || value.supersededBy !== "office.workstation.step5.r05.r02"
+    || !Array.isArray(value.rejectionReasons) || value.rejectionReasons.length !== 3) {
+    issues.push("step5R05Final.rejection: rejection record is missing or stale");
   }
   if (!exact(value.completedScope, ["R05-3B", "R05-4", "R05-5"])) {
     issues.push("step5R05Final.scope: must complete R05-3B through R05-5 only");
@@ -189,14 +198,15 @@ export function validateOfficeWorkstationStep5R05Final(value: unknown): string[]
   const permissions = value.permissions;
   if (!record(permissions)
     || permissions.deterministicChairDerivatives !== true
-    || permissions.isolatedRenderer !== true
-    || permissions.singleSeatAssembly !== true
-    || permissions.tenSeatAssembly !== true
+    || permissions.historicalRegressionEvidence !== true
+    || permissions.isolatedRenderer !== false
+    || permissions.singleSeatAssembly !== false
+    || permissions.tenSeatAssembly !== false
     || permissions.newCharacterOrPose !== false
     || permissions.otherFurniture !== false
     || permissions.step24 !== false
     || permissions.activeOfficePromotion !== false) {
-    issues.push("step5R05Final.permissions: isolated review only; Active Office must remain blocked");
+    issues.push("step5R05Final.permissions: rejected composition may remain only as regression evidence");
   }
   const policy = value.runtimePolicy;
   if (!record(policy) || policy.mockupChairAllowed !== false

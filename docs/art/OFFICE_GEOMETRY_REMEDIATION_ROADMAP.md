@@ -8,7 +8,7 @@ surface support, depth sorting, and compositing before any interior replacement
 
 Supersession note: every `5 x 4` / `5 x 3` workstation acceptance statement in
 this historical roadmap is revoked. The current workstation source of truth is
-`docs/art/OFFICE_WORKSTATION_ASSEMBLY_BIBLE.md`. Do not execute the old
+`docs/art/OFFICE_COORDINATE_SYSTEM.md`. Do not execute the old
 workstation steps or promote their artifacts.
 
 ## 1. Decision
@@ -535,33 +535,32 @@ Commercial rights clearance remains a future pre-commercialization gate.
 Nothing in this decision changes the `pending-commercial-review` status of the
 current character art.
 
-## 19. Steps 21-23 — Isolated Office candidate review
+## 19. Steps 21-23 — Historical isolated Office candidate review
 
-Status: Candidate v1 rejected; R05 workstation-only replacement awaiting owner review on 2026-07-28
+Status: Candidate v1 and R05 final rejected; superseded by owner-approved R05-r02 on 2026-07-28
 
 Candidate v1 remains preserved behind the development-only
 `?lab=office-candidate-v1` route as rejected regression evidence. Its furniture
 composition cannot be promoted.
 
-The replacement is intentionally narrower. R05 covers only the accepted desk,
-monitor, keyboard, real existing chair, and ten existing seated characters.
-It places two rows of five edge-touching `3 x 2` desks in the left work zone on
-the byte-identical current background. No other furniture, character, or pose
-is part of this candidate. The development route is
-`?lab=office-workstation-r05`; machine-readable results and four runtime
-captures are recorded by
-`assets/game/manifests/office-workstation-step5-r05-final.json`.
+The former R05 final replacement was intentionally narrow, but its composition
+was still rejected: it used a 128-pixel depthwise desk step, wrong far
+equipment order, and a shared back-facing actor/chair origin. Its manifest,
+map, route, and captures remain negative evidence only.
 
-The R05 browser gate completed 60 seconds at 0 px anchor drift with zero broken
-images, zero warnings, and zero errors. Active Office remains unchanged.
+R05-r02 rebuilt the coordinate and socket foundation, audited 216 seat
+contacts, corrected the desk join to 64 pixels, and corrected physical
+equipment depth. The owner approved that one-pair baseline. Current authority
+is `docs/art/OFFICE_COORDINATE_SYSTEM.md`; future ten-seat work must follow
+`docs/art/OFFICE_WORKSTATION_TEN_SEAT_NEXT_PLAN.md`.
 
 ## 20. Step 24 — Active Office promotion
 
-Status: Blocked pending explicit owner approval
+Status: Blocked pending a new accepted full candidate
 
 Promotion is not part of the candidate review. Both
 `activeOfficePromotion` and `commercialCharacterApproval` remain false. Step
-24 may begin only after the owner approves a named candidate revision. The
+24 may begin only after the owner approves a new named candidate revision. The
 promotion must remain reversible, preserve `office-c-v2` as the rollback
 target, reuse the reviewed scene without regenerating characters or poses, and
 repeat contract, production-build, stability, and responsive browser checks.

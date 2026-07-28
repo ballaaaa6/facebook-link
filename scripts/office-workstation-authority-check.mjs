@@ -9,6 +9,10 @@ function readJson(path) {
   return JSON.parse(readFileSync(join(root, path), "utf8"));
 }
 
+function readText(path) {
+  return readFileSync(join(root, path), "utf8");
+}
+
 function sha256(path) {
   return createHash("sha256").update(readFileSync(join(root, path))).digest("hex");
 }
@@ -31,6 +35,7 @@ const step5R05 = readJson("assets/game/manifests/office-workstation-step5-r05-ca
 const step5R05Final = readJson("assets/game/manifests/office-workstation-step5-r05-final.json");
 const step5R05R02 = readJson("assets/game/manifests/office-workstation-step5-r05-r02.json");
 const seatSockets = readJson("assets/game/manifests/office-character-seat-sockets-v1.json");
+const pairR05R02 = readJson("assets/game/maps/office-workstation-pair-r05-r02.json");
 const characterScale = readJson("assets/game/manifests/office-character-scale-standard-v1.json");
 const candidate = readJson("assets/game/manifests/office-candidate-v1.json");
 const review = readJson("assets/game/manifests/office-candidate-review-r01.json");
@@ -247,28 +252,35 @@ for (const key of [
 }
 add(failures, step5R05.activeOfficeBaseline?.sha256 === assembly.activeOfficeBaseline?.sha256,
   "Step 5 R05 must inherit the exact Active Office baseline hash");
-add(failures, step5R05Final.status === "owner-review-ten-seat-candidate"
+add(failures, step5R05Final.status === "rejected-composition"
   && JSON.stringify(step5R05Final.completedScope) === JSON.stringify(["R05-3B", "R05-4", "R05-5"]),
-"Step 5 R05 final must stop at consolidated owner review");
+"Step 5 R05 final must remain rejected composition evidence");
+add(failures, step5R05Final.supersededBy === "office.workstation.step5.r05.r02"
+  && step5R05Final.rejectionReasons?.length === 3,
+"Step 5 R05 final must retain its rejection reasons and R05-r02 supersession");
 add(failures, step5R05Final.ownerDecision?.r05_3a === "approved",
   "Step 5 R05 final must inherit owner approval of the anchor proof");
-add(failures, step5R05Final.permissions?.isolatedRenderer === true
-  && step5R05Final.permissions?.singleSeatAssembly === true
-  && step5R05Final.permissions?.tenSeatAssembly === true
+add(failures, step5R05Final.permissions?.historicalRegressionEvidence === true
+  && step5R05Final.permissions?.isolatedRenderer === false
+  && step5R05Final.permissions?.singleSeatAssembly === false
+  && step5R05Final.permissions?.tenSeatAssembly === false
   && step5R05Final.permissions?.newCharacterOrPose === false
   && step5R05Final.permissions?.otherFurniture === false
   && step5R05Final.permissions?.step24 === false
   && step5R05Final.permissions?.activeOfficePromotion === false,
-"Step 5 R05 final must allow isolated assembly while blocking Step 24 and Active Office");
+"Step 5 R05 final may remain only as rejected regression evidence");
 add(failures, step5R05Final.activeOfficeBaseline?.sha256 === assembly.activeOfficeBaseline?.sha256,
   "Step 5 R05 final must inherit the exact Active Office baseline hash");
 add(failures, step5R05Final.runtimePolicy?.mockupChairAllowed === false
   && step5R05Final.runtimePolicy?.legacyCandidateAllowed === false,
 "Step 5 R05 final cannot use the calibration mockup or rejected candidate");
-add(failures, step5R05R02.status === "owner-review-p0-p3"
+add(failures, step5R05R02.status === "owner-approved-p0-p3"
   && JSON.stringify(step5R05R02.completedScope) === JSON.stringify(["P0", "P1", "P2", "P3"])
-  && step5R05R02.stopGate === "paired-workstation-owner-review",
-"Step 5 R05-r02 must stop after the isolated paired proof");
+  && step5R05R02.stopGate === "approved-awaiting-ten-seat-plan-execution",
+"Step 5 R05-r02 must record owner approval and await the named ten-seat phase");
+add(failures, step5R05R02.supersedesForPlacementAuthority === "office.workstation.step5.r05.final"
+  && step5R05R02.ownerDecision?.decision === "approved",
+"Step 5 R05-r02 must be the explicit owner-approved placement successor");
 add(failures, step5R05R02.components?.desk?.supportPixels?.[1] === 64
   && step5R05R02.components?.monitor?.farLayerOrder === "keyboard-before-monitor",
 "Step 5 R05-r02 must use footprint depth and physical far equipment order");
@@ -283,11 +295,17 @@ add(failures, step5R05R02.permissions?.isolatedCoordinateRenderer === true
 "Step 5 R05-r02 permissions must remain limited to P0-P3");
 add(failures, step5R05R02.activeOfficeBaseline?.sha256 === assembly.activeOfficeBaseline?.sha256,
   "Step 5 R05-r02 must inherit the exact Active Office baseline hash");
+add(failures, pairR05R02.status === "owner-approved-p0-p3"
+  && pairR05R02.developmentOnly === true
+  && pairR05R02.activeOfficePromotion === false,
+"R05-r02 pair map must record owner approval while remaining development-only");
 add(failures, seatSockets.audit?.directoryCount === 19
   && seatSockets.audit?.seatCapableCount === 18
   && seatSockets.audit?.companionNotApplicableCount === 1
   && seatSockets.audit?.seatFrameRecordCount === 216,
 "Seat socket authority must audit eighteen seated atlases plus the Boba companion");
+add(failures, seatSockets.status === "owner-approved",
+  "Seat socket authority must record owner approval");
 add(failures, seatSockets.rules?.newCharacterOrPose === false
   && seatSockets.rules?.handSocketsInScope === false,
 "Seat socket authority cannot create poses or enter hand-socket scope");
@@ -300,6 +318,49 @@ add(failures, review.ownerApproval === false, "Candidate review r01 cannot claim
 add(failures, historicalBundle.status === "rejected-geometry", "Workstation Bundle v1 must remain rejected-geometry evidence");
 add(failures, historicalDeployment.status === "rejected-geometry", "Workstation Deployment v1 must remain rejected-geometry evidence");
 add(failures, historicalMap.status === "rejected-geometry", "Office Ten v1 map must remain rejected-geometry evidence");
+
+const coordinateGuide = readText("docs/art/OFFICE_COORDINATE_SYSTEM.md");
+const geometryGuide = readText("docs/art/OFFICE_2D_GEOMETRY_PRINCIPLES.md");
+const creationGuide = readText("docs/art/OFFICE_ASSET_CREATION_GUIDE.md");
+const authorityIndex = readText("docs/art/OFFICE_WORKSTATION_DOCUMENT_AUTHORITY.md");
+const nextPlan = readText("docs/art/OFFICE_WORKSTATION_TEN_SEAT_NEXT_PLAN.md");
+const cameraHistory = readText("docs/art/OFFICE_CAMERA_SCALE_BIBLE.md");
+const assemblyHistory = readText("docs/art/OFFICE_WORKSTATION_ASSEMBLY_BIBLE.md");
+const step5History = readText("docs/art/OFFICE_WORKSTATION_STEP5_SINGLE_SEAT_PLAN.md");
+const rejectedR05Review = readText("docs/OFFICE_WORKSTATION_R05_REVIEW.md");
+const generatedAudit = readText("docs/art/OFFICE_ASSET_GEOMETRY_AUDIT.md");
+const roadmap = readText("docs/ROADMAP.md");
+
+add(failures, coordinateGuide.includes("Status: Owner-approved placement authority")
+  && coordinateGuide.includes("actorDrawOrigin = project(chairSeatSocketWorld)")
+  && coordinateGuide.includes("nearDeskOrigin = farDeskOrigin + [0, 2, 0] tiles"),
+"Current coordinate manual must retain the approved socket and 64-pixel desk-join rules");
+add(failures, geometryGuide.includes("R05-r02 P0-P3 owner-approved")
+  && creationGuide.includes("R05-r02 workstation placement owner-approved"),
+"Current geometry and asset guides must record R05-r02 owner approval");
+add(failures, authorityIndex.includes("Status: Current")
+  && authorityIndex.includes("Historical or rejected documents"),
+"Workstation document authority index is missing or stale");
+add(failures, nextPlan.includes("Status: Planned; execution requires a separate owner start")
+  && nextPlan.includes("must not patch, offset, or import the rejected"),
+"Ten-seat next plan must remain planned and deny reuse of the rejected composition");
+add(failures, cameraHistory.includes("Status: Superseded; do not use for workstation placement")
+  && assemblyHistory.includes("Status: Superseded; do not use as assembly authority")
+  && step5History.includes("Status: Superseded execution history; do not implement from this file")
+  && rejectedR05Review.includes("Status: Rejected composition; do not use as current reference"),
+"Obsolete workstation manuals must carry explicit superseded or rejected banners");
+add(failures, generatedAudit.includes("Status: Frozen 2026-07-27 inventory; workstation conclusions superseded"),
+  "Generated Geometry v3 audit must warn that its workstation conclusions are historical");
+for (const staleClaim of [
+  "Step 5 R05 final workstation candidate awaiting owner review",
+  "R05 final ten-seat workstation candidate awaiting owner review",
+  "R04 is awaiting visual owner review",
+]) {
+  add(failures, !creationGuide.includes(staleClaim)
+    && !coordinateGuide.includes(staleClaim)
+    && !roadmap.includes(staleClaim),
+  `Current documentation retains a stale authority claim: ${staleClaim}`);
+}
 
 const activeRegistry = readFileSync(
   join(root, "apps/web/src/features/office/components/officeAssetRegistry.ts"),
@@ -321,6 +382,6 @@ if (failures.length > 0) {
   process.exitCode = 1;
 } else {
   process.stdout.write(
-    "Workstation authority OK: R05 final retained as rejected composition evidence; R05-r02 P0-P3 coordinate/socket pair proof authorized; ten-seat expansion, hand sockets, and Active Office blocked.\n",
+    "Workstation authority OK: R05 final is rejected composition evidence; R05-r02 P0-P3 coordinate/socket pair proof is owner-approved; ten-seat execution, hand sockets, and Active Office remain blocked.\n",
   );
 }

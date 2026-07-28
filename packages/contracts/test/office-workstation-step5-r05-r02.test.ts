@@ -17,6 +17,7 @@ const pair = readJson("assets/game/maps/office-workstation-pair-r05-r02.json");
 
 test("R05-r02 records per-character, per-frame seat sockets without creating poses", () => {
   assert.deepEqual(validateOfficeCharacterSeatSockets(sockets), []);
+  assert.equal(sockets.status, "owner-approved");
   assert.equal(sockets.entries.length, 19);
   assert.equal(sockets.entries.filter((entry: { seatCapability: string }) => entry.seatCapability === "working-seated").length, 18);
   assert.equal(sockets.entries.find((entry: { slug: string }) => entry.slug === "boba").seatCapability, "not-applicable-companion-atlas");
@@ -42,6 +43,10 @@ test("R05-r02 uses footprint depth and correct far equipment order", () => {
 });
 
 test("R05-r02 stops after the isolated paired proof and preserves Active Office", () => {
+  assert.equal(manifest.status, "owner-approved-p0-p3");
+  assert.equal(manifest.stopGate, "approved-awaiting-ten-seat-plan-execution");
+  assert.equal(manifest.ownerDecision.decision, "approved");
+  assert.equal(manifest.supersedesForPlacementAuthority, "office.workstation.step5.r05.final");
   assert.equal(digest(manifest.activeOfficeBaseline.file), manifest.activeOfficeBaseline.sha256);
   assert.equal(digest(manifest.rosterSockets.file), manifest.rosterSockets.sha256);
   assert.equal(digest(manifest.pairMap.file), manifest.pairMap.sha256);

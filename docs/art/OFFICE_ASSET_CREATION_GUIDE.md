@@ -1,8 +1,9 @@
 # Office Asset Creation Guide
 
-Status: Production guide; Step 5 R05 final workstation candidate awaiting owner review
+Status: Production guide; R05-r02 workstation placement owner-approved
 Scope: Office assets created for the latest orthographic pixel-art reference
-Current execution plan: `docs/art/OFFICE_GEOMETRY_REMEDIATION_ROADMAP.md`
+Current workstation authority: `docs/art/OFFICE_COORDINATE_SYSTEM.md`
+Next workstation plan: `docs/art/OFFICE_WORKSTATION_TEN_SEAT_NEXT_PLAN.md`
 Historical migration plan: `docs/art/OFFICE_REF_MIGRATION_ROADMAP.md`
 
 Workstation reset gate (2026-07-28): the former `5 x 4` / `5 x 3` workstation
@@ -12,12 +13,12 @@ normalization, semantic layers, and Step 4 QA boards. The owner then authorized
 the Step 5 one-seat lab. R01 and R02 are rejected evidence. R03 corrected the
 logical ruler and measured the failed pixels. R04 chair/person/equipment
 composition was later rejected; only its full-top desk remains accepted.
-The owner approved the R05-3A keyboard, centered monitor base, and two-volume
-chair/person anchor proof. R05-3B reuses the existing real chair pixels without
-scaling, and R05-4/R05-5 assemble one station plus ten existing characters in
-an isolated two-by-five review scene. No new character, pose, or other
-furniture is allowed. Active Office promotion remains blocked pending owner
-review of `office-workstation-step5-r05-final.json`.
+The owner approved the R05-r02 coordinate, socket, equipment-depth, and paired
+desk proof on 2026-07-28. R05-r02 replaces R05 final, whose ten-seat
+composition is rejected. Current workstation work must resolve world sockets
+to local sockets, use per-character/per-frame seat contacts, join desk rows at
+64 pixels, and draw far equipment in physical depth order. No new character,
+pose, or furniture art is allowed. Active Office promotion remains blocked.
 
 ## 1. Purpose
 
@@ -102,13 +103,14 @@ studio, not as a second unrelated art style:
 The shell palette is static across all frames. Only the declared local display,
 indicator, paper, steam, or light region may change.
 
-### 3.2 Office Scale Bible
+### 3.2 Office scale and coordinate authority
 
-The authoritative values are now machine-readable in
-`assets/game/manifests/office-camera-scale-bible.json`; the rendered reference
-is `assets/art/layout-references/office-camera-scale-calibration-v1.png`.
-This section is explanatory only. Prompt generation reads the accepted
-manifest and refuses missing or non-accepted Bible data.
+Shared workstation scale and placement are authoritative in
+`docs/art/OFFICE_COORDINATE_SYSTEM.md`,
+`assets/game/manifests/office-workstation-step5-r05-r02.json`, and
+`assets/game/manifests/office-character-seat-sockets-v1.json`. Earlier Camera
+Bible manifests and calibration boards are historical evidence only. This
+section is explanatory and cannot override the approved socket contract.
 
 Lock scale before generating any office asset. The canonical comparison is one
 standing adult:
@@ -167,7 +169,7 @@ metadata, parent slots, and layout validation are the enforceable contract.
 | Asset or family | Locked W x D x H | Render box W x H | Floor footprint W x D | Notes |
 | --- | ---: | ---: | ---: | --- |
 | Standing adult agent | `1 x 1 x 3` | approximately `3 x 3.25` | `1 x 1` | Identity reference for every furniture prompt; feet use bottom-center anchor. |
-| Seated adult agent | `1 x 1 x 2` | same character frame contract | `1 x 1` seat slot | Pelvis and seat anchors remain fixed; furniture is not baked into the character. |
+| Seated adult agent | `1 x 1 x 3` | same `96 x 104` character frame | shared `1 x 1` chair cell | Per-frame seat contact resolves to the chair socket; furniture is not baked into the character. |
 | Office mascot / small companion | `1 x 1 x 1` | `2 x 2` | `1 x 1` | May use transparent padding for its walk cycle. |
 | Floor tile | `1 x 1 x 0` | code-generated | `-` | Architecture, not an image-generation cell. |
 | Wall segment | `1 x 0 x 3` | code-generated | `-` | Wall height establishes the adult and appliance ceiling reference. |
@@ -180,9 +182,9 @@ metadata, parent slots, and layout validation are the enforceable contract.
 
 | Asset or family | Locked W x D x H | Render box W x H | Floor footprint W x D | Seats / support |
 | --- | ---: | ---: | ---: | --- |
-| Standard desk | `3 x 2 x 2.4` | `3 x 4` generation canvas | `3 x 2` | Complete `3 x 2` support plane; no employee-edge footprint row. Artwork blocked pending blueprint approval. |
-| Creative desk | `3 x 2 x 2.4` | `3 x 4` generation canvas | `3 x 2` | Same physical family; role equipment changes, geometry does not. |
-| NOC desk | `3 x 2 x 2.4` | `3 x 4` generation canvas | `3 x 2` | Same physical family; role equipment changes, geometry does not. |
+| Standard desk | `3 x 2 x 2` | `3 x 4` render canvas | `3 x 2` | Existing full-top pixels accepted; complete `3 x 2` support plane; no employee-edge row. |
+| Creative desk | `3 x 2 x 2` | `3 x 4` render canvas | `3 x 2` | Same accepted desk family; role equipment changes, geometry does not. |
+| NOC desk | `3 x 2 x 2` | `3 x 4` render canvas | `3 x 2` | Same accepted desk family; role equipment changes, geometry does not. |
 | Office task chair | `1 x 1 x 2` | `1 x 2` | `1 x 1` | One seat slot. |
 | Studio task chair | `1 x 1 x 2` | `1 x 2` | `1 x 1` | One seat slot. |
 | Cafe / meeting chair | `1 x 1 x 2` | `1 x 2` | `1 x 1` | One review or cafe seat. |
@@ -221,9 +223,9 @@ metadata, parent slots, and layout validation are the enforceable contract.
 
 | Asset or family | Locked W x D x H | Render box W x H | Floor footprint | Parent support |
 | --- | ---: | ---: | ---: | --- |
-| Front monitor | `2 x 1 x 2` | `2 x 2` | `-` | Desk surface. |
+| Workstation monitor | actor-far `3 x 1` reservation | existing `52 x 40` px | `-` | Desk surface; `[26,40]` base socket centered on the middle cell. |
 | Dual-monitor set | `2 x 1 x 2` | `2 x 2` | `-` | Desk surface. |
-| Keyboard and mouse | `2 x 1 x 1` | `2 x 1` | `-` | Desk surface. |
+| Keyboard and mouse | actor-near center `1 x 1` reservation | existing `48 x 24` px | `-` | Desk surface; horizontal visual overflow remains inside the tabletop. |
 | Open laptop | `2 x 1 x 2` | `2 x 2` | `-` | Desk or table surface. |
 | Drawing tablet | `1 x 1 x 1` | `1 x 1` | `-` | Desk surface. |
 | Phone / preview device | `1 x 1 x 1` | `1 x 1` | `-` | Desk surface. |
@@ -284,8 +286,8 @@ metadata, parent slots, and layout validation are the enforceable contract.
 
 ### 3.4 Machine-readable scale and prompt workflow
 
-The written Scale Bible explains intent. Generation must read the same
-contracts from machine-readable manifests:
+The written coordinate and asset guides explain intent. Generation must read
+the same contracts from machine-readable manifests:
 
 - Registered runtime assets:
   `assets/game/manifests/office-assets.json`
@@ -368,38 +370,34 @@ The seated anchor is the seat or pelvis contact point, not the center of the vis
 
 ## 5. Furniture creation workflow
 
-### 5.0 Chair-first calibration
+### 5.0 Current workstation calibration
 
-Before generating seated character rows, create one modern ergonomic chair
-family and validate it with a single workstation. The calibration chair uses a
-four-view turnaround (`up`, `down`, `left`, `right`) so the design, seat
-height, caster baseline, and armrest proportions are locked once. Runtime
-initially uses `up` for a chair facing the desk and `down` for a chair facing
-the aisle.
+Do not generate a new chair or seated character row for the current prototype.
+Reuse the real chair pixels and existing seated atlases approved by R05-r02.
+Any future chair family requires a separately named art decision and must first
+prove the same socket and occlusion contract in isolation.
 
 The chair contract is:
 
 - `renderBox`: 1 x 2 tiles.
 - `footprint`: 1 x 1 floor tile.
-- `anchor`: bottom-center at the caster contact point.
-- `seatAnchor`: the pelvis/seat contact point, never the alpha-box center.
+- `floorSocket`: bottom-center at the caster contact point.
+- `seatSocket`: the physical cushion contact point, never the alpha-box center.
 - `foregroundMask`: the backrest or armrest pixels that should occlude the
   seated lower body.
 
 Do not place the chair inside a character sprite. The chair, seated actor, and
 desk foreground mask remain separate layers.
 
-The Einstein calibration now establishes the reusable seated reference:
+The seat-socket manifest now establishes the reusable seated reference:
 
-- `assets/game/characters/einstein/einstein-seated-chair-calibration-v1-source.png`
-  locks the chair-to-pelvis relationship.
-- `assets/game/characters/einstein/einstein-seated-working-v1-source.png`
-  contains the accepted character-only rear and front seated silhouettes.
+- `assets/game/manifests/office-character-seat-sockets-v1.json` records all
+  216 approved actor contacts.
+- `assets/game/manifests/office-workstation-step5-r05-r02.json` locks the chair
+  seat/floor sockets and placement formula.
 
-These files are calibration sources until the runtime atlas packer records the
-seated anchor and chair/desk foreground masks. They are the reference for
-future characters; the chair does not need to be regenerated and removed for
-every character.
+The chair, actor, and chair foreground remain separate layers. Do not derive a
+universal back-facing offset from Einstein or another single character.
 
 ### Step 1 — Define the physical contract
 
@@ -407,16 +405,15 @@ Before prompting, write the intended dimensions:
 
 ```json
 {
-  "id": "office-desk-v1",
-  "renderBox": {
-    "width": 4,
-    "height": 2
-  },
+  "id": "desk.workstation.modern.v3",
+  "renderBox": { "width": 3, "height": 4 },
   "footprint": {
-    "width": 4,
+    "width": 3,
     "depth": 2
   },
-  "anchor": "center"
+  "logicalVolume": { "width": 3, "depth": 2, "height": 2 },
+  "supportPlane": { "width": 3, "depth": 2, "z": 2 },
+  "basePivot": { "x": 1.5, "y": 2 }
 }
 ```
 
@@ -791,7 +788,7 @@ After generation:
 ```text
 Create one original orthographic pixel-art [FURNITURE] in ONLY these required
 orientations: [REQUIRED_ORIENTATIONS].
-Use the Office Scale Bible adult reference of 1 wide x 1 deep x 3 high.
+Use the current Office coordinate-system adult reference of 1 wide x 1 deep x 3 high.
 The furniture's locked physical scale is [WIDTH] x [DEPTH] x [HEIGHT] tiles.
 Its target render box is [RENDER_WIDTH] x [RENDER_HEIGHT] tiles and its floor
 footprint is [FOOTPRINT_WIDTH] x [FOOTPRINT_DEPTH] tiles.
@@ -905,22 +902,18 @@ Suggested furniture manifest:
 
 ```json
 {
-  "id": "office-desk-v1",
-  "requiredOrientations": ["front", "back", "left", "right"],
+  "id": "desk.workstation.modern.v3",
+  "requiredOrientations": ["public-side", "seat-side"],
   "orientations": {
-    "front": "office-desk-v1-front",
-    "back": "office-desk-v1-back",
-    "left": "office-desk-v1-left",
-    "right": "office-desk-v1-right"
+    "public-side": ["rear", "surface", "base", "foreground"],
+    "seat-side": ["rear", "surface", "base", "foreground"]
   },
   "footprints": {
-    "front": { "width": 4, "depth": 2 },
-    "back": { "width": 4, "depth": 2 },
-    "left": { "width": 2, "depth": 4 },
-    "right": { "width": 2, "depth": 4 }
+    "public-side": { "width": 3, "depth": 2 },
+    "seat-side": { "width": 3, "depth": 2 }
   },
-  "anchor": "center",
-  "foregroundMask": "office-desk-v1-front-mask"
+  "supportPlane": { "width": 3, "depth": 2, "z": 2 },
+  "basePivot": { "x": 1.5, "y": 2 }
 }
 ```
 
@@ -944,15 +937,14 @@ Suggested workstation manifest:
 
 ```json
 {
-  "id": "workstation-v1",
-  "desk": "office-desk-v1",
-  "chair": "office-chair-v1",
-  "monitor": "office-monitor-v1",
-  "screenTheme": "analytics",
-  "screenLoop": "seam",
-  "screenFrames": ["analytics-a", "analytics-b", "analytics-c", "analytics-d"],
-  "seatAnchor": { "x": 2, "y": 3 },
-  "interactionAnchor": { "x": 2, "y": 4 }
+  "id": "workstation-r05-r02",
+  "desk": "desk.workstation.modern.v3",
+  "chair": "chair.office.modern.r05",
+  "seatSockets": "office-character-seat-sockets-v1",
+  "monitorReservation": { "width": 3, "depth": 1 },
+  "keyboardReservation": { "width": 1, "depth": 1 },
+  "placementFormula": "project(worldSocket) - localSocket",
+  "depthwiseDeskDeltaTiles": 2
 }
 ```
 
@@ -960,7 +952,7 @@ Suggested workstation manifest:
 
 ### Geometry
 
-- [ ] The asset uses the locked `W x D x H` entry from the Office Scale Bible.
+- [ ] The asset uses the locked `W x D x H` entry from the current coordinate or asset-family authority.
 - [ ] A neutral `1 x 1 x 3` adult scale overlay confirms the intended height
       and bulk.
 - [ ] `requiredOrientations` is derived from current map placements and interaction facings.
@@ -976,6 +968,8 @@ Suggested workstation manifest:
 - [ ] Footprint is integer-aligned.
 - [ ] Irregular objects use orientation-specific masks.
 - [ ] Anchor does not change between frames.
+- [ ] Actor seat contact resolves to the chair seat with `[0,0]` error in every frame.
+- [ ] Depthwise desk origins differ by 64 pixels, not by render-canvas height.
 - [ ] The visible object was scaled uniformly and was not stretched to fill
       the render box.
 
@@ -1026,24 +1020,16 @@ Suggested workstation manifest:
 ## 11. Recommended production order
 
 ```text
-1. Lock grid, palette, viewport, and anchor contracts.
-2. Create and validate one bare desk.
-3. Create and validate one monitor shell.
-4. Create one four-frame analytics screen strip and test seam-loop playback.
-5. Create one chair and one seated-back character pose.
-6. Lock the facility v1 objects, 20 shared slots, action families, and
-   approach/facing anchors.
-7. Assemble and validate one workstation plus one facility reservation in the
-   running office.
-8. Produce the remaining four screen themes.
-9. Produce the remaining workstation furniture and equipment.
-10. Generate and validate `working-back-seated` and `working-front-seated`
-    from the Einstein reference.
-11. Expand the map/workstation modules toward the 15-person target.
-12. Migrate the character roster.
-13. Build the relaxation-area asset set.
-14. Add ambient animations and interactions.
-15. Run the full-room QA gate.
+1. Preserve the owner-approved R05-r02 manifests and pixel hashes.
+2. Freeze a new ten-seat world-coordinate contract.
+3. Validate one 2-by-2 desk intersection.
+4. Assemble five columns by two rows from the approved station primitive.
+5. Run deterministic seat, join, support, depth, and isolation checks.
+6. Capture desktop/mobile clean and debug evidence.
+7. Stop for owner review before other furniture or Active Office work.
 ```
+
+The detailed next phase is
+`docs/art/OFFICE_WORKSTATION_TEN_SEAT_NEXT_PLAN.md`.
 
 The best quality and speed come from locking the shared interfaces first. Once the desk, monitor viewport, screen overlay, seated anchor, and foreground mask are correct, the rest of the office becomes controlled asset production instead of repeated one-off fixes.

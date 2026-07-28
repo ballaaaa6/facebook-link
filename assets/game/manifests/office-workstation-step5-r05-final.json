@@ -2,8 +2,15 @@
   "version": 6,
   "geometrySchemaVersion": 7,
   "id": "office.workstation.step5.r05.final",
-  "status": "owner-review-ten-seat-candidate",
+  "status": "rejected-composition",
   "updatedOn": "2026-07-28",
+  "rejectedOn": "2026-07-28",
+  "supersededBy": "office.workstation.step5.r05.r02",
+  "rejectionReasons": [
+    "depthwise desks used the 128-pixel render canvas instead of the 64-pixel footprint depth",
+    "far equipment drew the keyboard over the upright monitor",
+    "back-facing actors shared the chair top-left instead of resolving seat sockets"
+  ],
   "completedScope": [
     "R05-3B",
     "R05-4",
@@ -11,6 +18,7 @@
   ],
   "ownerDecision": {
     "r05_3a": "approved",
+    "r05_5": "rejected",
     "accepted": [
       "keyboard",
       "monitor-base-socket",
@@ -507,7 +515,7 @@
   },
   "tenSeatMap": {
     "file": "assets/game/maps/office-ten-r05.json",
-    "sha256": "98c478c4cb2f25149425459c86a81beb5f269329fcdb1caba3d2b036e1aa4c3f"
+    "sha256": "36e087a8fce95cd537ee0338117d8974da610b1b5a89689b9a623cadc25cb226"
   },
   "reviewOutputs": [
     "assets/art/layout-references/office-workstation-v3/step5-r05-final/01-real-chair-source-to-final-layers.png",
@@ -534,9 +542,10 @@
   },
   "permissions": {
     "deterministicChairDerivatives": true,
-    "isolatedRenderer": true,
-    "singleSeatAssembly": true,
-    "tenSeatAssembly": true,
+    "historicalRegressionEvidence": true,
+    "isolatedRenderer": false,
+    "singleSeatAssembly": false,
+    "tenSeatAssembly": false,
     "newCharacterOrPose": false,
     "otherFurniture": false,
     "step24": false,

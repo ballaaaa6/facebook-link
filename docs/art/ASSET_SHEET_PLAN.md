@@ -20,10 +20,12 @@ depthwise desks by the 128-pixel render canvas instead of the 64-pixel
 footprint, drew the far keyboard over the monitor, and aligned the back-facing
 actor and chair by a shared top-left origin. R05-r02 P0-P3 introduces explicit
 world/support/local-socket/depth contracts, audits all nineteen character
-directories, and stops at one paired workstation proof. Eighteen existing
+directories, and is the owner-approved one-pair baseline. Eighteen existing
 8x15 atlases receive seat-socket records; Boba remains a non-seated 11-row
 companion. No character, pose, hand socket, or unrelated furniture is created.
-Active Office promotion and ten-seat expansion remain blocked.
+Active Office promotion remains blocked. Ten-seat execution may begin only as
+the separately named isolated phase in
+`docs/art/OFFICE_WORKSTATION_TEN_SEAT_NEXT_PLAN.md`; no new art is authorized.
 
 Derived-asset staging gate (2026-07-27): Steps 13-16 resolve all 77 reviewed
 `derive-composite` records under `office-derived-v1`. The versioned outputs

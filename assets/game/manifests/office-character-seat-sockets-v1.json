@@ -1,7 +1,7 @@
 {
   "version": 1,
   "schema": "office-character-seat-sockets",
-  "status": "owner-review",
+  "status": "owner-approved",
   "updatedOn": "2026-07-28",
   "tilePixels": 32,
   "coordinateSpaces": {
@@ -176,7 +176,7 @@
         },
         "back": {
           "row": 13,
-          "measurementStatus": "measured-r05-r02-review",
+          "measurementStatus": "owner-approved-r05-r02",
           "frames": [
             {
               "frame": 0,
@@ -459,7 +459,7 @@
         },
         "back": {
           "row": 13,
-          "measurementStatus": "measured-r05-r02-review",
+          "measurementStatus": "owner-approved-r05-r02",
           "frames": [
             {
               "frame": 0,
@@ -742,7 +742,7 @@
         },
         "back": {
           "row": 13,
-          "measurementStatus": "measured-r05-r02-review",
+          "measurementStatus": "owner-approved-r05-r02",
           "frames": [
             {
               "frame": 0,
@@ -1025,7 +1025,7 @@
         },
         "back": {
           "row": 13,
-          "measurementStatus": "measured-r05-r02-review",
+          "measurementStatus": "owner-approved-r05-r02",
           "frames": [
             {
               "frame": 0,
@@ -1308,7 +1308,7 @@
         },
         "back": {
           "row": 13,
-          "measurementStatus": "measured-r05-r02-review",
+          "measurementStatus": "owner-approved-r05-r02",
           "frames": [
             {
               "frame": 0,
@@ -1591,7 +1591,7 @@
         },
         "back": {
           "row": 13,
-          "measurementStatus": "measured-r05-r02-review",
+          "measurementStatus": "owner-approved-r05-r02",
           "frames": [
             {
               "frame": 0,
@@ -1874,7 +1874,7 @@
         },
         "back": {
           "row": 13,
-          "measurementStatus": "measured-r05-r02-review",
+          "measurementStatus": "owner-approved-r05-r02",
           "frames": [
             {
               "frame": 0,
@@ -2157,7 +2157,7 @@
         },
         "back": {
           "row": 13,
-          "measurementStatus": "measured-r05-r02-review",
+          "measurementStatus": "owner-approved-r05-r02",
           "frames": [
             {
               "frame": 0,
@@ -2440,7 +2440,7 @@
         },
         "back": {
           "row": 13,
-          "measurementStatus": "measured-r05-r02-review",
+          "measurementStatus": "owner-approved-r05-r02",
           "frames": [
             {
               "frame": 0,
@@ -2723,7 +2723,7 @@
         },
         "back": {
           "row": 13,
-          "measurementStatus": "measured-r05-r02-review",
+          "measurementStatus": "owner-approved-r05-r02",
           "frames": [
             {
               "frame": 0,
@@ -3006,7 +3006,7 @@
         },
         "back": {
           "row": 13,
-          "measurementStatus": "measured-r05-r02-review",
+          "measurementStatus": "owner-approved-r05-r02",
           "frames": [
             {
               "frame": 0,
@@ -3289,7 +3289,7 @@
         },
         "back": {
           "row": 13,
-          "measurementStatus": "measured-r05-r02-review",
+          "measurementStatus": "owner-approved-r05-r02",
           "frames": [
             {
               "frame": 0,
@@ -3572,7 +3572,7 @@
         },
         "back": {
           "row": 13,
-          "measurementStatus": "measured-r05-r02-review",
+          "measurementStatus": "owner-approved-r05-r02",
           "frames": [
             {
               "frame": 0,
@@ -3855,7 +3855,7 @@
         },
         "back": {
           "row": 13,
-          "measurementStatus": "measured-r05-r02-review",
+          "measurementStatus": "owner-approved-r05-r02",
           "frames": [
             {
               "frame": 0,
@@ -4138,7 +4138,7 @@
         },
         "back": {
           "row": 13,
-          "measurementStatus": "measured-r05-r02-review",
+          "measurementStatus": "owner-approved-r05-r02",
           "frames": [
             {
               "frame": 0,
@@ -4421,7 +4421,7 @@
         },
         "back": {
           "row": 13,
-          "measurementStatus": "measured-r05-r02-review",
+          "measurementStatus": "owner-approved-r05-r02",
           "frames": [
             {
               "frame": 0,
@@ -4704,7 +4704,7 @@
         },
         "back": {
           "row": 13,
-          "measurementStatus": "measured-r05-r02-review",
+          "measurementStatus": "owner-approved-r05-r02",
           "frames": [
             {
               "frame": 0,
@@ -4987,7 +4987,7 @@
         },
         "back": {
           "row": 13,
-          "measurementStatus": "measured-r05-r02-review",
+          "measurementStatus": "owner-approved-r05-r02",
           "frames": [
             {
               "frame": 0,

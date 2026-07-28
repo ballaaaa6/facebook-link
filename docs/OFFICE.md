@@ -1,9 +1,12 @@
 # Agent Office
 
-Workstation correction (2026-07-28): the isolated `5 x 4` staging layout and
-Candidate r01 are rejected evidence. The current pre-artwork authority is the
-`3 x 2` Workstation Assembly Bible v2. The active Office background and map
-remain unchanged while the owner reviews the blueprint images.
+Workstation correction (2026-07-28): the isolated `5 x 4` staging layout,
+Candidate r01, and R05 final ten-seat composition are rejected evidence. The
+owner-approved workstation authority is R05-r02 P0-P3 in
+`docs/art/OFFICE_COORDINATE_SYSTEM.md`. The active Office background and map
+remain unchanged. The next proposed work is a separately gated ten-seat
+simulation described in
+`docs/art/OFFICE_WORKSTATION_TEN_SEAT_NEXT_PLAN.md`.
 
 The active spatial, facility-reservation, asset-addition, and layout delivery
 plan is documented in `docs/OFFICE_LAYOUT_REWORK_PLAN.md`.
@@ -71,15 +74,14 @@ The Office layout validator runs as part of `npm run check`. It rejects overlap,
 route obstruction, unsupported or duplicate attachments, unreachable
 destinations, invalid facility capacity, and missing geometry.
 
-### Structural staging room
+### Historical structural staging room
 
-Office Map v2 is accepted only in the development staging route
+Office Map v2 is rejected and retained only in the development staging route
 `?lab=office-ten-v1`. It models `floor-region`, `wall-segment`,
 `window-opening`, and `door-opening` structures separately from the Active
-Office background. Ten canonical 5 x 4 workstations share one scene clock and
-equipment presets without changing `desk.modular.v1` geometry. The accepted
-layout, responsive scales, isolation boundary, and promotion flags are recorded
-in `docs/OFFICE_TEN_WORKSTATION_ACCEPTANCE.md`.
+Office background. Its ten `5 x 4` workstations and `desk.modular.v1`
+coordinates cannot feed current work. The rejected layout and isolation record
+are maintained in `docs/OFFICE_TEN_WORKSTATION_ACCEPTANCE.md`.
 
 The Active Office continues to read `office-c-v2.json` through the legacy
 surface adapter and continues rendering `OfficeBackdrop`. Map v2 does not

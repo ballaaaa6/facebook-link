@@ -1,6 +1,6 @@
 # Office 2D Geometry Principles
 
-Status: Current Geometry v8 workstation principles; R05-r02 P0-P3 owner review
+Status: Current Geometry v8 principles; R05-r02 P0-P3 owner-approved
 Updated: 2026-07-28
 
 This document defines the shared Office principles. For Step 5 workstation
@@ -16,7 +16,7 @@ R05 calibration authority:
 `assets/game/manifests/office-workstation-step5-r05-calibration.json`.
 Rejected R05 assembled evidence:
 `assets/game/manifests/office-workstation-step5-r05-final.json`.
-Current coordinate/socket review authority:
+Current owner-approved coordinate/socket authority:
 `assets/game/manifests/office-workstation-step5-r05-r02.json`.
 Roster seat-socket authority:
 `assets/game/manifests/office-character-seat-sockets-v1.json`.
@@ -142,8 +142,10 @@ A depthwise pair advances by the desk footprint depth, exactly two tiles or
 64 pixels. It does not advance by the 128-pixel authoring canvas. The nearer
 tabletop occupies the same projected screen band as the farther desk's base,
 so normal painter ordering hides the farther legs and drawers while preserving
-both complete 3x2 tabletops. The accepted proof stops at one paired column;
-five-column and ten-person expansion remain blocked pending owner review.
+both complete 3x2 tabletops. The accepted proof stops at one paired column.
+Five-column and ten-person execution remains blocked until the separately
+named plan is started; its contract is
+`docs/art/OFFICE_WORKSTATION_TEN_SEAT_NEXT_PLAN.md`.
 
 ## Furniture part contract
 
@@ -197,6 +199,7 @@ contact or correct equipment pivots. R05 final is retained as rejected
 composition evidence because it used a shared actor/chair top-left origin,
 placed depthwise desks 128 pixels apart, and drew the far keyboard over the
 monitor. R05-r02 replaces those rules with per-frame seat sockets, a 64-pixel
-footprint join, and physical equipment depth order. It stops after P0-P3 and
-one paired workstation proof. Ten-seat expansion, other furniture, hand
-sockets, Step 6, and Active Office promotion remain false pending owner review.
+footprint join, and physical equipment depth order. The owner approved P0-P3
+and the one-column pair on 2026-07-28. Ten-seat execution still requires the
+next named phase; other furniture, hand sockets, Step 6, and Active Office
+promotion remain false.

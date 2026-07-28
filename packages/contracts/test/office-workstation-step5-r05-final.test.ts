@@ -14,8 +14,11 @@ const digest = (path: string) => createHash("sha256").update(readFileSync(new UR
 const manifest = readJson("assets/game/manifests/office-workstation-step5-r05-final.json");
 const map = readJson("assets/game/maps/office-ten-r05.json");
 
-test("R05 final uses the real chair source and measured contact sockets", () => {
+test("rejected R05 final retains the real chair source and measured contact sockets as evidence", () => {
   assert.deepEqual(validateOfficeWorkstationStep5R05Final(manifest), []);
+  assert.equal(manifest.status, "rejected-composition");
+  assert.equal(manifest.supersededBy, "office.workstation.step5.r05.r02");
+  assert.equal(manifest.rejectionReasons.length, 3);
   const chair = manifest.components.chair;
   assert.equal(chair.decision, "real-source-normalized-without-scaling");
   assert.deepEqual(chair.physicalParts, ["base-seat", "backrest-arms"]);
@@ -74,6 +77,9 @@ test("R05 final review remains isolated from Active Office", () => {
   }
   assert.equal(manifest.permissions.activeOfficePromotion, false);
   assert.equal(manifest.permissions.step24, false);
+  assert.equal(manifest.permissions.historicalRegressionEvidence, true);
+  assert.equal(manifest.permissions.isolatedRenderer, false);
+  assert.equal(manifest.permissions.tenSeatAssembly, false);
   assert.equal(manifest.runtimePolicy.mockupChairAllowed, false);
   assert.equal(manifest.runtimePolicy.legacyCandidateAllowed, false);
 });

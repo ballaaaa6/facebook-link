@@ -39,7 +39,7 @@ export interface R05ResolvedGeometry {
 
 export interface R05PairMap {
   id: "office-workstation-pair-r05-r02";
-  status: "owner-review-p0-p3";
+  status: "owner-approved-p0-p3";
   developmentOnly: true;
   activeOfficePromotion: false;
   deskPair: {
@@ -60,7 +60,7 @@ export interface R05MapStation {
 }
 
 export interface R05RejectedTenSeatMap {
-  status: "owner-review";
+  status: "rejected-composition";
   workstations: R05MapStation[];
   renderProjection: {
     stagePixels: [number, number];

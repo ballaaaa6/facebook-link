@@ -47,9 +47,13 @@ try {
   const map = readJson(mapPath);
   add(manifest.version === 6 && manifest.geometrySchemaVersion === 7,
     "R05 final must use manifest v6 and Geometry v7");
-  add(manifest.status === "owner-review-ten-seat-candidate"
+  add(manifest.status === "rejected-composition"
     && JSON.stringify(manifest.completedScope) === JSON.stringify(["R05-3B", "R05-4", "R05-5"]),
-  "R05 final must stop at the consolidated owner review");
+  "R05 final must remain rejected composition evidence");
+  add(manifest.rejectedOn === "2026-07-28"
+    && manifest.supersededBy === "office.workstation.step5.r05.r02"
+    && manifest.rejectionReasons?.length === 3,
+  "R05 final rejection record is missing or stale");
   add(manifest.ownerDecision?.r05_3a === "approved", "R05 final must inherit owner approval of R05-3A");
   add(manifest.activeOfficeBaseline?.sha256 === sha256(manifest.activeOfficeBaseline.file),
     "Active Office changed during R05 final work");
@@ -102,9 +106,9 @@ try {
     && manifest.station?.animation?.maximumAnchorDriftPixels === 0,
   "R05 final six-frame station anchors must remain stable");
 
-  add(map.id === "office-ten-r05-isolated" && map.status === "owner-review"
+  add(map.id === "office-ten-r05-isolated" && map.status === "rejected-composition"
     && map.developmentOnly === true && map.activeOfficePromotion === false,
-  "R05 ten-seat map must remain isolated");
+  "R05 ten-seat map must remain rejected and isolated");
   add(map.workstations?.length === 10, "R05 ten-seat map must contain exactly ten workstations");
   add(JSON.stringify(map.layout?.deskOriginsX) === JSON.stringify([4, 7, 10, 13, 16])
     && map.layout?.horizontalJoinCount === 8
@@ -176,14 +180,15 @@ try {
     add(size.width === 1600 && size.height === 1000, `${path} must be 1600x1000`);
   }
 
-  add(manifest.permissions?.isolatedRenderer === true
-    && manifest.permissions?.singleSeatAssembly === true
-    && manifest.permissions?.tenSeatAssembly === true
+  add(manifest.permissions?.historicalRegressionEvidence === true
+    && manifest.permissions?.isolatedRenderer === false
+    && manifest.permissions?.singleSeatAssembly === false
+    && manifest.permissions?.tenSeatAssembly === false
     && manifest.permissions?.newCharacterOrPose === false
     && manifest.permissions?.otherFurniture === false
     && manifest.permissions?.step24 === false
     && manifest.permissions?.activeOfficePromotion === false,
-  "R05 final permissions must allow isolated review while blocking Active Office");
+  "R05 final permissions must allow only historical regression evidence");
   add(manifest.runtimePolicy?.mockupChairAllowed === false
     && manifest.runtimePolicy?.legacyCandidateAllowed === false
     && manifest.runtimePolicy?.developmentOnly === true,
@@ -205,6 +210,6 @@ if (failures.length > 0) {
   process.exitCode = 1;
 } else {
   process.stdout.write(
-    "Step 5 R05 final check OK: real chair, one station, ten 3x2 workstations, seven review boards, four browser captures, and Active Office unchanged.\n",
+    "Step 5 R05 final historical check OK: rejected composition evidence is reproducible, all execution permissions are revoked, and Active Office is unchanged.\n",
   );
 }

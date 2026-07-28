@@ -63,8 +63,9 @@ placement or interaction-facing requirement for them.
 
 ### Facility scale contracts
 
-The Office Scale Bible in `docs/art/OFFICE_ASSET_CREATION_GUIDE.md` is the
-source of truth for generation prompts. Its canonical adult is `1 x 1 x 3`.
+The scale contract in `docs/art/OFFICE_ASSET_CREATION_GUIDE.md` and
+`docs/art/OFFICE_COORDINATE_SYSTEM.md` is the source of truth for generation
+prompts. Its canonical adult is `1 x 1 x 3`.
 Facility v1 uses these locked physical scales:
 
 | Facility | W x D x H | Render box | Floor footprint | Extra approach |

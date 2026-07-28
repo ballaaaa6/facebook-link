@@ -1,7 +1,8 @@
 {
   "schemaVersion": 3,
   "id": "office-ten-r05-isolated",
-  "status": "owner-review",
+  "status": "rejected-composition",
+  "supersededBy": "office-workstation-pair-r05-r02",
   "developmentOnly": true,
   "activeOfficePromotion": false,
   "sourceBackground": {

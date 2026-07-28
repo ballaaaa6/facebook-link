@@ -1,20 +1,19 @@
 # Roadmap
 
-Workstation correction (2026-07-28): Step 5 R02 is rejected calibration
-evidence. It declared a `3 x 2` desk while exposing only 30 of the required 64
-tabletop-depth pixels, reserved `3 x 1` for the keyboard, compressed the chair,
-and treated unmeasured contact anchors as proof.
+Workstation correction (2026-07-28): R01, R02, R04, R05 final, Candidate r01,
+and the former `5 x 4` staging workstations are rejected or historical
+evidence. R05-r02 P0-P3 is the owner-approved baseline: 32 pixels per tile,
+person `1 x 1 x 3`, real chair `1 x 1 x 2`, full-top desk `3 x 2 x 2`,
+monitor `3 x 1` reservation centered by its base, keyboard `1 x 1`
+reservation, per-character/per-frame seat sockets, and a 64-pixel depthwise
+desk join with physical occlusion order.
 
-R03 P0-P3 is retained as measured calibration history. The approved P4-P6
-execution is now Step 5 R04: a new normalized desk, chair, and lower-profile
-monitor; the existing Office person and seated rows; one `48 x 24` keyboard;
-one isolated station in public/front and seat/back directions; and browser
-evidence. The locked ruler is 32 px per tile: person `1 x 1 x 3`, chair
-`1 x 1 x 2`, desk `3 x 2 x 2` with a full `96 x 64` support plane, monitor
-reservation `3 x 1`, and keyboard reservation `1 x 1`. The 30-second runtime
-gate has zero anchor drift, console errors, broken images, or narrow-layout
-overflow. R04 is awaiting visual owner review. Ten-seat assembly, roster-wide
-calibration, Step 6, and Active Office promotion remain blocked.
+The next proposed work rebuilds a five-column by two-row ten-person block from
+that approved pair inside a development-only simulated Office. It starts with
+a four-station join preflight, then adds the ten-person scene, deterministic
+geometry checks, 60-second browser QA, and an owner gate. The plan is
+`docs/art/OFFICE_WORKSTATION_TEN_SEAT_NEXT_PLAN.md`. It has not started. Other
+furniture and Active Office promotion remain blocked.
 
 ## M0 — Repository foundation (complete)
 
@@ -111,12 +110,10 @@ Implementation status (2026-07-27):
   Office interior. The previously planned direct Facility v1 composition and
   interior swap is superseded by the geometry-remediation program below.
 
-### Immediate Office geometry remediation — approved Steps 1-4
+### Historical Office geometry remediation — former Steps 1-4
 
-The character-art batch is closed in staging. The next Office tranche is not a
-full asset rebuild or a direct replacement-interior swap. It is a reuse-first
-geometry audit that must decide per asset whether to reuse it, fix metadata,
-derive a composite, regenerate it, or block it for orientation or licensing.
+This section records the 2026-07-27 remediation tranche. It is not the current
+execution plan.
 
 Verified baseline on 2026-07-27:
 
@@ -129,7 +126,7 @@ Verified baseline on 2026-07-27:
 - v6 lab captures that must be retained as rejected regression evidence rather
   than used as the production geometry template.
 
-The approved first batch delivers Steps 1-4 together, with sequential gates:
+The former first batch delivered Steps 1-4 together, with sequential gates:
 
 1. Quarantine the rejected v6 composition, preserve it as a negative
    regression case, and prove that the Active Office remains unchanged.
@@ -151,20 +148,16 @@ Implementation status (2026-07-27): Steps 1-4 are complete. The v6 composition
 and its v5 desk inputs are explicitly rejected, preserved as negative
 regression evidence, and covered by automated isolation checks. Geometry v3
 now has a written contract, JSON Schema, shared TypeScript types, a validator,
-and positive and negative fixtures for all eight asset types. The workstation
-decision independently locks `5 x 4 x 2.4` physical scale, a `5 x 4` floor
-footprint, and a `5 x 3` support plane. The deterministic audit reconciles 297
+and positive and negative fixtures for all eight asset types. The historical
+workstation decision incorrectly locked `5 x 4 x 2.4` physical scale, a
+`5 x 4` floor footprint, and a `5 x 3` support plane. The deterministic audit reconciles 297
 records representing 235 distinct asset keys: 20 reuse, 142 metadata fixes, 77
 clean derivatives/composites, 7 regenerations, 32 orientation blocks, and 19
 license blocks. It reports all 35 missing library layer declarations, no
-missing referenced images, and no unreviewed records. The accepted
-machine-readable Camera/Scale Bible and deterministic calibration
-board now lock the 32 px tile, projection split, reference levels, orientation
-gate, and the canonical `5 x 4` desk with its `5 x 3` support plane. The prompt
-builder refuses missing or non-accepted Bible data and substitutes these
-accepted workstation generation values without changing the legacy Active
-Office manifest. The combined Steps 1-4 gate passes; Active Office data,
-renderer behavior, and visuals remain unchanged.
+missing referenced images, and no unreviewed records. The former
+machine-readable Camera/Scale Bible and calibration board are now historical;
+their `5 x 4` / `5 x 3` workstation values are revoked. Active Office data,
+renderer behavior, and visuals remained unchanged during that tranche.
 
 ### Historical rejected Office workstation vertical slice — former Steps 5-8
 
@@ -172,14 +165,14 @@ The following 2026-07-27 tranche is preserved for audit only. Its `5 x 4` desk
 contract is superseded by the current `3 x 2` authority and none of its former
 acceptance claims authorize current or Active Office work:
 
-5. `Workstation Bundle v1` now composes the canonical desk, four orientation
-   part sets, support slots, the accepted chair and monitor families, a neutral
+5. `Workstation Bundle v1` composed the then-canonical desk, four orientation
+   part sets, support slots, the then-accepted chair and monitor families, a neutral
    calibration actor, and a viewport-local four-frame screen loop. Standard,
    Creative, and NOC variants share one physical desk family.
 6. A deterministic generator produces one modular bare-desk family in four
    orthographic orientations, split into `rear`, `surface`, `base`, and
    `foreground` parts. Its `5 x 4 x 2.4` scale, `5 x 4` footprint, and `5 x 3`
-   support plane match the accepted Camera/Scale Bible. No equipment, chair,
+   support plane matched the now-superseded Camera/Scale Bible. No equipment, chair,
    or character pixels are baked into the desk.
 7. A Geometry v3 compositor now exists behind the development-only
    `?lab=workstation-v1` route. Semantic part order and the workstation
@@ -204,7 +197,7 @@ the 19 prototype character identities for commercial use.
    and workstation deployments. The legacy Active Office remains readable
    without changing its map or renderer.
 10. `office-ten-v1.json` assembles the exact ten-agent roster in a 29 x 20
-    staging room. Two edge-touching rows use the accepted 5 x 4 desk footprint,
+    staging room. Two edge-touching rows used the now-rejected 5 x 4 desk footprint,
     external seats, protected access aisles, and the required Standard,
     Creative, and NOC split of 7 / 2 / 1.
 11. The staging renderer creates deterministic floor and wall layers, a
@@ -267,7 +260,7 @@ Decision recorded on 2026-07-27:
 - Reopen character rights clearance or replacement only through an explicit
   owner decision before commercialization, currently represented by M6.
 
-### Office Candidate review — Steps 21-23 complete, awaiting owner review
+### Historical Office Candidate review — Steps 21-23 rejected
 
 This tranche requires no character generation or batch pose calibration:
 
@@ -282,18 +275,19 @@ This tranche requires no character generation or batch pose calibration:
     broken images, zero browser warnings/errors, and responsive passes at
     desktop, 768 px, 390 px, and 320 px.
 
-Status on 2026-07-27: `awaiting-owner-review`, with
+Historical status on 2026-07-27 was `awaiting-owner-review`; it is now
+`rejected-visual`, with
 `activeOfficePromotion: false`, `commercialCharacterApproval: false`, and
 `ownerApproval: false`. Evidence is maintained in
 `docs/OFFICE_CANDIDATE_V1_REVIEW.md`.
 
-### Active Office promotion — Step 24 blocked on explicit approval
+### Active Office promotion — Step 24 blocked on a new accepted candidate
 
-24. After the owner approves a specific Candidate revision, wire that exact
+24. After the owner approves a new specific Candidate revision, wire that exact
     shared scene into Active Office behind a reversible feature flag, run the
     production and browser parity gates, and retain `office-c-v2` as rollback.
     Do not begin this step while the Candidate status is
-    `awaiting-owner-review` or `changes-requested`.
+    planned, `awaiting-owner-review`, or `changes-requested`.
 
 ## M2 — One-account Shopee pilot
 
