@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "id": "office.c12-ten-seat.v1",
+  "status": "owner-review",
+  "updatedOn": "2026-07-29",
+  "map": {
+    "file": "assets/game/maps/office-c12-ten-seat-v1.json",
+    "sha256": "eaad19d20395d4255416dd7d2082033a8b7f05bb24f61d470d5389aa8ac50859"
+  },
+  "reviewOutputs": [
+    {
+      "file": "assets/art/layout-references/office-c12-ten-seat-v1/01-combined-clean.png",
+      "sha256": "a6715c75830bedbcae7d078f5c7cb8202f15c6e35d537bd95b74c392f07e66dc"
+    },
+    {
+      "file": "assets/art/layout-references/office-c12-ten-seat-v1/02-combined-grid-highlighted.png",
+      "sha256": "45ee550d05ddbbbc8ba19c4d2c760a723f1b924ccf46559d7679abeafff2cb70"
+    },
+    {
+      "file": "assets/art/layout-references/office-c12-ten-seat-v1/03-furniture-only-grid.png",
+      "sha256": "fcc2bb698a29b440bf5179fe3e02d20cf95458c84e9c4ebe517a179a8f23231f"
+    },
+    {
+      "file": "assets/art/layout-references/office-c12-ten-seat-v1/04-people-only-grid.png",
+      "sha256": "f1c876c352a5366d8f433049f1e28e73aacdf78447df27b1c690d017643ab574"
+    },
+    {
+      "file": "assets/art/layout-references/office-c12-ten-seat-v1/05-furniture-layer-transparent.png",
+      "sha256": "492ae391c65de6b33b516de37dc207ddd1030ce99f04107d1d3c6b5094988897"
+    },
+    {
+      "file": "assets/art/layout-references/office-c12-ten-seat-v1/06-people-layer-transparent.png",
+      "sha256": "63a57fec625b3e4b2e83aeff938686aeafb6e0806ce6aa84b3864ba9e2485040"
+    }
+  ],
+  "placementDecision": {
+    "anchorCell": "C12",
+    "protectedEnvelope": "C12:S19",
+    "contentFootprint": "D13:R18",
+    "employeeCount": 10
+  },
+  "permissions": {
+    "isolatedOwnerReview": true,
+    "reuseExistingArt": true,
+    "activeOfficePromotion": false,
+    "newCharacterOrPose": false,
+    "newFurnitureOrEquipment": false
+  }
+}

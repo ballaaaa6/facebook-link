@@ -4,9 +4,10 @@ Workstation correction (2026-07-28): the isolated `5 x 4` staging layout,
 Candidate r01, and R05 final ten-seat composition are rejected evidence. The
 owner-approved workstation authority is R05-r02 P0-P3 in
 `docs/art/OFFICE_COORDINATE_SYSTEM.md`. The active Office background and map
-remain unchanged. The next proposed work is a separately gated ten-seat
-simulation described in
-`docs/art/OFFICE_WORKSTATION_TEN_SEAT_NEXT_PLAN.md`.
+remain unchanged. The owner-labelled `C12` placement is now represented by
+the isolated `office-c12-ten-seat-v1` review candidate documented in
+`docs/OFFICE_C12_TEN_SEAT_V1.md`. It reuses the approved R05-r02 component
+geometry on the semantic grid and does not authorize Active Office promotion.
 
 The active spatial, facility-reservation, asset-addition, and layout delivery
 plan is documented in `docs/OFFICE_LAYOUT_REWORK_PLAN.md`.

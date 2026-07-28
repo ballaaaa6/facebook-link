@@ -23,6 +23,7 @@ const workstationV3Step5R05R02ReviewDirectory = "assets/art/layout-references/of
 const workstationV3Step5R05R02ProcessedDirectory = "assets/game/processed/office-workstation-v3/step5-r05-r02";
 const workstationV3TenSeatR05R02ReviewDirectory = "assets/art/layout-references/office-workstation-v3/ten-seat-r05-r02";
 const workstationV3TenSeatR05R02ProcessedDirectory = "assets/game/processed/office-workstation-v3/ten-seat-r05-r02";
+const officeC12TenSeatReviewDirectory = "assets/art/layout-references/office-c12-ten-seat-v1";
 const derivedDirectory = "assets/game/processed/office-derived-v1";
 const workstationSource = "assets/art/layout-references/office-workstation-v1/office-workstation-modular-v1-source.png";
 
@@ -79,6 +80,7 @@ const fixedInputs = [
   "scripts/build-office-workstation-step5-r05-final.py",
   "scripts/build-office-workstation-step5-r05-r02.py",
   "scripts/build-office-workstation-ten-seat-r05-r02.py",
+  "scripts/build-office-c12-ten-seat-v1.py",
   "scripts/build-office-derived-assets.py",
   "scripts/office_derived_asset_recipes.py",
   "scripts/office-derived-assets-check.mjs",
@@ -92,6 +94,7 @@ const fixedInputs = [
   "scripts/office-workstation-step5-r05-final-check.mjs",
   "scripts/office-workstation-step5-r05-r02-check.mjs",
   "scripts/office-workstation-ten-seat-r05-r02-check.mjs",
+  "docs/OFFICE_C12_TEN_SEAT_V1.md",
   "apps/web/src/features/office/lab/workstation-v3-step5/OfficeWorkstationStep5R04LabPage.tsx",
   "apps/web/src/features/office/lab/workstation-v3-step5/R04Station.tsx",
   "apps/web/src/features/office/lab/workstation-v3-step5/r04Assets.ts",
@@ -130,6 +133,8 @@ const fixedOutputs = [
   "assets/game/maps/office-workstation-pair-r05-r02.json",
   "assets/game/manifests/office-workstation-ten-seat-r05-r02.json",
   "assets/game/maps/office-workstation-ten-seat-r05-r02.json",
+  "assets/game/manifests/office-c12-ten-seat-v1.json",
+  "assets/game/maps/office-c12-ten-seat-v1.json",
 ];
 
 function toRepoPath(path) {
@@ -213,6 +218,7 @@ function buildLock() {
   const workstationV3Step5R05R02Processed = recursiveFiles(workstationV3Step5R05R02ProcessedDirectory);
   const workstationV3TenSeatR05R02Review = recursiveFiles(workstationV3TenSeatR05R02ReviewDirectory);
   const workstationV3TenSeatR05R02Processed = recursiveFiles(workstationV3TenSeatR05R02ProcessedDirectory);
+  const officeC12TenSeatReview = recursiveFiles(officeC12TenSeatReviewDirectory);
   const derived = recursiveFiles(derivedDirectory);
   return {
     version: 1,
@@ -229,6 +235,7 @@ function buildLock() {
       ...workstationV3Step5R05R02Processed,
       ...workstationV3TenSeatR05R02Review,
       ...workstationV3TenSeatR05R02Processed,
+      ...officeC12TenSeatReview,
     ]),
     exactContactSheets: contacts,
     exactWorkstationOutputs: workstation,
@@ -247,6 +254,7 @@ function buildLock() {
     exactWorkstationV3Step5R05R02ProcessedOutputs: workstationV3Step5R05R02Processed,
     exactWorkstationV3TenSeatR05R02ReviewOutputs: workstationV3TenSeatR05R02Review,
     exactWorkstationV3TenSeatR05R02ProcessedOutputs: workstationV3TenSeatR05R02Processed,
+    exactOfficeC12TenSeatReviewOutputs: officeC12TenSeatReview,
     exactDerivedOutputs: derived,
   };
 }
@@ -311,6 +319,9 @@ function validateLock(lock) {
   }
   if (JSON.stringify(recursiveFiles(workstationV3TenSeatR05R02ProcessedDirectory)) !== JSON.stringify(lock.exactWorkstationV3TenSeatR05R02ProcessedOutputs)) {
     failures.push("Workstation v3 ten-seat r05 r02 processed list does not match the exact generated directory contents");
+  }
+  if (JSON.stringify(recursiveFiles(officeC12TenSeatReviewDirectory)) !== JSON.stringify(lock.exactOfficeC12TenSeatReviewOutputs)) {
+    failures.push("Office C12 ten-seat review list does not match the exact generated directory contents");
   }
   if (JSON.stringify(recursiveFiles(derivedDirectory)) !== JSON.stringify(lock.exactDerivedOutputs)) {
     failures.push("Derived output list does not match the exact generated directory contents");

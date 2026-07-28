@@ -325,6 +325,7 @@
     "assets/game/processed/office-library-modern-bright-v1/env-13-lounge-storage-side-orientations/sofa.modern.two-seat.side-right.png": "80fefcf237b46dc7964fddabb619e91a210128504a0bcd8ae8515a20b84f7c0e",
     "assets/game/processed/office-library-modern-bright-v1/env-13-lounge-storage-side-orientations/table.board-game.side-left.png": "1457a5ce7aee69a9f09d5181c5596d9814301c0213d561fe82786f89a913f1e6",
     "assets/game/processed/office-library-modern-bright-v1/env-13-lounge-storage-side-orientations/table.board-game.side-right.png": "5417ba9bd77de1fcbec7a01a86b5a425b2266c94158f40c2349065f9c1e0cdef",
+    "docs/OFFICE_C12_TEN_SEAT_V1.md": "4d6de17bae78f155c5c1778664afb1a60da73199e17fd32684eb4a3a93f4f9de",
     "packages/contracts/src/officeDerivedAssets.ts": "8f9bb99287e5c36cbedb61bdbd19d6142eedd49dfe13ea65d8c8e73cdb944522",
     "packages/contracts/src/officeSpatialProjection.ts": "d477f32d63e82f681a4bd3a039f4f59a14affdd1ad34d9707c873b925d68e365",
     "packages/contracts/src/officeSpatialScale.ts": "8c354f97d0787e5c46f87f515a6ebd38ae22e193e7ad63e38496ad106c3ad1a2",
@@ -338,6 +339,7 @@
     "packages/contracts/src/officeWorkstationTenSeatR05R02.ts": "8b3c5dc337b6ce0fb2757a6b902e5efef94f8f5035f6638d045f99b857d78b99",
     "packages/contracts/src/officeWorkstationV2.ts": "f95d8ca08df142189d96b968ab963ec7ee602d2fa7746e3a0fccb939c0e244dd",
     "scripts/audit-office-asset-geometry.py": "953ca77821c074c4980b937546f79cafccf01375aac7241ce9d034dc418742da",
+    "scripts/build-office-c12-ten-seat-v1.py": "3480bdec5fd1b28ed374d172d558a52d7f0cbfa7ce35ed8bd0ed7c75ef755468",
     "scripts/build-office-camera-scale-board.py": "0a43606e7200fc343aaedd725439e5a0852ae345b66d9bd4b36f73ee91983093",
     "scripts/build-office-derived-assets.py": "6811c702a478c37f8c57ed306d2c41960144b3dfd6e131f9962cf597d79deeec",
     "scripts/build-office-workstation-assembly-bible.py": "0c0efc18f52b8c8bdbeb5bac693507ba77ac196760cde054985a3b7d2d8f6a9d",
@@ -352,7 +354,7 @@
     "scripts/build-office-workstation-ten-seat-r05-r02.py": "b66f673c32568a7917ba8b9fad9b670f0a6e63627e38ac43d1ae6dfed5fb5b94",
     "scripts/build-office-workstation-v2.py": "47c8a31b0ab59dda859884ba7446a162b4600c716ec6c9f2f531f6ec4f112365",
     "scripts/office-derived-assets-check.mjs": "d48963386543986ef05a28917db69b80c6e242bf2aac6c75c7e96eddb8bf7a84",
-    "scripts/office-generated-art-lock.mjs": "9445b03dcda5a0d5109b3426bdf3ad8e4cc4f3af7cea4477534bf3b18f6a2471",
+    "scripts/office-generated-art-lock.mjs": "ef6638ff781fb2a56e104ceba2f3d39d7c793ed53393bc2f332dc5c1d5fa6262",
     "scripts/office-workstation-authority-check.mjs": "cc7fe2b589f96413b91f2caaf8011fd21b8bf361bb00d391d898cadc4cf069e5",
     "scripts/office-workstation-step5-check.mjs": "e29df2289c603fb1f1e048d8d26d8e55d5b3009599edc79c6790691d9f7fe00d",
     "scripts/office-workstation-step5-r03-check.mjs": "1c6087ab44eceae25b0e8481d1cd8cd1ab3e37458fc164a43bab2a021674b00c",
@@ -368,6 +370,12 @@
     "scripts/office_geometry_audit_visuals.py": "00027051411e9517879c9b40b21b5899989302097268697d32ca777ca1a3ec38"
   },
   "outputs": {
+    "assets/art/layout-references/office-c12-ten-seat-v1/01-combined-clean.png": "a6715c75830bedbcae7d078f5c7cb8202f15c6e35d537bd95b74c392f07e66dc",
+    "assets/art/layout-references/office-c12-ten-seat-v1/02-combined-grid-highlighted.png": "45ee550d05ddbbbc8ba19c4d2c760a723f1b924ccf46559d7679abeafff2cb70",
+    "assets/art/layout-references/office-c12-ten-seat-v1/03-furniture-only-grid.png": "fcc2bb698a29b440bf5179fe3e02d20cf95458c84e9c4ebe517a179a8f23231f",
+    "assets/art/layout-references/office-c12-ten-seat-v1/04-people-only-grid.png": "f1c876c352a5366d8f433049f1e28e73aacdf78447df27b1c690d017643ab574",
+    "assets/art/layout-references/office-c12-ten-seat-v1/05-furniture-layer-transparent.png": "492ae391c65de6b33b516de37dc207ddd1030ce99f04107d1d3c6b5094988897",
+    "assets/art/layout-references/office-c12-ten-seat-v1/06-people-layer-transparent.png": "63a57fec625b3e4b2e83aeff938686aeafb6e0806ce6aa84b3864ba9e2485040",
     "assets/art/layout-references/office-camera-scale-calibration-v2.png": "e7d7df323684670a30916487ee37709bad0fb54afedb38d9d4050ab3e71bb617",
     "assets/art/layout-references/office-workstation-v1/office-workstation-modular-v1-source.png": "5e53054bc8e94f2185640dec0614dd7cee794e1b01c7681e075b1eabe2583fcd",
     "assets/art/layout-references/office-workstation-v2/00-owner-review-contact-sheet-v2.png": "4718b7f4fea5e684dfb662fdf0b2e8bb66a44066baec8653d2ba2681d244b8a9",
@@ -437,6 +445,7 @@
     "assets/art/layout-references/office-workstation-v3/ten-seat-r05-r02/05-rejected-r05-final-vs-upper-left-rebuild.png": "675ca1150d85e73008b9c910c2cf86e65207bb8e3e548ed887f9799ab7509477",
     "assets/art/layout-references/office-workstation-v3/ten-seat-r05-r02/06-capacity-20-reservation-plan.png": "1820484308ce20bd4ec4064d72bd90071c5a54cd2008242279e5c397d6854b98",
     "assets/game/manifests/office-asset-geometry-audit.json": "4de61113bcb4c73cfb6979640cfde65ceb25436d166fe012ee90a1ef13a9a780",
+    "assets/game/manifests/office-c12-ten-seat-v1.json": "60e8318a9040cfc07dcc1edb30b948cc0d8d105e3d61cf6efd93275ef03e4fc2",
     "assets/game/manifests/office-character-seat-sockets-v1.json": "45837daa526e9d0142ae09103677fe50b32ff82f36c7a46dba87c26e46f14d75",
     "assets/game/manifests/office-derived-assets-v1.json": "9f7ec932deb92b0f1ac841d78e4b68e797ca9d691e48357d1747a038ea59ec3f",
     "assets/game/manifests/office-workstation-step5-r03-measurements.json": "b76155669f3bcba632ab933a0642aa384cd41ab28261f0dbe86da4ca4f01865f",
@@ -444,6 +453,7 @@
     "assets/game/manifests/office-workstation-step5-r05-measurements.json": "384af9c3d65c2aad56fa40584aef7a386a1cf453c0cdcb230ef6e00b15476827",
     "assets/game/manifests/office-workstation-step5-r05-r02.json": "4291a5706f5290e5450951aea43e909b88075f22303f6fd8a8ca6c80c99c2e35",
     "assets/game/manifests/office-workstation-ten-seat-r05-r02.json": "848f825e0b5120ae8615420ceeff1dc52d1f59d49430514ed0d553fc0d02f399",
+    "assets/game/maps/office-c12-ten-seat-v1.json": "eaad19d20395d4255416dd7d2082033a8b7f05bb24f61d470d5389aa8ac50859",
     "assets/game/maps/office-ten-r05.json": "36e087a8fce95cd537ee0338117d8974da610b1b5a89689b9a623cadc25cb226",
     "assets/game/maps/office-workstation-pair-r05-r02.json": "bef8d9991020f3e189f6d5dd713de2ccddd6ce0ad85163a6b01bde78fdf741ef",
     "assets/game/maps/office-workstation-ten-seat-r05-r02.json": "a383469c9343bb564f025410576861a31bc660f079a45ffdbdc354aba0939642",
@@ -830,6 +840,14 @@
     "assets/game/processed/office-workstation-v3/ten-seat-r05-r02/qa/02-browser-desktop-debug.png",
     "assets/game/processed/office-workstation-v3/ten-seat-r05-r02/qa/03-browser-mobile-clean.png",
     "assets/game/processed/office-workstation-v3/ten-seat-r05-r02/qa/04-browser-mobile-debug.png"
+  ],
+  "exactOfficeC12TenSeatReviewOutputs": [
+    "assets/art/layout-references/office-c12-ten-seat-v1/01-combined-clean.png",
+    "assets/art/layout-references/office-c12-ten-seat-v1/02-combined-grid-highlighted.png",
+    "assets/art/layout-references/office-c12-ten-seat-v1/03-furniture-only-grid.png",
+    "assets/art/layout-references/office-c12-ten-seat-v1/04-people-only-grid.png",
+    "assets/art/layout-references/office-c12-ten-seat-v1/05-furniture-layer-transparent.png",
+    "assets/art/layout-references/office-c12-ten-seat-v1/06-people-layer-transparent.png"
   ],
   "exactDerivedOutputs": [
     "assets/game/processed/office-derived-v1/qa/step-13-before-derived-diff.png",
