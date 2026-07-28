@@ -8,9 +8,12 @@ remain unchanged. The owner-labelled `C12` placement is now represented by
 the isolated `office-c12-ten-seat-v1` review candidate documented in
 `docs/OFFICE_C12_TEN_SEAT_V1.md`. It reuses the approved R05-r02 component
 geometry on the semantic grid and does not authorize Active Office promotion.
-The follow-on `office-semantic-grid-v3` candidate aligns all three visible
-pillar rasters to their existing semantic ranges without changing any cell
-classification.
+The `office-semantic-grid-v3` pillar candidate is rejected because its left
+crop included floor pixels and left the visible wood base short of row 11.
+The completed `office-semantic-grid-v4` correction stretches only the original
+left-pillar wood and base through `A1:B11`, keeps all 1,032 semantic cell
+assignments, and is now the Active Office background
+`office-c-background-modern-v6-current.png`.
 
 The active spatial, facility-reservation, asset-addition, and layout delivery
 plan is documented in `docs/OFFICE_LAYOUT_REWORK_PLAN.md`.

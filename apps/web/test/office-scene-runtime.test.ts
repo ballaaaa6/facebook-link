@@ -1,6 +1,19 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { officeSceneTimeAt } from "../src/features/office/components/officeSceneTime.ts";
+
+const runtimeSource = readFileSync(
+  join(import.meta.dirname, "../src/features/office/components/officeSceneRuntime.ts"),
+  "utf8",
+);
+
+test("uses the completed semantic-grid v4 background and aligned overlays", () => {
+  assert.match(runtimeSource, /office-c-background-modern-v6-current\.png/);
+  assert.match(runtimeSource, /window: \{ x: 527, y: 133, width: 470, height: 204 \}/);
+  assert.match(runtimeSource, /clock: \{ x: 1069, y: 90, width: 80, height: 80 \}/);
+});
 
 test("calculates live clock hand angles in the configured timezone", () => {
   const time = officeSceneTimeAt(new Date("2026-07-26T03:15:00.000Z"), "Asia/Bangkok");

@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "id": "office.semantic-grid.v4",
+  "status": "complete-current",
+  "updatedOn": "2026-07-29",
+  "supersedes": "office.semantic-grid.v3",
+  "map": {
+    "file": "assets/game/maps/office-semantic-grid-v4.json",
+    "sha256": "a155ac426d641b5acc0e90ecc1d6940d6da8350cc3f9458d47550a1e69525aaa"
+  },
+  "currentBackground": {
+    "file": "assets/art/backgrounds/office-c-background-modern-v6-current.png",
+    "sha256": "035a850a9b878b9ae623eb1afac34b78fb51101992bddf0415c76cb5f02e53a5"
+  },
+  "reviewOutputs": [
+    {
+      "file": "assets/art/layout-references/office-semantic-grid-v4/01-current-scene-grid.png",
+      "sha256": "2889e27e5a6af59fd3dc5706685561a446e1baec1f8ccba5db460ccb9bfa3f3f"
+    },
+    {
+      "file": "assets/art/layout-references/office-semantic-grid-v4/02-left-pillar-base-before-after.png",
+      "sha256": "957da8cd531c4ec6b2abef79fc619035d37b31523f8323482d2b9633fb4bcb60"
+    }
+  ],
+  "permissions": {
+    "completedBackground": true,
+    "activeOfficePromotion": true,
+    "backgroundOnly": true,
+    "newCharacterOrFurniture": false
+  },
+  "runtime": {
+    "file": "apps/web/src/features/office/components/officeSceneRuntime.ts",
+    "backgroundImport": "assets/art/backgrounds/office-c-background-modern-v6-current.png"
+  }
+}

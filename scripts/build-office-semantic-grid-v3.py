@@ -167,8 +167,10 @@ def map_data(candidate_content: bytes) -> dict[str, Any]:
     return {
         "schemaVersion": 1,
         "id": "office-semantic-grid-v3",
-        "status": "owner-review",
+        "status": "rejected-left-pillar-base-underfill",
         "supersedes": "office-semantic-grid-v2",
+        "supersededBy": "office-semantic-grid-v4",
+        "rejectionReason": "The left-pillar crop included floor pixels, so its wood base did not fill row 11.",
         "developmentOnly": True,
         "activeOfficePromotion": False,
         "sourceBackground": {
@@ -220,9 +222,11 @@ def manifest_data(
     return {
         "version": 1,
         "id": "office.semantic-grid.v3",
-        "status": "owner-review",
+        "status": "rejected-left-pillar-base-underfill",
         "updatedOn": "2026-07-29",
         "supersedes": "office.semantic-grid.v2",
+        "supersededBy": "office.semantic-grid.v4",
+        "rejectionReason": "left-pillar-base-underfill",
         "map": {"file": repo_path(MAP_PATH), "sha256": sha256_bytes(map_content)},
         "candidateBackground": {
             "file": repo_path(CANDIDATE_PATH),
@@ -279,8 +283,8 @@ def write_or_check(outputs: dict[Path, bytes], check: bool) -> None:
         raise SystemExit("Stale Office semantic-grid v3 outputs: " + ", ".join(stale))
     action = "verified" if check else "built"
     print(
-        f"Office semantic-grid v3 {action}: A1:B11, AB1:AD11, and "
-        "AP1:AQ11 pillar rasters aligned; Active Office unchanged."
+        f"Office semantic-grid v3 rejected evidence {action}: "
+        "left-pillar base underfill preserved; superseded by v4."
     )
 
 

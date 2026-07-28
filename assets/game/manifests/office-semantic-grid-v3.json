@@ -1,12 +1,14 @@
 {
   "version": 1,
   "id": "office.semantic-grid.v3",
-  "status": "owner-review",
+  "status": "rejected-left-pillar-base-underfill",
   "updatedOn": "2026-07-29",
   "supersedes": "office.semantic-grid.v2",
+  "supersededBy": "office.semantic-grid.v4",
+  "rejectionReason": "left-pillar-base-underfill",
   "map": {
     "file": "assets/game/maps/office-semantic-grid-v3.json",
-    "sha256": "f92d3214345dbc7831fcce13d076d921f31785dfe779aaff55d8d3c86e05fedc"
+    "sha256": "fa01638d5110356a75e27ce4126a2c49692e253fbb08c82c07f9268fabd459e4"
   },
   "candidateBackground": {
     "file": "assets/art/backgrounds/office-c-background-modern-v5-pillar-aligned-candidate.png",

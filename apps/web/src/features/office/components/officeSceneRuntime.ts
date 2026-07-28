@@ -1,4 +1,4 @@
-import officeBackground from "../../../../../../assets/art/backgrounds/office-c-background-modern-v3.png";
+import officeBackground from "../../../../../../assets/art/backgrounds/office-c-background-modern-v6-current.png";
 import clockFace from "../../../../../../assets/art/props/clock/clock-face-v1.png";
 import clockHourHand from "../../../../../../assets/art/props/clock/clock-hour-hand-runtime-v1.png";
 import clockMinuteHand from "../../../../../../assets/art/props/clock/clock-minute-hand-runtime-v1.png";
@@ -38,8 +38,8 @@ export const officeSceneAssets = {
 export const officeSceneReference = {
   width: 1672,
   height: 941,
-  window: { x: 528, y: 133, width: 507, height: 209 },
-  clock: { x: 1065, y: 90, width: 80, height: 80 },
+  window: { x: 527, y: 133, width: 470, height: 204 },
+  clock: { x: 1069, y: 90, width: 80, height: 80 },
 } as const;
 
 const windowViews: Record<OfficeSeason, Record<OfficeTimeOfDay, string>> = {

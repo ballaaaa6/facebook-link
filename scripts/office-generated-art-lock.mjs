@@ -24,6 +24,7 @@ const workstationV3Step5R05R02ProcessedDirectory = "assets/game/processed/office
 const workstationV3TenSeatR05R02ReviewDirectory = "assets/art/layout-references/office-workstation-v3/ten-seat-r05-r02";
 const workstationV3TenSeatR05R02ProcessedDirectory = "assets/game/processed/office-workstation-v3/ten-seat-r05-r02";
 const officeC12TenSeatReviewDirectory = "assets/art/layout-references/office-c12-ten-seat-v1";
+const officeSemanticGridV4ReviewDirectory = "assets/art/layout-references/office-semantic-grid-v4";
 const derivedDirectory = "assets/game/processed/office-derived-v1";
 const workstationSource = "assets/art/layout-references/office-workstation-v1/office-workstation-modular-v1-source.png";
 
@@ -81,10 +82,13 @@ const fixedInputs = [
   "scripts/build-office-workstation-step5-r05-r02.py",
   "scripts/build-office-workstation-ten-seat-r05-r02.py",
   "scripts/build-office-c12-ten-seat-v1.py",
+  "scripts/build-office-semantic-grid-v3.py",
+  "scripts/build-office-semantic-grid-v4.py",
   "scripts/build-office-derived-assets.py",
   "scripts/office_derived_asset_recipes.py",
   "scripts/office-derived-assets-check.mjs",
   "scripts/office-generated-art-lock.mjs",
+  "scripts/office-grid-artifacts-check.mjs",
   "scripts/office-workstation-authority-check.mjs",
   "scripts/office-workstation-v2-check.mjs",
   "scripts/office-workstation-step5-check.mjs",
@@ -95,6 +99,7 @@ const fixedInputs = [
   "scripts/office-workstation-step5-r05-r02-check.mjs",
   "scripts/office-workstation-ten-seat-r05-r02-check.mjs",
   "docs/OFFICE_C12_TEN_SEAT_V1.md",
+  "docs/OFFICE_SEMANTIC_GRID_V4.md",
   "apps/web/src/features/office/lab/workstation-v3-step5/OfficeWorkstationStep5R04LabPage.tsx",
   "apps/web/src/features/office/lab/workstation-v3-step5/R04Station.tsx",
   "apps/web/src/features/office/lab/workstation-v3-step5/r04Assets.ts",
@@ -135,6 +140,9 @@ const fixedOutputs = [
   "assets/game/maps/office-workstation-ten-seat-r05-r02.json",
   "assets/game/manifests/office-c12-ten-seat-v1.json",
   "assets/game/maps/office-c12-ten-seat-v1.json",
+  "assets/art/backgrounds/office-c-background-modern-v6-current.png",
+  "assets/game/manifests/office-semantic-grid-v4.json",
+  "assets/game/maps/office-semantic-grid-v4.json",
 ];
 
 function toRepoPath(path) {
@@ -219,6 +227,7 @@ function buildLock() {
   const workstationV3TenSeatR05R02Review = recursiveFiles(workstationV3TenSeatR05R02ReviewDirectory);
   const workstationV3TenSeatR05R02Processed = recursiveFiles(workstationV3TenSeatR05R02ProcessedDirectory);
   const officeC12TenSeatReview = recursiveFiles(officeC12TenSeatReviewDirectory);
+  const officeSemanticGridV4Review = recursiveFiles(officeSemanticGridV4ReviewDirectory);
   const derived = recursiveFiles(derivedDirectory);
   return {
     version: 1,
@@ -236,6 +245,7 @@ function buildLock() {
       ...workstationV3TenSeatR05R02Review,
       ...workstationV3TenSeatR05R02Processed,
       ...officeC12TenSeatReview,
+      ...officeSemanticGridV4Review,
     ]),
     exactContactSheets: contacts,
     exactWorkstationOutputs: workstation,
@@ -255,6 +265,7 @@ function buildLock() {
     exactWorkstationV3TenSeatR05R02ReviewOutputs: workstationV3TenSeatR05R02Review,
     exactWorkstationV3TenSeatR05R02ProcessedOutputs: workstationV3TenSeatR05R02Processed,
     exactOfficeC12TenSeatReviewOutputs: officeC12TenSeatReview,
+    exactOfficeSemanticGridV4ReviewOutputs: officeSemanticGridV4Review,
     exactDerivedOutputs: derived,
   };
 }

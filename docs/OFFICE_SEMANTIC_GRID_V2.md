@@ -1,6 +1,6 @@
 # Office Semantic Grid v2
 
-Status: Superseded by Office Semantic Grid v3 pillar-alignment review
+Status: Superseded by completed Office Semantic Grid v4
 Updated: 2026-07-29
 
 Office Semantic Grid v2 turns the owner's full-image highlights into one
@@ -25,7 +25,8 @@ grid.
 - The floor-material boundary moves from `x=1065` to the `AA|AB` grid boundary
   at `x=1050`.
 - No people, furniture, props, or runtime map placements are added.
-- `office-c-background-modern-v3.png` and Active Office remain unchanged.
+- This historical v2 build did not change Active Office. V4 later promoted the
+  corrected background after the v3 left-base rejection.
 
 Run `npm run art:office-semantic-grid` to rebuild the candidate and review
 images. Promotion requires a separate explicit owner decision.

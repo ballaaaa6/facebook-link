@@ -1,30 +1,35 @@
 {
   "schemaVersion": 1,
-  "id": "office-semantic-grid-v3",
-  "status": "rejected-left-pillar-base-underfill",
-  "supersedes": "office-semantic-grid-v2",
-  "supersededBy": "office-semantic-grid-v4",
-  "rejectionReason": "The left-pillar crop included floor pixels, so its wood base did not fill row 11.",
-  "developmentOnly": true,
-  "activeOfficePromotion": false,
+  "id": "office-semantic-grid-v4",
+  "status": "complete-current",
+  "supersedes": "office-semantic-grid-v3",
+  "developmentOnly": false,
+  "activeOfficePromotion": true,
+  "completedOn": "2026-07-29",
   "sourceBackground": {
     "file": "assets/art/backgrounds/office-c-background-modern-v4-candidate.png",
     "sha256": "5ab56afc20ec4540d5ad613079e6fa4f9c940982988bf34720869d606cf63289",
     "mustRemainByteIdentical": true
   },
-  "candidateBackground": {
+  "rejectedBackground": {
     "file": "assets/art/backgrounds/office-c-background-modern-v5-pillar-aligned-candidate.png",
     "sha256": "f69ec2c23ae2673f9452ee0a5f9dbe90def7738b51960092e57016dc1e2d13ee",
+    "reason": "left-pillar-base-underfill"
+  },
+  "currentBackground": {
+    "file": "assets/art/backgrounds/office-c-background-modern-v6-current.png",
+    "sha256": "035a850a9b878b9ae623eb1afac34b78fb51101992bddf0415c76cb5f02e53a5",
     "pixels": [
       1672,
       941
     ]
   },
-  "activeOfficeBaseline": {
+  "activeOfficeMap": {
     "file": "assets/game/maps/office-c-v2.json",
     "sha256": "c40db448eb8e6d0f3fea67a41f716c0108aca63a4136cfad15293534273c618d",
     "mustRemainByteIdentical": true
   },
+  "runtimeConsumer": "apps/web/src/features/office/components/officeSceneRuntime.ts",
   "grid": {
     "columns": 43,
     "rows": 24,
@@ -1180,7 +1185,7 @@
         0,
         0,
         84,
-        442
+        416
       ],
       "targetPixels": [
         0,
@@ -1188,12 +1193,7 @@
         78,
         431
       ],
-      "releasedHorizontalPixels": [
-        78,
-        0,
-        84,
-        431
-      ],
+      "correction": "stretch-wood-through-row-11-without-floor-pixels",
       "targetWidth": 78,
       "targetHeight": 431
     },
@@ -1212,7 +1212,7 @@
         1167,
         431
       ],
-      "releasedHorizontalPixels": null,
+      "correction": "retain-v3-grid-alignment",
       "targetWidth": 117,
       "targetHeight": 431
     },
@@ -1231,21 +1231,33 @@
         1672,
         431
       ],
-      "releasedHorizontalPixels": [
-        1585,
-        0,
-        1594,
-        431
-      ],
+      "correction": "retain-v3-grid-alignment",
       "targetWidth": 78,
       "targetHeight": 431
     }
   ],
+  "correction": {
+    "issue": "left-pillar-base-underfill",
+    "rejectedSourcePixels": [
+      0,
+      0,
+      84,
+      442
+    ],
+    "correctedSourcePixels": [
+      0,
+      0,
+      84,
+      416
+    ],
+    "method": "stretch-only-the-original-left-pillar-wood-and-base-to-A1:B11"
+  },
   "rules": {
     "allCellsClassified": true,
     "pillarArtMatchesSemanticRanges": true,
+    "leftPillarBaseFillsRow11": true,
     "pillarPixelsEndBeforeRow12": true,
-    "activeOfficePromotion": false,
+    "activeOfficePromotion": true,
     "newCharacterOrFurniture": false
   }
 }
