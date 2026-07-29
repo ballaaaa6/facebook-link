@@ -1,4 +1,4 @@
-# Office Facility Vending U01-r02
+# Office Facility Vending U01-r03
 
 Status: F0-F7 passed; owner review F8 pending
 Updated: 2026-07-29
@@ -6,7 +6,7 @@ Scope: One front-only `vending.machine.modern` facility family
 
 ## Decision boundary
 
-U01-r02 is a development-only vertical slice. It is not imported by Active
+U01-r03 is a development-only vertical slice. It is not imported by Active
 Office, is not authorized for a furniture-only room, and cannot approve
 another facility family. Water and Coffee production, F9 room placement, and
 F10 runtime integration remain blocked until this exact revision receives an
@@ -18,23 +18,24 @@ admitted by
 processed vending crops are not pixel sources. The older item-neutral staging
 loop remains behavior reference only.
 
-## Why r02 exists
+## Why r03 exists
 
-U01-r01 passed mechanical and reservation checks, but owner review exposed an
-attachment defect: every character received a can at one fixed center-like
-coordinate derived from `actor + (48,54)`. The item did not actually follow
-each character's hand.
+U01-r01 exposed a fixed-coordinate attachment defect. U01-r02 corrected the
+coordinates with per-character, per-frame hand sockets, but owner review found
+the soda still hard to see because the hand foreground mask was rendered above
+the small prop.
 
-R02 supersedes that review candidate. It uses Office Spatial Socket I01 and
-Held Props H01:
+R03 preserves the socket repair and supersedes only that presentation. It uses
+Office Spatial Socket I01 and Held Props H01:
 
 ```text
-propOrigin = parentSocketWorld - propGripSocket
+propOrigin = parentSocketWorld - propVisualCenterSocket
 attachmentDelta = [0,0]
+renderOrder = actor-body -> held-prop
 ```
 
-The r01 board is retained as historical evidence. It is never a runtime or
-pixel source.
+The r02 output folder and handoff board remain immutable historical evidence.
+They are never runtime or pixel sources for r03.
 
 ## Facility contract
 
@@ -87,7 +88,7 @@ from the independently produced H01 source authority documented in
 
 ## Part decomposition
 
-The r02 family contains:
+The r03 family contains:
 
 1. `static-shell`;
 2. four local viewport states A-D;
@@ -106,7 +107,7 @@ zero embedded product pixels in machine frames A-D.
 
 ## Facility sockets and handoff
 
-U01-r02 declares facility-local runtime sockets:
+U01-r03 declares facility-local runtime sockets:
 
 | Socket | Point |
 | --- | --- |
@@ -128,17 +129,18 @@ The six-frame action timeline uses zero-based indices:
 | 4 | held | `actor.hand.primary.grip` |
 | 5 | absent/released | none |
 
-The H01 can uses `grip.primary` at native scale `1`. Actor-held frames render:
+The H01 can uses its alpha-bounds `visual.center` at native scale `1`.
+Actor-held frames render:
 
 ```text
 actor-body
 held-prop
-hand-foreground
 ```
 
-Every visible case resolves the prop grip to its parent with exact delta
-`[0,0]`. Center attachment, per-scene offsets, per-character scale, and
-missing-socket fallbacks are disabled.
+Nothing draws over the prop afterward. Every visible case resolves the visual
+center to its parent with exact delta `[0,0]`; every actor-held case keeps 100%
+of the prop alpha visible. Hand masks, per-scene offsets, per-character scale,
+and missing-socket fallbacks are disabled for this presentation.
 
 ## Interaction and reservation
 
@@ -164,7 +166,7 @@ reservation at second 30.
 
 ## Character and attachment evidence
 
-U01-r02 validates the I01 `interact-front` authority:
+U01-r03 validates the I01 `interact-front` authority:
 
 - 18 characters;
 - 6 active frames;
@@ -174,7 +176,9 @@ U01-r02 validates the I01 `interact-front` authority:
 - 36 actor-hand attachment cases;
 - one facility scale;
 - H01 runtime scale `1`;
-- source-exact hand masks;
+- 36 fully visible actor-held front overlays;
+- zero hand-foreground-mask uses;
+- zero visible-alpha failures;
 - no per-character facility scale or actor offset; and
 - zero attachment-delta failures.
 
@@ -192,8 +196,9 @@ Active Office.
 7. `07-roster-fit-18x6.png`
 8. `08-reservation-timeline-30s.png`
 9. `09-socket-attachment-debug.png`
-10. `10-r01-r02-before-after.png`
-11. `11-three-character-six-frame-zoom.png`
+10. `10-r02-r03-before-after.png`
+11. `11-three-character-six-frame-front-overlay.png`
+12. `12-three-character-hand-closeups-8x.png`
 
 All paths, hashes, dimensions, source records, parts, animation composites,
 socket authorities, pose cases, and review boards are locked by
@@ -213,15 +218,15 @@ and Active Office isolation.
 
 ## F8 owner checklist
 
-Review all eleven U01-r02 boards together and decide only this exact hash set:
+Review all twelve U01-r03 boards together and decide only this exact hash set:
 
 - the front visual and `2 x 1 x 3` scale;
 - static shell and local animation;
 - empty pickup tray and separate effect;
 - can position at the facility output socket;
-- can position and hand occlusion for all 18 characters;
-- enlarged six-frame handoff for Einstein, AI Workbot, and Doraemon;
-- the r01-to-r02 repair;
+- can position and complete top-layer visibility for all 18 characters;
+- six-frame and 8x hand close-ups for Einstein, AI Workbot, and Doraemon;
+- the r02-to-r03 presentation repair;
 - approach and exit cells; and
 - two-user failure/retry behavior.
 

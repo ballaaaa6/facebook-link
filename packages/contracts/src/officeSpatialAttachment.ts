@@ -70,10 +70,15 @@ export function resolveOfficeAttachment({
 export function officeAttachmentRenderOrder(
   role: OfficeAttachmentLayerRole,
 ): readonly ["actor-body", "held-prop", "hand-foreground"] | readonly [
+  "actor-body",
+  "held-prop",
+] | readonly [
   "facility-base",
   "front-effect",
 ] {
   return role === "front-effect"
     ? ["facility-base", "front-effect"]
+    : role === "front-overlay"
+    ? ["actor-body", "held-prop"]
     : ["actor-body", "held-prop", "hand-foreground"];
 }

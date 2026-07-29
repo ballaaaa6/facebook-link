@@ -10,43 +10,36 @@ import {
 export interface HeldPropAttachmentInput {
   actorTransform: OfficeWorldTransform;
   actorRootSocket: OfficePixelPoint;
-  actorGripSocket: OfficePixelPoint;
-  propGripSocket: OfficePixelPoint;
-  foregroundMask: string;
+  actorHandTargetSocket: OfficePixelPoint;
+  propVisualCenterSocket: OfficePixelPoint;
 }
 
 export interface HeldPropAttachmentPresentation {
   actorOrigin: { x: number; y: number };
   propOrigin: { x: number; y: number };
   attachmentDelta: { x: number; y: number };
-  foregroundMask: string;
-  renderOrder: readonly ["actor-body", "held-prop", "hand-foreground"];
+  renderOrder: readonly ["actor-body", "held-prop"];
 }
 
 export function resolveHeldPropAttachment({
   actorTransform,
   actorRootSocket,
-  actorGripSocket,
-  propGripSocket,
-  foregroundMask,
+  actorHandTargetSocket,
+  propVisualCenterSocket,
 }: HeldPropAttachmentInput): HeldPropAttachmentPresentation {
-  if (!foregroundMask) {
-    throw new Error("held prop attachment requires a hand foreground mask");
-  }
   const actorOrigin = resolveOfficeEntityOrigin(actorTransform, actorRootSocket);
   const resolved = resolveOfficeAttachment({
     parentOrigin: actorOrigin,
-    parentSocket: actorGripSocket,
-    childSocket: propGripSocket,
-    layerRole: "between-actor-and-hand",
+    parentSocket: actorHandTargetSocket,
+    childSocket: propVisualCenterSocket,
+    layerRole: "front-overlay",
   });
   return {
     actorOrigin,
     propOrigin: resolved.childOrigin,
     attachmentDelta: resolved.attachmentDelta,
-    foregroundMask,
     renderOrder: officeAttachmentRenderOrder(
-      "between-actor-and-hand",
+      "front-overlay",
     ) as HeldPropAttachmentPresentation["renderOrder"],
   };
 }

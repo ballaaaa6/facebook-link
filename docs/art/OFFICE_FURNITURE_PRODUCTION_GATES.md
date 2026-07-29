@@ -143,8 +143,9 @@ borrow approval from an earlier one.
   the butt rests on the cushion and both legs hang naturally in front.
 - Keep chairs and people separate from desks and tables.
 - Keep held props and dispensed items separate from machines and characters.
-- Give every held prop its own native-scale grip socket. Actor-held props must
-  render between the actor body and a source-exact hand foreground mask.
+- Give every held prop a deterministic alpha-bounds visual-center socket at
+  native scale. Actor-held props render after the actor body as a complete
+  front overlay; no hand or actor layer may hide prop pixels afterward.
 - Record source rectangles and hashes for every derived part.
 
 ### F5 — Placement contract
@@ -241,17 +242,19 @@ per-family rule above.
 
 Current upright-facility execution:
 `docs/art/OFFICE_SPATIAL_SOCKET_SYSTEM_I01.md` defines the isolated I01/H01
-coordinate, hand-socket, prop-grip, foreground-mask, and movement authority.
+coordinate, hand-target, prop-visual-center, front-overlay, and movement authority.
 It proves 18 characters, 108 action frames, 16 fresh held props, 864 visible
-attachment cases, and zero attachment drift. I01/H01 remain
+attachment cases, zero mask uses, full prop-alpha visibility, and zero
+attachment drift. I01/H01 remain
 `owner-review-f8-pending` and are not imported by Active Office.
 
 `docs/art/OFFICE_FACILITY_VENDING_U01.md` rebuilds the front-only
 `vending.machine.modern` family from the audited original mechanical-loop
 master. Its static shell, local four-frame viewport, empty pickup tray, effect,
-and H01 held output pass F0-F7. U01-r02 replaces the rejected fixed-center r01
-attachment with a facility-output-to-actor-hand socket timeline across 108
-interact-front cases, plus the 30-second contention/failure/retry lab. U01-r02
+and H01 held output pass F0-F7. U01-r03 preserves the r02 socket repair and
+replaces its occluded hand-mask presentation with a complete front overlay
+across 108 interact-front cases, plus the 30-second contention/failure/retry
+lab. U01-r03
 is independently `owner-review-f8-pending`. Do not begin Water/Coffee, F9 room
 placement, or F10 Active Office integration until its F8 decision is recorded.
 

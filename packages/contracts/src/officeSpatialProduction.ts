@@ -33,6 +33,7 @@ export const officeHeldPropProfiles = [
 export const officeAttachmentLayerRoles = [
   "behind-actor",
   "between-actor-and-hand",
+  "front-overlay",
   "front-effect",
 ] as const;
 
@@ -125,7 +126,10 @@ export interface OfficeHeldPropRecord {
   alphaBoundsRuntime: readonly [number, number, number, number];
   primaryGripSocket: OfficePixelPoint;
   secondaryGripSocket: OfficePixelPoint | null;
-  layerRole: "between-actor-and-hand";
+  visualCenterSocket: OfficePixelPoint;
+  actorSocketRule: "primary-hand" | "midpoint-primary-secondary";
+  attachmentMode: "front-overlay";
+  layerRole: "front-overlay";
   runtimeScale: 1;
 }
 
@@ -175,6 +179,9 @@ export interface OfficeAttachmentMatrixValidation {
   attachmentDeltaFailures: 0;
   runtimeScaleFailures: 0;
   missingMaskFailures: 0;
+  frontOverlayCaseCount: 864;
+  foregroundMaskUses: 0;
+  visibleAlphaFailures: 0;
 }
 
 export interface OfficeSpatialAuthorityManifest {

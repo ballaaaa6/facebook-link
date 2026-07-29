@@ -34,22 +34,24 @@ workstation scope remain blocked.
 
 The isolated Office Spatial Socket I01 and Held Props H01 authority is
 documented in `docs/art/OFFICE_SPATIAL_SOCKET_SYSTEM_I01.md`. It defines
-integer world/local transforms, 108 per-character action-frame sockets, 54
-source-exact hand masks, 16 fresh native-scale held props, and 864 exact
-attachment cases. It forbids center anchors, scene offsets, runtime scale
-fixes, and missing-socket fallbacks. I01/H01 pass F0-F7 and remain
+integer world/local transforms, 108 per-character action-frame sockets, 16
+fresh native-scale held props, and 864 fully visible front-overlay attachment
+cases. The 54 source-exact hand masks remain calibration evidence and are not
+drawn by this presentation. It forbids scene offsets, runtime scale fixes, and
+missing-socket fallbacks. I01/H01 pass F0-F7 and remain
 `owner-review-f8-pending`; Active Office does not import them.
 
-The first upright facility is the isolated front-only Vending U01-r02 vertical
+The first upright facility is the isolated front-only Vending U01-r03 vertical
 slice documented in `docs/art/OFFICE_FACILITY_VENDING_U01.md`. It re-extracts
 four admitted machine components from the original mechanical-loop master,
 keeps one static shell, confines four animation states to a local viewport,
-and separates the empty pickup tray, dispense effect, and H01 held output. R02
-supersedes r01's fixed center-like prop coordinate. The six-frame timeline now
-moves the prop from `facility.output.primary` to each character's measured
+and separates the empty pickup tray, dispense effect, and H01 held output. R03
+keeps r02's socket coordinates but draws the complete prop above the actor,
+without a hand mask. The six-frame timeline moves the prop from
+`facility.output.primary` to each character's measured
 `actor.hand.primary.grip` with delta `[0,0]`. Its `2 x 1 x 3` geometry,
 stand/approach/exit cells, 108 pose cases, and 30-second failure/retry proof
-pass F0-F7. U01-r02 is independently `owner-review-f8-pending`; Water/Coffee,
+pass F0-F7. U01-r03 is independently `owner-review-f8-pending`; Water/Coffee,
 F9, F10, and Active Office imports remain blocked.
 
 Workstation correction (2026-07-28): the isolated `5 x 4` staging layout,

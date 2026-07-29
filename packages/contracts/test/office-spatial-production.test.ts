@@ -4,6 +4,7 @@ import test from "node:test";
 import {
   resolveOfficeAttachment,
   resolveOfficeEntityOrigin,
+  officeAttachmentRenderOrder,
   validateOfficeCharacterActionSocketsManifest,
   validateOfficeHeldPropsManifest,
   validateOfficeSpatialAuthorityManifest,
@@ -44,6 +45,8 @@ test("H01 held props are fresh native-scale grip assets", () => {
   assert.equal(props.count, 16);
   assert.equal(props.sourcePolicy.processedPixelReuse, false);
   assert.ok(props.props.every(({ runtimeScale }) => runtimeScale === 1));
+  assert.ok(props.props.every(({ attachmentMode }) => attachmentMode === "front-overlay"));
+  assert.ok(props.props.every(({ visualCenterSocket }) => visualCenterSocket.length === 2));
   assert.ok(props.props.some(({ profile }) => profile === "single-handle"));
   assert.ok(props.props.some(({ profile }) => profile === "two-hand-wide"));
 });
@@ -52,6 +55,9 @@ test("I01 resolves exact attachment deltas across the matrix and movement proof"
   assert.deepEqual(validateOfficeSpatialAuthorityManifest(authority), []);
   assert.equal(authority.matrixValidation.visibleCaseCount, 864);
   assert.equal(authority.matrixValidation.attachmentDeltaFailures, 0);
+  assert.equal(authority.matrixValidation.frontOverlayCaseCount, 864);
+  assert.equal(authority.matrixValidation.foregroundMaskUses, 0);
+  assert.equal(authority.matrixValidation.visibleAlphaFailures, 0);
   assert.equal(authority.movementValidation.propFollowFailures, 0);
   assert.equal(authority.movementValidation.maximumAttachmentDeltaPixels, 0);
 });
@@ -71,14 +77,14 @@ test("socket transforms follow world movement without scene offsets", () => {
   const first = resolveOfficeAttachment({
     parentOrigin: firstOrigin,
     parentSocket: frame.primaryGripSocket,
-    childSocket: prop.primaryGripSocket,
-    layerRole: "between-actor-and-hand",
+    childSocket: prop.visualCenterSocket,
+    layerRole: "front-overlay",
   });
   const moved = resolveOfficeAttachment({
     parentOrigin: movedOrigin,
     parentSocket: frame.primaryGripSocket,
-    childSocket: prop.primaryGripSocket,
-    layerRole: "between-actor-and-hand",
+    childSocket: prop.visualCenterSocket,
+    layerRole: "front-overlay",
   });
   assert.deepEqual(first.attachmentDelta, { x: 0, y: 0 });
   assert.deepEqual(moved.attachmentDelta, { x: 0, y: 0 });
@@ -88,6 +94,13 @@ test("socket transforms follow world movement without scene offsets", () => {
       y: moved.childOrigin.y - first.childOrigin.y,
     },
     { x: 192, y: 64 },
+  );
+});
+
+test("front-overlay presentation draws the complete held prop above the actor", () => {
+  assert.deepEqual(
+    officeAttachmentRenderOrder("front-overlay"),
+    ["actor-body", "held-prop"],
   );
 });
 

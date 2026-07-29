@@ -33,7 +33,7 @@
     },
     "heldProps": {
       "file": "assets/game/manifests/office-held-props-h01.json",
-      "sha256": "2e82c73986b2a3b4ab10d44cc1d43185e6742b9eaf6ea9efc5f3950b94d266bc"
+      "sha256": "59da612252ec1ae1767754b507ce8bd27896f7202f7c177bfaf874be5d1a105a"
     },
     "approvedSeatSockets": {
       "file": "assets/game/manifests/office-character-seat-sockets-v1.json",
@@ -50,6 +50,7 @@
     "perCharacterRuntimeScale": false,
     "normalizedCoordinatesAuthority": false,
     "missingSocketFallback": false,
+    "handForegroundMasksInFrontOverlay": false,
     "activeOfficeImport": false
   },
   "matrixValidation": {
@@ -61,7 +62,10 @@
     "exactPrimarySocketCaseCount": 864,
     "attachmentDeltaFailures": 0,
     "runtimeScaleFailures": 0,
-    "missingMaskFailures": 0
+    "missingMaskFailures": 0,
+    "frontOverlayCaseCount": 864,
+    "foregroundMaskUses": 0,
+    "visibleAlphaFailures": 0
   },
   "movementValidation": {
     "worldPositionsTested": 4,
@@ -147,7 +151,7 @@
   "reviewEvidence": [
     {
       "file": "assets/art/layout-references/office-spatial-i01/01-coordinate-transform-chain.png",
-      "sha256": "630a1b0aed9cd1ca69ff742ec6d3a2496d69ab3e65470e8b0ac6390aeba5c0fd"
+      "sha256": "6dda769f7fa794392e6b374c04309f77bc7491c7df2b36820c516e62575571e0"
     },
     {
       "file": "assets/art/layout-references/office-spatial-i01/02-character-sockets-page-1.png",
@@ -163,7 +167,7 @@
     },
     {
       "file": "assets/art/layout-references/office-spatial-i01/03-held-prop-grips.png",
-      "sha256": "536ccb4f55afd9e2e5a9e526e0f8badf697be037a52dabe1b6111573057a0190"
+      "sha256": "c7f193584e60bbd89d5fc3e9d8bd5c86088d78794238ec66875371481ad496bc"
     },
     {
       "file": "assets/art/layout-references/office-spatial-i01/04-source-ownership.png",
@@ -171,47 +175,47 @@
     },
     {
       "file": "assets/art/layout-references/office-spatial-i01/05-layer-decomposition.png",
-      "sha256": "ee98793664662fd01448732bae04d10357c4e8474982c82a26249b1dcd22715b"
+      "sha256": "fb31b19be356d66aae33758744f3917ae9ee0c84fceb187c44913f22600dba73"
     },
     {
       "file": "assets/art/layout-references/office-spatial-i01/06-full-matrix-page-01.png",
-      "sha256": "f70b770b98690640c35fb9801f21d8698b5362ca81f87ba545061694dce1edd5"
+      "sha256": "3b77446efd368703e4a4dcd5b369ad92c2317988046bb883c973d5fec8ef1251"
     },
     {
       "file": "assets/art/layout-references/office-spatial-i01/06-full-matrix-page-02.png",
-      "sha256": "97d0c452291342b76b65ebc2d37986a16e62a2043de821798595cf93a04fcb8a"
+      "sha256": "73258af4d6d1e2596ebe380b618018d19a586b2b15003dbd0ae136bcc8ef88a0"
     },
     {
       "file": "assets/art/layout-references/office-spatial-i01/06-full-matrix-page-03.png",
-      "sha256": "6a30a540ed58da58ee7023ee447afc6d9412ff978b417421c86db6472c877b6d"
+      "sha256": "f6edaefe176cc7d374450a5960e67f715dc90e545440db139a8c89c8c1a63648"
     },
     {
       "file": "assets/art/layout-references/office-spatial-i01/06-full-matrix-page-04.png",
-      "sha256": "24ebf62f65167203c7cb457cbc2a50ce903817c4998276d100cbb8a27ad6a0e3"
+      "sha256": "d0982cd647c660c450152078b1afbf2182e35d0a92e06fe1d8a664d0fc470458"
     },
     {
       "file": "assets/art/layout-references/office-spatial-i01/06-full-matrix-page-05.png",
-      "sha256": "d0a45c52e2891b1e4f48d0a8a293236ec57a635e70e0d444ccf7e6c6f3aafbf2"
+      "sha256": "a9c58976cbc27367a6e02e539d1122f065810e09b707268648c7319bd04abd62"
     },
     {
       "file": "assets/art/layout-references/office-spatial-i01/06-full-matrix-page-06.png",
-      "sha256": "5ba5bc07d14e969f06baba896e83b218c8bba434f72b2064d2aecba84d214dbe"
+      "sha256": "e69976ca2f180e9457600887a9875f61c0baef35c81852c0828a3bf8fde60279"
     },
     {
       "file": "assets/art/layout-references/office-spatial-i01/06-full-matrix-page-07.png",
-      "sha256": "8a76bff74f3d6559d026c7290c16451c26dfffdd2fee037766aee80ae483de7d"
+      "sha256": "058616a3af7760655ab071472840a4e3e7aebba985d35a10e8ddd42e05431101"
     },
     {
       "file": "assets/art/layout-references/office-spatial-i01/06-full-matrix-page-08.png",
-      "sha256": "8a6f7333d58e9bf730ceef0fab86675c93c76a0768f2b926a19956afdd688c06"
+      "sha256": "10d275ba87157b73d555157f9202797743f9956180f6af8b52340437ed264a58"
     },
     {
       "file": "assets/art/layout-references/office-spatial-i01/06-full-matrix-page-09.png",
-      "sha256": "8044cc40b9e438062e8235979a2b95bf9b82e3fcb52ac648b7cc51e6e605b32c"
+      "sha256": "72c3817c21d18ecd7bf4e4da2503e8a3647f98678c3118899cbf49df8e80520d"
     },
     {
       "file": "assets/art/layout-references/office-spatial-i01/07-world-movement-proof.png",
-      "sha256": "a67b8cf637ee65669ea0ac7658e698fd898adaaf33eaa90c1e902907a9eaa85b"
+      "sha256": "5af3fe6d5dacdbd0d7cd44c0218bad648e36a5a1bc15a11b8f666d916b630f33"
     }
   ],
   "ownerDecision": null

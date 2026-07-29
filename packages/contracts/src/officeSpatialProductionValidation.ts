@@ -183,10 +183,19 @@ export function validateOfficeHeldPropsManifest(value: unknown): string[] {
       `${path}.secondaryGripSocket is invalid`,
     );
     requireValue(issues, prop.runtimeScale === 1, `${path}.runtimeScale must equal one`);
+    requireValue(issues, point(prop.visualCenterSocket), `${path}.visualCenterSocket is invalid`);
     requireValue(
       issues,
-      prop.layerRole === "between-actor-and-hand",
-      `${path}.layerRole must preserve the hand foreground`,
+      ["primary-hand", "midpoint-primary-secondary"].includes(
+        String(prop.actorSocketRule),
+      ),
+      `${path}.actorSocketRule is invalid`,
+    );
+    requireValue(
+      issues,
+      prop.attachmentMode === "front-overlay"
+        && prop.layerRole === "front-overlay",
+      `${path} must use the front-overlay presentation`,
     );
     for (const key of ["runtimeSha256", "authoringSha256"]) {
       requireValue(
@@ -227,6 +236,9 @@ export function validateOfficeSpatialAuthorityManifest(value: unknown): string[]
   requireValue(issues, matrix.attachmentDeltaFailures === 0, "attachment deltas must be zero");
   requireValue(issues, matrix.runtimeScaleFailures === 0, "runtime scaling is forbidden");
   requireValue(issues, matrix.missingMaskFailures === 0, "held frames require masks");
+  requireValue(issues, matrix.frontOverlayCaseCount === 864, "front overlay matrix is incomplete");
+  requireValue(issues, matrix.foregroundMaskUses === 0, "front overlays cannot use hand masks");
+  requireValue(issues, matrix.visibleAlphaFailures === 0, "front overlay prop alpha must remain visible");
   const movement = record(value.movementValidation) ? value.movementValidation : {};
   requireValue(
     issues,

@@ -171,6 +171,11 @@ try {
     );
     const record = auditById.get(prop.auditRecordId);
     const grip = prop.primaryGripSocket;
+    const [left, top, right, bottom] = prop.alphaBoundsRuntime;
+    const visualCenter = [
+      Math.floor((left + right - 1) / 2),
+      Math.floor((top + bottom - 1) / 2),
+    ];
     add(
       record?.sourcePath === source.path
         && record?.sourceSha256 === source.sha256
@@ -182,7 +187,12 @@ try {
         && same(prop.runtimeCanvas, [20, 20])
         && same(prop.authoringCanvas, [40, 40])
         && prop.runtimeScale === 1
-        && prop.layerRole === "between-actor-and-hand"
+        && prop.attachmentMode === "front-overlay"
+        && prop.layerRole === "front-overlay"
+        && same(prop.visualCenterSocket, visualCenter)
+        && ["primary-hand", "midpoint-primary-secondary"].includes(
+          prop.actorSocketRule,
+        )
         && Array.isArray(grip)
         && grip[0] >= 0
         && grip[0] < 20
@@ -236,6 +246,9 @@ try {
         attachmentDeltaFailures: 0,
         runtimeScaleFailures: 0,
         missingMaskFailures: 0,
+        frontOverlayCaseCount: 864,
+        foregroundMaskUses: 0,
+        visibleAlphaFailures: 0,
       })
       && authority.movementValidation?.worldPositionsTested === 4
       && authority.movementValidation?.frameCasesTested === 3456
@@ -302,7 +315,7 @@ if (failures.length) {
 } else {
   process.stdout.write(
     "Office Spatial I01/H01 OK: 18 actors, 108 frame sockets, 54 source-exact "
-      + "hand masks, 16 fresh held props, 864 exact attachments, movement "
+      + "calibration masks, 16 fresh held props, 864 fully visible front overlays, movement "
       + "proof, F8 pending, and Active Office unchanged.\n",
   );
 }

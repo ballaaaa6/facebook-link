@@ -2,8 +2,8 @@
 
 The builder reads only audited original held-prop pixels, accepted staging
 character atlases, and explicit authoring calibration metadata. It emits
-integer 1x sockets, source-exact hand foreground masks, deterministic review
-evidence, and manifests that stop at owner review F8.
+integer 1x sockets, deterministic visual-center front overlays, source-exact
+calibration masks, review evidence, and manifests that stop at owner review F8.
 """
 
 from __future__ import annotations
@@ -511,6 +511,13 @@ def build_prop_manifest(
             raise ValueError(f"{asset_id} primary grip is not near prop pixels")
         if secondary is not None and not grip_near_alpha(runtime, secondary):
             raise ValueError(f"{asset_id} secondary grip is not near prop pixels")
+        alpha_bounds = runtime.getbbox()
+        if alpha_bounds is None:
+            raise ValueError(f"{asset_id} runtime prop is empty")
+        visual_center = (
+            (alpha_bounds[0] + alpha_bounds[2] - 1) // 2,
+            (alpha_bounds[1] + alpha_bounds[3] - 1) // 2,
+        )
         slug = asset_id.removeprefix("held.")
         authoring_path = PROP_ROOT / "authoring/props" / f"{slug}@2x.png"
         runtime_path = PROP_ROOT / "runtime/props" / f"{slug}.png"
@@ -541,10 +548,17 @@ def build_prop_manifest(
                 "runtimeSha256": sha_bytes(runtime_data),
                 "authoringFile": repo_path(authoring_path),
                 "authoringSha256": sha_bytes(authoring_data),
-                "alphaBoundsRuntime": list(runtime.getbbox()),
+                "alphaBoundsRuntime": list(alpha_bounds),
                 "primaryGripSocket": list(primary),
                 "secondaryGripSocket": list(secondary) if secondary else None,
-                "layerRole": "between-actor-and-hand",
+                "visualCenterSocket": list(visual_center),
+                "actorSocketRule": (
+                    "midpoint-primary-secondary"
+                    if spec["profile"] == "two-hand-wide"
+                    else "primary-hand"
+                ),
+                "attachmentMode": "front-overlay",
+                "layerRole": "front-overlay",
                 "runtimeScale": 1,
             }
         )
@@ -591,13 +605,45 @@ def build_prop_manifest(
     return manifest, runtime_images
 
 
+def actor_attachment_socket(
+    frame: dict[str, Any],
+    prop: dict[str, Any],
+) -> tuple[int, int]:
+    primary = tuple(frame["primaryGripSocket"])
+    if prop["actorSocketRule"] == "primary-hand":
+        return primary
+    secondary = tuple(frame["secondaryGripSocket"])
+    return (
+        (primary[0] + secondary[0]) // 2,
+        (primary[1] + secondary[1]) // 2,
+    )
+
+
+def visible_prop_alpha_fraction(
+    prop: Image.Image,
+    prop_origin: tuple[int, int],
+    canvas_size: tuple[int, int],
+) -> float:
+    alpha = prop.getchannel("A")
+    total = sum(1 for value in alpha.getdata() if value)
+    visible = 0
+    for y in range(prop.height):
+        for x in range(prop.width):
+            if (
+                alpha.getpixel((x, y))
+                and 0 <= prop_origin[0] + x < canvas_size[0]
+                and 0 <= prop_origin[1] + y < canvas_size[1]
+            ):
+                visible += 1
+    return visible / total if total else 0
+
+
 def compose_attachment(
     actor: Image.Image,
-    mask: Image.Image,
     prop: Image.Image,
     actor_socket: tuple[int, int],
     prop_socket: tuple[int, int],
-) -> tuple[Image.Image, tuple[int, int], tuple[int, int]]:
+) -> tuple[Image.Image, tuple[int, int], tuple[int, int], float]:
     composition = Image.new("RGBA", FRAME_SIZE, (0, 0, 0, 0))
     composition.alpha_composite(actor)
     prop_origin = (
@@ -605,13 +651,13 @@ def compose_attachment(
         actor_socket[1] - prop_socket[1],
     )
     composition.alpha_composite(prop, prop_origin)
-    composition.alpha_composite(mask)
     resolved = (
         prop_origin[0] + prop_socket[0],
         prop_origin[1] + prop_socket[1],
     )
     delta = (resolved[0] - actor_socket[0], resolved[1] - actor_socket[1])
-    return composition, prop_origin, delta
+    visible_fraction = visible_prop_alpha_fraction(prop, prop_origin, FRAME_SIZE)
+    return composition, prop_origin, delta, visible_fraction
 
 
 def review_coordinate_system() -> Image.Image:
@@ -621,15 +667,15 @@ def review_coordinate_system() -> Image.Image:
     draw.text((30, 20), "Office Spatial Socket I01", font=font(34, True), fill="white")
     draw.text(
         (30, 61),
-        "World transform → entity root → semantic socket → child grip; integer pixels only",
+        "World transform → entity root → hand target → prop visual center; integer pixels only",
         font=font(16),
         fill=(190, 205, 220, 255),
     )
     boxes = [
         (70, 190, 360, 420, "WORLD", "x/y/z tiles\n32 px per tile\nscene placement only", BLUE),
         (480, 190, 770, 420, "ACTOR ROOT", "floor/seat socket\nfull 96 x 104 frame\nper-character authority", GREEN),
-        (890, 190, 1180, 420, "HAND SOCKET", "pose + frame\nprimary / secondary\nno normalized authority", ORANGE),
-        (1290, 190, 1530, 420, "PROP GRIP", "native 20 x 20\nprimary / secondary\nscale = 1", RED),
+        (890, 190, 1180, 420, "HAND TARGET", "primary hand or\nhand midpoint\nno scene offset", ORANGE),
+        (1290, 190, 1530, 420, "VISUAL CENTER", "alpha bounds center\nfront overlay\nscale = 1", RED),
     ]
     for left, top, right, bottom, title, body, color in boxes:
         draw.rounded_rectangle((left, top, right, bottom), 16, fill="white", outline=color, width=3)
@@ -645,7 +691,7 @@ def review_coordinate_system() -> Image.Image:
         "entityOrigin = project(worldPosition) - rootSocket",
         "parentSocketWorld = parentOrigin + parentLocalSocket",
         "childOrigin = parentSocketWorld - childLocalSocket",
-        "required invariant: resolved child grip - parent socket = [0, 0]",
+        "required invariant: resolved visual center - hand target = [0, 0]",
     ]
     draw.rounded_rectangle((170, 535, 1430, 785), 18, fill=(25, 38, 56, 255))
     for index, line in enumerate(formula):
@@ -716,10 +762,10 @@ def review_props(prop_manifest: dict[str, Any], images: dict[str, Image.Image]) 
     board = Image.new("RGBA", (1600, 1180), (236, 241, 247, 255))
     draw = ImageDraw.Draw(board)
     draw.rectangle((0, 0, board.width, 90), fill=HEADER)
-    draw.text((28, 18), "Held Props H01 — native grip sockets", font=font(32, True), fill="white")
+    draw.text((28, 18), "Held Props H01 — front-overlay sockets", font=font(32, True), fill="white")
     draw.text(
         (28, 60),
-        "Fresh original-master extraction • red primary • cyan secondary • runtime scale 1",
+        "Fresh source • yellow visual center • red/cyan legacy grips • runtime scale 1",
         font=font(15),
         fill=(190, 205, 220, 255),
     )
@@ -744,15 +790,23 @@ def review_props(prop_manifest: dict[str, Any], images: dict[str, Image.Image]) 
         if prop["secondaryGripSocket"]:
             secondary = tuple(value * 8 for value in prop["secondaryGripSocket"])
             draw_cross(draw, (left + 12 + secondary[0], top + 38 + secondary[1]), CYAN, 9, 3)
+        visual_center = tuple(value * 8 for value in prop["visualCenterSocket"])
+        draw_cross(
+            draw,
+            (left + 12 + visual_center[0], top + 38 + visual_center[1]),
+            (244, 196, 48, 255),
+            12,
+            4,
+        )
         draw.text((left + 185, top + 48), prop["id"], font=font(16, True), fill=INK)
         draw.text((left + 185, top + 82), prop["profile"], font=font(14), fill=BLUE)
         draw.text(
             (left + 185, top + 116),
-            f"grip {prop['primaryGripSocket']}",
+            f"visual {prop['visualCenterSocket']}",
             font=font(14),
             fill=MUTED,
         )
-        draw.text((left + 185, top + 174), "source owned", font=font(14, True), fill=GREEN)
+        draw.text((left + 185, top + 174), "front overlay", font=font(14, True), fill=GREEN)
     return board
 
 
@@ -798,29 +852,30 @@ def review_layer_split(
     board = Image.new("RGBA", (1600, 930), (236, 241, 247, 255))
     draw = ImageDraw.Draw(board)
     draw.rectangle((0, 0, board.width, 90), fill=HEADER)
-    draw.text((28, 18), "I01 layer proof — body → prop → hand foreground", font=font(31, True), fill="white")
-    draw.text((28, 59), "Einstein frames 3–5 use H01 soda at exact primary grip delta [0,0]", font=font(15), fill=(190, 205, 220, 255))
+    draw.text((28, 18), "I01 layer proof — actor body → held prop", font=font(31, True), fill="white")
+    draw.text((28, 59), "H01 visual center follows the hand; no foreground mask can hide the prop", font=font(15), fill=(190, 205, 220, 255))
     character = character_manifest["characters"][0]
     prop = next(entry for entry in prop_manifest["props"] if entry["id"] == "held.soda-can")
     sprite = prop_images[prop["id"]]
-    labels = ["ACTOR BODY", "HELD PROP", "HAND MASK", "FINAL COMPOSITE"]
+    labels = ["ACTOR BODY", "HELD PROP", "FINAL COMPOSITE", "VISIBILITY"]
     for held_index, frame_index in enumerate(HELD_FRAMES):
         top = 130 + held_index * 250
         record = character["frames"][frame_index]
         actor = rendered[character["id"]][frame_index]
-        mask = load_mask(record, outputs)
-        composition, prop_origin, delta = compose_attachment(
+        actor_socket = actor_attachment_socket(record, prop)
+        composition, prop_origin, delta, visible_fraction = compose_attachment(
             actor,
-            mask,
             sprite,
-            tuple(record["primaryGripSocket"]),
-            tuple(prop["primaryGripSocket"]),
+            actor_socket,
+            tuple(prop["visualCenterSocket"]),
         )
+        visibility = Image.new("RGBA", FRAME_SIZE, (0, 0, 0, 0))
+        visibility.alpha_composite(sprite, prop_origin)
         views = [
             actor,
             Image.new("RGBA", FRAME_SIZE, (0, 0, 0, 0)),
-            mask,
             composition,
+            visibility,
         ]
         views[1].alpha_composite(sprite, prop_origin)
         for column, (label, view) in enumerate(zip(labels, views, strict=True)):
@@ -832,7 +887,7 @@ def review_layer_split(
             board.alpha_composite(background, (left, top + 30))
         draw.text(
             (1330, top + 205),
-            f"f{frame_index} Δ={list(delta)}",
+            f"f{frame_index} Δ={list(delta)} • alpha {visible_fraction:.0%}",
             font=font(15, True),
             fill=GREEN,
         )
@@ -849,7 +904,7 @@ def review_matrix_pages(
     pages: list[Image.Image] = []
     visible_cases = 0
     delta_failures = 0
-    missing_mask_failures = 0
+    visible_alpha_failures = 0
     for frame_index in HELD_FRAMES:
         for group_index in range(3):
             subset = character_manifest["characters"][group_index * 6 : (group_index + 1) * 6]
@@ -865,22 +920,19 @@ def review_matrix_pages(
             cell_w, cell_h = 113, 132
             for row, character in enumerate(subset):
                 record = character["frames"][frame_index]
-                if record["foregroundMask"] is None:
-                    missing_mask_failures += len(prop_manifest["props"])
-                    continue
-                mask = load_mask(record, outputs)
                 for column, prop in enumerate(prop_manifest["props"]):
                     actor = rendered[character["id"]][frame_index]
-                    composition, _, delta = compose_attachment(
+                    composition, _, delta, visible_fraction = compose_attachment(
                         actor,
-                        mask,
                         prop_images[prop["id"]],
-                        tuple(record["primaryGripSocket"]),
-                        tuple(prop["primaryGripSocket"]),
+                        actor_attachment_socket(record, prop),
+                        tuple(prop["visualCenterSocket"]),
                     )
                     visible_cases += 1
                     if delta != (0, 0):
                         delta_failures += 1
+                    if visible_fraction != 1:
+                        visible_alpha_failures += 1
                     left = 12 + column * cell_w
                     top = 82 + row * cell_h
                     background = checker(FRAME_SIZE, 8)
@@ -910,7 +962,9 @@ def review_matrix_pages(
     return pages, {
         "visibleCases": visible_cases,
         "deltaFailures": delta_failures,
-        "missingMaskFailures": missing_mask_failures,
+        "missingMaskFailures": 0,
+        "foregroundMaskUses": 0,
+        "visibleAlphaFailures": visible_alpha_failures,
     }
 
 
@@ -925,19 +979,17 @@ def review_movement(
     draw = ImageDraw.Draw(board)
     draw.rectangle((0, 0, board.width, 90), fill=HEADER)
     draw.text((28, 18), "I01 movement proof — attachment follows world root", font=font(31, True), fill="white")
-    draw.text((28, 59), "Four world positions; actor socket and prop grip remain coincident", font=font(15), fill=(190, 205, 220, 255))
+    draw.text((28, 59), "Four world positions; hand target and prop visual center remain coincident", font=font(15), fill=(190, 205, 220, 255))
     positions = [(1, 3, 0), (7, 3, 0), (1, 8, 0), (7, 8, 1)]
     character = character_manifest["characters"][0]
     record = character["frames"][3]
     actor = rendered[character["id"]][3]
-    mask = load_mask(record, outputs)
     prop = next(entry for entry in prop_manifest["props"] if entry["id"] == "held.soda-can")
-    composition, _, _ = compose_attachment(
+    composition, _, _, _ = compose_attachment(
         actor,
-        mask,
         prop_images[prop["id"]],
-        tuple(record["primaryGripSocket"]),
-        tuple(prop["primaryGripSocket"]),
+        actor_attachment_socket(record, prop),
+        tuple(prop["visualCenterSocket"]),
     )
     for index, world in enumerate(positions):
         column, row = index % 2, index // 2
@@ -966,9 +1018,9 @@ def validate_movement(
         for frame_index in HELD_FRAMES:
             frame = character["frames"][frame_index]
             root_x, root_y = frame["rootSocket"]
-            hand_x, hand_y = frame["primaryGripSocket"]
             for prop in prop_manifest["props"]:
-                grip_x, grip_y = prop["primaryGripSocket"]
+                hand_x, hand_y = actor_attachment_socket(frame, prop)
+                grip_x, grip_y = prop["visualCenterSocket"]
                 for world_x, world_y, world_z in positions:
                     projected = (world_x * 32, world_y * 32 - world_z * 32)
                     actor_origin = (projected[0] - root_x, projected[1] - root_y)
@@ -1104,6 +1156,7 @@ def assemble_outputs() -> dict[Path, bytes]:
             "perCharacterRuntimeScale": False,
             "normalizedCoordinatesAuthority": False,
             "missingSocketFallback": False,
+            "handForegroundMasksInFrontOverlay": False,
             "activeOfficeImport": False,
         },
         "matrixValidation": {
@@ -1116,6 +1169,9 @@ def assemble_outputs() -> dict[Path, bytes]:
             "attachmentDeltaFailures": matrix["deltaFailures"],
             "runtimeScaleFailures": 0,
             "missingMaskFailures": matrix["missingMaskFailures"],
+            "frontOverlayCaseCount": matrix["visibleCases"],
+            "foregroundMaskUses": matrix["foregroundMaskUses"],
+            "visibleAlphaFailures": matrix["visibleAlphaFailures"],
         },
         "movementValidation": movement,
         "gates": gates("Office Spatial Socket I01"),
@@ -1158,7 +1214,7 @@ def main() -> None:
     verb = "verified" if args.check else "wrote"
     print(
         f"{verb} Office Spatial I01: 18 characters, 54 hand masks, "
-        "16 fresh held props, 864 visible attachment cases"
+        "16 fresh held props, 864 fully visible front-overlay attachment cases"
     )
 
 

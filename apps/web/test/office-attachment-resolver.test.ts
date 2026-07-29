@@ -5,23 +5,22 @@ import {
   resolveSocketChildAttachment,
 } from "../src/features/office/spatial/officeAttachmentResolver.ts";
 
-test("held prop resolver follows the actor root and preserves hand occlusion order", () => {
+test("held prop resolver follows the actor root and keeps the prop on top", () => {
   const resolved = resolveHeldPropAttachment({
     actorTransform: {
       position: { x: 6, y: 4, z: 0 },
       orientation: "front",
     },
     actorRootSocket: [48, 101],
-    actorGripSocket: [43, 64],
-    propGripSocket: [7, 13],
-    foregroundMask: "hand-mask.png",
+    actorHandTargetSocket: [43, 64],
+    propVisualCenterSocket: [7, 13],
   });
   assert.deepEqual(resolved.actorOrigin, { x: 144, y: 27 });
   assert.deepEqual(resolved.propOrigin, { x: 180, y: 78 });
   assert.deepEqual(resolved.attachmentDelta, { x: 0, y: 0 });
   assert.deepEqual(
     resolved.renderOrder,
-    ["actor-body", "held-prop", "hand-foreground"],
+    ["actor-body", "held-prop"],
   );
 });
 
@@ -37,7 +36,7 @@ test("generic child resolver supports furniture and facility sockets", () => {
   assert.deepEqual(resolved.attachmentDelta, { x: 0, y: 0 });
 });
 
-test("held prop resolver fails closed without a foreground hand mask", () => {
+test("held prop resolver rejects fractional runtime sockets", () => {
   assert.throws(
     () => resolveHeldPropAttachment({
       actorTransform: {
@@ -45,10 +44,9 @@ test("held prop resolver fails closed without a foreground hand mask", () => {
         orientation: "front",
       },
       actorRootSocket: [48, 101],
-      actorGripSocket: [43, 64],
-      propGripSocket: [7, 13],
-      foregroundMask: "",
+      actorHandTargetSocket: [43.5, 64],
+      propVisualCenterSocket: [7, 13],
     }),
-    /requires a hand foreground mask/,
+    /integer runtime pixels/,
   );
 });

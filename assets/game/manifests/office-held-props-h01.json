@@ -72,7 +72,13 @@
         12
       ],
       "secondaryGripSocket": null,
-      "layerRole": "between-actor-and-hand",
+      "visualCenterSocket": [
+        9,
+        9
+      ],
+      "actorSocketRule": "primary-hand",
+      "attachmentMode": "front-overlay",
+      "layerRole": "front-overlay",
       "runtimeScale": 1
     },
     {
@@ -116,7 +122,13 @@
         12
       ],
       "secondaryGripSocket": null,
-      "layerRole": "between-actor-and-hand",
+      "visualCenterSocket": [
+        9,
+        9
+      ],
+      "actorSocketRule": "primary-hand",
+      "attachmentMode": "front-overlay",
+      "layerRole": "front-overlay",
       "runtimeScale": 1
     },
     {
@@ -160,7 +172,13 @@
         13
       ],
       "secondaryGripSocket": null,
-      "layerRole": "between-actor-and-hand",
+      "visualCenterSocket": [
+        9,
+        9
+      ],
+      "actorSocketRule": "primary-hand",
+      "attachmentMode": "front-overlay",
+      "layerRole": "front-overlay",
       "runtimeScale": 1
     },
     {
@@ -204,7 +222,13 @@
         11
       ],
       "secondaryGripSocket": null,
-      "layerRole": "between-actor-and-hand",
+      "visualCenterSocket": [
+        9,
+        9
+      ],
+      "actorSocketRule": "primary-hand",
+      "attachmentMode": "front-overlay",
+      "layerRole": "front-overlay",
       "runtimeScale": 1
     },
     {
@@ -248,7 +272,13 @@
         13
       ],
       "secondaryGripSocket": null,
-      "layerRole": "between-actor-and-hand",
+      "visualCenterSocket": [
+        9,
+        9
+      ],
+      "actorSocketRule": "primary-hand",
+      "attachmentMode": "front-overlay",
+      "layerRole": "front-overlay",
       "runtimeScale": 1
     },
     {
@@ -292,7 +322,13 @@
         12
       ],
       "secondaryGripSocket": null,
-      "layerRole": "between-actor-and-hand",
+      "visualCenterSocket": [
+        9,
+        9
+      ],
+      "actorSocketRule": "primary-hand",
+      "attachmentMode": "front-overlay",
+      "layerRole": "front-overlay",
       "runtimeScale": 1
     },
     {
@@ -336,7 +372,13 @@
         13
       ],
       "secondaryGripSocket": null,
-      "layerRole": "between-actor-and-hand",
+      "visualCenterSocket": [
+        9,
+        9
+      ],
+      "actorSocketRule": "primary-hand",
+      "attachmentMode": "front-overlay",
+      "layerRole": "front-overlay",
       "runtimeScale": 1
     },
     {
@@ -380,7 +422,13 @@
         13
       ],
       "secondaryGripSocket": null,
-      "layerRole": "between-actor-and-hand",
+      "visualCenterSocket": [
+        9,
+        9
+      ],
+      "actorSocketRule": "primary-hand",
+      "attachmentMode": "front-overlay",
+      "layerRole": "front-overlay",
       "runtimeScale": 1
     },
     {
@@ -424,7 +472,13 @@
         13
       ],
       "secondaryGripSocket": null,
-      "layerRole": "between-actor-and-hand",
+      "visualCenterSocket": [
+        9,
+        9
+      ],
+      "actorSocketRule": "primary-hand",
+      "attachmentMode": "front-overlay",
+      "layerRole": "front-overlay",
       "runtimeScale": 1
     },
     {
@@ -468,7 +522,13 @@
         12
       ],
       "secondaryGripSocket": null,
-      "layerRole": "between-actor-and-hand",
+      "visualCenterSocket": [
+        9,
+        9
+      ],
+      "actorSocketRule": "primary-hand",
+      "attachmentMode": "front-overlay",
+      "layerRole": "front-overlay",
       "runtimeScale": 1
     },
     {
@@ -515,7 +575,13 @@
         16,
         13
       ],
-      "layerRole": "between-actor-and-hand",
+      "visualCenterSocket": [
+        9,
+        9
+      ],
+      "actorSocketRule": "midpoint-primary-secondary",
+      "attachmentMode": "front-overlay",
+      "layerRole": "front-overlay",
       "runtimeScale": 1
     },
     {
@@ -562,7 +628,13 @@
         17,
         11
       ],
-      "layerRole": "between-actor-and-hand",
+      "visualCenterSocket": [
+        9,
+        9
+      ],
+      "actorSocketRule": "midpoint-primary-secondary",
+      "attachmentMode": "front-overlay",
+      "layerRole": "front-overlay",
       "runtimeScale": 1
     },
     {
@@ -609,7 +681,13 @@
         17,
         13
       ],
-      "layerRole": "between-actor-and-hand",
+      "visualCenterSocket": [
+        9,
+        9
+      ],
+      "actorSocketRule": "midpoint-primary-secondary",
+      "attachmentMode": "front-overlay",
+      "layerRole": "front-overlay",
       "runtimeScale": 1
     },
     {
@@ -656,7 +734,13 @@
         17,
         12
       ],
-      "layerRole": "between-actor-and-hand",
+      "visualCenterSocket": [
+        9,
+        9
+      ],
+      "actorSocketRule": "midpoint-primary-secondary",
+      "attachmentMode": "front-overlay",
+      "layerRole": "front-overlay",
       "runtimeScale": 1
     },
     {
@@ -703,7 +787,13 @@
         16,
         13
       ],
-      "layerRole": "between-actor-and-hand",
+      "visualCenterSocket": [
+        9,
+        9
+      ],
+      "actorSocketRule": "midpoint-primary-secondary",
+      "attachmentMode": "front-overlay",
+      "layerRole": "front-overlay",
       "runtimeScale": 1
     },
     {
@@ -747,7 +837,13 @@
         13
       ],
       "secondaryGripSocket": null,
-      "layerRole": "between-actor-and-hand",
+      "visualCenterSocket": [
+        9,
+        9
+      ],
+      "actorSocketRule": "primary-hand",
+      "attachmentMode": "front-overlay",
+      "layerRole": "front-overlay",
       "runtimeScale": 1
     }
   ],

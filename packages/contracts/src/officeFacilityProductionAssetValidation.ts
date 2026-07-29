@@ -345,15 +345,19 @@ function validateOutputHandoff(
     issues,
     value.facilityOutputSocketId === "output.primary"
       && value.actorGripSocketId === "hand.primary.grip"
-      && value.propGripSocketId === "grip.primary",
+      && value.propGripSocketId === "visual.center",
     "output handoff socket identifiers are invalid",
   );
   requireValue(
     issues,
     value.runtimeScale === 1
-      && value.handForegroundMaskRequired === true
+      && value.attachmentMode === "front-overlay"
+      && JSON.stringify(value.renderOrder) === '["actor-body","held-prop"]'
+      && value.handForegroundMaskRequired === false
+      && value.foregroundMaskUses === 0
+      && value.visibleAlphaFailures === 0
       && value.attachmentDeltaFailures === 0,
-    "output handoff must use scale one, hand masks, and zero socket drift",
+    "output handoff must use a fully visible scale-one front overlay with zero drift",
   );
   requireValue(
     issues,

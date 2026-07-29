@@ -11,10 +11,10 @@ const manifest = JSON.parse(readFileSync(new URL(
   import.meta.url,
 ), "utf8")) as OfficeFacilityProductionManifest;
 
-test("Vending U01-r02 stops after F0-F7 for an independent F8 decision", () => {
+test("Vending U01-r03 stops after F0-F7 for an independent F8 decision", () => {
   assert.deepEqual(validateOfficeFacilityProductionManifest(manifest), []);
   assert.equal(manifest.schemaVersion, 2);
-  assert.equal(manifest.revision, "u01-r02");
+  assert.equal(manifest.revision, "u01-r03");
   assert.equal(manifest.familyId, "vending.machine.modern");
   assert.equal(manifest.status, "owner-review-f8-pending");
   assert.equal(manifest.ownerDecision, null);
@@ -26,7 +26,7 @@ test("Vending U01-r02 stops after F0-F7 for an independent F8 decision", () => {
   assert.equal(manifest.gates.F10.status, "blocked");
 });
 
-test("Vending U01-r02 locks four front-only full-master ownership records", () => {
+test("Vending U01-r03 locks four front-only full-master ownership records", () => {
   assert.equal(manifest.source.frames.length, 4);
   assert.deepEqual(
     manifest.source.frames.map(({ frameId }) => frameId),
@@ -50,7 +50,7 @@ test("Vending U01-r02 locks four front-only full-master ownership records", () =
   });
 });
 
-test("Vending U01-r02 keeps animation local and outputs item-neutral", () => {
+test("Vending U01-r03 keeps animation local and outputs item-neutral", () => {
   assert.equal(manifest.animation.frameCount, 4);
   assert.equal(manifest.animation.shellStableAcrossFrames, true);
   assert.equal(manifest.animation.outsideViewportChangedPixels, 0);
@@ -70,7 +70,11 @@ test("Vending U01-r02 keeps animation local and outputs item-neutral", () => {
   );
   assert.equal(manifest.outputHandoff.heldAssetId, "held.soda-can");
   assert.equal(manifest.outputHandoff.runtimeScale, 1);
-  assert.equal(manifest.outputHandoff.handForegroundMaskRequired, true);
+  assert.equal(manifest.outputHandoff.attachmentMode, "front-overlay");
+  assert.deepEqual(manifest.outputHandoff.renderOrder, ["actor-body", "held-prop"]);
+  assert.equal(manifest.outputHandoff.handForegroundMaskRequired, false);
+  assert.equal(manifest.outputHandoff.foregroundMaskUses, 0);
+  assert.equal(manifest.outputHandoff.visibleAlphaFailures, 0);
   assert.equal(manifest.outputHandoff.attachmentDeltaFailures, 0);
   assert.deepEqual(
     manifest.outputHandoff.timeline.map(({ attachmentParent }) => attachmentParent),
@@ -111,7 +115,7 @@ test("facility production rejects processed sources and non-uniform scale", () =
   assert.match(issues, /non-uniform scaling/);
 });
 
-test("Vending U01-r02 validates socket-driven props without magic fixes", () => {
+test("Vending U01-r03 validates front-overlay props without magic fixes", () => {
   const roster = manifest.rosterValidation;
   assert.equal(roster.characterCount, 18);
   assert.equal(roster.activeFrames, 6);
@@ -120,6 +124,9 @@ test("Vending U01-r02 validates socket-driven props without magic fixes", () => 
   assert.equal(roster.facilityOutputAttachmentCases, 18);
   assert.equal(roster.actorHandAttachmentCases, 36);
   assert.equal(roster.attachmentDeltaFailures, 0);
+  assert.equal(roster.frontOverlayCases, 36);
+  assert.equal(roster.foregroundMaskUses, 0);
+  assert.equal(roster.visibleAlphaFailures, 0);
   assert.equal(roster.perCharacterFacilityScaling, false);
   assert.equal(roster.perCharacterActorOffsets, false);
   assert.ok(
@@ -132,13 +139,23 @@ test("Vending U01-r02 validates socket-driven props without magic fixes", () => 
   );
   assert.ok(
     roster.characters.every(({ frames }) =>
-      frames.every(({ attachmentParent, attachmentDelta, foregroundMask }) =>
+      frames.every(({
+        attachmentParent,
+        attachmentDelta,
+        foregroundMask,
+        foregroundMaskUsed,
+        visiblePropAlphaFraction,
+        renderOrder,
+      }) =>
         attachmentParent === null
-          ? attachmentDelta === null
+          ? attachmentDelta === null && visiblePropAlphaFraction === null
           : JSON.stringify(attachmentDelta) === "[0,0]"
+            && foregroundMask === null
+            && foregroundMaskUsed === false
+            && visiblePropAlphaFraction === 1
             && (
               attachmentParent === "facility.output.primary"
-              || foregroundMask !== null
+              || JSON.stringify(renderOrder) === '["actor-body","held-prop"]'
             ))),
   );
 });
@@ -165,7 +182,7 @@ test("facility production rejects center anchors and a broken handoff timeline",
   assert.match(issues, /timeline must move from facility output to actor hand/);
 });
 
-test("Vending U01-r02 proves capacity-one contention, failure, and retry", () => {
+test("Vending U01-r03 proves capacity-one contention, failure, and retry", () => {
   const reservation = manifest.reservationValidation;
   assert.equal(reservation.durationSeconds, 30);
   assert.equal(reservation.actorCount, 2);

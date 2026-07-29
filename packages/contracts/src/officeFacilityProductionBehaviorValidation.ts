@@ -124,6 +124,13 @@ function validateRoster(value: unknown, issues: string[]) {
       && value.attachmentDeltaFailures === 0,
     "roster must prove 18x6 poses, 54 visible props, and zero socket drift",
   );
+  requireValue(
+    issues,
+    value.frontOverlayCases === 36
+      && value.foregroundMaskUses === 0
+      && value.visibleAlphaFailures === 0,
+    "roster must prove 36 complete actor-held front overlays",
+  );
   const expectedParents = [
     null,
     null,
@@ -178,7 +185,8 @@ function validateRoster(value: unknown, issues: string[]) {
         issues,
         isPixelPoint(frame.rootSocket)
           && isPixelPoint(frame.primaryGripSocket)
-          && isPixelPoint(frame.propGripSocket),
+          && isPixelPoint(frame.propGripSocket)
+          && isPixelPoint(frame.propVisualCenterSocket),
         `${character.id} frame ${frameIndex} must use integer sockets`,
       );
       requireValue(
@@ -195,18 +203,15 @@ function validateRoster(value: unknown, issues: string[]) {
       if (actorHeld) {
         requireValue(
           issues,
-          isRecord(frame.foregroundMask)
-            && typeof frame.foregroundMask.file === "string"
-            && frame.foregroundMask.file.startsWith(
-              "assets/game/processed/office-spatial-i01/",
-            )
-            && hasSha256(frame.foregroundMask.sha256),
-          `${character.id} frame ${frameIndex} must restore a hash-locked hand mask`,
+          frame.foregroundMask === null
+            && frame.foregroundMaskUsed === false
+            && frame.visiblePropAlphaFraction === 1,
+          `${character.id} frame ${frameIndex} must keep the complete prop visible`,
         );
         requireValue(
           issues,
           JSON.stringify(frame.renderOrder)
-            === JSON.stringify(["actor-body", "held-prop", "hand-foreground"]),
+            === JSON.stringify(["actor-body", "held-prop"]),
           `${character.id} frame ${frameIndex} render order is invalid`,
         );
       }

@@ -1,11 +1,8 @@
 import { validateOfficeFacilityProductionManifest } from "../packages/contracts/src/officeFacilityProduction.ts";
-import {
-  fileHashMatches, readJson, readText, recursiveFiles as files, same, sha256,
-} from "./office-production-check-utils.mjs";
+import { fileHashMatches, readJson, readText, recursiveFiles as files, same, sha256 } from "./office-production-check-utils.mjs";
 const manifestPath = "assets/game/manifests/office-facility-vending-u01.json";
 const auditPath = "assets/game/manifests/office-furniture-master-audit-v1.json";
-const actionPath =
-  "assets/game/manifests/office-character-action-sockets-i01.json";
+const actionPath = "assets/game/manifests/office-character-action-sockets-i01.json";
 const heldPath = "assets/game/manifests/office-held-props-h01.json";
 const spatialPath = "assets/game/manifests/office-spatial-authority-i01.json";
 const behaviorPath = "assets/game/manifests/office-interaction-assets.json";
@@ -14,10 +11,8 @@ const activePath =
 const builderPath = "scripts/build-office-facility-vending-u01.py";
 const sourcePath =
   "assets/art/layout-references/mechanical-loops-sheet-modern-bright-v1-source.png";
-const processedRoot =
-  "assets/game/processed/office-facility-family-v1/vending-u01-r02";
-const reviewRoot =
-  "assets/art/layout-references/office-facility-family-v1/vending-u01-r02";
+const processedRoot = "assets/game/processed/office-facility-family-v1/vending-u01-r03";
+const reviewRoot = "assets/art/layout-references/office-facility-family-v1/vending-u01-r03";
 const failures = [];
 const add = (condition, message) => {
   if (!condition) failures.push(message);
@@ -36,8 +31,8 @@ try {
     manifest.schemaVersion === 2
       && manifest.id === "office.facility.vending-machine.u01"
       && manifest.familyId === "vending.machine.modern"
-      && manifest.revision === "u01-r02",
-    "Vending U01-r02 identity changed",
+      && manifest.revision === "u01-r03",
+    "Vending U01-r03 identity changed",
   );
   add(
     manifest.status === "owner-review-f8-pending"
@@ -46,7 +41,7 @@ try {
       && manifest.gates?.F9?.status === "blocked"
       && manifest.gates?.F10?.status === "blocked"
       && manifest.activeOfficePromotion === false,
-    "U01-r02 must stop at F8 with F9/F10 blocked",
+    "U01-r03 must stop at F8 with F9/F10 blocked",
   );
   add(
     [
@@ -59,7 +54,7 @@ try {
     ].every((key) => manifest.sourcePolicy?.[key] === false)
       && manifest.sourcePolicy?.sharedProductionAssetDependency
         === "office.held-props.h01",
-    "U01-r02 source policy or H01 dependency changed",
+    "U01-r03 source policy or H01 dependency changed",
   );
 
   const prefix = "modern-bright-library-v1:env-07-animated-mechanical:"
@@ -75,7 +70,7 @@ try {
       && manifest.source?.sha256 === sha256(sourcePath)
       && manifest.source?.extractionMethod === "full-master-component-ownership"
       && manifest.source?.frames?.length === 4,
-    "U01-r02 must use the audited original mechanical-loop master",
+    "U01-r03 must use the audited original mechanical-loop master",
   );
   const auditById = new Map(
     audit.records.map((record) => [record.recordId, record]),
@@ -126,7 +121,7 @@ try {
       })
       && same(manifest.geometry?.basePivot, { x: 1, y: 1, unit: "tile" })
       && same(manifest.geometry?.sortPivot, { x: 1, y: 1, unit: "tile" }),
-    "U01-r02 render or 2x1x3 geometry changed",
+    "U01-r03 render or 2x1x3 geometry changed",
   );
   add(
     manifest.spatial?.authority?.file === spatialPath
@@ -142,7 +137,7 @@ try {
       && manifest.spatial?.centerToCenterAttachment === false
       && manifest.spatial?.perSceneAttachmentOffsets === false
       && manifest.spatial?.missingSocketFallback === false,
-    "U01-r02 spatial socket contract changed",
+    "U01-r03 spatial socket contract changed",
   );
 
   const roles = manifest.parts?.map(({ role }) => role);
@@ -157,7 +152,7 @@ try {
       "effect-overlay",
       "held-output",
     ]),
-    "U01-r02 parts are not independently layered",
+    "U01-r03 parts are not independently layered",
   );
   for (const part of manifest.parts ?? []) {
     const heldOutput = part.role === "held-output";
@@ -189,7 +184,7 @@ try {
         animation?.frames?.map(({ effectPartIds }) => effectPartIds.length),
         [0, 0, 1, 0],
       ),
-    "U01-r02 viewport locality or shell invariance changed",
+    "U01-r03 viewport locality or shell invariance changed",
   );
   for (const frame of animation?.frames ?? []) {
     add(
@@ -223,7 +218,12 @@ try {
         expectedParents,
       )
       && handoff?.runtimeScale === 1
-      && handoff?.handForegroundMaskRequired === true
+      && handoff?.propGripSocketId === "visual.center"
+      && handoff?.attachmentMode === "front-overlay"
+      && same(handoff?.renderOrder, ["actor-body", "held-prop"])
+      && handoff?.handForegroundMaskRequired === false
+      && handoff?.foregroundMaskUses === 0
+      && handoff?.visibleAlphaFailures === 0
       && handoff?.attachmentDeltaFailures === 0
       && handoff?.productEmbeddedInShell === false
       && handoff?.productEmbeddedInViewportFrames === false,
@@ -248,7 +248,7 @@ try {
       && same(slot?.approach, { x: 1, y: 2 })
       && same(slot?.exit, { x: 0, y: 2 })
       && slot?.visualPose === "interact-front",
-    "U01-r02 interaction or reservation cells changed",
+    "U01-r03 interaction or reservation cells changed",
   );
   const roster = manifest.rosterValidation;
   add(
@@ -265,9 +265,12 @@ try {
       && roster?.facilityOutputAttachmentCases === 18
       && roster?.actorHandAttachmentCases === 36
       && roster?.attachmentDeltaFailures === 0
+      && roster?.frontOverlayCases === 36
+      && roster?.foregroundMaskUses === 0
+      && roster?.visibleAlphaFailures === 0
       && roster?.perCharacterFacilityScaling === false
       && roster?.perCharacterActorOffsets === false,
-    "U01-r02 authority locks or 18x6 roster totals changed",
+    "U01-r03 authority locks or 18x6 roster totals changed",
   );
   let poseCases = 0;
   for (const character of roster?.characters ?? []) {
@@ -288,12 +291,13 @@ try {
           && (parent === null
             ? frame.attachmentDelta === null
             : same(frame.attachmentDelta, [0, 0]))
+          && frame.foregroundMask === null
+          && frame.foregroundMaskUsed === false
+          && (parent === null
+            ? frame.visiblePropAlphaFraction === null
+            : frame.visiblePropAlphaFraction === 1)
           && (parent !== "actor.hand.primary.grip"
-            || fileHashMatches(
-              frame.foregroundMask?.file,
-              frame.foregroundMask?.sha256,
-              [96, 104],
-            )),
+            || same(frame.renderOrder, ["actor-body", "held-prop"])),
         `${character.id} frame ${index} failed socket attachment`,
       );
     }
@@ -333,12 +337,13 @@ try {
     ["07-roster-fit-18x6.png", [1800, 1220]],
     ["08-reservation-timeline-30s.png", [1600, 900]],
     ["09-socket-attachment-debug.png", [1800, 1220]],
-    ["10-r01-r02-before-after.png", [1600, 1030]],
-    ["11-three-character-six-frame-zoom.png", [2400, 1650]],
+    ["10-r02-r03-before-after.png", [1600, 1030]],
+    ["11-three-character-six-frame-front-overlay.png", [2400, 1650]],
+    ["12-three-character-hand-closeups-8x.png", [1800, 1480]],
   ].map(([name, size]) => [`${reviewRoot}/${name}`, size]);
   add(
     same(manifest.reviewOutputs, expectedReviews.map(([path]) => path)),
-    "U01-r02 review output list changed",
+    "U01-r03 review output list changed",
   );
   for (const [index, [path, size]] of expectedReviews.entries()) {
     const evidence = manifest.reviewEvidence?.[index];
@@ -362,10 +367,10 @@ try {
       frame.runtimeCompositeFile,
     ]),
   ].sort();
-  add(same(files(processedRoot), expectedProcessed), "U01-r02 processed file set changed");
+  add(same(files(processedRoot), expectedProcessed), "U01-r03 processed file set changed");
   add(
     same(files(reviewRoot), expectedReviews.map(([path]) => path).sort()),
-    "U01-r02 review directory contains an unexpected file",
+    "U01-r03 review directory contains an unexpected file",
   );
   add(
     manifest.rejectedOrientations?.every((id) => {
@@ -388,7 +393,7 @@ try {
       && manifest.activeOfficeBaseline?.importsCandidate === false
       && !active.includes("office-facility-family-v1")
       && !active.includes("vending-u01"),
-    "Active Office imported U01-r02",
+    "Active Office imported U01-r03",
   );
   const builder = readText(builderPath);
   add(
@@ -396,7 +401,7 @@ try {
       && !builder.includes("office-interactions-v1/facility-overlays")
       && builder.includes("full-master-component-ownership")
       && builder.includes("office-held-props-h01.json"),
-    "U01-r02 builder source isolation changed",
+    "U01-r03 builder source isolation changed",
   );
 } catch (error) {
   failures.push(error instanceof Error ? error.message : String(error));
@@ -407,8 +412,8 @@ if (failures.length) {
   process.exitCode = 1;
 } else {
   process.stdout.write(
-    "Vending U01-r02 OK: audited front-only shell, exact I01/H01 socket "
-      + "handoff across 108 poses, 30-second capacity-one proof, F8 pending, "
+    "Vending U01-r03 OK: audited front-only shell, exact I01/H01 front overlays "
+      + "across 108 poses, 30-second capacity-one proof, F8 pending, "
       + "and Active Office unchanged.\n",
   );
 }

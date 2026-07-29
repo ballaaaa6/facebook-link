@@ -128,6 +128,9 @@ export interface OfficeFacilityRosterValidation {
   facilityOutputAttachmentCases: number;
   actorHandAttachmentCases: number;
   attachmentDeltaFailures: 0;
+  frontOverlayCases: 36;
+  foregroundMaskUses: 0;
+  visibleAlphaFailures: 0;
   sharedActorPosition: readonly [number, number];
   perCharacterFacilityScaling: false;
   perCharacterActorOffsets: false;
@@ -152,6 +155,7 @@ export interface OfficeFacilityRosterValidation {
       primaryGripSocket: readonly [number, number];
       secondaryGripSocket: readonly [number, number] | null;
       propGripSocket: readonly [number, number];
+      propVisualCenterSocket: readonly [number, number];
       propOrigin: readonly [number, number] | null;
       parentSocketWorld: readonly [number, number] | null;
       attachmentDelta: readonly [number, number] | null;
@@ -159,6 +163,8 @@ export interface OfficeFacilityRosterValidation {
         file: string;
         sha256: string;
       } | null;
+      foregroundMaskUsed: false;
+      visiblePropAlphaFraction: 1 | null;
       renderOrder: readonly string[];
     }[];
   }[];
@@ -231,9 +237,13 @@ export interface OfficeFacilityProductionManifest {
     heldVisiblePoseFrames: readonly [2, 3, 4];
     facilityOutputSocketId: "output.primary";
     actorGripSocketId: "hand.primary.grip";
-    propGripSocketId: "grip.primary";
+    propGripSocketId: "visual.center";
+    attachmentMode: "front-overlay";
+    renderOrder: readonly ["actor-body", "held-prop"];
     runtimeScale: 1;
-    handForegroundMaskRequired: true;
+    handForegroundMaskRequired: false;
+    foregroundMaskUses: 0;
+    visibleAlphaFailures: 0;
     attachmentDeltaFailures: 0;
     timeline: readonly {
       poseFrame: number;

@@ -8,13 +8,13 @@ Scope: Isolated coordinates, action sockets, held props, and attachment resolver
 
 I01 is the development-only spatial authority for semantic sprite attachment.
 It does not modify Active Office, approve public use of prototype characters,
-approve a furniture-only room, or promote Vending U01-r02. Its exact manifests
+approve a furniture-only room, or promote Vending U01-r03. Its exact manifests
 and review hashes require an independent F8 owner decision.
 
-The system replaces fixed center-like coordinates with explicit local sockets.
-A prop is attached by matching a named parent socket to a named prop grip. A
-character, prop, or facility may move in world space without changing the
-local attachment rule.
+The system replaces fixed scene coordinates with explicit local sockets. A
+front-overlay prop matches its deterministic alpha-bounds `visual.center` to
+the primary hand, or to the midpoint of both hands for a wide prop. A
+character, prop, or facility may move without changing the attachment rule.
 
 ## Authority set
 
@@ -22,7 +22,7 @@ local attachment rule.
 | --- | --- | --- |
 | `office-spatial-authority-i01.json` | World/local rules, policies, matrix and movement proof | F8 pending |
 | `office-character-action-sockets-i01.json` | Per-character, per-frame `interact-front` sockets | F8 pending |
-| `office-held-props-h01.json` | Fresh native-scale held assets and grip sockets | F8 pending |
+| `office-held-props-h01.json` | Fresh native-scale held assets and visual-center sockets | F8 pending |
 | `office-character-seat-sockets-v1.json` | Existing owner-approved seated contacts | Referenced, unchanged |
 | `office-furniture-seating-s01.json` | Existing owner-approved seating batch | Referenced, unchanged |
 
@@ -56,7 +56,7 @@ childOrigin = parentSocketWorld - childLocalSocket
 The resolved invariant is:
 
 ```text
-childOrigin + childGripSocket == parentOrigin + parentSocket
+childOrigin + childVisualCenterSocket == parentOrigin + actorHandTarget
 attachmentDelta == [0,0]
 ```
 
@@ -73,11 +73,12 @@ All 18 current Office prototype characters are measured independently on
 - `primaryGripSocket`;
 - `secondaryGripSocket`;
 - hold state; and
-- a source-exact hand foreground mask when the prop is visible.
+- a source-exact hand foreground mask retained as calibration evidence.
 
 The authority contains 108 frame records and 54 masks for held frames 2, 3,
-and 4. Character morphology is handled by measured local coordinates, not by
-runtime scale or a character-specific facility offset.
+and 4. Front-overlay presentation never draws those masks. Character
+morphology is handled by measured local coordinates, not runtime scale or a
+character-specific facility offset.
 
 The prototype character sheets retain `pendingCommercialReview`. Socket
 calibration does not change that restriction.
@@ -100,26 +101,28 @@ Each prop locks:
 
 - a `20 x 20` runtime canvas and `40 x 40` authoring canvas;
 - native runtime scale `1`;
-- one primary grip and an optional secondary grip;
+- one primary grip and an optional secondary grip for legacy calibration;
+- a deterministic `visualCenterSocket` derived from runtime alpha bounds;
+- an actor target rule of primary hand or two-hand midpoint;
 - one of `single-body`, `single-handle`, or `two-hand-wide`; and
-- layer role `between-actor-and-hand`.
+- attachment mode and layer role `front-overlay`.
 
 The original master, ownership mask, source cutout, authoring asset, runtime
 asset, and review evidence are hash-locked.
 
-## Occlusion rule
+## Front-overlay presentation rule
 
 An actor-held prop uses this draw order:
 
 ```text
 actor-body
 held-prop
-hand-foreground
 ```
 
-The foreground mask contains only exact pixels copied from the corresponding
-character frame. This lets fingers or a hand cross in front of the prop
-without baking the prop into the character sheet.
+No actor or hand layer is drawn after the held prop. Every non-transparent
+prop pixel therefore remains visible. This presentation deliberately favors
+clear item readability over finger occlusion. The coordinate resolver still
+moves the prop with the per-character, per-frame hand socket.
 
 Facility output may use a different parent and layer order before pickup. The
 attachment parent is part of the action timeline and must switch explicitly.
@@ -131,7 +134,7 @@ footprint, sort socket, interaction target, output sockets, effect origins,
 support sockets, and viewport origins distinct. A family declares only the
 sockets it owns.
 
-Vending U01-r02 is the first upright proof. It defines:
+Vending U01-r03 is the first upright front-overlay proof. It defines:
 
 | Socket | Runtime local point |
 | --- | --- |
@@ -162,6 +165,8 @@ The deterministic isolated lab proves:
 - zero attachment-delta failures;
 - zero runtime-scale failures;
 - zero missing-mask failures; and
+- zero foreground-mask uses in front-overlay composition;
+- zero visible-alpha failures; and
 - zero prop-follow failures.
 
 Review output includes the coordinate transform, three character calibration
@@ -184,8 +189,8 @@ an Active Office import.
 Review the I01/H01 evidence as one exact hash set and decide only this system:
 
 - socket crosses correspond to the visible hands for all 18 characters;
-- props use sensible grip points at native scale;
-- the hand foreground masks produce credible occlusion;
+- visual centers attach sensibly at native scale;
+- every prop remains fully visible above the actor;
 - the full matrix remains readable across morphologies;
 - movement preserves the attachment; and
 - no center-anchor or scene-offset fallback is needed.
