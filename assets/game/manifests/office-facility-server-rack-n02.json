@@ -3,8 +3,8 @@
   "id": "office.facility.server-rack.n02",
   "familyId": "server.rack.generated-modern",
   "revision": "n02-preflight-r01",
-  "status": "visual-preflight-owner-review",
-  "productionStage": "visual-preflight",
+  "status": "visual-preflight-owner-approved",
+  "productionStage": "visual-preflight-approved",
   "developmentOnly": true,
   "activeOfficePromotion": false,
   "supersedes": {
@@ -906,13 +906,13 @@
     "F4": {
       "status": "blocked",
       "evidence": [
-        "Production part authority waits for N02 visual approval."
+        "Visual approval passed; production parts are not built."
       ]
     },
     "F5": {
       "status": "blocked",
       "evidence": [
-        "Production machine targets, routes, and orientation sockets are not built."
+        "Visual approval passed; production machine targets, routes, and orientation sockets are not built."
       ]
     },
     "F6": {
@@ -1066,7 +1066,7 @@
   ],
   "permissions": {
     "ownerReview": true,
-    "fullSystemBuild": false,
+    "fullSystemBuild": true,
     "furnitureOnlyRoom": false,
     "otherFacilityFamilies": false,
     "activeOfficePromotion": false
@@ -1085,6 +1085,65 @@
       "imported": false
     }
   ],
-  "visualApproval": null,
+  "visualApproval": {
+    "status": "owner-approved",
+    "approvedOn": "2026-07-30",
+    "approvedRevision": "n02-preflight-r01",
+    "scope": "exact-review-output-hashes",
+    "decision": "Approve the fresh 2x2x4 cabinet, all four authored sides, the modular status loop, and the empty-hand inspect preview.",
+    "approvedReviewHashes": [
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/server-rack-n02/01-four-side-turnaround.png",
+        "sha256": "491eb023463c4dd8b74c02f7c8f5d97c4ec603f0b2e759ee54ff37a33c983cd2"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/server-rack-n02/02-alpha-source-ownership.png",
+        "sha256": "6fd328a9252191d5e544d99b1e5a45b1bd7c4a50e553d69d75ef199cfcd165ad"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/server-rack-n02/03-clean-four-orientations.png",
+        "sha256": "d646084830e2a5781ef47a5744ec41da1148cdea3dcfb53b5ff671789f427956"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/server-rack-n02/04-scale-2x2x4-vs-actor.png",
+        "sha256": "aab0a694c4f458864e181f7dd81f940d42669bf4fa554d52a7a68faa07d6fe74"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/server-rack-n02/05-footprint-renderbox-approach.png",
+        "sha256": "2408b811d7200039f905c45ce245daa23e7304df9fd9aeececc50f5d572d6320"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/server-rack-n02/06-parts-shell-status-composite.png",
+        "sha256": "b724dcf72d0f70b22fb2ce81a44132f10eed213ab2cc1781580dcae48de77483"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/server-rack-n02/07-status-loop-a-d-a.png",
+        "sha256": "2ca20ce48d9560a0a94587405f8d55cd35992a80b15dd86a93694425582a680d"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/server-rack-n02/08-orientations-two-instances.png",
+        "sha256": "e56fbd198c9a0f09cac092cdd00cd0c552c92fa30af3d9bb70b91912f3fa7c02"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/server-rack-n02/09-empty-hand-inspect-preview.png",
+        "sha256": "44b7aea1f607a42a1c009af29e0fa725f9c7d69d7cebce9f42bc5dde1e2d77ba"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/server-rack-n02/server-rack-n02-status-loop.gif",
+        "sha256": "a214485a3a19bfe37fa1d5300f252136ffdc127936ba6b50f98033137fc2b152"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/server-rack-n02/anna-empty-hand-inspect.gif",
+        "sha256": "8505a76c61e915f15c75b6265348c1609b515c1e03dd3114ca24f2accc1bd3c6"
+      }
+    ],
+    "unlocks": [
+      "F4",
+      "F5",
+      "F6",
+      "F7",
+      "F8"
+    ]
+  },
   "ownerDecision": null
 }

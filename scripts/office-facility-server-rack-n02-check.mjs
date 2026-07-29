@@ -94,6 +94,29 @@ try {
     validateOfficeFacilityServerRackGeneratedPreflightManifest(manifest)) {
     failures.push(`Server Rack N02 contract: ${issue}`);
   }
+  add(
+    manifest.status === "visual-preflight-owner-approved"
+      && manifest.productionStage === "visual-preflight-approved"
+      && manifest.visualApproval?.status === "owner-approved"
+      && manifest.visualApproval?.approvedOn === "2026-07-30"
+      && manifest.visualApproval?.approvedRevision === "n02-preflight-r01"
+      && manifest.visualApproval?.approvedReviewHashes?.length === 11
+      && manifest.visualApproval.approvedReviewHashes.every(
+        ({ path, sha256: expected }) =>
+          manifest.reviewEvidence.some(
+            (record) =>
+              record.path === path
+              && record.sha256 === expected
+              && sha256(path) === expected,
+          ),
+      )
+      && same(
+        manifest.visualApproval?.unlocks,
+        ["F4", "F5", "F6", "F7", "F8"],
+      )
+      && manifest.permissions?.fullSystemBuild === true,
+    "Server Rack N02 exact visual approval or production authority changed",
+  );
 
   add(
     n01.status === "superseded-owner-redesign-requested"
@@ -269,7 +292,9 @@ try {
   );
   const docs = readText(docsPath);
   add(
-    docs.includes("Status: visual preflight awaiting owner review")
+    docs.includes(
+      "Status: visual preflight owner-approved; isolated production authorized",
+    )
       && docs.includes("`2 x 2 x 4`")
       && docs.includes("front, left, right, and back")
       && docs.includes(
@@ -278,8 +303,9 @@ try {
       && docs.includes("No held prop")
       && docs.includes("15/20")
       && docs.includes("17/20")
-      && docs.includes("F4-F10 remain blocked"),
-    "Server Rack N02 documentation does not preserve the visual stop",
+      && docs.includes("F4-F8 are authorized")
+      && docs.includes("F9-F10 remain blocked"),
+    "Server Rack N02 documentation does not preserve visual approval scope",
   );
   const packageJson = readJson("package.json");
   add(
@@ -303,8 +329,9 @@ if (failures.length) {
   process.exitCode = 1;
 } else {
   process.stdout.write(
-    "Server Rack N02 visual preflight OK: fresh 2x2x4 four-side family, "
+    "Server Rack N02 approved visual preflight OK: fresh 2x2x4 four-side family, "
       + "viewport-local A-D-A status loop, empty-hand I01 demo, two-instance "
-      + "preview, F0-F3 passed, and F4-F10 blocked.\n",
+      + "preview, F0-F3 passed, isolated F4-F8 production authorized, and "
+      + "F9-F10 blocked.\n",
   );
 }

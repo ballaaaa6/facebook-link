@@ -16,7 +16,7 @@ test("Server Rack N02 is a fresh four-side F0-F3 preflight", () => {
     validateOfficeFacilityServerRackGeneratedPreflightManifest(manifest),
     [],
   );
-  assert.equal(manifest.status, "visual-preflight-owner-review");
+  assert.equal(manifest.status, "visual-preflight-owner-approved");
   assert.deepEqual(manifest.render.physicalScale, {
     width: 2,
     depth: 2,
@@ -31,6 +31,8 @@ test("Server Rack N02 is a fresh four-side F0-F3 preflight", () => {
   assert.equal(manifest.gates.F3.status, "passed");
   assert.equal(manifest.gates.F4.status, "blocked");
   assert.equal(manifest.gates.F10.status, "blocked");
+  assert.equal(manifest.visualApproval.status, "owner-approved");
+  assert.equal(manifest.visualApproval.approvedReviewHashes.length, 11);
 });
 
 test("Server Rack N02 reuses no N01, master, processed, or Active pixels", () => {
@@ -100,7 +102,7 @@ test("Server Rack N02 does not claim slots or production cases", () => {
   assert.equal(manifest.productionTargets.orientationCompositeCases, 432);
   assert.equal(manifest.productionTargets.builtPoseCases, 0);
   assert.equal(manifest.productionTargets.builtOrientationCompositeCases, 0);
-  assert.equal(manifest.permissions.fullSystemBuild, false);
+  assert.equal(manifest.permissions.fullSystemBuild, true);
 });
 
 test("Server Rack N02 rejects held props and fabricated production evidence", () => {

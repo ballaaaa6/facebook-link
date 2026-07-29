@@ -1,12 +1,13 @@
 # Office Facility Server Rack N02
 
-Status: visual preflight awaiting owner review
+Status: visual preflight owner-approved; isolated production authorized
 
 Server Rack N02 is the fresh four-side redesign requested on 2026-07-30. It
 replaces the N01 visual direction with a larger `2 x 2 x 4` cabinet and an
-empty-hand interaction. The revision stops after deterministic F0-F3 visual
-evidence. It does not build production pose cases, route sockets, reservation
-simulation, F8 approval, F9 room placement, or Active Office integration.
+empty-hand interaction. The owner approved the exact eleven review hashes on
+2026-07-30. This preflight remains F0-F3 evidence, while that visual decision
+authorizes the separate N02 production revision. It does not itself claim pose
+cases, reservations, F8 approval, room placement, or Active Office integration.
 
 ## Locked visual-preflight scope
 
@@ -98,10 +99,10 @@ The later production target is:
 - two independent capacity-one instances;
 - a thirty-second blocked, failure, release, and retry simulation.
 
-None of those cases is built or claimed by this revision. Server Rack N02
-therefore contributes zero slots during visual preflight. Facility v1 remains
-`15/20`. If this shape is approved and a later F4-F8 production revision
-passes, the two instances target `17/20`.
+None of those cases is built or claimed by this preflight revision. Server Rack
+N02 therefore contributes zero slots here and Facility v1 remains `15/20`.
+The approved shape unlocks the separate F4-F7 production build; its two
+instances target `17/20` only after that exact production revision passes F8.
 
 ## Gate state
 
@@ -109,10 +110,12 @@ passes, the two instances target `17/20`.
 - F1 `2 x 2 x 4` geometry, footprint, render box, and pivots: passed.
 - F2 four-side alpha extraction and ownership: passed.
 - F3 modular status and empty-hand visual previews: passed.
-- F4-F10 remain blocked.
+- F4-F8 are authorized only in the separate production revision.
+- F9-F10 remain blocked.
 
-Owner approval of N02 visual shape would authorize a separate F4-F7 production
-build. It would not approve slots, F9, or Active Office promotion.
+Owner approval of the N02 visual shape authorizes the separate F4-F7
+production build. It does not approve production hashes, slots, F9, or Active
+Office promotion.
 
 ## Review outputs
 

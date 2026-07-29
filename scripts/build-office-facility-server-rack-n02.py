@@ -1,9 +1,10 @@
-"""Build Server Rack N02 fresh four-side visual-preflight evidence.
+"""Build the owner-approved Server Rack N02 four-side visual evidence.
 
 The builder consumes only the three fresh built-in ImageGen sources recorded
 for N02. It creates deterministic alpha extractions, four orientation sprites,
 a viewport-local A-D-A status loop, two-instance previews, and a development-
-only empty-hand I01 interaction GIF. It deliberately stops before production
+only empty-hand I01 interaction GIF. Owner approval unlocks an isolated
+production revision, while this preflight continues to stop before production
 roster, route, reservation, F8, room, or Active Office authority.
 """
 
@@ -1201,8 +1202,8 @@ def build_outputs() -> dict[Path, bytes]:
         "id": "office.facility.server-rack.n02",
         "familyId": "server.rack.generated-modern",
         "revision": "n02-preflight-r01",
-        "status": "visual-preflight-owner-review",
-        "productionStage": "visual-preflight",
+        "status": "visual-preflight-owner-approved",
+        "productionStage": "visual-preflight-approved",
         "developmentOnly": True,
         "activeOfficePromotion": False,
         "supersedes": {
@@ -1368,11 +1369,11 @@ def build_outputs() -> dict[Path, bytes]:
                 repo_path(INTERACTION_GIF_PATH),
             ),
             "F4": blocked(
-                "Production part authority waits for N02 visual approval."
+                "Visual approval passed; production parts are not built."
             ),
             "F5": blocked(
-                "Production machine targets, routes, and orientation sockets "
-                "are not built."
+                "Visual approval passed; production machine targets, routes, "
+                "and orientation sockets are not built."
             ),
             "F6": blocked(
                 "Two-instance reservation simulation is not built."
@@ -1390,7 +1391,7 @@ def build_outputs() -> dict[Path, bytes]:
         "reviewEvidence": review_evidence,
         "permissions": {
             "ownerReview": True,
-            "fullSystemBuild": False,
+            "fullSystemBuild": True,
             "furnitureOnlyRoom": False,
             "otherFacilityFamilies": False,
             "activeOfficePromotion": False,
@@ -1399,7 +1400,24 @@ def build_outputs() -> dict[Path, bytes]:
             {"file": path, "imported": False}
             for path in ACTIVE_OFFICE_FILES
         ],
-        "visualApproval": None,
+        "visualApproval": {
+            "status": "owner-approved",
+            "approvedOn": "2026-07-30",
+            "approvedRevision": "n02-preflight-r01",
+            "scope": "exact-review-output-hashes",
+            "decision": (
+                "Approve the fresh 2x2x4 cabinet, all four authored sides, "
+                "the modular status loop, and the empty-hand inspect preview."
+            ),
+            "approvedReviewHashes": [
+                {
+                    "path": evidence["path"],
+                    "sha256": evidence["sha256"],
+                }
+                for evidence in review_evidence
+            ],
+            "unlocks": ["F4", "F5", "F6", "F7", "F8"],
+        },
         "ownerDecision": None,
     }
     outputs[MANIFEST_PATH] = json_bytes(manifest)
@@ -1436,15 +1454,16 @@ def main() -> int:
         if failures:
             raise SystemExit("\n".join(failures))
         print(
-            "Server Rack N02 preflight rebuild OK: fresh 2x2x4 four-side "
-            "family, modular A-D-A status, empty-hand I01 demo, F4-F10 blocked."
+            "Server Rack N02 approved preflight rebuild OK: fresh 2x2x4 "
+            "four-side family, modular A-D-A status, empty-hand I01 demo, "
+            "and isolated F4-F8 production unlocked."
         )
         return 0
     write_outputs(outputs)
     print(
-        "Built Server Rack N02 visual preflight: fresh 2x2x4 four-side family, "
-        "modular status loop, two-instance preview, empty-hand inspect demo, "
-        "owner review pending."
+        "Built owner-approved Server Rack N02 visual preflight: fresh 2x2x4 "
+        "four-side family, modular status loop, two-instance preview, "
+        "empty-hand inspect demo, and isolated production unlocked."
     )
     return 0
 

@@ -52,8 +52,8 @@ export function validateOfficeFacilityServerRackGeneratedPreflightManifest(
   );
   add(
     issues,
-    value.status === "visual-preflight-owner-review"
-      && value.productionStage === "visual-preflight"
+    value.status === "visual-preflight-owner-approved"
+      && value.productionStage === "visual-preflight-approved"
       && value.developmentOnly === true
       && value.activeOfficePromotion === false,
     "Server Rack N02 must remain an isolated visual preflight",
@@ -326,21 +326,35 @@ export function validateOfficeFacilityServerRackGeneratedPreflightManifest(
       );
     }
   }
+  const reviewOutputs = Array.isArray(value.reviewOutputs)
+    ? value.reviewOutputs
+    : [];
   add(
     issues,
-    Array.isArray(value.reviewOutputs)
-      && value.reviewOutputs.length === 11
+    reviewOutputs.length === 11
       && Array.isArray(value.reviewEvidence)
       && value.reviewEvidence.length === 11
       && record(value.permissions)
       && value.permissions.ownerReview === true
-      && value.permissions.fullSystemBuild === false
+      && value.permissions.fullSystemBuild === true
       && value.permissions.furnitureOnlyRoom === false
       && value.permissions.otherFacilityFamilies === false
       && value.permissions.activeOfficePromotion === false
-      && value.visualApproval === null
+      && record(value.visualApproval)
+      && value.visualApproval.status === "owner-approved"
+      && value.visualApproval.approvedOn === "2026-07-30"
+      && value.visualApproval.approvedRevision === "n02-preflight-r01"
+      && value.visualApproval.scope === "exact-review-output-hashes"
+      && typeof value.visualApproval.decision === "string"
+      && Array.isArray(value.visualApproval.approvedReviewHashes)
+      && value.visualApproval.approvedReviewHashes.length === 11
+      && value.visualApproval.approvedReviewHashes.every((entry, index) =>
+        record(entry)
+        && entry.path === reviewOutputs[index]
+        && sha256(entry.sha256))
+      && same(value.visualApproval.unlocks, ["F4", "F5", "F6", "F7", "F8"])
       && value.ownerDecision === null,
-    "Server Rack N02 review set or permissions changed",
+    "Server Rack N02 visual approval, review set, or permissions changed",
   );
   return issues;
 }

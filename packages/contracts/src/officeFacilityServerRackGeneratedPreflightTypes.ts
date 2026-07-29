@@ -69,8 +69,8 @@ export interface OfficeFacilityServerRackGeneratedPreflightManifest {
   id: "office.facility.server-rack.n02";
   familyId: "server.rack.generated-modern";
   revision: "n02-preflight-r01";
-  status: "visual-preflight-owner-review";
-  productionStage: "visual-preflight";
+  status: "visual-preflight-owner-approved";
+  productionStage: "visual-preflight-approved";
   developmentOnly: true;
   activeOfficePromotion: false;
   supersedes: {
@@ -227,7 +227,7 @@ export interface OfficeFacilityServerRackGeneratedPreflightManifest {
   }[];
   permissions: {
     ownerReview: true;
-    fullSystemBuild: false;
+    fullSystemBuild: true;
     furnitureOnlyRoom: false;
     otherFacilityFamilies: false;
     activeOfficePromotion: false;
@@ -236,6 +236,17 @@ export interface OfficeFacilityServerRackGeneratedPreflightManifest {
     file: string;
     imported: false;
   }[];
-  visualApproval: null;
+  visualApproval: {
+    status: "owner-approved";
+    approvedOn: "2026-07-30";
+    approvedRevision: "n02-preflight-r01";
+    scope: "exact-review-output-hashes";
+    decision: string;
+    approvedReviewHashes: readonly {
+      path: string;
+      sha256: string;
+    }[];
+    unlocks: readonly ["F4", "F5", "F6", "F7", "F8"];
+  };
   ownerDecision: null;
 }

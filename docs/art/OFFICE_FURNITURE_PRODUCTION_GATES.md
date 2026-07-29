@@ -237,16 +237,16 @@ pivot, root, route, and seam-closure failures. The owner approved F8 on
 `15/20`. F9-F10 remain blocked.
 
 Server Rack N01 is preserved as superseded F0-F3 evidence after the owner
-requested no held prop, new `2 x 2 x 4` geometry, and four fresh sides. N02 is
-the current visual preflight. It uses three fresh built-in ImageGen sources
-for a front anchor, turnaround, and separable status kit, with zero N01,
-original-master, processed-library, or Active Office pixel reuse. Its
-`immutableShell[orientation] + statusViewport[n]` proof has zero shell,
-outside-viewport, pivot, and seam-closure failures. The two-instance and
-empty-hand I01 views remain development-only; F4-F10 remain blocked, and
-Server Rack does not increase Facility v1 beyond `15/20` until a later
-production revision passes F8. See
-`docs/art/OFFICE_FACILITY_SERVER_RACK_N02.md`.
+requested no held prop, new `2 x 2 x 4` geometry, and four fresh sides. The
+owner approved the exact N02 visual-preflight hashes on 2026-07-30. Production
+revision `n02-production-r01` consumes only those approved pixels and passes
+F4-F7 with four orientation shells, a viewport-local A-D-A status loop,
+`18 x 6 = 108` empty-hand I01 cases, `432` orientation cases, collision-free
+routes, and a thirty-second two-instance capacity-one failure/release/retry
+proof. F8 awaits owner review of the exact production hashes. Until that
+decision, both planned slots remain inactive, Facility v1 remains `15/20`, and
+F9-F10 stay blocked. See
+`docs/art/OFFICE_FACILITY_SERVER_RACK_N02_PRODUCTION.md`.
 
 ## Recommended family order
 
