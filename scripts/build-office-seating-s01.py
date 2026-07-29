@@ -3,8 +3,8 @@
 
 The batch re-extracts every salvageable seat from its audited original master,
 uses the approved working-seated character rows, and produces deterministic
-F0-F7 evidence. No candidate is imported by Active Office and every family
-stops at F8 owner review.
+F0-F7 evidence. Each family retains an independent F8 decision, and no
+candidate is imported by Active Office.
 """
 
 from __future__ import annotations
@@ -39,6 +39,24 @@ ACTOR_SIZE = (96, 104)
 ACTIVE_FRAMES = 6
 FRONT_ROW = 14
 BACK_ROW = 13
+
+
+OWNER_DECISIONS: dict[str, dict[str, str]] = {
+    "sofa.modern.two-seat": {
+        "decision": "approved",
+        "decidedOn": "2026-07-29",
+        "notes": (
+            "Owner approved the latest Seating S01 two-seat sofa result."
+        ),
+    },
+    "sofa.modern.three-seat": {
+        "decision": "approved",
+        "decidedOn": "2026-07-29",
+        "notes": (
+            "Owner approved the latest Seating S01 three-seat sofa result."
+        ),
+    },
+}
 
 
 FAMILY_SPECS: list[dict[str, Any]] = [
@@ -1528,6 +1546,13 @@ def build_family(
 
     slots = interaction_slots(spec)
     reviews_as_text = [repo_path(path) for path in paths_review]
+    owner_decision = OWNER_DECISIONS.get(spec["familyId"])
+    approval_evidence = (
+        "Owner approved the latest Seating S01 "
+        f"{spec['label'].lower()} result on {owner_decision['decidedOn']}."
+        if owner_decision
+        else None
+    )
     gates = {
         "F0": {"status": "passed", "evidence": [reviews_as_text[0]]},
         "F1": {"status": "passed", "evidence": [reviews_as_text[2]]},
@@ -1540,7 +1565,14 @@ def build_family(
             "status": "passed",
             "evidence": reviews_as_text[3:],
         },
-        "F8": {"status": "pending-owner-review", "evidence": reviews_as_text},
+        "F8": {
+            "status": "passed" if owner_decision else "pending-owner-review",
+            "evidence": (
+                [*reviews_as_text, approval_evidence]
+                if approval_evidence
+                else reviews_as_text
+            ),
+        },
         "F9": {
             "status": "blocked",
             "evidence": ["Furniture-only room composition is not authorized."],
@@ -1555,7 +1587,9 @@ def build_family(
         "id": f"office.furniture.{spec['key']}",
         "familyId": spec["familyId"],
         "revision": "r01",
-        "status": "owner-review-f8-pending",
+        "status": (
+            "owner-approved" if owner_decision else "owner-review-f8-pending"
+        ),
         "developmentOnly": True,
         "activeOfficePromotion": False,
         "sourcePolicy": {
@@ -1632,7 +1666,7 @@ def build_family(
         },
         "permissions": {
             "familyLab": True,
-            "ownerReview": True,
+            "ownerReview": owner_decision is None,
             "furnitureOnlyRoom": False,
             "otherFurnitureFamilies": False,
             "activeOfficePromotion": False,
@@ -1642,7 +1676,7 @@ def build_family(
             "sha256": sha256_file(ACTIVE_REGISTRY),
             "importsCandidate": False,
         },
-        "ownerDecision": None,
+        "ownerDecision": owner_decision,
     }
     if spec.get("reviewTable"):
         manifest["approvedDependencies"] = review_dependencies()
@@ -1727,7 +1761,20 @@ def build_outputs() -> dict[Path, bytes]:
         "createdOn": "2026-07-29",
         "scope": "isolated-furniture-family-labs",
         "familyCount": len(FAMILY_SPECS),
+        "ownerApprovedFamilyCount": sum(
+            manifest["status"] == "owner-approved"
+            for _, manifest, _ in family_results
+        ),
+        "pendingOwnerReviewFamilyCount": sum(
+            manifest["status"] == "owner-review-f8-pending"
+            for _, manifest, _ in family_results
+        ),
         "candidateSeatCapacity": sum(spec["capacity"] for spec in FAMILY_SPECS),
+        "ownerApprovedSeatCapacity": sum(
+            spec["capacity"]
+            for spec, manifest, _ in family_results
+            if manifest["status"] == "owner-approved"
+        ),
         "existingApprovedMassageChairCapacity": 1,
         "validatedSeatFrameCases": sum(
             manifest["quality"]["validatedSeatFrameCases"]
@@ -1820,13 +1867,17 @@ def main() -> None:
             raise SystemExit("\n".join(failures))
         print(
             "Seating S01 outputs are current: seven families, thirteen seats, "
-            "1,404 pose cases, F8 pending, and Active Office unchanged."
+            "1,404 pose cases, two F8 approvals, five pending reviews, and "
+            "Active Office unchanged."
         )
         return
     write_outputs(outputs)
     print(f"Wrote {len(outputs)} Seating S01 files.")
     print(f"Batch manifest: {repo_path(BATCH_MANIFEST_PATH)}")
-    print("Status: all seven families passed F0-F7 and await separate F8 review.")
+    print(
+        "Status: both sofa families are owner-approved at F8; five families "
+        "await separate F8 review."
+    )
 
 
 if __name__ == "__main__":

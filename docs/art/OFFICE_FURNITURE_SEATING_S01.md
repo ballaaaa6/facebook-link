@@ -1,7 +1,7 @@
 # Office Furniture Seating S01
 
-Status: seven families passed F0-F7; each family awaits an independent F8
-owner decision
+Status: seven families passed F0-F7; both sofa families passed F8 on
+2026-07-29, and five families await independent F8 owner decisions
 
 Batch: `office-furniture-seating-s01`
 
@@ -24,15 +24,15 @@ review image is
 
 ## Family matrix
 
-| Family | Capacity | Runtime pixels | Pose cases | Allowed facing |
-| --- | ---: | ---: | ---: | --- |
-| `chair.reading` | 1 | `48 x 80` | 108 | front |
-| `pouf.lounge` | 1 | `72 x 64` | 108 | front |
-| `beanbag.lounge` | 1 | `72 x 64` | 108 | front |
-| `stool.side` | 1 | `54 x 80` | 108 | front |
-| `sofa.modern.two-seat` | 2 | `96 x 96` | 216 | front |
-| `sofa.modern.three-seat` | 3 | `130 x 96` | 324 | front |
-| `table.review.long.modern` | 4 | `128 x 64` | 432 | front and back |
+| Family | Capacity | Runtime pixels | Pose cases | Allowed facing | F8 |
+| --- | ---: | ---: | ---: | --- | --- |
+| `chair.reading` | 1 | `48 x 80` | 108 | front | pending |
+| `pouf.lounge` | 1 | `72 x 64` | 108 | front | pending |
+| `beanbag.lounge` | 1 | `72 x 64` | 108 | front | pending |
+| `stool.side` | 1 | `54 x 80` | 108 | front | pending |
+| `sofa.modern.two-seat` | 2 | `96 x 96` | 216 | front | owner-approved |
+| `sofa.modern.three-seat` | 3 | `130 x 96` | 324 | front | owner-approved |
+| `table.review.long.modern` | 4 | `128 x 64` | 432 | front and back | pending |
 
 The batch therefore contains 13 candidate seat slots and 1,404 validated
 character-frame-slot cases. The already approved massage chair remains a
@@ -156,11 +156,17 @@ fail closed.
 ## Gate state
 
 - F0-F7: passed independently for all seven exact family revisions.
-- F8: pending independently for all seven families.
+- F8: owner-approved for `sofa.modern.two-seat` and
+  `sofa.modern.three-seat` on 2026-07-29.
+- F8: pending independently for reading chair, pouf, beanbag, stool, and the
+  four-seat review table.
 - F9: blocked for every family.
 - F10: blocked for every family.
 
-No Seating S01 path is imported by the Active Office registry.
+The two approved sofa families may be selected for a future furniture-only F9
+candidate. Approval does not place them in a room and does not authorize
+Active Office integration. No Seating S01 path is imported by the Active
+Office registry.
 
 ## Reproduction
 

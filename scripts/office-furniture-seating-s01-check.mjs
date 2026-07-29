@@ -3,7 +3,6 @@ import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { validateOfficeFurnitureFamilyManifest } from "../packages/contracts/src/officeFurnitureProduction.ts";
-
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const batchPath = "assets/game/manifests/office-furniture-seating-s01.json";
 const auditPath = "assets/game/manifests/office-furniture-master-audit-v1.json";
@@ -13,17 +12,15 @@ const activePath = "apps/web/src/features/office/components/officeAssetRegistry.
 const processedRoot = "assets/game/processed/office-furniture-family-v1/seating-s01";
 const reviewRoot = "assets/art/layout-references/office-furniture-family-v1/seating-s01";
 const failures = [];
-
 const expected = [
-  ["chair.reading", "chair-reading-r01", "office-furniture-chair-reading-r01.json", 1, 108, ["front"]],
-  ["pouf.lounge", "pouf-lounge-r01", "office-furniture-pouf-lounge-r01.json", 1, 108, ["front"]],
-  ["beanbag.lounge", "beanbag-lounge-r01", "office-furniture-beanbag-lounge-r01.json", 1, 108, ["front"]],
-  ["stool.side", "stool-side-r01", "office-furniture-stool-side-r01.json", 1, 108, ["front"]],
-  ["sofa.modern.two-seat", "sofa-modern-two-seat-r01", "office-furniture-sofa-modern-two-seat-r01.json", 2, 216, ["front"]],
-  ["sofa.modern.three-seat", "sofa-modern-three-seat-r01", "office-furniture-sofa-modern-three-seat-r01.json", 3, 324, ["front"]],
-  ["table.review.long.modern", "table-review-long-r01", "office-furniture-table-review-long-r01.json", 4, 432, ["back", "front"]],
+  ["chair.reading", "chair-reading-r01", "office-furniture-chair-reading-r01.json", 1, 108, ["front"], null],
+  ["pouf.lounge", "pouf-lounge-r01", "office-furniture-pouf-lounge-r01.json", 1, 108, ["front"], null],
+  ["beanbag.lounge", "beanbag-lounge-r01", "office-furniture-beanbag-lounge-r01.json", 1, 108, ["front"], null],
+  ["stool.side", "stool-side-r01", "office-furniture-stool-side-r01.json", 1, 108, ["front"], null],
+  ["sofa.modern.two-seat", "sofa-modern-two-seat-r01", "office-furniture-sofa-modern-two-seat-r01.json", 2, 216, ["front"], "two-seat"],
+  ["sofa.modern.three-seat", "sofa-modern-three-seat-r01", "office-furniture-sofa-modern-three-seat-r01.json", 3, 324, ["front"], "three-seat"],
+  ["table.review.long.modern", "table-review-long-r01", "office-furniture-table-review-long-r01.json", 4, 432, ["back", "front"], null],
 ];
-
 const add = (condition, message) => {
   if (!condition) failures.push(message);
 };
@@ -43,7 +40,6 @@ const pngSize = (path) => {
   if (!bytes.subarray(0, 8).equals(signature)) throw new Error(`Not PNG: ${path}`);
   return [bytes.readUInt32BE(16), bytes.readUInt32BE(20)];
 };
-
 try {
   const batch = readJson(batchPath);
   const audit = readJson(auditPath);
@@ -54,12 +50,14 @@ try {
   const authorityBySlug = new Map(
     authorityEntries.map((entry) => [entry.slug, entry]),
   );
-
   add(
     batch.id === "office-furniture-seating-s01"
       && batch.status === "owner-review-f8-pending"
       && batch.familyCount === 7
+      && batch.ownerApprovedFamilyCount === 2
+      && batch.pendingOwnerReviewFamilyCount === 5
       && batch.candidateSeatCapacity === 13
+      && batch.ownerApprovedSeatCapacity === 5
       && batch.existingApprovedMassageChairCapacity === 1
       && batch.validatedSeatFrameCases === 1404,
     "Seating S01 batch totals changed",
@@ -87,7 +85,6 @@ try {
       && pose.audit?.seatFrameRecordCount === 216,
     "Working-seat authority is missing or stale",
   );
-
   const expectedProcessed = [];
   const expectedReviews = [`${reviewRoot}/00-batch-overview.png`];
   let validatedCases = 0;
@@ -98,9 +95,13 @@ try {
     capacity,
     caseCount,
     orientations,
+    approvalLabel,
   ] of expected) {
     const manifestPath = `assets/game/manifests/${filename}`;
     const manifest = readJson(manifestPath);
+    const isApproved = approvalLabel !== null;
+    const expectedStatus = isApproved ? "owner-approved" : "owner-review-f8-pending";
+    const expectedF8Status = isApproved ? "passed" : "pending-owner-review";
     const batchRecord = batch.families?.find(
       (record) => record.familyId === familyId,
     );
@@ -111,22 +112,25 @@ try {
       manifest.id === `office.furniture.${key}`
         && manifest.familyId === familyId
         && manifest.revision === "r01"
-        && manifest.status === "owner-review-f8-pending",
-      `${familyId} identity or owner-review status changed`,
+        && manifest.status === expectedStatus,
+      `${familyId} identity or F8 status changed`,
     );
     add(
       manifest.developmentOnly === true
         && manifest.activeOfficePromotion === false
-        && manifest.ownerDecision === null
+        && (isApproved
+          ? manifest.ownerDecision?.decision === "approved"
+            && manifest.ownerDecision?.decidedOn === "2026-07-29"
+          : manifest.ownerDecision === null)
         && manifest.gates?.F7?.status === "passed"
-        && manifest.gates?.F8?.status === "pending-owner-review"
+        && manifest.gates?.F8?.status === expectedF8Status
         && manifest.gates?.F9?.status === "blocked"
         && manifest.gates?.F10?.status === "blocked",
-      `${familyId} escaped its F8 stop gate`,
+      `${familyId} F8 decision or downstream stop gate changed`,
     );
     add(
       manifest.permissions?.familyLab === true
-        && manifest.permissions?.ownerReview === true
+        && manifest.permissions?.ownerReview === !isApproved
         && manifest.permissions?.furnitureOnlyRoom === false
         && manifest.permissions?.otherFurnitureFamilies === false
         && manifest.permissions?.activeOfficePromotion === false,
@@ -137,10 +141,9 @@ try {
         && manifest.sourcePolicy?.activeOfficePixelReuse === false
         && manifest.sourcePolicy?.legacyOrRejectedPixelReuse === false
         && manifest.sourcePolicy?.generativeRepair === false
-        && manifest.sourcePolicy?.missingAssetFallback === false,
+      && manifest.sourcePolicy?.missingAssetFallback === false,
       `${familyId} source policy changed`,
     );
-
     const auditRecord = audit.records?.find(
       ({ recordId }) => recordId === manifest.source?.auditRecordId,
     );
@@ -172,7 +175,6 @@ try {
         `${familyId} boundary-crossing evidence is missing`,
       );
     }
-
     add(
       manifest.interaction?.capacity === capacity
         && manifest.interaction?.slots?.length === capacity
@@ -197,7 +199,6 @@ try {
       ),
       `${familyId} semantic action and visual pose are conflated`,
     );
-
     const coveredSlots = new Set();
     let manifestCases = 0;
     let minimumOverlap = Number.POSITIVE_INFINITY;
@@ -272,7 +273,6 @@ try {
         && manifest.quality?.allLowerBodyPixelsVisibleInSeatLayer === true,
       `${familyId} slot coverage, overlap, or lower-body proof changed`,
     );
-
     const reservation = manifest.reservationValidation;
     add(
       reservation?.durationSeconds === 30
@@ -290,7 +290,6 @@ try {
         `${familyId} reservation sample ${sample.second} exceeds capacity`,
       );
     }
-
     add(
       manifest.parts?.map(({ role }) => role).join(",")
         === "shell,rear,foreground"
@@ -342,6 +341,7 @@ try {
     add(
       batchRecord?.manifest === manifestPath
         && batchRecord?.manifestSha256 === sha256(manifestPath)
+        && batchRecord?.status === expectedStatus
         && batchRecord?.capacity === capacity
         && batchRecord?.validatedSeatFrameCases === caseCount
         && JSON.stringify(batchRecord?.orientations)
@@ -413,6 +413,7 @@ if (failures.length > 0) {
 } else {
   process.stdout.write(
     "Seating S01 OK: seven audited families, thirteen slots, 1,404 front/back "
-      + "pose cases, capacity reservations, F8 pending, and Active Office unchanged.\n",
+      + "pose cases, capacity reservations, two F8 approvals, five pending "
+      + "reviews, and Active Office unchanged.\n",
   );
 }

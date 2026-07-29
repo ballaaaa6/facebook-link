@@ -216,7 +216,8 @@ The following rules carry the successful R05 method to every other family:
    required.
 4. Lounge seating is now built in the isolated Seating S01 batch: two-seat
    sofa, three-seat sofa, beanbag, pouf, reading chair, and stool passed F0-F7
-   and await independent F8 decisions.
+   on 2026-07-29. Both sofa families passed F8 that day; beanbag, pouf, reading
+   chair, and stool await independent F8 decisions.
 5. The isolated V3 review table is also in Seating S01. Its two rear seats use
    the approved front working pose; its two front seats use the approved back
    working pose. Exact R05-r02 front/back chair layers are context evidence

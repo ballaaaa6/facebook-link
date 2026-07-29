@@ -27,6 +27,10 @@ const seatingManifests = seatingFiles.map((file) => JSON.parse(readFileSync(
   new URL(`../../../assets/game/manifests/${file}`, import.meta.url),
   "utf8",
 )) as OfficeFurnitureFamilyManifest);
+const approvedSeatingFamilyIds = new Set([
+  "sofa.modern.two-seat",
+  "sofa.modern.three-seat",
+]);
 
 test("rejected massage chair r01 remains valid audit history", () => {
   assert.deepEqual(validateOfficeFurnitureFamilyManifest(rejectedManifest), []);
@@ -56,15 +60,41 @@ test("current furniture candidates reject conflated action and visual pose", () 
   assert.match(issues, /separate semantic action from visual pose/);
 });
 
-test("Seating S01 validates every family independently at the F8 stop gate", () => {
+test("Seating S01 records two independent F8 approvals and keeps five pending", () => {
   for (const candidate of seatingManifests) {
+    const isApproved = approvedSeatingFamilyIds.has(candidate.familyId);
     assert.deepEqual(validateOfficeFurnitureFamilyManifest(candidate), []);
-    assert.equal(candidate.status, "owner-review-f8-pending");
+    assert.equal(
+      candidate.status,
+      isApproved ? "owner-approved" : "owner-review-f8-pending",
+    );
     assert.equal(candidate.gates.F7.status, "passed");
-    assert.equal(candidate.gates.F8.status, "pending-owner-review");
+    assert.equal(
+      candidate.gates.F8.status,
+      isApproved ? "passed" : "pending-owner-review",
+    );
+    assert.equal(
+      candidate.ownerDecision?.decision,
+      isApproved ? "approved" : undefined,
+    );
+    assert.equal(
+      candidate.ownerDecision?.decidedOn,
+      isApproved ? "2026-07-29" : undefined,
+    );
+    assert.equal(candidate.permissions.ownerReview, !isApproved);
     assert.equal(candidate.gates.F9.status, "blocked");
     assert.equal(candidate.gates.F10.status, "blocked");
   }
+  assert.equal(
+    seatingManifests.filter(({ status }) => status === "owner-approved").length,
+    2,
+  );
+  assert.equal(
+    seatingManifests.filter(
+      ({ status }) => status === "owner-review-f8-pending",
+    ).length,
+    5,
+  );
   assert.equal(
     seatingManifests.reduce(
       (total, candidate) => total + candidate.interaction.capacity,
