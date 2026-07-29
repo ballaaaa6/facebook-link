@@ -3,8 +3,8 @@
   "id": "office.facility.coffee-machine.c02",
   "familyId": "coffee.machine.generated-floor",
   "revision": "generated-2x2x4-visual-preflight-r01",
-  "status": "visual-preflight-owner-review",
-  "productionStage": "f0-f3-visual-preflight",
+  "status": "visual-preflight-owner-approved",
+  "productionStage": "f3-owner-approved-production-authorized",
   "createdOn": "2026-07-30",
   "developmentOnly": true,
   "activeOfficePromotion": false,
@@ -454,8 +454,8 @@
       "note": "Four source cells have isolated alpha ownership."
     },
     "F3": {
-      "status": "pending-owner-review",
-      "note": "Four-side silhouette requires explicit owner approval."
+      "status": "passed",
+      "note": "Owner approved the exact four-side review hashes."
     },
     "F4": {
       "status": "blocked"
@@ -480,11 +480,38 @@
     }
   },
   "permissions": {
-    "visualOwnerReview": true,
-    "productionBuild": false,
+    "visualOwnerReview": false,
+    "productionBuild": true,
     "reservationSlotTransfer": false,
     "f9Replacement": false,
     "activeOfficePromotion": false
   },
-  "ownerDecision": null
+  "ownerDecision": {
+    "decision": "approved",
+    "decidedOn": "2026-07-30",
+    "scope": "exact-family-review-output-hashes",
+    "approvedReviewHashes": [
+      {
+        "path": "assets/art/layout-references/office-facility-upsize-v1/coffee-machine-c02/01-four-side-clean.png",
+        "sha256": "20a68e8e6137f98c1cdf7d36a035dee3b8aaab1d4c0423ab6718bd8bd4765c7f"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-upsize-v1/coffee-machine-c02/02-alpha-source-ownership.png",
+        "sha256": "0676bb7cd8f76476b3f68c4e7fe929b637074bfb664d31f28c490963240008dc"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-upsize-v1/coffee-machine-c02/03-scale-geometry.png",
+        "sha256": "017d17c7fd549ae5dc2f086d3c0553280adf3cc6d881964a7a2b4321c90d2e8f"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-upsize-v1/coffee-machine-c02/04-floor-approaches.png",
+        "sha256": "3f8e7ecdd834f78d77549ef587eff9d16d9c62469661f707d24d7196bdfafc3c"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-upsize-v1/coffee-machine-c02/05-modular-motion-plan.png",
+        "sha256": "04abc5eae0a9b5e8d62dbd72016181ea34624c5ce7b2a70a2b89790e8ab516eb"
+      }
+    ],
+    "notes": "Owner approved all four 2x2x4 candidates and authorized the isolated F4-F8 production batch."
+  }
 }

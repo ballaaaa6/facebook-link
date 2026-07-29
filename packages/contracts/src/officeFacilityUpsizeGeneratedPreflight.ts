@@ -84,13 +84,13 @@ export function validateOfficeFacilityUpsizeGeneratedPreflightManifest(
       && typeof value.id === "string"
       && typeof value.familyId === "string"
       && value.revision === "generated-2x2x4-visual-preflight-r01"
-      && value.status === "visual-preflight-owner-review"
-      && value.productionStage === "f0-f3-visual-preflight"
+      && value.status === "visual-preflight-owner-approved"
+      && value.productionStage
+        === "f3-owner-approved-production-authorized"
       && value.createdOn === "2026-07-30"
       && value.developmentOnly === true
-      && value.activeOfficePromotion === false
-      && value.ownerDecision === null,
-    "2x2x4 family preflight identity or owner-review stop changed",
+      && value.activeOfficePromotion === false,
+    "2x2x4 family preflight identity or F3 approval changed",
   );
 
   const supersedes = value.supersedesAfterApproval;
@@ -234,9 +234,9 @@ export function validateOfficeFacilityUpsizeGeneratedPreflightManifest(
   add(issues, record(value.gates), "2x2x4 family gates are missing");
   if (record(value.gates)) {
     for (const gate of officeFacilityUpsizeFamilyGates) {
-      const expected = ["F0", "F1", "F2"].includes(gate)
+      const expected = ["F0", "F1", "F2", "F3"].includes(gate)
         ? "passed"
-        : gate === "F3" ? "pending-owner-review" : "blocked";
+        : "blocked";
       add(
         issues,
         record(value.gates[gate]) && value.gates[gate].status === expected,
@@ -248,12 +248,30 @@ export function validateOfficeFacilityUpsizeGeneratedPreflightManifest(
   add(
     issues,
     record(permissions)
-      && permissions.visualOwnerReview === true
-      && permissions.productionBuild === false
+      && permissions.visualOwnerReview === false
+      && permissions.productionBuild === true
       && permissions.reservationSlotTransfer === false
       && permissions.f9Replacement === false
       && permissions.activeOfficePromotion === false,
     "2x2x4 family permission stop changed",
+  );
+  const decision = value.ownerDecision;
+  add(
+    issues,
+    record(decision)
+      && decision.decision === "approved"
+      && decision.decidedOn === "2026-07-30"
+      && decision.scope === "exact-family-review-output-hashes"
+      && Array.isArray(decision.approvedReviewHashes)
+      && decision.approvedReviewHashes.length === reviews.length
+      && decision.approvedReviewHashes.every(
+        (entry, index) =>
+          record(entry)
+          && record(reviews[index])
+          && entry.path === reviews[index].path
+          && entry.sha256 === reviews[index].sha256,
+      ),
+    "2x2x4 family exact F3 review approval changed",
   );
   return issues;
 }
@@ -267,12 +285,12 @@ export function validateOfficeFacilityUpsizeBatchPreflightManifest(
     issues,
     value.schemaVersion === 1
       && value.id === "office.facility-upsize.2x2x4.preflight.v1"
-      && value.status === "visual-preflight-owner-review"
-      && value.productionStage === "f0-f3-batch-visual-preflight"
+      && value.status === "visual-preflight-owner-approved"
+      && value.productionStage
+        === "f3-owner-approved-production-authorized"
       && value.developmentOnly === true
-      && value.activeOfficePromotion === false
-      && value.ownerDecision === null,
-    "2x2x4 batch identity or owner-review stop changed",
+      && value.activeOfficePromotion === false,
+    "2x2x4 batch identity or F3 approval changed",
   );
   add(
     issues,
@@ -295,7 +313,7 @@ export function validateOfficeFacilityUpsizeBatchPreflightManifest(
         && typeof family.id === "string"
         && typeof family.manifest === "string"
         && sha256(family.sha256)
-        && family.status === "visual-preflight-owner-review"
+        && family.status === "visual-preflight-owner-approved"
         && family.visualViewCount === 4
         && positiveInteger(family.plannedInstanceCount)
         && positiveInteger(family.plannedReservationSlotsAfterF8)),
@@ -354,16 +372,29 @@ export function validateOfficeFacilityUpsizeBatchPreflightManifest(
     issues,
     record(gates)
       && record(gates.F3)
-      && gates.F3.status === "pending-owner-review"
+      && gates.F3.status === "passed"
       && ["F4", "F8", "F9", "F10"].every(
         (gate) => record(gates[gate]) && gates[gate].status === "blocked",
       )
       && record(permissions)
-      && permissions.visualOwnerReview === true
-      && permissions.productionBuild === false
+      && permissions.visualOwnerReview === false
+      && permissions.productionBuild === true
       && permissions.f9Replacement === false
       && permissions.activeOfficePromotion === false,
     "2x2x4 batch gate or permission stop changed",
+  );
+  const decision = value.ownerDecision;
+  add(
+    issues,
+    record(decision)
+      && decision.decision === "approved"
+      && decision.decidedOn === "2026-07-30"
+      && decision.scope === "exact-batch-lineup-and-family-review-hashes"
+      && Array.isArray(decision.approvedReviewHashes)
+      && decision.approvedReviewHashes.length === 1
+      && Array.isArray(decision.approvedFamilyManifestHashes)
+      && decision.approvedFamilyManifestHashes.length === families.length,
+    "2x2x4 batch exact F3 approval changed",
   );
   return issues;
 }

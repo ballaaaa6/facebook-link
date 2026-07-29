@@ -418,13 +418,25 @@ v1 slot; F9, F10, and Active Office remain blocked.
 visual replacement batch for Coffee C02, Water W02, Vending U02, and Massage
 R03. Each candidate locks a `2 x 2 x 4` physical scale, `2 x 2` footprint,
 `3 x 4` render box, four isolated elevations, and an immutable-shell modular
-motion plan. The batch contains 16 views and stops at
-`pending-owner-review` F3. It builds no motion frames, pose matrix, reservation
-simulation, or room placement. The current accepted families retain all
+motion plan. The batch contains 16 views. On 2026-07-30 the owner approved the
+exact F3 hashes for all four candidates and authorized isolated F4-F8
+production. The approved preflight itself builds no motion frames, pose
+matrix, reservation simulation, or room placement. The current accepted
+families retain all
 `20/20` slots; the five candidate slots do not transfer before independent F8
 approval. Counter A01-r02 is retained, F9 v1 is hash-pinned and unchanged,
 and F4-F10 plus Active Office remain blocked. See
 `docs/art/OFFICE_FACILITY_UPSIZE_2X2X4_PREFLIGHT_V1.md`.
+
+The authorized production revision now completes F4-F7 independently for all
+four successors. It proves sixteen A-D motion frames, four finite return-to-idle
+sequences, 432 actor pose cases, 1,728 four-orientation placement cases, and
+four thirty-second reservation scenarios. Coffee, Water, and Vending reuse
+exact I01/H01 primary grips; Massage reuses the approved working-front seat
+row and remains interaction-front-only while retaining four static placement
+elevations. The batch status is `production-owner-review`: F8, all five slot
+transfers, F9 v2, F10, and Active Office remain blocked. See
+`docs/art/OFFICE_FACILITY_UPSIZE_2X2X4_PRODUCTION_V1.md`.
 
 ## Required evidence per family
 

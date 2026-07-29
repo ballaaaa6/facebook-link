@@ -716,8 +716,8 @@ def build(destination_root: Path) -> list[Path]:
             "id": family["id"],
             "familyId": family["familyId"],
             "revision": "generated-2x2x4-visual-preflight-r01",
-            "status": "visual-preflight-owner-review",
-            "productionStage": "f0-f3-visual-preflight",
+            "status": "visual-preflight-owner-approved",
+            "productionStage": "f3-owner-approved-production-authorized",
             "createdOn": "2026-07-30",
             "developmentOnly": True,
             "activeOfficePromotion": False,
@@ -839,8 +839,8 @@ def build(destination_root: Path) -> list[Path]:
                     "note": "Four source cells have isolated alpha ownership.",
                 },
                 "F3": {
-                    "status": "pending-owner-review",
-                    "note": "Four-side silhouette requires explicit owner approval.",
+                    "status": "passed",
+                    "note": "Owner approved the exact four-side review hashes.",
                 },
                 "F4": {"status": "blocked"},
                 "F5": {"status": "blocked"},
@@ -851,13 +851,28 @@ def build(destination_root: Path) -> list[Path]:
                 "F10": {"status": "blocked"},
             },
             "permissions": {
-                "visualOwnerReview": True,
-                "productionBuild": False,
+                "visualOwnerReview": False,
+                "productionBuild": True,
                 "reservationSlotTransfer": False,
                 "f9Replacement": False,
                 "activeOfficePromotion": False,
             },
-            "ownerDecision": None,
+            "ownerDecision": {
+                "decision": "approved",
+                "decidedOn": "2026-07-30",
+                "scope": "exact-family-review-output-hashes",
+                "approvedReviewHashes": [
+                    {
+                        "path": review["path"],
+                        "sha256": review["sha256"],
+                    }
+                    for review in review_records
+                ],
+                "notes": (
+                    "Owner approved all four 2x2x4 candidates and authorized "
+                    "the isolated F4-F8 production batch."
+                ),
+            },
         }
         manifest_rel = Path(family["manifest"])
         manifest_path = destination_root / manifest_rel
@@ -892,8 +907,8 @@ def build(destination_root: Path) -> list[Path]:
     batch_manifest = {
         "schemaVersion": 1,
         "id": "office.facility-upsize.2x2x4.preflight.v1",
-        "status": "visual-preflight-owner-review",
-        "productionStage": "f0-f3-batch-visual-preflight",
+        "status": "visual-preflight-owner-approved",
+        "productionStage": "f3-owner-approved-production-authorized",
         "createdOn": "2026-07-30",
         "developmentOnly": True,
         "activeOfficePromotion": False,
@@ -934,19 +949,40 @@ def build(destination_root: Path) -> list[Path]:
             "size": list(lineup.size),
         },
         "gates": {
-            "F3": {"status": "pending-owner-review"},
+            "F3": {"status": "passed"},
             "F4": {"status": "blocked"},
             "F8": {"status": "blocked"},
             "F9": {"status": "blocked"},
             "F10": {"status": "blocked"},
         },
         "permissions": {
-            "visualOwnerReview": True,
-            "productionBuild": False,
+            "visualOwnerReview": False,
+            "productionBuild": True,
             "f9Replacement": False,
             "activeOfficePromotion": False,
         },
-        "ownerDecision": None,
+        "ownerDecision": {
+            "decision": "approved",
+            "decidedOn": "2026-07-30",
+            "scope": "exact-batch-lineup-and-family-review-hashes",
+            "approvedReviewHashes": [
+                {
+                    "path": lineup_rel.as_posix(),
+                    "sha256": sha256(lineup_path),
+                }
+            ],
+            "approvedFamilyManifestHashes": [
+                {
+                    "manifest": family["manifest"],
+                    "sha256": family["sha256"],
+                }
+                for family in family_manifests
+            ],
+            "notes": (
+                "Owner approved Coffee C02, Water W02, Vending U02, and "
+                "Massage R03 and authorized isolated F4-F8 production."
+            ),
+        },
     }
     batch_path = destination_root / BATCH_MANIFEST_REL
     save_json(batch_path, batch_manifest)

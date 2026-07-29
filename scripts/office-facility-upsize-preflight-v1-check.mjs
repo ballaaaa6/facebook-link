@@ -136,7 +136,7 @@ try {
     "Massage Chair R03",
     "Counter A01-r02",
     "C12",
-    "pending-owner-review",
+    "visual-preflight-owner-approved",
   ]) {
     add(docs.includes(required), `Preflight documentation omits ${required}`);
   }
@@ -171,5 +171,5 @@ if (failures.length > 0) {
 console.log(
   "Office Facility 2x2x4 visual preflight check passed: "
     + "4 families, 16 isolated views, 5 planned slot transfers, "
-    + "Counter retained, F9 unchanged, F3 owner review pending.",
+    + "Counter retained, F9 unchanged, exact F3 hashes owner-approved.",
 );

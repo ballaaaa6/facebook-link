@@ -3,8 +3,8 @@
   "id": "office.facility.water-dispenser.w02",
   "familyId": "water.dispenser.generated-floor",
   "revision": "generated-2x2x4-visual-preflight-r01",
-  "status": "visual-preflight-owner-review",
-  "productionStage": "f0-f3-visual-preflight",
+  "status": "visual-preflight-owner-approved",
+  "productionStage": "f3-owner-approved-production-authorized",
   "createdOn": "2026-07-30",
   "developmentOnly": true,
   "activeOfficePromotion": false,
@@ -453,8 +453,8 @@
       "note": "Four source cells have isolated alpha ownership."
     },
     "F3": {
-      "status": "pending-owner-review",
-      "note": "Four-side silhouette requires explicit owner approval."
+      "status": "passed",
+      "note": "Owner approved the exact four-side review hashes."
     },
     "F4": {
       "status": "blocked"
@@ -479,11 +479,38 @@
     }
   },
   "permissions": {
-    "visualOwnerReview": true,
-    "productionBuild": false,
+    "visualOwnerReview": false,
+    "productionBuild": true,
     "reservationSlotTransfer": false,
     "f9Replacement": false,
     "activeOfficePromotion": false
   },
-  "ownerDecision": null
+  "ownerDecision": {
+    "decision": "approved",
+    "decidedOn": "2026-07-30",
+    "scope": "exact-family-review-output-hashes",
+    "approvedReviewHashes": [
+      {
+        "path": "assets/art/layout-references/office-facility-upsize-v1/water-dispenser-w02/01-four-side-clean.png",
+        "sha256": "3eb3b7b3cb1356b2a2d74d30fa2b5b8e0da0168f8f8883f6c6cad8d86467ef0c"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-upsize-v1/water-dispenser-w02/02-alpha-source-ownership.png",
+        "sha256": "bb75bf0ebf2d086304985d8903278783caa743aa836be6fd4b6fff295b4789c4"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-upsize-v1/water-dispenser-w02/03-scale-geometry.png",
+        "sha256": "fe83f618e12f01826b6e19e479ee1183aa0f4fb5ac703fcff9255f93c034c8e0"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-upsize-v1/water-dispenser-w02/04-floor-approaches.png",
+        "sha256": "e2c69fcfcac9bf301580f83bc4a280eea4f33f58c6fb643383fa8a62b5b7bffc"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-upsize-v1/water-dispenser-w02/05-modular-motion-plan.png",
+        "sha256": "4b2823152b9f0de2865f28e33c5fea527f187973d76fa5a98c92864cbeebd2a0"
+      }
+    ],
+    "notes": "Owner approved all four 2x2x4 candidates and authorized the isolated F4-F8 production batch."
+  }
 }

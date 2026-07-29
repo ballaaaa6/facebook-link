@@ -24,7 +24,7 @@ const batch = JSON.parse(readFileSync(new URL(
   root,
 ), "utf8")) as OfficeFacilityUpsizeBatchPreflightManifest;
 
-test("facility upsize families are fresh four-side 2x2x4 F3 preflights", () => {
+test("facility upsize families record exact F3 owner approval", () => {
   for (const family of families) {
     assert.deepEqual(
       validateOfficeFacilityUpsizeGeneratedPreflightManifest(family),
@@ -34,7 +34,9 @@ test("facility upsize families are fresh four-side 2x2x4 F3 preflights", () => {
     assert.equal(family.views.length, 4);
     assert.equal(family.interactionPreflight.reservationSlotContribution, 0);
     assert.equal(family.modularMotionPlan.seamLoopFramesBuilt, 0);
-    assert.equal(family.gates.F3.status, "pending-owner-review");
+    assert.equal(family.gates.F3.status, "passed");
+    assert.equal(family.permissions.productionBuild, true);
+    assert.equal(family.ownerDecision.decision, "approved");
   }
   assert.equal(
     families.reduce(
@@ -64,7 +66,7 @@ test("facility upsize family rejects production or reservation claims", () => {
     permissions: Record<string, unknown>;
   };
   invalid.interactionPreflight.reservationSlotContribution = 1;
-  invalid.permissions.productionBuild = true;
+  invalid.permissions.reservationSlotTransfer = true;
   const issues =
     validateOfficeFacilityUpsizeGeneratedPreflightManifest(invalid);
   assert.ok(issues.some((issue) => issue.includes("reservation")));

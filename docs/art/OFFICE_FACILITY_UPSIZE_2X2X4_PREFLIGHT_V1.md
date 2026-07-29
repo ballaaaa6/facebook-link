@@ -1,6 +1,6 @@
 # Office Facility 2x2x4 Visual Preflight V1
 
-Status: `pending-owner-review` at F3
+Status: `visual-preflight-owner-approved` at F3
 
 Date: 2026-07-30
 
@@ -163,9 +163,10 @@ The machine-readable batch authority is
 
 ## Gates and commands
 
-F0 fresh-source isolation, F1 geometry, and F2 ownership pass. F3 is
-`pending-owner-review`. F4-F10, reservation transfer, F9 replacement, and
-Active Office promotion remain blocked.
+F0 fresh-source isolation, F1 geometry, F2 ownership, and F3 exact-hash owner
+approval pass. The owner approved all four candidates on 2026-07-30 and
+authorized the isolated F4-F8 production batch. Reservation transfer, F9
+replacement, and Active Office promotion remain blocked.
 
 ```powershell
 npm run art:facility:upsize:preflight
@@ -173,7 +174,6 @@ npm run art:facility:upsize:preflight:rebuild:check
 npm run art:facility:upsize:preflight:check
 ```
 
-After the owner approves exact review hashes, the next revision may build
-modular motion, interaction poses, the 18-character matrix, and the
-30-second contention/failure/release/retry proof. Until then, this work stops
-at visual preflight.
+The authorized next revision builds modular motion, interaction poses, the
+18-character matrix, and the 30-second contention/failure/release/retry proof.
+It must stop again at F8 for exact production-review approval.

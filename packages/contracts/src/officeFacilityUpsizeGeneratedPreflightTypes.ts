@@ -45,8 +45,8 @@ export interface OfficeFacilityUpsizeGeneratedPreflightManifest {
   id: string;
   familyId: string;
   revision: "generated-2x2x4-visual-preflight-r01";
-  status: "visual-preflight-owner-review";
-  productionStage: "f0-f3-visual-preflight";
+  status: "visual-preflight-owner-approved";
+  productionStage: "f3-owner-approved-production-authorized";
   createdOn: "2026-07-30";
   developmentOnly: true;
   activeOfficePromotion: false;
@@ -136,20 +136,26 @@ export interface OfficeFacilityUpsizeGeneratedPreflightManifest {
     { status: "passed" | "pending-owner-review" | "blocked"; note?: string }
   >;
   permissions: {
-    visualOwnerReview: true;
-    productionBuild: false;
+    visualOwnerReview: false;
+    productionBuild: true;
     reservationSlotTransfer: false;
     f9Replacement: false;
     activeOfficePromotion: false;
   };
-  ownerDecision: null;
+  ownerDecision: {
+    decision: "approved";
+    decidedOn: "2026-07-30";
+    scope: "exact-family-review-output-hashes";
+    approvedReviewHashes: readonly { path: string; sha256: string }[];
+    notes: string;
+  };
 }
 
 export interface OfficeFacilityUpsizeBatchPreflightManifest {
   schemaVersion: 1;
   id: "office.facility-upsize.2x2x4.preflight.v1";
-  status: "visual-preflight-owner-review";
-  productionStage: "f0-f3-batch-visual-preflight";
+  status: "visual-preflight-owner-approved";
+  productionStage: "f3-owner-approved-production-authorized";
   createdOn: "2026-07-30";
   developmentOnly: true;
   activeOfficePromotion: false;
@@ -165,7 +171,7 @@ export interface OfficeFacilityUpsizeBatchPreflightManifest {
     label: string;
     manifest: string;
     sha256: string;
-    status: "visual-preflight-owner-review";
+    status: "visual-preflight-owner-approved";
     visualViewCount: 4;
     plannedInstanceCount: number;
     plannedReservationSlotsAfterF8: number;
@@ -196,13 +202,23 @@ export interface OfficeFacilityUpsizeBatchPreflightManifest {
   reviewOutput: { path: string; sha256: string; size: readonly [1600, 1000] };
   gates: Record<
     "F3" | "F4" | "F8" | "F9" | "F10",
-    { status: "pending-owner-review" | "blocked" }
+    { status: "passed" | "blocked" }
   >;
   permissions: {
-    visualOwnerReview: true;
-    productionBuild: false;
+    visualOwnerReview: false;
+    productionBuild: true;
     f9Replacement: false;
     activeOfficePromotion: false;
   };
-  ownerDecision: null;
+  ownerDecision: {
+    decision: "approved";
+    decidedOn: "2026-07-30";
+    scope: "exact-batch-lineup-and-family-review-hashes";
+    approvedReviewHashes: readonly { path: string; sha256: string }[];
+    approvedFamilyManifestHashes: readonly {
+      manifest: string;
+      sha256: string;
+    }[];
+    notes: string;
+  };
 }

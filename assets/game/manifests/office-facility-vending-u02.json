@@ -3,8 +3,8 @@
   "id": "office.facility.vending-machine.u02",
   "familyId": "vending.machine.generated-floor",
   "revision": "generated-2x2x4-visual-preflight-r01",
-  "status": "visual-preflight-owner-review",
-  "productionStage": "f0-f3-visual-preflight",
+  "status": "visual-preflight-owner-approved",
+  "productionStage": "f3-owner-approved-production-authorized",
   "createdOn": "2026-07-30",
   "developmentOnly": true,
   "activeOfficePromotion": false,
@@ -453,8 +453,8 @@
       "note": "Four source cells have isolated alpha ownership."
     },
     "F3": {
-      "status": "pending-owner-review",
-      "note": "Four-side silhouette requires explicit owner approval."
+      "status": "passed",
+      "note": "Owner approved the exact four-side review hashes."
     },
     "F4": {
       "status": "blocked"
@@ -479,11 +479,38 @@
     }
   },
   "permissions": {
-    "visualOwnerReview": true,
-    "productionBuild": false,
+    "visualOwnerReview": false,
+    "productionBuild": true,
     "reservationSlotTransfer": false,
     "f9Replacement": false,
     "activeOfficePromotion": false
   },
-  "ownerDecision": null
+  "ownerDecision": {
+    "decision": "approved",
+    "decidedOn": "2026-07-30",
+    "scope": "exact-family-review-output-hashes",
+    "approvedReviewHashes": [
+      {
+        "path": "assets/art/layout-references/office-facility-upsize-v1/vending-machine-u02/01-four-side-clean.png",
+        "sha256": "ff9a1992eeb41f7c89b100855d8943c0a69a45904c001c28d7a2da3d691aa84b"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-upsize-v1/vending-machine-u02/02-alpha-source-ownership.png",
+        "sha256": "fdd185dacab7a5b06948f7567f34a749e7386cfcea5ae63d792ee1531fc1c97e"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-upsize-v1/vending-machine-u02/03-scale-geometry.png",
+        "sha256": "49080dc2dc7d50592328f8562154d9ddabf7f5b646fabc2f5ed84960d1b31dcb"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-upsize-v1/vending-machine-u02/04-floor-approaches.png",
+        "sha256": "c6a54839d4d6e0a4885e38f002a552481e5b19d4e8024d3016cddc7b19f550c3"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-upsize-v1/vending-machine-u02/05-modular-motion-plan.png",
+        "sha256": "77f515763354256ca78ec4ad94adef9d7be21de8db99e4aa26b4433a21d43230"
+      }
+    ],
+    "notes": "Owner approved all four 2x2x4 candidates and authorized the isolated F4-F8 production batch."
+  }
 }

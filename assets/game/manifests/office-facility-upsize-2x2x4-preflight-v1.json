@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "id": "office.facility-upsize.2x2x4.preflight.v1",
-  "status": "visual-preflight-owner-review",
-  "productionStage": "f0-f3-batch-visual-preflight",
+  "status": "visual-preflight-owner-approved",
+  "productionStage": "f3-owner-approved-production-authorized",
   "createdOn": "2026-07-30",
   "developmentOnly": true,
   "activeOfficePromotion": false,
@@ -18,8 +18,8 @@
       "id": "office.facility.coffee-machine.c02",
       "label": "Coffee Machine C02",
       "manifest": "assets/game/manifests/office-facility-coffee-machine-c02.json",
-      "sha256": "accff3da31d8a14042344e8cb8f3bde5c58a8a83ef6a8e06dcfb03df7e8d49d1",
-      "status": "visual-preflight-owner-review",
+      "sha256": "b70c22b286d7cc48023610d2ed592dd8d1db18f865ef931f2e3020039cc1b5b9",
+      "status": "visual-preflight-owner-approved",
       "visualViewCount": 4,
       "plannedInstanceCount": 1,
       "plannedReservationSlotsAfterF8": 1
@@ -28,8 +28,8 @@
       "id": "office.facility.water-dispenser.w02",
       "label": "Water Dispenser W02",
       "manifest": "assets/game/manifests/office-facility-water-dispenser-w02.json",
-      "sha256": "c208cf8e6fbec08e4a7d83f12ab5828e82f67bc624b8bd9d43546d4b631cc1c7",
-      "status": "visual-preflight-owner-review",
+      "sha256": "861666ea268792ecd6f6b19840a4f6ea1b4350c58ad3a9a8eec7572d7c72d9f2",
+      "status": "visual-preflight-owner-approved",
       "visualViewCount": 4,
       "plannedInstanceCount": 2,
       "plannedReservationSlotsAfterF8": 2
@@ -38,8 +38,8 @@
       "id": "office.facility.vending-machine.u02",
       "label": "Vending Machine U02",
       "manifest": "assets/game/manifests/office-facility-vending-u02.json",
-      "sha256": "8ffe8665bc5faa0dc0b3cff690778c5bd65bcc12f1502c69329444daac3c1037",
-      "status": "visual-preflight-owner-review",
+      "sha256": "9e8819b07a1ceb5b599aa8df3c8bcc08c712cd6ee02dc0452b82b2e981e86a04",
+      "status": "visual-preflight-owner-approved",
       "visualViewCount": 4,
       "plannedInstanceCount": 1,
       "plannedReservationSlotsAfterF8": 1
@@ -48,8 +48,8 @@
       "id": "office.furniture.chair-massage.r03",
       "label": "Massage Chair R03",
       "manifest": "assets/game/manifests/office-furniture-chair-massage-r03.json",
-      "sha256": "4dbb652f33ca981eb16c979be49ea7025fedfc7eb5d9a1a017c3c27b86756d8f",
-      "status": "visual-preflight-owner-review",
+      "sha256": "701f42ec4f52a08747b8e1630fc0aaf957baedf748220975b228c66e227a0301",
+      "status": "visual-preflight-owner-approved",
       "visualViewCount": 4,
       "plannedInstanceCount": 1,
       "plannedReservationSlotsAfterF8": 1
@@ -88,7 +88,7 @@
   },
   "gates": {
     "F3": {
-      "status": "pending-owner-review"
+      "status": "passed"
     },
     "F4": {
       "status": "blocked"
@@ -104,10 +104,39 @@
     }
   },
   "permissions": {
-    "visualOwnerReview": true,
-    "productionBuild": false,
+    "visualOwnerReview": false,
+    "productionBuild": true,
     "f9Replacement": false,
     "activeOfficePromotion": false
   },
-  "ownerDecision": null
+  "ownerDecision": {
+    "decision": "approved",
+    "decidedOn": "2026-07-30",
+    "scope": "exact-batch-lineup-and-family-review-hashes",
+    "approvedReviewHashes": [
+      {
+        "path": "assets/art/layout-references/office-facility-upsize-v1/00-batch-2x2x4-lineup.png",
+        "sha256": "f876fa9e434cbb52726f450f6081774d0da800e7a0cd40ae47fc4962429f6a97"
+      }
+    ],
+    "approvedFamilyManifestHashes": [
+      {
+        "manifest": "assets/game/manifests/office-facility-coffee-machine-c02.json",
+        "sha256": "b70c22b286d7cc48023610d2ed592dd8d1db18f865ef931f2e3020039cc1b5b9"
+      },
+      {
+        "manifest": "assets/game/manifests/office-facility-water-dispenser-w02.json",
+        "sha256": "861666ea268792ecd6f6b19840a4f6ea1b4350c58ad3a9a8eec7572d7c72d9f2"
+      },
+      {
+        "manifest": "assets/game/manifests/office-facility-vending-u02.json",
+        "sha256": "9e8819b07a1ceb5b599aa8df3c8bcc08c712cd6ee02dc0452b82b2e981e86a04"
+      },
+      {
+        "manifest": "assets/game/manifests/office-furniture-chair-massage-r03.json",
+        "sha256": "701f42ec4f52a08747b8e1630fc0aaf957baedf748220975b228c66e227a0301"
+      }
+    ],
+    "notes": "Owner approved Coffee C02, Water W02, Vending U02, and Massage R03 and authorized isolated F4-F8 production."
+  }
 }

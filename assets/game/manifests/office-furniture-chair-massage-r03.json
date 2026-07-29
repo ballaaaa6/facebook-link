@@ -3,8 +3,8 @@
   "id": "office.furniture.chair-massage.r03",
   "familyId": "chair.massage.generated-pod",
   "revision": "generated-2x2x4-visual-preflight-r01",
-  "status": "visual-preflight-owner-review",
-  "productionStage": "f0-f3-visual-preflight",
+  "status": "visual-preflight-owner-approved",
+  "productionStage": "f3-owner-approved-production-authorized",
   "createdOn": "2026-07-30",
   "developmentOnly": true,
   "activeOfficePromotion": false,
@@ -452,8 +452,8 @@
       "note": "Four source cells have isolated alpha ownership."
     },
     "F3": {
-      "status": "pending-owner-review",
-      "note": "Four-side silhouette requires explicit owner approval."
+      "status": "passed",
+      "note": "Owner approved the exact four-side review hashes."
     },
     "F4": {
       "status": "blocked"
@@ -478,11 +478,38 @@
     }
   },
   "permissions": {
-    "visualOwnerReview": true,
-    "productionBuild": false,
+    "visualOwnerReview": false,
+    "productionBuild": true,
     "reservationSlotTransfer": false,
     "f9Replacement": false,
     "activeOfficePromotion": false
   },
-  "ownerDecision": null
+  "ownerDecision": {
+    "decision": "approved",
+    "decidedOn": "2026-07-30",
+    "scope": "exact-family-review-output-hashes",
+    "approvedReviewHashes": [
+      {
+        "path": "assets/art/layout-references/office-facility-upsize-v1/massage-chair-r03/01-four-side-clean.png",
+        "sha256": "8d92fb3f1fde3a4b109f3c20564f99bbbfdd6d5e64f695322bd546fe2a02b085"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-upsize-v1/massage-chair-r03/02-alpha-source-ownership.png",
+        "sha256": "f6d0bb25cf2ad5d6d64ac555da6d11de72f1f3e4146eea6c91ddf31c92c2acda"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-upsize-v1/massage-chair-r03/03-scale-geometry.png",
+        "sha256": "f232e313a1c06d1c4713f40e98472a46753b4e1ce781217bc34fde1c54e51725"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-upsize-v1/massage-chair-r03/04-floor-approaches.png",
+        "sha256": "de4054062660a2a501b636d732c7ea07a84b31b5afc28f37126dfa8df297b195"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-upsize-v1/massage-chair-r03/05-modular-motion-plan.png",
+        "sha256": "86dae71ca3e1f8d38532d956d84665ad7b27920e5265a6ea67e59dec96ada5f5"
+      }
+    ],
+    "notes": "Owner approved all four 2x2x4 candidates and authorized the isolated F4-F8 production batch."
+  }
 }
