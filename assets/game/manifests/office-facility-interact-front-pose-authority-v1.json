@@ -1,0 +1,1189 @@
+{
+  "schemaVersion": 1,
+  "id": "office.facility.interact-front.pose-authority.v1",
+  "status": "frozen-prototype-internal",
+  "developmentOnly": true,
+  "pendingCommercialReview": true,
+  "activeOfficeImported": false,
+  "visualPose": "interact-front",
+  "row": 10,
+  "activeFrames": 6,
+  "characterCount": 18,
+  "poseCaseCount": 108,
+  "perCharacterFacilityScaling": false,
+  "perCharacterActorOffsets": false,
+  "sources": [
+    {
+      "manifest": "assets/game/manifests/office-interaction-assets.json",
+      "manifestSha256": "875474c445059dcf705e1610725916bdbf9b6f84c7673f8a5ff522ed9864a455",
+      "characterIds": [
+        "einstein"
+      ]
+    },
+    {
+      "manifest": "assets/game/manifests/character-morphology-pilot.json",
+      "manifestSha256": "a902954f777dd3cf220f831d5ddd81e0703ae43d48b00db50b4c1046d86db6e5",
+      "characterIds": [
+        "doraemon",
+        "anna",
+        "ai-workbot"
+      ]
+    },
+    {
+      "manifest": "assets/game/manifests/character-roster-8x15-batch.json",
+      "manifestSha256": "f988c9aef83ba5de3c2deb8f013bf3a603a31f9c13bc928f7e4f67f125c47753",
+      "characterIds": [
+        "asuka-2",
+        "jesus",
+        "miku",
+        "rem-xl",
+        "ruri",
+        "itachi",
+        "lian-3",
+        "taffy-2",
+        "yinyue-2",
+        "noir-webling",
+        "baobao-2",
+        "gugugaga",
+        "nai-long",
+        "qq-penguin"
+      ]
+    }
+  ],
+  "characters": [
+    {
+      "id": "einstein",
+      "sheet": "assets/game/characters/einstein/runtime-spritesheet-v3.webp",
+      "sha256": "5c559c215966641a5a92e55bb2b3cf159b8e4a22b19633c1813c39da58956213",
+      "row": 10,
+      "activeFrames": 6,
+      "frames": [
+        {
+          "frame": 0,
+          "frameBounds": [
+            15,
+            2,
+            80,
+            101
+          ]
+        },
+        {
+          "frame": 1,
+          "frameBounds": [
+            15,
+            2,
+            80,
+            101
+          ]
+        },
+        {
+          "frame": 2,
+          "frameBounds": [
+            15,
+            2,
+            80,
+            101
+          ]
+        },
+        {
+          "frame": 3,
+          "frameBounds": [
+            15,
+            2,
+            80,
+            101
+          ]
+        },
+        {
+          "frame": 4,
+          "frameBounds": [
+            15,
+            2,
+            80,
+            101
+          ]
+        },
+        {
+          "frame": 5,
+          "frameBounds": [
+            15,
+            2,
+            80,
+            101
+          ]
+        }
+      ]
+    },
+    {
+      "id": "doraemon",
+      "sheet": "assets/game/characters/doraemon/runtime-spritesheet-v4.webp",
+      "sha256": "ad03ecef52dd95d633734fd765a80324a436754876e5a9ba75a3ba6874c1b94f",
+      "row": 10,
+      "activeFrames": 6,
+      "frames": [
+        {
+          "frame": 0,
+          "frameBounds": [
+            17,
+            0,
+            78,
+            90
+          ]
+        },
+        {
+          "frame": 1,
+          "frameBounds": [
+            19,
+            0,
+            77,
+            90
+          ]
+        },
+        {
+          "frame": 2,
+          "frameBounds": [
+            19,
+            0,
+            77,
+            90
+          ]
+        },
+        {
+          "frame": 3,
+          "frameBounds": [
+            19,
+            0,
+            77,
+            90
+          ]
+        },
+        {
+          "frame": 4,
+          "frameBounds": [
+            19,
+            0,
+            77,
+            90
+          ]
+        },
+        {
+          "frame": 5,
+          "frameBounds": [
+            17,
+            0,
+            79,
+            90
+          ]
+        }
+      ]
+    },
+    {
+      "id": "anna",
+      "sheet": "assets/game/characters/anna/runtime-spritesheet-v3.webp",
+      "sha256": "75069f368d0fd0806c8978bcf2e5077b82c9306e6c20931617173fd0f88a57bb",
+      "row": 10,
+      "activeFrames": 6,
+      "frames": [
+        {
+          "frame": 0,
+          "frameBounds": [
+            16,
+            2,
+            79,
+            101
+          ]
+        },
+        {
+          "frame": 1,
+          "frameBounds": [
+            16,
+            2,
+            79,
+            101
+          ]
+        },
+        {
+          "frame": 2,
+          "frameBounds": [
+            16,
+            2,
+            79,
+            101
+          ]
+        },
+        {
+          "frame": 3,
+          "frameBounds": [
+            16,
+            2,
+            79,
+            101
+          ]
+        },
+        {
+          "frame": 4,
+          "frameBounds": [
+            16,
+            2,
+            79,
+            101
+          ]
+        },
+        {
+          "frame": 5,
+          "frameBounds": [
+            16,
+            2,
+            79,
+            101
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ai-workbot",
+      "sheet": "assets/game/characters/ai-workbot/runtime-spritesheet-v3.webp",
+      "sha256": "f06bfeae9bf5b439f6f80b416aac1984aee627fd823c21acd90118ae26865935",
+      "row": 10,
+      "activeFrames": 6,
+      "frames": [
+        {
+          "frame": 0,
+          "frameBounds": [
+            9,
+            8,
+            86,
+            101
+          ]
+        },
+        {
+          "frame": 1,
+          "frameBounds": [
+            7,
+            8,
+            88,
+            101
+          ]
+        },
+        {
+          "frame": 2,
+          "frameBounds": [
+            14,
+            8,
+            81,
+            101
+          ]
+        },
+        {
+          "frame": 3,
+          "frameBounds": [
+            13,
+            8,
+            82,
+            101
+          ]
+        },
+        {
+          "frame": 4,
+          "frameBounds": [
+            14,
+            8,
+            82,
+            101
+          ]
+        },
+        {
+          "frame": 5,
+          "frameBounds": [
+            9,
+            8,
+            86,
+            101
+          ]
+        }
+      ]
+    },
+    {
+      "id": "asuka-2",
+      "sheet": "assets/game/characters/asuka-2/runtime-spritesheet-v3.webp",
+      "sha256": "b9f71bd45fbd8fb7c28f06c12fa800706c72fc128be48aedd14a3f099fcf064b",
+      "row": 10,
+      "activeFrames": 6,
+      "frames": [
+        {
+          "frame": 0,
+          "frameBounds": [
+            11,
+            2,
+            84,
+            101
+          ]
+        },
+        {
+          "frame": 1,
+          "frameBounds": [
+            11,
+            2,
+            84,
+            101
+          ]
+        },
+        {
+          "frame": 2,
+          "frameBounds": [
+            11,
+            2,
+            84,
+            101
+          ]
+        },
+        {
+          "frame": 3,
+          "frameBounds": [
+            11,
+            2,
+            84,
+            101
+          ]
+        },
+        {
+          "frame": 4,
+          "frameBounds": [
+            11,
+            2,
+            84,
+            101
+          ]
+        },
+        {
+          "frame": 5,
+          "frameBounds": [
+            11,
+            2,
+            84,
+            101
+          ]
+        }
+      ]
+    },
+    {
+      "id": "jesus",
+      "sheet": "assets/game/characters/jesus/runtime-spritesheet-v3.webp",
+      "sha256": "ba19dc354e61faddc0ff3df3b0933b7047d374cd206eeee68a6c55ea2971c665",
+      "row": 10,
+      "activeFrames": 6,
+      "frames": [
+        {
+          "frame": 0,
+          "frameBounds": [
+            21,
+            2,
+            74,
+            101
+          ]
+        },
+        {
+          "frame": 1,
+          "frameBounds": [
+            21,
+            2,
+            74,
+            101
+          ]
+        },
+        {
+          "frame": 2,
+          "frameBounds": [
+            21,
+            2,
+            74,
+            101
+          ]
+        },
+        {
+          "frame": 3,
+          "frameBounds": [
+            20,
+            2,
+            75,
+            101
+          ]
+        },
+        {
+          "frame": 4,
+          "frameBounds": [
+            18,
+            2,
+            77,
+            101
+          ]
+        },
+        {
+          "frame": 5,
+          "frameBounds": [
+            21,
+            2,
+            74,
+            101
+          ]
+        }
+      ]
+    },
+    {
+      "id": "miku",
+      "sheet": "assets/game/characters/miku/runtime-spritesheet-v3.webp",
+      "sha256": "edbc128700f1135d4f84e3380281db966fba68b27798b4bc87a2a5949f4ae83a",
+      "row": 10,
+      "activeFrames": 6,
+      "frames": [
+        {
+          "frame": 0,
+          "frameBounds": [
+            6,
+            2,
+            89,
+            101
+          ]
+        },
+        {
+          "frame": 1,
+          "frameBounds": [
+            5,
+            2,
+            90,
+            101
+          ]
+        },
+        {
+          "frame": 2,
+          "frameBounds": [
+            5,
+            2,
+            90,
+            101
+          ]
+        },
+        {
+          "frame": 3,
+          "frameBounds": [
+            5,
+            2,
+            90,
+            101
+          ]
+        },
+        {
+          "frame": 4,
+          "frameBounds": [
+            6,
+            2,
+            89,
+            101
+          ]
+        },
+        {
+          "frame": 5,
+          "frameBounds": [
+            6,
+            2,
+            89,
+            101
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rem-xl",
+      "sheet": "assets/game/characters/rem-xl/runtime-spritesheet-v3.webp",
+      "sha256": "219034c438a93237d8a89bac6c3ee37d627a85991c9eb70915a682291017bdb1",
+      "row": 10,
+      "activeFrames": 6,
+      "frames": [
+        {
+          "frame": 0,
+          "frameBounds": [
+            21,
+            2,
+            75,
+            101
+          ]
+        },
+        {
+          "frame": 1,
+          "frameBounds": [
+            19,
+            2,
+            76,
+            101
+          ]
+        },
+        {
+          "frame": 2,
+          "frameBounds": [
+            19,
+            2,
+            76,
+            101
+          ]
+        },
+        {
+          "frame": 3,
+          "frameBounds": [
+            19,
+            2,
+            76,
+            101
+          ]
+        },
+        {
+          "frame": 4,
+          "frameBounds": [
+            19,
+            3,
+            76,
+            101
+          ]
+        },
+        {
+          "frame": 5,
+          "frameBounds": [
+            19,
+            3,
+            76,
+            101
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ruri",
+      "sheet": "assets/game/characters/ruri/runtime-spritesheet-v3.webp",
+      "sha256": "267c3703e9bc18a1a352159f198f5a33cdf17b9778d7ea9a699a79ae242fc56a",
+      "row": 10,
+      "activeFrames": 6,
+      "frames": [
+        {
+          "frame": 0,
+          "frameBounds": [
+            21,
+            2,
+            74,
+            101
+          ]
+        },
+        {
+          "frame": 1,
+          "frameBounds": [
+            18,
+            2,
+            77,
+            101
+          ]
+        },
+        {
+          "frame": 2,
+          "frameBounds": [
+            21,
+            2,
+            74,
+            101
+          ]
+        },
+        {
+          "frame": 3,
+          "frameBounds": [
+            21,
+            2,
+            74,
+            101
+          ]
+        },
+        {
+          "frame": 4,
+          "frameBounds": [
+            21,
+            2,
+            74,
+            101
+          ]
+        },
+        {
+          "frame": 5,
+          "frameBounds": [
+            21,
+            2,
+            74,
+            101
+          ]
+        }
+      ]
+    },
+    {
+      "id": "itachi",
+      "sheet": "assets/game/characters/itachi/runtime-spritesheet-v3.webp",
+      "sha256": "4968e6f23a9a8731f35093e1e8b031203db57cb4312d99a0e416e9ec81fe5f2a",
+      "row": 10,
+      "activeFrames": 6,
+      "frames": [
+        {
+          "frame": 0,
+          "frameBounds": [
+            19,
+            3,
+            76,
+            101
+          ]
+        },
+        {
+          "frame": 1,
+          "frameBounds": [
+            20,
+            2,
+            75,
+            101
+          ]
+        },
+        {
+          "frame": 2,
+          "frameBounds": [
+            20,
+            2,
+            75,
+            101
+          ]
+        },
+        {
+          "frame": 3,
+          "frameBounds": [
+            20,
+            2,
+            76,
+            101
+          ]
+        },
+        {
+          "frame": 4,
+          "frameBounds": [
+            20,
+            2,
+            75,
+            101
+          ]
+        },
+        {
+          "frame": 5,
+          "frameBounds": [
+            19,
+            2,
+            76,
+            101
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lian-3",
+      "sheet": "assets/game/characters/lian-3/runtime-spritesheet-v3.webp",
+      "sha256": "6ccc7dc580a4f0bd87204711dd3bcf462d0144b3e56e7ff29cbe97428d8371a8",
+      "row": 10,
+      "activeFrames": 6,
+      "frames": [
+        {
+          "frame": 0,
+          "frameBounds": [
+            10,
+            3,
+            85,
+            101
+          ]
+        },
+        {
+          "frame": 1,
+          "frameBounds": [
+            10,
+            3,
+            85,
+            101
+          ]
+        },
+        {
+          "frame": 2,
+          "frameBounds": [
+            10,
+            3,
+            85,
+            101
+          ]
+        },
+        {
+          "frame": 3,
+          "frameBounds": [
+            10,
+            3,
+            85,
+            101
+          ]
+        },
+        {
+          "frame": 4,
+          "frameBounds": [
+            10,
+            3,
+            85,
+            101
+          ]
+        },
+        {
+          "frame": 5,
+          "frameBounds": [
+            11,
+            3,
+            84,
+            101
+          ]
+        }
+      ]
+    },
+    {
+      "id": "taffy-2",
+      "sheet": "assets/game/characters/taffy-2/runtime-spritesheet-v3.webp",
+      "sha256": "7685dcb2eb7fd85e61601d3648b1fb3116c2c3a73b44cda30f9656ec0873b8fb",
+      "row": 10,
+      "activeFrames": 6,
+      "frames": [
+        {
+          "frame": 0,
+          "frameBounds": [
+            13,
+            2,
+            82,
+            101
+          ]
+        },
+        {
+          "frame": 1,
+          "frameBounds": [
+            11,
+            2,
+            84,
+            101
+          ]
+        },
+        {
+          "frame": 2,
+          "frameBounds": [
+            9,
+            2,
+            86,
+            101
+          ]
+        },
+        {
+          "frame": 3,
+          "frameBounds": [
+            13,
+            3,
+            82,
+            101
+          ]
+        },
+        {
+          "frame": 4,
+          "frameBounds": [
+            13,
+            4,
+            82,
+            101
+          ]
+        },
+        {
+          "frame": 5,
+          "frameBounds": [
+            13,
+            2,
+            82,
+            101
+          ]
+        }
+      ]
+    },
+    {
+      "id": "yinyue-2",
+      "sheet": "assets/game/characters/yinyue-2/runtime-spritesheet-v3.webp",
+      "sha256": "e738a75240257f3f916f3814deb04d0dfb7e5efb6ce151664870b4d0d9ebd0ec",
+      "row": 10,
+      "activeFrames": 6,
+      "frames": [
+        {
+          "frame": 0,
+          "frameBounds": [
+            16,
+            2,
+            80,
+            101
+          ]
+        },
+        {
+          "frame": 1,
+          "frameBounds": [
+            14,
+            4,
+            81,
+            101
+          ]
+        },
+        {
+          "frame": 2,
+          "frameBounds": [
+            12,
+            4,
+            83,
+            101
+          ]
+        },
+        {
+          "frame": 3,
+          "frameBounds": [
+            15,
+            3,
+            80,
+            101
+          ]
+        },
+        {
+          "frame": 4,
+          "frameBounds": [
+            16,
+            3,
+            79,
+            101
+          ]
+        },
+        {
+          "frame": 5,
+          "frameBounds": [
+            16,
+            2,
+            79,
+            101
+          ]
+        }
+      ]
+    },
+    {
+      "id": "noir-webling",
+      "sheet": "assets/game/characters/noir-webling/runtime-spritesheet-v3.webp",
+      "sha256": "ca0e5d8683b89bcce8509c06a9e72cc7d3c3cb1cb6c6e32023b7b1e0cf8b69d1",
+      "row": 10,
+      "activeFrames": 6,
+      "frames": [
+        {
+          "frame": 0,
+          "frameBounds": [
+            18,
+            6,
+            77,
+            101
+          ]
+        },
+        {
+          "frame": 1,
+          "frameBounds": [
+            11,
+            6,
+            84,
+            101
+          ]
+        },
+        {
+          "frame": 2,
+          "frameBounds": [
+            9,
+            6,
+            87,
+            101
+          ]
+        },
+        {
+          "frame": 3,
+          "frameBounds": [
+            17,
+            7,
+            78,
+            101
+          ]
+        },
+        {
+          "frame": 4,
+          "frameBounds": [
+            18,
+            7,
+            77,
+            101
+          ]
+        },
+        {
+          "frame": 5,
+          "frameBounds": [
+            18,
+            7,
+            78,
+            101
+          ]
+        }
+      ]
+    },
+    {
+      "id": "baobao-2",
+      "sheet": "assets/game/characters/baobao-2/runtime-spritesheet-v3.webp",
+      "sha256": "eff556812cca70ce31e7d2ae429ef941150b2d32670c81b122c991fe50a3a4bf",
+      "row": 10,
+      "activeFrames": 6,
+      "frames": [
+        {
+          "frame": 0,
+          "frameBounds": [
+            12,
+            8,
+            83,
+            101
+          ]
+        },
+        {
+          "frame": 1,
+          "frameBounds": [
+            12,
+            8,
+            83,
+            101
+          ]
+        },
+        {
+          "frame": 2,
+          "frameBounds": [
+            12,
+            8,
+            83,
+            101
+          ]
+        },
+        {
+          "frame": 3,
+          "frameBounds": [
+            12,
+            8,
+            83,
+            101
+          ]
+        },
+        {
+          "frame": 4,
+          "frameBounds": [
+            12,
+            8,
+            83,
+            101
+          ]
+        },
+        {
+          "frame": 5,
+          "frameBounds": [
+            12,
+            8,
+            83,
+            101
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gugugaga",
+      "sheet": "assets/game/characters/gugugaga/runtime-spritesheet-v3.webp",
+      "sha256": "1a7a177fef6190896e66d6d824a1f0a35dd628a4cce0da1e7900183f8cba25ab",
+      "row": 10,
+      "activeFrames": 6,
+      "frames": [
+        {
+          "frame": 0,
+          "frameBounds": [
+            19,
+            8,
+            76,
+            101
+          ]
+        },
+        {
+          "frame": 1,
+          "frameBounds": [
+            16,
+            8,
+            79,
+            101
+          ]
+        },
+        {
+          "frame": 2,
+          "frameBounds": [
+            14,
+            8,
+            81,
+            101
+          ]
+        },
+        {
+          "frame": 3,
+          "frameBounds": [
+            20,
+            8,
+            76,
+            101
+          ]
+        },
+        {
+          "frame": 4,
+          "frameBounds": [
+            20,
+            8,
+            75,
+            101
+          ]
+        },
+        {
+          "frame": 5,
+          "frameBounds": [
+            19,
+            8,
+            76,
+            101
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nai-long",
+      "sheet": "assets/game/characters/nai-long/runtime-spritesheet-v3.webp",
+      "sha256": "f66a67eaf7e43be6a222fbc5b0d7e8163b73d2becc91edfb9a24589ea99f8015",
+      "row": 10,
+      "activeFrames": 6,
+      "frames": [
+        {
+          "frame": 0,
+          "frameBounds": [
+            16,
+            10,
+            79,
+            101
+          ]
+        },
+        {
+          "frame": 1,
+          "frameBounds": [
+            13,
+            9,
+            82,
+            101
+          ]
+        },
+        {
+          "frame": 2,
+          "frameBounds": [
+            8,
+            10,
+            88,
+            101
+          ]
+        },
+        {
+          "frame": 3,
+          "frameBounds": [
+            15,
+            10,
+            80,
+            101
+          ]
+        },
+        {
+          "frame": 4,
+          "frameBounds": [
+            16,
+            10,
+            79,
+            101
+          ]
+        },
+        {
+          "frame": 5,
+          "frameBounds": [
+            16,
+            9,
+            79,
+            101
+          ]
+        }
+      ]
+    },
+    {
+      "id": "qq-penguin",
+      "sheet": "assets/game/characters/qq-penguin/runtime-spritesheet-v3.webp",
+      "sha256": "ba6945e9c1183a9e0ccaebf8320a87357c3c0583ccdd66694f10a65f3ba6e001",
+      "row": 10,
+      "activeFrames": 6,
+      "frames": [
+        {
+          "frame": 0,
+          "frameBounds": [
+            11,
+            12,
+            85,
+            101
+          ]
+        },
+        {
+          "frame": 1,
+          "frameBounds": [
+            3,
+            12,
+            92,
+            101
+          ]
+        },
+        {
+          "frame": 2,
+          "frameBounds": [
+            6,
+            13,
+            90,
+            101
+          ]
+        },
+        {
+          "frame": 3,
+          "frameBounds": [
+            12,
+            12,
+            83,
+            101
+          ]
+        },
+        {
+          "frame": 4,
+          "frameBounds": [
+            11,
+            13,
+            84,
+            101
+          ]
+        },
+        {
+          "frame": 5,
+          "frameBounds": [
+            11,
+            13,
+            84,
+            101
+          ]
+        }
+      ]
+    }
+  ]
+}

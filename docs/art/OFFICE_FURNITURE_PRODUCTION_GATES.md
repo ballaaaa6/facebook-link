@@ -225,9 +225,16 @@ for every family. The batch covers reading chair, pouf, beanbag, stool,
 two-seat sofa, three-seat sofa, and the front/back four-seat review table.
 All seven passed F0-F8 independently on 2026-07-29. Every family remains
 blocked from F9-F10. This is not a room-level batch and does not weaken the
-per-family rule above. The next isolated family is the front-only
-`vending.machine.modern` U01 facility vertical slice; it must stop for its own
-F8 decision before any other upright machine begins.
+per-family rule above.
+
+Current upright-facility execution:
+`docs/art/OFFICE_FACILITY_VENDING_U01.md` rebuilds the front-only
+`vending.machine.modern` family from the audited original mechanical-loop
+master. Its static shell, local four-frame viewport, empty pickup tray, effect,
+held output, 108 interact-front cases, and 30-second contention/failure/retry
+lab pass F0-F7. U01 is `owner-review-f8-pending`. Do not begin Water/Coffee,
+F9 room placement, or F10 Active Office integration until its independent F8
+decision is recorded.
 
 ## Required evidence per family
 

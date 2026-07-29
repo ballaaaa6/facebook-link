@@ -32,6 +32,16 @@ All seven Seating S01 families are independently owner-approved at F8 on
 poses, and silent expansion of the R05-r02 chair beyond its approved
 workstation scope remain blocked.
 
+The first upright facility is the isolated front-only Vending U01 vertical
+slice documented in `docs/art/OFFICE_FACILITY_VENDING_U01.md`. It re-extracts
+four admitted components from the original mechanical-loop master, keeps one
+static shell, confines four animation states to a local viewport, and separates
+the empty pickup tray, dispense effect, and held output. Its `2 x 1 x 3`
+geometry, stand/approach/exit cells, 108 interact-front pose cases, and
+30-second two-user failure/retry simulation pass F0-F7. U01 is
+`owner-review-f8-pending`; Water/Coffee, F9 placement, F10 integration, and
+Active Office imports remain blocked.
+
 Workstation correction (2026-07-28): the isolated `5 x 4` staging layout,
 Candidate r01, and R05 final ten-seat composition are rejected evidence. The
 owner-approved workstation authority is R05-r02 P0-P3 in

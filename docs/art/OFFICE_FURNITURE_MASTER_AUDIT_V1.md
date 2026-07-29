@@ -210,10 +210,13 @@ The following rules carry the successful R05 method to every other family:
    `working-front-seated` pose. R02 passed F0-F8 on 2026-07-29 and remains
    blocked from F9-F10 in
    `docs/art/OFFICE_FURNITURE_MASSAGE_CHAIR_R02.md`.
-3. Process upright facilities using their preferred front masters:
-   vending machine, refrigerator, arcade machine, server rack, printer, water
-   dispenser, and coffee machine. Add neutral output and effect layers where
-   required.
+3. The first upright facility is now built as the isolated front-only Vending
+   U01 vertical slice in `docs/art/OFFICE_FACILITY_VENDING_U01.md`. Four
+   boundary-crossing components are freshly extracted from the audited
+   mechanical-loop master. Static shell, local viewport, empty tray, effect,
+   held output, 108 interact-front cases, and the 30-second capacity-one
+   failure/retry lab pass F0-F7. U01 is pending its own F8 decision; refrigerator,
+   arcade, server, printer, water, and coffee work remains blocked.
 4. Lounge seating is now built in the isolated Seating S01 batch: two-seat
    sofa, three-seat sofa, beanbag, pouf, reading chair, and stool passed F0-F7
    on 2026-07-29. All six lounge families passed independent F8 decisions that
