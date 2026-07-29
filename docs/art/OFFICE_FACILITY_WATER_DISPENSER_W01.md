@@ -10,6 +10,8 @@ Water Dispenser W01 is an isolated development family. It is not imported by
 Active Office and cannot enter a furniture-only room. The owner approved the
 exact W01 hashes independently on 2026-07-29. This unlocks isolated Coffee C01
 production but does not approve Coffee or any later facility automatically.
+The owner subsequently directed the reusable Counter Bar A01 family to be
+completed and reviewed before Coffee begins.
 
 The owner rejected the short audited water-dispenser form for this production
 revision and directed W01 to use a newly created tall form. The older neutral
@@ -227,6 +229,9 @@ after reviewing the clean front, six-frame front-overlay board, and 8x
 held-cup close-ups. The manifest records
 `ownerDecision.decision = approved`.
 
-This unlocks isolated Coffee Machine C01 production. Coffee must still pass
+This technically unlocks isolated Coffee Machine C01 production. The current
+owner sequence places Counter Bar A01 first so Coffee can later target a real
+semantic support surface during its own tests. Coffee remains deferred until
+the owner records the independent A01 F8 decision, and Coffee must still pass
 F0-F8 independently. Furniture-only F9 composition and Active Office F10
 integration remain blocked.

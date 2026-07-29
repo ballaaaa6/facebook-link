@@ -270,6 +270,17 @@ The owner approved the exact W01 hashes on 2026-07-29. Isolated Coffee C01
 production is unlocked but must pass F0-F8 independently; F9 and F10 remain
 blocked.
 
+Before Coffee begins, the owner directed production to create a reusable cafe
+counter from a completely new design. `docs/art/OFFICE_FURNITURE_COUNTER_BAR_A01.md`
+records Counter Bar A01 as a standalone surface-furniture family. A01 uses a
+new isolated ImageGen source with no concept-sheet, Active Office, processed,
+legacy, or Coffee pixels. It reserves a `6 x 2` floor footprint, exposes a
+`6 x 2` support plane at `Z=2`, and provides five independent `1 x 1` surface
+slots plus four adjacent `2 x 1` spans. Its placement, route, movement, and
+30-second contention proofs pass F0-F7. A01 is currently
+`owner-review-f8-pending`; Coffee C01 remains deferred until the owner records
+the A01 F8 decision. F9 and F10 remain blocked.
+
 ## Required evidence per family
 
 Each approved family must retain:
