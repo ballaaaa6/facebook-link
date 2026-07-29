@@ -1,6 +1,6 @@
 # Office Facility Coffee Machine C01-r02
 
-Status: F0-F7 passed; owner-review-f8-pending
+Status: F0-F8 passed; owner-approved
 Updated: 2026-07-29
 Scope: One front-only, capacity-one, `2 x 2 x 2` coffee machine supported by
 Counter Bar A01-r02
@@ -119,10 +119,12 @@ npm run art:facility:coffee:c01:r02:check
 
 ## Gate result
 
-- F0-F7: passed;
-- F8: `pending-owner-review`;
+- F0-F8: passed;
+- owner decision: approved on 2026-07-29 for the exact dark-green twin-pillar
+  source and generated evidence hashes;
 - F9: blocked;
 - F10: blocked.
 
-Owner approval can apply only to the exact C01-r02 hashes shown in the
-manifest. It does not promote the rejected C01 or authorize room placement.
+Owner approval applies only to the exact C01-r02 hashes shown in the manifest.
+It does not promote the rejected C01, unlock another facility family, or
+authorize room placement.

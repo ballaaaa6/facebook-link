@@ -98,6 +98,15 @@ GENERATION_PROMPT = (
     "beige, tan, terrazzo, wood, stone, cup, liquid, steam, person, counter, "
     "text, logo, shadow, rejected Coffee pixels, or Active Office."
 )
+OWNER_DECISION = {
+    "decision": "approved",
+    "decidedOn": "2026-07-29",
+    "notes": (
+        "Owner selected the dark-green twin-pillar Option B source and "
+        "directed it to replace the prior C01-r02 visual while preserving "
+        "the complete 2x2x2 Coffee system."
+    ),
+}
 REJECTED_RECORDS = (
     *tuple(
         "modern-bright-library-v1:env-08-animated-ambient:"
@@ -1631,12 +1640,14 @@ def build_manifest_and_images() -> dict[Path, bytes]:
             "evidence": [rp(path) for path in REVIEW_PATHS],
         },
         "F8": {
-            "status": "pending-owner-review",
+            "status": "passed",
             "evidence": [
+                rp(SOURCE_PATH),
                 rp(REVIEW_PATHS[1]),
                 rp(REVIEW_PATHS[3]),
                 rp(REVIEW_PATHS[5]),
                 rp(REVIEW_PATHS[11]),
+                rp(REVIEW_PATHS[12]),
             ],
         },
         "F9": {
@@ -1653,7 +1664,7 @@ def build_manifest_and_images() -> dict[Path, bytes]:
         "id": "office.facility.coffee-machine.c01-r02",
         "familyId": FAMILY_ID,
         "revision": REVISION,
-        "status": "owner-review-f8-pending",
+        "status": "owner-approved",
         "developmentOnly": True,
         "activeOfficePromotion": False,
         "sourcePolicy": {
@@ -1889,7 +1900,7 @@ def build_manifest_and_images() -> dict[Path, bytes]:
         "reviewOutputs": [rp(path) for path in REVIEW_PATHS],
         "permissions": {
             "familyLab": True,
-            "ownerReview": True,
+            "ownerReview": False,
             "furnitureOnlyRoom": False,
             "otherFacilityFamilies": False,
             "activeOfficePromotion": False,
@@ -1899,7 +1910,7 @@ def build_manifest_and_images() -> dict[Path, bytes]:
             "sha256": sha256_file(ACTIVE_REGISTRY),
             "imported": False,
         },
-        "ownerDecision": None,
+        "ownerDecision": OWNER_DECISION,
     }
     outputs[MANIFEST_PATH] = json_bytes(manifest)
     return outputs
@@ -1927,7 +1938,7 @@ def main() -> None:
     print(
         f"Coffee Machine C01-r02 {action}: {len(outputs)} files; "
         "fresh generated 2x2x2 source, parent Counter A01-r02, "
-        "5 block cases, exact 3-item packing, 108 poses, F8 pending."
+        "5 block cases, exact 3-item packing, 108 poses, F8 owner-approved."
     )
 
 

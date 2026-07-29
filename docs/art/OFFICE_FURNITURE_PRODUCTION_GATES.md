@@ -295,8 +295,10 @@ three-object packing at `span.block.01-02`, `span.block.03-04`, and
 `span.block.05-06` with zero overlap failures. Its shell, local viewport,
 empty output bay, Coffee/steam overlays, and H01 mug remain separate. The
 18-character, 108-pose socket matrix and 30-second contention/failure/retry
-proof pass F0-F7. C01-r02 is `owner-review-f8-pending`; F9 and F10 remain
-blocked.
+proof pass F0-F7. On 2026-07-29 the owner selected the exact dark-green
+twin-pillar Option B source, directed it to replace the prior C01-r02 visual,
+and approved its rebuilt evidence at F8. C01-r02 is `owner-approved`; F9,
+F10, other facility families, and Active Office remain blocked.
 
 ## Required evidence per family
 

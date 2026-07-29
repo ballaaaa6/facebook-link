@@ -3,7 +3,7 @@
   "id": "office.facility.coffee-machine.c01-r02",
   "familyId": "machine.coffee",
   "revision": "c01-r02",
-  "status": "owner-review-f8-pending",
+  "status": "owner-approved",
   "developmentOnly": true,
   "activeOfficePromotion": false,
   "sourcePolicy": {
@@ -6984,12 +6984,14 @@
       ]
     },
     "F8": {
-      "status": "pending-owner-review",
+      "status": "passed",
       "evidence": [
+        "assets/art/layout-references/office-facility-coffee-machine-c01-r02-source.png",
         "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/02-geometry-calibration-on-counter.png",
         "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/04-clean-front.png",
         "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/06-counter-placement-and-support.png",
-        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/12-hand-closeups-and-layer-order.png"
+        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/12-hand-closeups-and-layer-order.png",
+        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/13-three-item-packing.png"
       ]
     },
     "F9": {
@@ -7022,7 +7024,7 @@
   ],
   "permissions": {
     "familyLab": true,
-    "ownerReview": true,
+    "ownerReview": false,
     "furnitureOnlyRoom": false,
     "otherFacilityFamilies": false,
     "activeOfficePromotion": false
@@ -7032,5 +7034,9 @@
     "sha256": "1c8752653d8818e57564f28f61870ae3eddbdabc8e46229e1364c546ec7607ef",
     "imported": false
   },
-  "ownerDecision": null
+  "ownerDecision": {
+    "decision": "approved",
+    "decidedOn": "2026-07-29",
+    "notes": "Owner selected the dark-green twin-pillar Option B source and directed it to replace the prior C01-r02 visual while preserving the complete 2x2x2 Coffee system."
+  }
 }

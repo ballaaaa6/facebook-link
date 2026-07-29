@@ -23,18 +23,21 @@ const coffeeR02Manifest = JSON.parse(readFileSync(new URL(
   import.meta.url,
 ), "utf8")) as OfficeFacilityProductionManifest;
 
-test("Coffee C01-r02 stops at independent F8 owner review", () => {
+test("Coffee C01-r02 records its independent F8 owner approval", () => {
   assert.deepEqual(
     validateOfficeFacilityProductionManifest(coffeeR02Manifest),
     [],
   );
   assert.equal(coffeeR02Manifest.revision, "c01-r02");
-  assert.equal(coffeeR02Manifest.status, "owner-review-f8-pending");
+  assert.equal(coffeeR02Manifest.status, "owner-approved");
   assert.equal(
     coffeeR02Manifest.source.kind,
     "generated-isolated-clean-source",
   );
-  assert.equal(coffeeR02Manifest.gates.F8.status, "pending-owner-review");
+  assert.equal(coffeeR02Manifest.ownerDecision?.decision, "approved");
+  assert.equal(coffeeR02Manifest.ownerDecision?.decidedOn, "2026-07-29");
+  assert.equal(coffeeR02Manifest.permissions.ownerReview, false);
+  assert.equal(coffeeR02Manifest.gates.F8.status, "passed");
   assert.equal(coffeeR02Manifest.gates.F9.status, "blocked");
   assert.equal(coffeeR02Manifest.gates.F10.status, "blocked");
 });

@@ -56,21 +56,21 @@ try {
     "Coffee C01-r02 identity changed",
   );
   add(
-    manifest.status === "owner-review-f8-pending"
-      && manifest.ownerDecision === null
+    manifest.status === "owner-approved"
+      && manifest.ownerDecision?.decision === "approved"
+      && manifest.ownerDecision?.decidedOn === "2026-07-29"
       && manifest.developmentOnly === true
       && manifest.activeOfficePromotion === false
       && manifest.permissions?.familyLab === true
-      && manifest.permissions?.ownerReview === true
+      && manifest.permissions?.ownerReview === false
       && manifest.permissions?.furnitureOnlyRoom === false
       && manifest.permissions?.otherFacilityFamilies === false
       && manifest.permissions?.activeOfficePromotion === false,
-    "Coffee C01-r02 must stop at independent F8 owner review",
+    "Coffee C01-r02 must record its exact F8 owner approval",
   );
   add(
-    ["F0", "F1", "F2", "F3", "F4", "F5", "F6", "F7"]
+    ["F0", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8"]
       .every((gate) => manifest.gates?.[gate]?.status === "passed")
-      && manifest.gates?.F8?.status === "pending-owner-review"
       && manifest.gates?.F9?.status === "blocked"
       && manifest.gates?.F10?.status === "blocked",
     "Coffee C01-r02 gate state changed",
@@ -340,5 +340,5 @@ console.log(
   "Coffee Machine C01-r02 check passed: fresh generated source, "
   + "2x2x2 support geometry, owner-approved Counter A01-r02 parent, "
   + "5 block cases, exact 3-item packing, local coffee/steam, "
-  + "108 pose cases, 30-second failure/retry, F0-F7 passed, F8 pending.",
+  + "108 pose cases, 30-second failure/retry, F0-F8 passed, owner-approved.",
 );
