@@ -282,19 +282,21 @@ F0-F7. The owner approved A01-r02 at F8 on 2026-07-29 and directed isolated
 Coffee C01 production to begin on its support surface. Coffee must still pass
 F0-F8 independently. F9 and F10 remain blocked.
 
-`docs/art/OFFICE_FACILITY_COFFEE_MACHINE_C01.md` records that isolated Coffee
-vertical slice. C01 re-extracts four front-only neutral frames from the audited
-original completion master and uses no processed Coffee, historical loop,
-side-orientation, rejected, or Active Office pixels. Geometry calibration
-retains the audit `1 x 3` and guide `1 x 2` comparisons, then selects a `2 x 3`
-visual envelope to preserve the original commercial-machine silhouette while
-keeping physical support at `1 x 2 x 2`. It occupies the A01-r02 depth span
-`surface.back.03 + surface.front.03`, anchors its visual base at the front
-cell, and proves compatibility with all six back-to-front support spans. The
-output remains inside the machine bay. The shell, local indicator, empty bay,
-Coffee/steam overlays, and H01 mug remain separate. Its
+`docs/art/OFFICE_FACILITY_COFFEE_MACHINE_C01.md` preserves the first isolated
+Coffee vertical slice as rejected evidence. C01 passed F0-F7, but the owner
+rejected it at F8 on 2026-07-29 because its compact one-cell visual silhouette
+did not visibly fill its reserved two-cell depth.
+
+`docs/art/OFFICE_FACILITY_COFFEE_MACHINE_C01_R02.md` records the fresh
+successor and uses zero C01 pixels. C01-r02 is a visible and physical
+`2 x 2 x 2` machine. It occupies four complete A01-r02 support cells, proves
+all five adjacent `2 x 2` placement blocks, and proves an exact
+three-object packing at `span.block.01-02`, `span.block.03-04`, and
+`span.block.05-06` with zero overlap failures. Its shell, local viewport,
+empty output bay, Coffee/steam overlays, and H01 mug remain separate. The
 18-character, 108-pose socket matrix and 30-second contention/failure/retry
-proof pass F0-F7. C01 is `owner-review-f8-pending`; F9 and F10 remain blocked.
+proof pass F0-F7. C01-r02 is `owner-review-f8-pending`; F9 and F10 remain
+blocked.
 
 ## Required evidence per family
 

@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
-"""Build Coffee Machine C01 from the audited neutral original master.
+"""Build the fresh 2x2x2 Coffee Machine C01-r02 review family.
 
-C01 is one front-only, counter-supported machine family. Four audited neutral
-frames are re-extracted from the original master; processed coffee crops,
-historical ambient loops, side views, rejected furniture, Active Office art,
-and fallbacks are never inputs. The machine attaches to owner-approved Counter
-Bar A01-r02 through an explicit parent support socket.
+C01-r02 uses one newly generated isolated source and zero C01 pixels. Its
+visible base fills one complete 2x2 block on owner-approved Counter A01-r02.
+The established I01/H01 handoff and reservation harnesses remain independent.
 """
 
 from __future__ import annotations
@@ -29,9 +27,10 @@ from office_facility_art import (
     draw_title,
     json_bytes,
     layer_from_box,
+    normalize_without_resampling,
     paste_scaled,
     png_bytes,
-    remove_magenta_chroma,
+    remove_green_chroma,
     repo_path,
     sha256_bytes,
     sha256_file,
@@ -41,7 +40,7 @@ from office_facility_art import (
 ROOT = Path(__file__).resolve().parents[1]
 AUDIT_PATH = ROOT / "assets/game/manifests/office-furniture-master-audit-v1.json"
 MANIFEST_PATH = (
-    ROOT / "assets/game/manifests/office-facility-coffee-machine-c01.json"
+    ROOT / "assets/game/manifests/office-facility-coffee-machine-c01-r02.json"
 )
 COUNTER_MANIFEST_PATH = (
     ROOT / "assets/game/manifests/office-furniture-counter-bar-a01-r02.json"
@@ -65,14 +64,12 @@ ROSTER_PATH = ROOT / "assets/game/manifests/character-roster-8x15-batch.json"
 SOURCE_PATH = (
     ROOT
     / "assets/art/layout-references/"
-    "review-facility-completion-sheet-modern-bright-v1-source.png"
+    "office-facility-coffee-machine-c01-r02-source.png"
 )
-SOURCE_SHA256 = (
-    "fa66b2d4891d7dddc4f90469d61262803641956052f977c22f8cd29827029853"
-)
+SOURCE_SHA256 = "833fdf374a47487929fe67c9f9c7eba4f154754ddc2d234170444a80af438cc2"
 OUTPUT_ROOT = (
     ROOT
-    / "assets/game/processed/office-facility-family-v1/coffee-machine-c01"
+    / "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02"
 )
 AUTHORING_ROOT = OUTPUT_ROOT / "authoring"
 RUNTIME_ROOT = OUTPUT_ROOT / "runtime"
@@ -84,16 +81,20 @@ RUNTIME_COMPOSITE_ROOT = RUNTIME_ROOT / "composites"
 REVIEW_ROOT = (
     ROOT
     / "assets/art/layout-references/office-facility-family-v1/"
-    "coffee-machine-c01"
+    "coffee-machine-c01-r02"
 )
 
 FAMILY_ID = "machine.coffee"
-REVISION = "c01"
+REVISION = "c01-r02"
 HELD_ASSET_ID = "held.coffee-mug"
 FRAME_IDS = ("a", "b", "c", "d")
-RECORD_PREFIX = (
-    "review-facility-completion-v1:review-facility-completion:"
-    "machine.coffee.neutral."
+SOURCE_AUTHORITY_ID = "owner-directive:coffee-c01-r02-2x2x2-clean-source"
+GENERATION_PROMPT = (
+    "Create one completely original broad and deep commercial coffee machine "
+    "whose visible base fills a 2x2 support block. Use a front-biased "
+    "orthographic game camera, warm ivory, navy, brass, an empty output bay, "
+    "and a flat removable green background. No cup, liquid, steam, person, "
+    "counter, text, logo, shadow, rejected Coffee pixels, or Active Office."
 )
 REJECTED_RECORDS = (
     *tuple(
@@ -107,26 +108,25 @@ REJECTED_RECORDS = (
     "machine.coffee.side-right",
 )
 
-AUTHORING_CANVAS = (256, 384)
-RUNTIME_CANVAS = (64, 96)
-RUNTIME_DIVISOR = 4
+AUTHORING_CANVAS = (1536, 1536)
+RUNTIME_CANVAS = (96, 96)
+RUNTIME_DIVISOR = 16
+BOTTOM_PADDING = 64
 ACTOR_FRAME = (96, 104)
 ACTOR_ROW = 10
 ACTIVE_FRAMES = 6
-SHARED_ACTOR_POSITION = (96, 176)
-MACHINE_POSITION = (112, 54)
+SHARED_ACTOR_POSITION = (112, 176)
+MACHINE_POSITION = (112, 74)
 ROSTER_COUNTER_ORIGIN = (32, 80)
-FACILITY_BASE_SOCKET = (32, 96)
-FACILITY_OUTPUT_SOCKET = (33, 78)
-FACILITY_EFFECT_SOCKET = (31, 71)
-INTERACTION_TARGET_SOCKET = (32, 94)
+FACILITY_BASE_SOCKET = (48, 92)
+FACILITY_OUTPUT_SOCKET = (48, 61)
+FACILITY_EFFECT_SOCKET = (48, 55)
+INTERACTION_TARGET_SOCKET = (48, 90)
 
-VIEWPORT_BOX = (40, 168, 220, 360)
+VIEWPORT_BOX = (560, 680, 976, 1240)
 VIEWPORT_RUNTIME_BOX = tuple(value // RUNTIME_DIVISOR for value in VIEWPORT_BOX)
-INDICATOR_BOX = (42, 174, 88, 224)
-OUTPUT_BOX = (68, 232, 214, 356)
-STREAM_ROI = (117, 268, 122, 324)
-STEAM_ROI = (104, 292, 135, 325)
+INDICATOR_BOX = (650, 700, 900, 850)
+OUTPUT_BOX = (480, 800, 1056, 1240)
 
 COUNTER_RUNTIME_ROOT = (
     ROOT / "assets/game/processed/office-furniture-counter-bar-a01-r02/runtime"
@@ -145,52 +145,57 @@ COUNTER_PART_PATHS = {
         / "parts/counter-bar-a01-r02.foreground-occlusion.png"
     ),
 }
-SELECTED_DEPTH_SPAN_ID = "surface.depth.03"
-OCCUPIED_SLOT_IDS = ("surface.back.03", "surface.front.03")
-SELECTED_ANCHOR_SLOT_ID = "surface.front.03"
-USE_LANE_ID = "use.03"
-SELECTED_PARENT_SOCKET = (112, 70)
+SELECTED_BLOCK_SPAN_ID = "span.block.03-04"
+OCCUPIED_SLOT_IDS = (
+    "surface.back.03",
+    "surface.back.04",
+    "surface.front.03",
+    "surface.front.04",
+)
+SELECTED_ANCHOR_SLOT_IDS = ("surface.front.03", "surface.front.04")
+USE_LANE_IDS = ("use.03", "use.04")
+SELECTED_PARENT_SOCKET = (128, 86)
 COUNTER_CONTEXT_ORIGIN = (0, 80)
 
-KEYED_SOURCE_PATH = SOURCE_ROOT / "coffee-machine-c01.master-keyed.png"
-OWNERSHIP_PATH = SOURCE_ROOT / "coffee-machine-c01.ownership-mask.png"
+KEYED_SOURCE_PATH = SOURCE_ROOT / "coffee-machine-c01-r02.master-keyed.png"
+OWNERSHIP_PATH = SOURCE_ROOT / "coffee-machine-c01-r02.ownership-mask.png"
 SOURCE_FRAME_PATHS = {
-    frame: SOURCE_ROOT / f"coffee-machine-c01.source-frame-{frame}.png"
+    frame: SOURCE_ROOT / f"coffee-machine-c01-r02.source-frame-{frame}.png"
     for frame in FRAME_IDS
 }
 PART_PATHS = {
     "shell-static": (
-        AUTHORING_PART_ROOT / "coffee-machine-c01.shell-static.png",
-        RUNTIME_PART_ROOT / "coffee-machine-c01.shell-static.png",
+        AUTHORING_PART_ROOT / "coffee-machine-c01-r02.shell-static.png",
+        RUNTIME_PART_ROOT / "coffee-machine-c01-r02.shell-static.png",
     ),
     **{
         f"viewport-{frame}": (
-            AUTHORING_PART_ROOT / f"coffee-machine-c01.viewport-{frame}.png",
-            RUNTIME_PART_ROOT / f"coffee-machine-c01.viewport-{frame}.png",
+            AUTHORING_PART_ROOT / f"coffee-machine-c01-r02.viewport-{frame}.png",
+            RUNTIME_PART_ROOT / f"coffee-machine-c01-r02.viewport-{frame}.png",
         )
         for frame in FRAME_IDS
     },
     "output-bay-empty": (
-        AUTHORING_PART_ROOT / "coffee-machine-c01.output-bay-empty.png",
-        RUNTIME_PART_ROOT / "coffee-machine-c01.output-bay-empty.png",
+        AUTHORING_PART_ROOT / "coffee-machine-c01-r02.output-bay-empty.png",
+        RUNTIME_PART_ROOT / "coffee-machine-c01-r02.output-bay-empty.png",
     ),
     "effect-coffee-stream": (
-        AUTHORING_PART_ROOT / "coffee-machine-c01.effect-coffee-stream.png",
-        RUNTIME_PART_ROOT / "coffee-machine-c01.effect-coffee-stream.png",
+        AUTHORING_PART_ROOT / "coffee-machine-c01-r02.effect-coffee-stream.png",
+        RUNTIME_PART_ROOT / "coffee-machine-c01-r02.effect-coffee-stream.png",
     ),
     "effect-steam": (
-        AUTHORING_PART_ROOT / "coffee-machine-c01.effect-steam.png",
-        RUNTIME_PART_ROOT / "coffee-machine-c01.effect-steam.png",
+        AUTHORING_PART_ROOT / "coffee-machine-c01-r02.effect-steam.png",
+        RUNTIME_PART_ROOT / "coffee-machine-c01-r02.effect-steam.png",
     ),
     "held-coffee-mug": (
-        AUTHORING_PART_ROOT / "coffee-machine-c01.held-coffee-mug@2x.png",
-        RUNTIME_PART_ROOT / "coffee-machine-c01.held-coffee-mug.png",
+        AUTHORING_PART_ROOT / "coffee-machine-c01-r02.held-coffee-mug@2x.png",
+        RUNTIME_PART_ROOT / "coffee-machine-c01-r02.held-coffee-mug.png",
     ),
 }
 COMPOSITE_PATHS = {
     frame: (
-        AUTHORING_COMPOSITE_ROOT / f"coffee-machine-c01.frame-{frame}.png",
-        RUNTIME_COMPOSITE_ROOT / f"coffee-machine-c01.frame-{frame}.png",
+        AUTHORING_COMPOSITE_ROOT / f"coffee-machine-c01-r02.frame-{frame}.png",
+        RUNTIME_COMPOSITE_ROOT / f"coffee-machine-c01-r02.frame-{frame}.png",
     )
     for frame in FRAME_IDS
 }
@@ -207,6 +212,7 @@ REVIEW_PATHS = [
     REVIEW_ROOT / "10-socket-attachment-debug.png",
     REVIEW_ROOT / "11-reservation-timeline-30s.png",
     REVIEW_ROOT / "12-hand-closeups-and-layer-order.png",
+    REVIEW_ROOT / "13-three-item-packing.png",
 ]
 
 PART_ROLES = {
@@ -251,49 +257,7 @@ def validate_authorities() -> tuple[
     dict[str, Any],
 ]:
     if sha256_file(SOURCE_PATH) != SOURCE_SHA256:
-        raise ValueError("Coffee neutral original master hash changed")
-    audit = load_json(AUDIT_PATH)
-    family = next(
-        record
-        for record in audit["families"]
-        if record["familyId"] == FAMILY_ID
-    )
-    expected_records = tuple(f"{RECORD_PREFIX}{frame}" for frame in FRAME_IDS)
-    if (
-        family["action"] != "salvage-preferred-master-then-decompose"
-        or tuple(family["salvageableSourceRecords"]) != expected_records
-        or tuple(family["rejectedOrSupersededSourceRecords"])
-        != REJECTED_RECORDS
-    ):
-        raise ValueError("Coffee master-audit family authority changed")
-    by_id = {record["recordId"]: record for record in audit["records"]}
-    records: list[dict[str, Any]] = []
-    for frame, record_id in zip(FRAME_IDS, expected_records, strict=True):
-        record = by_id[record_id]
-        if (
-            record["sourcePath"] != rp(SOURCE_PATH)
-            or record["sourceSha256"] != SOURCE_SHA256
-            or record["orientation"] != "front"
-            or record["animationFrame"] != frame
-            or record["currentDecision"]["decision"]
-            != "salvage-full-master-and-decompose"
-            or record["currentDecision"]["masterPixelsSalvageable"] is not True
-        ):
-            raise ValueError(f"Audit no longer permits Coffee frame {frame}")
-        records.append(record)
-    for index, record_id in enumerate(REJECTED_RECORDS):
-        decision = by_id[record_id]["currentDecision"]
-        expected = (
-            "reference-effects-only-use-neutral-front-source"
-            if index < 4
-            else "reject-regenerate-orientation-if-required"
-        )
-        if (
-            decision["decision"] != expected
-            or decision["masterPixelsSalvageable"] is not False
-        ):
-            raise ValueError(f"Rejected Coffee authority changed: {record_id}")
-
+        raise ValueError("Generated Coffee C01-r02 source hash changed")
     counter = load_json(COUNTER_MANIFEST_PATH)
     if (
         counter["id"] != "office.furniture.counter-bar.a01-r02"
@@ -304,125 +268,92 @@ def validate_authorities() -> tuple[
         or counter["permissions"]["activeOfficePromotion"] is not False
     ):
         raise ValueError("Coffee requires owner-approved Counter A01-r02")
-    slots = {
-        slot["id"]: slot
-        for slot in counter["surfaceContract"]["slots"]
+    slots = {slot["id"]: slot for slot in counter["surfaceContract"]["slots"]}
+    blocks = {
+        span["id"]: span
+        for span in counter["surfaceContract"]["twoByTwoSpanGroups"]
     }
+    selected = blocks.get(SELECTED_BLOCK_SPAN_ID)
+    support_bounds = counter["surfaceContract"]["projectedSupportBounds"]
+    selected_front = [slots[slot_id] for slot_id in SELECTED_ANCHOR_SLOT_IDS]
+    derived_parent_socket = (
+        sum(slot["localSocket"][0] for slot in selected_front) // 2,
+        support_bounds[3],
+    )
     if (
         len(slots) != 12
-        or tuple(slots[SELECTED_ANCHOR_SLOT_ID]["localSocket"])
-        != SELECTED_PARENT_SOCKET
-        or any(
-            slots[slot_id]["pairedUseLaneId"] != USE_LANE_ID
-            for slot_id in OCCUPIED_SLOT_IDS
-        )
+        or len(blocks) != 5
+        or selected is None
+        or tuple(selected["slotIds"]) != OCCUPIED_SLOT_IDS
+        or derived_parent_socket != SELECTED_PARENT_SOCKET
         or counter["surfaceContract"]["edgeSupportFailures"] != 0
     ):
-        raise ValueError("Counter support slots changed")
+        raise ValueError("Counter 2x2 support blocks changed")
     spatial = load_json(SPATIAL_AUTHORITY_PATH)
     if spatial["status"] != "owner-approved":
         raise ValueError("Coffee requires approved Spatial I01")
-    return records, counter, spatial
-
-
-def align_frame(frame: Image.Image) -> tuple[Image.Image, dict[str, int]]:
-    bounds = frame.getbbox()
-    if bounds is None:
-        raise ValueError("Coffee source frame has no visible pixels")
-    subject = frame.crop(bounds)
-    left = (AUTHORING_CANVAS[0] - subject.width) // 2
-    top = AUTHORING_CANVAS[1] - subject.height - 8
-    padding = {
-        "left": left,
-        "top": top,
-        "right": AUTHORING_CANVAS[0] - subject.width - left,
-        "bottom": 8,
-    }
-    if min(padding.values()) < 8:
-        raise ValueError(f"Coffee authoring padding is insufficient: {padding}")
-    output = Image.new("RGBA", AUTHORING_CANVAS, (0, 0, 0, 0))
-    output.alpha_composite(subject, (left, top))
-    return output, padding
+    return [], counter, spatial
 
 
 def extract_source_frames(
     master: Image.Image,
-    records: list[dict[str, Any]],
+    _records: list[dict[str, Any]],
 ) -> tuple[
     Image.Image,
     Image.Image,
     dict[str, Image.Image],
     list[dict[str, Any]],
 ]:
-    keyed_master, _, _ = remove_magenta_chroma(master)
+    keyed_master, key_color, chroma = remove_green_chroma(master)
     ownership = Image.new("RGBA", master.size, (0, 0, 0, 0))
-    aligned: dict[str, Image.Image] = {}
-    evidence: list[dict[str, Any]] = []
-    colors = (
-        (58, 174, 255, 225),
-        (68, 210, 145, 225),
-        (255, 178, 55, 225),
-        (196, 104, 244, 225),
+    components = [
+        component
+        for component in connected_components(keyed_master)
+        if component["pixelCount"] >= 32
+    ]
+    if len(components) != 1:
+        raise ValueError(f"Generated Coffee source components: {len(components)}")
+    component = components[0]
+    bounds = tuple(component["bounds"])
+    if (
+        bounds[0] <= 0
+        or bounds[1] <= 0
+        or bounds[2] >= master.width
+        or bounds[3] >= master.height
+    ):
+        raise ValueError(f"Generated Coffee source touches edge: {bounds}")
+    normalized, padding, normalized_from = normalize_without_resampling(
+        keyed_master,
+        AUTHORING_CANVAS,
+        bottom_padding=BOTTOM_PADDING,
     )
-    for record, color in zip(records, colors, strict=True):
-        frame_id = record["animationFrame"]
-        source_bounds = tuple(record["sourceBounds"])
-        source_cell = master.crop(source_bounds)
-        keyed, _, _ = remove_magenta_chroma(source_cell)
-        components = [
-            component
-            for component in connected_components(keyed)
-            if component["pixelCount"] >= 16
-        ]
-        if len(components) != 1:
-            raise ValueError(
-                f"Coffee frame {frame_id} expected one component: "
-                f"{len(components)}"
-            )
-        component = components[0]
-        local_bounds = tuple(component["bounds"])
-        owned_bounds = (
-            source_bounds[0] + local_bounds[0],
-            source_bounds[1] + local_bounds[1],
-            source_bounds[0] + local_bounds[2],
-            source_bounds[1] + local_bounds[3],
+    ownership_pixels = ownership.load()
+    for point in component["points"]:
+        ownership_pixels[point % master.width, point // master.width] = (
+            43,
+            183,
+            235,
+            220,
         )
-        touches_cell = (
-            local_bounds[0] <= 0
-            or local_bounds[1] <= 0
-            or local_bounds[2] >= keyed.width
-            or local_bounds[3] >= keyed.height
-        )
-        touches_master = (
-            owned_bounds[0] <= 0
-            or owned_bounds[1] <= 0
-            or owned_bounds[2] >= master.width
-            or owned_bounds[3] >= master.height
-        )
-        if touches_cell or touches_master:
-            raise ValueError(
-                f"Coffee frame {frame_id} escaped its audited neutral cell"
-            )
-        alpha = keyed.getchannel("A")
-        tint = Image.new("RGBA", keyed.size, color)
-        tint.putalpha(alpha.point(lambda value: min(value, color[3])))
-        ownership.alpha_composite(tint, (source_bounds[0], source_bounds[1]))
-        normalized, padding = align_frame(keyed)
-        aligned[frame_id] = normalized
-        evidence.append(
-            {
-                "frameId": frame_id,
-                "auditRecordId": record["recordId"],
-                "sourceBounds": list(source_bounds),
-                "ownedBounds": list(owned_bounds),
-                "selectedComponentCount": 1,
-                "selectedPixelCount": component["pixelCount"],
-                "touchesNominalCellBoundary": False,
-                "touchesMasterBoundary": False,
-                "sourcePixelsResampled": False,
-                "padding": padding,
-            }
-        )
+    aligned = {frame: normalized.copy() for frame in FRAME_IDS}
+    evidence = [
+        {
+            "frameId": frame,
+            "auditRecordId": f"{SOURCE_AUTHORITY_ID}:frame-{frame}",
+            "sourceBounds": [0, 0, master.width, master.height],
+            "ownedBounds": list(bounds),
+            "selectedComponentCount": 1,
+            "selectedPixelCount": component["pixelCount"],
+            "touchesNominalCellBoundary": False,
+            "touchesMasterBoundary": False,
+            "sourcePixelsResampled": False,
+            "padding": padding,
+            "keyColor": list(key_color),
+            "chroma": chroma,
+            "normalizedFromBounds": list(normalized_from),
+        }
+        for frame in FRAME_IDS
+    ]
     return keyed_master, ownership, aligned, evidence
 
 
@@ -430,36 +361,30 @@ def copy_box(source: Image.Image, box: tuple[int, int, int, int]) -> Image.Image
     return layer_from_box(source, box)
 
 
-def difference_effect(
-    base: Image.Image,
-    active: Image.Image,
-    roi: tuple[int, int, int, int],
-    *,
-    minimum_luminance: float,
-    minimum_difference: int,
-) -> Image.Image:
-    effect = Image.new("RGBA", active.size, (0, 0, 0, 0))
-    pixels = effect.load()
-    selected = 0
-    for y in range(roi[1], roi[3]):
-        for x in range(roi[0], roi[2]):
-            base_pixel = base.getpixel((x, y))
-            active_pixel = active.getpixel((x, y))
-            luminance = sum(active_pixel[:3]) / 3
-            difference = sum(
-                abs(active_pixel[channel] - base_pixel[channel])
-                for channel in range(4)
-            )
-            if (
-                active_pixel[3]
-                and luminance >= minimum_luminance
-                and difference >= minimum_difference
-            ):
-                pixels[x, y] = active_pixel
-                selected += 1
-    if selected < 30:
-        raise ValueError(f"Coffee effect extraction too small: {selected}")
-    return effect
+def code_effects() -> tuple[Image.Image, Image.Image, Image.Image]:
+    ready = Image.new("RGBA", AUTHORING_CANVAS, (0, 0, 0, 0))
+    stream = Image.new("RGBA", AUTHORING_CANVAS, (0, 0, 0, 0))
+    steam = Image.new("RGBA", AUTHORING_CANVAS, (0, 0, 0, 0))
+    ready_draw = ImageDraw.Draw(ready)
+    for radius, alpha in ((28, 35), (18, 80), (9, 235)):
+        ready_draw.ellipse(
+            (665 - radius, 760 - radius, 665 + radius, 760 + radius),
+            fill=(255, 179, 52, alpha),
+        )
+    stream_draw = ImageDraw.Draw(stream)
+    stream_draw.rectangle((762, 925, 774, 1090), fill=(82, 45, 22, 210))
+    stream_draw.rectangle((766, 925, 770, 1090), fill=(222, 151, 72, 245))
+    steam_draw = ImageDraw.Draw(steam)
+    for x, y, radius, alpha in (
+        (744, 1050, 24, 70),
+        (775, 1025, 28, 82),
+        (795, 1060, 20, 62),
+    ):
+        steam_draw.ellipse(
+            (x - radius, y - radius, x + radius, y + radius),
+            fill=(245, 244, 235, alpha),
+        )
+    return ready, stream, steam
 
 
 def compose_frame(
@@ -492,30 +417,10 @@ def build_parts(
     base_viewport = clear_box(base_viewport, OUTPUT_BOX)
     output_bay = copy_box(frame_a, OUTPUT_BOX)
 
-    viewports = {"a": base_viewport.copy()}
-    for frame in ("b", "c", "d"):
-        viewport = base_viewport.copy()
-        viewport.alpha_composite(copy_box(frames[frame], INDICATOR_BOX))
-        viewports[frame] = viewport
-
-    stream = difference_effect(
-        frame_a,
-        frames["c"],
-        STREAM_ROI,
-        minimum_luminance=80,
-        minimum_difference=60,
-    )
-    steam = difference_effect(
-        frame_a,
-        frames["c"],
-        STEAM_ROI,
-        minimum_luminance=80,
-        minimum_difference=60,
-    )
-    ImageDraw.Draw(steam).rectangle(
-        (117, 292, 121, 323),
-        fill=(0, 0, 0, 0),
-    )
+    ready, stream, steam = code_effects()
+    viewports = {frame: base_viewport.copy() for frame in FRAME_IDS}
+    viewports["b"].alpha_composite(ready)
+    viewports["c"].alpha_composite(ready)
     held_manifest = load_json(HELD_PROP_MANIFEST_PATH)
     if held_manifest["status"] != "owner-approved":
         raise ValueError("Coffee requires owner-approved H01")
@@ -561,12 +466,12 @@ def build_parts(
         part_id: (
             held_runtime
             if part_id == "held-coffee-mug"
-            else image.resize(RUNTIME_CANVAS, Image.Resampling.NEAREST)
+            else image.resize(RUNTIME_CANVAS, Image.Resampling.LANCZOS)
         )
         for part_id, image in authoring_parts.items()
     }
     runtime_composites = {
-        frame: image.resize(RUNTIME_CANVAS, Image.Resampling.NEAREST)
+        frame: image.resize(RUNTIME_CANVAS, Image.Resampling.LANCZOS)
         for frame, image in authoring_composites.items()
     }
     metrics = {
@@ -1059,12 +964,12 @@ def review_source(
     frames: dict[str, Image.Image],
 ) -> Image.Image:
     board = new_board(
-        "COFFEE C01 / SOURCE OWNERSHIP",
-        "Original neutral master only • four audited front frames • no processed, loop, side, or Active Office pixels",
+        "COFFEE C01-r02 / SOURCE OWNERSHIP",
+        "Fresh built-in ImageGen source • flat green key • one complete component • zero C01 or Active Office pixels",
     )
-    card(board, (25, 120, 775, 965), "ORIGINAL MASTER / BOTTOM ROW")
-    paste_scaled(board, master.crop((0, 900, master.width, master.height)), (55, 185, 745, 520))
-    paste_scaled(board, ownership.crop((0, 900, ownership.width, ownership.height)), (55, 565, 745, 910))
+    card(board, (25, 120, 775, 965), "GENERATED ISOLATED SOURCE")
+    paste_scaled(board, master, (55, 175, 745, 535))
+    paste_scaled(board, ownership, (55, 575, 745, 925))
     for index, frame in enumerate(FRAME_IDS):
         x = 815 + (index % 2) * 370
         y = 120 + (index // 2) * 420
@@ -1080,30 +985,25 @@ def review_geometry(
     counter: Image.Image,
 ) -> Image.Image:
     board = new_board(
-        "COFFEE C01 / GEOMETRY CALIBRATION",
-        "Physical 1×2×2 on Counter Z=2 • audit 1×3 and guide 1×2 compared • selected 2×3 render envelope preserves source aspect",
+        "COFFEE C01-r02 / GEOMETRY CALIBRATION",
+        "Physical 2×2×2 on Counter Z=2 • visible silhouette fills one complete 2×2 block • three non-overlapping placements",
     )
+    pack_sockets = ((64, 86), (128, 86), (192, 86))
     variants = [
-        ("GUIDE 1×2", render_variant(clean, (32, 64))),
-        ("AUDIT 1×3", render_variant(clean, (32, 96))),
-        ("SELECTED 2×3", clean),
+        ("BLOCK 01–02", pack_sockets[0]),
+        ("SELECTED BLOCK 03–04", pack_sockets[1]),
+        ("BLOCK 05–06", pack_sockets[2]),
     ]
-    for index, (label, variant) in enumerate(variants):
+    for index, (label, socket) in enumerate(variants):
         x = 25 + index * 520
         card(board, (x, 120, x + 495, 825), label)
-        context = context_for_variant(variant, counter)
+        context = counter_context(clean, counter, parent_socket=socket)
         paste_scaled(board, context, (x + 20, 190, x + 475, 620))
         draw = ImageDraw.Draw(board)
         draw.text(
             (x + 28, 655),
-            (
-                "1×2 support / natural shell aspect\n"
-                + (
-                    "Too narrow for readable commercial-machine silhouette"
-                    if index < 2
-                    else "Selected: 64×96 render / no non-uniform scaling"
-                )
-            ),
+            "2×2 support / front-edge midpoint anchor\n"
+            "Visible shell ≈ 62×64 px / no non-uniform scaling",
             font=BODY_FONT,
             fill=(45, 59, 75, 255),
             spacing=8,
@@ -1116,7 +1016,7 @@ def review_geometry(
     )
     draw.text(
         (65, 878),
-        "The render envelope is visual padding. Physical occupancy is one complete back+front depth span on A01-r02.",
+        "A01-r02 packs three 2×2 objects exactly at blocks 01–02, 03–04, and 05–06 with no overlap.",
         font=HEADING_FONT,
         fill=(22, 75, 111, 255),
     )
@@ -1127,7 +1027,7 @@ def review_parts(
     parts: dict[str, Image.Image],
 ) -> Image.Image:
     board = new_board(
-        "COFFEE C01 / ALPHA PARTS",
+        "COFFEE C01-r02 / ALPHA PARTS",
         "Static shell • local indicator viewport • empty bay • coffee and steam overlays • independent H01 mug",
     )
     ids = list(parts)
@@ -1143,8 +1043,8 @@ def review_parts(
 
 def review_clean(clean: Image.Image) -> Image.Image:
     board = new_board(
-        "COFFEE C01 / CLEAN FRONT",
-        "One front-only machine • empty output bay • runtime 64×96 • physical 1×2×2 • no cup baked into shell",
+        "COFFEE C01-r02 / CLEAN FRONT",
+        "Fresh broad-and-deep machine • empty output bay • runtime 96×96 • physical 2×2×2 • no cup baked into shell",
     )
     preview = checkerboard((900, 760), 24)
     paste_review(preview, clean, (100, 30, 800, 730))
@@ -1153,9 +1053,9 @@ def review_clean(clean: Image.Image) -> Image.Image:
     lines = [
         "PLACEMENT  furniture-surface",
         "PARENT     Counter A01-r02",
-        "SPAN       back.03 + front.03",
-        "ANCHOR     surface.front.03",
-        "LANE       use.03",
+        "BLOCK      span.block.03-04",
+        "ANCHOR     front-edge midpoint",
+        "LANES      use.03 + use.04",
         "CAPACITY   1",
         "F9 / F10   blocked",
     ]
@@ -1181,7 +1081,7 @@ def review_animation(
     metrics: dict[str, int],
 ) -> Image.Image:
     board = new_board(
-        "COFFEE C01 / LOCAL ANIMATION",
+        "COFFEE C01-r02 / LOCAL ANIMATION",
         "A idle • B ready lamp • C coffee stream + steam • D complete • immutable shell outside local viewport",
     )
     for index, frame in enumerate(FRAME_IDS):
@@ -1216,17 +1116,17 @@ def review_counter_placement(
     counter_manifest: dict[str, Any],
 ) -> Image.Image:
     board = new_board(
-        "COFFEE C01 / COUNTER PLACEMENT",
-        "A01-r02 owner-approved • machine occupies one back+front depth span • front-cell visual anchor • zero parent-socket drift",
+        "COFFEE C01-r02 / COUNTER PLACEMENT",
+        "A01-r02 owner-approved • each machine occupies one complete 2×2 block • three-item packing • zero parent-socket drift",
     )
     slots = {
         slot["id"]: tuple(slot["localSocket"])
         for slot in counter_manifest["surfaceContract"]["slots"]
     }
     examples = [
-        ("DEPTH SPAN 01", slots["surface.front.01"]),
-        ("SELECTED DEPTH SPAN 03", slots[SELECTED_ANCHOR_SLOT_ID]),
-        ("DEPTH SPAN 06", slots["surface.front.06"]),
+        ("BLOCK 01–02", (64, 86)),
+        ("SELECTED BLOCK 03–04", SELECTED_PARENT_SOCKET),
+        ("BLOCK 05–06", (192, 86)),
     ]
     for index, (label, socket) in enumerate(examples):
         x = 25 + index * 520
@@ -1254,7 +1154,7 @@ def review_counter_placement(
     )
     draw.text(
         (65, 845),
-        "6 / 6 depth spans compatible • selected span back.03 + front.03 • front.03 anchor • 10 cells remain available",
+        "5 / 5 adjacent 2×2 blocks compatible • exact three-item packing uses 01–02 + 03–04 + 05–06 • zero overlap",
         font=HEADING_FONT,
         fill=(22, 75, 111, 255),
     )
@@ -1263,18 +1163,18 @@ def review_counter_placement(
 
 def review_routes(counter: Image.Image, clean: Image.Image) -> Image.Image:
     board = new_board(
-        "COFFEE C01 / USE LANE AND ROUTES",
-        "Machine occupies back.03 + front.03 → internal output bay → stand 2.5,2.5 → approach 2.5,3.5 → exit 2.5,4.5",
+        "COFFEE C01-r02 / USE LANE AND ROUTES",
+        "Machine occupies block 03–04 → internal output bay → stand 3.0,2.5 → approach 3.0,3.5 → exit 3.0,4.5",
     )
     context = counter_context(clean, counter)
     paste_scaled(board, context, (40, 150, 930, 850))
     draw = ImageDraw.Draw(board)
     labels = [
-        ("M", (1130, 210), (246, 162, 56, 255), "machine / depth span 03"),
+        ("M", (1130, 210), (246, 162, 56, 255), "machine / 2×2 block 03–04"),
         ("O", (1130, 345), (62, 149, 230, 255), "output / internal bay"),
-        ("S", (1130, 480), (74, 181, 114, 255), "stand / 2.5,2.5"),
-        ("A", (1130, 615), (154, 105, 226, 255), "approach / 2.5,3.5"),
-        ("E", (1130, 750), (82, 94, 111, 255), "exit / 2.5,4.5"),
+        ("S", (1130, 480), (74, 181, 114, 255), "stand / 3.0,2.5"),
+        ("A", (1130, 615), (154, 105, 226, 255), "approach / 3.0,3.5"),
+        ("E", (1130, 750), (82, 94, 111, 255), "exit / 3.0,4.5"),
     ]
     for letter, center, color, text in labels:
         draw.ellipse(
@@ -1298,9 +1198,48 @@ def review_routes(counter: Image.Image, clean: Image.Image) -> Image.Image:
     return board
 
 
+def review_three_item_packing(
+    clean: Image.Image,
+    counter: Image.Image,
+) -> Image.Image:
+    board = new_board(
+        "COFFEE C01-r02 / EXACT THREE-ITEM PACKING",
+        "Counter A01-r02 width 6 × depth 2 • three non-overlapping 2×2 blocks • visible shells keep a 2 px gap",
+    )
+    context = Image.new("RGBA", (256, 240), (0, 0, 0, 0))
+    context.alpha_composite(counter, COUNTER_CONTEXT_ORIGIN)
+    for parent_socket in ((64, 86), (128, 86), (192, 86)):
+        root_world = (
+            COUNTER_CONTEXT_ORIGIN[0] + parent_socket[0],
+            COUNTER_CONTEXT_ORIGIN[1] + parent_socket[1],
+        )
+        context.alpha_composite(
+            clean,
+            (
+                root_world[0] - FACILITY_BASE_SOCKET[0],
+                root_world[1] - FACILITY_BASE_SOCKET[1],
+            ),
+        )
+    card(board, (110, 130, 1490, 810), "PACKED COUNTER / 3 × 2×2 OBJECTS")
+    paste_alpha_focus(board, context, (170, 210, 1430, 700))
+    draw = ImageDraw.Draw(board)
+    draw.rounded_rectangle(
+        (110, 840, 1490, 950),
+        radius=18,
+        fill=(226, 241, 251, 255),
+    )
+    draw.text(
+        (150, 875),
+        "01–02  |  03–04  |  05–06     capacity = 3     overlapFailures = 0",
+        font=HEADING_FONT,
+        fill=(22, 75, 111, 255),
+    )
+    return board
+
+
 def review_handoff(rendered: dict[str, list[Image.Image]]) -> Image.Image:
     board = new_board(
-        "COFFEE C01 / SIX-FRAME OUTPUT HANDOFF",
+        "COFFEE C01-r02 / SIX-FRAME OUTPUT HANDOFF",
         "Empty → ready → mug at machine output → complete front-overlay in hand → release",
     )
     frames = rendered["einstein"]
@@ -1322,7 +1261,7 @@ def review_handoff(rendered: dict[str, list[Image.Image]]) -> Image.Image:
 
 def review_roster(rendered: dict[str, list[Image.Image]]) -> Image.Image:
     board = new_board(
-        "COFFEE C01 / 18 × 6 ROSTER",
+        "COFFEE C01-r02 / 18 × 6 ROSTER",
         "108 interact-front cases • 54 visible mugs • 36 complete actor-held front overlays • zero attachment drift",
         (1900, 1260),
     )
@@ -1350,7 +1289,7 @@ def review_sockets(
     counter: Image.Image,
 ) -> Image.Image:
     board = new_board(
-        "COFFEE C01 / SOCKET ATTACHMENT DEBUG",
+        "COFFEE C01-r02 / SOCKET ATTACHMENT DEBUG",
         "Counter support → base.support → output/effect/viewport • three world positions • attachment delta [0,0]",
     )
     positions = [
@@ -1388,7 +1327,7 @@ def review_sockets(
 
 def review_reservation(samples: list[dict[str, Any]]) -> Image.Image:
     board = new_board(
-        "COFFEE C01 / 30-SECOND RESERVATION",
+        "COFFEE C01-r02 / 30-SECOND RESERVATION",
         "Two users • capacity one • blocked attempt • failure releases atomically • retry succeeds • empty at second 30",
     )
     draw = ImageDraw.Draw(board)
@@ -1449,7 +1388,7 @@ def review_closeups(
     rendered: dict[str, list[Image.Image]],
 ) -> Image.Image:
     board = new_board(
-        "COFFEE C01 / HAND CLOSEUPS AND LAYER ORDER",
+        "C01-r02 / HAND CLOSEUPS + LAYER ORDER",
         "Einstein • Doraemon • Anna • frames 3–5 • complete H01 mug in front of actor • bay lip remains machine-local",
     )
     ids = ["einstein", "doraemon", "anna"]
@@ -1550,10 +1489,16 @@ def build_manifest_and_images() -> dict[Path, bytes]:
         review_sockets(runtime_composites["a"], counter_clean),
         review_reservation(reservation_samples),
         review_closeups(rendered),
+        review_three_item_packing(runtime_composites["a"], counter_clean),
     ]
     for path, image in zip(REVIEW_PATHS, review_images, strict=True):
         outputs[path] = png_bytes(image)
 
+    runtime_visible_bounds = runtime_composites["a"].getchannel("A").point(
+        lambda value: 255 if value >= 16 else 0
+    ).getbbox()
+    if runtime_visible_bounds is None:
+        raise ValueError("Coffee C01-r02 runtime silhouette is empty")
     held_manifest = load_json(HELD_PROP_MANIFEST_PATH)
     held_record = next(
         record
@@ -1562,25 +1507,28 @@ def build_manifest_and_images() -> dict[Path, bytes]:
     )
     slots = counter_manifest["surfaceContract"]["slots"]
     slot_by_id = {slot["id"]: slot for slot in slots}
-    compatible_depth_spans = []
-    for column in range(1, 7):
-        suffix = f"{column:02d}"
-        depth_slot_ids = [
-            f"surface.back.{suffix}",
-            f"surface.front.{suffix}",
+    support_bottom = counter_manifest["surfaceContract"][
+        "projectedSupportBounds"
+    ][3]
+    compatible_block_spans = []
+    for block in counter_manifest["surfaceContract"]["twoByTwoSpanGroups"]:
+        front_slot_ids = [
+            slot_id for slot_id in block["slotIds"] if ".front." in slot_id
         ]
-        use_lane_id = f"use.{suffix}"
-        if any(
-            slot_by_id[slot_id]["pairedUseLaneId"] != use_lane_id
-            for slot_id in depth_slot_ids
-        ):
-            raise ValueError(f"Counter depth span {suffix} changed")
-        compatible_depth_spans.append(
+        front_slots = [slot_by_id[slot_id] for slot_id in front_slot_ids]
+        use_lane_ids = [
+            slot["pairedUseLaneId"] for slot in front_slots
+        ]
+        compatible_block_spans.append(
             {
-                "id": f"surface.depth.{suffix}",
-                "slotIds": depth_slot_ids,
-                "anchorSlotId": f"surface.front.{suffix}",
-                "useLaneId": use_lane_id,
+                "id": block["id"],
+                "slotIds": block["slotIds"],
+                "anchorSlotIds": front_slot_ids,
+                "useLaneIds": use_lane_ids,
+                "parentSocket": [
+                    sum(slot["localSocket"][0] for slot in front_slots) // 2,
+                    support_bottom,
+                ],
             }
         )
     source_records = []
@@ -1597,7 +1545,7 @@ def build_manifest_and_images() -> dict[Path, bytes]:
     for part_id, (authoring_path, runtime_path) in PART_PATHS.items():
         part_records.append(
             {
-                "id": f"coffee-machine-c01.{part_id}",
+                "id": f"coffee-machine-c01-r02.{part_id}",
                 "role": PART_ROLES[part_id],
                 "state": (
                     part_id.removeprefix("viewport-")
@@ -1619,8 +1567,8 @@ def build_manifest_and_images() -> dict[Path, bytes]:
         "a": [],
         "b": [],
         "c": [
-            "coffee-machine-c01.effect-coffee-stream",
-            "coffee-machine-c01.effect-steam",
+            "coffee-machine-c01-r02.effect-coffee-stream",
+            "coffee-machine-c01-r02.effect-steam",
         ],
         "d": [],
     }
@@ -1629,8 +1577,8 @@ def build_manifest_and_images() -> dict[Path, bytes]:
         authoring_path, runtime_path = COMPOSITE_PATHS[frame]
         animation_frames.append(
             {
-                "id": f"coffee-machine-c01.frame-{frame}",
-                "viewportPartId": f"coffee-machine-c01.viewport-{frame}",
+                "id": f"coffee-machine-c01-r02.frame-{frame}",
+                "viewportPartId": f"coffee-machine-c01-r02.viewport-{frame}",
                 "effectPartIds": effects_by_frame[frame],
                 "durationMs": 450 if frame == "c" else 650,
                 "authoringCompositeFile": rp(authoring_path),
@@ -1681,33 +1629,29 @@ def build_manifest_and_images() -> dict[Path, bytes]:
             "evidence": [rp(path) for path in REVIEW_PATHS],
         },
         "F8": {
-            "status": "blocked",
+            "status": "pending-owner-review",
             "evidence": [
                 rp(REVIEW_PATHS[1]),
                 rp(REVIEW_PATHS[3]),
                 rp(REVIEW_PATHS[5]),
                 rp(REVIEW_PATHS[11]),
-                (
-                    "Owner rejected the compact one-cell visual silhouette "
-                    "because it did not visibly fill the reserved depth."
-                ),
             ],
         },
         "F9": {
             "status": "blocked",
-            "evidence": ["No furniture-only room composition in C01 scope."],
+            "evidence": ["No furniture-only room composition in C01-r02 scope."],
         },
         "F10": {
             "status": "blocked",
-            "evidence": ["Active Office remains byte-isolated from C01."],
+            "evidence": ["Active Office remains byte-isolated from C01-r02."],
         },
     }
     manifest = {
         "schemaVersion": 2,
-        "id": "office.facility.coffee-machine.c01",
+        "id": "office.facility.coffee-machine.c01-r02",
         "familyId": FAMILY_ID,
         "revision": REVISION,
-        "status": "rejected",
+        "status": "owner-review-f8-pending",
         "developmentOnly": True,
         "activeOfficePromotion": False,
         "sourcePolicy": {
@@ -1720,11 +1664,18 @@ def build_manifest_and_images() -> dict[Path, bytes]:
             "sharedProductionAssetDependency": "office.held-props.h01",
         },
         "source": {
-            "kind": "audited-original-neutral-master",
+            "kind": "generated-isolated-clean-source",
             "path": rp(SOURCE_PATH),
             "sha256": SOURCE_SHA256,
             "auditManifest": rp(AUDIT_PATH),
-            "extractionMethod": "full-master-component-ownership",
+            "extractionMethod": "generated-source-chroma-key",
+            "generation": {
+                "tool": "OpenAI built-in image generation",
+                "mode": "generate-then-single-proportion-edit",
+                "prompt": GENERATION_PROMPT,
+                "generatedOn": "2026-07-29",
+                "ownerDirective": "Replace C01 with a true 2x2x2 machine.",
+            },
             "keyedSource": file_evidence(KEYED_SOURCE_PATH, outputs),
             "ownershipMask": file_evidence(OWNERSHIP_PATH, outputs),
             "frames": source_records,
@@ -1772,16 +1723,26 @@ def build_manifest_and_images() -> dict[Path, bytes]:
                 },
                 "placementPlane": "furniture-surface",
                 "supportPlaneId": counter_manifest["geometry"]["supportPlane"]["id"],
-                "compatibleDepthSpans": compatible_depth_spans,
-                "selectedDepthSpanId": SELECTED_DEPTH_SPAN_ID,
+                "compatibleBlockSpans": compatible_block_spans,
+                "selectedBlockSpanId": SELECTED_BLOCK_SPAN_ID,
                 "occupiedSlotIds": list(OCCUPIED_SLOT_IDS),
-                "selectedAnchorSlotId": SELECTED_ANCHOR_SLOT_ID,
-                "useLaneId": USE_LANE_ID,
+                "selectedAnchorSlotIds": list(SELECTED_ANCHOR_SLOT_IDS),
+                "useLaneIds": list(USE_LANE_IDS),
+                "anchorDerivation": "span-front-edge-midpoint",
                 "selectedParentSocket": list(SELECTED_PARENT_SOCKET),
                 "attachmentDelta": [0, 0],
-                "placementCases": len(compatible_depth_spans),
+                "placementCases": len(compatible_block_spans),
                 "supportFailures": 0,
                 "activeOfficeImported": False,
+                "nonOverlappingPacking": {
+                    "capacity": 3,
+                    "spanIds": [
+                        "span.block.01-02",
+                        "span.block.03-04",
+                        "span.block.05-06",
+                    ],
+                    "overlapFailures": 0,
+                },
             },
             "perSceneAttachmentOffsets": False,
             "centerToCenterAttachment": False,
@@ -1789,18 +1750,18 @@ def build_manifest_and_images() -> dict[Path, bytes]:
         },
         "geometry": {
             "schemaVersion": 3,
-            "id": "machine.coffee.c01",
+            "id": "machine.coffee.c01-r02",
             "assetType": "animated-shell",
             "placementPlane": "furniture-surface",
             "physicalScale": {
-                "width": 1,
+                "width": 2,
                 "depth": 2,
                 "height": 2,
                 "unit": "tile",
             },
             "footprint": None,
             "supportPlane": None,
-            "basePivot": {"x": 0.5, "y": 2, "unit": "tile"},
+            "basePivot": {"x": 1, "y": 2, "unit": "tile"},
             "sortPivot": None,
             "renderBounds": {
                 "width": RUNTIME_CANVAS[0],
@@ -1821,7 +1782,7 @@ def build_manifest_and_images() -> dict[Path, bytes]:
                 {
                     "id": "base",
                     "role": "base",
-                    "assetId": "coffee-machine-c01.shell-static",
+                    "assetId": "coffee-machine-c01-r02.shell-static",
                 }
             ],
             "attachmentSlots": [],
@@ -1833,25 +1794,19 @@ def build_manifest_and_images() -> dict[Path, bytes]:
                 "stableSortPivot": True,
             },
         },
-        "geometryCalibration": {
-            "auditRenderBox": [1, 3],
-            "guideRenderBox": [1, 2],
-            "selectedRenderBox": [2, 3],
-            "selectedPhysicalScale": [1, 2, 2],
-            "sourceSilhouettePixels": [204, 226],
+        "visualOccupancy": {
+            "physicalScale": [2, 2, 2],
+            "renderCanvas": list(RUNTIME_CANVAS),
+            "visibleBoundsRuntime": list(runtime_visible_bounds),
+            "targetSupportPixels": [64, 64],
+            "frontEdgeMidpointAnchor": list(FACILITY_BASE_SOCKET),
             "sourceAspectPreserved": True,
             "uniformScalingOnly": True,
-            "decision": (
-                "The 2x3 visual envelope preserves the nearly square original "
-                "commercial-machine silhouette at readable scale while the "
-                "physical support claim occupies one complete back-to-front "
-                "counter depth span."
-            ),
         },
         "parts": part_records,
         "animation": {
             "frameCount": 4,
-            "shellPartId": "coffee-machine-c01.shell-static",
+            "shellPartId": "coffee-machine-c01-r02.shell-static",
             "viewportBoundsAuthoring": list(VIEWPORT_BOX),
             "viewportBoundsRuntime": list(VIEWPORT_RUNTIME_BOX),
             "shellStableAcrossFrames": True,
@@ -1861,15 +1816,15 @@ def build_manifest_and_images() -> dict[Path, bytes]:
             "frames": animation_frames,
         },
         "outputHandoff": {
-            "emptyOutputPartId": "coffee-machine-c01.output-bay-empty",
-            "heldAssetPartId": "coffee-machine-c01.held-coffee-mug",
+            "emptyOutputPartId": "coffee-machine-c01-r02.output-bay-empty",
+            "heldAssetPartId": "coffee-machine-c01-r02.held-coffee-mug",
             "heldAssetId": HELD_ASSET_ID,
             "heldAssetManifest": rp(HELD_PROP_MANIFEST_PATH),
             "heldAssetManifestSha256": sha256_file(HELD_PROP_MANIFEST_PATH),
             "heldAssetRuntimeSha256": held_record["runtimeSha256"],
             "effectPartIds": [
-                "coffee-machine-c01.effect-coffee-stream",
-                "coffee-machine-c01.effect-steam",
+                "coffee-machine-c01-r02.effect-coffee-stream",
+                "coffee-machine-c01-r02.effect-steam",
             ],
             "productEmbeddedInShell": False,
             "productEmbeddedInViewportFrames": False,
@@ -1913,14 +1868,14 @@ def build_manifest_and_images() -> dict[Path, bytes]:
                 "releasing",
             ],
             "slot": {
-                "id": "coffee.c01.use.03",
-                "stand": {"x": 2.5, "y": 2.5},
-                "approach": {"x": 2.5, "y": 3.5},
-                "exit": {"x": 2.5, "y": 4.5},
+                "id": "coffee.c01-r02.use.block.03-04",
+                "stand": {"x": 3, "y": 2.5},
+                "approach": {"x": 3, "y": 3.5},
+                "exit": {"x": 3, "y": 4.5},
                 "facing": "front",
                 "action": "brew-coffee",
                 "visualPose": "interact-front",
-                "reservationId": "reservation.coffee-machine-c01",
+                "reservationId": "reservation.coffee-machine-c01-r02",
             },
         },
         "rosterValidation": roster,
@@ -1929,7 +1884,7 @@ def build_manifest_and_images() -> dict[Path, bytes]:
         "reviewOutputs": [rp(path) for path in REVIEW_PATHS],
         "permissions": {
             "familyLab": True,
-            "ownerReview": False,
+            "ownerReview": True,
             "furnitureOnlyRoom": False,
             "otherFacilityFamilies": False,
             "activeOfficePromotion": False,
@@ -1939,15 +1894,7 @@ def build_manifest_and_images() -> dict[Path, bytes]:
             "sha256": sha256_file(ACTIVE_REGISTRY),
             "imported": False,
         },
-        "ownerDecision": {
-            "decision": "rejected",
-            "decidedOn": "2026-07-29",
-            "notes": (
-                "The 1x2x2 reservation was correct, but the source remained "
-                "a compact one-cell visual. C01-r02 replaces it with a fresh "
-                "2x2x2 machine and reuses zero C01 pixels."
-            ),
-        },
+        "ownerDecision": None,
     }
     outputs[MANIFEST_PATH] = json_bytes(manifest)
     return outputs
@@ -1967,15 +1914,15 @@ def main() -> None:
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(content)
     if stale:
-        print("Coffee Machine C01 outputs are stale:")
+        print("Coffee Machine C01-r02 outputs are stale:")
         for path in stale:
             print(f"- {path}")
         raise SystemExit(1)
     action = "verified" if args.check else "built"
     print(
-        f"Coffee Machine C01 {action}: {len(outputs)} files; "
-        "four fresh neutral-master frames, parent Counter A01-r02, "
-        "6 depth-span support cases, 108 pose cases, F0-F7 passed, F8 rejected."
+        f"Coffee Machine C01-r02 {action}: {len(outputs)} files; "
+        "fresh generated 2x2x2 source, parent Counter A01-r02, "
+        "5 block cases, exact 3-item packing, 108 poses, F8 pending."
     )
 
 
@@ -1983,5 +1930,5 @@ if __name__ == "__main__":
     try:
         main()
     except (OSError, ValueError, KeyError, StopIteration) as error:
-        print(f"Coffee Machine C01 build failed: {error}", file=sys.stderr)
+        print(f"Coffee Machine C01-r02 build failed: {error}", file=sys.stderr)
         raise SystemExit(1)

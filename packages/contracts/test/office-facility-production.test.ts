@@ -18,18 +18,69 @@ const coffeeManifest = JSON.parse(readFileSync(new URL(
   "../../../assets/game/manifests/office-facility-coffee-machine-c01.json",
   import.meta.url,
 ), "utf8")) as OfficeFacilityProductionManifest;
+const coffeeR02Manifest = JSON.parse(readFileSync(new URL(
+  "../../../assets/game/manifests/office-facility-coffee-machine-c01-r02.json",
+  import.meta.url,
+), "utf8")) as OfficeFacilityProductionManifest;
 
-test("Coffee C01 stops at independent F8 owner review", () => {
+test("Coffee C01-r02 stops at independent F8 owner review", () => {
+  assert.deepEqual(
+    validateOfficeFacilityProductionManifest(coffeeR02Manifest),
+    [],
+  );
+  assert.equal(coffeeR02Manifest.revision, "c01-r02");
+  assert.equal(coffeeR02Manifest.status, "owner-review-f8-pending");
+  assert.equal(
+    coffeeR02Manifest.source.kind,
+    "generated-isolated-clean-source",
+  );
+  assert.equal(coffeeR02Manifest.gates.F8.status, "pending-owner-review");
+  assert.equal(coffeeR02Manifest.gates.F9.status, "blocked");
+  assert.equal(coffeeR02Manifest.gates.F10.status, "blocked");
+});
+
+test("Coffee C01-r02 fills a 2x2x2 block and packs three objects", () => {
+  assert.deepEqual(coffeeR02Manifest.geometry.physicalScale, {
+    width: 2,
+    depth: 2,
+    height: 2,
+    unit: "tile",
+  });
+  assert.deepEqual(coffeeR02Manifest.render.runtimeCanvas, [96, 96]);
+  const parent = coffeeR02Manifest.spatial.supportParent;
+  assert.ok(parent);
+  assert.equal(parent.compatibleBlockSpans?.length, 5);
+  assert.equal(parent.selectedBlockSpanId, "span.block.03-04");
+  assert.deepEqual(parent.selectedParentSocket, [128, 86]);
+  assert.equal(parent.nonOverlappingPacking?.capacity, 3);
+  assert.equal(parent.nonOverlappingPacking?.overlapFailures, 0);
+  assert.equal(parent.placementCases, 5);
+  assert.equal(parent.supportFailures, 0);
+});
+
+test("Coffee C01-r02 preserves the approved handoff behavior", () => {
+  assert.equal(coffeeR02Manifest.rosterValidation.validatedPoseCases, 108);
+  assert.equal(coffeeR02Manifest.rosterValidation.attachmentDeltaFailures, 0);
+  assert.equal(coffeeR02Manifest.outputHandoff.heldAssetId, "held.coffee-mug");
+  assert.equal(coffeeR02Manifest.reservationValidation.durationSeconds, 30);
+  assert.equal(
+    coffeeR02Manifest.reservationValidation.maximumConcurrentReservations,
+    1,
+  );
+  assert.equal(coffeeR02Manifest.reservationValidation.retrySuccessCount, 1);
+});
+
+test("Coffee C01 retains its independent F8 rejection", () => {
   assert.deepEqual(validateOfficeFacilityProductionManifest(coffeeManifest), []);
   assert.equal(coffeeManifest.familyId, "machine.coffee");
   assert.equal(coffeeManifest.revision, "c01");
-  assert.equal(coffeeManifest.status, "owner-review-f8-pending");
+  assert.equal(coffeeManifest.status, "rejected");
   assert.equal(coffeeManifest.source.kind, "audited-original-neutral-master");
   assert.equal(coffeeManifest.source.frames.length, 4);
-  assert.equal(coffeeManifest.gates.F8.status, "pending-owner-review");
+  assert.equal(coffeeManifest.gates.F8.status, "blocked");
   assert.equal(coffeeManifest.gates.F9.status, "blocked");
   assert.equal(coffeeManifest.gates.F10.status, "blocked");
-  assert.equal(coffeeManifest.ownerDecision, null);
+  assert.equal(coffeeManifest.ownerDecision?.decision, "rejected");
 });
 
 test("Coffee C01 uses one two-cell-deep counter column", () => {
@@ -62,7 +113,7 @@ test("Coffee C01 attaches to owner-approved Counter A01-r02", () => {
   assert.equal(parent.useLaneId, "use.03");
   assert.deepEqual(parent.selectedParentSocket, [112, 70]);
   assert.deepEqual(parent.attachmentDelta, [0, 0]);
-  assert.equal(parent.compatibleDepthSpans.length, 6);
+  assert.equal(parent.compatibleDepthSpans?.length, 6);
   assert.equal(parent.placementCases, 6);
   assert.equal(parent.supportFailures, 0);
   assert.deepEqual(

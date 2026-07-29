@@ -1,13 +1,13 @@
 # Office Facility Coffee Machine C01
 
-Status: F0-F7 passed; owner-review-f8-pending
+Status: F0-F7 passed; rejected at F8
 Updated: 2026-07-29
 Scope: One front-only, capacity-one coffee machine supported by Counter Bar
 A01-r02
 
 ## Decision boundary
 
-Coffee Machine C01 is an isolated facility candidate. It is not a floor
+Coffee Machine C01 is preserved rejected evidence. It is not a floor
 fixture and has no independent floor footprint. Its physical base occupies one
 complete back-to-front support span on the owner-approved Counter Bar A01-r02.
 
@@ -19,7 +19,7 @@ master cells are not four separate machine models:
 - C: coffee stream and steam;
 - D: complete / returned idle.
 
-The candidate remains development-only. It is not imported by Active Office,
+The candidate remains development-only and cannot be promoted. It is not imported by Active Office,
 a furniture-only room, or any later facility family. F9 and F10 remain
 blocked.
 
@@ -261,16 +261,16 @@ npm run art:facility:coffee:c01:check
 The deterministic builder owns the manifest, source evidence, parts,
 composites, and review boards.
 
-## Gate result
+## Gate result and rejection
 
 - F0-F7: passed;
-- F8: `pending-owner-review`;
+- F8: rejected;
 - F9: blocked;
 - F10: blocked.
 
-Owner approval applies only to the exact C01 hashes and the selected `2 x 3`
-visual envelope on a `1 x 2 x 2` parent-supported physical contract. No F8
-decision is inferred from Water W01 or Counter A01-r02 approval.
+The owner rejected C01 because its compact one-cell visual silhouette did not
+visibly fill the reserved two-cell depth. C01-r02 replaces it with a fresh
+`2 x 2 x 2` source and reuses zero C01 pixels.
 
 Arcade, Server, furniture-only room composition, and Active Office promotion
 remain outside C01 scope.

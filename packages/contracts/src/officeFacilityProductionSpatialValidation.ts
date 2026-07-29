@@ -10,6 +10,23 @@ function isPixelPoint(value: unknown): value is [number, number] {
     && value.every(Number.isInteger);
 }
 
+function isCompleteBlockSpan(value: unknown): boolean {
+  if (!isRecord(value)) return false;
+  const slotIds = value.slotIds;
+  const anchorSlotIds = value.anchorSlotIds;
+  return typeof value.id === "string"
+    && Array.isArray(slotIds)
+    && slotIds.length === 4
+    && slotIds.every((slotId) => typeof slotId === "string")
+    && new Set(slotIds).size === 4
+    && Array.isArray(anchorSlotIds)
+    && anchorSlotIds.length === 2
+    && anchorSlotIds.every((slotId) => slotIds.includes(slotId))
+    && Array.isArray(value.useLaneIds)
+    && value.useLaneIds.length === 2
+    && isPixelPoint(value.parentSocket);
+}
+
 export function validateFacilitySpatialContract(
   value: unknown,
   issues: string[],
@@ -99,6 +116,52 @@ export function validateFacilitySpatialContract(
     );
   }
   const compatibleDepthSpans = supportParent.compatibleDepthSpans;
+  const compatibleBlockSpans = supportParent.compatibleBlockSpans;
+  requireValue(
+    issues,
+    Array.isArray(compatibleDepthSpans) !== Array.isArray(compatibleBlockSpans),
+    "support parent must declare exactly one span geometry",
+  );
+  if (Array.isArray(compatibleBlockSpans)) {
+    const blockSlotIds = compatibleBlockSpans.flatMap((span) =>
+      isRecord(span) && Array.isArray(span.slotIds) ? span.slotIds : []);
+    const validBlocks = compatibleBlockSpans.length > 0
+      && compatibleBlockSpans.every(isCompleteBlockSpan);
+    const selectedBlock = compatibleBlockSpans.find((span) =>
+      isRecord(span) && span.id === supportParent.selectedBlockSpanId);
+    const packing = supportParent.nonOverlappingPacking;
+    requireValue(
+      issues,
+      validBlocks
+        && new Set(compatibleBlockSpans.map((span) => span.id)).size
+          === compatibleBlockSpans.length
+        && new Set(blockSlotIds).size >= 4
+        && isRecord(selectedBlock)
+        && JSON.stringify(supportParent.occupiedSlotIds)
+          === JSON.stringify(selectedBlock.slotIds)
+        && JSON.stringify(supportParent.selectedAnchorSlotIds)
+          === JSON.stringify(selectedBlock.anchorSlotIds)
+        && JSON.stringify(supportParent.useLaneIds)
+          === JSON.stringify(selectedBlock.useLaneIds)
+        && JSON.stringify(supportParent.selectedParentSocket)
+          === JSON.stringify(selectedBlock.parentSocket)
+        && supportParent.anchorDerivation === "span-front-edge-midpoint",
+      "support parent block placement must select one complete 2x2 block",
+    );
+    requireValue(
+      issues,
+      isRecord(packing)
+        && packing.capacity === 3
+        && Array.isArray(packing.spanIds)
+        && packing.spanIds.length === 3
+        && packing.overlapFailures === 0
+        && supportParent.placementCases === compatibleBlockSpans.length
+        && supportParent.supportFailures === 0
+        && JSON.stringify(supportParent.attachmentDelta) === "[0,0]",
+      "support parent block placement must prove three-item packing",
+    );
+    return;
+  }
   const validDepthSpans = Array.isArray(compatibleDepthSpans)
     && compatibleDepthSpans.length > 0
     && compatibleDepthSpans.every((span) =>

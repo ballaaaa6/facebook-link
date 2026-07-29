@@ -1,9 +1,9 @@
 {
   "schemaVersion": 2,
-  "id": "office.facility.coffee-machine.c01",
+  "id": "office.facility.coffee-machine.c01-r02",
   "familyId": "machine.coffee",
-  "revision": "c01",
-  "status": "rejected",
+  "revision": "c01-r02",
+  "status": "owner-review-f8-pending",
   "developmentOnly": true,
   "activeOfficePromotion": false,
   "sourcePolicy": {
@@ -16,135 +16,206 @@
     "sharedProductionAssetDependency": "office.held-props.h01"
   },
   "source": {
-    "kind": "audited-original-neutral-master",
-    "path": "assets/art/layout-references/review-facility-completion-sheet-modern-bright-v1-source.png",
-    "sha256": "fa66b2d4891d7dddc4f90469d61262803641956052f977c22f8cd29827029853",
+    "kind": "generated-isolated-clean-source",
+    "path": "assets/art/layout-references/office-facility-coffee-machine-c01-r02-source.png",
+    "sha256": "833fdf374a47487929fe67c9f9c7eba4f154754ddc2d234170444a80af438cc2",
     "auditManifest": "assets/game/manifests/office-furniture-master-audit-v1.json",
-    "extractionMethod": "full-master-component-ownership",
+    "extractionMethod": "generated-source-chroma-key",
+    "generation": {
+      "tool": "OpenAI built-in image generation",
+      "mode": "generate-then-single-proportion-edit",
+      "prompt": "Create one completely original broad and deep commercial coffee machine whose visible base fills a 2x2 support block. Use a front-biased orthographic game camera, warm ivory, navy, brass, an empty output bay, and a flat removable green background. No cup, liquid, steam, person, counter, text, logo, shadow, rejected Coffee pixels, or Active Office.",
+      "generatedOn": "2026-07-29",
+      "ownerDirective": "Replace C01 with a true 2x2x2 machine."
+    },
     "keyedSource": {
-      "file": "assets/game/processed/office-facility-family-v1/coffee-machine-c01/authoring/source/coffee-machine-c01.master-keyed.png",
-      "sha256": "89b69f1f4849cf6e862810de646630b9d668f18205dbc203ebccb0af21f0284d"
+      "file": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/source/coffee-machine-c01-r02.master-keyed.png",
+      "sha256": "fc8e711956d9da41a37816017e8166b543237d9bd8772913d40380d7b3aaa069"
     },
     "ownershipMask": {
-      "file": "assets/game/processed/office-facility-family-v1/coffee-machine-c01/authoring/source/coffee-machine-c01.ownership-mask.png",
-      "sha256": "01ffe0d1bc5bf6838c5fdd7f7aad78e7c96e2fc2e14172f95e36b9e8020d6629"
+      "file": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/source/coffee-machine-c01-r02.ownership-mask.png",
+      "sha256": "00ce44fa92b2a64d8becd979c30e2df61ebd9bcfdec1bd24b7c7abb55dcac517"
     },
     "frames": [
       {
         "frameId": "a",
-        "auditRecordId": "review-facility-completion-v1:review-facility-completion:machine.coffee.neutral.a",
+        "auditRecordId": "owner-directive:coffee-c01-r02-2x2x2-clean-source:frame-a",
         "sourceBounds": [
           0,
-          940,
-          314,
-          1254
-        ],
-        "ownedBounds": [
-          52,
-          961,
-          255,
-          1187
-        ],
-        "selectedComponentCount": 1,
-        "selectedPixelCount": 41915,
-        "touchesNominalCellBoundary": false,
-        "touchesMasterBoundary": false,
-        "sourcePixelsResampled": false,
-        "padding": {
-          "left": 26,
-          "top": 150,
-          "right": 27,
-          "bottom": 8
-        },
-        "authoringCutout": "assets/game/processed/office-facility-family-v1/coffee-machine-c01/authoring/source/coffee-machine-c01.source-frame-a.png",
-        "authoringCutoutSha256": "3e209fc465d3b49eee432062c05e458d9d46b6ec5a852e059a32a30a8cc6fdc4"
-      },
-      {
-        "frameId": "b",
-        "auditRecordId": "review-facility-completion-v1:review-facility-completion:machine.coffee.neutral.b",
-        "sourceBounds": [
-          314,
-          940,
-          627,
-          1254
-        ],
-        "ownedBounds": [
-          360,
-          961,
-          564,
-          1187
-        ],
-        "selectedComponentCount": 1,
-        "selectedPixelCount": 42010,
-        "touchesNominalCellBoundary": false,
-        "touchesMasterBoundary": false,
-        "sourcePixelsResampled": false,
-        "padding": {
-          "left": 26,
-          "top": 150,
-          "right": 26,
-          "bottom": 8
-        },
-        "authoringCutout": "assets/game/processed/office-facility-family-v1/coffee-machine-c01/authoring/source/coffee-machine-c01.source-frame-b.png",
-        "authoringCutoutSha256": "35d2c8762e753e0ae2d0549404c40c15bd4704db0c92a028805ece9605f71508"
-      },
-      {
-        "frameId": "c",
-        "auditRecordId": "review-facility-completion-v1:review-facility-completion:machine.coffee.neutral.c",
-        "sourceBounds": [
-          627,
-          940,
-          940,
-          1254
-        ],
-        "ownedBounds": [
-          665,
-          961,
-          868,
-          1187
-        ],
-        "selectedComponentCount": 1,
-        "selectedPixelCount": 41743,
-        "touchesNominalCellBoundary": false,
-        "touchesMasterBoundary": false,
-        "sourcePixelsResampled": false,
-        "padding": {
-          "left": 26,
-          "top": 150,
-          "right": 27,
-          "bottom": 8
-        },
-        "authoringCutout": "assets/game/processed/office-facility-family-v1/coffee-machine-c01/authoring/source/coffee-machine-c01.source-frame-c.png",
-        "authoringCutoutSha256": "e09d9b5bf90726727fb8ea745cf4573b768edea6f7c70690af94fd79117fb02a"
-      },
-      {
-        "frameId": "d",
-        "auditRecordId": "review-facility-completion-v1:review-facility-completion:machine.coffee.neutral.d",
-        "sourceBounds": [
-          940,
-          940,
+          0,
           1254,
           1254
         ],
         "ownedBounds": [
-          975,
-          961,
-          1177,
-          1187
+          128,
+          110,
+          1118,
+          1133
         ],
         "selectedComponentCount": 1,
-        "selectedPixelCount": 42036,
+        "selectedPixelCount": 923078,
         "touchesNominalCellBoundary": false,
         "touchesMasterBoundary": false,
         "sourcePixelsResampled": false,
         "padding": {
-          "left": 27,
-          "top": 150,
-          "right": 27,
-          "bottom": 8
+          "left": 273,
+          "top": 449,
+          "right": 273,
+          "bottom": 64
         },
-        "authoringCutout": "assets/game/processed/office-facility-family-v1/coffee-machine-c01/authoring/source/coffee-machine-c01.source-frame-d.png",
-        "authoringCutoutSha256": "9a7857a70ce3f1876f9ae56a4e45b35cc535e86600d27a94ab739d4bed1cd3bd"
+        "keyColor": [
+          3,
+          240,
+          3
+        ],
+        "chroma": {
+          "transparentPixels": 649438,
+          "partialAlphaPixels": 3901,
+          "visiblePixels": 923078
+        },
+        "normalizedFromBounds": [
+          128,
+          110,
+          1118,
+          1133
+        ],
+        "authoringCutout": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/source/coffee-machine-c01-r02.source-frame-a.png",
+        "authoringCutoutSha256": "d1b557240b0d2a66cbcde125f62c93f2ccd9b96d499d427292f9f11025979250"
+      },
+      {
+        "frameId": "b",
+        "auditRecordId": "owner-directive:coffee-c01-r02-2x2x2-clean-source:frame-b",
+        "sourceBounds": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "ownedBounds": [
+          128,
+          110,
+          1118,
+          1133
+        ],
+        "selectedComponentCount": 1,
+        "selectedPixelCount": 923078,
+        "touchesNominalCellBoundary": false,
+        "touchesMasterBoundary": false,
+        "sourcePixelsResampled": false,
+        "padding": {
+          "left": 273,
+          "top": 449,
+          "right": 273,
+          "bottom": 64
+        },
+        "keyColor": [
+          3,
+          240,
+          3
+        ],
+        "chroma": {
+          "transparentPixels": 649438,
+          "partialAlphaPixels": 3901,
+          "visiblePixels": 923078
+        },
+        "normalizedFromBounds": [
+          128,
+          110,
+          1118,
+          1133
+        ],
+        "authoringCutout": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/source/coffee-machine-c01-r02.source-frame-b.png",
+        "authoringCutoutSha256": "d1b557240b0d2a66cbcde125f62c93f2ccd9b96d499d427292f9f11025979250"
+      },
+      {
+        "frameId": "c",
+        "auditRecordId": "owner-directive:coffee-c01-r02-2x2x2-clean-source:frame-c",
+        "sourceBounds": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "ownedBounds": [
+          128,
+          110,
+          1118,
+          1133
+        ],
+        "selectedComponentCount": 1,
+        "selectedPixelCount": 923078,
+        "touchesNominalCellBoundary": false,
+        "touchesMasterBoundary": false,
+        "sourcePixelsResampled": false,
+        "padding": {
+          "left": 273,
+          "top": 449,
+          "right": 273,
+          "bottom": 64
+        },
+        "keyColor": [
+          3,
+          240,
+          3
+        ],
+        "chroma": {
+          "transparentPixels": 649438,
+          "partialAlphaPixels": 3901,
+          "visiblePixels": 923078
+        },
+        "normalizedFromBounds": [
+          128,
+          110,
+          1118,
+          1133
+        ],
+        "authoringCutout": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/source/coffee-machine-c01-r02.source-frame-c.png",
+        "authoringCutoutSha256": "d1b557240b0d2a66cbcde125f62c93f2ccd9b96d499d427292f9f11025979250"
+      },
+      {
+        "frameId": "d",
+        "auditRecordId": "owner-directive:coffee-c01-r02-2x2x2-clean-source:frame-d",
+        "sourceBounds": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "ownedBounds": [
+          128,
+          110,
+          1118,
+          1133
+        ],
+        "selectedComponentCount": 1,
+        "selectedPixelCount": 923078,
+        "touchesNominalCellBoundary": false,
+        "touchesMasterBoundary": false,
+        "sourcePixelsResampled": false,
+        "padding": {
+          "left": 273,
+          "top": 449,
+          "right": 273,
+          "bottom": 64
+        },
+        "keyColor": [
+          3,
+          240,
+          3
+        ],
+        "chroma": {
+          "transparentPixels": 649438,
+          "partialAlphaPixels": 3901,
+          "visiblePixels": 923078
+        },
+        "normalizedFromBounds": [
+          128,
+          110,
+          1118,
+          1133
+        ],
+        "authoringCutout": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/source/coffee-machine-c01-r02.source-frame-d.png",
+        "authoringCutoutSha256": "d1b557240b0d2a66cbcde125f62c93f2ccd9b96d499d427292f9f11025979250"
       }
     ]
   },
@@ -163,14 +234,14 @@
   },
   "render": {
     "authoringCanvas": [
-      256,
-      384
+      1536,
+      1536
     ],
     "runtimeCanvas": [
-      64,
+      96,
       96
     ],
-    "uniformIntegerDivisor": 4,
+    "uniformIntegerDivisor": 16,
     "nonUniformScaling": false,
     "anchor": "bottom-center",
     "requiredOrientations": [
@@ -188,23 +259,23 @@
     "unit": "pixel",
     "localSockets": {
       "base.support": [
-        32,
-        96
+        48,
+        92
       ],
       "interaction.target": [
-        32,
-        94
+        48,
+        90
       ],
       "output.primary": [
-        33,
-        78
+        48,
+        61
       ],
       "effect.origin": [
-        31,
-        71
+        48,
+        55
       ],
       "viewport.origin": [
-        10,
+        35,
         42
       ]
     },
@@ -218,80 +289,149 @@
       },
       "placementPlane": "furniture-surface",
       "supportPlaneId": "counter.bar.a01-r02-surface",
-      "compatibleDepthSpans": [
+      "compatibleBlockSpans": [
         {
-          "id": "surface.depth.01",
+          "id": "span.block.01-02",
           "slotIds": [
             "surface.back.01",
-            "surface.front.01"
-          ],
-          "anchorSlotId": "surface.front.01",
-          "useLaneId": "use.01"
-        },
-        {
-          "id": "surface.depth.02",
-          "slotIds": [
             "surface.back.02",
+            "surface.front.01",
             "surface.front.02"
           ],
-          "anchorSlotId": "surface.front.02",
-          "useLaneId": "use.02"
+          "anchorSlotIds": [
+            "surface.front.01",
+            "surface.front.02"
+          ],
+          "useLaneIds": [
+            "use.01",
+            "use.02"
+          ],
+          "parentSocket": [
+            64,
+            86
+          ]
         },
         {
-          "id": "surface.depth.03",
+          "id": "span.block.02-03",
           "slotIds": [
+            "surface.back.02",
             "surface.back.03",
+            "surface.front.02",
             "surface.front.03"
           ],
-          "anchorSlotId": "surface.front.03",
-          "useLaneId": "use.03"
+          "anchorSlotIds": [
+            "surface.front.02",
+            "surface.front.03"
+          ],
+          "useLaneIds": [
+            "use.02",
+            "use.03"
+          ],
+          "parentSocket": [
+            96,
+            86
+          ]
         },
         {
-          "id": "surface.depth.04",
+          "id": "span.block.03-04",
           "slotIds": [
+            "surface.back.03",
             "surface.back.04",
+            "surface.front.03",
             "surface.front.04"
           ],
-          "anchorSlotId": "surface.front.04",
-          "useLaneId": "use.04"
+          "anchorSlotIds": [
+            "surface.front.03",
+            "surface.front.04"
+          ],
+          "useLaneIds": [
+            "use.03",
+            "use.04"
+          ],
+          "parentSocket": [
+            128,
+            86
+          ]
         },
         {
-          "id": "surface.depth.05",
+          "id": "span.block.04-05",
           "slotIds": [
+            "surface.back.04",
             "surface.back.05",
+            "surface.front.04",
             "surface.front.05"
           ],
-          "anchorSlotId": "surface.front.05",
-          "useLaneId": "use.05"
+          "anchorSlotIds": [
+            "surface.front.04",
+            "surface.front.05"
+          ],
+          "useLaneIds": [
+            "use.04",
+            "use.05"
+          ],
+          "parentSocket": [
+            160,
+            86
+          ]
         },
         {
-          "id": "surface.depth.06",
+          "id": "span.block.05-06",
           "slotIds": [
+            "surface.back.05",
             "surface.back.06",
+            "surface.front.05",
             "surface.front.06"
           ],
-          "anchorSlotId": "surface.front.06",
-          "useLaneId": "use.06"
+          "anchorSlotIds": [
+            "surface.front.05",
+            "surface.front.06"
+          ],
+          "useLaneIds": [
+            "use.05",
+            "use.06"
+          ],
+          "parentSocket": [
+            192,
+            86
+          ]
         }
       ],
-      "selectedDepthSpanId": "surface.depth.03",
+      "selectedBlockSpanId": "span.block.03-04",
       "occupiedSlotIds": [
         "surface.back.03",
-        "surface.front.03"
+        "surface.back.04",
+        "surface.front.03",
+        "surface.front.04"
       ],
-      "selectedAnchorSlotId": "surface.front.03",
-      "useLaneId": "use.03",
+      "selectedAnchorSlotIds": [
+        "surface.front.03",
+        "surface.front.04"
+      ],
+      "useLaneIds": [
+        "use.03",
+        "use.04"
+      ],
+      "anchorDerivation": "span-front-edge-midpoint",
       "selectedParentSocket": [
-        112,
-        70
+        128,
+        86
       ],
       "attachmentDelta": [
         0,
         0
       ],
-      "placementCases": 6,
+      "placementCases": 5,
       "supportFailures": 0,
-      "activeOfficeImported": false
+      "activeOfficeImported": false,
+      "nonOverlappingPacking": {
+        "capacity": 3,
+        "spanIds": [
+          "span.block.01-02",
+          "span.block.03-04",
+          "span.block.05-06"
+        ],
+        "overlapFailures": 0
+      }
     },
     "perSceneAttachmentOffsets": false,
     "centerToCenterAttachment": false,
@@ -299,11 +439,11 @@
   },
   "geometry": {
     "schemaVersion": 3,
-    "id": "machine.coffee.c01",
+    "id": "machine.coffee.c01-r02",
     "assetType": "animated-shell",
     "placementPlane": "furniture-surface",
     "physicalScale": {
-      "width": 1,
+      "width": 2,
       "depth": 2,
       "height": 2,
       "unit": "tile"
@@ -311,19 +451,19 @@
     "footprint": null,
     "supportPlane": null,
     "basePivot": {
-      "x": 0.5,
+      "x": 1,
       "y": 2,
       "unit": "tile"
     },
     "sortPivot": null,
     "renderBounds": {
-      "width": 64,
+      "width": 96,
       "height": 96,
       "unit": "authoring-pixel"
     },
     "renderOffset": {
-      "x": -32,
-      "y": -96,
+      "x": -48,
+      "y": -92,
       "unit": "authoring-pixel"
     },
     "verticalExtension": {
@@ -335,7 +475,7 @@
       {
         "id": "base",
         "role": "base",
-        "assetId": "coffee-machine-c01.shell-static"
+        "assetId": "coffee-machine-c01-r02.shell-static"
       }
     ],
     "attachmentSlots": [],
@@ -347,138 +487,139 @@
       "stableSortPivot": true
     }
   },
-  "geometryCalibration": {
-    "auditRenderBox": [
-      1,
-      3
-    ],
-    "guideRenderBox": [
-      1,
-      2
-    ],
-    "selectedRenderBox": [
+  "visualOccupancy": {
+    "physicalScale": [
       2,
-      3
-    ],
-    "selectedPhysicalScale": [
-      1,
       2,
       2
     ],
-    "sourceSilhouettePixels": [
-      204,
-      226
+    "renderCanvas": [
+      96,
+      96
+    ],
+    "visibleBoundsRuntime": [
+      17,
+      28,
+      79,
+      92
+    ],
+    "targetSupportPixels": [
+      64,
+      64
+    ],
+    "frontEdgeMidpointAnchor": [
+      48,
+      92
     ],
     "sourceAspectPreserved": true,
-    "uniformScalingOnly": true,
-    "decision": "The 2x3 visual envelope preserves the nearly square original commercial-machine silhouette at readable scale while the physical support claim occupies one complete back-to-front counter depth span."
+    "uniformScalingOnly": true
   },
   "parts": [
     {
-      "id": "coffee-machine-c01.shell-static",
+      "id": "coffee-machine-c01-r02.shell-static",
       "role": "static-shell",
       "state": "static",
       "sourceFrame": "a",
-      "authoringFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01/authoring/parts/coffee-machine-c01.shell-static.png",
-      "authoringSha256": "a190d00eb2a7ab7a785de4174d5d733516a79cc85a4829516b3e82a9427d7006",
-      "runtimeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01/runtime/parts/coffee-machine-c01.shell-static.png",
-      "runtimeSha256": "b4d48cef0b03ecd90903f53d77d791ea735990a550cebea1b4536239aba5dc2c"
+      "authoringFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/parts/coffee-machine-c01-r02.shell-static.png",
+      "authoringSha256": "092d60c366dd5fa4170e3e2137b0c4f31ccb0bb7c8b28b549be205f775c09186",
+      "runtimeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/runtime/parts/coffee-machine-c01-r02.shell-static.png",
+      "runtimeSha256": "0fec6b559d68693f03d03e6caf0be0fe08ed85292dd32d4815006411599dff7a"
     },
     {
-      "id": "coffee-machine-c01.viewport-a",
+      "id": "coffee-machine-c01-r02.viewport-a",
       "role": "animation-viewport",
       "state": "a",
       "sourceFrame": "a",
-      "authoringFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01/authoring/parts/coffee-machine-c01.viewport-a.png",
-      "authoringSha256": "126a3c9a18a108f9d312eede2ce1d1f4626a28a31693be99dc526b686bd883b2",
-      "runtimeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01/runtime/parts/coffee-machine-c01.viewport-a.png",
-      "runtimeSha256": "7071c1211b51f30c8bf5ac19bcdfc2ed10754816358593310990824e574f23d0"
+      "authoringFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/parts/coffee-machine-c01-r02.viewport-a.png",
+      "authoringSha256": "44f593af78bcc3f50ab6bec14ad552fb0af3e8359a837ce8a48a40e91d0400b5",
+      "runtimeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/runtime/parts/coffee-machine-c01-r02.viewport-a.png",
+      "runtimeSha256": "bf43f2b391c6fedefd63d2eacdbdd3a3907f899cb7dc7161323aa424b656d92d"
     },
     {
-      "id": "coffee-machine-c01.viewport-b",
+      "id": "coffee-machine-c01-r02.viewport-b",
       "role": "animation-viewport",
       "state": "b",
       "sourceFrame": "b",
-      "authoringFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01/authoring/parts/coffee-machine-c01.viewport-b.png",
-      "authoringSha256": "9659976443f652b8e084a0dfffac9b99c28877f7dcc620ed2093506ceb517ca1",
-      "runtimeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01/runtime/parts/coffee-machine-c01.viewport-b.png",
-      "runtimeSha256": "b08f92267fa976e7a09ea8618ecd01cadedac63ea5afc09817decf6b87a30722"
+      "authoringFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/parts/coffee-machine-c01-r02.viewport-b.png",
+      "authoringSha256": "dd55ac81836cac387c3bcdf6b42126539d4a2357bcbc16abb486c6f6a0411903",
+      "runtimeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/runtime/parts/coffee-machine-c01-r02.viewport-b.png",
+      "runtimeSha256": "ebb7864e5dc551df4173f3e34306e0201def6d7136d3a379b6802fea890409a5"
     },
     {
-      "id": "coffee-machine-c01.viewport-c",
+      "id": "coffee-machine-c01-r02.viewport-c",
       "role": "animation-viewport",
       "state": "c",
       "sourceFrame": "c",
-      "authoringFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01/authoring/parts/coffee-machine-c01.viewport-c.png",
-      "authoringSha256": "cce7a7eee3b12e02e73f0237a9cfb5390a4514044410728128df9fe6312c8b53",
-      "runtimeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01/runtime/parts/coffee-machine-c01.viewport-c.png",
-      "runtimeSha256": "e5780f05921c76da2fb74160096680a7b8fe893e332d0a9b99acac87fc3bc05c"
+      "authoringFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/parts/coffee-machine-c01-r02.viewport-c.png",
+      "authoringSha256": "dd55ac81836cac387c3bcdf6b42126539d4a2357bcbc16abb486c6f6a0411903",
+      "runtimeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/runtime/parts/coffee-machine-c01-r02.viewport-c.png",
+      "runtimeSha256": "ebb7864e5dc551df4173f3e34306e0201def6d7136d3a379b6802fea890409a5"
     },
     {
-      "id": "coffee-machine-c01.viewport-d",
+      "id": "coffee-machine-c01-r02.viewport-d",
       "role": "animation-viewport",
       "state": "d",
       "sourceFrame": "d",
-      "authoringFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01/authoring/parts/coffee-machine-c01.viewport-d.png",
-      "authoringSha256": "81fe58681593b9bd05e564738f521dd4e10dbf416479c8babf54128c95e17cc4",
-      "runtimeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01/runtime/parts/coffee-machine-c01.viewport-d.png",
-      "runtimeSha256": "ad78284cf922ff34b8119a4cbb73de2ed0f7bde3b48b3104ddaf87e165b98d16"
+      "authoringFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/parts/coffee-machine-c01-r02.viewport-d.png",
+      "authoringSha256": "44f593af78bcc3f50ab6bec14ad552fb0af3e8359a837ce8a48a40e91d0400b5",
+      "runtimeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/runtime/parts/coffee-machine-c01-r02.viewport-d.png",
+      "runtimeSha256": "bf43f2b391c6fedefd63d2eacdbdd3a3907f899cb7dc7161323aa424b656d92d"
     },
     {
-      "id": "coffee-machine-c01.output-bay-empty",
+      "id": "coffee-machine-c01-r02.output-bay-empty",
       "role": "output-bay-empty",
       "state": "empty",
       "sourceFrame": "a",
-      "authoringFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01/authoring/parts/coffee-machine-c01.output-bay-empty.png",
-      "authoringSha256": "0ba0a8ccab096649532c71961f9192b6caf2e4fead7e366ec46348a314212a1c",
-      "runtimeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01/runtime/parts/coffee-machine-c01.output-bay-empty.png",
-      "runtimeSha256": "bf39c7fb0faab3c7387b187637f6ee2d2fe54efc70c70439e84710862f1ecff7"
+      "authoringFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/parts/coffee-machine-c01-r02.output-bay-empty.png",
+      "authoringSha256": "23e7c1a350772af3d9e930ff1bcdd5da33962497c13e69f55c316e9adeefcc63",
+      "runtimeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/runtime/parts/coffee-machine-c01-r02.output-bay-empty.png",
+      "runtimeSha256": "6c55b4f8f31837e7ba605af150731a7baa2afd8038926085631736af48ab4c8a"
     },
     {
-      "id": "coffee-machine-c01.effect-coffee-stream",
+      "id": "coffee-machine-c01-r02.effect-coffee-stream",
       "role": "effect-overlay",
       "state": "dispensing",
       "sourceFrame": "c",
-      "authoringFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01/authoring/parts/coffee-machine-c01.effect-coffee-stream.png",
-      "authoringSha256": "639c50ca5c2d9058c781828263db1f86fb6f88489afc2be7a185d5261fa04cb7",
-      "runtimeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01/runtime/parts/coffee-machine-c01.effect-coffee-stream.png",
-      "runtimeSha256": "6b88c27f84d6b6ec2d268d59d621551211a214b771209bbbdf44345ad5e008b0"
+      "authoringFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/parts/coffee-machine-c01-r02.effect-coffee-stream.png",
+      "authoringSha256": "d3e4098d344323f784b4c85b66d89afb2afa94e8ad25119db246474c0bd982b2",
+      "runtimeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/runtime/parts/coffee-machine-c01-r02.effect-coffee-stream.png",
+      "runtimeSha256": "f85fc105a8fe6a1496351358f88278f184a630aafa6284144eb932f01516cf7a"
     },
     {
-      "id": "coffee-machine-c01.effect-steam",
+      "id": "coffee-machine-c01-r02.effect-steam",
       "role": "effect-overlay",
       "state": "dispensing",
       "sourceFrame": "c",
-      "authoringFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01/authoring/parts/coffee-machine-c01.effect-steam.png",
-      "authoringSha256": "c07e5e3846d5fb7af6ebd8bbcc3328b3fe3985bfdae017d0f1a826e53796cb8a",
-      "runtimeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01/runtime/parts/coffee-machine-c01.effect-steam.png",
-      "runtimeSha256": "e1e1d800f47db1342f4286705e9cf4aec4a59cb8103318dd77f635eea4b80ce1"
+      "authoringFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/parts/coffee-machine-c01-r02.effect-steam.png",
+      "authoringSha256": "dd8203d6431a90ea015749aa507058b479dca772af20915b5aa24ca92cf1e469",
+      "runtimeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/runtime/parts/coffee-machine-c01-r02.effect-steam.png",
+      "runtimeSha256": "c4264f62e45cb1eb1cca33451aefc97b39e129be114d46dfb1ddff0491f35508"
     },
     {
-      "id": "coffee-machine-c01.held-coffee-mug",
+      "id": "coffee-machine-c01-r02.held-coffee-mug",
       "role": "held-output",
       "state": "static",
       "sourceFrame": "h01",
-      "authoringFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01/authoring/parts/coffee-machine-c01.held-coffee-mug@2x.png",
+      "authoringFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/parts/coffee-machine-c01-r02.held-coffee-mug@2x.png",
       "authoringSha256": "7a0b5a550f68de5d05a735516e74045659f9adcdfe2a5ccb4c3d74b93964ec3b",
-      "runtimeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01/runtime/parts/coffee-machine-c01.held-coffee-mug.png",
+      "runtimeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/runtime/parts/coffee-machine-c01-r02.held-coffee-mug.png",
       "runtimeSha256": "04afc7ed7abd9884290000b944e422df43c079a3ab53ce002b08693041b88196"
     }
   ],
   "animation": {
     "frameCount": 4,
-    "shellPartId": "coffee-machine-c01.shell-static",
+    "shellPartId": "coffee-machine-c01-r02.shell-static",
     "viewportBoundsAuthoring": [
-      40,
-      168,
-      220,
-      360
+      560,
+      680,
+      976,
+      1240
     ],
     "viewportBoundsRuntime": [
-      10,
+      35,
       42,
-      55,
-      90
+      61,
+      77
     ],
     "shellStableAcrossFrames": true,
     "basePivotStableAcrossFrames": true,
@@ -486,60 +627,60 @@
     "outsideViewportChangedPixels": 0,
     "frames": [
       {
-        "id": "coffee-machine-c01.frame-a",
-        "viewportPartId": "coffee-machine-c01.viewport-a",
+        "id": "coffee-machine-c01-r02.frame-a",
+        "viewportPartId": "coffee-machine-c01-r02.viewport-a",
         "effectPartIds": [],
         "durationMs": 650,
-        "authoringCompositeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01/authoring/composites/coffee-machine-c01.frame-a.png",
-        "authoringCompositeSha256": "3e209fc465d3b49eee432062c05e458d9d46b6ec5a852e059a32a30a8cc6fdc4",
-        "runtimeCompositeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01/runtime/composites/coffee-machine-c01.frame-a.png",
-        "runtimeCompositeSha256": "130eb5cc8308aefce5af1c9a9f10a069e96445309393fab11d48aeb261e02760"
+        "authoringCompositeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/composites/coffee-machine-c01-r02.frame-a.png",
+        "authoringCompositeSha256": "d1b557240b0d2a66cbcde125f62c93f2ccd9b96d499d427292f9f11025979250",
+        "runtimeCompositeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/runtime/composites/coffee-machine-c01-r02.frame-a.png",
+        "runtimeCompositeSha256": "b07029efc71c1bb9c346f440e2821e320813b0047608f1f3c50128d0c28b544a"
       },
       {
-        "id": "coffee-machine-c01.frame-b",
-        "viewportPartId": "coffee-machine-c01.viewport-b",
+        "id": "coffee-machine-c01-r02.frame-b",
+        "viewportPartId": "coffee-machine-c01-r02.viewport-b",
         "effectPartIds": [],
         "durationMs": 650,
-        "authoringCompositeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01/authoring/composites/coffee-machine-c01.frame-b.png",
-        "authoringCompositeSha256": "d73ae16fd81cf0b679a0a9fc5b768148d02170916305b4e99a0159e82896871c",
-        "runtimeCompositeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01/runtime/composites/coffee-machine-c01.frame-b.png",
-        "runtimeCompositeSha256": "0108ead388ecf921e6e3509e58f4567581b917ef5cc5c1831799c8c463106285"
+        "authoringCompositeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/composites/coffee-machine-c01-r02.frame-b.png",
+        "authoringCompositeSha256": "a0c54f7d846b17120001858a36da0439dbd6bd0e086adf45eb3de18058d3cf3e",
+        "runtimeCompositeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/runtime/composites/coffee-machine-c01-r02.frame-b.png",
+        "runtimeCompositeSha256": "9e3a9d49d30cfaf4a73558de7109fd115071aec68d69ae1671f0d66be8b46a69"
       },
       {
-        "id": "coffee-machine-c01.frame-c",
-        "viewportPartId": "coffee-machine-c01.viewport-c",
+        "id": "coffee-machine-c01-r02.frame-c",
+        "viewportPartId": "coffee-machine-c01-r02.viewport-c",
         "effectPartIds": [
-          "coffee-machine-c01.effect-coffee-stream",
-          "coffee-machine-c01.effect-steam"
+          "coffee-machine-c01-r02.effect-coffee-stream",
+          "coffee-machine-c01-r02.effect-steam"
         ],
         "durationMs": 450,
-        "authoringCompositeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01/authoring/composites/coffee-machine-c01.frame-c.png",
-        "authoringCompositeSha256": "77689a69753294d337a4ee4884c041056e8777172f4aca47f44783e8096c2079",
-        "runtimeCompositeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01/runtime/composites/coffee-machine-c01.frame-c.png",
-        "runtimeCompositeSha256": "c00b1a1f847fa55bd29f29d91cf3f8ce9ceca424fa82d08c60c74dd62d083042"
+        "authoringCompositeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/composites/coffee-machine-c01-r02.frame-c.png",
+        "authoringCompositeSha256": "98962775cab07f5fe2da7d56f42a9c6bf0d8fab5bca39c3f9b050951a59aceb3",
+        "runtimeCompositeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/runtime/composites/coffee-machine-c01-r02.frame-c.png",
+        "runtimeCompositeSha256": "50da5e87c87a163fa522ba38a2286506593a246d9440d24227a57cd1250ed6fe"
       },
       {
-        "id": "coffee-machine-c01.frame-d",
-        "viewportPartId": "coffee-machine-c01.viewport-d",
+        "id": "coffee-machine-c01-r02.frame-d",
+        "viewportPartId": "coffee-machine-c01-r02.viewport-d",
         "effectPartIds": [],
         "durationMs": 650,
-        "authoringCompositeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01/authoring/composites/coffee-machine-c01.frame-d.png",
-        "authoringCompositeSha256": "6e13a29de4093c723dabeff8cb604f37195c09a825dc847069a4a63bf1d02e5b",
-        "runtimeCompositeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01/runtime/composites/coffee-machine-c01.frame-d.png",
-        "runtimeCompositeSha256": "9ab7291756b31bf998642ff219899cdbeb99683e4c95017fdcaf8f356ea64eef"
+        "authoringCompositeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/composites/coffee-machine-c01-r02.frame-d.png",
+        "authoringCompositeSha256": "d1b557240b0d2a66cbcde125f62c93f2ccd9b96d499d427292f9f11025979250",
+        "runtimeCompositeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/runtime/composites/coffee-machine-c01-r02.frame-d.png",
+        "runtimeCompositeSha256": "b07029efc71c1bb9c346f440e2821e320813b0047608f1f3c50128d0c28b544a"
       }
     ]
   },
   "outputHandoff": {
-    "emptyOutputPartId": "coffee-machine-c01.output-bay-empty",
-    "heldAssetPartId": "coffee-machine-c01.held-coffee-mug",
+    "emptyOutputPartId": "coffee-machine-c01-r02.output-bay-empty",
+    "heldAssetPartId": "coffee-machine-c01-r02.held-coffee-mug",
     "heldAssetId": "held.coffee-mug",
     "heldAssetManifest": "assets/game/manifests/office-held-props-h01.json",
     "heldAssetManifestSha256": "adf9f57e41e78dd583687c1707a49a17bd6f27fc76328a62127d5e3d806d7aa4",
     "heldAssetRuntimeSha256": "0373cb0051938f657f957c50d108b6268e7b73ed90c4524b9877dce970d70c82",
     "effectPartIds": [
-      "coffee-machine-c01.effect-coffee-stream",
-      "coffee-machine-c01.effect-steam"
+      "coffee-machine-c01-r02.effect-coffee-stream",
+      "coffee-machine-c01-r02.effect-steam"
     ],
     "productEmbeddedInShell": false,
     "productEmbeddedInViewportFrames": false,
@@ -603,23 +744,23 @@
       "releasing"
     ],
     "slot": {
-      "id": "coffee.c01.use.03",
+      "id": "coffee.c01-r02.use.block.03-04",
       "stand": {
-        "x": 2.5,
+        "x": 3,
         "y": 2.5
       },
       "approach": {
-        "x": 2.5,
+        "x": 3,
         "y": 3.5
       },
       "exit": {
-        "x": 2.5,
+        "x": 3,
         "y": 4.5
       },
       "facing": "front",
       "action": "brew-coffee",
       "visualPose": "interact-front",
-      "reservationId": "reservation.coffee-machine-c01"
+      "reservationId": "reservation.coffee-machine-c01-r02"
     }
   },
   "rosterValidation": {
@@ -655,7 +796,7 @@
     "foregroundMaskUses": 0,
     "visibleAlphaFailures": 0,
     "sharedActorPosition": [
-      96,
+      112,
       176
     ],
     "perCharacterFacilityScaling": false,
@@ -713,7 +854,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -761,7 +902,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -809,7 +950,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -838,12 +979,12 @@
               9
             ],
             "propOrigin": [
-              136,
-              123
+              151,
+              126
             ],
             "parentSocketWorld": [
-              145,
-              132
+              160,
+              135
             ],
             "attachmentDelta": [
               0,
@@ -867,7 +1008,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -896,11 +1037,11 @@
               9
             ],
             "propOrigin": [
-              129,
+              145,
               229
             ],
             "parentSocketWorld": [
-              138,
+              154,
               238
             ],
             "attachmentDelta": [
@@ -924,7 +1065,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -953,11 +1094,11 @@
               9
             ],
             "propOrigin": [
-              126,
+              142,
               226
             ],
             "parentSocketWorld": [
-              135,
+              151,
               235
             ],
             "attachmentDelta": [
@@ -981,7 +1122,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -1036,7 +1177,7 @@
               90
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -1084,7 +1225,7 @@
               90
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -1132,7 +1273,7 @@
               90
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -1161,12 +1302,12 @@
               9
             ],
             "propOrigin": [
-              136,
-              123
+              151,
+              126
             ],
             "parentSocketWorld": [
-              145,
-              132
+              160,
+              135
             ],
             "attachmentDelta": [
               0,
@@ -1190,7 +1331,7 @@
               90
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -1219,11 +1360,11 @@
               9
             ],
             "propOrigin": [
-              127,
+              143,
               233
             ],
             "parentSocketWorld": [
-              136,
+              152,
               242
             ],
             "attachmentDelta": [
@@ -1247,7 +1388,7 @@
               90
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -1276,11 +1417,11 @@
               9
             ],
             "propOrigin": [
-              127,
+              143,
               229
             ],
             "parentSocketWorld": [
-              136,
+              152,
               238
             ],
             "attachmentDelta": [
@@ -1304,7 +1445,7 @@
               90
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -1359,7 +1500,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -1407,7 +1548,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -1455,7 +1596,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -1484,12 +1625,12 @@
               9
             ],
             "propOrigin": [
-              136,
-              123
+              151,
+              126
             ],
             "parentSocketWorld": [
-              145,
-              132
+              160,
+              135
             ],
             "attachmentDelta": [
               0,
@@ -1513,7 +1654,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -1542,11 +1683,11 @@
               9
             ],
             "propOrigin": [
-              127,
+              143,
               230
             ],
             "parentSocketWorld": [
-              136,
+              152,
               239
             ],
             "attachmentDelta": [
@@ -1570,7 +1711,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -1599,11 +1740,11 @@
               9
             ],
             "propOrigin": [
-              130,
+              146,
               224
             ],
             "parentSocketWorld": [
-              139,
+              155,
               233
             ],
             "attachmentDelta": [
@@ -1627,7 +1768,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -1682,7 +1823,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -1730,7 +1871,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -1778,7 +1919,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -1807,12 +1948,12 @@
               9
             ],
             "propOrigin": [
-              136,
-              123
+              151,
+              126
             ],
             "parentSocketWorld": [
-              145,
-              132
+              160,
+              135
             ],
             "attachmentDelta": [
               0,
@@ -1836,7 +1977,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -1865,11 +2006,11 @@
               9
             ],
             "propOrigin": [
-              126,
+              142,
               234
             ],
             "parentSocketWorld": [
-              135,
+              151,
               243
             ],
             "attachmentDelta": [
@@ -1893,7 +2034,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -1922,11 +2063,11 @@
               9
             ],
             "propOrigin": [
-              127,
+              143,
               229
             ],
             "parentSocketWorld": [
-              136,
+              152,
               238
             ],
             "attachmentDelta": [
@@ -1950,7 +2091,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -2005,7 +2146,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -2053,7 +2194,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -2101,7 +2242,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -2130,12 +2271,12 @@
               9
             ],
             "propOrigin": [
-              136,
-              123
+              151,
+              126
             ],
             "parentSocketWorld": [
-              145,
-              132
+              160,
+              135
             ],
             "attachmentDelta": [
               0,
@@ -2159,7 +2300,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -2188,11 +2329,11 @@
               9
             ],
             "propOrigin": [
-              122,
+              138,
               230
             ],
             "parentSocketWorld": [
-              131,
+              147,
               239
             ],
             "attachmentDelta": [
@@ -2216,7 +2357,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -2245,11 +2386,11 @@
               9
             ],
             "propOrigin": [
-              129,
+              145,
               224
             ],
             "parentSocketWorld": [
-              138,
+              154,
               233
             ],
             "attachmentDelta": [
@@ -2273,7 +2414,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -2328,7 +2469,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -2376,7 +2517,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -2424,7 +2565,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -2453,12 +2594,12 @@
               9
             ],
             "propOrigin": [
-              136,
-              123
+              151,
+              126
             ],
             "parentSocketWorld": [
-              145,
-              132
+              160,
+              135
             ],
             "attachmentDelta": [
               0,
@@ -2482,7 +2623,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -2511,11 +2652,11 @@
               9
             ],
             "propOrigin": [
-              122,
+              138,
               233
             ],
             "parentSocketWorld": [
-              131,
+              147,
               242
             ],
             "attachmentDelta": [
@@ -2539,7 +2680,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -2568,11 +2709,11 @@
               9
             ],
             "propOrigin": [
-              129,
+              145,
               226
             ],
             "parentSocketWorld": [
-              138,
+              154,
               235
             ],
             "attachmentDelta": [
@@ -2596,7 +2737,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -2651,7 +2792,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -2699,7 +2840,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -2747,7 +2888,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -2776,12 +2917,12 @@
               9
             ],
             "propOrigin": [
-              136,
-              123
+              151,
+              126
             ],
             "parentSocketWorld": [
-              145,
-              132
+              160,
+              135
             ],
             "attachmentDelta": [
               0,
@@ -2805,7 +2946,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -2834,11 +2975,11 @@
               9
             ],
             "propOrigin": [
-              115,
+              131,
               231
             ],
             "parentSocketWorld": [
-              124,
+              140,
               240
             ],
             "attachmentDelta": [
@@ -2862,7 +3003,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -2891,11 +3032,11 @@
               9
             ],
             "propOrigin": [
-              127,
+              143,
               223
             ],
             "parentSocketWorld": [
-              136,
+              152,
               232
             ],
             "attachmentDelta": [
@@ -2919,7 +3060,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -2974,7 +3115,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -3022,7 +3163,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -3070,7 +3211,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -3099,12 +3240,12 @@
               9
             ],
             "propOrigin": [
-              136,
-              123
+              151,
+              126
             ],
             "parentSocketWorld": [
-              145,
-              132
+              160,
+              135
             ],
             "attachmentDelta": [
               0,
@@ -3128,7 +3269,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -3157,11 +3298,11 @@
               9
             ],
             "propOrigin": [
-              116,
+              132,
               235
             ],
             "parentSocketWorld": [
-              125,
+              141,
               244
             ],
             "attachmentDelta": [
@@ -3185,7 +3326,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -3214,11 +3355,11 @@
               9
             ],
             "propOrigin": [
-              116,
+              132,
               232
             ],
             "parentSocketWorld": [
-              125,
+              141,
               241
             ],
             "attachmentDelta": [
@@ -3242,7 +3383,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -3297,7 +3438,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -3345,7 +3486,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -3393,7 +3534,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -3422,12 +3563,12 @@
               9
             ],
             "propOrigin": [
-              136,
-              123
+              151,
+              126
             ],
             "parentSocketWorld": [
-              145,
-              132
+              160,
+              135
             ],
             "attachmentDelta": [
               0,
@@ -3451,7 +3592,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -3480,11 +3621,11 @@
               9
             ],
             "propOrigin": [
-              154,
+              170,
               235
             ],
             "parentSocketWorld": [
-              163,
+              179,
               244
             ],
             "attachmentDelta": [
@@ -3508,7 +3649,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -3537,11 +3678,11 @@
               9
             ],
             "propOrigin": [
-              155,
+              171,
               228
             ],
             "parentSocketWorld": [
-              164,
+              180,
               237
             ],
             "attachmentDelta": [
@@ -3565,7 +3706,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -3620,7 +3761,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -3668,7 +3809,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -3716,7 +3857,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -3745,12 +3886,12 @@
               9
             ],
             "propOrigin": [
-              136,
-              123
+              151,
+              126
             ],
             "parentSocketWorld": [
-              145,
-              132
+              160,
+              135
             ],
             "attachmentDelta": [
               0,
@@ -3774,7 +3915,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -3803,11 +3944,11 @@
               9
             ],
             "propOrigin": [
-              118,
+              134,
               239
             ],
             "parentSocketWorld": [
-              127,
+              143,
               248
             ],
             "attachmentDelta": [
@@ -3831,7 +3972,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -3860,11 +4001,11 @@
               9
             ],
             "propOrigin": [
-              125,
+              141,
               221
             ],
             "parentSocketWorld": [
-              134,
+              150,
               230
             ],
             "attachmentDelta": [
@@ -3888,7 +4029,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -3943,7 +4084,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -3991,7 +4132,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -4039,7 +4180,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -4068,12 +4209,12 @@
               9
             ],
             "propOrigin": [
-              136,
-              123
+              151,
+              126
             ],
             "parentSocketWorld": [
-              145,
-              132
+              160,
+              135
             ],
             "attachmentDelta": [
               0,
@@ -4097,7 +4238,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -4126,11 +4267,11 @@
               9
             ],
             "propOrigin": [
-              122,
+              138,
               229
             ],
             "parentSocketWorld": [
-              131,
+              147,
               238
             ],
             "attachmentDelta": [
@@ -4154,7 +4295,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -4183,11 +4324,11 @@
               9
             ],
             "propOrigin": [
-              126,
+              142,
               224
             ],
             "parentSocketWorld": [
-              135,
+              151,
               233
             ],
             "attachmentDelta": [
@@ -4211,7 +4352,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -4266,7 +4407,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -4314,7 +4455,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -4362,7 +4503,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -4391,12 +4532,12 @@
               9
             ],
             "propOrigin": [
-              136,
-              123
+              151,
+              126
             ],
             "parentSocketWorld": [
-              145,
-              132
+              160,
+              135
             ],
             "attachmentDelta": [
               0,
@@ -4420,7 +4561,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -4449,11 +4590,11 @@
               9
             ],
             "propOrigin": [
-              112,
+              128,
               231
             ],
             "parentSocketWorld": [
-              121,
+              137,
               240
             ],
             "attachmentDelta": [
@@ -4477,7 +4618,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -4506,11 +4647,11 @@
               9
             ],
             "propOrigin": [
-              126,
+              142,
               224
             ],
             "parentSocketWorld": [
-              135,
+              151,
               233
             ],
             "attachmentDelta": [
@@ -4534,7 +4675,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -4589,7 +4730,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -4637,7 +4778,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -4685,7 +4826,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -4714,12 +4855,12 @@
               9
             ],
             "propOrigin": [
-              136,
-              123
+              151,
+              126
             ],
             "parentSocketWorld": [
-              145,
-              132
+              160,
+              135
             ],
             "attachmentDelta": [
               0,
@@ -4743,7 +4884,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -4772,11 +4913,11 @@
               9
             ],
             "propOrigin": [
-              119,
+              135,
               226
             ],
             "parentSocketWorld": [
-              128,
+              144,
               235
             ],
             "attachmentDelta": [
@@ -4800,7 +4941,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -4829,11 +4970,11 @@
               9
             ],
             "propOrigin": [
-              125,
+              141,
               222
             ],
             "parentSocketWorld": [
-              134,
+              150,
               231
             ],
             "attachmentDelta": [
@@ -4857,7 +4998,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -4912,7 +5053,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -4960,7 +5101,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -5008,7 +5149,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -5037,12 +5178,12 @@
               9
             ],
             "propOrigin": [
-              136,
-              123
+              151,
+              126
             ],
             "parentSocketWorld": [
-              145,
-              132
+              160,
+              135
             ],
             "attachmentDelta": [
               0,
@@ -5066,7 +5207,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -5095,11 +5236,11 @@
               9
             ],
             "propOrigin": [
-              116,
+              132,
               230
             ],
             "parentSocketWorld": [
-              125,
+              141,
               239
             ],
             "attachmentDelta": [
@@ -5123,7 +5264,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -5152,11 +5293,11 @@
               9
             ],
             "propOrigin": [
-              124,
+              140,
               225
             ],
             "parentSocketWorld": [
-              133,
+              149,
               234
             ],
             "attachmentDelta": [
@@ -5180,7 +5321,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -5235,7 +5376,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -5283,7 +5424,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -5331,7 +5472,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -5360,12 +5501,12 @@
               9
             ],
             "propOrigin": [
-              136,
-              123
+              151,
+              126
             ],
             "parentSocketWorld": [
-              145,
-              132
+              160,
+              135
             ],
             "attachmentDelta": [
               0,
@@ -5389,7 +5530,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -5418,11 +5559,11 @@
               9
             ],
             "propOrigin": [
-              117,
+              133,
               230
             ],
             "parentSocketWorld": [
-              126,
+              142,
               239
             ],
             "attachmentDelta": [
@@ -5446,7 +5587,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -5475,11 +5616,11 @@
               9
             ],
             "propOrigin": [
-              126,
+              142,
               224
             ],
             "parentSocketWorld": [
-              135,
+              151,
               233
             ],
             "attachmentDelta": [
@@ -5503,7 +5644,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -5558,7 +5699,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -5606,7 +5747,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -5654,7 +5795,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -5683,12 +5824,12 @@
               9
             ],
             "propOrigin": [
-              136,
-              123
+              151,
+              126
             ],
             "parentSocketWorld": [
-              145,
-              132
+              160,
+              135
             ],
             "attachmentDelta": [
               0,
@@ -5712,7 +5853,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -5741,11 +5882,11 @@
               9
             ],
             "propOrigin": [
-              155,
+              171,
               229
             ],
             "parentSocketWorld": [
-              164,
+              180,
               238
             ],
             "attachmentDelta": [
@@ -5769,7 +5910,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -5798,11 +5939,11 @@
               9
             ],
             "propOrigin": [
-              125,
+              141,
               228
             ],
             "parentSocketWorld": [
-              134,
+              150,
               237
             ],
             "attachmentDelta": [
@@ -5826,7 +5967,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -5881,7 +6022,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -5929,7 +6070,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -5977,7 +6118,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -6006,12 +6147,12 @@
               9
             ],
             "propOrigin": [
-              136,
-              123
+              151,
+              126
             ],
             "parentSocketWorld": [
-              145,
-              132
+              160,
+              135
             ],
             "attachmentDelta": [
               0,
@@ -6035,7 +6176,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -6064,11 +6205,11 @@
               9
             ],
             "propOrigin": [
-              156,
+              172,
               229
             ],
             "parentSocketWorld": [
-              165,
+              181,
               238
             ],
             "attachmentDelta": [
@@ -6092,7 +6233,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -6121,11 +6262,11 @@
               9
             ],
             "propOrigin": [
-              125,
+              141,
               229
             ],
             "parentSocketWorld": [
-              134,
+              150,
               238
             ],
             "attachmentDelta": [
@@ -6149,7 +6290,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -6204,7 +6345,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -6252,7 +6393,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -6300,7 +6441,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -6329,12 +6470,12 @@
               9
             ],
             "propOrigin": [
-              136,
-              123
+              151,
+              126
             ],
             "parentSocketWorld": [
-              145,
-              132
+              160,
+              135
             ],
             "attachmentDelta": [
               0,
@@ -6358,7 +6499,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -6387,11 +6528,11 @@
               9
             ],
             "propOrigin": [
-              114,
+              130,
               229
             ],
             "parentSocketWorld": [
-              123,
+              139,
               238
             ],
             "attachmentDelta": [
@@ -6415,7 +6556,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -6444,11 +6585,11 @@
               9
             ],
             "propOrigin": [
-              124,
+              140,
               230
             ],
             "parentSocketWorld": [
-              133,
+              149,
               239
             ],
             "attachmentDelta": [
@@ -6472,7 +6613,7 @@
               101
             ],
             "actorPosition": [
-              96,
+              112,
               176
             ],
             "actorInsideReviewCard": true,
@@ -6779,108 +6920,109 @@
     "F0": {
       "status": "passed",
       "evidence": [
-        "assets/art/layout-references/review-facility-completion-sheet-modern-bright-v1-source.png",
-        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/01-source-ownership.png"
+        "assets/art/layout-references/office-facility-coffee-machine-c01-r02-source.png",
+        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/01-source-ownership.png"
       ]
     },
     "F1": {
       "status": "passed",
       "evidence": [
-        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/02-geometry-calibration-on-counter.png",
-        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/04-clean-front.png"
+        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/02-geometry-calibration-on-counter.png",
+        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/04-clean-front.png"
       ]
     },
     "F2": {
       "status": "passed",
       "evidence": [
-        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/03-alpha-parts.png",
-        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/05-animation-viewport.png"
+        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/03-alpha-parts.png",
+        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/05-animation-viewport.png"
       ]
     },
     "F3": {
       "status": "passed",
       "evidence": [
-        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/06-counter-placement-and-support.png",
-        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/07-use-lane-and-routes.png"
+        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/06-counter-placement-and-support.png",
+        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/07-use-lane-and-routes.png"
       ]
     },
     "F4": {
       "status": "passed",
       "evidence": [
-        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/11-reservation-timeline-30s.png"
+        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/11-reservation-timeline-30s.png"
       ]
     },
     "F5": {
       "status": "passed",
       "evidence": [
-        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/09-roster-fit-18x6.png"
+        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/09-roster-fit-18x6.png"
       ]
     },
     "F6": {
       "status": "passed",
       "evidence": [
-        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/08-output-handoff.png",
-        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/10-socket-attachment-debug.png",
-        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/12-hand-closeups-and-layer-order.png"
+        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/08-output-handoff.png",
+        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/10-socket-attachment-debug.png",
+        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/12-hand-closeups-and-layer-order.png"
       ]
     },
     "F7": {
       "status": "passed",
       "evidence": [
-        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/01-source-ownership.png",
-        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/02-geometry-calibration-on-counter.png",
-        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/03-alpha-parts.png",
-        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/04-clean-front.png",
-        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/05-animation-viewport.png",
-        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/06-counter-placement-and-support.png",
-        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/07-use-lane-and-routes.png",
-        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/08-output-handoff.png",
-        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/09-roster-fit-18x6.png",
-        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/10-socket-attachment-debug.png",
-        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/11-reservation-timeline-30s.png",
-        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/12-hand-closeups-and-layer-order.png"
+        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/01-source-ownership.png",
+        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/02-geometry-calibration-on-counter.png",
+        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/03-alpha-parts.png",
+        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/04-clean-front.png",
+        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/05-animation-viewport.png",
+        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/06-counter-placement-and-support.png",
+        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/07-use-lane-and-routes.png",
+        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/08-output-handoff.png",
+        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/09-roster-fit-18x6.png",
+        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/10-socket-attachment-debug.png",
+        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/11-reservation-timeline-30s.png",
+        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/12-hand-closeups-and-layer-order.png",
+        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/13-three-item-packing.png"
       ]
     },
     "F8": {
-      "status": "blocked",
+      "status": "pending-owner-review",
       "evidence": [
-        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/02-geometry-calibration-on-counter.png",
-        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/04-clean-front.png",
-        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/06-counter-placement-and-support.png",
-        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/12-hand-closeups-and-layer-order.png",
-        "Owner rejected the compact one-cell visual silhouette because it did not visibly fill the reserved depth."
+        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/02-geometry-calibration-on-counter.png",
+        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/04-clean-front.png",
+        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/06-counter-placement-and-support.png",
+        "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/12-hand-closeups-and-layer-order.png"
       ]
     },
     "F9": {
       "status": "blocked",
       "evidence": [
-        "No furniture-only room composition in C01 scope."
+        "No furniture-only room composition in C01-r02 scope."
       ]
     },
     "F10": {
       "status": "blocked",
       "evidence": [
-        "Active Office remains byte-isolated from C01."
+        "Active Office remains byte-isolated from C01-r02."
       ]
     }
   },
   "reviewOutputs": [
-    "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/01-source-ownership.png",
-    "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/02-geometry-calibration-on-counter.png",
-    "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/03-alpha-parts.png",
-    "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/04-clean-front.png",
-    "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/05-animation-viewport.png",
-    "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/06-counter-placement-and-support.png",
-    "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/07-use-lane-and-routes.png",
-    "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/08-output-handoff.png",
-    "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/09-roster-fit-18x6.png",
-    "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/10-socket-attachment-debug.png",
-    "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/11-reservation-timeline-30s.png",
-    "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01/12-hand-closeups-and-layer-order.png"
+    "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/01-source-ownership.png",
+    "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/02-geometry-calibration-on-counter.png",
+    "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/03-alpha-parts.png",
+    "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/04-clean-front.png",
+    "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/05-animation-viewport.png",
+    "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/06-counter-placement-and-support.png",
+    "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/07-use-lane-and-routes.png",
+    "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/08-output-handoff.png",
+    "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/09-roster-fit-18x6.png",
+    "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/10-socket-attachment-debug.png",
+    "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/11-reservation-timeline-30s.png",
+    "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/12-hand-closeups-and-layer-order.png",
+    "assets/art/layout-references/office-facility-family-v1/coffee-machine-c01-r02/13-three-item-packing.png"
   ],
   "permissions": {
     "familyLab": true,
-    "ownerReview": false,
+    "ownerReview": true,
     "furnitureOnlyRoom": false,
     "otherFacilityFamilies": false,
     "activeOfficePromotion": false
@@ -6890,9 +7032,5 @@
     "sha256": "1c8752653d8818e57564f28f61870ae3eddbdabc8e46229e1364c546ec7607ef",
     "imported": false
   },
-  "ownerDecision": {
-    "decision": "rejected",
-    "decidedOn": "2026-07-29",
-    "notes": "The 1x2x2 reservation was correct, but the source remained a compact one-cell visual. C01-r02 replaces it with a fresh 2x2x2 machine and reuses zero C01 pixels."
-  }
+  "ownerDecision": null
 }

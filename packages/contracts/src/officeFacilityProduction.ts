@@ -222,21 +222,37 @@ export interface OfficeFacilityProductionManifest {
       };
       placementPlane: "furniture-surface";
       supportPlaneId: string;
-      compatibleDepthSpans: readonly {
+      compatibleDepthSpans?: readonly {
         id: string;
         slotIds: readonly [string, string];
         anchorSlotId: string;
         useLaneId: string;
       }[];
-      selectedDepthSpanId: string;
-      occupiedSlotIds: readonly [string, string];
-      selectedAnchorSlotId: string;
-      useLaneId: string;
+      compatibleBlockSpans?: readonly {
+        id: string;
+        slotIds: readonly [string, string, string, string];
+        anchorSlotIds: readonly [string, string];
+        useLaneIds: readonly [string, string];
+        parentSocket: readonly [number, number];
+      }[];
+      selectedDepthSpanId?: string;
+      selectedBlockSpanId?: string;
+      occupiedSlotIds: readonly string[];
+      selectedAnchorSlotId?: string;
+      selectedAnchorSlotIds?: readonly [string, string];
+      useLaneId?: string;
+      useLaneIds?: readonly [string, string];
+      anchorDerivation?: "span-front-edge-midpoint";
       selectedParentSocket: readonly [number, number];
       attachmentDelta: readonly [0, 0];
       placementCases: number;
       supportFailures: 0;
       activeOfficeImported: false;
+      nonOverlappingPacking?: {
+        capacity: 3;
+        spanIds: readonly [string, string, string];
+        overlapFailures: 0;
+      };
     };
     perSceneAttachmentOffsets: false;
     centerToCenterAttachment: false;

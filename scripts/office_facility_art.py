@@ -302,6 +302,65 @@ def remove_magenta_chroma(
     }
 
 
+def remove_green_chroma(
+    source: Image.Image,
+    *,
+    transparent_threshold: float = 12.0,
+    opaque_threshold: float = 220.0,
+) -> tuple[Image.Image, tuple[int, int, int], dict[str, int]]:
+    """Key the flat green backdrop used by built-in ImageGen."""
+    output = source.convert("RGBA")
+    key = _sample_border_key(output)
+    pixels = output.load()
+    transparent = 0
+    partial = 0
+    for y in range(output.height):
+        for x in range(output.width):
+            red, green, blue, source_alpha = pixels[x, y]
+            distance = max(
+                abs(red - key[0]),
+                abs(green - key[1]),
+                abs(blue - key[2]),
+            )
+            dominance = max(0, green - max(red, blue))
+            key_like = distance <= 32 or dominance >= 16
+            if not key_like:
+                alpha = source_alpha
+            elif distance <= transparent_threshold:
+                alpha = 0
+            elif distance >= opaque_threshold:
+                denominator = max(1, key[1] - max(key[0], key[2]))
+                alpha = round(255 * (1 - min(1, dominance / denominator)))
+            else:
+                ratio = (
+                    (distance - transparent_threshold)
+                    / (opaque_threshold - transparent_threshold)
+                )
+                distance_alpha = round(255 * _smoothstep(ratio))
+                denominator = max(1, key[1] - max(key[0], key[2]))
+                dominance_alpha = round(
+                    255 * (1 - min(1, dominance / denominator))
+                )
+                alpha = min(distance_alpha, dominance_alpha)
+            alpha = round(alpha * source_alpha / 255)
+            if 0 < alpha <= 8:
+                alpha = 0
+            if alpha == 0:
+                pixels[x, y] = (0, 0, 0, 0)
+                transparent += 1
+                continue
+            if alpha < 252 and key_like:
+                green = min(green, max(red, blue) + 1)
+            pixels[x, y] = (red, green, blue, alpha)
+            if alpha < 255:
+                partial += 1
+    return output, key, {
+        "transparentPixels": transparent,
+        "partialAlphaPixels": partial,
+        "visiblePixels": output.width * output.height - transparent,
+    }
+
+
 def normalize_without_resampling(
     source: Image.Image,
     canvas: tuple[int, int],
