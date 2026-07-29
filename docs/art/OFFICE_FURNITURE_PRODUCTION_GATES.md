@@ -278,8 +278,9 @@ with zero A01 pixels. A01-r02 reserves a `6 x 2` floor footprint, exposes an
 exact projected `192 x 64` support plane at `Z=2`, and proves twelve complete
 `1 x 1` cells, ten `2 x 1` spans, five `2 x 2` spans, and zero edge-support
 failures. Its route, 36-case movement, and 30-second contention proofs pass
-F0-F7. A01-r02 is `owner-review-f8-pending`; Coffee C01 remains deferred until
-the owner records its F8 decision. F9 and F10 remain blocked.
+F0-F7. The owner approved A01-r02 at F8 on 2026-07-29 and directed isolated
+Coffee C01 production to begin on its support surface. Coffee must still pass
+F0-F8 independently. F9 and F10 remain blocked.
 
 ## Required evidence per family
 

@@ -198,7 +198,7 @@ export interface OfficeSurfaceFurnitureProductionManifest {
   permissions: {
     isolatedFamilyLab: boolean;
     ownerReview: boolean;
-    attachedCoffeeProduction: false;
+    attachedCoffeeProduction: boolean;
     furnitureOnlyRoom: false;
     activeOfficePromotion: false;
   };

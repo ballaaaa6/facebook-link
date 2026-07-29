@@ -63,21 +63,22 @@ try {
     "Counter Bar A01-r02 identity changed",
   );
   add(
-    manifest.status === "owner-review-f8-pending"
-      && manifest.ownerDecision === null
+    manifest.status === "owner-approved"
+      && manifest.ownerDecision?.decision === "approved"
+      && manifest.ownerDecision?.decidedOn === "2026-07-29"
       && manifest.developmentOnly === true
       && manifest.activeOfficePromotion === false
       && manifest.permissions?.isolatedFamilyLab === true
-      && manifest.permissions?.ownerReview === true
-      && manifest.permissions?.attachedCoffeeProduction === false
+      && manifest.permissions?.ownerReview === false
+      && manifest.permissions?.attachedCoffeeProduction === true
       && manifest.permissions?.furnitureOnlyRoom === false
       && manifest.permissions?.activeOfficePromotion === false,
-    "A01-r02 must stop at independent F8 owner review",
+    "A01-r02 must retain its independent F8 approval",
   );
   add(
     ["F0", "F1", "F2", "F3", "F4", "F5", "F6", "F7"]
       .every((gate) => manifest.gates?.[gate]?.status === "passed")
-      && manifest.gates?.F8?.status === "pending-owner-review"
+      && manifest.gates?.F8?.status === "passed"
       && manifest.gates?.F9?.status === "blocked"
       && manifest.gates?.F10?.status === "blocked",
     "A01-r02 gate state changed",
@@ -309,5 +310,6 @@ if (failures.length) {
 console.log(
   "Counter Bar A01-r02 check passed: fresh source, exact 6x2x2 geometry, "
   + "12 fully supported cells, 10 2x1 spans, 5 2x2 spans, 36 movement "
-  + "cases, reservation proof, F0-F7 passed, F8 pending.",
+  + "cases, reservation proof, F0-F8 passed, owner-approved; Coffee C01 "
+  + "production unlocked.",
 );

@@ -1,6 +1,6 @@
 # Office Furniture Counter Bar A01-r02
 
-Status: F0-F7 passed; owner-review-f8-pending
+Status: F0-F8 passed; owner-approved
 Updated: 2026-07-29
 Scope: One fresh front-only `counter.bar.modular` revision
 
@@ -11,9 +11,11 @@ the physical `6 x 2 x 2` contract to control the artwork: a complete
 six-tile-wide, two-tile-deep support surface, two-tile total height, and no
 visual gap beneath any edge cell.
 
-A01-r02 is development-only. It is not imported by Active Office, the
-furniture-only room, or Coffee C01. Coffee remains deferred until the owner
-records a separate A01-r02 F8 decision.
+A01-r02 is development-only. It is not imported by Active Office or a
+furniture-only room. The owner approved the exact A01-r02 hashes on
+2026-07-29 and directed Coffee Machine C01 production to begin on this support
+surface. That approval unlocks isolated Coffee production but does not approve
+Coffee, F9 room composition, or F10 Active Office integration.
 
 ## Pixel independence
 
@@ -240,10 +242,10 @@ npm run art:furniture:counter:a01:r02:check
 
 ## Gate result
 
-- F0-F7: passed;
-- F8: `pending-owner-review`;
+- F0-F8: passed;
 - F9: blocked;
 - F10: blocked.
 
-Until the exact A01-r02 hashes receive an explicit owner decision, Coffee C01,
-furniture-only room composition, and Active Office promotion remain disabled.
+`ownerDecision.decision = approved` records the owner's 2026-07-29 decision.
+Isolated Coffee C01 production is enabled. Furniture-only room composition
+and Active Office promotion remain disabled.

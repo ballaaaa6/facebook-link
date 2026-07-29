@@ -29,15 +29,16 @@ test("Counter Bar A01 remains rejected tapered-top evidence", () => {
   assert.equal(manifest.ownerDecision?.decision, "rejected");
 });
 
-test("Counter Bar A01-r02 stops at independent F8 owner review", () => {
+test("Counter Bar A01-r02 records its independent F8 approval", () => {
   assert.deepEqual(validateOfficeSurfaceFurnitureProductionManifest(revision), []);
   assert.equal(revision.id, "office.furniture.counter-bar.a01-r02");
-  assert.equal(revision.status, "owner-review-f8-pending");
-  assert.equal(revision.gates.F8.status, "pending-owner-review");
+  assert.equal(revision.status, "owner-approved");
+  assert.equal(revision.gates.F8.status, "passed");
   assert.equal(revision.gates.F9.status, "blocked");
   assert.equal(revision.gates.F10.status, "blocked");
-  assert.equal(revision.permissions.attachedCoffeeProduction, false);
-  assert.equal(revision.ownerDecision, null);
+  assert.equal(revision.permissions.ownerReview, false);
+  assert.equal(revision.permissions.attachedCoffeeProduction, true);
+  assert.equal(revision.ownerDecision?.decision, "approved");
 });
 
 test("Counter Bar A01-r02 exposes exact 6x2x2 support geometry", () => {

@@ -3,7 +3,7 @@
   "id": "office.furniture.counter-bar.a01-r02",
   "familyId": "counter.bar.modular",
   "revision": "a01-r02",
-  "status": "owner-review-f8-pending",
+  "status": "owner-approved",
   "developmentOnly": true,
   "activeOfficePromotion": false,
   "sourcePolicy": {
@@ -1333,11 +1333,12 @@
       ]
     },
     "F8": {
-      "status": "pending-owner-review",
+      "status": "passed",
       "evidence": [
         "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/02-exact-6x2x2-geometry.png",
         "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/04-clean-front.png",
-        "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/06-four-corner-edge-support.png"
+        "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/06-four-corner-edge-support.png",
+        "Owner approved Counter Bar A01-r02 on 2026-07-29."
       ]
     },
     "F9": {
@@ -1401,10 +1402,14 @@
   ],
   "permissions": {
     "isolatedFamilyLab": true,
-    "ownerReview": true,
-    "attachedCoffeeProduction": false,
+    "ownerReview": false,
+    "attachedCoffeeProduction": true,
     "furnitureOnlyRoom": false,
     "activeOfficePromotion": false
   },
-  "ownerDecision": null
+  "ownerDecision": {
+    "decision": "approved",
+    "decidedOn": "2026-07-29",
+    "notes": "Owner approved Counter Bar A01-r02 as the reusable cafe counter and directed Coffee Machine C01 production to begin on its support surface."
+  }
 }

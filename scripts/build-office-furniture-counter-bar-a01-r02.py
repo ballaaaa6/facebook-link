@@ -140,6 +140,15 @@ REVIEW_PATHS = [
     REVIEW_ROOT / "11-reservation-timeline-30s.png",
     REVIEW_ROOT / "12-layer-order.png",
 ]
+OWNER_DECISION = {
+    "decision": "approved",
+    "decidedOn": "2026-07-29",
+    "notes": (
+        "Owner approved Counter Bar A01-r02 as the reusable cafe counter "
+        "and directed Coffee Machine C01 production to begin on its support "
+        "surface."
+    ),
+}
 
 
 def rp(path: Path) -> str:
@@ -1006,7 +1015,15 @@ def gates() -> dict[str, dict[str, Any]]:
         "F5": {"status": "passed", "evidence": [rp(REVIEW_PATHS[9])]},
         "F6": {"status": "passed", "evidence": [rp(REVIEW_PATHS[10])]},
         "F7": {"status": "passed", "evidence": [rp(path) for path in REVIEW_PATHS]},
-        "F8": {"status": "pending-owner-review", "evidence": [rp(REVIEW_PATHS[1]), rp(REVIEW_PATHS[3]), rp(REVIEW_PATHS[5])]},
+        "F8": {
+            "status": "passed",
+            "evidence": [
+                rp(REVIEW_PATHS[1]),
+                rp(REVIEW_PATHS[3]),
+                rp(REVIEW_PATHS[5]),
+                "Owner approved Counter Bar A01-r02 on 2026-07-29.",
+            ],
+        },
         "F9": {"status": "blocked", "evidence": []},
         "F10": {"status": "blocked", "evidence": []},
     }
@@ -1082,7 +1099,7 @@ def build_manifest(
         "id": "office.furniture.counter-bar.a01-r02",
         "familyId": "counter.bar.modular",
         "revision": "a01-r02",
-        "status": "owner-review-f8-pending",
+        "status": "owner-approved",
         "developmentOnly": True,
         "activeOfficePromotion": False,
         "sourcePolicy": {
@@ -1228,12 +1245,12 @@ def build_manifest(
         ],
         "permissions": {
             "isolatedFamilyLab": True,
-            "ownerReview": True,
-            "attachedCoffeeProduction": False,
+            "ownerReview": False,
+            "attachedCoffeeProduction": True,
             "furnitureOnlyRoom": False,
             "activeOfficePromotion": False,
         },
-        "ownerDecision": None,
+        "ownerDecision": OWNER_DECISION,
     }
 
 
@@ -1301,7 +1318,8 @@ def main() -> None:
     action = "verified" if args.check else "built"
     print(
         f"Counter Bar A01-r02 {action}: {len(outputs)} files; "
-        "12 cells, edge failures 0, F0-F7 passed, F8 pending."
+        "12 cells, edge failures 0, F0-F8 passed, owner-approved; "
+        "Coffee C01 production unlocked."
     )
 
 
