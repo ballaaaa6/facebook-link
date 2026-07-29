@@ -229,6 +229,13 @@ must declare explicit endpoint and interruption behavior instead of pretending
 to be ambient seam loops. Failure to isolate a moving part returns the family
 to F4. Pivot, footprint, support, or collision drift returns it to F1.
 
+Arcade G02 production revision `g02-production-r01` applies this standard to
+four immutable shells, four machine-local control layers, and twelve viewport
+frames. Its F4-F7 evidence passes with zero shell, control, outside-viewport,
+pivot, root, route, and seam-closure failures. The family is stopped at F8 for
+owner review; its planned reservation slot is not counted and F9-F10 remain
+blocked.
+
 ## Recommended family order
 
 The first non-workstation family should be one complex single-seat facility,

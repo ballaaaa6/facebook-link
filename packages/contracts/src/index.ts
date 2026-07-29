@@ -14,6 +14,7 @@ export * from "./officeFullGrid.ts";
 export * from "./officeFacilityProduction.ts";
 export * from "./officeFacilityVisualPreflight.ts";
 export * from "./officeFacilityArcadeGeneratedPreflight.ts";
+export * from "./officeFacilityArcadeProduction.ts";
 export * from "./officeFurnitureProduction.ts";
 export * from "./officeSurfaceFurnitureProduction.ts";
 export * from "./officeSemanticGridV2.ts";

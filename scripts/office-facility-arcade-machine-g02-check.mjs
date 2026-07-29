@@ -388,7 +388,7 @@ try {
   add(
     docs.includes("Status: visual preflight owner-approved")
       && docs.includes("Physical scale | `2 x 2 x 4`")
-      && docs.includes("F4-F8 are authorized but not built")
+      && docs.includes("passes F4-F7") && docs.includes("waiting for owner review at F8")
       && docs.includes("No held controller")
       && docs.includes("development-only I01 interaction demo"),
     "Arcade G02 documentation does not preserve the approved preflight boundary",
@@ -414,6 +414,6 @@ if (failures.length) {
   process.stdout.write(
     "Arcade G02 approved visual preflight OK: fresh 2x2x4 cabinet, three "
       + "A-D seam loops, shell/pivot lock, 10 boards, three game GIFs, one "
-      + "I01 actor GIF, F4-F8 authorized but not built, and F9-F10 blocked.\n",
+      + "I01 actor GIF, separate production at F8 review, and F9-F10 blocked.\n",
   );
 }

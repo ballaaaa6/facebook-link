@@ -14,9 +14,9 @@ This stage proves the new cabinet shape, four visual elevations, `2 x 2 x 4`
 scale, alpha ownership, screen viewport, three four-frame seam loops, and
 shell/pivot invariance. The development-only I01 interaction demo in revision
 r02 shows Anna approach, play, release, and depart. The owner approved the
-exact r02 review hashes on 2026-07-29. F4-F8 are authorized but not built;
-their gates remain blocked until the production evidence exists. Furniture-only
-room composition and Active Office promotion remain forbidden at F9-F10.
+exact r02 review hashes on 2026-07-29. The separate production revision now
+passes F4-F7 and is waiting for owner review at F8. Furniture-only room
+composition and Active Office promotion remain forbidden at F9-F10.
 
 ## Locked visual-preflight contract
 
@@ -180,20 +180,23 @@ Passing `--stage full` to this preflight builder still fails because production
 must be implemented as a separate F4-F8 stage rather than mutating the approved
 visual producer.
 
-## Next authorized work
+## Production handoff
 
-Approval of the exact visual-preflight hashes unlocks an isolated production
-pass:
+Approval of the exact visual-preflight hashes unlocked an isolated production
+pass, which now provides:
 
 1. decompose static shell, viewport, and machine-local controls;
 2. add I01 `interact-front` sockets without magic offsets or fallbacks;
 3. validate `18 actors x 6 frames = 108` interaction cases;
 4. validate four route/pivot transforms for `432` placement cases;
 5. run the 30-second occupied, blocked, failure, release, and retry timeline;
-6. stop at F8 for another owner review.
+6. a deliberate stop at F8 for another owner review.
+
+The production evidence and review boundary are documented in
+`docs/art/OFFICE_FACILITY_ARCADE_MACHINE_G02_PRODUCTION.md`.
 
 F9 remains forbidden until Facility v1 has all 20 reservation slots. G02 does
-not add its planned slot until the isolated F4-F8 production pass is complete.
+not add its planned slot until the production revision passes F8.
 
 ## Owner decision recorded
 
