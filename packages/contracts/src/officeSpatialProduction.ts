@@ -52,6 +52,11 @@ export type OfficeSpatialGateRecord = Record<
     evidence: readonly string[];
   }
 >;
+export interface OfficeSpatialOwnerDecision {
+  decision: "approved";
+  decidedOn: string;
+  notes: string;
+}
 
 export interface OfficeWorldTransform {
   position: OfficeWorldPoint;
@@ -85,7 +90,7 @@ export interface OfficeCharacterActionSocketRecord {
 export interface OfficeCharacterActionSocketsManifest {
   schemaVersion: 1;
   id: "office.character-action-sockets.i01";
-  status: "owner-review-f8-pending";
+  status: "owner-review-f8-pending" | "owner-approved";
   developmentOnly: true;
   pendingCommercialReview: true;
   activeOfficeImported: false;
@@ -107,7 +112,7 @@ export interface OfficeCharacterActionSocketsManifest {
   foregroundMaskCount: 54;
   characters: readonly OfficeCharacterActionSocketRecord[];
   gates: OfficeSpatialGateRecord;
-  ownerDecision: null;
+  ownerDecision: OfficeSpatialOwnerDecision | null;
 }
 
 export interface OfficeHeldPropRecord {
@@ -136,7 +141,7 @@ export interface OfficeHeldPropRecord {
 export interface OfficeHeldPropsManifest {
   schemaVersion: 1;
   id: "office.held-props.h01";
-  status: "owner-review-f8-pending";
+  status: "owner-review-f8-pending" | "owner-approved";
   developmentOnly: true;
   activeOfficeImported: false;
   sourcePolicy: {
@@ -158,7 +163,7 @@ export interface OfficeHeldPropsManifest {
   count: 16;
   props: readonly OfficeHeldPropRecord[];
   gates: OfficeSpatialGateRecord;
-  ownerDecision: null;
+  ownerDecision: OfficeSpatialOwnerDecision | null;
 }
 
 export interface OfficeResolvedAttachment {
@@ -187,7 +192,7 @@ export interface OfficeAttachmentMatrixValidation {
 export interface OfficeSpatialAuthorityManifest {
   schemaVersion: 1;
   id: "office.spatial-socket-authority.i01";
-  status: "owner-review-f8-pending";
+  status: "owner-review-f8-pending" | "owner-approved";
   developmentOnly: true;
   activeOfficeImported: false;
   world: {
@@ -236,7 +241,7 @@ export interface OfficeSpatialAuthorityManifest {
   gates: OfficeSpatialGateRecord;
   reviewOutputs: readonly string[];
   reviewEvidence: readonly { file: string; sha256: string }[];
-  ownerDecision: null;
+  ownerDecision: OfficeSpatialOwnerDecision | null;
 }
 
 export {

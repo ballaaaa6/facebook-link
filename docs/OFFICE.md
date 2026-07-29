@@ -38,8 +38,8 @@ integer world/local transforms, 108 per-character action-frame sockets, 16
 fresh native-scale held props, and 864 fully visible front-overlay attachment
 cases. The 54 source-exact hand masks remain calibration evidence and are not
 drawn by this presentation. It forbids scene offsets, runtime scale fixes, and
-missing-socket fallbacks. I01/H01 pass F0-F7 and remain
-`owner-review-f8-pending`; Active Office does not import them.
+missing-socket fallbacks. I01/H01 passed F0-F8 and became owner-approved on
+2026-07-29; Active Office does not import them.
 
 The first upright facility is the isolated front-only Vending U01-r03 vertical
 slice documented in `docs/art/OFFICE_FACILITY_VENDING_U01.md`. It re-extracts
@@ -51,8 +51,9 @@ without a hand mask. The six-frame timeline moves the prop from
 `facility.output.primary` to each character's measured
 `actor.hand.primary.grip` with delta `[0,0]`. Its `2 x 1 x 3` geometry,
 stand/approach/exit cells, 108 pose cases, and 30-second failure/retry proof
-pass F0-F7. U01-r03 is independently `owner-review-f8-pending`; Water/Coffee,
-F9, F10, and Active Office imports remain blocked.
+passed F0-F8. U01-r03 became independently owner-approved on 2026-07-29.
+Water/Coffee isolated production is unlocked; F9, F10, and Active Office
+imports remain blocked.
 
 Workstation correction (2026-07-28): the isolated `5 x 4` staging layout,
 Candidate r01, and R05 final ten-seat composition are rejected evidence. The

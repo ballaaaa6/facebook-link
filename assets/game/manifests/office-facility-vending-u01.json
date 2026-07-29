@@ -3,7 +3,7 @@
   "id": "office.facility.vending-machine.u01",
   "familyId": "vending.machine.modern",
   "revision": "u01-r03",
-  "status": "owner-review-f8-pending",
+  "status": "owner-approved",
   "developmentOnly": true,
   "activeOfficePromotion": false,
   "sourcePolicy": {
@@ -191,9 +191,9 @@
   "spatial": {
     "authority": {
       "file": "assets/game/manifests/office-spatial-authority-i01.json",
-      "sha256": "452b5dd34e25d7e5a4e28b3be7ede221e6188444c5303604470f34bb3c7da192",
+      "sha256": "cc9410a504fc61f13313aa113f67108a1ff194e96241dfedd2b6ad2b9f0a438f",
       "id": "office.spatial-socket-authority.i01",
-      "status": "owner-review-f8-pending"
+      "status": "owner-approved"
     },
     "coordinateSpace": "facility-runtime-pixel",
     "unit": "pixel",
@@ -436,7 +436,7 @@
     "heldAssetPartId": "vending.machine.modern.u01-r03.held-soda-can",
     "heldAssetId": "held.soda-can",
     "heldAssetManifest": "assets/game/manifests/office-held-props-h01.json",
-    "heldAssetManifestSha256": "59da612252ec1ae1767754b507ce8bd27896f7202f7c177bfaf874be5d1a105a",
+    "heldAssetManifestSha256": "adf9f57e41e78dd583687c1707a49a17bd6f27fc76328a62127d5e3d806d7aa4",
     "heldAssetRuntimeSha256": "4a9556d54f798875ddce940e17bbf6666a15e6f575b28957fb722bc5df32b569",
     "effectPartIds": [
       "vending.machine.modern.u01-r03.effect-dispense"
@@ -526,19 +526,19 @@
     "visualPose": "interact-front",
     "poseAuthority": {
       "manifest": "assets/game/manifests/office-character-action-sockets-i01.json",
-      "manifestSha256": "7ab47c02e1834b546a40fcb4f520058dda3a0e54f4bd766725c9a000a5f8100b",
-      "status": "owner-review-f8-pending",
+      "manifestSha256": "4958f9a16cfe13040417e551166c99d61b96a186ce39b7de3c3346b4474e97d8",
+      "status": "owner-approved",
       "activeOfficeImported": false
     },
     "spatialAuthority": {
       "manifest": "assets/game/manifests/office-spatial-authority-i01.json",
-      "manifestSha256": "452b5dd34e25d7e5a4e28b3be7ede221e6188444c5303604470f34bb3c7da192",
-      "status": "owner-review-f8-pending",
+      "manifestSha256": "cc9410a504fc61f13313aa113f67108a1ff194e96241dfedd2b6ad2b9f0a438f",
+      "status": "owner-approved",
       "activeOfficeImported": false
     },
     "heldPropAuthority": {
       "manifest": "assets/game/manifests/office-held-props-h01.json",
-      "manifestSha256": "59da612252ec1ae1767754b507ce8bd27896f7202f7c177bfaf874be5d1a105a",
+      "manifestSha256": "adf9f57e41e78dd583687c1707a49a17bd6f27fc76328a62127d5e3d806d7aa4",
       "assetId": "held.soda-can",
       "assetSha256": "4a9556d54f798875ddce940e17bbf6666a15e6f575b28957fb722bc5df32b569",
       "runtimeScale": 1
@@ -7005,7 +7005,7 @@
       ]
     },
     "F8": {
-      "status": "pending-owner-review",
+      "status": "passed",
       "evidence": [
         "assets/art/layout-references/office-facility-family-v1/vending-u01-r03/01-source-ownership.png",
         "assets/art/layout-references/office-facility-family-v1/vending-u01-r03/02-alpha-parts.png",
@@ -7018,13 +7018,14 @@
         "assets/art/layout-references/office-facility-family-v1/vending-u01-r03/09-socket-attachment-debug.png",
         "assets/art/layout-references/office-facility-family-v1/vending-u01-r03/10-r02-r03-before-after.png",
         "assets/art/layout-references/office-facility-family-v1/vending-u01-r03/11-three-character-six-frame-front-overlay.png",
-        "assets/art/layout-references/office-facility-family-v1/vending-u01-r03/12-three-character-hand-closeups-8x.png"
+        "assets/art/layout-references/office-facility-family-v1/vending-u01-r03/12-three-character-hand-closeups-8x.png",
+        "Owner approved Vending U01-r03 on 2026-07-29."
       ]
     },
     "F9": {
       "status": "blocked",
       "evidence": [
-        "U01 has not received its independent F8 owner decision."
+        "Furniture-only room composition remains a separate gate."
       ]
     },
     "F10": {
@@ -7169,10 +7170,14 @@
   },
   "permissions": {
     "familyLab": true,
-    "ownerReview": true,
+    "ownerReview": false,
     "furnitureOnlyRoom": false,
-    "otherFacilityFamilies": false,
+    "otherFacilityFamilies": true,
     "activeOfficePromotion": false
   },
-  "ownerDecision": null
+  "ownerDecision": {
+    "decision": "approved",
+    "decidedOn": "2026-07-29",
+    "notes": "Owner approved Vending U01-r03 after reviewing the six-frame front-overlay board and 8x held-prop close-ups."
+  }
 }

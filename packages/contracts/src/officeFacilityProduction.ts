@@ -104,13 +104,13 @@ export interface OfficeFacilityRosterValidation {
   poseAuthority: {
     manifest: string;
     manifestSha256: string;
-    status: "owner-review-f8-pending";
+    status: "owner-review-f8-pending" | "owner-approved";
     activeOfficeImported: false;
   };
   spatialAuthority: {
     manifest: string;
     manifestSha256: string;
-    status: "owner-review-f8-pending";
+    status: "owner-review-f8-pending" | "owner-approved";
     activeOfficeImported: false;
   };
   heldPropAuthority: {
@@ -291,6 +291,13 @@ export interface OfficeFacilityProductionManifest {
     { status: OfficeFacilityGateStatus; evidence: readonly string[] }
   >;
   reviewOutputs: readonly string[];
+  permissions: {
+    familyLab: true;
+    ownerReview: boolean;
+    furnitureOnlyRoom: false;
+    otherFacilityFamilies: boolean;
+    activeOfficePromotion: false;
+  };
   ownerDecision: null | {
     decision: "approved" | "rejected";
     decidedOn: string;

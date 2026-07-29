@@ -6,17 +6,13 @@ const actionPath = "assets/game/manifests/office-character-action-sockets-i01.js
 const heldPath = "assets/game/manifests/office-held-props-h01.json";
 const spatialPath = "assets/game/manifests/office-spatial-authority-i01.json";
 const behaviorPath = "assets/game/manifests/office-interaction-assets.json";
-const activePath =
-  "apps/web/src/features/office/components/officeAssetRegistry.ts";
+const activePath = "apps/web/src/features/office/components/officeAssetRegistry.ts";
 const builderPath = "scripts/build-office-facility-vending-u01.py";
-const sourcePath =
-  "assets/art/layout-references/mechanical-loops-sheet-modern-bright-v1-source.png";
+const sourcePath = "assets/art/layout-references/mechanical-loops-sheet-modern-bright-v1-source.png";
 const processedRoot = "assets/game/processed/office-facility-family-v1/vending-u01-r03";
 const reviewRoot = "assets/art/layout-references/office-facility-family-v1/vending-u01-r03";
 const failures = [];
-const add = (condition, message) => {
-  if (!condition) failures.push(message);
-};
+const add = (condition, message) => { if (!condition) failures.push(message); };
 try {
   const manifest = readJson(manifestPath);
   const audit = readJson(auditPath);
@@ -35,13 +31,19 @@ try {
     "Vending U01-r03 identity changed",
   );
   add(
-    manifest.status === "owner-review-f8-pending"
-      && manifest.ownerDecision === null
-      && manifest.gates?.F8?.status === "pending-owner-review"
+    manifest.status === "owner-approved"
+      && manifest.ownerDecision?.decision === "approved"
+      && manifest.ownerDecision?.decidedOn === "2026-07-29"
+      && manifest.gates?.F8?.status === "passed"
       && manifest.gates?.F9?.status === "blocked"
       && manifest.gates?.F10?.status === "blocked"
+      && manifest.permissions?.familyLab === true
+      && manifest.permissions?.ownerReview === false
+      && manifest.permissions?.otherFacilityFamilies === true
+      && manifest.permissions?.furnitureOnlyRoom === false
+      && manifest.permissions?.activeOfficePromotion === false
       && manifest.activeOfficePromotion === false,
-    "U01-r03 must stop at F8 with F9/F10 blocked",
+    "U01-r03 must retain F8 approval with F9/F10 blocked",
   );
   add(
     [
@@ -57,8 +59,7 @@ try {
     "U01-r03 source policy or H01 dependency changed",
   );
 
-  const prefix = "modern-bright-library-v1:env-07-animated-mechanical:"
-    + "vending.machine.loop.";
+  const prefix = "modern-bright-library-v1:env-07-animated-mechanical:vending.machine.loop.";
   const expectedFrames = {
     a: [[0, 0, 314, 314], [72, 47, 272, 322], 52209],
     b: [[314, 0, 627, 314], [375, 47, 574, 322], 51759],
@@ -72,9 +73,7 @@ try {
       && manifest.source?.frames?.length === 4,
     "U01-r03 must use the audited original mechanical-loop master",
   );
-  const auditById = new Map(
-    audit.records.map((record) => [record.recordId, record]),
-  );
+  const auditById = new Map(audit.records.map((record) => [record.recordId, record]));
   for (const frame of manifest.source?.frames ?? []) {
     const expected = expectedFrames[frame.frameId];
     const auditRecord = auditById.get(frame.auditRecordId);
@@ -254,8 +253,10 @@ try {
   add(
     roster?.poseAuthority?.manifest === actionPath
       && roster?.poseAuthority?.manifestSha256 === sha256(actionPath)
+      && roster?.poseAuthority?.status === "owner-approved"
       && roster?.spatialAuthority?.manifest === spatialPath
       && roster?.spatialAuthority?.manifestSha256 === sha256(spatialPath)
+      && roster?.spatialAuthority?.status === "owner-approved"
       && roster?.heldPropAuthority?.manifest === heldPath
       && roster?.heldPropAuthority?.manifestSha256 === sha256(heldPath)
       && roster?.characterCount === 18
@@ -413,7 +414,6 @@ if (failures.length) {
 } else {
   process.stdout.write(
     "Vending U01-r03 OK: audited front-only shell, exact I01/H01 front overlays "
-      + "across 108 poses, 30-second capacity-one proof, F8 pending, "
-      + "and Active Office unchanged.\n",
+      + "across 108 poses, 30-second capacity-one proof, F8 approved, and Active Office unchanged.\n",
   );
 }

@@ -66,6 +66,14 @@ R02_REVIEW_PATH = (
 
 FAMILY_ID = "vending.machine.modern"
 REVISION = "u01-r03"
+OWNER_DECISION = {
+    "decision": "approved",
+    "decidedOn": "2026-07-29",
+    "notes": (
+        "Owner approved Vending U01-r03 after reviewing the six-frame "
+        "front-overlay board and 8x held-prop close-ups."
+    ),
+}
 SOURCE_PATH = (
     "assets/art/layout-references/"
     "mechanical-loops-sheet-modern-bright-v1-source.png"
@@ -1153,13 +1161,13 @@ def build_roster_validation(
         "poseAuthority": {
             "manifest": repo_path(POSE_AUTHORITY_PATH),
             "manifestSha256": sha256_file(POSE_AUTHORITY_PATH),
-            "status": "owner-review-f8-pending",
+            "status": "owner-approved",
             "activeOfficeImported": False,
         },
         "spatialAuthority": {
             "manifest": repo_path(SPATIAL_AUTHORITY_PATH),
             "manifestSha256": sha256_file(SPATIAL_AUTHORITY_PATH),
-            "status": "owner-review-f8-pending",
+            "status": "owner-approved",
             "activeOfficeImported": False,
         },
         "heldPropAuthority": {
@@ -2268,12 +2276,15 @@ def build_manifest_and_images() -> dict[Path, bytes]:
             ],
         },
         "F8": {
-            "status": "pending-owner-review",
-            "evidence": [repo_path(path) for path in REVIEW_PATHS],
+            "status": "passed",
+            "evidence": [
+                *[repo_path(path) for path in REVIEW_PATHS],
+                f"Owner approved Vending U01-r03 on {OWNER_DECISION['decidedOn']}.",
+            ],
         },
         "F9": {
             "status": "blocked",
-            "evidence": ["U01 has not received its independent F8 owner decision."],
+            "evidence": ["Furniture-only room composition remains a separate gate."],
         },
         "F10": {
             "status": "blocked",
@@ -2286,7 +2297,7 @@ def build_manifest_and_images() -> dict[Path, bytes]:
         "id": "office.facility.vending-machine.u01",
         "familyId": FAMILY_ID,
         "revision": REVISION,
-        "status": "owner-review-f8-pending",
+        "status": "owner-approved",
         "developmentOnly": True,
         "activeOfficePromotion": False,
         "sourcePolicy": {
@@ -2519,12 +2530,12 @@ def build_manifest_and_images() -> dict[Path, bytes]:
         },
         "permissions": {
             "familyLab": True,
-            "ownerReview": True,
+            "ownerReview": False,
             "furnitureOnlyRoom": False,
-            "otherFacilityFamilies": False,
+            "otherFacilityFamilies": True,
             "activeOfficePromotion": False,
         },
-        "ownerDecision": None,
+        "ownerDecision": OWNER_DECISION,
     }
     outputs[MANIFEST_PATH] = json_bytes(manifest)
     return outputs
@@ -2572,7 +2583,7 @@ def main() -> None:
     write_outputs(outputs)
     print(f"Wrote {len(outputs)} Vending U01-r03 files.")
     print(f"Manifest: {repo_path(MANIFEST_PATH)}")
-    print("Status: F0-F7 passed; owner-review-f8-pending; F9/F10 blocked.")
+    print("Status: owner-approved at F8; F9/F10 remain blocked.")
 
 
 if __name__ == "__main__":

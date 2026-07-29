@@ -29,6 +29,8 @@ const authority = fixture<OfficeSpatialAuthorityManifest>(
 
 test("I01 character sockets cover 18 actors and 108 interact-front frames", () => {
   assert.deepEqual(validateOfficeCharacterActionSocketsManifest(characters), []);
+  assert.equal(characters.status, "owner-approved");
+  assert.equal(characters.ownerDecision?.decision, "approved");
   assert.equal(characters.characterCount, 18);
   assert.equal(characters.frameRecordCount, 108);
   assert.equal(characters.foregroundMaskCount, 54);
@@ -42,6 +44,8 @@ test("I01 character sockets cover 18 actors and 108 interact-front frames", () =
 
 test("H01 held props are fresh native-scale grip assets", () => {
   assert.deepEqual(validateOfficeHeldPropsManifest(props), []);
+  assert.equal(props.status, "owner-approved");
+  assert.equal(props.ownerDecision?.decision, "approved");
   assert.equal(props.count, 16);
   assert.equal(props.sourcePolicy.processedPixelReuse, false);
   assert.ok(props.props.every(({ runtimeScale }) => runtimeScale === 1));
@@ -53,6 +57,8 @@ test("H01 held props are fresh native-scale grip assets", () => {
 
 test("I01 resolves exact attachment deltas across the matrix and movement proof", () => {
   assert.deepEqual(validateOfficeSpatialAuthorityManifest(authority), []);
+  assert.equal(authority.status, "owner-approved");
+  assert.equal(authority.gates.F8.status, "passed");
   assert.equal(authority.matrixValidation.visibleCaseCount, 864);
   assert.equal(authority.matrixValidation.attachmentDeltaFailures, 0);
   assert.equal(authority.matrixValidation.frontOverlayCaseCount, 864);

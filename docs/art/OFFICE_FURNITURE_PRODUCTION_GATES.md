@@ -242,11 +242,12 @@ per-family rule above.
 
 Current upright-facility execution:
 `docs/art/OFFICE_SPATIAL_SOCKET_SYSTEM_I01.md` defines the isolated I01/H01
-coordinate, hand-target, prop-visual-center, front-overlay, and movement authority.
+coordinate, hand-target, prop-visual-center, front-overlay, and movement
+authority.
 It proves 18 characters, 108 action frames, 16 fresh held props, 864 visible
 attachment cases, zero mask uses, full prop-alpha visibility, and zero
-attachment drift. I01/H01 remain
-`owner-review-f8-pending` and are not imported by Active Office.
+attachment drift. I01/H01 passed F8 independently on 2026-07-29 and are not
+imported by Active Office.
 
 `docs/art/OFFICE_FACILITY_VENDING_U01.md` rebuilds the front-only
 `vending.machine.modern` family from the audited original mechanical-loop
@@ -254,9 +255,9 @@ master. Its static shell, local four-frame viewport, empty pickup tray, effect,
 and H01 held output pass F0-F7. U01-r03 preserves the r02 socket repair and
 replaces its occluded hand-mask presentation with a complete front overlay
 across 108 interact-front cases, plus the 30-second contention/failure/retry
-lab. U01-r03
-is independently `owner-review-f8-pending`. Do not begin Water/Coffee, F9 room
-placement, or F10 Active Office integration until its F8 decision is recorded.
+lab. U01-r03 passed F8 independently on 2026-07-29. Water/Coffee isolated
+production may begin. F9 room placement and F10 Active Office integration
+remain blocked until their own gates are satisfied.
 
 ## Required evidence per family
 

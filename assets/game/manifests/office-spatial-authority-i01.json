@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "office.spatial-socket-authority.i01",
-  "status": "owner-review-f8-pending",
+  "status": "owner-approved",
   "developmentOnly": true,
   "activeOfficeImported": false,
   "world": {
@@ -29,11 +29,11 @@
   "authorities": {
     "characterActions": {
       "file": "assets/game/manifests/office-character-action-sockets-i01.json",
-      "sha256": "7ab47c02e1834b546a40fcb4f520058dda3a0e54f4bd766725c9a000a5f8100b"
+      "sha256": "4958f9a16cfe13040417e551166c99d61b96a186ce39b7de3c3346b4474e97d8"
     },
     "heldProps": {
       "file": "assets/game/manifests/office-held-props-h01.json",
-      "sha256": "59da612252ec1ae1767754b507ce8bd27896f7202f7c177bfaf874be5d1a105a"
+      "sha256": "adf9f57e41e78dd583687c1707a49a17bd6f27fc76328a62127d5e3d806d7aa4"
     },
     "approvedSeatSockets": {
       "file": "assets/game/manifests/office-character-seat-sockets-v1.json",
@@ -123,9 +123,9 @@
       ]
     },
     "F8": {
-      "status": "pending-owner-review",
+      "status": "passed",
       "evidence": [
-        "awaiting independent owner visual review"
+        "Owner approved Office Spatial Socket I01 on 2026-07-29."
       ]
     }
   },
@@ -218,5 +218,9 @@
       "sha256": "5af3fe6d5dacdbd0d7cd44c0218bad648e36a5a1bc15a11b8f666d916b630f33"
     }
   ],
-  "ownerDecision": null
+  "ownerDecision": {
+    "decision": "approved",
+    "decidedOn": "2026-07-29",
+    "notes": "Owner approved Spatial I01 and its front-overlay attachment rules after reviewing Vending U01-r03."
+  }
 }

@@ -42,16 +42,17 @@ try {
   }
 
   add(
-    actions.status === "owner-review-f8-pending"
-      && held.status === "owner-review-f8-pending"
-      && authority.status === "owner-review-f8-pending"
-      && actions.ownerDecision === null
-      && held.ownerDecision === null
-      && authority.ownerDecision === null
+    actions.status === "owner-approved"
+      && held.status === "owner-approved"
+      && authority.status === "owner-approved"
+      && [actions, held, authority].every((manifest) =>
+        manifest.ownerDecision?.decision === "approved"
+        && manifest.ownerDecision?.decidedOn === "2026-07-29"
+        && manifest.gates?.F8?.status === "passed")
       && actions.activeOfficeImported === false
       && held.activeOfficeImported === false
       && authority.activeOfficeImported === false,
-    "I01/H01 must remain isolated and owner-review-f8-pending",
+    "I01/H01 must retain separate F8 approvals and Active Office isolation",
   );
   add(
     fileHashMatches(
@@ -316,6 +317,6 @@ if (failures.length) {
   process.stdout.write(
     "Office Spatial I01/H01 OK: 18 actors, 108 frame sockets, 54 source-exact "
       + "calibration masks, 16 fresh held props, 864 fully visible front overlays, movement "
-      + "proof, F8 pending, and Active Office unchanged.\n",
+      + "proof, F8 approved, and Active Office unchanged.\n",
   );
 }

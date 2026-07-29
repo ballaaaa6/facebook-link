@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "office.held-props.h01",
-  "status": "owner-review-f8-pending",
+  "status": "owner-approved",
   "developmentOnly": true,
   "activeOfficeImported": false,
   "sourcePolicy": {
@@ -897,11 +897,15 @@
       ]
     },
     "F8": {
-      "status": "pending-owner-review",
+      "status": "passed",
       "evidence": [
-        "awaiting independent owner visual review"
+        "Owner approved held props H01 on 2026-07-29."
       ]
     }
   },
-  "ownerDecision": null
+  "ownerDecision": {
+    "decision": "approved",
+    "decidedOn": "2026-07-29",
+    "notes": "Owner approved Held Props H01 with visual-center front-overlay presentation after reviewing the enlarged held-output evidence."
+  }
 }

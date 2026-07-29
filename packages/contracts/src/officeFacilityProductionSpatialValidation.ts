@@ -43,8 +43,10 @@ export function validateFacilitySpatialContract(
     );
     requireValue(
       issues,
-      value.authority.status === "owner-review-f8-pending",
-      "spatial authority must remain F8 pending",
+      ["owner-review-f8-pending", "owner-approved"].includes(
+        String(value.authority.status),
+      ),
+      "spatial authority must remain owner-reviewed",
     );
   }
   requireValue(

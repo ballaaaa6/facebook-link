@@ -3,7 +3,7 @@
 The builder reads only audited original held-prop pixels, accepted staging
 character atlases, and explicit authoring calibration metadata. It emits
 integer 1x sockets, deterministic visual-center front overlays, source-exact
-calibration masks, review evidence, and manifests that stop at owner review F8.
+calibration masks, review evidence, and the recorded owner approval at F8.
 """
 
 from __future__ import annotations
@@ -80,6 +80,32 @@ RED = (220, 55, 65, 255)
 CYAN = (0, 160, 190, 255)
 ORANGE = (227, 132, 35, 255)
 HEADER = (18, 29, 43, 255)
+OWNER_DECISIONS = {
+    "character-actions": {
+        "decision": "approved",
+        "decidedOn": "2026-07-29",
+        "notes": (
+            "Owner approved the per-character, per-frame interact-front "
+            "socket authority as part of Spatial I01."
+        ),
+    },
+    "held-props": {
+        "decision": "approved",
+        "decidedOn": "2026-07-29",
+        "notes": (
+            "Owner approved Held Props H01 with visual-center front-overlay "
+            "presentation after reviewing the enlarged held-output evidence."
+        ),
+    },
+    "spatial-authority": {
+        "decision": "approved",
+        "decidedOn": "2026-07-29",
+        "notes": (
+            "Owner approved Spatial I01 and its front-overlay attachment "
+            "rules after reviewing Vending U01-r03."
+        ),
+    },
+}
 
 
 @dataclass(frozen=True)
@@ -181,7 +207,10 @@ def draw_cross(
     draw.line((x, y - radius, x, y + radius), fill=color, width=width)
 
 
-def gates(scope: str) -> dict[str, dict[str, Any]]:
+def gates(
+    scope: str,
+    owner_decision: dict[str, str],
+) -> dict[str, dict[str, Any]]:
     evidence = {
         "F0": [f"{scope} source and contamination policy locked"],
         "F1": ["integer world/local coordinate contract validated"],
@@ -191,11 +220,13 @@ def gates(scope: str) -> dict[str, dict[str, Any]]:
         "F5": ["attachment resolver returns exact zero deltas"],
         "F6": ["movement and parent-switch behavior validated"],
         "F7": ["full roster/prop matrix and review outputs generated"],
-        "F8": ["awaiting independent owner visual review"],
+        "F8": [
+            f"Owner approved {scope} on {owner_decision['decidedOn']}.",
+        ],
     }
     return {
         gate: {
-            "status": "pending-owner-review" if gate == "F8" else "passed",
+            "status": "passed",
             "evidence": values,
         }
         for gate, values in evidence.items()
@@ -381,7 +412,7 @@ def build_character_manifest(
     manifest = {
         "schemaVersion": 1,
         "id": "office.character-action-sockets.i01",
-        "status": "owner-review-f8-pending",
+        "status": "owner-approved",
         "developmentOnly": True,
         "pendingCommercialReview": True,
         "activeOfficeImported": False,
@@ -405,8 +436,11 @@ def build_character_manifest(
         "frameRecordCount": len(characters) * ACTIVE_FRAMES,
         "foregroundMaskCount": mask_count,
         "characters": characters,
-        "gates": gates("character action socket I01"),
-        "ownerDecision": None,
+        "gates": gates(
+            "character action socket I01",
+            OWNER_DECISIONS["character-actions"],
+        ),
+        "ownerDecision": OWNER_DECISIONS["character-actions"],
     }
     return manifest, rendered
 
@@ -569,7 +603,7 @@ def build_prop_manifest(
     manifest = {
         "schemaVersion": 1,
         "id": "office.held-props.h01",
-        "status": "owner-review-f8-pending",
+        "status": "owner-approved",
         "developmentOnly": True,
         "activeOfficeImported": False,
         "sourcePolicy": {
@@ -599,8 +633,8 @@ def build_prop_manifest(
         },
         "count": len(props),
         "props": props,
-        "gates": gates("held props H01"),
-        "ownerDecision": None,
+        "gates": gates("held props H01", OWNER_DECISIONS["held-props"]),
+        "ownerDecision": OWNER_DECISIONS["held-props"],
     }
     return manifest, runtime_images
 
@@ -1107,7 +1141,7 @@ def assemble_outputs() -> dict[Path, bytes]:
     authority_manifest = {
         "schemaVersion": 1,
         "id": "office.spatial-socket-authority.i01",
-        "status": "owner-review-f8-pending",
+        "status": "owner-approved",
         "developmentOnly": True,
         "activeOfficeImported": False,
         "world": {
@@ -1174,10 +1208,13 @@ def assemble_outputs() -> dict[Path, bytes]:
             "visibleAlphaFailures": matrix["visibleAlphaFailures"],
         },
         "movementValidation": movement,
-        "gates": gates("Office Spatial Socket I01"),
+        "gates": gates(
+            "Office Spatial Socket I01",
+            OWNER_DECISIONS["spatial-authority"],
+        ),
         "reviewOutputs": [entry["file"] for entry in review_evidence],
         "reviewEvidence": review_evidence,
-        "ownerDecision": None,
+        "ownerDecision": OWNER_DECISIONS["spatial-authority"],
     }
     outputs[AUTHORITY_MANIFEST_PATH] = canonical_text_bytes(authority_manifest)
     return outputs
@@ -1214,7 +1251,8 @@ def main() -> None:
     verb = "verified" if args.check else "wrote"
     print(
         f"{verb} Office Spatial I01: 18 characters, 54 hand masks, "
-        "16 fresh held props, 864 fully visible front-overlay attachment cases"
+        "16 fresh held props, 864 fully visible front-overlay attachment "
+        "cases, owner-approved at F8"
     )
 
 

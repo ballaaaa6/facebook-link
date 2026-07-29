@@ -11,19 +11,22 @@ const manifest = JSON.parse(readFileSync(new URL(
   import.meta.url,
 ), "utf8")) as OfficeFacilityProductionManifest;
 
-test("Vending U01-r03 stops after F0-F7 for an independent F8 decision", () => {
+test("Vending U01-r03 records its independent F8 approval", () => {
   assert.deepEqual(validateOfficeFacilityProductionManifest(manifest), []);
   assert.equal(manifest.schemaVersion, 2);
   assert.equal(manifest.revision, "u01-r03");
   assert.equal(manifest.familyId, "vending.machine.modern");
-  assert.equal(manifest.status, "owner-review-f8-pending");
-  assert.equal(manifest.ownerDecision, null);
+  assert.equal(manifest.status, "owner-approved");
+  assert.equal(manifest.ownerDecision?.decision, "approved");
+  assert.equal(manifest.ownerDecision?.decidedOn, "2026-07-29");
   for (const gate of ["F0", "F1", "F2", "F3", "F4", "F5", "F6", "F7"] as const) {
     assert.equal(manifest.gates[gate].status, "passed");
   }
-  assert.equal(manifest.gates.F8.status, "pending-owner-review");
+  assert.equal(manifest.gates.F8.status, "passed");
   assert.equal(manifest.gates.F9.status, "blocked");
   assert.equal(manifest.gates.F10.status, "blocked");
+  assert.equal(manifest.permissions.otherFacilityFamilies, true);
+  assert.equal(manifest.permissions.furnitureOnlyRoom, false);
 });
 
 test("Vending U01-r03 locks four front-only full-master ownership records", () => {

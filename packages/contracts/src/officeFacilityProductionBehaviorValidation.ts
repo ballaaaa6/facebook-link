@@ -70,17 +70,21 @@ function validateRoster(value: unknown, issues: string[]) {
   requireValue(
     issues,
     isRecord(value.poseAuthority)
-      && value.poseAuthority.status === "owner-review-f8-pending"
+      && ["owner-review-f8-pending", "owner-approved"].includes(
+        String(value.poseAuthority.status),
+      )
       && value.poseAuthority.activeOfficeImported === false,
-    "roster pose authority must remain F8 pending and isolated",
+    "roster pose authority must remain owner-reviewed and isolated",
   );
   requireValue(
     issues,
     isRecord(value.spatialAuthority)
-      && value.spatialAuthority.status === "owner-review-f8-pending"
+      && ["owner-review-f8-pending", "owner-approved"].includes(
+        String(value.spatialAuthority.status),
+      )
       && value.spatialAuthority.activeOfficeImported === false
       && hasSha256(value.spatialAuthority.manifestSha256),
-    "roster spatial authority must remain F8 pending and isolated",
+    "roster spatial authority must remain owner-reviewed and isolated",
   );
   requireValue(
     issues,

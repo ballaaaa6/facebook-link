@@ -40,7 +40,12 @@ function validateFileHash(
   );
 }
 
-function validateGates(value: unknown, path: string, issues: string[]) {
+function validateGates(
+  value: unknown,
+  path: string,
+  ownerApproved: boolean,
+  issues: string[],
+) {
   requireValue(issues, record(value), `${path} must be an object`);
   if (!record(value)) return;
   for (let index = 0; index <= 8; index += 1) {
@@ -49,7 +54,9 @@ function validateGates(value: unknown, path: string, issues: string[]) {
     if (!record(gate)) continue;
     requireValue(
       issues,
-      gate.status === (index === 8 ? "pending-owner-review" : "passed"),
+      gate.status === (
+        index === 8 && !ownerApproved ? "pending-owner-review" : "passed"
+      ),
       `${path}.F${index} has the wrong status`,
     );
     requireValue(
@@ -58,6 +65,32 @@ function validateGates(value: unknown, path: string, issues: string[]) {
       `${path}.F${index}.evidence must not be empty`,
     );
   }
+}
+
+function validateOwnerDecision(
+  value: unknown,
+  ownerApproved: boolean,
+  path: string,
+  issues: string[],
+) {
+  if (!ownerApproved) {
+    requireValue(issues, value === null, `${path} must remain null before F8`);
+    return;
+  }
+  requireValue(issues, record(value), `${path} must record owner approval`);
+  if (!record(value)) return;
+  requireValue(issues, value.decision === "approved", `${path}.decision must be approved`);
+  requireValue(
+    issues,
+    typeof value.decidedOn === "string"
+      && /^\d{4}-\d{2}-\d{2}$/.test(value.decidedOn),
+    `${path}.decidedOn must be an ISO date`,
+  );
+  requireValue(
+    issues,
+    typeof value.notes === "string" && value.notes.length > 0,
+    `${path}.notes must explain the approval`,
+  );
 }
 
 export function validateOfficeCharacterActionSocketsManifest(
@@ -73,16 +106,17 @@ export function validateOfficeCharacterActionSocketsManifest(
   );
   requireValue(
     issues,
-    value.status === "owner-review-f8-pending",
-    "character sockets must stop at F8",
+    ["owner-review-f8-pending", "owner-approved"].includes(String(value.status)),
+    "character sockets status is unsupported",
   );
   requireValue(issues, value.activeOfficeImported === false, "Active Office import is forbidden");
   requireValue(issues, value.characterCount === 18, "characterCount must equal 18");
   requireValue(issues, value.frameRecordCount === 108, "frameRecordCount must equal 108");
   requireValue(issues, value.foregroundMaskCount === 54, "foregroundMaskCount must equal 54");
   validateFileHash(value.authoringInput, "authoringInput", issues);
-  validateGates(value.gates, "gates", issues);
-  requireValue(issues, value.ownerDecision === null, "ownerDecision must remain null before F8");
+  const ownerApproved = value.status === "owner-approved";
+  validateGates(value.gates, "gates", ownerApproved, issues);
+  validateOwnerDecision(value.ownerDecision, ownerApproved, "ownerDecision", issues);
   const characters = Array.isArray(value.characters) ? value.characters : [];
   requireValue(issues, characters.length === 18, "characters must contain eighteen records");
   const ids = new Set<string>();
@@ -143,12 +177,17 @@ export function validateOfficeHeldPropsManifest(value: unknown): string[] {
   const issues: string[] = [];
   requireValue(issues, value.schemaVersion === 1, "schemaVersion must equal 1");
   requireValue(issues, value.id === "office.held-props.h01", "held props identity is wrong");
-  requireValue(issues, value.status === "owner-review-f8-pending", "held props must stop at F8");
+  requireValue(
+    issues,
+    ["owner-review-f8-pending", "owner-approved"].includes(String(value.status)),
+    "held props status is unsupported",
+  );
   requireValue(issues, value.activeOfficeImported === false, "Active Office import is forbidden");
   requireValue(issues, value.count === 16, "held props count must equal 16");
   validateFileHash(value.authoringInput, "authoringInput", issues);
-  validateGates(value.gates, "gates", issues);
-  requireValue(issues, value.ownerDecision === null, "ownerDecision must remain null before F8");
+  const ownerApproved = value.status === "owner-approved";
+  validateGates(value.gates, "gates", ownerApproved, issues);
+  validateOwnerDecision(value.ownerDecision, ownerApproved, "ownerDecision", issues);
   const policy = record(value.sourcePolicy) ? value.sourcePolicy : {};
   for (const key of [
     "processedPixelReuse",
@@ -217,7 +256,11 @@ export function validateOfficeSpatialAuthorityManifest(value: unknown): string[]
     value.id === "office.spatial-socket-authority.i01",
     "spatial authority identity is wrong",
   );
-  requireValue(issues, value.status === "owner-review-f8-pending", "spatial authority must stop at F8");
+  requireValue(
+    issues,
+    ["owner-review-f8-pending", "owner-approved"].includes(String(value.status)),
+    "spatial authority status is unsupported",
+  );
   requireValue(issues, value.activeOfficeImported === false, "Active Office import is forbidden");
   const policies = record(value.policies) ? value.policies : {};
   for (const key of [
@@ -246,7 +289,8 @@ export function validateOfficeSpatialAuthorityManifest(value: unknown): string[]
       && movement.propFollowFailures === 0,
     "movement attachment must remain exact",
   );
-  requireValue(issues, value.ownerDecision === null, "ownerDecision must remain null before F8");
-  validateGates(value.gates, "gates", issues);
+  const ownerApproved = value.status === "owner-approved";
+  validateOwnerDecision(value.ownerDecision, ownerApproved, "ownerDecision", issues);
+  validateGates(value.gates, "gates", ownerApproved, issues);
   return issues;
 }

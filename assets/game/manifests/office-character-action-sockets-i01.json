@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "office.character-action-sockets.i01",
-  "status": "owner-review-f8-pending",
+  "status": "owner-approved",
   "developmentOnly": true,
   "pendingCommercialReview": true,
   "activeOfficeImported": false,
@@ -2420,11 +2420,15 @@
       ]
     },
     "F8": {
-      "status": "pending-owner-review",
+      "status": "passed",
       "evidence": [
-        "awaiting independent owner visual review"
+        "Owner approved character action socket I01 on 2026-07-29."
       ]
     }
   },
-  "ownerDecision": null
+  "ownerDecision": {
+    "decision": "approved",
+    "decidedOn": "2026-07-29",
+    "notes": "Owner approved the per-character, per-frame interact-front socket authority as part of Spatial I01."
+  }
 }
