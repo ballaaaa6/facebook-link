@@ -3,7 +3,6 @@ import {
 } from "./officeFacilityProduction.ts";
 import {
   hasSha256,
-  isIntegerPoint,
   isRecord,
   requireValue,
   type RecordValue,
@@ -13,6 +12,14 @@ function isPixelPoint(value: unknown) {
   return Array.isArray(value)
     && value.length === 2
     && value.every(Number.isInteger);
+}
+
+function isHalfTilePoint(value: unknown) {
+  return isRecord(value)
+    && typeof value.x === "number"
+    && Number.isInteger(value.x * 2)
+    && typeof value.y === "number"
+    && Number.isInteger(value.y * 2);
 }
 
 function validateInteraction(value: unknown, issues: string[]) {
@@ -35,8 +42,8 @@ function validateInteraction(value: unknown, issues: string[]) {
   for (const field of ["stand", "approach", "exit"]) {
     requireValue(
       issues,
-      isIntegerPoint(slot[field]),
-      `interaction.slot.${field} must use integer cells`,
+      isHalfTilePoint(slot[field]),
+      `interaction.slot.${field} must use half-tile cells`,
     );
   }
   requireValue(

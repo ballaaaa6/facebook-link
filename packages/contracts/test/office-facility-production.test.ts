@@ -14,6 +14,113 @@ const waterManifest = JSON.parse(readFileSync(new URL(
   "../../../assets/game/manifests/office-facility-water-dispenser-w01.json",
   import.meta.url,
 ), "utf8")) as OfficeFacilityProductionManifest;
+const coffeeManifest = JSON.parse(readFileSync(new URL(
+  "../../../assets/game/manifests/office-facility-coffee-machine-c01.json",
+  import.meta.url,
+), "utf8")) as OfficeFacilityProductionManifest;
+
+test("Coffee C01 stops at independent F8 owner review", () => {
+  assert.deepEqual(validateOfficeFacilityProductionManifest(coffeeManifest), []);
+  assert.equal(coffeeManifest.familyId, "machine.coffee");
+  assert.equal(coffeeManifest.revision, "c01");
+  assert.equal(coffeeManifest.status, "owner-review-f8-pending");
+  assert.equal(coffeeManifest.source.kind, "audited-original-neutral-master");
+  assert.equal(coffeeManifest.source.frames.length, 4);
+  assert.equal(coffeeManifest.gates.F8.status, "pending-owner-review");
+  assert.equal(coffeeManifest.gates.F9.status, "blocked");
+  assert.equal(coffeeManifest.gates.F10.status, "blocked");
+  assert.equal(coffeeManifest.ownerDecision, null);
+});
+
+test("Coffee C01 uses one two-cell-deep counter column", () => {
+  assert.deepEqual(coffeeManifest.geometry.physicalScale, {
+    width: 1,
+    depth: 2,
+    height: 2,
+    unit: "tile",
+  });
+  assert.equal(coffeeManifest.geometry.placementPlane, "furniture-surface");
+  assert.equal(coffeeManifest.geometry.footprint, null);
+  assert.deepEqual(coffeeManifest.render.runtimeCanvas, [64, 96]);
+  assert.deepEqual(coffeeManifest.geometryCalibration?.auditRenderBox, [1, 3]);
+  assert.deepEqual(coffeeManifest.geometryCalibration?.guideRenderBox, [1, 2]);
+  assert.deepEqual(coffeeManifest.geometryCalibration?.selectedRenderBox, [2, 3]);
+  assert.equal(coffeeManifest.geometryCalibration?.sourceAspectPreserved, true);
+  assert.equal(coffeeManifest.geometryCalibration?.uniformScalingOnly, true);
+});
+
+test("Coffee C01 attaches to owner-approved Counter A01-r02", () => {
+  const parent = coffeeManifest.spatial.supportParent;
+  assert.ok(parent);
+  assert.equal(parent.authority.status, "owner-approved");
+  assert.equal(parent.selectedDepthSpanId, "surface.depth.03");
+  assert.deepEqual(
+    parent.occupiedSlotIds,
+    ["surface.back.03", "surface.front.03"],
+  );
+  assert.equal(parent.selectedAnchorSlotId, "surface.front.03");
+  assert.equal(parent.useLaneId, "use.03");
+  assert.deepEqual(parent.selectedParentSocket, [112, 70]);
+  assert.deepEqual(parent.attachmentDelta, [0, 0]);
+  assert.equal(parent.compatibleDepthSpans.length, 6);
+  assert.equal(parent.placementCases, 6);
+  assert.equal(parent.supportFailures, 0);
+  assert.deepEqual(
+    coffeeManifest.spatial.localSockets["base.support"],
+    [32, 96],
+  );
+  assert.equal(coffeeManifest.spatial.localSockets["base.floor"], undefined);
+});
+
+test("Coffee C01 keeps Coffee, steam, empty bay, and H01 mug separate", () => {
+  assert.equal(coffeeManifest.animation.frameCount, 4);
+  assert.equal(coffeeManifest.animation.outsideViewportChangedPixels, 0);
+  assert.deepEqual(
+    coffeeManifest.animation.frames.map(({ effectPartIds }) =>
+      effectPartIds.length),
+    [0, 0, 2, 0],
+  );
+  assert.equal(coffeeManifest.outputHandoff.productEmbeddedInShell, false);
+  assert.equal(
+    coffeeManifest.outputHandoff.productEmbeddedInViewportFrames,
+    false,
+  );
+  assert.equal(coffeeManifest.outputHandoff.heldAssetId, "held.coffee-mug");
+  assert.equal(coffeeManifest.outputHandoff.runtimeScale, 1);
+  assert.equal(coffeeManifest.outputHandoff.attachmentDeltaFailures, 0);
+});
+
+test("Coffee C01 proves 108 poses and capacity-one failure retry", () => {
+  assert.equal(coffeeManifest.rosterValidation.characterCount, 18);
+  assert.equal(coffeeManifest.rosterValidation.activeFrames, 6);
+  assert.equal(coffeeManifest.rosterValidation.validatedPoseCases, 108);
+  assert.equal(coffeeManifest.rosterValidation.visiblePropCases, 54);
+  assert.equal(coffeeManifest.rosterValidation.attachmentDeltaFailures, 0);
+  assert.equal(coffeeManifest.reservationValidation.durationSeconds, 30);
+  assert.equal(coffeeManifest.reservationValidation.actorCount, 2);
+  assert.equal(
+    coffeeManifest.reservationValidation.maximumConcurrentReservations,
+    1,
+  );
+  assert.equal(coffeeManifest.reservationValidation.blockedAttemptCount, 1);
+  assert.equal(coffeeManifest.reservationValidation.failureCount, 1);
+  assert.equal(coffeeManifest.reservationValidation.retrySuccessCount, 1);
+  assert.equal(coffeeManifest.reservationValidation.releasedAtEnd, true);
+});
+
+test("facility production rejects invalid parent support and fractional drift", () => {
+  const invalid = structuredClone(coffeeManifest);
+  invalid.spatial.supportParent!.authority.status =
+    "owner-review-f8-pending" as "owner-approved";
+  invalid.spatial.supportParent!.attachmentDelta = [1, 0] as [0, 0];
+  (invalid.spatial.supportParent as { supportFailures: number })
+    .supportFailures = 1;
+  invalid.interaction.slot.stand = { x: 2.25, y: 2.5 };
+  const issues = validateOfficeFacilityProductionManifest(invalid).join("\n");
+  assert.match(issues, /support parent authority must be owner-approved/);
+  assert.match(issues, /zero drift/);
+  assert.match(issues, /half-tile cells/);
+});
 
 test("Water W01 records its independent F8 approval", () => {
   assert.deepEqual(validateOfficeFacilityProductionManifest(waterManifest), []);

@@ -9,7 +9,6 @@ import {
 import { validateFacilitySpatialContract } from "./officeFacilityProductionSpatialValidation.ts";
 
 const outputPrefix = "assets/game/processed/office-facility-family-v1/";
-
 function validateSource(value: unknown, issues: string[]) {
   requireValue(issues, isRecord(value), "source must be an object");
   if (!isRecord(value)) return;
@@ -17,6 +16,7 @@ function validateSource(value: unknown, issues: string[]) {
     issues,
     [
       "audited-original-mechanical-loop-master",
+      "audited-original-neutral-master",
       "generated-isolated-clean-source",
     ].includes(String(value.kind)),
     "source.kind must identify an audited or generated clean source",
@@ -30,7 +30,7 @@ function validateSource(value: unknown, issues: string[]) {
   );
   requireValue(
     issues,
-    value.kind === "audited-original-mechanical-loop-master"
+    String(value.kind).startsWith("audited-original-")
       ? value.extractionMethod === "full-master-component-ownership"
       : value.extractionMethod === "generated-source-chroma-key",
     "source extraction method must match its source authority",

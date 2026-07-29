@@ -56,6 +56,7 @@ export interface OfficeFacilitySourceFrameEvidence {
 export interface OfficeFacilitySourceEvidence {
   kind:
     | "audited-original-mechanical-loop-master"
+    | "audited-original-neutral-master"
     | "generated-isolated-clean-source";
   path: string;
   sha256: string;
@@ -211,11 +212,47 @@ export interface OfficeFacilityProductionManifest {
     coordinateSpace: "facility-runtime-pixel";
     unit: "pixel";
     localSockets: Record<string, readonly [number, number]>;
+    supportParent?: {
+      authority: {
+        file: string;
+        sha256: string;
+        id: string;
+        revision: string;
+        status: "owner-approved";
+      };
+      placementPlane: "furniture-surface";
+      supportPlaneId: string;
+      compatibleDepthSpans: readonly {
+        id: string;
+        slotIds: readonly [string, string];
+        anchorSlotId: string;
+        useLaneId: string;
+      }[];
+      selectedDepthSpanId: string;
+      occupiedSlotIds: readonly [string, string];
+      selectedAnchorSlotId: string;
+      useLaneId: string;
+      selectedParentSocket: readonly [number, number];
+      attachmentDelta: readonly [0, 0];
+      placementCases: number;
+      supportFailures: 0;
+      activeOfficeImported: false;
+    };
     perSceneAttachmentOffsets: false;
     centerToCenterAttachment: false;
     missingSocketFallback: false;
   };
   geometry: OfficeGeometryV3;
+  geometryCalibration?: {
+    auditRenderBox: readonly [1, 3];
+    guideRenderBox: readonly [1, 2];
+    selectedRenderBox: readonly [2, 3];
+    selectedPhysicalScale: readonly [1, 2, 2];
+    sourceSilhouettePixels: readonly [number, number];
+    sourceAspectPreserved: true;
+    uniformScalingOnly: true;
+    decision: string;
+  };
   parts: readonly OfficeFacilityPartEvidence[];
   animation: {
     frameCount: number;
@@ -303,6 +340,11 @@ export interface OfficeFacilityProductionManifest {
     furnitureOnlyRoom: false;
     otherFacilityFamilies: boolean;
     activeOfficePromotion: false;
+  };
+  activeOfficeEvidence?: {
+    file: string;
+    sha256: string;
+    imported: false;
   };
   ownerDecision: null | {
     decision: "approved" | "rejected";
