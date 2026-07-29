@@ -414,6 +414,18 @@ future moving families. The isolated F4-F8 production evidence passes and the
 owner approved its exact hashes on 2026-07-30. Arcade contributes one Facility
 v1 slot; F9, F10, and Active Office remain blocked.
 
+`office.facility-upsize.2x2x4.preflight.v1` records the owner-directed fresh
+visual replacement batch for Coffee C02, Water W02, Vending U02, and Massage
+R03. Each candidate locks a `2 x 2 x 4` physical scale, `2 x 2` footprint,
+`3 x 4` render box, four isolated elevations, and an immutable-shell modular
+motion plan. The batch contains 16 views and stops at
+`pending-owner-review` F3. It builds no motion frames, pose matrix, reservation
+simulation, or room placement. The current accepted families retain all
+`20/20` slots; the five candidate slots do not transfer before independent F8
+approval. Counter A01-r02 is retained, F9 v1 is hash-pinned and unchanged,
+and F4-F10 plus Active Office remain blocked. See
+`docs/art/OFFICE_FACILITY_UPSIZE_2X2X4_PREFLIGHT_V1.md`.
+
 ## Required evidence per family
 
 Each approved family must retain:

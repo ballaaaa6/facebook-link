@@ -45,6 +45,13 @@ Current Facility v1 readiness is `20/20` after Printer P01 F8 approval on
 each provide two independently reservable capacity-one instances from one
 owner-approved family. Room placement still requires a separate F9 candidate.
 
+The owner-directed 2026-07-30 upsize batch creates fresh `2 x 2 x 4`
+four-side visual candidates for Coffee C02, Water W02, Vending U02, and
+Massage R03. It is an isolated F3 preflight only: the accepted predecessors
+continue to supply the current `20/20`, the candidates contribute zero slots,
+Counter A01-r02 remains retained, and F9 v1 remains unchanged. See
+`docs/art/OFFICE_FACILITY_UPSIZE_2X2X4_PREFLIGHT_V1.md`.
+
 ### Facility asset generation plan
 
 The current registry already contains reusable visuals for most Facility v1
@@ -111,6 +118,12 @@ Facility v1 uses these locked physical scales:
 The approach area is navigation clearance, not part of the furniture's
 physical `W x D x H`. Source art is cropped and scaled uniformly into the
 declared render box; it must never be stretched independently by axis.
+
+Pending F3 upsize candidates intentionally do not replace that accepted scale
+table. Their proposed common contract is `2 x 2 x 4` physical scale,
+`2 x 2` footprint, `3 x 4` render box, and four visual elevations. The new
+contract becomes production authority per family only after owner approval
+and independent F4-F8 validation.
 
 Refrigerator R01 is an owner-directed override recorded on 2026-07-30. Its
 owner-approved visual/motion preflight uses a fresh front identity, immutable

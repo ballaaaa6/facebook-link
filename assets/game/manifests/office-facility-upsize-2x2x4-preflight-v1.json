@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "id": "office.facility-upsize.2x2x4.preflight.v1",
+  "status": "visual-preflight-owner-review",
+  "productionStage": "f0-f3-batch-visual-preflight",
+  "createdOn": "2026-07-30",
+  "developmentOnly": true,
+  "activeOfficePromotion": false,
+  "scope": {
+    "familyCount": 4,
+    "visualViewCount": 16,
+    "physicalScale": "2x2x4",
+    "floorFootprint": "2x2",
+    "renderBox": "3x4"
+  },
+  "families": [
+    {
+      "id": "office.facility.coffee-machine.c02",
+      "label": "Coffee Machine C02",
+      "manifest": "assets/game/manifests/office-facility-coffee-machine-c02.json",
+      "sha256": "accff3da31d8a14042344e8cb8f3bde5c58a8a83ef6a8e06dcfb03df7e8d49d1",
+      "status": "visual-preflight-owner-review",
+      "visualViewCount": 4,
+      "plannedInstanceCount": 1,
+      "plannedReservationSlotsAfterF8": 1
+    },
+    {
+      "id": "office.facility.water-dispenser.w02",
+      "label": "Water Dispenser W02",
+      "manifest": "assets/game/manifests/office-facility-water-dispenser-w02.json",
+      "sha256": "c208cf8e6fbec08e4a7d83f12ab5828e82f67bc624b8bd9d43546d4b631cc1c7",
+      "status": "visual-preflight-owner-review",
+      "visualViewCount": 4,
+      "plannedInstanceCount": 2,
+      "plannedReservationSlotsAfterF8": 2
+    },
+    {
+      "id": "office.facility.vending-machine.u02",
+      "label": "Vending Machine U02",
+      "manifest": "assets/game/manifests/office-facility-vending-u02.json",
+      "sha256": "8ffe8665bc5faa0dc0b3cff690778c5bd65bcc12f1502c69329444daac3c1037",
+      "status": "visual-preflight-owner-review",
+      "visualViewCount": 4,
+      "plannedInstanceCount": 1,
+      "plannedReservationSlotsAfterF8": 1
+    },
+    {
+      "id": "office.furniture.chair-massage.r03",
+      "label": "Massage Chair R03",
+      "manifest": "assets/game/manifests/office-furniture-chair-massage-r03.json",
+      "sha256": "4dbb652f33ca981eb16c979be49ea7025fedfc7eb5d9a1a017c3c27b86756d8f",
+      "status": "visual-preflight-owner-review",
+      "visualViewCount": 4,
+      "plannedInstanceCount": 1,
+      "plannedReservationSlotsAfterF8": 1
+    }
+  ],
+  "counterPolicy": {
+    "manifest": "assets/game/manifests/office-furniture-counter-bar-a01-r02.json",
+    "manifestSha256": "a600519732b1eccacd91093062d86c400c72f8d6279df8900bab1093064afa52",
+    "status": "owner-approved-retained",
+    "deleteAsset": false,
+    "removeFromF9BeforeNewFamiliesPassF8": false,
+    "plannedF9V2Placement": "retained-not-placed"
+  },
+  "slotPolicy": {
+    "facilityV1ReadySlotsCurrent": 20,
+    "newPreflightSlotContribution": 0,
+    "plannedTransferredSlotsAfterAllF8": 5,
+    "doubleCountOldAndNew": false
+  },
+  "f9Policy": {
+    "currentF9Manifest": "assets/game/manifests/office-furniture-only-f9-v1.json",
+    "currentF9ManifestSha256": "d1d20351eae9adcb71209a6b0055878178caf20f751bbd4a255afb7a4b11c1c5",
+    "currentF9Changed": false,
+    "plannedReplacement": "office.furniture-only-room.f9.v2",
+    "workstationAnchorToPreserve": "C12",
+    "workstationCountToPreserve": 10,
+    "routeQueriesToRebuild": 200
+  },
+  "reviewOutput": {
+    "path": "assets/art/layout-references/office-facility-upsize-v1/00-batch-2x2x4-lineup.png",
+    "sha256": "f876fa9e434cbb52726f450f6081774d0da800e7a0cd40ae47fc4962429f6a97",
+    "size": [
+      1600,
+      1000
+    ]
+  },
+  "gates": {
+    "F3": {
+      "status": "pending-owner-review"
+    },
+    "F4": {
+      "status": "blocked"
+    },
+    "F8": {
+      "status": "blocked"
+    },
+    "F9": {
+      "status": "blocked"
+    },
+    "F10": {
+      "status": "blocked"
+    }
+  },
+  "permissions": {
+    "visualOwnerReview": true,
+    "productionBuild": false,
+    "f9Replacement": false,
+    "activeOfficePromotion": false
+  },
+  "ownerDecision": null
+}
