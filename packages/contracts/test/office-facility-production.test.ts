@@ -15,12 +15,13 @@ const waterManifest = JSON.parse(readFileSync(new URL(
   import.meta.url,
 ), "utf8")) as OfficeFacilityProductionManifest;
 
-test("Water W01 supports a generated tall clean source and independent F8 review", () => {
+test("Water W01 records its independent F8 approval", () => {
   assert.deepEqual(validateOfficeFacilityProductionManifest(waterManifest), []);
   assert.equal(waterManifest.familyId, "dispenser.water");
   assert.equal(waterManifest.revision, "w01");
-  assert.equal(waterManifest.status, "owner-review-f8-pending");
-  assert.equal(waterManifest.ownerDecision, null);
+  assert.equal(waterManifest.status, "owner-approved");
+  assert.equal(waterManifest.ownerDecision?.decision, "approved");
+  assert.equal(waterManifest.ownerDecision?.decidedOn, "2026-07-29");
   assert.equal(waterManifest.source.kind, "generated-isolated-clean-source");
   assert.equal(waterManifest.source.extractionMethod, "generated-source-chroma-key");
   assert.deepEqual(waterManifest.render.runtimeCanvas, [64, 128]);
@@ -36,8 +37,9 @@ test("Water W01 supports a generated tall clean source and independent F8 review
   );
   assert.ok(waterManifest.outputHandoff.emptyOutputPartId);
   assert.equal(waterManifest.outputHandoff.pickupTrayPartId, undefined);
-  assert.equal(waterManifest.gates.F8.status, "pending-owner-review");
-  assert.equal(waterManifest.permissions.otherFacilityFamilies, false);
+  assert.equal(waterManifest.gates.F8.status, "passed");
+  assert.equal(waterManifest.permissions.ownerReview, false);
+  assert.equal(waterManifest.permissions.otherFacilityFamilies, true);
   assert.equal(waterManifest.permissions.furnitureOnlyRoom, false);
 });
 

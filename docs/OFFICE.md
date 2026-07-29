@@ -63,8 +63,9 @@ clean source. Its one-cell footprint, four-tile physical height, `64 x 128`
 runtime envelope, static shell, local ready/water overlays, empty output bay,
 and H01 clear cup pass F0-F7. The socket timeline covers 18 characters and 108
 `interact-front` cases, and its 30-second lab proves capacity-one contention,
-failure release, and retry. W01 is `owner-review-f8-pending`; Coffee C01, F9,
-F10, and Active Office imports remain blocked.
+failure release, and retry. The owner approved the exact W01 hashes on
+2026-07-29. Isolated Coffee C01 production is unlocked, while Coffee approval,
+F9, F10, and Active Office imports remain blocked.
 
 Workstation correction (2026-07-28): the isolated `5 x 4` staging layout,
 Candidate r01, and R05 final ten-seat composition are rejected evidence. The

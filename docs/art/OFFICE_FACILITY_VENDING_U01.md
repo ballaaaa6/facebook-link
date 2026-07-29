@@ -9,10 +9,10 @@ Scope: One front-only `vending.machine.modern` facility family
 U01-r03 is a development-only vertical slice. It is not imported by Active
 Office, is not authorized for a furniture-only room, and cannot approve
 another facility family automatically. The exact r03 revision received its F8
-owner approval on 2026-07-29. Water W01 production is now active under its own
-family gates; Coffee C01 cannot start until Water receives its independent F8
-decision. F9 room placement and F10 runtime integration remain separate
-blocked gates.
+owner approval on 2026-07-29. Water W01 subsequently received its independent
+F8 approval, so isolated Coffee C01 production is now unlocked. Coffee still
+requires its own gates. F9 room placement and F10 runtime integration remain
+separate blocked gates.
 
 The machine uses only the original project-created mechanical-loop master
 admitted by
@@ -237,5 +237,6 @@ hash set on 2026-07-29, including:
 
 The manifest records `ownerDecision.decision = approved`. This unlocked the
 next isolated Water W01 family, which is documented separately and does not
-inherit U01 approval. Coffee C01, F9, F10, and Active Office imports remain
-blocked while Water W01 awaits its own F8 decision.
+inherit U01 approval. Water W01 received its own F8 approval on 2026-07-29,
+unlocking isolated Coffee C01 production. Coffee approval, F9, F10, and Active
+Office imports remain blocked.

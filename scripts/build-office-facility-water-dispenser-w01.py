@@ -81,6 +81,14 @@ REVIEW_ROOT = (
 
 FAMILY_ID = "dispenser.water"
 REVISION = "w01"
+OWNER_DECISION = {
+    "decision": "approved",
+    "decidedOn": "2026-07-29",
+    "notes": (
+        "Owner approved the tall Water Dispenser W01 after reviewing the clean "
+        "front, six-frame front-overlay board, and 8x held-cup close-ups."
+    ),
+}
 HELD_ASSET_ID = "held.water-cup-clear"
 SOURCE_PATH = (
     "assets/art/layout-references/"
@@ -1739,10 +1747,10 @@ def build_manifest_and_images() -> dict[Path, bytes]:
             ],
         },
         "F8": {
-            "status": "pending-owner-review",
+            "status": "passed",
             "evidence": [
                 *[rp(path) for path in REVIEW_PATHS],
-                "Awaiting owner approval for the exact Water W01 hashes.",
+                f"Owner approved Water W01 on {OWNER_DECISION['decidedOn']}.",
             ],
         },
         "F9": {
@@ -1760,7 +1768,7 @@ def build_manifest_and_images() -> dict[Path, bytes]:
         "id": "office.facility.water-dispenser.w01",
         "familyId": FAMILY_ID,
         "revision": REVISION,
-        "status": "owner-review-f8-pending",
+        "status": "owner-approved",
         "developmentOnly": True,
         "activeOfficePromotion": False,
         "sourcePolicy": {
@@ -1990,12 +1998,12 @@ def build_manifest_and_images() -> dict[Path, bytes]:
         },
         "permissions": {
             "familyLab": True,
-            "ownerReview": True,
+            "ownerReview": False,
             "furnitureOnlyRoom": False,
-            "otherFacilityFamilies": False,
+            "otherFacilityFamilies": True,
             "activeOfficePromotion": False,
         },
-        "ownerDecision": None,
+        "ownerDecision": OWNER_DECISION,
     }
     outputs[MANIFEST_PATH] = json_bytes(manifest)
     return outputs
@@ -2043,7 +2051,7 @@ def main() -> None:
     write_outputs(outputs)
     print(f"Wrote {len(outputs)} Water Dispenser W01 files.")
     print(f"Manifest: {rp(MANIFEST_PATH)}")
-    print("Status: owner-review-f8-pending; Coffee C01 and F9/F10 remain blocked.")
+    print("Status: owner-approved at F8; Coffee C01 unlocked; F9/F10 remain blocked.")
 
 
 if __name__ == "__main__":

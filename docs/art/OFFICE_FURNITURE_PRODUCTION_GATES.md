@@ -266,8 +266,9 @@ front-only family uses a one-cell footprint, four-tile physical height,
 `64 x 128` runtime envelope, static shell, local ready/water effects, empty
 output bay, and the independent H01 clear cup. Its 18-character, 108-pose
 socket lab and 30-second capacity-one failure/retry simulation pass F0-F7.
-W01 is pending its own F8 decision. Coffee C01 cannot start until that decision;
-F9 and F10 remain blocked.
+The owner approved the exact W01 hashes on 2026-07-29. Isolated Coffee C01
+production is unlocked but must pass F0-F8 independently; F9 and F10 remain
+blocked.
 
 ## Required evidence per family
 

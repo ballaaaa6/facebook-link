@@ -3,7 +3,7 @@
   "id": "office.facility.water-dispenser.w01",
   "familyId": "dispenser.water",
   "revision": "w01",
-  "status": "owner-review-f8-pending",
+  "status": "owner-approved",
   "developmentOnly": true,
   "activeOfficePromotion": false,
   "sourcePolicy": {
@@ -6915,7 +6915,7 @@
       ]
     },
     "F8": {
-      "status": "pending-owner-review",
+      "status": "passed",
       "evidence": [
         "assets/art/layout-references/office-facility-family-v1/water-dispenser-w01/01-source-ownership.png",
         "assets/art/layout-references/office-facility-family-v1/water-dispenser-w01/02-alpha-parts.png",
@@ -6929,7 +6929,7 @@
         "assets/art/layout-references/office-facility-family-v1/water-dispenser-w01/10-shell-stability-difference.png",
         "assets/art/layout-references/office-facility-family-v1/water-dispenser-w01/11-three-character-six-frame-front-overlay.png",
         "assets/art/layout-references/office-facility-family-v1/water-dispenser-w01/12-three-character-hand-closeups-8x.png",
-        "Awaiting owner approval for the exact Water W01 hashes."
+        "Owner approved Water W01 on 2026-07-29."
       ]
     },
     "F9": {
@@ -7089,10 +7089,14 @@
   },
   "permissions": {
     "familyLab": true,
-    "ownerReview": true,
+    "ownerReview": false,
     "furnitureOnlyRoom": false,
-    "otherFacilityFamilies": false,
+    "otherFacilityFamilies": true,
     "activeOfficePromotion": false
   },
-  "ownerDecision": null
+  "ownerDecision": {
+    "decision": "approved",
+    "decidedOn": "2026-07-29",
+    "notes": "Owner approved the tall Water Dispenser W01 after reviewing the clean front, six-frame front-overlay board, and 8x held-cup close-ups."
+  }
 }

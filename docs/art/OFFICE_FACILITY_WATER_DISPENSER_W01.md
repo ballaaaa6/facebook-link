@@ -1,15 +1,15 @@
 # Office Facility Water Dispenser W01
 
-Status: F0-F7 passed; owner-review F8 pending
+Status: F0-F8 passed; owner-approved
 Updated: 2026-07-29
 Scope: One tall front-only `dispenser.water` facility family
 
 ## Decision boundary
 
 Water Dispenser W01 is an isolated development family. It is not imported by
-Active Office, cannot enter a furniture-only room, and does not authorize
-Coffee C01 or any later facility family. The exact W01 hashes must receive an
-independent F8 owner decision.
+Active Office and cannot enter a furniture-only room. The owner approved the
+exact W01 hashes independently on 2026-07-29. This unlocks isolated Coffee C01
+production but does not approve Coffee or any later facility automatically.
 
 The owner rejected the short audited water-dispenser form for this production
 revision and directed W01 to use a newly created tall form. The older neutral
@@ -220,8 +220,13 @@ Portable CI validation:
 npm run art:facility:water:w01:check
 ```
 
-## Stop rule
+## Owner decision and next gate
 
-W01 stops at `owner-review-f8-pending`. Coffee C01, furniture-only F9
-composition, and Active Office F10 integration remain blocked until the owner
-approves this exact Water W01 family and hashes.
+The owner approved the exact tall Water W01 family and hashes on 2026-07-29
+after reviewing the clean front, six-frame front-overlay board, and 8x
+held-cup close-ups. The manifest records
+`ownerDecision.decision = approved`.
+
+This unlocks isolated Coffee Machine C01 production. Coffee must still pass
+F0-F8 independently. Furniture-only F9 composition and Active Office F10
+integration remain blocked.

@@ -42,18 +42,19 @@ try {
     "Water W01 identity changed",
   );
   add(
-    manifest.status === "owner-review-f8-pending"
-      && manifest.ownerDecision === null
-      && manifest.gates?.F8?.status === "pending-owner-review"
+    manifest.status === "owner-approved"
+      && manifest.ownerDecision?.decision === "approved"
+      && manifest.ownerDecision?.decidedOn === "2026-07-29"
+      && manifest.gates?.F8?.status === "passed"
       && manifest.gates?.F9?.status === "blocked"
       && manifest.gates?.F10?.status === "blocked"
       && manifest.permissions?.familyLab === true
-      && manifest.permissions?.ownerReview === true
-      && manifest.permissions?.otherFacilityFamilies === false
+      && manifest.permissions?.ownerReview === false
+      && manifest.permissions?.otherFacilityFamilies === true
       && manifest.permissions?.furnitureOnlyRoom === false
       && manifest.permissions?.activeOfficePromotion === false
       && manifest.activeOfficePromotion === false,
-    "Water W01 must stop at its independent F8 review",
+    "Water W01 approval must unlock only the next isolated facility family",
   );
   add(
     [
@@ -364,6 +365,6 @@ if (failures.length) {
   process.stdout.write(
     "Water W01 OK: tall generated clean source, 1x1x4 geometry, local water "
       + "overlays, exact I01/H01 front overlays across 108 poses, 30-second "
-      + "capacity-one proof, F8 pending, and Active Office unchanged.\n",
+      + "capacity-one proof, F8 approved, and Active Office unchanged.\n",
   );
 }
