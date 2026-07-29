@@ -52,8 +52,19 @@ without a hand mask. The six-frame timeline moves the prop from
 `actor.hand.primary.grip` with delta `[0,0]`. Its `2 x 1 x 3` geometry,
 stand/approach/exit cells, 108 pose cases, and 30-second failure/retry proof
 passed F0-F8. U01-r03 became independently owner-approved on 2026-07-29.
-Water/Coffee isolated production is unlocked; F9, F10, and Active Office
-imports remain blocked.
+Water isolated production is unlocked; F9, F10, and Active Office imports
+remain blocked.
+
+The second upright facility is the isolated front-only Water Dispenser W01
+family documented in
+`docs/art/OFFICE_FACILITY_WATER_DISPENSER_W01.md`. Following the owner's
+direction, W01 replaces the short audited form with one newly generated tall
+clean source. Its one-cell footprint, four-tile physical height, `64 x 128`
+runtime envelope, static shell, local ready/water overlays, empty output bay,
+and H01 clear cup pass F0-F7. The socket timeline covers 18 characters and 108
+`interact-front` cases, and its 30-second lab proves capacity-one contention,
+failure release, and retry. W01 is `owner-review-f8-pending`; Coffee C01, F9,
+F10, and Active Office imports remain blocked.
 
 Workstation correction (2026-07-28): the isolated `5 x 4` staging layout,
 Candidate r01, and R05 final ten-seat composition are rejected evidence. The
@@ -118,8 +129,9 @@ ground pivots, render bounds, and render offsets is documented in
 The isolated semantic attachment authority is documented in
 `docs/art/OFFICE_SPATIAL_SOCKET_SYSTEM_I01.md`. It resolves entity roots,
 character hands, prop grips, facility outputs, effects, supports, and
-viewports through named integer local sockets. It remains F8-pending and does
-not replace the current Active Office placement adapter.
+viewports through named integer local sockets. I01/H01 is owner-approved but
+remains isolated and does not replace the current Active Office placement
+adapter.
 
 `assets/game/manifests/office-assets.json` owns integer render boxes, physical
 footprints, support types, and integer parent-slot offsets. `office-c-v2.json`

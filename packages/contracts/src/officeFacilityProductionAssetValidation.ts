@@ -6,9 +6,7 @@ import {
   type RecordValue,
   validateFileHash,
 } from "./officeFacilityProductionValidationPrimitives.ts";
-import {
-  validateFacilitySpatialContract,
-} from "./officeFacilityProductionSpatialValidation.ts";
+import { validateFacilitySpatialContract } from "./officeFacilityProductionSpatialValidation.ts";
 
 const outputPrefix = "assets/game/processed/office-facility-family-v1/";
 
@@ -17,8 +15,11 @@ function validateSource(value: unknown, issues: string[]) {
   if (!isRecord(value)) return;
   requireValue(
     issues,
-    value.kind === "audited-original-mechanical-loop-master",
-    "source.kind must identify an audited original mechanical-loop master",
+    [
+      "audited-original-mechanical-loop-master",
+      "generated-isolated-clean-source",
+    ].includes(String(value.kind)),
+    "source.kind must identify an audited or generated clean source",
   );
   requireValue(
     issues,
@@ -29,8 +30,10 @@ function validateSource(value: unknown, issues: string[]) {
   );
   requireValue(
     issues,
-    value.extractionMethod === "full-master-component-ownership",
-    "source extraction must use full-master component ownership",
+    value.kind === "audited-original-mechanical-loop-master"
+      ? value.extractionMethod === "full-master-component-ownership"
+      : value.extractionMethod === "generated-source-chroma-key",
+    "source extraction method must match its source authority",
   );
   requireValue(issues, hasSha256(value.sha256), "source.sha256 must be SHA-256");
   for (const field of ["keyedSource", "ownershipMask"]) {
@@ -153,6 +156,7 @@ function validateParts(
     "static-shell",
     "animation-viewport",
     "pickup-tray-empty",
+    "output-bay-empty",
     "effect-overlay",
     "held-output",
   ]);
@@ -186,9 +190,19 @@ function validateParts(
       issues,
     );
   }
-  for (const role of supported) {
+  for (const role of [
+    "static-shell",
+    "animation-viewport",
+    "effect-overlay",
+    "held-output",
+  ]) {
     requireValue(issues, roles.has(role), `parts must contain ${role}`);
   }
+  requireValue(
+    issues,
+    roles.has("pickup-tray-empty") !== roles.has("output-bay-empty"),
+    "parts must contain exactly one empty output role",
+  );
   return parts;
 }
 
@@ -304,10 +318,18 @@ function validateOutputHandoff(
 ) {
   requireValue(issues, isRecord(value), "outputHandoff must be an object");
   if (!isRecord(value)) return;
+  const emptyOutputId = value.emptyOutputPartId ?? value.pickupTrayPartId;
+  const emptyOutputRole = parts.get(String(emptyOutputId))?.role;
   requireValue(
     issues,
-    parts.get(String(value.pickupTrayPartId))?.role === "pickup-tray-empty",
-    "outputHandoff must reference the empty pickup tray",
+    ["pickup-tray-empty", "output-bay-empty"].includes(String(emptyOutputRole)),
+    "outputHandoff must reference the family's empty output part",
+  );
+  requireValue(
+    issues,
+    (value.emptyOutputPartId === undefined)
+      !== (value.pickupTrayPartId === undefined),
+    "outputHandoff must declare exactly one empty output identifier",
   );
   requireValue(
     issues,
@@ -335,7 +357,8 @@ function validateOutputHandoff(
   );
   requireValue(
     issues,
-    value.heldAssetId === "held.soda-can"
+    typeof value.heldAssetId === "string"
+      && value.heldAssetId.startsWith("held.")
       && value.heldAssetManifest === "assets/game/manifests/office-held-props-h01.json"
       && hasSha256(value.heldAssetManifestSha256)
       && hasSha256(value.heldAssetRuntimeSha256),
@@ -386,10 +409,7 @@ function validateOutputHandoff(
   );
 }
 
-export function validateFacilityAssetContract(
-  manifest: RecordValue,
-  issues: string[],
-) {
+export function validateFacilityAssetContract(manifest: RecordValue, issues: string[]) {
   validateSource(manifest.source, issues);
   validateRender(manifest.render, issues);
   validateFacilitySpatialContract(manifest.spatial, issues);

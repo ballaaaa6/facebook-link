@@ -54,11 +54,15 @@ export interface OfficeFacilitySourceFrameEvidence {
 }
 
 export interface OfficeFacilitySourceEvidence {
-  kind: "audited-original-mechanical-loop-master";
+  kind:
+    | "audited-original-mechanical-loop-master"
+    | "generated-isolated-clean-source";
   path: string;
   sha256: string;
   auditManifest: string;
-  extractionMethod: "full-master-component-ownership";
+  extractionMethod:
+    | "full-master-component-ownership"
+    | "generated-source-chroma-key";
   keyedSource: { file: string; sha256: string };
   ownershipMask: { file: string; sha256: string };
   frames: readonly OfficeFacilitySourceFrameEvidence[];
@@ -68,6 +72,7 @@ export type OfficeFacilityPartRole =
   | "static-shell"
   | "animation-viewport"
   | "pickup-tray-empty"
+  | "output-bay-empty"
   | "effect-overlay"
   | "held-output";
 
@@ -201,7 +206,7 @@ export interface OfficeFacilityProductionManifest {
       file: string;
       sha256: string;
       id: string;
-      status: "owner-review-f8-pending";
+      status: "owner-review-f8-pending" | "owner-approved";
     };
     coordinateSpace: "facility-runtime-pixel";
     unit: "pixel";
@@ -224,7 +229,8 @@ export interface OfficeFacilityProductionManifest {
     frames: readonly OfficeFacilityAnimationFrame[];
   };
   outputHandoff: {
-    pickupTrayPartId: string;
+    pickupTrayPartId?: string;
+    emptyOutputPartId?: string;
     heldAssetPartId: string;
     heldAssetId: string;
     heldAssetManifest: string;

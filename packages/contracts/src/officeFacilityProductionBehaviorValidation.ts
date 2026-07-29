@@ -59,7 +59,11 @@ function validateInteraction(value: unknown, issues: string[]) {
   );
 }
 
-function validateRoster(value: unknown, issues: string[]) {
+function validateRoster(
+  value: unknown,
+  outputHandoff: unknown,
+  issues: string[],
+) {
   requireValue(issues, isRecord(value), "rosterValidation must be an object");
   if (!isRecord(value)) return;
   requireValue(
@@ -89,7 +93,8 @@ function validateRoster(value: unknown, issues: string[]) {
   requireValue(
     issues,
     isRecord(value.heldPropAuthority)
-      && value.heldPropAuthority.assetId === "held.soda-can"
+      && isRecord(outputHandoff)
+      && value.heldPropAuthority.assetId === outputHandoff.heldAssetId
       && value.heldPropAuthority.runtimeScale === 1
       && hasSha256(value.heldPropAuthority.manifestSha256)
       && hasSha256(value.heldPropAuthority.assetSha256),
@@ -269,6 +274,6 @@ export function validateFacilityBehaviorContract(
   issues: string[],
 ) {
   validateInteraction(manifest.interaction, issues);
-  validateRoster(manifest.rosterValidation, issues);
+  validateRoster(manifest.rosterValidation, manifest.outputHandoff, issues);
   validateReservation(manifest.reservationValidation, issues);
 }

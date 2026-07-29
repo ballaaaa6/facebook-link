@@ -10,6 +10,36 @@ const manifest = JSON.parse(readFileSync(new URL(
   "../../../assets/game/manifests/office-facility-vending-u01.json",
   import.meta.url,
 ), "utf8")) as OfficeFacilityProductionManifest;
+const waterManifest = JSON.parse(readFileSync(new URL(
+  "../../../assets/game/manifests/office-facility-water-dispenser-w01.json",
+  import.meta.url,
+), "utf8")) as OfficeFacilityProductionManifest;
+
+test("Water W01 supports a generated tall clean source and independent F8 review", () => {
+  assert.deepEqual(validateOfficeFacilityProductionManifest(waterManifest), []);
+  assert.equal(waterManifest.familyId, "dispenser.water");
+  assert.equal(waterManifest.revision, "w01");
+  assert.equal(waterManifest.status, "owner-review-f8-pending");
+  assert.equal(waterManifest.ownerDecision, null);
+  assert.equal(waterManifest.source.kind, "generated-isolated-clean-source");
+  assert.equal(waterManifest.source.extractionMethod, "generated-source-chroma-key");
+  assert.deepEqual(waterManifest.render.runtimeCanvas, [64, 128]);
+  assert.deepEqual(waterManifest.geometry.physicalScale, {
+    width: 1,
+    depth: 1,
+    height: 4,
+    unit: "tile",
+  });
+  assert.equal(
+    waterManifest.outputHandoff.heldAssetId,
+    "held.water-cup-clear",
+  );
+  assert.ok(waterManifest.outputHandoff.emptyOutputPartId);
+  assert.equal(waterManifest.outputHandoff.pickupTrayPartId, undefined);
+  assert.equal(waterManifest.gates.F8.status, "pending-owner-review");
+  assert.equal(waterManifest.permissions.otherFacilityFamilies, false);
+  assert.equal(waterManifest.permissions.furnitureOnlyRoom, false);
+});
 
 test("Vending U01-r03 records its independent F8 approval", () => {
   assert.deepEqual(validateOfficeFacilityProductionManifest(manifest), []);
