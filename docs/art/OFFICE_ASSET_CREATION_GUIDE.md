@@ -534,6 +534,9 @@ the exact start and end states, provide a reversible path, define interruption
 behavior, and return to an exact endpoint without pivot, footprint, collision,
 or support drift. Refrigerator R01 uses
 `immutableShell + lowerDoor[state]` with `closed`, `half`, and `open` states.
+Its isolated production proves both before-pickup and after-pickup
+interruption paths; neither path may release the reservation while the door or
+held-prop lifecycle is incomplete.
 
 Author animated display furniture in two passes:
 

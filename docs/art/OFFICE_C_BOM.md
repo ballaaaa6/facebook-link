@@ -102,10 +102,12 @@ physical `W x D x H`. Source art is cropped and scaled uniformly into the
 declared render box; it must never be stretched independently by axis.
 
 Refrigerator R01 is an owner-directed override recorded on 2026-07-30. Its
-visual/motion preflight uses a fresh front identity, immutable empty shell, and
-separate closed/half/open lower-door states. It remains at zero active slots
-until its own F8 approval; approval would advance Facility v1 from `17/20` to
-`18/20`.
+owner-approved visual/motion preflight uses a fresh front identity, immutable
+empty shell, and separate closed/half/open lower-door states. Production
+revision `r01-production-r01` passes F4-F7 with 108 base poses, 108 H01 prop
+overlays, and a thirty-second capacity-one proof. It remains at zero active
+slots while F8 owner review is pending; approval would advance Facility v1
+from `17/20` to `18/20`.
 
 ### Decorative motion plan
 

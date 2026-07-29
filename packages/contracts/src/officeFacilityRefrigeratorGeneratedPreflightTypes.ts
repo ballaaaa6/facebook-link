@@ -7,8 +7,8 @@ export interface OfficeFacilityRefrigeratorGeneratedPreflightManifest {
   id: "office.facility.refrigerator.r01";
   familyId: "refrigerator.modern";
   revision: "r01-generated-motion-preflight-r01";
-  status: "visual-motion-preflight-owner-review";
-  productionStage: "visual-motion-preflight";
+  status: "visual-motion-preflight-owner-approved";
+  productionStage: "visual-motion-preflight-approved";
   developmentOnly: true;
   activeOfficePromotion: false;
   ownerDirective: {
@@ -161,10 +161,21 @@ export interface OfficeFacilityRefrigeratorGeneratedPreflightManifest {
     frameCount?: number;
     durationMs?: number;
   })[];
-  visualApproval: null;
+  visualApproval: {
+    status: "owner-approved";
+    approvedOn: "2026-07-30";
+    approvedRevision: "r01-generated-motion-preflight-r01";
+    scope: "exact-review-output-hashes";
+    decision: string;
+    approvedReviewHashes: readonly {
+      path: string;
+      sha256: string;
+    }[];
+    unlocks: readonly ["F4", "F5", "F6", "F7", "F8"];
+  };
   permissions: {
     ownerReview: true;
-    fullSystemBuild: false;
+    fullSystemBuild: true;
     reservationSlotActivation: false;
     furnitureOnlyRoom: false;
     activeOfficePromotion: false;

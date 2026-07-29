@@ -31,6 +31,9 @@ test("Refrigerator R01 is a fresh front-only 2x2x4 F0-F3 preflight", () => {
   assert.equal(manifest.gates.F3.status, "passed");
   assert.equal(manifest.gates.F4.status, "blocked");
   assert.equal(manifest.gates.F10.status, "blocked");
+  assert.equal(manifest.status, "visual-motion-preflight-owner-approved");
+  assert.equal(manifest.permissions.fullSystemBuild, true);
+  assert.equal(manifest.visualApproval.approvedReviewHashes.length, 10);
 });
 
 test("Refrigerator R01 door motion is modular and reversible", () => {

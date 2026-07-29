@@ -197,7 +197,7 @@ try {
         ?.facilityV1ReadySlotsBeforeRefrigeratorF8 === 17
       && manifest.productionTargets
         ?.facilityV1ReadySlotsAfterRefrigeratorF8Target === 18
-      && manifest.permissions?.fullSystemBuild === false
+      && manifest.permissions?.fullSystemBuild === true
       && manifest.permissions?.reservationSlotActivation === false,
     "Refrigerator R01 fabricated production or slot authority",
   );
@@ -287,14 +287,15 @@ try {
 
   const docs = readText(docsPath);
   add(
-    docs.includes("Status: visual and motion preflight pending owner review")
+    docs.includes("Status: visual and motion preflight owner-approved")
       && docs.includes("`2 x 2 x 4`")
       && docs.includes("immutableShell + lowerDoor[state]")
       && docs.includes("held.water-bottle")
       && docs.includes("held.yogurt-box")
       && docs.includes("17/20")
       && docs.includes("18/20")
-      && docs.includes("F4-F10 remain blocked"),
+      && docs.includes("F4-F8 isolated production is authorized")
+      && docs.includes("F9-F10 remain blocked"),
     "Refrigerator R01 documentation is incomplete",
   );
 
@@ -307,6 +308,7 @@ try {
         === "python scripts/build-office-facility-refrigerator-r01.py --check"
       && packageJson.scripts?.["art:facility:refrigerator:r01:check"]
         === "node scripts/office-facility-refrigerator-r01-check.mjs"
+          + " && node scripts/office-facility-refrigerator-r01-production-check.mjs"
       && packageJson.scripts?.check.includes(
         "npm run art:facility:refrigerator:r01:check",
       ),
@@ -321,9 +323,9 @@ if (failures.length) {
   process.exitCode = 1;
 } else {
   process.stdout.write(
-    "Refrigerator R01 visual-motion preflight OK: fresh 2x2x4 front family, "
+    "Refrigerator R01 owner-approved visual-motion preflight OK: fresh 2x2x4 front family, "
       + "modular reversible door, existing I01/H01 handoff, stable two-prop "
-      + "visit selection, F0-F3 passed, zero active slots, and F4-F10 "
-      + "blocked.\n",
+      + "visit selection, exact review hashes locked, production unlocked, "
+      + "zero active slots, and F4-F10 blocked.\n",
   );
 }

@@ -254,11 +254,15 @@ identity, a fixed `2 x 2` footprint, and a reversible finite lower-door action.
 The preflight composes `immutableShell + lowerDoor[state]` through closed,
 half, and open states. It reuses the approved I01 per-frame hand coordinates
 and the existing H01 `held.water-bottle` and `held.yogurt-box`; it creates no
-new attachment system. R01 passes F0-F3 and awaits owner review of the exact
-visual/motion hashes. It contributes zero slots while pending; F4-F10 remain
-blocked. Approval of the later production revision would advance Facility v1
-from `17/20` to `18/20`. See
-`docs/art/OFFICE_FACILITY_REFRIGERATOR_R01.md`.
+new attachment system. The owner approved the exact ten preflight hashes on
+2026-07-30. Production revision `r01-production-r01` consumes only those
+approved pixels and passes F4-F7 with `18 x 6 = 108` base I01 cases, `108`
+two-prop H01 overlay cases, stable visit selection, both interruption paths,
+and a thirty-second capacity-one blocked/failure/release/retry proof. F8 owner
+review remains pending, so R01 contributes zero slots and Facility v1 remains
+`17/20`. Approval of the exact fifteen production review hashes would advance
+Facility v1 to `18/20`; F9-F10 remain blocked. See
+`docs/art/OFFICE_FACILITY_REFRIGERATOR_R01_PRODUCTION.md`.
 
 ## Recommended family order
 

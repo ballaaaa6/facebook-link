@@ -3,8 +3,8 @@
   "id": "office.facility.refrigerator.r01",
   "familyId": "refrigerator.modern",
   "revision": "r01-generated-motion-preflight-r01",
-  "status": "visual-motion-preflight-owner-review",
-  "productionStage": "visual-motion-preflight",
+  "status": "visual-motion-preflight-owner-approved",
+  "productionStage": "visual-motion-preflight-approved",
   "developmentOnly": true,
   "activeOfficePromotion": false,
   "ownerDirective": {
@@ -967,10 +967,65 @@
       "durationMs": 260
     }
   ],
-  "visualApproval": null,
+  "visualApproval": {
+    "status": "owner-approved",
+    "approvedOn": "2026-07-30",
+    "approvedRevision": "r01-generated-motion-preflight-r01",
+    "scope": "exact-review-output-hashes",
+    "decision": "Approve the fresh 2x2x4 refrigerator identity, modular finite lower-door motion, and existing I01/H01 handoff.",
+    "approvedReviewHashes": [
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/01-new-identity-closed-open.png",
+        "sha256": "b33e71112b2243558fd54a6e9403396c42b15ccdcb27c62205c9ac88d1fd4ea5"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/02-alpha-source-ownership.png",
+        "sha256": "17e369c66b06f3b7b34b364863731eeb9133511f69b4f27048739356a51a1d1a"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/03-modular-shell-door-interior.png",
+        "sha256": "13b5fbad4e9994348862155ea6cc168c3cfecbf6466366a72a2d31e3212c6626"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/04-scale-2x2x4-and-geometry.png",
+        "sha256": "9dc60bc96117a2f31cf9a34d20b5cf019f1d83b3b1a896bb6294d25bcc37877e"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/05-finite-open-close-transition.png",
+        "sha256": "79ae0273bde8398f80267dc1b9fd07137918ad268842e4e3bdecb25962f26924"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/06-i01-h01-reuse-and-random-pool.png",
+        "sha256": "d6b4a32b5e702ca3223ade272de6dd4ef708cb3ffe654b701102ea9fbcbb73d1"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/07-approach-output-and-interruption.png",
+        "sha256": "5d1857533126650942200c6711211ccc8f18559835b2ff3b182173591aa2a5fd"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/08-anna-open-pick-close-timeline.png",
+        "sha256": "8f6b58a9e62a24653ee630bf756dc778cefddc2dc71cfb6fd3aa318cdf9127d8"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/refrigerator-open-close.gif",
+        "sha256": "cd5429af37363cac3a08ada64ba1457cd8217fae10a4b231006eb529144cb02e"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/anna-open-pick-close.gif",
+        "sha256": "e6b07d302f5d91434c69057359826812b8205ac006c79e86577b23726b5bd8d0"
+      }
+    ],
+    "unlocks": [
+      "F4",
+      "F5",
+      "F6",
+      "F7",
+      "F8"
+    ]
+  },
   "permissions": {
     "ownerReview": true,
-    "fullSystemBuild": false,
+    "fullSystemBuild": true,
     "reservationSlotActivation": false,
     "furnitureOnlyRoom": false,
     "activeOfficePromotion": false

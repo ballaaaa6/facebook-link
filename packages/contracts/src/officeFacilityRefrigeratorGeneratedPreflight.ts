@@ -229,8 +229,8 @@ export function validateOfficeFacilityRefrigeratorGeneratedPreflightManifest(
   );
   add(
     issues,
-    value.status === "visual-motion-preflight-owner-review"
-      && value.productionStage === "visual-motion-preflight"
+    value.status === "visual-motion-preflight-owner-approved"
+      && value.productionStage === "visual-motion-preflight-approved"
       && value.developmentOnly === true
       && value.activeOfficePromotion === false,
     "Refrigerator R01 must remain an isolated preflight",
@@ -321,12 +321,14 @@ export function validateOfficeFacilityRefrigeratorGeneratedPreflightManifest(
   const outputs = Array.isArray(value.reviewOutputs)
     ? value.reviewOutputs
     : [];
+  const evidence = Array.isArray(value.reviewEvidence)
+    ? value.reviewEvidence
+    : [];
   add(
     issues,
     outputs.length === 10
-      && Array.isArray(value.reviewEvidence)
-      && value.reviewEvidence.length === 10
-      && value.reviewEvidence.every(
+      && evidence.length === 10
+      && evidence.every(
         (entry, index) =>
           record(entry)
           && entry.file === outputs[index]
@@ -334,17 +336,31 @@ export function validateOfficeFacilityRefrigeratorGeneratedPreflightManifest(
       ),
     "Refrigerator R01 review evidence changed",
   );
+  const approval = value.visualApproval;
   add(
     issues,
-    value.visualApproval === null,
-    "Refrigerator R01 visual approval must await owner review",
+    record(approval)
+      && approval.status === "owner-approved"
+      && approval.approvedOn === "2026-07-30"
+      && approval.approvedRevision === "r01-generated-motion-preflight-r01"
+      && approval.scope === "exact-review-output-hashes"
+      && typeof approval.decision === "string"
+      && Array.isArray(approval.approvedReviewHashes)
+      && approval.approvedReviewHashes.length === 10
+      && approval.approvedReviewHashes.every((entry, index) =>
+        record(entry)
+        && entry.path === outputs[index]
+        && record(evidence[index])
+        && entry.sha256 === evidence[index].sha256)
+      && same(approval.unlocks, ["F4", "F5", "F6", "F7", "F8"]),
+    "Refrigerator R01 visual approval must lock exact review hashes",
   );
   const permissions = value.permissions;
   add(
     issues,
     record(permissions)
       && permissions.ownerReview === true
-      && permissions.fullSystemBuild === false
+      && permissions.fullSystemBuild === true
       && permissions.reservationSlotActivation === false
       && permissions.furnitureOnlyRoom === false
       && permissions.activeOfficePromotion === false,

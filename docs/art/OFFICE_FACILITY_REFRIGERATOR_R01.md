@@ -1,6 +1,6 @@
 # Office Facility Refrigerator R01
 
-Status: visual and motion preflight pending owner review
+Status: visual and motion preflight owner-approved
 
 Revision: `r01-generated-motion-preflight-r01`
 
@@ -182,11 +182,13 @@ coordinate reuse. It is not the 18-character production validation.
 | F9 furniture-only room | blocked |
 | F10 Active Office | blocked |
 
-F4-F10 remain blocked until the owner approves the exact R01 preflight hashes.
+The owner approved the exact R01 visual and motion preflight hashes on
+2026-07-30. F4-F8 isolated production is authorized; the preflight itself
+continues to contribute zero reservation slots. F9-F10 remain blocked.
 
-## Production target after visual approval
+## Authorized production revision
 
-The next batch will build:
+The isolated `r01-production-r01` batch now builds:
 
 - 18 actors x 6 `interact-front` frames = 108 pose cases;
 - 18 actors x 3 visible-prop frames x 2 props = 108 prop-overlay cases;
@@ -200,5 +202,9 @@ one slot only after F8 approval:
 ```text
 17/20 -> 18/20
 ```
+
+The production review remains pending at F8 and contributes zero slots until
+the owner approves its exact hashes. See
+`docs/art/OFFICE_FACILITY_REFRIGERATOR_R01_PRODUCTION.md`.
 
 F9 and Active Office remain outside this revision.

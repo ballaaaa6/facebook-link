@@ -1300,8 +1300,8 @@ def build() -> dict[Path, bytes]:
         "id": "office.facility.refrigerator.r01",
         "familyId": "refrigerator.modern",
         "revision": "r01-generated-motion-preflight-r01",
-        "status": "visual-motion-preflight-owner-review",
-        "productionStage": "visual-motion-preflight",
+        "status": "visual-motion-preflight-owner-approved",
+        "productionStage": "visual-motion-preflight-approved",
         "developmentOnly": True,
         "activeOfficePromotion": False,
         "ownerDirective": {
@@ -1500,10 +1500,27 @@ def build() -> dict[Path, bytes]:
             rp(INTERACTION_GIF_PATH),
         ],
         "reviewEvidence": review_evidence,
-        "visualApproval": None,
+        "visualApproval": {
+            "status": "owner-approved",
+            "approvedOn": "2026-07-30",
+            "approvedRevision": "r01-generated-motion-preflight-r01",
+            "scope": "exact-review-output-hashes",
+            "decision": (
+                "Approve the fresh 2x2x4 refrigerator identity, modular "
+                "finite lower-door motion, and existing I01/H01 handoff."
+            ),
+            "approvedReviewHashes": [
+                {
+                    "path": evidence["file"],
+                    "sha256": evidence["sha256"],
+                }
+                for evidence in review_evidence
+            ],
+            "unlocks": ["F4", "F5", "F6", "F7", "F8"],
+        },
         "permissions": {
             "ownerReview": True,
-            "fullSystemBuild": False,
+            "fullSystemBuild": True,
             "reservationSlotActivation": False,
             "furnitureOnlyRoom": False,
             "activeOfficePromotion": False,

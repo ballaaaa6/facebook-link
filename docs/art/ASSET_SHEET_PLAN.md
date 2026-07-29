@@ -443,6 +443,9 @@ must not be represented as an A-D-A seam loop. The selected H01 water bottle or
 yogurt box appears first at the facility output parent, moves to the existing
 I01 hand anchor, and is removed before departure. No new hand-coordinate
 system, carry-walk row, or side-facing facility row is added.
+The R01 production matrix validates 108 base I01 poses and 108 H01 overlays.
+Its thirty-second capacity-one proof must release output, held prop, door
+state, and reservation before reporting an empty terminal state.
 
 ## Character Sheets
 
