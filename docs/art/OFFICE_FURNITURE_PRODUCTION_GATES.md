@@ -197,6 +197,21 @@ borrow approval from an earlier one.
 - Show footprints, approach cells, reservations, routes, and decor separately.
 - The room must not import Active Office or reference-only library assets.
 
+Current candidate (2026-07-30):
+
+- `office.furniture-only-room.f9.v1` is pending owner review;
+- its 10-workstation island uses the `C12:S19` two-row authority;
+- 14 facility objects expose 20 independent reservation slots;
+- Server N02 and Arcade G02 use approved left views in a right-edge service
+  bank, while front-only families face open approach aisles;
+- all `10 x 20 = 200` workstation-to-slot routes are reachable;
+- the 300-second, 21-user reservation proof ends with zero double bookings and
+  zero leaks; and
+- people, character sprite references, and Active Office promotion remain
+  disabled.
+
+See `docs/art/OFFICE_FURNITURE_ONLY_ROOM_F9_V1.md`.
+
 ### F10 — Active integration
 
 - Add people only after the furniture-only candidate passes.

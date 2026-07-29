@@ -23,6 +23,7 @@ export * from "./officeFacilityRefrigeratorProduction.ts";
 export * from "./officeFacilityPrinterGeneratedPreflight.ts";
 export * from "./officeFacilityPrinterProduction.ts";
 export * from "./officeFurnitureProduction.ts";
+export * from "./officeFurnitureOnlyRoomF9.ts";
 export * from "./officeSurfaceFurnitureProduction.ts";
 export * from "./officeSemanticGridV2.ts";
 export * from "./officeStructure.ts";

@@ -153,11 +153,12 @@ sequence, or game. The modern furniture skin uses brighter surfaces and
 controlled cyan, teal, lime, amber, and coral accents while retaining the
 same shell silhouette, anchor, and collision footprint in every frame.
 
-The current map is still an implementation baseline with ten active agents
-and two reserved workstation modules. Expanding to the 15-person target
-requires a map/workstation expansion in the same change set as the facility
-placement; it must not be assumed that the current 36 x 24 map already
-supports 15 people.
+The F9 furniture-only candidate deliberately retains the ten-workstation
+two-row authority in `C12:S19`; it does not expand to the rejected
+15-workstation arrangement. Its new `43 x 24` map places all 14 Facility v1
+objects and 20 reservation slots while keeping people hidden. Any future
+workstation-capacity expansion is a separate owner decision and must not be
+inferred from Facility v1 completion.
 
 ### Non-reservation decoration
 
