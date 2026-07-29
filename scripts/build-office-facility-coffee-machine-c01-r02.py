@@ -66,7 +66,7 @@ SOURCE_PATH = (
     / "assets/art/layout-references/"
     "office-facility-coffee-machine-c01-r02-source.png"
 )
-SOURCE_SHA256 = "833fdf374a47487929fe67c9f9c7eba4f154754ddc2d234170444a80af438cc2"
+SOURCE_SHA256 = "853dc1f3b3ad768f758a92cea333d531a46f0ffe50613f4e268810ae4a3af6a5"
 OUTPUT_ROOT = (
     ROOT
     / "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02"
@@ -90,11 +90,13 @@ HELD_ASSET_ID = "held.coffee-mug"
 FRAME_IDS = ("a", "b", "c", "d")
 SOURCE_AUTHORITY_ID = "owner-directive:coffee-c01-r02-2x2x2-clean-source"
 GENERATION_PROMPT = (
-    "Create one completely original broad and deep commercial coffee machine "
-    "whose visible base fills a 2x2 support block. Use a front-biased "
-    "orthographic game camera, warm ivory, navy, brass, an empty output bay, "
-    "and a flat removable green background. No cup, liquid, steam, person, "
-    "counter, text, logo, shadow, rejected Coffee pixels, or Active Office."
+    "Create one completely original 2x2x2 commercial coffee machine with an "
+    "architectural twin-pillar bridge silhouette. Use deep forest-green side "
+    "towers, a satin-black control canopy, brushed stainless trim, a recessed "
+    "empty output bay, a long front drip platform, a front-biased orthographic "
+    "game camera, and a flat removable green background. No ivory, cream, "
+    "beige, tan, terrazzo, wood, stone, cup, liquid, steam, person, counter, "
+    "text, logo, shadow, rejected Coffee pixels, or Active Office."
 )
 REJECTED_RECORDS = (
     *tuple(
@@ -123,10 +125,10 @@ FACILITY_OUTPUT_SOCKET = (48, 61)
 FACILITY_EFFECT_SOCKET = (48, 55)
 INTERACTION_TARGET_SOCKET = (48, 90)
 
-VIEWPORT_BOX = (560, 680, 976, 1240)
+VIEWPORT_BOX = (440, 750, 1096, 930)
 VIEWPORT_RUNTIME_BOX = tuple(value // RUNTIME_DIVISOR for value in VIEWPORT_BOX)
-INDICATOR_BOX = (650, 700, 900, 850)
-OUTPUT_BOX = (480, 800, 1056, 1240)
+INDICATOR_BOX = (700, 775, 836, 875)
+OUTPUT_BOX = (525, 925, 1011, 1245)
 
 COUNTER_RUNTIME_ROOT = (
     ROOT / "assets/game/processed/office-furniture-counter-bar-a01-r02/runtime"
@@ -368,7 +370,7 @@ def code_effects() -> tuple[Image.Image, Image.Image, Image.Image]:
     ready_draw = ImageDraw.Draw(ready)
     for radius, alpha in ((28, 35), (18, 80), (9, 235)):
         ready_draw.ellipse(
-            (665 - radius, 760 - radius, 665 + radius, 760 + radius),
+            (768 - radius, 820 - radius, 768 + radius, 820 + radius),
             fill=(255, 179, 52, alpha),
         )
     stream_draw = ImageDraw.Draw(stream)
@@ -1671,10 +1673,13 @@ def build_manifest_and_images() -> dict[Path, bytes]:
             "extractionMethod": "generated-source-chroma-key",
             "generation": {
                 "tool": "OpenAI built-in image generation",
-                "mode": "generate-then-single-proportion-edit",
+                "mode": "generated-option-b-selected-by-owner",
                 "prompt": GENERATION_PROMPT,
                 "generatedOn": "2026-07-29",
-                "ownerDirective": "Replace C01 with a true 2x2x2 machine.",
+                "ownerDirective": (
+                    "Replace the prior C01-r02 visual with the selected "
+                    "dark-green twin-pillar machine; keep its system unchanged."
+                ),
             },
             "keyedSource": file_evidence(KEYED_SOURCE_PATH, outputs),
             "ownershipMask": file_evidence(OWNERSHIP_PATH, outputs),

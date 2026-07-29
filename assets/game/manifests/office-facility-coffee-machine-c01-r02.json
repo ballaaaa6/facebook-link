@@ -18,23 +18,23 @@
   "source": {
     "kind": "generated-isolated-clean-source",
     "path": "assets/art/layout-references/office-facility-coffee-machine-c01-r02-source.png",
-    "sha256": "833fdf374a47487929fe67c9f9c7eba4f154754ddc2d234170444a80af438cc2",
+    "sha256": "853dc1f3b3ad768f758a92cea333d531a46f0ffe50613f4e268810ae4a3af6a5",
     "auditManifest": "assets/game/manifests/office-furniture-master-audit-v1.json",
     "extractionMethod": "generated-source-chroma-key",
     "generation": {
       "tool": "OpenAI built-in image generation",
-      "mode": "generate-then-single-proportion-edit",
-      "prompt": "Create one completely original broad and deep commercial coffee machine whose visible base fills a 2x2 support block. Use a front-biased orthographic game camera, warm ivory, navy, brass, an empty output bay, and a flat removable green background. No cup, liquid, steam, person, counter, text, logo, shadow, rejected Coffee pixels, or Active Office.",
+      "mode": "generated-option-b-selected-by-owner",
+      "prompt": "Create one completely original 2x2x2 commercial coffee machine with an architectural twin-pillar bridge silhouette. Use deep forest-green side towers, a satin-black control canopy, brushed stainless trim, a recessed empty output bay, a long front drip platform, a front-biased orthographic game camera, and a flat removable green background. No ivory, cream, beige, tan, terrazzo, wood, stone, cup, liquid, steam, person, counter, text, logo, shadow, rejected Coffee pixels, or Active Office.",
       "generatedOn": "2026-07-29",
-      "ownerDirective": "Replace C01 with a true 2x2x2 machine."
+      "ownerDirective": "Replace the prior C01-r02 visual with the selected dark-green twin-pillar machine; keep its system unchanged."
     },
     "keyedSource": {
       "file": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/source/coffee-machine-c01-r02.master-keyed.png",
-      "sha256": "fc8e711956d9da41a37816017e8166b543237d9bd8772913d40380d7b3aaa069"
+      "sha256": "e65264de2e40f4e1e1e6d41094a2dee39367b5796d3376fe4eb342d97363358a"
     },
     "ownershipMask": {
       "file": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/source/coffee-machine-c01-r02.ownership-mask.png",
-      "sha256": "00ce44fa92b2a64d8becd979c30e2df61ebd9bcfdec1bd24b7c7abb55dcac517"
+      "sha256": "f952097cba436f4b5d13eabbc884b3c2e1dc9b2dac9852a17f1f85dce026a083"
     },
     "frames": [
       {
@@ -47,40 +47,40 @@
           1254
         ],
         "ownedBounds": [
-          128,
-          110,
-          1118,
-          1133
+          140,
+          132,
+          1113,
+          1095
         ],
         "selectedComponentCount": 1,
-        "selectedPixelCount": 923078,
+        "selectedPixelCount": 894110,
         "touchesNominalCellBoundary": false,
         "touchesMasterBoundary": false,
         "sourcePixelsResampled": false,
         "padding": {
-          "left": 273,
-          "top": 449,
-          "right": 273,
+          "left": 281,
+          "top": 509,
+          "right": 282,
           "bottom": 64
         },
         "keyColor": [
           3,
-          240,
+          249,
           3
         ],
         "chroma": {
-          "transparentPixels": 649438,
-          "partialAlphaPixels": 3901,
-          "visiblePixels": 923078
+          "transparentPixels": 678406,
+          "partialAlphaPixels": 194352,
+          "visiblePixels": 894110
         },
         "normalizedFromBounds": [
-          128,
-          110,
-          1118,
-          1133
+          140,
+          132,
+          1113,
+          1095
         ],
         "authoringCutout": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/source/coffee-machine-c01-r02.source-frame-a.png",
-        "authoringCutoutSha256": "d1b557240b0d2a66cbcde125f62c93f2ccd9b96d499d427292f9f11025979250"
+        "authoringCutoutSha256": "d437f5b2bf79e18e0515f828d364bea409db87f4e62824966e79323cfe9d1f85"
       },
       {
         "frameId": "b",
@@ -92,40 +92,40 @@
           1254
         ],
         "ownedBounds": [
-          128,
-          110,
-          1118,
-          1133
+          140,
+          132,
+          1113,
+          1095
         ],
         "selectedComponentCount": 1,
-        "selectedPixelCount": 923078,
+        "selectedPixelCount": 894110,
         "touchesNominalCellBoundary": false,
         "touchesMasterBoundary": false,
         "sourcePixelsResampled": false,
         "padding": {
-          "left": 273,
-          "top": 449,
-          "right": 273,
+          "left": 281,
+          "top": 509,
+          "right": 282,
           "bottom": 64
         },
         "keyColor": [
           3,
-          240,
+          249,
           3
         ],
         "chroma": {
-          "transparentPixels": 649438,
-          "partialAlphaPixels": 3901,
-          "visiblePixels": 923078
+          "transparentPixels": 678406,
+          "partialAlphaPixels": 194352,
+          "visiblePixels": 894110
         },
         "normalizedFromBounds": [
-          128,
-          110,
-          1118,
-          1133
+          140,
+          132,
+          1113,
+          1095
         ],
         "authoringCutout": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/source/coffee-machine-c01-r02.source-frame-b.png",
-        "authoringCutoutSha256": "d1b557240b0d2a66cbcde125f62c93f2ccd9b96d499d427292f9f11025979250"
+        "authoringCutoutSha256": "d437f5b2bf79e18e0515f828d364bea409db87f4e62824966e79323cfe9d1f85"
       },
       {
         "frameId": "c",
@@ -137,40 +137,40 @@
           1254
         ],
         "ownedBounds": [
-          128,
-          110,
-          1118,
-          1133
+          140,
+          132,
+          1113,
+          1095
         ],
         "selectedComponentCount": 1,
-        "selectedPixelCount": 923078,
+        "selectedPixelCount": 894110,
         "touchesNominalCellBoundary": false,
         "touchesMasterBoundary": false,
         "sourcePixelsResampled": false,
         "padding": {
-          "left": 273,
-          "top": 449,
-          "right": 273,
+          "left": 281,
+          "top": 509,
+          "right": 282,
           "bottom": 64
         },
         "keyColor": [
           3,
-          240,
+          249,
           3
         ],
         "chroma": {
-          "transparentPixels": 649438,
-          "partialAlphaPixels": 3901,
-          "visiblePixels": 923078
+          "transparentPixels": 678406,
+          "partialAlphaPixels": 194352,
+          "visiblePixels": 894110
         },
         "normalizedFromBounds": [
-          128,
-          110,
-          1118,
-          1133
+          140,
+          132,
+          1113,
+          1095
         ],
         "authoringCutout": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/source/coffee-machine-c01-r02.source-frame-c.png",
-        "authoringCutoutSha256": "d1b557240b0d2a66cbcde125f62c93f2ccd9b96d499d427292f9f11025979250"
+        "authoringCutoutSha256": "d437f5b2bf79e18e0515f828d364bea409db87f4e62824966e79323cfe9d1f85"
       },
       {
         "frameId": "d",
@@ -182,40 +182,40 @@
           1254
         ],
         "ownedBounds": [
-          128,
-          110,
-          1118,
-          1133
+          140,
+          132,
+          1113,
+          1095
         ],
         "selectedComponentCount": 1,
-        "selectedPixelCount": 923078,
+        "selectedPixelCount": 894110,
         "touchesNominalCellBoundary": false,
         "touchesMasterBoundary": false,
         "sourcePixelsResampled": false,
         "padding": {
-          "left": 273,
-          "top": 449,
-          "right": 273,
+          "left": 281,
+          "top": 509,
+          "right": 282,
           "bottom": 64
         },
         "keyColor": [
           3,
-          240,
+          249,
           3
         ],
         "chroma": {
-          "transparentPixels": 649438,
-          "partialAlphaPixels": 3901,
-          "visiblePixels": 923078
+          "transparentPixels": 678406,
+          "partialAlphaPixels": 194352,
+          "visiblePixels": 894110
         },
         "normalizedFromBounds": [
-          128,
-          110,
-          1118,
-          1133
+          140,
+          132,
+          1113,
+          1095
         ],
         "authoringCutout": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/source/coffee-machine-c01-r02.source-frame-d.png",
-        "authoringCutoutSha256": "d1b557240b0d2a66cbcde125f62c93f2ccd9b96d499d427292f9f11025979250"
+        "authoringCutoutSha256": "d437f5b2bf79e18e0515f828d364bea409db87f4e62824966e79323cfe9d1f85"
       }
     ]
   },
@@ -275,8 +275,8 @@
         55
       ],
       "viewport.origin": [
-        35,
-        42
+        27,
+        46
       ]
     },
     "supportParent": {
@@ -499,7 +499,7 @@
     ],
     "visibleBoundsRuntime": [
       17,
-      28,
+      31,
       79,
       92
     ],
@@ -521,9 +521,9 @@
       "state": "static",
       "sourceFrame": "a",
       "authoringFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/parts/coffee-machine-c01-r02.shell-static.png",
-      "authoringSha256": "092d60c366dd5fa4170e3e2137b0c4f31ccb0bb7c8b28b549be205f775c09186",
+      "authoringSha256": "13e5393139cf888d631667ffd71201acd46fb7be29d500da1f0adaa15f36fd29",
       "runtimeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/runtime/parts/coffee-machine-c01-r02.shell-static.png",
-      "runtimeSha256": "0fec6b559d68693f03d03e6caf0be0fe08ed85292dd32d4815006411599dff7a"
+      "runtimeSha256": "edcd448254756828e4c4a99619b9ae45adc2dfeb1d3fad67d4114a2bf80ec574"
     },
     {
       "id": "coffee-machine-c01-r02.viewport-a",
@@ -531,9 +531,9 @@
       "state": "a",
       "sourceFrame": "a",
       "authoringFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/parts/coffee-machine-c01-r02.viewport-a.png",
-      "authoringSha256": "44f593af78bcc3f50ab6bec14ad552fb0af3e8359a837ce8a48a40e91d0400b5",
+      "authoringSha256": "0a2706b838ac1ea7d4b999259288a6399214b3246f5334e0c6d1f60ca850b1d3",
       "runtimeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/runtime/parts/coffee-machine-c01-r02.viewport-a.png",
-      "runtimeSha256": "bf43f2b391c6fedefd63d2eacdbdd3a3907f899cb7dc7161323aa424b656d92d"
+      "runtimeSha256": "df1fee7c4f2802fda91703b50807947e55d674f6b11a2ac6ef05720fec34b018"
     },
     {
       "id": "coffee-machine-c01-r02.viewport-b",
@@ -541,9 +541,9 @@
       "state": "b",
       "sourceFrame": "b",
       "authoringFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/parts/coffee-machine-c01-r02.viewport-b.png",
-      "authoringSha256": "dd55ac81836cac387c3bcdf6b42126539d4a2357bcbc16abb486c6f6a0411903",
+      "authoringSha256": "34b337e4817b21bd3950d6b0d483c8c6018f6e421c7f52f3d4de13e3bc5ceb0b",
       "runtimeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/runtime/parts/coffee-machine-c01-r02.viewport-b.png",
-      "runtimeSha256": "ebb7864e5dc551df4173f3e34306e0201def6d7136d3a379b6802fea890409a5"
+      "runtimeSha256": "0ace809456e7ae54e5a9564d49ccf11e513956dbc770541b9f9d7e7914ed6d49"
     },
     {
       "id": "coffee-machine-c01-r02.viewport-c",
@@ -551,9 +551,9 @@
       "state": "c",
       "sourceFrame": "c",
       "authoringFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/parts/coffee-machine-c01-r02.viewport-c.png",
-      "authoringSha256": "dd55ac81836cac387c3bcdf6b42126539d4a2357bcbc16abb486c6f6a0411903",
+      "authoringSha256": "34b337e4817b21bd3950d6b0d483c8c6018f6e421c7f52f3d4de13e3bc5ceb0b",
       "runtimeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/runtime/parts/coffee-machine-c01-r02.viewport-c.png",
-      "runtimeSha256": "ebb7864e5dc551df4173f3e34306e0201def6d7136d3a379b6802fea890409a5"
+      "runtimeSha256": "0ace809456e7ae54e5a9564d49ccf11e513956dbc770541b9f9d7e7914ed6d49"
     },
     {
       "id": "coffee-machine-c01-r02.viewport-d",
@@ -561,9 +561,9 @@
       "state": "d",
       "sourceFrame": "d",
       "authoringFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/parts/coffee-machine-c01-r02.viewport-d.png",
-      "authoringSha256": "44f593af78bcc3f50ab6bec14ad552fb0af3e8359a837ce8a48a40e91d0400b5",
+      "authoringSha256": "0a2706b838ac1ea7d4b999259288a6399214b3246f5334e0c6d1f60ca850b1d3",
       "runtimeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/runtime/parts/coffee-machine-c01-r02.viewport-d.png",
-      "runtimeSha256": "bf43f2b391c6fedefd63d2eacdbdd3a3907f899cb7dc7161323aa424b656d92d"
+      "runtimeSha256": "df1fee7c4f2802fda91703b50807947e55d674f6b11a2ac6ef05720fec34b018"
     },
     {
       "id": "coffee-machine-c01-r02.output-bay-empty",
@@ -571,9 +571,9 @@
       "state": "empty",
       "sourceFrame": "a",
       "authoringFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/parts/coffee-machine-c01-r02.output-bay-empty.png",
-      "authoringSha256": "23e7c1a350772af3d9e930ff1bcdd5da33962497c13e69f55c316e9adeefcc63",
+      "authoringSha256": "2a2153fed022f500cc3f0b59b9e29ff1a29bf07c2b022756f36d3c8a433f8154",
       "runtimeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/runtime/parts/coffee-machine-c01-r02.output-bay-empty.png",
-      "runtimeSha256": "6c55b4f8f31837e7ba605af150731a7baa2afd8038926085631736af48ab4c8a"
+      "runtimeSha256": "b0f43b8d0e442693597fd2e32603a0724da3882b24c1892c45bb0847e434caf4"
     },
     {
       "id": "coffee-machine-c01-r02.effect-coffee-stream",
@@ -610,16 +610,16 @@
     "frameCount": 4,
     "shellPartId": "coffee-machine-c01-r02.shell-static",
     "viewportBoundsAuthoring": [
-      560,
-      680,
-      976,
-      1240
+      440,
+      750,
+      1096,
+      930
     ],
     "viewportBoundsRuntime": [
-      35,
-      42,
-      61,
-      77
+      27,
+      46,
+      68,
+      58
     ],
     "shellStableAcrossFrames": true,
     "basePivotStableAcrossFrames": true,
@@ -632,9 +632,9 @@
         "effectPartIds": [],
         "durationMs": 650,
         "authoringCompositeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/composites/coffee-machine-c01-r02.frame-a.png",
-        "authoringCompositeSha256": "d1b557240b0d2a66cbcde125f62c93f2ccd9b96d499d427292f9f11025979250",
+        "authoringCompositeSha256": "d437f5b2bf79e18e0515f828d364bea409db87f4e62824966e79323cfe9d1f85",
         "runtimeCompositeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/runtime/composites/coffee-machine-c01-r02.frame-a.png",
-        "runtimeCompositeSha256": "b07029efc71c1bb9c346f440e2821e320813b0047608f1f3c50128d0c28b544a"
+        "runtimeCompositeSha256": "0d866731d813a30644d9ac4c83703c69ae85afa9c0e3097948ec39568e4ff020"
       },
       {
         "id": "coffee-machine-c01-r02.frame-b",
@@ -642,9 +642,9 @@
         "effectPartIds": [],
         "durationMs": 650,
         "authoringCompositeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/composites/coffee-machine-c01-r02.frame-b.png",
-        "authoringCompositeSha256": "a0c54f7d846b17120001858a36da0439dbd6bd0e086adf45eb3de18058d3cf3e",
+        "authoringCompositeSha256": "c1cc59e7b9d4721565857fd9bae106542fb138184e41a07ee3dd35cc13e26da8",
         "runtimeCompositeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/runtime/composites/coffee-machine-c01-r02.frame-b.png",
-        "runtimeCompositeSha256": "9e3a9d49d30cfaf4a73558de7109fd115071aec68d69ae1671f0d66be8b46a69"
+        "runtimeCompositeSha256": "da87abb3bbbfd476c8166949269f89267cdf1bffff96ef7b437e7afccbfa3d4c"
       },
       {
         "id": "coffee-machine-c01-r02.frame-c",
@@ -655,9 +655,9 @@
         ],
         "durationMs": 450,
         "authoringCompositeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/composites/coffee-machine-c01-r02.frame-c.png",
-        "authoringCompositeSha256": "98962775cab07f5fe2da7d56f42a9c6bf0d8fab5bca39c3f9b050951a59aceb3",
+        "authoringCompositeSha256": "91a712a9ee5da6ffba606340d99ed004da6f6f2fe891feeccc6787d300605dae",
         "runtimeCompositeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/runtime/composites/coffee-machine-c01-r02.frame-c.png",
-        "runtimeCompositeSha256": "50da5e87c87a163fa522ba38a2286506593a246d9440d24227a57cd1250ed6fe"
+        "runtimeCompositeSha256": "4aaee6598bd34575829948450ff22bc8fcd89bd738beab80bf0f24b9fa08308d"
       },
       {
         "id": "coffee-machine-c01-r02.frame-d",
@@ -665,9 +665,9 @@
         "effectPartIds": [],
         "durationMs": 650,
         "authoringCompositeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/authoring/composites/coffee-machine-c01-r02.frame-d.png",
-        "authoringCompositeSha256": "d1b557240b0d2a66cbcde125f62c93f2ccd9b96d499d427292f9f11025979250",
+        "authoringCompositeSha256": "d437f5b2bf79e18e0515f828d364bea409db87f4e62824966e79323cfe9d1f85",
         "runtimeCompositeFile": "assets/game/processed/office-facility-family-v1/coffee-machine-c01-r02/runtime/composites/coffee-machine-c01-r02.frame-d.png",
-        "runtimeCompositeSha256": "b07029efc71c1bb9c346f440e2821e320813b0047608f1f3c50128d0c28b544a"
+        "runtimeCompositeSha256": "0d866731d813a30644d9ac4c83703c69ae85afa9c0e3097948ec39568e4ff020"
       }
     ]
   },

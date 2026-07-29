@@ -22,7 +22,7 @@ const heldPath = "assets/game/manifests/office-held-props-h01.json";
 const sourcePath =
   "assets/art/layout-references/office-facility-coffee-machine-c01-r02-source.png";
 const expectedSourceSha =
-  "833fdf374a47487929fe67c9f9c7eba4f154754ddc2d234170444a80af438cc2";
+  "853dc1f3b3ad768f758a92cea333d531a46f0ffe50613f4e268810ae4a3af6a5";
 
 function readJson(path) {
   return JSON.parse(readFileSync(resolve(root, path), "utf8"));
@@ -84,6 +84,11 @@ try {
         === "generated-source-chroma-key"
       && manifest.source?.generation?.tool
         === "OpenAI built-in image generation"
+      && manifest.source?.generation?.mode
+        === "generated-option-b-selected-by-owner"
+      && manifest.source?.generation?.prompt.includes(
+        "architectural twin-pillar bridge silhouette",
+      )
       && sha256(sourcePath) === expectedSourceSha,
     "Coffee C01-r02 generated clean source authority changed",
   );
@@ -175,7 +180,7 @@ try {
       && JSON.stringify(manifest.visualOccupancy?.physicalScale)
         === "[2,2,2]"
       && JSON.stringify(manifest.visualOccupancy?.visibleBoundsRuntime)
-        === "[17,28,79,92]"
+        === "[17,31,79,92]"
       && manifest.visualOccupancy?.sourceAspectPreserved === true
       && manifest.visualOccupancy?.uniformScalingOnly === true,
     "Coffee C01-r02 2x2x2 visual occupancy changed",

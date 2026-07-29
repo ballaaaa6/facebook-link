@@ -23,21 +23,25 @@ The only machine-pixel source is:
 
 SHA-256:
 
-`833fdf374a47487929fe67c9f9c7eba4f154754ddc2d234170444a80af438cc2`
+`853dc1f3b3ad768f758a92cea333d531a46f0ffe50613f4e268810ae4a3af6a5`
 
-The built-in ImageGen workflow created one isolated ivory, navy, and brass
-commercial Coffee machine on a flat green chroma background. A single
-proportion edit made the visible silhouette nearly square by raising the rear
-housing and extending the front serving deck.
+The owner selected ImageGen Option B on 2026-07-29 to replace the first
+C01-r02 visual. The selected source is an isolated deep forest-green,
+satin-black, and brushed-stainless commercial Coffee machine on a flat green
+chroma background. It keeps the same C01-r02 system authority and uses zero
+pixels from the replaced visual.
 
 The production prompt locks:
 
 - one original commercial Coffee machine;
-- broad two-tile width and deep two-tile serving deck;
+- architectural twin-pillar bridge silhouette;
+- broad two-tile width, deep two-tile body, and long front drip platform;
 - front-biased orthographic game camera with a visible top plane;
-- empty output bay;
-- warm ivory, deep navy, and restrained brass;
+- recessed empty output bay;
+- deep forest-green side towers, satin-black control canopy, and brushed
+  stainless trim;
 - flat removable green background;
+- no ivory, cream, beige, tan, terrazzo, wood, or stone colors;
 - no cup, Coffee, steam, person, counter, text, logo, shadow, rejected pixels,
   or Active Office.
 
@@ -49,7 +53,7 @@ normalizes without resampling, and derives all production parts.
 - physical scale: `2 x 2 x 2` tiles;
 - placement plane: `furniture-surface`;
 - runtime canvas: `96 x 96`;
-- meaningful runtime silhouette: `[17, 28, 79, 92]`, or `62 x 64` pixels;
+- meaningful runtime silhouette: `[17, 31, 79, 92]`, or `62 x 61` pixels;
 - parent support block: `span.block.03-04`;
 - occupied cells: back 03-04 and front 03-04;
 - parent anchor: front-edge midpoint `[128, 86]`;
@@ -69,11 +73,11 @@ failures.
 
 ## Parts and behavior
 
-C01-r02 keeps these parts separate:
+C01-r02 keeps these parts separate after the visual replacement:
 
-- static shell;
-- local viewport A-D;
-- empty output bay;
+- static twin-pillar shell, bridge top, and drip platform;
+- local control-canopy viewport A-D;
+- recessed empty output bay;
 - ready indicator;
 - Coffee stream;
 - steam;
