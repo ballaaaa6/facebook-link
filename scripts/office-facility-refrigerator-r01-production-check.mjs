@@ -201,16 +201,23 @@ try {
   add(
     manifest.gates?.F4?.status === "passed"
       && manifest.gates?.F7?.status === "passed"
-      && manifest.gates?.F8?.status === "pending-owner-review"
+      && manifest.gates?.F8?.status === "passed"
       && manifest.gates?.F9?.status === "blocked"
       && manifest.gates?.F10?.status === "blocked"
-      && manifest.interaction?.reservationSlotContribution === 0
+      && manifest.interaction?.reservationSlotContribution === 1
       && manifest.interaction
         ?.plannedReservationSlotContributionAfterF8 === 1
-      && manifest.permissions?.reservationSlotActivation === false
+      && manifest.interaction?.facilityV1ReadySlotsCurrent === 18
+      && manifest.permissions?.reservationSlotActivation === true
       && manifest.permissions?.activeOfficePromotion === false
-      && manifest.ownerDecision === null,
-    "Refrigerator R01 production exceeded F8 review authority",
+      && manifest.ownerDecision?.decision === "approved"
+      && manifest.ownerDecision?.approvedReviewHashes?.length === 15
+      && manifest.ownerDecision?.approvedReviewHashes?.every(
+        (entry, index) =>
+          entry.path === manifest.reviewEvidence?.[index]?.path
+          && entry.sha256 === manifest.reviewEvidence?.[index]?.sha256,
+      ),
+    "Refrigerator R01 production F8 approval is stale",
   );
 
   const processedAssets = collectProcessedAssets(manifest);
@@ -295,11 +302,10 @@ try {
   );
   const docs = readText(docsPath);
   add(
-    docs.includes("Status: F4-F7 complete; F8 owner review pending")
+    docs.includes("Status: F8 owner-approved")
       && docs.includes("108 base pose cases")
       && docs.includes("108 prop-overlay cases")
       && docs.includes("30-second")
-      && docs.includes("17/20")
       && docs.includes("18/20")
       && docs.includes("F9-F10 remain blocked"),
     "Refrigerator R01 production documentation is incomplete",
@@ -333,6 +339,6 @@ if (failures.length) {
   process.stdout.write(
     "Refrigerator R01 production check passed: exact approved 2x2x4 "
       + "parts, reversible door, 108 poses, 108 H01 overlays, 30-second "
-      + "capacity-one proof, F4-F7 passed, F8 pending, zero active slots.\n",
+      + "capacity-one proof, F4-F8 passed, one active Facility slot.\n",
   );
 }

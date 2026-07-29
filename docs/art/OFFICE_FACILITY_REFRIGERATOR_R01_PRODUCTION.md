@@ -1,6 +1,6 @@
 # Office Facility Refrigerator R01 Production
 
-Status: F4-F7 complete; F8 owner review pending
+Status: F8 owner-approved
 
 Revision: `r01-production-r01`
 
@@ -19,13 +19,12 @@ The owner approved the exact Refrigerator R01 visual and motion preflight
 hashes on 2026-07-30. Production consumes only those approved pixels. It does
 not generate, repair, redraw, rotate, or recrop the refrigerator.
 
-This revision passes F4-F7 and stops at F8 owner review:
+The owner approved this exact production revision and its fifteen review
+hashes on 2026-07-30:
 
-- F8 remains `pending-owner-review`;
-- the reservation slot contribution remains zero;
-- Facility v1 remains `17/20`;
-- approval of this exact production evidence would advance Facility v1 to
-  `18/20`; and
+- F8 is `passed`;
+- the reservation slot contribution is one;
+- Facility v1 is `18/20`; and
 - F9-F10 remain blocked.
 
 The preflight manifest, its ten approved review hashes, the source part hashes,
@@ -195,7 +194,7 @@ The files live under:
 `assets/art/layout-references/office-facility-family-v1/refrigerator-r01-production/`
 
 The manifest records every review hash, image size, GIF frame count, and frame
-duration. Approval must apply to this exact revision and evidence set.
+duration. Its owner decision locks all fifteen paths and hashes.
 
 ## Reproduction and validation
 

@@ -309,6 +309,7 @@ try {
       && packageJson.scripts?.["art:facility:refrigerator:r01:check"]
         === "node scripts/office-facility-refrigerator-r01-check.mjs"
           + " && node scripts/office-facility-refrigerator-r01-production-check.mjs"
+          + " && npm run art:facility:printer:p01:check"
       && packageJson.scripts?.check.includes(
         "npm run art:facility:refrigerator:r01:check",
       ),

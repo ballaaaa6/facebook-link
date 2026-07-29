@@ -220,7 +220,7 @@ metadata, parent slots, and layout validation are the enforceable contract.
 | Wall TV | `3 x 0 x 2` | `3 x 2` | `-` | Approximate inner viewport `80 x 40 px` in a `96 x 64 px` authoring render. |
 | Water dispenser | `1 x 1 x 3` | `1 x 3` | `1 x 1` | One front interaction slot. |
 | Coffee machine | `1 x 1 x 2` | `1 x 2` | `-` | Counter-supported; one front interaction slot belongs to the counter. |
-| Desktop printer | `2 x 1 x 1` | `2 x 1` | `-` | Credenza-supported; one pickup slot. |
+| Printer P01 floor copier | `2 x 2 x 4` | `3 x 4` | `2 x 2` | Front-only; one pickup slot per instance. |
 | Server rack | `2 x 1 x 3` | `2 x 3` | `2 x 1` | One inspection slot in front. |
 | Vending machine | `2 x 1 x 3` | `2 x 3` | `2 x 1` | One front interaction slot; one extra approach row. |
 | Refrigerator R01 | `2 x 2 x 4` | `3 x 4` | `2 x 2` | One front interaction slot; reversible finite lower-door swing stays inside one fixed motion region. |

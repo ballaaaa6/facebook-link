@@ -1,0 +1,198 @@
+# Office Facility Printer P01
+
+Status: F3 owner review pending
+
+Revision: `p01-generated-motion-preflight-r01`
+
+Authority:
+`assets/game/manifests/office-facility-printer-p01.json`
+
+Builder:
+`scripts/build-office-facility-printer-p01.py`
+
+Checker:
+`scripts/office-facility-printer-p01-check.mjs`
+
+## Scope and stop
+
+Printer P01 replaces the prior desktop-printer and credenza plan with one
+fresh large floor-standing multifunction copier family. The visual preflight
+uses:
+
+- physical scale `2 x 2 x 4` tiles;
+- fixed `2 x 2` floor footprint;
+- `3 x 4` render box;
+- front orientation only;
+- one front approach tile;
+- one user per instance; and
+- two planned instances with independent reservations.
+
+The current batch stops at F3 visual owner review. It builds no 18-character
+production matrix, no thirty-second contention proof, no F8 decision, and no
+active Printer reservation slots. Facility v1 remains `18/20`. If this visual
+identity passes, production may build the two independent slots needed to
+reach `20/20`. F9-F10 remain blocked.
+
+## Fresh source authority
+
+Both source images were created with the built-in `image_gen` workflow:
+
+1. `01-printer-front-anchor-chroma.png` is a text-only fresh identity.
+2. `02-printer-motion-parts-chroma.png` references only the first source and
+   provides the same shell identity plus isolated local motion children.
+
+Both use a flat `#ff00ff` chroma-key background. The deterministic builder
+removes that key locally and records both source hashes. It uses no original
+master, processed printer, credenza, foreign-family, rejected candidate, side
+view, Active Office, repair, or missing-asset fallback pixels.
+
+The exact prompts and reference relationship are recorded in:
+
+`assets/art/layout-references/office-facility-family-v1/printer-p01/source/IMAGEGEN_PROMPTS.md`
+
+## Visual identity
+
+P01 is a substantial freestanding office copier:
+
+- warm off-white rigid outer shell;
+- dark navy lower chassis and output bay;
+- restrained cyan and teal activity accents;
+- broad scanner lid;
+- local angled control screen;
+- central output opening;
+- lower paper drawers; and
+- no logo, text, baked paper, or baked envelope.
+
+The shell remains visually and spatially unchanged during all motion.
+
+## Modular motion formula
+
+The composition contract is:
+
+```text
+immutableShell
++ statusViewport[frame]
++ scannerLight[frame]
++ outputTray[state]
++ outputChild[state]
+```
+
+The screen and scanner light use an invoked processing seam loop:
+
+```text
+A -> B -> C -> D -> A
+```
+
+Only those two local children change during processing. The shell, base pivot,
+sort pivot, footprint, collision geometry, output socket, and world anchor
+remain fixed.
+
+The output tray is a finite action, not an ambient loop:
+
+```text
+idle
+-> wake
+-> processing
+-> tray-half
+-> tray-open
+-> output-ready
+-> pickup
+-> tray-half
+-> tray-closed
+-> idle
+```
+
+An interruption before pickup removes the facility output, reverses the tray,
+and releases the reservation. An interruption after pickup closes the tray
+before the held prop and reservation are released.
+
+## Existing I01/H01 reuse
+
+P01 uses I01 `interact-front` and creates no new character pose, root socket,
+hand socket, facility-specific coordinate system, magic offset, or fallback
+socket.
+
+The selected job determines the H01 output once per visit:
+
+| Job | H01 output |
+| --- | --- |
+| `print-document` | `held.paper-sheet` |
+| `prepare-mail` | `held.envelope` |
+
+Both props already use `midpoint-primary-secondary`. Attachment is:
+
+```text
+midpoint = floor((primaryGripSocket + secondaryGripSocket) / 2)
+propOrigin = midpoint - prop.visualCenterSocket
+attachmentDelta = [0,0]
+```
+
+The facility output first parents to `facility.output.primary` at `[48,66]`.
+Pickup reparents the same child to the actor's existing two-hand midpoint.
+The job output never changes randomly from one animation frame to another.
+
+## Spatial preview
+
+| Contract | Value |
+| --- | --- |
+| Runtime canvas | `96 x 128` pixels |
+| Base and sort pivot | `[48,124]` |
+| Output socket | `[48,66]` |
+| Footprint cells | four |
+| Stand | `[0,2]` |
+| Front approach | `[0,3]` |
+| Exit | `[1,3]` |
+| Route | `[1,3] -> [0,3] -> [0,2]` |
+| Route collisions | zero |
+
+The two-instance preview does not place either copier in a room. It only proves
+that one accepted family can later own `printer-01` and `printer-02`, with one
+capacity-one reservation per instance.
+
+## F3 review package
+
+1. `01-clean-front-identity.png`
+2. `02-source-ownership-alpha.png`
+3. `03-modular-parts.png`
+4. `04-scale-2x2x4.png`
+5. `05-footprint-approach-routes.png`
+6. `06-processing-seam-loop.png`
+7. `07-finite-output-sequence.png`
+8. `08-i01-h01-two-instance-preview.png`
+9. `printer-p01-processing-loop.gif`
+10. `printer-p01-anna-paper.gif`
+11. `printer-p01-anna-envelope.gif`
+
+The files live under:
+
+`assets/art/layout-references/office-facility-family-v1/printer-p01/`
+
+The manifest records every review hash, image size, GIF frame count, and frame
+duration. F3 approval must apply to this exact revision and evidence set.
+
+## Production work after visual approval
+
+F3 approval would authorize, but does not itself complete:
+
+- the complete 18-character by six-frame I01 matrix;
+- paper and envelope midpoint overlay validation;
+- two independent capacity-one reservations;
+- a thirty-second two-user blocked/failure/release/retry scenario;
+- both interruption paths;
+- close-ups, routes, roster, handoff, and timeline evidence; and
+- a separate F8 owner decision.
+
+Only F8 approval of that production package may activate the two Printer
+slots and advance Facility v1 from `18/20` to `20/20`.
+
+## Reproduction and validation
+
+```bash
+npm run art:facility:printer:p01
+npm run art:facility:printer:p01:rebuild:check
+npm run art:facility:printer:p01:check
+```
+
+The builder owns only the Printer P01 processed and review directories. It
+does not modify the furniture-only room, map, runtime registry, or Active
+Office.

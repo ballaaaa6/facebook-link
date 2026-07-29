@@ -40,8 +40,8 @@ export interface OfficeFacilityRefrigeratorProductionManifest {
   id: "office.facility.refrigerator.r01.production";
   familyId: "refrigerator.modern";
   revision: "r01-production-r01";
-  status: "production-review-pending-owner";
-  productionStage: "f7-complete-f8-owner-review";
+  status: "owner-approved";
+  productionStage: "f8-owner-approved";
   developmentOnly: true;
   activeOfficePromotion: false;
   preflightAuthority: {
@@ -165,10 +165,11 @@ export interface OfficeFacilityRefrigeratorProductionManifest {
     attachmentDelta: readonly [0, 0];
     foregroundMaskUses: 0;
     newCoordinateSystem: false;
-    reservationSlotContribution: 0;
+    reservationSlotContribution: 1;
     plannedReservationSlotContributionAfterF8: 1;
     facilityV1ReadySlotsBeforeRefrigeratorF8: 17;
     facilityV1ReadySlotsAfterRefrigeratorF8Target: 18;
+    facilityV1ReadySlotsCurrent: 18;
   };
   rosterValidation: {
     authorityManifest: string;
@@ -234,8 +235,8 @@ export interface OfficeFacilityRefrigeratorProductionManifest {
   }[];
   permissions: {
     familyLab: true;
-    ownerReview: true;
-    reservationSlotActivation: false;
+    ownerReview: false;
+    reservationSlotActivation: true;
     furnitureOnlyRoom: false;
     otherFacilityFamilies: false;
     activeOfficePromotion: false;
@@ -244,7 +245,17 @@ export interface OfficeFacilityRefrigeratorProductionManifest {
     file: string;
     imported: false;
   }[];
-  ownerDecision: null;
+  ownerDecision: {
+    decision: "approved";
+    decidedOn: "2026-07-30";
+    approvedRevision: "r01-production-r01";
+    scope: "exact-review-output-hashes";
+    approvedReviewHashes: readonly {
+      path: string;
+      sha256: string;
+    }[];
+    notes: string;
+  };
 }
 
 interface RefrigeratorPoseCase {

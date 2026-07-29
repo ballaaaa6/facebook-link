@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Build isolated Refrigerator R01 F4-F8 production-review evidence.
+"""Build isolated Refrigerator R01 F4-F8 owner-approved evidence.
 
 Production consumes only the exact owner-approved R01 preflight pixels. It
 proves the modular finite door action, I01/H01 socket reuse, 108 base poses,
 108 held-prop overlays, and a 30-second capacity-one reservation scenario.
-The batch stops at F8 owner review and contributes zero active Facility slots.
+The exact review package passed F8 on 2026-07-30 and contributes one Facility
+slot. F9 room placement and F10 Active Office promotion remain blocked.
 """
 
 from __future__ import annotations
@@ -1059,17 +1060,13 @@ def build_outputs() -> dict[Path, bytes]:
         "status": "blocked",
         "evidence": [reason],
     }
-    pending = lambda *evidence: {
-        "status": "pending-owner-review",
-        "evidence": list(evidence),
-    }
     manifest = {
         "schemaVersion": 1,
         "id": "office.facility.refrigerator.r01.production",
         "familyId": "refrigerator.modern",
         "revision": "r01-production-r01",
-        "status": "production-review-pending-owner",
-        "productionStage": "f7-complete-f8-owner-review",
+        "status": "owner-approved",
+        "productionStage": "f8-owner-approved",
         "developmentOnly": True,
         "activeOfficePromotion": False,
         "preflightAuthority": {
@@ -1163,10 +1160,11 @@ def build_outputs() -> dict[Path, bytes]:
             "attachmentDelta": [0, 0],
             "foregroundMaskUses": 0,
             "newCoordinateSystem": False,
-            "reservationSlotContribution": 0,
+            "reservationSlotContribution": 1,
             "plannedReservationSlotContributionAfterF8": 1,
             "facilityV1ReadySlotsBeforeRefrigeratorF8": 17,
             "facilityV1ReadySlotsAfterRefrigeratorF8Target": 18,
+            "facilityV1ReadySlotsCurrent": 18,
         },
         "rosterValidation": {
             "authorityManifest": repo_path(ACTION_MANIFEST_PATH),
@@ -1234,16 +1232,19 @@ def build_outputs() -> dict[Path, bytes]:
                 repo_path(REVIEW_ROOT / BOARD_SPECS[11][0]),
             ),
             "F7": passed(*(repo_path(path) for path in review_paths)),
-            "F8": pending(*(repo_path(path) for path in review_paths)),
-            "F9": blocked("Facility v1 remains 17/20 until R01 passes F8."),
+            "F8": passed(*(repo_path(path) for path in review_paths)),
+            "F9": blocked(
+                "Facility v1 is 18/20; Printer P01 must supply the final "
+                "two approved slots before room composition."
+            ),
             "F10": blocked("Active Office promotion remains forbidden."),
         },
         "reviewOutputs": [repo_path(path) for path in review_paths],
         "reviewEvidence": review_evidence,
         "permissions": {
             "familyLab": True,
-            "ownerReview": True,
-            "reservationSlotActivation": False,
+            "ownerReview": False,
+            "reservationSlotActivation": True,
             "furnitureOnlyRoom": False,
             "otherFacilityFamilies": False,
             "activeOfficePromotion": False,
@@ -1252,7 +1253,20 @@ def build_outputs() -> dict[Path, bytes]:
             {"file": path, "imported": False}
             for path in ACTIVE_OFFICE_FILES
         ],
-        "ownerDecision": None,
+        "ownerDecision": {
+            "decision": "approved",
+            "decidedOn": "2026-07-30",
+            "approvedRevision": "r01-production-r01",
+            "scope": "exact-review-output-hashes",
+            "approvedReviewHashes": [
+                {"path": entry["path"], "sha256": entry["sha256"]}
+                for entry in review_evidence
+            ],
+            "notes": (
+                "Owner accepted the Refrigerator R01 production review and "
+                "authorized its single Facility v1 reservation slot."
+            ),
+        },
     }
     outputs[MANIFEST_PATH] = json_bytes(manifest)
     return outputs
@@ -1299,14 +1313,14 @@ def main() -> int:
         print(
             "Refrigerator R01 production validated: approved 2x2x4 pixels, "
             "108 poses, 108 prop overlays, 30-second capacity-one proof, "
-            "F4-F7 passed, F8 pending, zero active slots."
+            "F4-F8 passed, one active Facility slot."
         )
         return 0
     write_outputs(outputs)
     print(
         "Refrigerator R01 production built: approved 2x2x4 pixels, "
         "108 poses, 108 prop overlays, 30-second capacity-one proof, "
-        "F4-F7 passed, F8 pending, zero active slots."
+        "F4-F8 passed, one active Facility slot."
     )
     return 0
 

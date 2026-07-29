@@ -12,18 +12,20 @@ const manifest = JSON.parse(readFileSync(new URL(
   import.meta.url,
 ), "utf8")) as OfficeFacilityRefrigeratorProductionManifest;
 
-test("Refrigerator R01 production stops at F8 owner review", () => {
+test("Refrigerator R01 production records exact F8 owner approval", () => {
   assert.deepEqual(
     validateOfficeFacilityRefrigeratorProductionManifest(manifest),
     [],
   );
   assert.equal(manifest.gates.F4.status, "passed");
   assert.equal(manifest.gates.F7.status, "passed");
-  assert.equal(manifest.gates.F8.status, "pending-owner-review");
+  assert.equal(manifest.gates.F8.status, "passed");
   assert.equal(manifest.gates.F9.status, "blocked");
-  assert.equal(manifest.permissions.reservationSlotActivation, false);
-  assert.equal(manifest.interaction.reservationSlotContribution, 0);
-  assert.equal(manifest.ownerDecision, null);
+  assert.equal(manifest.permissions.reservationSlotActivation, true);
+  assert.equal(manifest.interaction.reservationSlotContribution, 1);
+  assert.equal(manifest.interaction.facilityV1ReadySlotsCurrent, 18);
+  assert.equal(manifest.ownerDecision.decision, "approved");
+  assert.equal(manifest.ownerDecision.approvedReviewHashes.length, 15);
 });
 
 test("Refrigerator R01 production locks approved modular pixels", () => {
@@ -92,17 +94,17 @@ test("Refrigerator R01 proves capacity-one failure and retry", () => {
   assert.equal(proof.samples.at(-1)?.heldBy, null);
 });
 
-test("Refrigerator R01 rejects premature slot activation", () => {
+test("Refrigerator R01 rejects removal of its approved slot", () => {
   const invalid = structuredClone(manifest) as unknown as {
     interaction: Record<string, unknown>;
     permissions: Record<string, unknown>;
     gates: Record<string, Record<string, unknown>>;
   };
-  invalid.interaction.reservationSlotContribution = 1;
-  invalid.permissions.reservationSlotActivation = true;
-  invalid.gates.F8.status = "passed";
+  invalid.interaction.reservationSlotContribution = 0;
+  invalid.permissions.reservationSlotActivation = false;
+  invalid.gates.F8.status = "pending-owner-review";
   const issues = validateOfficeFacilityRefrigeratorProductionManifest(invalid);
-  assert.ok(issues.some((issue) => issue.includes("slot stop")));
+  assert.ok(issues.some((issue) => issue.includes("approved slot")));
   assert.ok(issues.some((issue) => issue.includes("gates.F8")));
   assert.ok(issues.some((issue) => issue.includes("permission")));
 });

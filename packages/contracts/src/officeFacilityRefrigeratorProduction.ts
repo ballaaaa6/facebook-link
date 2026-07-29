@@ -41,8 +41,8 @@ export function validateOfficeFacilityRefrigeratorProductionManifest(
       && value.id === "office.facility.refrigerator.r01.production"
       && value.familyId === "refrigerator.modern"
       && value.revision === "r01-production-r01"
-      && value.status === "production-review-pending-owner"
-      && value.productionStage === "f7-complete-f8-owner-review"
+      && value.status === "owner-approved"
+      && value.productionStage === "f8-owner-approved"
       && value.developmentOnly === true
       && value.activeOfficePromotion === false,
     "Refrigerator R01 production identity or F8 stop changed",
@@ -213,11 +213,12 @@ export function validateOfficeFacilityRefrigeratorProductionManifest(
       && same(interaction.attachmentDelta, [0, 0])
       && interaction.foregroundMaskUses === 0
       && interaction.newCoordinateSystem === false
-      && interaction.reservationSlotContribution === 0
+      && interaction.reservationSlotContribution === 1
       && interaction.plannedReservationSlotContributionAfterF8 === 1
       && interaction.facilityV1ReadySlotsBeforeRefrigeratorF8 === 17
-      && interaction.facilityV1ReadySlotsAfterRefrigeratorF8Target === 18,
-    "Refrigerator R01 production interaction or slot stop changed",
+      && interaction.facilityV1ReadySlotsAfterRefrigeratorF8Target === 18
+      && interaction.facilityV1ReadySlotsCurrent === 18,
+    "Refrigerator R01 production interaction or approved slot changed",
   );
 
   const roster = value.rosterValidation;
@@ -335,9 +336,8 @@ export function validateOfficeFacilityRefrigeratorProductionManifest(
     for (const gate of officeFacilityRefrigeratorProductionGates) {
       const expected = ["F0", "F1", "F2", "F3", "F4", "F5", "F6", "F7"]
           .includes(gate)
+        || gate === "F8"
         ? "passed"
-        : gate === "F8"
-        ? "pending-owner-review"
         : "blocked";
       add(
         issues,
@@ -356,6 +356,7 @@ export function validateOfficeFacilityRefrigeratorProductionManifest(
     ? value.reviewEvidence
     : [];
   const permissions = value.permissions;
+  const decision = value.ownerDecision;
   add(
     issues,
     outputs.length === 15
@@ -367,17 +368,29 @@ export function validateOfficeFacilityRefrigeratorProductionManifest(
         && point(entry.size))
       && record(permissions)
       && permissions.familyLab === true
-      && permissions.ownerReview === true
-      && permissions.reservationSlotActivation === false
+      && permissions.ownerReview === false
+      && permissions.reservationSlotActivation === true
       && permissions.furnitureOnlyRoom === false
       && permissions.otherFacilityFamilies === false
       && permissions.activeOfficePromotion === false
-      && value.ownerDecision === null
+      && record(decision)
+      && decision.decision === "approved"
+      && decision.decidedOn === "2026-07-30"
+      && decision.approvedRevision === "r01-production-r01"
+      && decision.scope === "exact-review-output-hashes"
+      && Array.isArray(decision.approvedReviewHashes)
+      && decision.approvedReviewHashes.length === 15
+      && decision.approvedReviewHashes.every((entry, index) =>
+        record(entry)
+        && entry.path === outputs[index]
+        && entry.sha256 === (evidence[index] as ValueRecord | undefined)
+          ?.sha256)
+      && typeof decision.notes === "string"
       && Array.isArray(value.activeOfficeEvidence)
       && value.activeOfficeEvidence.every(
         (entry) => record(entry) && entry.imported === false,
       ),
-    "Refrigerator R01 F8 review set or permission stop changed",
+    "Refrigerator R01 F8 approval set or permission stop changed",
   );
   return issues;
 }

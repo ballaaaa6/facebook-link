@@ -3,8 +3,8 @@
   "id": "office.facility.refrigerator.r01.production",
   "familyId": "refrigerator.modern",
   "revision": "r01-production-r01",
-  "status": "production-review-pending-owner",
-  "productionStage": "f7-complete-f8-owner-review",
+  "status": "owner-approved",
+  "productionStage": "f8-owner-approved",
   "developmentOnly": true,
   "activeOfficePromotion": false,
   "preflightAuthority": {
@@ -346,10 +346,11 @@
     ],
     "foregroundMaskUses": 0,
     "newCoordinateSystem": false,
-    "reservationSlotContribution": 0,
+    "reservationSlotContribution": 1,
     "plannedReservationSlotContributionAfterF8": 1,
     "facilityV1ReadySlotsBeforeRefrigeratorF8": 17,
-    "facilityV1ReadySlotsAfterRefrigeratorF8Target": 18
+    "facilityV1ReadySlotsAfterRefrigeratorF8Target": 18,
+    "facilityV1ReadySlotsCurrent": 18
   },
   "rosterValidation": {
     "authorityManifest": "assets/game/manifests/office-character-action-sockets-i01.json",
@@ -9479,7 +9480,7 @@
       ]
     },
     "F8": {
-      "status": "pending-owner-review",
+      "status": "passed",
       "evidence": [
         "assets/art/layout-references/office-facility-family-v1/refrigerator-r01-production/01-approved-preflight-hash-lock.png",
         "assets/art/layout-references/office-facility-family-v1/refrigerator-r01-production/02-clean-closed-half-open.png",
@@ -9501,7 +9502,7 @@
     "F9": {
       "status": "blocked",
       "evidence": [
-        "Facility v1 remains 17/20 until R01 passes F8."
+        "Facility v1 is 18/20; Printer P01 must supply the final two approved slots before room composition."
       ]
     },
     "F10": {
@@ -9673,8 +9674,8 @@
   ],
   "permissions": {
     "familyLab": true,
-    "ownerReview": true,
-    "reservationSlotActivation": false,
+    "ownerReview": false,
+    "reservationSlotActivation": true,
     "furnitureOnlyRoom": false,
     "otherFacilityFamilies": false,
     "activeOfficePromotion": false
@@ -9693,5 +9694,73 @@
       "imported": false
     }
   ],
-  "ownerDecision": null
+  "ownerDecision": {
+    "decision": "approved",
+    "decidedOn": "2026-07-30",
+    "approvedRevision": "r01-production-r01",
+    "scope": "exact-review-output-hashes",
+    "approvedReviewHashes": [
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01-production/01-approved-preflight-hash-lock.png",
+        "sha256": "b77ae716f58323c50bbd7d59a38881aefba9d207c4207ac66281d5047ae277af"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01-production/02-clean-closed-half-open.png",
+        "sha256": "b6d892b554395ec1d2fdc8b912ac7045ff2f9de4c7d36ad0b4dc3027a6a4cfed"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01-production/03-production-parts-alpha.png",
+        "sha256": "2abb364cdae13e83f8c778910c8cd256d960bd3332c76f7329b2f97abeef911e"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01-production/04-geometry-footprint-pivot-swing.png",
+        "sha256": "b6a4a2b09971fa3c5052e8722543faa85750e21c1ed54ac87bf0c3c82e346001"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01-production/05-finite-transition-proof.png",
+        "sha256": "6375ba409955f60cff9d99856279f8b30589181cede1f64e96978bfe2a975d84"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01-production/06-routes-sockets-handoff.png",
+        "sha256": "95b6ec8e994277e7c45b5d74f74fc192992e535db13f7f3642fad2454623033c"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01-production/07-roster-108-cases.png",
+        "sha256": "68506ae0a7405f3228aa4817520000f4ff9ad460c86f925e895eb10877a52eeb"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01-production/08-prop-overlay-108-cases.png",
+        "sha256": "623736377f3c07cc7e5654246273abef2e7fc1585c9df08dbc373d90568daa8a"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01-production/09-water-yogurt-closeups.png",
+        "sha256": "bb83d7e332bd80b0ff100ec296ce80334fba7a81a313f9d0091ca1872acd7eb3"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01-production/10-selection-stability-alternation.png",
+        "sha256": "ebed6a93b7be5152dcd8d1e64d81246a189ac665e1f25782df9f429860622522"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01-production/11-interruption-before-after-pickup.png",
+        "sha256": "7a88e5a43278adb29abf657cbd97252e14350a63440037c519a3a2d1a711808e"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01-production/12-two-user-reservation-30s.png",
+        "sha256": "a9d008b10f8d92662f4ec1de4fdf3020a6fb03d908b0b7c88b7f98c53fe0c43a"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01-production/refrigerator-r01-production-water.gif",
+        "sha256": "c7cf37dfc797ebfe751f8f639a186b95b1235ad27d0e1d152aa7eedc444bb414"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01-production/refrigerator-r01-production-yogurt.gif",
+        "sha256": "d1aa4dbc28c686f00be5dc8f4ba631bc433b5a7f19cae6bed99a6c6a17e1064f"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01-production/refrigerator-r01-production-two-user.gif",
+        "sha256": "2e07654ac32ae468ddeafebbda17688191888aa3e927e8894760a865a2f930a6"
+      }
+    ],
+    "notes": "Owner accepted the Refrigerator R01 production review and authorized its single Facility v1 reservation slot."
+  }
 }

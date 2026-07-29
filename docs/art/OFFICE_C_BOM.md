@@ -40,10 +40,10 @@ single accepted asset for repeated objects unless a deliberate visual variant
 is required. The five sofa seats remain five independently reservable slots
 even when the sofa is split into two furniture objects.
 
-Current Facility v1 readiness is `17/20` after Server Rack N02 F8 approval.
-The remaining three slots are Refrigerator R01 (`1`) and Printer P01 (`2`).
-N01 remains superseded evidence. N02 production provides two independently
-reservable capacity-one instances from one owner-approved family.
+Current Facility v1 readiness is `18/20` after Refrigerator R01 F8 approval.
+The remaining two slots belong to Printer P01. N01 remains superseded
+evidence. N02 production provides two independently reservable capacity-one
+instances from one owner-approved family.
 
 ### Facility asset generation plan
 
@@ -54,7 +54,7 @@ objects. The numbers below are generation cells, not map placements:
 | --- | ---: | --- | ---: |
 | Water dispenser | 2 | Reuse `dispenser.water` | 1 existing |
 | Coffee machine | 1 | Reuse `machine.coffee` | 1 existing |
-| Printer | 2 | Reuse `printer.desktop` plus paper overlay | 1 existing |
+| Printer | 2 | Create one P01 floor-copier family; place twice after F8 | 1 fresh |
 | Server rack | 2 | Reuse `server.rack` plus status overlay | 1 existing |
 | Vending machine | 1 | Create one facility asset | 1 new |
 | Refrigerator | 1 | Create one facility asset | 1 new |
@@ -76,6 +76,14 @@ footprint variants are placed in authored directions. Do not generate extra
 side or rear views unless the expanded 15-workstation map introduces an actual
 placement or interaction-facing requirement for them.
 
+Printer P01 is a 2026-07-30 owner-directed replacement for the old desktop
+printer and parent-credenza plan. Its fresh front-only visual preflight uses
+one immutable shell, four local screen frames, four local scanner-light frames,
+and closed/half/open tray children. It remains at zero slots while F3 visual
+review is pending. A later F4-F8 production revision must prove both
+independently reservable instances before its two slots can advance Facility
+v1 from `18/20` to `20/20`.
+
 ### Facility scale contracts
 
 The scale contract in `docs/art/OFFICE_ASSET_CREATION_GUIDE.md` and
@@ -87,7 +95,7 @@ Facility v1 uses these locked physical scales:
 | --- | ---: | ---: | ---: | ---: |
 | Water dispenser | `1 x 1 x 3` | `1 x 3` | `1 x 1` | One front tile |
 | Coffee machine | `1 x 1 x 2` | `1 x 2` | Parent counter | One counter-facing slot |
-| Printer | `2 x 1 x 1` | `2 x 1` | Parent credenza | One pickup slot |
+| Printer P01 | `2 x 2 x 4` | `3 x 4` | `2 x 2` | One front pickup tile |
 | Server rack | `2 x 1 x 3` | `2 x 3` | `2 x 1` | One front tile |
 | Vending machine | `2 x 1 x 3` | `2 x 3` | `2 x 1` | One front tile |
 | Refrigerator R01 | `2 x 2 x 4` | `3 x 4` | `2 x 2` | One front tile; finite lower-door swing |
@@ -104,10 +112,9 @@ declared render box; it must never be stretched independently by axis.
 Refrigerator R01 is an owner-directed override recorded on 2026-07-30. Its
 owner-approved visual/motion preflight uses a fresh front identity, immutable
 empty shell, and separate closed/half/open lower-door states. Production
-revision `r01-production-r01` passes F4-F7 with 108 base poses, 108 H01 prop
-overlays, and a thirty-second capacity-one proof. It remains at zero active
-slots while F8 owner review is pending; approval would advance Facility v1
-from `17/20` to `18/20`.
+revision `r01-production-r01` passes F4-F8 with 108 base poses, 108 H01 prop
+overlays, and a thirty-second capacity-one proof. Its one slot is active,
+advancing Facility v1 from `17/20` to `18/20`.
 
 ### Decorative motion plan
 

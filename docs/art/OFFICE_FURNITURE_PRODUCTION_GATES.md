@@ -258,11 +258,23 @@ new attachment system. The owner approved the exact ten preflight hashes on
 2026-07-30. Production revision `r01-production-r01` consumes only those
 approved pixels and passes F4-F7 with `18 x 6 = 108` base I01 cases, `108`
 two-prop H01 overlay cases, stable visit selection, both interruption paths,
-and a thirty-second capacity-one blocked/failure/release/retry proof. F8 owner
-review remains pending, so R01 contributes zero slots and Facility v1 remains
-`17/20`. Approval of the exact fifteen production review hashes would advance
-Facility v1 to `18/20`; F9-F10 remain blocked. See
+and a thirty-second capacity-one blocked/failure/release/retry proof. The owner
+approved the exact fifteen production review hashes at F8 on 2026-07-30. R01
+contributes one slot and advances Facility v1 from `17/20` to `18/20`.
+Printer P01 must provide the final two slots before F9; F9-F10 remain blocked. See
 `docs/art/OFFICE_FACILITY_REFRIGERATOR_R01_PRODUCTION.md`.
+
+Printer P01 is the next isolated family. On 2026-07-30 the owner replaced the
+desktop-printer and credenza plan with a fresh front-only `2 x 2 x 4`
+floor-standing copier. Revision `p01-generated-motion-preflight-r01` composes
+an immutable shell, local A-D-A status viewport, local A-D-A scanner light,
+finite closed/half/open tray children, and job-driven H01 paper or envelope
+output. It reuses I01 `interact-front` and the existing
+`midpoint-primary-secondary` prop rule. F0-F2 pass and F3 visual owner review
+is pending. The preflight builds zero roster cases, zero reservation seconds,
+and zero active slots; Facility v1 remains `18/20`. Production, two-slot
+activation, F9, F10, and Active Office remain blocked. See
+`docs/art/OFFICE_FACILITY_PRINTER_P01.md`.
 
 ## Recommended family order
 
