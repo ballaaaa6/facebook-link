@@ -223,10 +223,11 @@ Current seating execution:
 seat-capable families while preserving an independent manifest and F8 decision
 for every family. The batch covers reading chair, pouf, beanbag, stool,
 two-seat sofa, three-seat sofa, and the front/back four-seat review table.
-All seven passed F0-F7 on 2026-07-29. The two-seat and three-seat sofas passed
-F8 that day; the other five families remain pending at F8. Every family remains
+All seven passed F0-F8 independently on 2026-07-29. Every family remains
 blocked from F9-F10. This is not a room-level batch and does not weaken the
-per-family rule above.
+per-family rule above. The next isolated family is the front-only
+`vending.machine.modern` U01 facility vertical slice; it must stop for its own
+F8 decision before any other upright machine begins.
 
 ## Required evidence per family
 

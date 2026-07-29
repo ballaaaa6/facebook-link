@@ -42,6 +42,30 @@ BACK_ROW = 13
 
 
 OWNER_DECISIONS: dict[str, dict[str, str]] = {
+    "chair.reading": {
+        "decision": "approved",
+        "decidedOn": "2026-07-29",
+        "notes": (
+            "Owner approved the latest Seating S01 reading chair result."
+        ),
+    },
+    "pouf.lounge": {
+        "decision": "approved",
+        "decidedOn": "2026-07-29",
+        "notes": "Owner approved the latest Seating S01 lounge pouf result.",
+    },
+    "beanbag.lounge": {
+        "decision": "approved",
+        "decidedOn": "2026-07-29",
+        "notes": (
+            "Owner approved the latest Seating S01 lounge beanbag result."
+        ),
+    },
+    "stool.side": {
+        "decision": "approved",
+        "decidedOn": "2026-07-29",
+        "notes": "Owner approved the latest Seating S01 tall stool result.",
+    },
     "sofa.modern.two-seat": {
         "decision": "approved",
         "decidedOn": "2026-07-29",
@@ -54,6 +78,14 @@ OWNER_DECISIONS: dict[str, dict[str, str]] = {
         "decidedOn": "2026-07-29",
         "notes": (
             "Owner approved the latest Seating S01 three-seat sofa result."
+        ),
+    },
+    "table.review.long.modern": {
+        "decision": "approved",
+        "decidedOn": "2026-07-29",
+        "notes": (
+            "Owner approved the latest Seating S01 four-seat review table "
+            "result in its front-and-back seated context."
         ),
     },
 }
@@ -1692,7 +1724,7 @@ def build_family(
         manifest["contextPermission"] = {
             "r05WorkstationScopeRemainsUnchanged": True,
             "reviewTableContextOnly": True,
-            "ownerApprovalRequired": True,
+            "ownerApprovalRequired": owner_decision is None,
         }
     manifest_path = ROOT / "assets/game/manifests" / spec["manifest"]
     outputs[manifest_path] = json_bytes(manifest)
@@ -1757,8 +1789,16 @@ def build_outputs() -> dict[Path, bytes]:
     batch = {
         "version": 1,
         "id": "office-furniture-seating-s01",
-        "status": "owner-review-f8-pending",
+        "status": (
+            "owner-approved"
+            if all(
+                manifest["status"] == "owner-approved"
+                for _, manifest, _ in family_results
+            )
+            else "owner-review-f8-pending"
+        ),
         "createdOn": "2026-07-29",
+        "ownerApprovalCompletedOn": "2026-07-29",
         "scope": "isolated-furniture-family-labs",
         "familyCount": len(FAMILY_SPECS),
         "ownerApprovedFamilyCount": sum(
@@ -1830,7 +1870,10 @@ def build_outputs() -> dict[Path, bytes]:
         ],
         "permissions": {
             "familyLabs": True,
-            "ownerReview": True,
+            "ownerReview": any(
+                manifest["status"] == "owner-review-f8-pending"
+                for _, manifest, _ in family_results
+            ),
             "furnitureOnlyRoom": False,
             "activeOfficePromotion": False,
         },
@@ -1867,17 +1910,14 @@ def main() -> None:
             raise SystemExit("\n".join(failures))
         print(
             "Seating S01 outputs are current: seven families, thirteen seats, "
-            "1,404 pose cases, two F8 approvals, five pending reviews, and "
-            "Active Office unchanged."
+            "1,404 pose cases, all seven F8 approvals, and Active Office "
+            "unchanged."
         )
         return
     write_outputs(outputs)
     print(f"Wrote {len(outputs)} Seating S01 files.")
     print(f"Batch manifest: {repo_path(BATCH_MANIFEST_PATH)}")
-    print(
-        "Status: both sofa families are owner-approved at F8; five families "
-        "await separate F8 review."
-    )
+    print("Status: all seven Seating S01 families are owner-approved at F8.")
 
 
 if __name__ == "__main__":

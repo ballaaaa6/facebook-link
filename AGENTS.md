@@ -52,7 +52,7 @@ Cloudflare coordinates work. It does not run Playwright browser sessions. The au
 - Office furniture audit summary: `docs/art/OFFICE_FURNITURE_MASTER_AUDIT_V1.md`
 - Office massage-chair R01 rejection history: `docs/art/OFFICE_FURNITURE_MASSAGE_CHAIR_R01.md`
 - Office massage-chair R02 approved family: `docs/art/OFFICE_FURNITURE_MASSAGE_CHAIR_R02.md`
-- Office Seating S01 mixed F8 batch: `docs/art/OFFICE_FURNITURE_SEATING_S01.md`
+- Office Seating S01 approved batch: `docs/art/OFFICE_FURNITURE_SEATING_S01.md`
 
 ## Commands
 

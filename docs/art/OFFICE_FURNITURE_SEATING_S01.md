@@ -1,7 +1,7 @@
 # Office Furniture Seating S01
 
-Status: seven families passed F0-F7; both sofa families passed F8 on
-2026-07-29, and five families await independent F8 owner decisions
+Status: all seven families passed F0-F8 with independent owner decisions on
+2026-07-29
 
 Batch: `office-furniture-seating-s01`
 
@@ -26,13 +26,13 @@ review image is
 
 | Family | Capacity | Runtime pixels | Pose cases | Allowed facing | F8 |
 | --- | ---: | ---: | ---: | --- | --- |
-| `chair.reading` | 1 | `48 x 80` | 108 | front | pending |
-| `pouf.lounge` | 1 | `72 x 64` | 108 | front | pending |
-| `beanbag.lounge` | 1 | `72 x 64` | 108 | front | pending |
-| `stool.side` | 1 | `54 x 80` | 108 | front | pending |
+| `chair.reading` | 1 | `48 x 80` | 108 | front | owner-approved |
+| `pouf.lounge` | 1 | `72 x 64` | 108 | front | owner-approved |
+| `beanbag.lounge` | 1 | `72 x 64` | 108 | front | owner-approved |
+| `stool.side` | 1 | `54 x 80` | 108 | front | owner-approved |
 | `sofa.modern.two-seat` | 2 | `96 x 96` | 216 | front | owner-approved |
 | `sofa.modern.three-seat` | 3 | `130 x 96` | 324 | front | owner-approved |
-| `table.review.long.modern` | 4 | `128 x 64` | 432 | front and back | pending |
+| `table.review.long.modern` | 4 | `128 x 64` | 432 | front and back | owner-approved |
 
 The batch therefore contains 13 candidate seat slots and 1,404 validated
 character-frame-slot cases. The already approved massage chair remains a
@@ -156,17 +156,15 @@ fail closed.
 ## Gate state
 
 - F0-F7: passed independently for all seven exact family revisions.
-- F8: owner-approved for `sofa.modern.two-seat` and
-  `sofa.modern.three-seat` on 2026-07-29.
-- F8: pending independently for reading chair, pouf, beanbag, stool, and the
-  four-seat review table.
+- F8: owner-approved independently for all seven families on 2026-07-29.
 - F9: blocked for every family.
 - F10: blocked for every family.
 
-The two approved sofa families may be selected for a future furniture-only F9
-candidate. Approval does not place them in a room and does not authorize
-Active Office integration. No Seating S01 path is imported by the Active
-Office registry.
+All seven families may be selected for a future furniture-only F9 candidate.
+The review-table decision applies only to its declared front-and-back seated
+context and does not expand R05-r02 workstation permissions. Approval does not
+place any family in a room and does not authorize Active Office integration.
+No Seating S01 path is imported by the Active Office registry.
 
 ## Reproduction
 

@@ -27,10 +27,10 @@ owner-review batch documented in
 stool, two-seat sofa, three-seat sofa, and the four-seat review table each
 passed F0-F7 with the approved working-seated character rows. The seven
 families provide 13 candidate slots and 1,404 character-frame-slot checks.
-The two-seat and three-seat sofas are owner-approved at F8 on 2026-07-29; the
-other five families still await independent F8 decisions. F9 room composition,
-F10 Active Office integration, left/right poses, and silent expansion of the
-R05-r02 chair beyond its approved workstation scope remain blocked.
+All seven Seating S01 families are independently owner-approved at F8 on
+2026-07-29. F9 room composition, F10 Active Office integration, left/right
+poses, and silent expansion of the R05-r02 chair beyond its approved
+workstation scope remain blocked.
 
 Workstation correction (2026-07-28): the isolated `5 x 4` staging layout,
 Candidate r01, and R05 final ten-seat composition are rejected evidence. The

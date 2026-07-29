@@ -3,7 +3,7 @@
   "id": "office.furniture.stool-side-r01",
   "familyId": "stool.side",
   "revision": "r01",
-  "status": "owner-review-f8-pending",
+  "status": "owner-approved",
   "developmentOnly": true,
   "activeOfficePromotion": false,
   "sourcePolicy": {
@@ -5706,14 +5706,15 @@
       ]
     },
     "F8": {
-      "status": "pending-owner-review",
+      "status": "passed",
       "evidence": [
         "assets/art/layout-references/office-furniture-family-v1/seating-s01/stool-side-r01/01-source-ownership.png",
         "assets/art/layout-references/office-furniture-family-v1/seating-s01/stool-side-r01/02-alpha-parts.png",
         "assets/art/layout-references/office-furniture-family-v1/seating-s01/stool-side-r01/03-geometry-directions.png",
         "assets/art/layout-references/office-furniture-family-v1/seating-s01/stool-side-r01/04-six-frame-seat-lab.png",
         "assets/art/layout-references/office-furniture-family-v1/seating-s01/stool-side-r01/05-roster-fit.png",
-        "assets/art/layout-references/office-furniture-family-v1/seating-s01/stool-side-r01/06-capacity-reservation.png"
+        "assets/art/layout-references/office-furniture-family-v1/seating-s01/stool-side-r01/06-capacity-reservation.png",
+        "Owner approved the latest Seating S01 tall stool result on 2026-07-29."
       ]
     },
     "F9": {
@@ -5799,7 +5800,7 @@
   },
   "permissions": {
     "familyLab": true,
-    "ownerReview": true,
+    "ownerReview": false,
     "furnitureOnlyRoom": false,
     "otherFurnitureFamilies": false,
     "activeOfficePromotion": false
@@ -5809,5 +5810,9 @@
     "sha256": "1c8752653d8818e57564f28f61870ae3eddbdabc8e46229e1364c546ec7607ef",
     "importsCandidate": false
   },
-  "ownerDecision": null
+  "ownerDecision": {
+    "decision": "approved",
+    "decidedOn": "2026-07-29",
+    "notes": "Owner approved the latest Seating S01 tall stool result."
+  }
 }

@@ -13,13 +13,13 @@ const processedRoot = "assets/game/processed/office-furniture-family-v1/seating-
 const reviewRoot = "assets/art/layout-references/office-furniture-family-v1/seating-s01";
 const failures = [];
 const expected = [
-  ["chair.reading", "chair-reading-r01", "office-furniture-chair-reading-r01.json", 1, 108, ["front"], null],
-  ["pouf.lounge", "pouf-lounge-r01", "office-furniture-pouf-lounge-r01.json", 1, 108, ["front"], null],
-  ["beanbag.lounge", "beanbag-lounge-r01", "office-furniture-beanbag-lounge-r01.json", 1, 108, ["front"], null],
-  ["stool.side", "stool-side-r01", "office-furniture-stool-side-r01.json", 1, 108, ["front"], null],
+  ["chair.reading", "chair-reading-r01", "office-furniture-chair-reading-r01.json", 1, 108, ["front"], "reading chair"],
+  ["pouf.lounge", "pouf-lounge-r01", "office-furniture-pouf-lounge-r01.json", 1, 108, ["front"], "lounge pouf"],
+  ["beanbag.lounge", "beanbag-lounge-r01", "office-furniture-beanbag-lounge-r01.json", 1, 108, ["front"], "lounge beanbag"],
+  ["stool.side", "stool-side-r01", "office-furniture-stool-side-r01.json", 1, 108, ["front"], "tall stool"],
   ["sofa.modern.two-seat", "sofa-modern-two-seat-r01", "office-furniture-sofa-modern-two-seat-r01.json", 2, 216, ["front"], "two-seat"],
   ["sofa.modern.three-seat", "sofa-modern-three-seat-r01", "office-furniture-sofa-modern-three-seat-r01.json", 3, 324, ["front"], "three-seat"],
-  ["table.review.long.modern", "table-review-long-r01", "office-furniture-table-review-long-r01.json", 4, 432, ["back", "front"], null],
+  ["table.review.long.modern", "table-review-long-r01", "office-furniture-table-review-long-r01.json", 4, 432, ["back", "front"], "four-seat review table"],
 ];
 const add = (condition, message) => {
   if (!condition) failures.push(message);
@@ -52,12 +52,13 @@ try {
   );
   add(
     batch.id === "office-furniture-seating-s01"
-      && batch.status === "owner-review-f8-pending"
+      && batch.status === "owner-approved"
+      && batch.ownerApprovalCompletedOn === "2026-07-29"
       && batch.familyCount === 7
-      && batch.ownerApprovedFamilyCount === 2
-      && batch.pendingOwnerReviewFamilyCount === 5
+      && batch.ownerApprovedFamilyCount === 7
+      && batch.pendingOwnerReviewFamilyCount === 0
       && batch.candidateSeatCapacity === 13
-      && batch.ownerApprovedSeatCapacity === 5
+      && batch.ownerApprovedSeatCapacity === 13
       && batch.existingApprovedMassageChairCapacity === 1
       && batch.validatedSeatFrameCases === 1404,
     "Seating S01 batch totals changed",
@@ -67,7 +68,8 @@ try {
       && batch.productionPolicy?.perFamilyF8Decision === true
       && batch.productionPolicy?.imageGenerationUsed === false
       && batch.productionPolicy?.processedCropDirectReuse === false
-      && batch.productionPolicy?.activeOfficePromotion === false,
+      && batch.productionPolicy?.activeOfficePromotion === false
+      && batch.permissions?.ownerReview === false,
     "Seating S01 production isolation changed",
   );
   add(
@@ -322,7 +324,6 @@ try {
       `${familyId} ownership mask changed`,
     );
     expectedProcessed.push(ownership.path);
-
     add(
       manifest.reviewOutputs?.length === 6
         && manifest.reviewEvidence?.length === 6,
@@ -348,13 +349,12 @@ try {
           === JSON.stringify(orientations),
       `${familyId} batch record changed`,
     );
-
     if (familyId === "table.review.long.modern") {
       add(
         manifest.approvedDependencies?.length === 2
           && manifest.contextPermission?.r05WorkstationScopeRemainsUnchanged === true
           && manifest.contextPermission?.reviewTableContextOnly === true
-          && manifest.contextPermission?.ownerApprovalRequired === true
+          && manifest.contextPermission?.ownerApprovalRequired === false
           && r05.status === "owner-approved-p0-p3"
           && r05.permissions?.otherFurniture === false,
         "Review table escaped its R05 context-extension stop gate",
@@ -413,7 +413,7 @@ if (failures.length > 0) {
 } else {
   process.stdout.write(
     "Seating S01 OK: seven audited families, thirteen slots, 1,404 front/back "
-      + "pose cases, capacity reservations, two F8 approvals, five pending "
-      + "reviews, and Active Office unchanged.\n",
+      + "pose cases, capacity reservations, seven F8 approvals, and Active "
+      + "Office unchanged.\n",
   );
 }

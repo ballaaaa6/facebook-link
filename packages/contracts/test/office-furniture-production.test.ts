@@ -28,8 +28,13 @@ const seatingManifests = seatingFiles.map((file) => JSON.parse(readFileSync(
   "utf8",
 )) as OfficeFurnitureFamilyManifest);
 const approvedSeatingFamilyIds = new Set([
+  "chair.reading",
+  "pouf.lounge",
+  "beanbag.lounge",
+  "stool.side",
   "sofa.modern.two-seat",
   "sofa.modern.three-seat",
+  "table.review.long.modern",
 ]);
 
 test("rejected massage chair r01 remains valid audit history", () => {
@@ -60,7 +65,7 @@ test("current furniture candidates reject conflated action and visual pose", () 
   assert.match(issues, /separate semantic action from visual pose/);
 });
 
-test("Seating S01 records two independent F8 approvals and keeps five pending", () => {
+test("Seating S01 records seven independent F8 approvals", () => {
   for (const candidate of seatingManifests) {
     const isApproved = approvedSeatingFamilyIds.has(candidate.familyId);
     assert.deepEqual(validateOfficeFurnitureFamilyManifest(candidate), []);
@@ -87,13 +92,13 @@ test("Seating S01 records two independent F8 approvals and keeps five pending", 
   }
   assert.equal(
     seatingManifests.filter(({ status }) => status === "owner-approved").length,
-    2,
+    7,
   );
   assert.equal(
     seatingManifests.filter(
       ({ status }) => status === "owner-review-f8-pending",
     ).length,
-    5,
+    0,
   );
   assert.equal(
     seatingManifests.reduce(

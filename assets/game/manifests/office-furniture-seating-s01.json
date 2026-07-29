@@ -1,14 +1,15 @@
 {
   "version": 1,
   "id": "office-furniture-seating-s01",
-  "status": "owner-review-f8-pending",
+  "status": "owner-approved",
   "createdOn": "2026-07-29",
+  "ownerApprovalCompletedOn": "2026-07-29",
   "scope": "isolated-furniture-family-labs",
   "familyCount": 7,
-  "ownerApprovedFamilyCount": 2,
-  "pendingOwnerReviewFamilyCount": 5,
+  "ownerApprovedFamilyCount": 7,
+  "pendingOwnerReviewFamilyCount": 0,
   "candidateSeatCapacity": 13,
-  "ownerApprovedSeatCapacity": 5,
+  "ownerApprovedSeatCapacity": 13,
   "existingApprovedMassageChairCapacity": 1,
   "validatedSeatFrameCases": 1404,
   "orientationPolicy": {
@@ -33,8 +34,8 @@
       "label": "Reading chair",
       "capacity": 1,
       "manifest": "assets/game/manifests/office-furniture-chair-reading-r01.json",
-      "manifestSha256": "a2664607d26225221f654e84fde5eac71a61b5e89e1195a261e6022703c25b18",
-      "status": "owner-review-f8-pending",
+      "manifestSha256": "1d7f366715e4dde10a58a19dffc4b4f232397f1c6a305e0ecb8fae565fa07daf",
+      "status": "owner-approved",
       "orientations": [
         "front"
       ],
@@ -46,8 +47,8 @@
       "label": "Lounge pouf",
       "capacity": 1,
       "manifest": "assets/game/manifests/office-furniture-pouf-lounge-r01.json",
-      "manifestSha256": "2b90630453a457e10d17641c8964b5e616b1cbbde989849e8eb7a0955de798ef",
-      "status": "owner-review-f8-pending",
+      "manifestSha256": "60c10e272ec75b4a1d36b8b19f2653916eb1e6736751a6404bda1de6f0ddc99e",
+      "status": "owner-approved",
       "orientations": [
         "front"
       ],
@@ -59,8 +60,8 @@
       "label": "Lounge beanbag",
       "capacity": 1,
       "manifest": "assets/game/manifests/office-furniture-beanbag-lounge-r01.json",
-      "manifestSha256": "2d246763aa7d99baff35d77b3bfe68041bf7ad27c9ccb089733e0e6d4fe9cf89",
-      "status": "owner-review-f8-pending",
+      "manifestSha256": "691b0e01cf6de6f5d12fa51c592465a04375cd4d0e4531b7324d7fe9fa8bcbfa",
+      "status": "owner-approved",
       "orientations": [
         "front"
       ],
@@ -72,8 +73,8 @@
       "label": "Tall stool",
       "capacity": 1,
       "manifest": "assets/game/manifests/office-furniture-stool-side-r01.json",
-      "manifestSha256": "40ac117c12861367d4ded4a3f05a0274878d52737932be1a9b4df3edaacac34f",
-      "status": "owner-review-f8-pending",
+      "manifestSha256": "ae7d5dc967221b8997c091762967fddff91dced6ce3fad7303e9939df40977cc",
+      "status": "owner-approved",
       "orientations": [
         "front"
       ],
@@ -111,8 +112,8 @@
       "label": "Four-seat review table",
       "capacity": 4,
       "manifest": "assets/game/manifests/office-furniture-table-review-long-r01.json",
-      "manifestSha256": "47128c5011165c12939d3ecee74d69ea3ac9a83913ef1d05067a41ba11874332",
-      "status": "owner-review-f8-pending",
+      "manifestSha256": "f7e2259ffa485247676c9e8ca516d3b280b87b7770d928e53337daeb3317ac6f",
+      "status": "owner-approved",
       "orientations": [
         "back",
         "front"
@@ -132,7 +133,7 @@
   ],
   "permissions": {
     "familyLabs": true,
-    "ownerReview": true,
+    "ownerReview": false,
     "furnitureOnlyRoom": false,
     "activeOfficePromotion": false
   }
