@@ -37,6 +37,7 @@ const reviews = [
   ["06-processing-seam-loop.png", [1800, 900]],
   ["07-finite-output-sequence.png", [1900, 950]],
   ["08-i01-h01-two-instance-preview.png", [1900, 1050]],
+  ["09-primary-grip-frame-proof.png", [1900, 1050]],
 ];
 const gifs = [
   ["printer-p01-processing-loop.gif", [384, 512], 5, 260],
@@ -167,7 +168,7 @@ try {
       && manifest.interaction?.outputSelectionRule
         === "job-driven-once-per-visit"
       && manifest.interaction?.propSocketRule
-        === "midpoint-primary-secondary"
+        === "primary-grip-to-primary-grip"
       && same(manifest.interaction?.attachmentDelta, [0, 0])
       && manifest.interaction?.newCoordinateSystem === false
       && same(
@@ -206,6 +207,22 @@ try {
       && manifest.preflightValidation
         ?.reservationSimulationSecondsBuilt === 0
       && manifest.preflightValidation?.attachmentFailures === 0
+      && manifest.preflightValidation?.primaryGripCaseCount === 6
+      && manifest.preflightValidation?.midpointPlacementUses === 0
+      && manifest.preflightValidation
+        ?.secondaryGripSocketRetainedForReview === true
+      && manifest.preflightValidation?.primaryGripCases?.length === 6
+      && manifest.preflightValidation?.primaryGripCases?.every(
+        (entry) =>
+          same(
+            entry.actorPrimaryGripSocket,
+            entry.resolvedPropPrimaryGrip,
+          )
+          && same(entry.primaryGripDelta, [0, 0])
+          && entry.attachmentParent === "actor.hand.primary.grip"
+          && entry.magicOffset === false
+          && entry.fallbackSocket === false,
+      )
       && manifest.preflightValidation?.foregroundMaskUses === 0
       && manifest.preflightValidation?.magicOffsetCases === 0
       && manifest.preflightValidation?.fallbackSocketCases === 0,
@@ -286,7 +303,7 @@ try {
   const builder = readText(builderPath);
   add(
     builder.includes("chroma_key")
-      && builder.includes("midpoint-primary-secondary")
+      && builder.includes("primary-grip-to-primary-grip")
       && builder.includes("reservationSlotContribution")
       && builder.includes('"fullSystemBuild": False')
       && builder.includes('"activeOfficePromotion": False'),
@@ -297,6 +314,8 @@ try {
     docs.includes("Status: F3 owner review pending")
       && docs.includes("2 x 2 x 4")
       && docs.includes("A -> B -> C -> D -> A")
+      && docs.includes("primaryGripSocket")
+      && docs.includes("primary-grip-to-primary-grip")
       && docs.includes("held.paper-sheet")
       && docs.includes("held.envelope")
       && docs.includes("18/20")

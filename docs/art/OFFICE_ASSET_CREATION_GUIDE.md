@@ -1002,6 +1002,11 @@ Suggested workstation manifest:
 - [ ] Foreground mask hides the seated lower body.
 - [ ] Screen overlay is clipped to the monitor viewport.
 - [ ] Back views do not show front-only props.
+- [ ] A held prop visibly touches its declared hand socket. A zero-delta
+      midpoint calculation is insufficient when the prop alpha remains
+      visually detached from both hands.
+- [ ] Grip-critical previews record the actor grip, prop grip, resolved grip,
+      and `[0,0]` delta for every visible held frame.
 
 ### Animation
 

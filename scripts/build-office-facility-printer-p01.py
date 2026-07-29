@@ -63,6 +63,7 @@ BOARD_SPECS = (
     ("06-processing-seam-loop.png", (1800, 900)),
     ("07-finite-output-sequence.png", (1900, 950)),
     ("08-i01-h01-two-instance-preview.png", (1900, 1050)),
+    ("09-primary-grip-frame-proof.png", (1900, 1050)),
 )
 PROCESSING_GIF = REVIEW_ROOT / "printer-p01-processing-loop.gif"
 PAPER_GIF = REVIEW_ROOT / "printer-p01-anna-paper.gif"
@@ -355,21 +356,31 @@ def attach_prop(
     actor_image: Image.Image,
     frame_record: dict,
     prop: tuple[dict, Image.Image],
-) -> tuple[Image.Image, tuple[int, int]]:
+) -> tuple[
+    Image.Image,
+    tuple[int, int],
+    tuple[int, int],
+    tuple[int, int],
+    tuple[int, int],
+]:
     prop_record, prop_image = prop
-    primary = frame_record["primaryGripSocket"]
-    secondary = frame_record["secondaryGripSocket"]
-    midpoint = (
-        (primary[0] + secondary[0]) // 2,
-        (primary[1] + secondary[1]) // 2,
+    actor_primary = tuple(frame_record["primaryGripSocket"])
+    prop_primary = tuple(prop_record["primaryGripSocket"])
+    origin = (
+        actor_primary[0] - prop_primary[0],
+        actor_primary[1] - prop_primary[1],
     )
-    visual = prop_record["visualCenterSocket"]
     result = actor_image.copy()
-    result.alpha_composite(
-        prop_image,
-        (midpoint[0] - visual[0], midpoint[1] - visual[1]),
+    result.alpha_composite(prop_image, origin)
+    resolved = (
+        origin[0] + prop_primary[0],
+        origin[1] + prop_primary[1],
     )
-    return result, midpoint
+    delta = (
+        resolved[0] - actor_primary[0],
+        resolved[1] - actor_primary[1],
+    )
+    return result, actor_primary, prop_primary, origin, delta
 
 
 def attach_output_child(
@@ -415,7 +426,7 @@ def interaction_gif(
         paste_scaled(canvas, machine, (288, 46), 3)
         actor_image = frames[actor_index]
         if has_prop:
-            actor_image, _ = attach_prop(
+            actor_image, _, _, _, _ = attach_prop(
                 actor_image,
                 actor["frames"][actor_index],
                 prop,
@@ -695,18 +706,18 @@ def build_outputs() -> dict[Path, bytes]:
             draw.text((x + 180, 330), "→", font=font(24, True), fill=(17, 145, 151))
     card(draw, (210, 610, 1690, 875), "Output ownership", [
         "print-document selects held.paper-sheet · prepare-mail selects held.envelope · job choice is stable for the visit",
-        "Output child parents to facility.output.primary, then hands off to the existing two-hand midpoint socket.",
+        "Output child parents to facility.output.primary, then its primary grip pins exactly to the actor primary hand.",
         "Interruption before pickup removes the output and reverses the tray. After pickup, close before release.",
     ])
     boards.append((REVIEW_ROOT / BOARD_SPECS[6][0], canvas))
 
     canvas, draw = board(
         "PRINTER P01 · I01/H01 REUSE + TWO INSTANCE PREVIEW",
-        "Anna interact-front · two-hand midpoint · paper/envelope · no new coordinate system",
+        "Anna interact-front · primary grip-to-grip pin · paper/envelope · no magic offset",
         BOARD_SPECS[7][1],
     )
     for index, prop_id in enumerate(JOB_PROPS.values()):
-        actor_image, midpoint = attach_prop(
+        actor_image, actor_grip, prop_grip, prop_origin, delta = attach_prop(
             anna_frames[3],
             anna["frames"][3],
             props[prop_id],
@@ -716,14 +727,34 @@ def build_outputs() -> dict[Path, bytes]:
         paste_scaled(canvas, actor_image, (x + 72, 355), 2)
         draw.ellipse(
             (
-                x + 72 + midpoint[0] * 2 - 6,
-                355 + midpoint[1] * 2 - 6,
-                x + 72 + midpoint[0] * 2 + 6,
-                355 + midpoint[1] * 2 + 6,
+                x + 72 + actor_grip[0] * 2 - 6,
+                355 + actor_grip[1] * 2 - 6,
+                x + 72 + actor_grip[0] * 2 + 6,
+                355 + actor_grip[1] * 2 + 6,
             ),
             fill=(235, 142, 64),
         )
+        secondary = anna["frames"][3]["secondaryGripSocket"]
+        draw.ellipse(
+            (
+                x + 72 + secondary[0] * 2 - 5,
+                355 + secondary[1] * 2 - 5,
+                x + 72 + secondary[0] * 2 + 5,
+                355 + secondary[1] * 2 + 5,
+            ),
+            outline=(17, 145, 151),
+            width=3,
+        )
         draw.text((x + 35, 760), prop_id, font=font(22, True), fill=(17, 33, 48))
+        draw.text(
+            (x + 35, 800),
+            (
+                f"actorGrip={actor_grip} · propGrip={prop_grip} · "
+                f"origin={prop_origin} · delta={delta}"
+            ),
+            font=font(15),
+            fill=(55, 73, 84),
+        )
     paste_scaled(canvas, parts["anchor"], (1230, 230), 3)
     paste_scaled(canvas, parts["anchor"], (1530, 230), 3)
     card(draw, (1200, 690, 1840, 980), "Preflight stop", [
@@ -733,6 +764,70 @@ def build_outputs() -> dict[Path, bytes]:
         "F9 room placement and Active Office remain forbidden.",
     ])
     boards.append((REVIEW_ROOT / BOARD_SPECS[7][0], canvas))
+
+    canvas, draw = board(
+        "PRINTER P01 · PRIMARY HAND CONTACT PROOF",
+        "Every visible held frame pins prop.primaryGripSocket to actor.primaryGripSocket at delta [0,0]",
+        BOARD_SPECS[8][1],
+    )
+    for row, prop_id in enumerate(JOB_PROPS.values()):
+        for column, frame_index in enumerate((2, 3, 4)):
+            frame_record = anna["frames"][frame_index]
+            actor_image, actor_grip, prop_grip, origin, delta = attach_prop(
+                anna_frames[frame_index],
+                frame_record,
+                props[prop_id],
+            )
+            left = 80 + column * 590
+            top = 155 + row * 430
+            draw.rounded_rectangle(
+                (left, top, left + 520, top + 385),
+                16,
+                fill=(255, 255, 255),
+                outline=(178, 198, 202),
+                width=2,
+            )
+            paste_scaled(canvas, actor_image, (left + 30, top + 35), 3)
+            contact = (
+                left + 30 + actor_grip[0] * 3,
+                top + 35 + actor_grip[1] * 3,
+            )
+            draw.ellipse(
+                (
+                    contact[0] - 8,
+                    contact[1] - 8,
+                    contact[0] + 8,
+                    contact[1] + 8,
+                ),
+                outline=(235, 142, 64),
+                width=4,
+            )
+            draw.text(
+                (left + 340, top + 55),
+                f"{prop_id} · f{frame_index}",
+                font=font(18, True),
+                fill=(17, 33, 48),
+            )
+            for line_index, line in enumerate((
+                f"actor primary  {actor_grip}",
+                f"prop primary   {prop_grip}",
+                f"prop origin    {origin}",
+                f"resolved grip  {actor_grip}",
+                f"delta          {delta}",
+            )):
+                draw.text(
+                    (left + 340, top + 105 + line_index * 35),
+                    line,
+                    font=font(16),
+                    fill=(55, 73, 84),
+                )
+            draw.text(
+                (left + 340, top + 300),
+                "EXACT CONTACT",
+                font=font(18, True),
+                fill=(17, 145, 151),
+            )
+    boards.append((REVIEW_ROOT / BOARD_SPECS[8][0], canvas))
 
     review_evidence: list[dict] = []
     for path, image in boards:
@@ -792,7 +887,7 @@ def build_outputs() -> dict[Path, bytes]:
         "schemaVersion": 1,
         "id": "office.facility.printer.p01",
         "familyId": "printer.multifunction.floor",
-        "revision": "p01-generated-motion-preflight-r01",
+        "revision": "p01-generated-motion-preflight-r02",
         "status": "visual-motion-preflight-owner-review",
         "productionStage": "f2-complete-f3-owner-review",
         "developmentOnly": True,
@@ -895,7 +990,7 @@ def build_outputs() -> dict[Path, bytes]:
             "independentReservations": True,
             "jobOutputMap": JOB_PROPS,
             "outputSelectionRule": "job-driven-once-per-visit",
-            "propSocketRule": "midpoint-primary-secondary",
+            "propSocketRule": "primary-grip-to-primary-grip",
             "attachmentDelta": [0, 0],
             "newCoordinateSystem": False,
             "reservationSlotContribution": 0,
@@ -906,8 +1001,41 @@ def build_outputs() -> dict[Path, bytes]:
         "preflightValidation": {
             "characterPreview": "anna",
             "propIds": ["held.paper-sheet", "held.envelope"],
-            "attachmentRule": "midpoint-primary-secondary",
+            "attachmentRule": "primary-grip-to-primary-grip",
             "attachmentFailures": 0,
+            "primaryGripCaseCount": 6,
+            "midpointPlacementUses": 0,
+            "secondaryGripSocketRetainedForReview": True,
+            "primaryGripCases": [
+                {
+                    "caseId": (
+                        f"anna-f{frame['frame']}-{prop_id.split('.')[-1]}"
+                    ),
+                    "actorId": "anna",
+                    "frame": frame["frame"],
+                    "propId": prop_id,
+                    "actorPrimaryGripSocket": frame["primaryGripSocket"],
+                    "actorSecondaryGripSocket": frame["secondaryGripSocket"],
+                    "propPrimaryGripSocket": props[prop_id][0][
+                        "primaryGripSocket"
+                    ],
+                    "propOrigin": [
+                        frame["primaryGripSocket"][0]
+                        - props[prop_id][0]["primaryGripSocket"][0],
+                        frame["primaryGripSocket"][1]
+                        - props[prop_id][0]["primaryGripSocket"][1],
+                    ],
+                    "resolvedPropPrimaryGrip": frame[
+                        "primaryGripSocket"
+                    ],
+                    "primaryGripDelta": [0, 0],
+                    "attachmentParent": "actor.hand.primary.grip",
+                    "magicOffset": False,
+                    "fallbackSocket": False,
+                }
+                for frame in anna["frames"][2:5]
+                for prop_id in JOB_PROPS.values()
+            ],
             "foregroundMaskUses": 0,
             "magicOffsetCases": 0,
             "fallbackSocketCases": 0,

@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "office.facility.printer.p01",
   "familyId": "printer.multifunction.floor",
-  "revision": "p01-generated-motion-preflight-r01",
+  "revision": "p01-generated-motion-preflight-r02",
   "status": "visual-motion-preflight-owner-review",
   "productionStage": "f2-complete-f3-owner-review",
   "developmentOnly": true,
@@ -373,7 +373,7 @@
       "prepare-mail": "held.envelope"
     },
     "outputSelectionRule": "job-driven-once-per-visit",
-    "propSocketRule": "midpoint-primary-secondary",
+    "propSocketRule": "primary-grip-to-primary-grip",
     "attachmentDelta": [
       0,
       0
@@ -390,8 +390,211 @@
       "held.paper-sheet",
       "held.envelope"
     ],
-    "attachmentRule": "midpoint-primary-secondary",
+    "attachmentRule": "primary-grip-to-primary-grip",
     "attachmentFailures": 0,
+    "primaryGripCaseCount": 6,
+    "midpointPlacementUses": 0,
+    "secondaryGripSocketRetainedForReview": true,
+    "primaryGripCases": [
+      {
+        "caseId": "anna-f2-paper-sheet",
+        "actorId": "anna",
+        "frame": 2,
+        "propId": "held.paper-sheet",
+        "actorPrimaryGripSocket": [
+          39,
+          63
+        ],
+        "actorSecondaryGripSocket": [
+          70,
+          70
+        ],
+        "propPrimaryGripSocket": [
+          4,
+          13
+        ],
+        "propOrigin": [
+          35,
+          50
+        ],
+        "resolvedPropPrimaryGrip": [
+          39,
+          63
+        ],
+        "primaryGripDelta": [
+          0,
+          0
+        ],
+        "attachmentParent": "actor.hand.primary.grip",
+        "magicOffset": false,
+        "fallbackSocket": false
+      },
+      {
+        "caseId": "anna-f2-envelope",
+        "actorId": "anna",
+        "frame": 2,
+        "propId": "held.envelope",
+        "actorPrimaryGripSocket": [
+          39,
+          63
+        ],
+        "actorSecondaryGripSocket": [
+          70,
+          70
+        ],
+        "propPrimaryGripSocket": [
+          3,
+          11
+        ],
+        "propOrigin": [
+          36,
+          52
+        ],
+        "resolvedPropPrimaryGrip": [
+          39,
+          63
+        ],
+        "primaryGripDelta": [
+          0,
+          0
+        ],
+        "attachmentParent": "actor.hand.primary.grip",
+        "magicOffset": false,
+        "fallbackSocket": false
+      },
+      {
+        "caseId": "anna-f3-paper-sheet",
+        "actorId": "anna",
+        "frame": 3,
+        "propId": "held.paper-sheet",
+        "actorPrimaryGripSocket": [
+          40,
+          63
+        ],
+        "actorSecondaryGripSocket": [
+          70,
+          70
+        ],
+        "propPrimaryGripSocket": [
+          4,
+          13
+        ],
+        "propOrigin": [
+          36,
+          50
+        ],
+        "resolvedPropPrimaryGrip": [
+          40,
+          63
+        ],
+        "primaryGripDelta": [
+          0,
+          0
+        ],
+        "attachmentParent": "actor.hand.primary.grip",
+        "magicOffset": false,
+        "fallbackSocket": false
+      },
+      {
+        "caseId": "anna-f3-envelope",
+        "actorId": "anna",
+        "frame": 3,
+        "propId": "held.envelope",
+        "actorPrimaryGripSocket": [
+          40,
+          63
+        ],
+        "actorSecondaryGripSocket": [
+          70,
+          70
+        ],
+        "propPrimaryGripSocket": [
+          3,
+          11
+        ],
+        "propOrigin": [
+          37,
+          52
+        ],
+        "resolvedPropPrimaryGrip": [
+          40,
+          63
+        ],
+        "primaryGripDelta": [
+          0,
+          0
+        ],
+        "attachmentParent": "actor.hand.primary.grip",
+        "magicOffset": false,
+        "fallbackSocket": false
+      },
+      {
+        "caseId": "anna-f4-paper-sheet",
+        "actorId": "anna",
+        "frame": 4,
+        "propId": "held.paper-sheet",
+        "actorPrimaryGripSocket": [
+          43,
+          57
+        ],
+        "actorSecondaryGripSocket": [
+          70,
+          70
+        ],
+        "propPrimaryGripSocket": [
+          4,
+          13
+        ],
+        "propOrigin": [
+          39,
+          44
+        ],
+        "resolvedPropPrimaryGrip": [
+          43,
+          57
+        ],
+        "primaryGripDelta": [
+          0,
+          0
+        ],
+        "attachmentParent": "actor.hand.primary.grip",
+        "magicOffset": false,
+        "fallbackSocket": false
+      },
+      {
+        "caseId": "anna-f4-envelope",
+        "actorId": "anna",
+        "frame": 4,
+        "propId": "held.envelope",
+        "actorPrimaryGripSocket": [
+          43,
+          57
+        ],
+        "actorSecondaryGripSocket": [
+          70,
+          70
+        ],
+        "propPrimaryGripSocket": [
+          3,
+          11
+        ],
+        "propOrigin": [
+          40,
+          46
+        ],
+        "resolvedPropPrimaryGrip": [
+          43,
+          57
+        ],
+        "primaryGripDelta": [
+          0,
+          0
+        ],
+        "attachmentParent": "actor.hand.primary.grip",
+        "magicOffset": false,
+        "fallbackSocket": false
+      }
+    ],
     "foregroundMaskUses": 0,
     "magicOffsetCases": 0,
     "fallbackSocketCases": 0,
@@ -433,6 +636,7 @@
         "assets/art/layout-references/office-facility-family-v1/printer-p01/06-processing-seam-loop.png",
         "assets/art/layout-references/office-facility-family-v1/printer-p01/07-finite-output-sequence.png",
         "assets/art/layout-references/office-facility-family-v1/printer-p01/08-i01-h01-two-instance-preview.png",
+        "assets/art/layout-references/office-facility-family-v1/printer-p01/09-primary-grip-frame-proof.png",
         "assets/art/layout-references/office-facility-family-v1/printer-p01/printer-p01-processing-loop.gif",
         "assets/art/layout-references/office-facility-family-v1/printer-p01/printer-p01-anna-paper.gif",
         "assets/art/layout-references/office-facility-family-v1/printer-p01/printer-p01-anna-envelope.gif"
@@ -490,6 +694,7 @@
     "assets/art/layout-references/office-facility-family-v1/printer-p01/06-processing-seam-loop.png",
     "assets/art/layout-references/office-facility-family-v1/printer-p01/07-finite-output-sequence.png",
     "assets/art/layout-references/office-facility-family-v1/printer-p01/08-i01-h01-two-instance-preview.png",
+    "assets/art/layout-references/office-facility-family-v1/printer-p01/09-primary-grip-frame-proof.png",
     "assets/art/layout-references/office-facility-family-v1/printer-p01/printer-p01-processing-loop.gif",
     "assets/art/layout-references/office-facility-family-v1/printer-p01/printer-p01-anna-paper.gif",
     "assets/art/layout-references/office-facility-family-v1/printer-p01/printer-p01-anna-envelope.gif"
@@ -551,7 +756,7 @@
     },
     {
       "path": "assets/art/layout-references/office-facility-family-v1/printer-p01/07-finite-output-sequence.png",
-      "sha256": "c6256c4ee42d18d6eeea21b2e037df89de7be41736388efb82b60bb61e4c66c8",
+      "sha256": "83cca772c6694c244eeb1d5a25ea908949448a44db1f6f127627f28ecd77f330",
       "kind": "png",
       "size": [
         1900,
@@ -560,7 +765,16 @@
     },
     {
       "path": "assets/art/layout-references/office-facility-family-v1/printer-p01/08-i01-h01-two-instance-preview.png",
-      "sha256": "cb625475f5bde4f3347598367ad0456922151130174ea0a1ce66eb27874ad4ea",
+      "sha256": "6719a05437c981da0251b2276844a7edbe2c851ae4e6bd54f583d81d3fb28910",
+      "kind": "png",
+      "size": [
+        1900,
+        1050
+      ]
+    },
+    {
+      "path": "assets/art/layout-references/office-facility-family-v1/printer-p01/09-primary-grip-frame-proof.png",
+      "sha256": "582f316d1fe5235c0e11832561001f223810c41c29413a9bd385cb62d8aa9ffa",
       "kind": "png",
       "size": [
         1900,
@@ -580,7 +794,7 @@
     },
     {
       "path": "assets/art/layout-references/office-facility-family-v1/printer-p01/printer-p01-anna-paper.gif",
-      "sha256": "070f61d335235532cd6f3d2a78f3290cb2dddcbfab2ec5f70074b392607f5a80",
+      "sha256": "f3944b06df48d45a983d03b6844ab84c675110d1754ba6e047d639c5e8683512",
       "kind": "gif",
       "size": [
         768,
@@ -591,7 +805,7 @@
     },
     {
       "path": "assets/art/layout-references/office-facility-family-v1/printer-p01/printer-p01-anna-envelope.gif",
-      "sha256": "dead6aba92b4908a63a753b1d33b3c889e9588044fdf160989f2e75c10549047",
+      "sha256": "f199bc37035eb1bccbf8962079247451fdda7246095bc11a8b780012a7f83948",
       "kind": "gif",
       "size": [
         768,

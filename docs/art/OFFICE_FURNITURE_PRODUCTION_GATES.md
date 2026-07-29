@@ -270,10 +270,14 @@ floor-standing copier. Revision `p01-generated-motion-preflight-r01` composes
 an immutable shell, local A-D-A status viewport, local A-D-A scanner light,
 finite closed/half/open tray children, and job-driven H01 paper or envelope
 output. It reuses I01 `interact-front` and the existing
-`midpoint-primary-secondary` prop rule. F0-F2 pass and F3 visual owner review
-is pending. The preflight builds zero roster cases, zero reservation seconds,
-and zero active slots; Facility v1 remains `18/20`. Production, two-slot
-activation, F9, F10, and Active Office remain blocked. See
+H01 paper and envelope sources. The first midpoint presentation was rejected
+because the prop alpha sat between the hands without visibly touching either.
+Revision r02 pins `prop.primaryGripSocket` directly to
+`actor.primaryGripSocket` and proves six Anna held-frame cases at `[0,0]`
+delta. F0-F2 pass and F3 visual owner review is pending. The preflight builds
+zero roster cases, zero reservation seconds, and zero active slots; Facility
+v1 remains `18/20`. Production, two-slot activation, F9, F10, and Active
+Office remain blocked. See
 `docs/art/OFFICE_FACILITY_PRINTER_P01.md`.
 
 ## Recommended family order

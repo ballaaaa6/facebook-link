@@ -2,7 +2,7 @@
 
 Status: F3 owner review pending
 
-Revision: `p01-generated-motion-preflight-r01`
+Revision: `p01-generated-motion-preflight-r02`
 
 Authority:
 `assets/game/manifests/office-facility-printer-p01.json`
@@ -119,17 +119,33 @@ The selected job determines the H01 output once per visit:
 | `print-document` | `held.paper-sheet` |
 | `prepare-mail` | `held.envelope` |
 
-Both props already use `midpoint-primary-secondary`. Attachment is:
+The first preflight placed `prop.visualCenterSocket` at the midpoint of both
+hands. The coordinates were mathematically centered, but the prop alpha did
+not visibly touch either hand. The owner rejected that presentation.
+
+Revision r02 uses the already-recorded primary grip on both sides through the
+`primary-grip-to-primary-grip` rule:
 
 ```text
-midpoint = floor((primaryGripSocket + secondaryGripSocket) / 2)
-propOrigin = midpoint - prop.visualCenterSocket
+propOrigin =
+  actor.primaryGripSocket
+  - prop.primaryGripSocket
+
+propOrigin + prop.primaryGripSocket
+  == actor.primaryGripSocket
+
 attachmentDelta = [0,0]
 ```
 
 The facility output first parents to `facility.output.primary` at `[48,66]`.
-Pickup reparents the same child to the actor's existing two-hand midpoint.
-The job output never changes randomly from one animation frame to another.
+Pickup reparents the same child to `actor.hand.primary.grip`. The secondary
+hand coordinate remains recorded for review, but it no longer pulls the item
+into the middle of the torso. The job output never changes randomly from one
+animation frame to another.
+
+The Anna preview proves both props on held frames 2, 3, and 4: six exact
+primary-grip cases, six `[0,0]` deltas, zero midpoint placements, zero magic
+offsets, and zero fallback sockets.
 
 ## Spatial preview
 
@@ -159,9 +175,10 @@ capacity-one reservation per instance.
 6. `06-processing-seam-loop.png`
 7. `07-finite-output-sequence.png`
 8. `08-i01-h01-two-instance-preview.png`
-9. `printer-p01-processing-loop.gif`
-10. `printer-p01-anna-paper.gif`
-11. `printer-p01-anna-envelope.gif`
+9. `09-primary-grip-frame-proof.png`
+10. `printer-p01-processing-loop.gif`
+11. `printer-p01-anna-paper.gif`
+12. `printer-p01-anna-envelope.gif`
 
 The files live under:
 
@@ -175,7 +192,7 @@ duration. F3 approval must apply to this exact revision and evidence set.
 F3 approval would authorize, but does not itself complete:
 
 - the complete 18-character by six-frame I01 matrix;
-- paper and envelope midpoint overlay validation;
+- paper and envelope primary-grip overlay validation;
 - two independent capacity-one reservations;
 - a thirty-second two-user blocked/failure/release/retry scenario;
 - both interruption paths;

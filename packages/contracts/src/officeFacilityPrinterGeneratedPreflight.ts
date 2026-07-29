@@ -34,7 +34,7 @@ export function validateOfficeFacilityPrinterGeneratedPreflightManifest(
     value.schemaVersion === 1
       && value.id === "office.facility.printer.p01"
       && value.familyId === "printer.multifunction.floor"
-      && value.revision === "p01-generated-motion-preflight-r01"
+      && value.revision === "p01-generated-motion-preflight-r02"
       && value.status === "visual-motion-preflight-owner-review"
       && value.productionStage === "f2-complete-f3-owner-review"
       && value.developmentOnly === true
@@ -163,7 +163,7 @@ export function validateOfficeFacilityPrinterGeneratedPreflightManifest(
         "prepare-mail": "held.envelope",
       })
       && interaction.outputSelectionRule === "job-driven-once-per-visit"
-      && interaction.propSocketRule === "midpoint-primary-secondary"
+      && interaction.propSocketRule === "primary-grip-to-primary-grip"
       && same(interaction.attachmentDelta, [0, 0])
       && interaction.newCoordinateSystem === false
       && interaction.reservationSlotContribution === 0
@@ -174,13 +174,40 @@ export function validateOfficeFacilityPrinterGeneratedPreflightManifest(
   );
 
   const preview = value.preflightValidation;
+  const gripCases = record(preview) && Array.isArray(preview.primaryGripCases)
+    ? preview.primaryGripCases
+    : [];
   add(
     issues,
     record(preview)
       && preview.characterPreview === "anna"
       && same(preview.propIds, ["held.paper-sheet", "held.envelope"])
-      && preview.attachmentRule === "midpoint-primary-secondary"
+      && preview.attachmentRule === "primary-grip-to-primary-grip"
       && preview.attachmentFailures === 0
+      && preview.primaryGripCaseCount === 6
+      && preview.midpointPlacementUses === 0
+      && preview.secondaryGripSocketRetainedForReview === true
+      && gripCases.length === 6
+      && gripCases.every((entry) =>
+        record(entry)
+        && entry.actorId === "anna"
+        && [2, 3, 4].includes(entry.frame as number)
+        && (
+          entry.propId === "held.paper-sheet"
+          || entry.propId === "held.envelope"
+        )
+        && point(entry.actorPrimaryGripSocket)
+        && point(entry.actorSecondaryGripSocket)
+        && point(entry.propPrimaryGripSocket)
+        && point(entry.propOrigin)
+        && same(
+          entry.resolvedPropPrimaryGrip,
+          entry.actorPrimaryGripSocket,
+        )
+        && same(entry.primaryGripDelta, [0, 0])
+        && entry.attachmentParent === "actor.hand.primary.grip"
+        && entry.magicOffset === false
+        && entry.fallbackSocket === false)
       && preview.foregroundMaskUses === 0
       && preview.magicOffsetCases === 0
       && preview.fallbackSocketCases === 0
@@ -216,8 +243,8 @@ export function validateOfficeFacilityPrinterGeneratedPreflightManifest(
   const permissions = value.permissions;
   add(
     issues,
-    outputs.length === 11
-      && evidence.length === 11
+    outputs.length === 12
+      && evidence.length === 12
       && evidence.every(
         (entry, index) =>
           record(entry)

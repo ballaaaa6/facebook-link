@@ -6,7 +6,7 @@ export interface OfficeFacilityPrinterGeneratedPreflightManifest {
   schemaVersion: 1;
   id: "office.facility.printer.p01";
   familyId: "printer.multifunction.floor";
-  revision: "p01-generated-motion-preflight-r01";
+  revision: "p01-generated-motion-preflight-r02";
   status: "visual-motion-preflight-owner-review";
   productionStage: "f2-complete-f3-owner-review";
   developmentOnly: true;
@@ -95,7 +95,7 @@ export interface OfficeFacilityPrinterGeneratedPreflightManifest {
       "prepare-mail": "held.envelope";
     };
     outputSelectionRule: "job-driven-once-per-visit";
-    propSocketRule: "midpoint-primary-secondary";
+    propSocketRule: "primary-grip-to-primary-grip";
     attachmentDelta: readonly [0, 0];
     newCoordinateSystem: false;
     reservationSlotContribution: 0;
@@ -106,8 +106,12 @@ export interface OfficeFacilityPrinterGeneratedPreflightManifest {
   preflightValidation: {
     characterPreview: "anna";
     propIds: readonly ["held.paper-sheet", "held.envelope"];
-    attachmentRule: "midpoint-primary-secondary";
+    attachmentRule: "primary-grip-to-primary-grip";
     attachmentFailures: 0;
+    primaryGripCaseCount: 6;
+    midpointPlacementUses: 0;
+    secondaryGripSocketRetainedForReview: true;
+    primaryGripCases: readonly PrinterPrimaryGripCase[];
     foregroundMaskUses: 0;
     magicOffsetCases: 0;
     fallbackSocketCases: 0;
@@ -148,4 +152,20 @@ interface PrinterReviewEvidence {
   size: readonly [number, number];
   frameCount?: number;
   durationMs?: number;
+}
+
+interface PrinterPrimaryGripCase {
+  caseId: string;
+  actorId: "anna";
+  frame: 2 | 3 | 4;
+  propId: "held.paper-sheet" | "held.envelope";
+  actorPrimaryGripSocket: readonly [number, number];
+  actorSecondaryGripSocket: readonly [number, number];
+  propPrimaryGripSocket: readonly [number, number];
+  propOrigin: readonly [number, number];
+  resolvedPropPrimaryGrip: readonly [number, number];
+  primaryGripDelta: readonly [0, 0];
+  attachmentParent: "actor.hand.primary.grip";
+  magicOffset: false;
+  fallbackSocket: false;
 }

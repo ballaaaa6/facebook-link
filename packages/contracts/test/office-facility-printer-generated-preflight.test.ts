@@ -41,17 +41,28 @@ test("Printer P01 separates seam-loop and finite output motion", () => {
   assert.deepEqual(manifest.animation.pivotDeltaPixels, [0, 0]);
 });
 
-test("Printer P01 reuses job-driven two-hand H01 outputs", () => {
+test("Printer P01 pins each job output to the existing primary hand grip", () => {
   assert.deepEqual(manifest.interaction.jobOutputMap, {
     "print-document": "held.paper-sheet",
     "prepare-mail": "held.envelope",
   });
   assert.equal(
     manifest.interaction.propSocketRule,
-    "midpoint-primary-secondary",
+    "primary-grip-to-primary-grip",
   );
   assert.deepEqual(manifest.interaction.attachmentDelta, [0, 0]);
   assert.equal(manifest.interaction.newCoordinateSystem, false);
+  assert.equal(manifest.preflightValidation.primaryGripCaseCount, 6);
+  assert.equal(manifest.preflightValidation.midpointPlacementUses, 0);
+  assert.ok(
+    manifest.preflightValidation.primaryGripCases.every(
+      ({ actorPrimaryGripSocket, resolvedPropPrimaryGrip, primaryGripDelta }) =>
+        actorPrimaryGripSocket[0] === resolvedPropPrimaryGrip[0]
+        && actorPrimaryGripSocket[1] === resolvedPropPrimaryGrip[1]
+        && primaryGripDelta[0] === 0
+        && primaryGripDelta[1] === 0,
+    ),
+  );
 });
 
 test("Printer P01 does not claim its two planned slots before F8", () => {
@@ -79,4 +90,19 @@ test("Printer P01 rejects premature production or slot activation", () => {
     validateOfficeFacilityPrinterGeneratedPreflightManifest(invalid);
   assert.ok(issues.some((issue) => issue.includes("slot preflight stop")));
   assert.ok(issues.some((issue) => issue.includes("permission stop")));
+});
+
+test("Printer P01 rejects midpoint-only placement or visible grip drift", () => {
+  const invalid = structuredClone(manifest) as unknown as {
+    interaction: Record<string, unknown>;
+    preflightValidation: {
+      primaryGripCases: Array<Record<string, unknown>>;
+    };
+  };
+  invalid.interaction.propSocketRule = "midpoint-primary-secondary";
+  invalid.preflightValidation.primaryGripCases[0]!.primaryGripDelta = [7, 0];
+  const issues =
+    validateOfficeFacilityPrinterGeneratedPreflightManifest(invalid);
+  assert.ok(issues.some((issue) => issue.includes("interaction")));
+  assert.ok(issues.some((issue) => issue.includes("production validation")));
 });
