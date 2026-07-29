@@ -45,8 +45,8 @@ export interface OfficeFacilityServerRackPreflightManifest {
   id: "office.facility.server-rack.n01";
   familyId: "server.rack.noc";
   revision: "n01-preflight-r01";
-  status: "visual-preflight-owner-review";
-  productionStage: "visual-preflight";
+  status: "superseded-owner-redesign-requested";
+  productionStage: "visual-preflight-superseded";
   developmentOnly: true;
   activeOfficePromotion: false;
   sourcePolicy: {
@@ -204,7 +204,7 @@ export interface OfficeFacilityServerRackPreflightManifest {
   reviewOutputs: readonly string[];
   reviewEvidence: readonly OfficeFacilityServerRackAsset[];
   permissions: {
-    ownerReview: true;
+    ownerReview: false;
     fullSystemBuild: false;
     furnitureOnlyRoom: false;
     otherFacilityFamilies: false;
@@ -215,5 +215,14 @@ export interface OfficeFacilityServerRackPreflightManifest {
     imported: false;
   }[];
   visualApproval: null;
-  ownerDecision: null;
+  ownerDecision: {
+    decision: "superseded-redesign-requested";
+    decidedOn: "2026-07-30";
+    supersededBy: "office.facility.server-rack.n02";
+    reasons: readonly [
+      "Remove the H01 tablet and all held-prop behavior.",
+      "Replace 2x1x3 front-only geometry with 2x2x4.",
+      "Create a fresh four-orientation cabinet family.",
+    ];
+  };
 }

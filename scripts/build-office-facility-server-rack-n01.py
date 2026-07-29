@@ -1433,8 +1433,8 @@ def build_outputs() -> dict[Path, bytes]:
         "id": "office.facility.server-rack.n01",
         "familyId": "server.rack.noc",
         "revision": "n01-preflight-r01",
-        "status": "visual-preflight-owner-review",
-        "productionStage": "visual-preflight",
+        "status": "superseded-owner-redesign-requested",
+        "productionStage": "visual-preflight-superseded",
         "developmentOnly": True,
         "activeOfficePromotion": False,
         "sourcePolicy": {
@@ -1619,7 +1619,7 @@ def build_outputs() -> dict[Path, bytes]:
         "reviewOutputs": [repo_path(path) for path in review_outputs],
         "reviewEvidence": review_evidence,
         "permissions": {
-            "ownerReview": True,
+            "ownerReview": False,
             "fullSystemBuild": False,
             "furnitureOnlyRoom": False,
             "otherFacilityFamilies": False,
@@ -1630,7 +1630,16 @@ def build_outputs() -> dict[Path, bytes]:
             for path in ACTIVE_OFFICE_FILES
         ],
         "visualApproval": None,
-        "ownerDecision": None,
+        "ownerDecision": {
+            "decision": "superseded-redesign-requested",
+            "decidedOn": "2026-07-30",
+            "supersededBy": "office.facility.server-rack.n02",
+            "reasons": [
+                "Remove the H01 tablet and all held-prop behavior.",
+                "Replace 2x1x3 front-only geometry with 2x2x4.",
+                "Create a fresh four-orientation cabinet family.",
+            ],
+        },
     }
     outputs[MANIFEST_PATH] = json_bytes(manifest)
     return outputs
@@ -1689,14 +1698,14 @@ def main() -> int:
             print("\n".join(failures), file=sys.stderr)
             return 1
         print(
-            "Server Rack N01 preflight rebuild OK: original-master front, "
-            "four interior status viewports, two GIFs, F4-F10 blocked."
+            "Server Rack N01 superseded-evidence rebuild OK: original-master "
+            "front, four interior status viewports, N02 redesign decision."
         )
         return 0
     write_outputs(outputs)
     print(
-        "Built Server Rack N01 visual preflight: 2x1x3 front, modular A-D "
-        "status loop, two-instance preview, tablet demo, owner review pending."
+        "Built superseded Server Rack N01 evidence: 2x1x3 front, modular A-D "
+        "status loop, tablet demo, and the N02 redesign decision."
     )
     return 0
 

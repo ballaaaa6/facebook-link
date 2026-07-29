@@ -1,11 +1,13 @@
 # Office Facility Server Rack N01
 
-Status: visual preflight awaiting owner review
+Status: superseded by owner-requested N02 redesign
 
-Server Rack N01 is a deterministic F0-F3 visual preflight for the next
-Facility v1 family. It stops before production sockets, the 108/216-case
-roster lab, two-instance reservation simulation, F8 approval, room placement,
-or Active Office integration.
+Server Rack N01 is retained as deterministic F0-F3 historical evidence. On
+2026-07-30 the owner requested a new N02 family with no tablet or held prop,
+new `2 x 2 x 4` geometry, and four fresh orientations. N01 therefore stops
+permanently before production sockets, the roster lab, two-instance
+reservation simulation, F8 approval, room placement, or Active Office
+integration.
 
 ## Locked preflight scope
 

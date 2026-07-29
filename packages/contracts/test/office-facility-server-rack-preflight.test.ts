@@ -11,17 +11,21 @@ const manifest = JSON.parse(readFileSync(new URL(
   import.meta.url,
 ), "utf8")) as OfficeFacilityServerRackPreflightManifest;
 
-test("Server Rack N01 stops after a valid F0-F3 visual preflight", () => {
+test("Server Rack N01 preserves the superseded F0-F3 visual preflight", () => {
   assert.deepEqual(
     validateOfficeFacilityServerRackPreflightManifest(manifest),
     [],
   );
-  assert.equal(manifest.status, "visual-preflight-owner-review");
+  assert.equal(manifest.status, "superseded-owner-redesign-requested");
   assert.equal(manifest.gates.F3.status, "passed");
   assert.equal(manifest.gates.F4.status, "blocked");
   assert.equal(manifest.gates.F10.status, "blocked");
   assert.equal(manifest.permissions.fullSystemBuild, false);
-  assert.equal(manifest.ownerDecision, null);
+  assert.equal(
+    manifest.ownerDecision.supersededBy,
+    "office.facility.server-rack.n02",
+  );
+  assert.equal(manifest.permissions.ownerReview, false);
 });
 
 test("Server Rack N01 isolates an immutable shell and A-D status loop", () => {

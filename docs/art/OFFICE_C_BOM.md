@@ -42,8 +42,9 @@ even when the sofa is split into two furniture objects.
 
 Current Facility v1 readiness is `15/20` after Arcade G02 F8 approval. The
 remaining five slots are Server Rack N01 (`2`), Refrigerator R01 (`1`), and
-Printer P01 (`2`). Server Rack N01 is currently an F0-F3 visual preflight, so
-its two planned instances do not yet contribute slots.
+Printer P01 (`2`). Server Rack N01 was superseded by the owner-requested N02
+redesign. N02 is currently an F0-F3 visual preflight, so its two planned
+instances do not yet contribute slots.
 
 ### Facility asset generation plan
 

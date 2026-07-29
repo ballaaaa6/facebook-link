@@ -15,6 +15,7 @@ export * from "./officeFacilityProduction.ts";
 export * from "./officeFacilityVisualPreflight.ts";
 export * from "./officeFacilityArcadeGeneratedPreflight.ts";
 export * from "./officeFacilityArcadeProduction.ts";
+export * from "./officeFacilityServerRackGeneratedPreflight.ts";
 export * from "./officeFacilityServerRackPreflight.ts";
 export * from "./officeFurnitureProduction.ts";
 export * from "./officeSurfaceFurnitureProduction.ts";

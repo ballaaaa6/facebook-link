@@ -51,8 +51,8 @@ export function validateOfficeFacilityServerRackPreflightManifest(
   );
   add(
     issues,
-    value.status === "visual-preflight-owner-review"
-      && value.productionStage === "visual-preflight"
+    value.status === "superseded-owner-redesign-requested"
+      && value.productionStage === "visual-preflight-superseded"
       && value.developmentOnly === true
       && value.activeOfficePromotion === false,
     "Server Rack N01 must remain an isolated visual preflight",
@@ -289,13 +289,22 @@ export function validateOfficeFacilityServerRackPreflightManifest(
   add(
     issues,
     record(value.permissions)
-      && value.permissions.ownerReview === true
+      && value.permissions.ownerReview === false
       && value.permissions.fullSystemBuild === false
       && value.permissions.furnitureOnlyRoom === false
       && value.permissions.otherFacilityFamilies === false
       && value.permissions.activeOfficePromotion === false
       && value.visualApproval === null
-      && value.ownerDecision === null,
+      && record(value.ownerDecision)
+      && value.ownerDecision.decision === "superseded-redesign-requested"
+      && value.ownerDecision.decidedOn === "2026-07-30"
+      && value.ownerDecision.supersededBy
+        === "office.facility.server-rack.n02"
+      && same(value.ownerDecision.reasons, [
+        "Remove the H01 tablet and all held-prop behavior.",
+        "Replace 2x1x3 front-only geometry with 2x2x4.",
+        "Create a fresh four-orientation cabinet family.",
+      ]),
     "Server Rack preflight permissions or owner decision changed",
   );
   return issues;

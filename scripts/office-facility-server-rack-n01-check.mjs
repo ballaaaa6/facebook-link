@@ -252,7 +252,7 @@ try {
   );
   const docs = readText(docsPath);
   add(
-    docs.includes("Status: visual preflight awaiting owner review")
+    docs.includes("Status: superseded by owner-requested N02 redesign")
       && docs.includes("`2 x 1 x 3`")
       && docs.includes("immutableShell + statusViewport[n]")
       && docs.includes("15/20")
@@ -283,8 +283,8 @@ if (failures.length) {
   process.exitCode = 1;
 } else {
   process.stdout.write(
-    "Server Rack N01 visual preflight OK: original-master front, "
+    "Server Rack N01 superseded evidence OK: original-master front, "
       + "viewport-owned A-D-A status loop, exact 2x1x3 geometry, two-instance "
-      + "preview, H01 tablet demo, F0-F3 passed, and F4-F10 blocked.\n",
+      + "preview, H01 tablet demo, N02 redesign decision, and F4-F10 blocked.\n",
   );
 }

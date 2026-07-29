@@ -236,15 +236,17 @@ pivot, root, route, and seam-closure failures. The owner approved F8 on
 2026-07-30, so Arcade contributes one slot and Facility v1 readiness is
 `15/20`. F9-F10 remain blocked.
 
-Server Rack N01 is the next family and is currently stopped at visual
-preflight owner review. It uses a new versioned extraction from the audited
-static front master plus interior status viewports A-D from the audited
-mechanical-loop master. Rejected side pixels remain unused. Its
-`immutableShell + statusViewport[n]` proof has zero shell, outside-viewport,
-pivot, and seam-closure failures. The two-instance and H01 tablet views are
-development-only previews; F4-F10 remain blocked, and Server Rack does not
-increase Facility v1 beyond `15/20` until a later production revision passes
-F8. See `docs/art/OFFICE_FACILITY_SERVER_RACK_N01.md`.
+Server Rack N01 is preserved as superseded F0-F3 evidence after the owner
+requested no held prop, new `2 x 2 x 4` geometry, and four fresh sides. N02 is
+the current visual preflight. It uses three fresh built-in ImageGen sources
+for a front anchor, turnaround, and separable status kit, with zero N01,
+original-master, processed-library, or Active Office pixel reuse. Its
+`immutableShell[orientation] + statusViewport[n]` proof has zero shell,
+outside-viewport, pivot, and seam-closure failures. The two-instance and
+empty-hand I01 views remain development-only; F4-F10 remain blocked, and
+Server Rack does not increase Facility v1 beyond `15/20` until a later
+production revision passes F8. See
+`docs/art/OFFICE_FACILITY_SERVER_RACK_N02.md`.
 
 ## Recommended family order
 
