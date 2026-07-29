@@ -12,6 +12,7 @@ export * from "./officeSpatialProjection.ts";
 export * from "./officeSpatialProduction.ts";
 export * from "./officeFullGrid.ts";
 export * from "./officeFacilityProduction.ts";
+export * from "./officeFacilityVisualPreflight.ts";
 export * from "./officeFurnitureProduction.ts";
 export * from "./officeSurfaceFurnitureProduction.ts";
 export * from "./officeSemanticGridV2.ts";

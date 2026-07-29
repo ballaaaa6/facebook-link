@@ -300,6 +300,15 @@ twin-pillar Option B source, directed it to replace the prior C01-r02 visual,
 and approved its rebuilt evidence at F8. C01-r02 is `owner-approved`; F9,
 F10, other facility families, and Active Office remain blocked.
 
+`docs/art/OFFICE_FACILITY_ARCADE_MACHINE_G01.md` records the next isolated
+family. G01 currently stops at a five-board visual preflight so the owner can
+judge the audited source-exact silhouette before part decomposition, 108
+character cases, or reservation production begins. Its static identity front
+comes only from the original facility-lounge master; A-D are ownership-proven
+screen-source candidates from the original mechanical-loop master. Processed
+crops and rejected side orientations remain forbidden. F0-F3 preflight
+evidence passes; visual approval is pending and F4-F10 remain blocked.
+
 ## Required evidence per family
 
 Each approved family must retain:
