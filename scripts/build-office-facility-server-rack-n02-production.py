@@ -4,8 +4,8 @@ The builder consumes only the exact owner-approved N02 preflight pixels. It
 locks four authored orientations, separates the immutable shell and animated
 status viewport, validates the complete I01 roster with empty hands, and runs
 two independent capacity-one reservations for thirty simulated seconds.
-It stops at an F8 owner-review candidate and never edits a room or Active
-Office file.
+records the owner's exact F8 approval and never edits a room or Active Office
+file.
 """
 
 from __future__ import annotations
@@ -1309,8 +1309,8 @@ def build_outputs() -> dict[Path, bytes]:
         "id": "office.facility.server-rack.n02.production",
         "familyId": "server.rack.generated-modern",
         "revision": "n02-production-r01",
-        "status": "production-owner-review",
-        "productionStage": "f4-f7-complete",
+        "status": "owner-approved",
+        "productionStage": "f8-owner-approved",
         "developmentOnly": True,
         "activeOfficePromotion": False,
         "preflightAuthority": {
@@ -1398,10 +1398,9 @@ def build_outputs() -> dict[Path, bytes]:
             "heldProp": False,
             "h01Dependency": False,
             "handoff": False,
-            "reservationSlotContributionBeforeF8": 0,
-            "plannedReservationSlotContributionAfterF8": 2,
+            "reservationSlotContribution": 2,
             "facilityV1ReadySlotsBeforeServer": 15,
-            "facilityV1ReadySlotsAfterServerF8Target": 17,
+            "facilityV1ReadySlotsAfterApproval": 17,
         },
         "rosterValidation": {
             "authorityManifest": repo_path(ACTION_MANIFEST_PATH),
@@ -1488,12 +1487,12 @@ def build_outputs() -> dict[Path, bytes]:
                 repo_path(INSPECT_GIF_PATH),
             ),
             "F8": {
-                "status": "pending-owner-review",
+                "status": "passed",
                 "evidence": [repo_path(path) for path in review_paths],
             },
             "F9": blocked(
-                "Facility v1 remains 15/20 until exact N02 production "
-                "hashes pass F8 owner approval."
+                "Facility v1 is 17/20; Refrigerator R01 and Printer P01 "
+                "remain incomplete."
             ),
             "F10": blocked("Active Office promotion is forbidden."),
         },
@@ -1501,8 +1500,8 @@ def build_outputs() -> dict[Path, bytes]:
         "reviewEvidence": review_evidence,
         "permissions": {
             "familyLab": True,
-            "ownerReview": True,
-            "reservationSlotActivation": False,
+            "ownerReview": False,
+            "reservationSlotActivation": True,
             "furnitureOnlyRoom": False,
             "otherFacilityFamilies": False,
             "activeOfficePromotion": False,
@@ -1511,7 +1510,23 @@ def build_outputs() -> dict[Path, bytes]:
             {"file": file, "imported": False}
             for file in ACTIVE_OFFICE_FILES
         ],
-        "ownerDecision": None,
+        "ownerDecision": {
+            "decision": "approved",
+            "decidedOn": "2026-07-30",
+            "approvedRevision": "n02-production-r01",
+            "scope": "exact-review-output-hashes",
+            "approvedReviewHashes": [
+                {
+                    "path": evidence["path"],
+                    "sha256": evidence["sha256"],
+                }
+                for evidence in review_evidence
+            ],
+            "notes": (
+                "Owner approved the exact Server Rack N02 production "
+                "evidence and its two independent Facility v1 slots."
+            ),
+        },
     }
     outputs[MANIFEST_PATH] = json_bytes(manifest)
     return outputs
@@ -1554,14 +1569,14 @@ def main() -> None:
         print(
             "Server Rack N02 production rebuild OK: F0-F7 pass, 108 poses, "
             "432 orientation cases, two capacity-one instances, 30-second "
-            "retry proof, and F8 owner review pending."
+            "retry proof, F8 owner-approved, and Facility v1 at 17/20."
         )
         return
     write_outputs(outputs)
     print(
-        "Built Server Rack N02 F4-F7 production evidence: 20 modular assets, "
+        "Built owner-approved Server Rack N02 F0-F8 evidence: 20 modular assets, "
         "10 review boards, 2 GIFs, 108 poses, 432 orientation cases, and "
-        "two-instance 30-second reservation proof. F8 owner review pending."
+        "two-instance 30-second reservation proof. Facility v1 is 17/20."
     )
 
 

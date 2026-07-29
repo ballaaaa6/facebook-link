@@ -87,8 +87,8 @@ try {
   add(
     manifest.id === "office.facility.server-rack.n02.production"
       && manifest.revision === "n02-production-r01"
-      && manifest.status === "production-owner-review"
-      && manifest.productionStage === "f4-f7-complete"
+      && manifest.status === "owner-approved"
+      && manifest.productionStage === "f8-owner-approved"
       && manifest.developmentOnly === true
       && manifest.activeOfficePromotion === false,
     "Server Rack N02 production identity or F8 stop changed",
@@ -242,11 +242,10 @@ try {
       && manifest.interaction.heldProp === false
       && manifest.interaction.h01Dependency === false
       && manifest.interaction.handoff === false
-      && manifest.interaction.reservationSlotContributionBeforeF8 === 0
-      && manifest.interaction.plannedReservationSlotContributionAfterF8 === 2
+      && manifest.interaction.reservationSlotContribution === 2
       && manifest.interaction.facilityV1ReadySlotsBeforeServer === 15
-      && manifest.interaction.facilityV1ReadySlotsAfterServerF8Target === 17,
-    "Empty-hand interaction, two instances, or pre-F8 slot stop changed",
+      && manifest.interaction.facilityV1ReadySlotsAfterApproval === 17,
+    "Empty-hand interaction, two instances, or approved slots changed",
   );
   add(
     manifest.rosterValidation.characterCount === 18
@@ -288,16 +287,26 @@ try {
     ["F0", "F1", "F2", "F3", "F4", "F5", "F6", "F7"].every(
       (gate) => manifest.gates[gate].status === "passed",
     )
-      && manifest.gates.F8.status === "pending-owner-review"
+      && manifest.gates.F8.status === "passed"
       && manifest.gates.F9.status === "blocked"
       && manifest.gates.F10.status === "blocked"
       && manifest.permissions.familyLab === true
-      && manifest.permissions.ownerReview === true
-      && manifest.permissions.reservationSlotActivation === false
+      && manifest.permissions.ownerReview === false
+      && manifest.permissions.reservationSlotActivation === true
       && manifest.permissions.furnitureOnlyRoom === false
       && manifest.permissions.activeOfficePromotion === false
-      && manifest.ownerDecision === null,
-    "Production must stop at independent F8 owner review",
+      && manifest.ownerDecision?.decision === "approved"
+      && manifest.ownerDecision?.decidedOn === "2026-07-30"
+      && manifest.ownerDecision?.approvedRevision === "n02-production-r01"
+      && manifest.ownerDecision?.scope === "exact-review-output-hashes"
+      && manifest.ownerDecision?.approvedReviewHashes?.length === 12
+      && manifest.ownerDecision.approvedReviewHashes.every(
+        ({ path, sha256: expected }) =>
+          manifest.reviewEvidence.some(
+            (record) => record.path === path && record.sha256 === expected,
+          ),
+      ),
+    "Production must preserve its independent F8 owner approval",
   );
   add(
     same(
@@ -316,7 +325,7 @@ try {
   const packageJson = readJson("package.json");
   add(
     existsSync(join(root, builderPath))
-      && docs.includes("Status: F4-F7 passed; awaiting owner review at F8")
+      && docs.includes("Status: owner-approved at F8")
       && docs.includes("108")
       && docs.includes("432")
       && docs.includes("15/20")
@@ -346,5 +355,5 @@ if (failures.length > 0) {
 console.log(
   "Server Rack N02 production check passed: 20 modular assets, 108 poses, "
     + "432 orientation cases, two capacity-one instances, 30-second proof, "
-    + "F4-F7 passed, F8 owner review pending, slot count remains 15/20.",
+    + "F0-F8 passed, owner-approved, Facility v1 slot count 17/20.",
 );

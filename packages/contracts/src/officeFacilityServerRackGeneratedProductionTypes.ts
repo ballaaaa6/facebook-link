@@ -40,8 +40,8 @@ export interface OfficeFacilityServerRackGeneratedProductionManifest {
   id: "office.facility.server-rack.n02.production";
   familyId: "server.rack.generated-modern";
   revision: "n02-production-r01";
-  status: "production-owner-review";
-  productionStage: "f4-f7-complete";
+  status: "owner-approved";
+  productionStage: "f8-owner-approved";
   developmentOnly: true;
   activeOfficePromotion: false;
   preflightAuthority: {
@@ -147,10 +147,9 @@ export interface OfficeFacilityServerRackGeneratedProductionManifest {
     heldProp: false;
     h01Dependency: false;
     handoff: false;
-    reservationSlotContributionBeforeF8: 0;
-    plannedReservationSlotContributionAfterF8: 2;
+    reservationSlotContribution: 2;
     facilityV1ReadySlotsBeforeServer: 15;
-    facilityV1ReadySlotsAfterServerF8Target: 17;
+    facilityV1ReadySlotsAfterApproval: 17;
   };
   rosterValidation: {
     authorityManifest: string;
@@ -238,8 +237,8 @@ export interface OfficeFacilityServerRackGeneratedProductionManifest {
   }[];
   permissions: {
     familyLab: true;
-    ownerReview: true;
-    reservationSlotActivation: false;
+    ownerReview: false;
+    reservationSlotActivation: true;
     furnitureOnlyRoom: false;
     otherFacilityFamilies: false;
     activeOfficePromotion: false;
@@ -248,5 +247,15 @@ export interface OfficeFacilityServerRackGeneratedProductionManifest {
     file: string;
     imported: false;
   }[];
-  ownerDecision: null;
+  ownerDecision: {
+    decision: "approved";
+    decidedOn: "2026-07-30";
+    approvedRevision: "n02-production-r01";
+    scope: "exact-review-output-hashes";
+    approvedReviewHashes: readonly {
+      path: string;
+      sha256: string;
+    }[];
+    notes: string;
+  };
 }

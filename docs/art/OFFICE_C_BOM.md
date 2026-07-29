@@ -40,12 +40,10 @@ single accepted asset for repeated objects unless a deliberate visual variant
 is required. The five sofa seats remain five independently reservable slots
 even when the sofa is split into two furniture objects.
 
-Current Facility v1 readiness is `15/20` after Arcade G02 F8 approval. The
-remaining five slots are Server Rack N02 (`2`), Refrigerator R01 (`1`), and
-Printer P01 (`2`). N01 remains superseded evidence. The owner approved N02's
-visual preflight, and `n02-production-r01` passes F4-F7 with two independent
-capacity-one instances. Its exact production hashes still await F8 owner
-review, so the two planned slots remain inactive.
+Current Facility v1 readiness is `17/20` after Server Rack N02 F8 approval.
+The remaining three slots are Refrigerator R01 (`1`) and Printer P01 (`2`).
+N01 remains superseded evidence. N02 production provides two independently
+reservable capacity-one instances from one owner-approved family.
 
 ### Facility asset generation plan
 

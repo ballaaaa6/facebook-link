@@ -1,6 +1,6 @@
 # Office Facility Server Rack N02 Production
 
-Status: F4-F7 passed; awaiting owner review at F8
+Status: owner-approved at F8
 
 Server Rack N02 production revision `n02-production-r01` consumes only the
 exact owner-approved N02 preflight pixels. It adds deterministic part, socket,
@@ -13,16 +13,16 @@ The preflight visual shape and its eleven exact review hashes were approved on
 2026-07-30. Production checks those hashes before producing any output. A
 missing or changed hash fails the build.
 
-This revision passes F4-F7 and stops at F8 owner review:
+The owner approved the exact twelve production review hashes on 2026-07-30.
+This revision now passes F0-F8:
 
-- Facility v1 remains `15/20`;
-- both planned server slots remain inactive;
+- Facility v1 advances from `15/20` to `17/20`;
+- both server slots are active and independently reservable;
 - F9 remains blocked;
 - F10 and Active Office promotion remain blocked.
 
-If the owner approves the exact production evidence at F8, the two independent
-capacity-one instances will contribute two slots and the Facility v1 readiness
-target becomes `17/20`.
+Approval applies only to revision `n02-production-r01` and the exact hashes in
+its `ownerDecision.approvedReviewHashes`.
 
 ## F4 modular parts
 
@@ -114,7 +114,7 @@ thirty-second, two-user simulation proves:
 The files live under
 `assets/art/layout-references/office-facility-family-v1/server-rack-n02-production/`.
 The manifest records every review hash, image size, GIF frame count, and GIF
-duration. Owner approval must refer to this exact revision and evidence set.
+duration. Its owner decision locks this exact revision and evidence set.
 
 ## Reproduction and validation
 

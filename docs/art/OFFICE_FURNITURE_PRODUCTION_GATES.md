@@ -243,9 +243,9 @@ revision `n02-production-r01` consumes only those approved pixels and passes
 F4-F7 with four orientation shells, a viewport-local A-D-A status loop,
 `18 x 6 = 108` empty-hand I01 cases, `432` orientation cases, collision-free
 routes, and a thirty-second two-instance capacity-one failure/release/retry
-proof. F8 awaits owner review of the exact production hashes. Until that
-decision, both planned slots remain inactive, Facility v1 remains `15/20`, and
-F9-F10 stay blocked. See
+proof. The owner approved the exact twelve production review hashes at F8 on
+2026-07-30. Both independent slots are active, advancing Facility v1 from
+`15/20` to `17/20`. F9-F10 stay blocked. See
 `docs/art/OFFICE_FACILITY_SERVER_RACK_N02_PRODUCTION.md`.
 
 ## Recommended family order

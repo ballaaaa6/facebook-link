@@ -11,18 +11,19 @@ const manifest = JSON.parse(readFileSync(new URL(
   import.meta.url,
 ), "utf8")) as OfficeFacilityServerRackGeneratedProductionManifest;
 
-test("Server Rack N02 production is an isolated F8 review candidate", () => {
+test("Server Rack N02 production records its independent F8 approval", () => {
   assert.deepEqual(
     validateOfficeFacilityServerRackGeneratedProductionManifest(manifest),
     [],
   );
-  assert.equal(manifest.status, "production-owner-review");
+  assert.equal(manifest.status, "owner-approved");
   assert.equal(manifest.gates.F4.status, "passed");
   assert.equal(manifest.gates.F7.status, "passed");
-  assert.equal(manifest.gates.F8.status, "pending-owner-review");
+  assert.equal(manifest.gates.F8.status, "passed");
   assert.equal(manifest.gates.F9.status, "blocked");
-  assert.equal(manifest.permissions.reservationSlotActivation, false);
-  assert.equal(manifest.ownerDecision, null);
+  assert.equal(manifest.permissions.reservationSlotActivation, true);
+  assert.equal(manifest.ownerDecision.decision, "approved");
+  assert.equal(manifest.ownerDecision.approvedReviewHashes.length, 12);
 });
 
 test("Server Rack N02 production locks modular approved pixels", () => {
@@ -74,14 +75,14 @@ test("Server Rack N02 proves independent capacity-one reservations", () => {
   });
 });
 
-test("Server Rack N02 rejects premature slots and held props", () => {
+test("Server Rack N02 rejects slot rollback and held props", () => {
   const invalid = structuredClone(manifest) as unknown as {
     interaction: Record<string, unknown>;
     permissions: Record<string, unknown>;
   };
   invalid.interaction.heldProp = true;
-  invalid.interaction.reservationSlotContributionBeforeF8 = 2;
-  invalid.permissions.reservationSlotActivation = true;
+  invalid.interaction.reservationSlotContribution = 0;
+  invalid.permissions.reservationSlotActivation = false;
   const issues =
     validateOfficeFacilityServerRackGeneratedProductionManifest(invalid);
   assert.ok(issues.some((issue) => issue.includes("interaction")));

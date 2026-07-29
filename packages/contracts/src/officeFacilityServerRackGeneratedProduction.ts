@@ -41,8 +41,8 @@ export function validateOfficeFacilityServerRackGeneratedProductionManifest(
       && value.id === "office.facility.server-rack.n02.production"
       && value.familyId === "server.rack.generated-modern"
       && value.revision === "n02-production-r01"
-      && value.status === "production-owner-review"
-      && value.productionStage === "f4-f7-complete"
+      && value.status === "owner-approved"
+      && value.productionStage === "f8-owner-approved"
       && value.developmentOnly === true
       && value.activeOfficePromotion === false,
     "Server Rack N02 production identity or F8 stop changed",
@@ -224,11 +224,10 @@ export function validateOfficeFacilityServerRackGeneratedProductionManifest(
       && interaction.heldProp === false
       && interaction.h01Dependency === false
       && interaction.handoff === false
-      && interaction.reservationSlotContributionBeforeF8 === 0
-      && interaction.plannedReservationSlotContributionAfterF8 === 2
+      && interaction.reservationSlotContribution === 2
       && interaction.facilityV1ReadySlotsBeforeServer === 15
-      && interaction.facilityV1ReadySlotsAfterServerF8Target === 17,
-    "Server Rack N02 interaction or pre-F8 slot stop changed",
+      && interaction.facilityV1ReadySlotsAfterApproval === 17,
+    "Server Rack N02 interaction or approved slot contribution changed",
   );
 
   const roster = value.rosterValidation;
@@ -306,11 +305,11 @@ export function validateOfficeFacilityServerRackGeneratedProductionManifest(
   add(issues, record(value.gates), "gates must be an object");
   if (record(value.gates)) {
     for (const gate of officeFacilityServerRackProductionGates) {
-      const expected = ["F0", "F1", "F2", "F3", "F4", "F5", "F6", "F7"]
-          .includes(gate)
+      const expected = (
+        ["F0", "F1", "F2", "F3", "F4", "F5", "F6", "F7"].includes(gate)
+        || gate === "F8"
+      )
         ? "passed"
-        : gate === "F8"
-        ? "pending-owner-review"
         : "blocked";
       add(
         issues,
@@ -340,13 +339,24 @@ export function validateOfficeFacilityServerRackGeneratedProductionManifest(
         && point(entry.size))
       && record(permissions)
       && permissions.familyLab === true
-      && permissions.ownerReview === true
-      && permissions.reservationSlotActivation === false
+      && permissions.ownerReview === false
+      && permissions.reservationSlotActivation === true
       && permissions.furnitureOnlyRoom === false
       && permissions.otherFacilityFamilies === false
       && permissions.activeOfficePromotion === false
-      && value.ownerDecision === null,
-    "Server Rack N02 F8 review set, permission stop, or decision changed",
+      && record(value.ownerDecision)
+      && value.ownerDecision.decision === "approved"
+      && value.ownerDecision.decidedOn === "2026-07-30"
+      && value.ownerDecision.approvedRevision === "n02-production-r01"
+      && value.ownerDecision.scope === "exact-review-output-hashes"
+      && Array.isArray(value.ownerDecision.approvedReviewHashes)
+      && value.ownerDecision.approvedReviewHashes.length === 12
+      && value.ownerDecision.approvedReviewHashes.every((entry, index) =>
+        record(entry)
+        && entry.path === outputs[index]
+        && entry.sha256 === evidence[index]?.sha256)
+      && typeof value.ownerDecision.notes === "string",
+    "Server Rack N02 F8 review set, permission, or owner decision changed",
   );
   return issues;
 }

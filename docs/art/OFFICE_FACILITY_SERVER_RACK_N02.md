@@ -100,9 +100,10 @@ The later production target is:
 - a thirty-second blocked, failure, release, and retry simulation.
 
 None of those cases is built or claimed by this preflight revision. Server Rack
-N02 therefore contributes zero slots here and Facility v1 remains `15/20`.
-The approved shape unlocks the separate F4-F7 production build; its two
-instances target `17/20` only after that exact production revision passes F8.
+N02 therefore contributes zero slots in this preflight manifest. The separate
+`n02-production-r01` revision subsequently passed F4-F7 and received exact-hash
+F8 approval on 2026-07-30. Its two active instances advance current Facility v1
+readiness from `15/20` to `17/20`.
 
 ## Gate state
 
