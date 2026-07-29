@@ -184,7 +184,7 @@ try {
   add(
     manifest.gates?.F0?.status === "passed"
       && manifest.gates?.F2?.status === "passed"
-      && manifest.gates?.F3?.status === "pending-owner-review"
+      && manifest.gates?.F3?.status === "passed"
       && manifest.gates?.F4?.status === "blocked"
       && manifest.gates?.F8?.status === "blocked"
       && manifest.gates?.F9?.status === "blocked"
@@ -195,11 +195,20 @@ try {
       && manifest.interaction?.facilityV1ReadySlotsBeforePrinterF8 === 18
       && manifest.interaction
         ?.facilityV1ReadySlotsAfterPrinterF8Target === 20
-      && manifest.permissions?.fullSystemBuild === false
+      && manifest.permissions?.fullSystemBuild === true
       && manifest.permissions?.reservationSlotActivation === false
       && manifest.permissions?.activeOfficePromotion === false
-      && manifest.ownerDecision === null,
-    "Printer P01 exceeded F3 preflight authority",
+      && manifest.ownerDecision?.decision === "approved"
+      && manifest.ownerDecision?.decidedOn === "2026-07-30"
+      && manifest.ownerDecision?.approvedRevision
+        === "p01-generated-motion-preflight-r02"
+      && manifest.ownerDecision?.approvedReviewHashes?.length === 12
+      && manifest.ownerDecision?.approvedReviewHashes?.every(
+        (entry, index) =>
+          entry.path === manifest.reviewEvidence?.[index]?.path
+          && entry.sha256 === manifest.reviewEvidence?.[index]?.sha256,
+      ),
+    "Printer P01 F3 approval authority changed",
   );
 
   add(
@@ -305,13 +314,13 @@ try {
     builder.includes("chroma_key")
       && builder.includes("primary-grip-to-primary-grip")
       && builder.includes("reservationSlotContribution")
-      && builder.includes('"fullSystemBuild": False')
+      && builder.includes('"fullSystemBuild": True')
       && builder.includes('"activeOfficePromotion": False'),
     "Printer P01 builder boundary changed",
   );
   const docs = readText(docsPath);
   add(
-    docs.includes("Status: F3 owner review pending")
+    docs.includes("Status: F3 owner-approved")
       && docs.includes("2 x 2 x 4")
       && docs.includes("A -> B -> C -> D -> A")
       && docs.includes("primaryGripSocket")
@@ -331,7 +340,7 @@ try {
       && packageJson.scripts?.["art:facility:printer:p01:rebuild:check"]
         === "python scripts/build-office-facility-printer-p01.py --check"
       && packageJson.scripts?.["art:facility:printer:p01:check"]
-        === "node scripts/office-facility-printer-p01-check.mjs"
+        === "node scripts/office-facility-printer-p01-check.mjs && node scripts/office-facility-printer-p01-production-check.mjs"
       && packageJson.scripts?.["art:facility:refrigerator:r01:check"]
         ?.includes("npm run art:facility:printer:p01:check")
       && packageJson.scripts?.check.includes(
@@ -348,8 +357,8 @@ if (failures.length) {
   process.exitCode = 1;
 } else {
   process.stdout.write(
-    "Printer P01 check passed: fresh 2x2x4 identity, modular A-D-A "
-      + "processing loop, finite tray output, I01/H01 previews, F3 pending, "
-      + "zero active slots.\n",
+    "Printer P01 preflight check passed: fresh 2x2x4 identity, modular "
+      + "A-D-A processing loop, finite tray output, exact I01/H01 previews, "
+      + "F3 approved, production authorized, zero active slots.\n",
   );
 }

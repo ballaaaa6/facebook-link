@@ -1,6 +1,6 @@
 # Office Facility Printer P01
 
-Status: F3 owner review pending
+Status: F3 owner-approved; isolated F4-F8 production authorized
 
 Revision: `p01-generated-motion-preflight-r02`
 
@@ -27,10 +27,10 @@ uses:
 - one user per instance; and
 - two planned instances with independent reservations.
 
-The current batch stops at F3 visual owner review. It builds no 18-character
+The exact r02 batch passed F3 owner review on 2026-07-30. It builds no 18-character
 production matrix, no thirty-second contention proof, no F8 decision, and no
-active Printer reservation slots. Facility v1 remains `18/20`. If this visual
-identity passes, production may build the two independent slots needed to
+active Printer reservation slots. Facility v1 remains `18/20`. The approval
+authorizes production to build the two independent slots needed to
 reach `20/20`. F9-F10 remain blocked.
 
 ## Fresh source authority
@@ -185,22 +185,26 @@ The files live under:
 `assets/art/layout-references/office-facility-family-v1/printer-p01/`
 
 The manifest records every review hash, image size, GIF frame count, and frame
-duration. F3 approval must apply to this exact revision and evidence set.
+duration. F3 approval applies to this exact revision and evidence set. The
+manifest pins all twelve hashes; a changed file invalidates production authority.
 
-## Production work after visual approval
+## Authorized production work
 
-F3 approval would authorize, but does not itself complete:
+F3 approval authorizes, but does not itself complete:
 
 - the complete 18-character by six-frame I01 matrix;
 - paper and envelope primary-grip overlay validation;
 - two independent capacity-one reservations;
-- a thirty-second two-user blocked/failure/release/retry scenario;
+- a thirty-second three-user, two-instance blocked/failure/release/retry scenario;
 - both interruption paths;
 - close-ups, routes, roster, handoff, and timeline evidence; and
 - a separate F8 owner decision.
 
 Only F8 approval of that production package may activate the two Printer
 slots and advance Facility v1 from `18/20` to `20/20`.
+
+The authorized production package is documented in
+`docs/art/OFFICE_FACILITY_PRINTER_P01_PRODUCTION.md`.
 
 ## Reproduction and validation
 

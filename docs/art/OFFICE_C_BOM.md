@@ -79,10 +79,13 @@ placement or interaction-facing requirement for them.
 Printer P01 is a 2026-07-30 owner-directed replacement for the old desktop
 printer and parent-credenza plan. Its fresh front-only visual preflight uses
 one immutable shell, four local screen frames, four local scanner-light frames,
-and closed/half/open tray children. It remains at zero slots while F3 visual
-review is pending. A later F4-F8 production revision must prove both
-independently reservable instances before its two slots can advance Facility
-v1 from `18/20` to `20/20`.
+and closed/half/open tray children. The owner approved the corrected r02
+primary-grip preflight on 2026-07-30. Production revision `p01-production-r01`
+consumes only those approved pixels and passes F4-F7 with `108` base poses,
+`108` exact paper/envelope grip cases, two independent capacity-one instances,
+and a thirty-second three-user proof. It stops at F8 owner review and remains
+at zero active slots. Only approval of the exact production review hashes may
+advance Facility v1 from `18/20` to `20/20`.
 
 ### Facility scale contracts
 

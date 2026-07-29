@@ -11,7 +11,7 @@ const manifest = JSON.parse(readFileSync(new URL(
   import.meta.url,
 ), "utf8")) as OfficeFacilityPrinterGeneratedPreflightManifest;
 
-test("Printer P01 is a fresh front-only 2x2x4 F3 preflight", () => {
+test("Printer P01 is the approved fresh front-only 2x2x4 F3 preflight", () => {
   assert.deepEqual(
     validateOfficeFacilityPrinterGeneratedPreflightManifest(manifest),
     [],
@@ -23,9 +23,11 @@ test("Printer P01 is a fresh front-only 2x2x4 F3 preflight", () => {
     unit: "tile",
   });
   assert.deepEqual(manifest.render.requiredOrientations, ["front"]);
-  assert.equal(manifest.gates.F3.status, "pending-owner-review");
+  assert.equal(manifest.gates.F3.status, "passed");
   assert.equal(manifest.gates.F4.status, "blocked");
-  assert.equal(manifest.permissions.fullSystemBuild, false);
+  assert.equal(manifest.permissions.fullSystemBuild, true);
+  assert.equal(manifest.ownerDecision.decision, "approved");
+  assert.equal(manifest.ownerDecision.approvedReviewHashes.length, 12);
 });
 
 test("Printer P01 separates seam-loop and finite output motion", () => {
@@ -79,13 +81,13 @@ test("Printer P01 does not claim its two planned slots before F8", () => {
   assert.equal(manifest.preflightValidation.productionRosterCasesBuilt, 0);
 });
 
-test("Printer P01 rejects premature production or slot activation", () => {
+test("Printer P01 rejects reservation activation before production F8", () => {
   const invalid = structuredClone(manifest) as unknown as {
     interaction: Record<string, unknown>;
     permissions: Record<string, unknown>;
   };
   invalid.interaction.reservationSlotContribution = 2;
-  invalid.permissions.fullSystemBuild = true;
+  invalid.permissions.reservationSlotActivation = true;
   const issues =
     validateOfficeFacilityPrinterGeneratedPreflightManifest(invalid);
   assert.ok(issues.some((issue) => issue.includes("slot preflight stop")));

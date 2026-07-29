@@ -35,11 +35,11 @@ export function validateOfficeFacilityPrinterGeneratedPreflightManifest(
       && value.id === "office.facility.printer.p01"
       && value.familyId === "printer.multifunction.floor"
       && value.revision === "p01-generated-motion-preflight-r02"
-      && value.status === "visual-motion-preflight-owner-review"
-      && value.productionStage === "f2-complete-f3-owner-review"
+      && value.status === "visual-motion-preflight-owner-approved"
+      && value.productionStage === "f3-owner-approved-production-authorized"
       && value.developmentOnly === true
       && value.activeOfficePromotion === false,
-    "Printer P01 preflight identity or F3 stop changed",
+    "Printer P01 preflight identity or F3 approval changed",
   );
 
   const policy = value.sourcePolicy;
@@ -219,10 +219,8 @@ export function validateOfficeFacilityPrinterGeneratedPreflightManifest(
   add(issues, record(value.gates), "Printer P01 gates are missing");
   if (record(value.gates)) {
     for (const gate of officeFacilityPrinterPreflightGates) {
-      const expected = ["F0", "F1", "F2"].includes(gate)
+      const expected = ["F0", "F1", "F2", "F3"].includes(gate)
         ? "passed"
-        : gate === "F3"
-        ? "pending-owner-review"
         : "blocked";
       add(
         issues,
@@ -241,6 +239,7 @@ export function validateOfficeFacilityPrinterGeneratedPreflightManifest(
     ? value.reviewEvidence
     : [];
   const permissions = value.permissions;
+  const decision = value.ownerDecision;
   add(
     issues,
     outputs.length === 12
@@ -254,17 +253,29 @@ export function validateOfficeFacilityPrinterGeneratedPreflightManifest(
       )
       && record(permissions)
       && permissions.visualMotionPreflight === true
-      && permissions.ownerReview === true
-      && permissions.fullSystemBuild === false
+      && permissions.ownerReview === false
+      && permissions.fullSystemBuild === true
       && permissions.reservationSlotActivation === false
       && permissions.furnitureOnlyRoom === false
       && permissions.activeOfficePromotion === false
-      && value.ownerDecision === null
+      && record(decision)
+      && decision.decision === "approved"
+      && decision.decidedOn === "2026-07-30"
+      && decision.approvedRevision === "p01-generated-motion-preflight-r02"
+      && decision.scope === "exact-review-output-hashes"
+      && Array.isArray(decision.approvedReviewHashes)
+      && decision.approvedReviewHashes.length === 12
+      && decision.approvedReviewHashes.every((entry, index) =>
+        record(entry)
+        && record(evidence[index])
+        && entry.path === evidence[index].path
+        && entry.sha256 === evidence[index].sha256)
+      && same(decision.unlocks, ["F4", "F5", "F6", "F7", "F8"])
       && Array.isArray(value.activeOfficeEvidence)
       && value.activeOfficeEvidence.every(
         (entry) => record(entry) && entry.imported === false,
       ),
-    "Printer P01 F3 review set or permission stop changed",
+    "Printer P01 F3 approval set or permission stop changed",
   );
   return issues;
 }

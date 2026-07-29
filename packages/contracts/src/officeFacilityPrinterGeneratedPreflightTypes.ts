@@ -7,8 +7,8 @@ export interface OfficeFacilityPrinterGeneratedPreflightManifest {
   id: "office.facility.printer.p01";
   familyId: "printer.multifunction.floor";
   revision: "p01-generated-motion-preflight-r02";
-  status: "visual-motion-preflight-owner-review";
-  productionStage: "f2-complete-f3-owner-review";
+  status: "visual-motion-preflight-owner-approved";
+  productionStage: "f3-owner-approved-production-authorized";
   developmentOnly: true;
   activeOfficePromotion: false;
   sourcePolicy: {
@@ -129,14 +129,25 @@ export interface OfficeFacilityPrinterGeneratedPreflightManifest {
   reviewEvidence: readonly PrinterReviewEvidence[];
   permissions: {
     visualMotionPreflight: true;
-    ownerReview: true;
-    fullSystemBuild: false;
+    ownerReview: false;
+    fullSystemBuild: true;
     reservationSlotActivation: false;
     furnitureOnlyRoom: false;
     activeOfficePromotion: false;
   };
   activeOfficeEvidence: readonly { file: string; imported: false }[];
-  ownerDecision: null;
+  ownerDecision: {
+    decision: "approved";
+    decidedOn: "2026-07-30";
+    approvedRevision: "p01-generated-motion-preflight-r02";
+    scope: "exact-review-output-hashes";
+    approvedReviewHashes: readonly {
+      path: string;
+      sha256: string;
+    }[];
+    unlocks: readonly ["F4", "F5", "F6", "F7", "F8"];
+    notes: string;
+  };
 }
 
 interface PrinterAsset {

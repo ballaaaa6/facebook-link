@@ -21,6 +21,7 @@ export * from "./officeFacilityServerRackPreflight.ts";
 export * from "./officeFacilityRefrigeratorGeneratedPreflight.ts";
 export * from "./officeFacilityRefrigeratorProduction.ts";
 export * from "./officeFacilityPrinterGeneratedPreflight.ts";
+export * from "./officeFacilityPrinterProduction.ts";
 export * from "./officeFurnitureProduction.ts";
 export * from "./officeSurfaceFurnitureProduction.ts";
 export * from "./officeSemanticGridV2.ts";

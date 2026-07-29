@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Build the isolated Printer P01 generated visual-motion preflight.
+"""Build the owner-approved Printer P01 generated visual-motion preflight.
 
 The builder treats the two ImageGen PNGs as immutable source evidence, removes
 their chroma key locally, and derives every runtime part and review image
-deterministically. It stops at F3 owner review with zero active Facility slots.
+deterministically. The exact r02 review hashes passed F3 on 2026-07-30 and
+authorize isolated F4-F8 production. Facility slots remain inactive.
 """
 
 from __future__ import annotations
@@ -888,8 +889,8 @@ def build_outputs() -> dict[Path, bytes]:
         "id": "office.facility.printer.p01",
         "familyId": "printer.multifunction.floor",
         "revision": "p01-generated-motion-preflight-r02",
-        "status": "visual-motion-preflight-owner-review",
-        "productionStage": "f2-complete-f3-owner-review",
+        "status": "visual-motion-preflight-owner-approved",
+        "productionStage": "f3-owner-approved-production-authorized",
         "developmentOnly": True,
         "activeOfficePromotion": False,
         "sourcePolicy": {
@@ -1051,12 +1052,12 @@ def build_outputs() -> dict[Path, bytes]:
                 repo_path(boards[6][0]),
                 repo_path(PROCESSING_GIF),
             ),
-            "F3": pending(*(entry["path"] for entry in review_evidence)),
-            "F4": blocked("Full 18 x 6 production matrix requires F3 visual approval."),
-            "F5": blocked("Production routes and handoffs require F3 visual approval."),
-            "F6": blocked("Two-instance reservation proof requires F3 visual approval."),
-            "F7": blocked("Production evidence package is not built."),
-            "F8": blocked("Production owner approval is not requested by this preflight."),
+            "F3": passed(*(entry["path"] for entry in review_evidence)),
+            "F4": blocked("Authorized in the isolated production package; not fabricated here."),
+            "F5": blocked("Authorized in the isolated production package; not fabricated here."),
+            "F6": blocked("Authorized in the isolated production package; not fabricated here."),
+            "F7": blocked("Authorized in the isolated production package; not fabricated here."),
+            "F8": blocked("A separate production review package and owner decision are required."),
             "F9": blocked("Facility v1 remains 18/20 until Printer production passes F8."),
             "F10": blocked("Active Office promotion remains forbidden."),
         },
@@ -1064,8 +1065,8 @@ def build_outputs() -> dict[Path, bytes]:
         "reviewEvidence": review_evidence,
         "permissions": {
             "visualMotionPreflight": True,
-            "ownerReview": True,
-            "fullSystemBuild": False,
+            "ownerReview": False,
+            "fullSystemBuild": True,
             "reservationSlotActivation": False,
             "furnitureOnlyRoom": False,
             "activeOfficePromotion": False,
@@ -1074,7 +1075,21 @@ def build_outputs() -> dict[Path, bytes]:
             {"file": path, "imported": False}
             for path in ACTIVE_OFFICE_FILES
         ],
-        "ownerDecision": None,
+        "ownerDecision": {
+            "decision": "approved",
+            "decidedOn": "2026-07-30",
+            "approvedRevision": "p01-generated-motion-preflight-r02",
+            "scope": "exact-review-output-hashes",
+            "approvedReviewHashes": [
+                {"path": entry["path"], "sha256": entry["sha256"]}
+                for entry in review_evidence
+            ],
+            "unlocks": ["F4", "F5", "F6", "F7", "F8"],
+            "notes": (
+                "Owner accepted the corrected primary-grip presentation and "
+                "authorized isolated production. No reservation slot is active."
+            ),
+        },
     }
     outputs[MANIFEST_PATH] = json_bytes(manifest)
     return outputs
@@ -1124,14 +1139,14 @@ def main() -> int:
         print(
             "Printer P01 preflight validated: fresh 2x2x4 identity, modular "
             "A-D-A processing loop, finite tray action, I01/H01 previews, "
-            "F3 pending, zero active slots."
+            "F3 approved, isolated production authorized, zero active slots."
         )
         return 0
     write_outputs(outputs)
     print(
         "Printer P01 preflight built: fresh 2x2x4 identity, modular A-D-A "
-        "processing loop, finite tray action, I01/H01 previews, F3 pending, "
-        "zero active slots."
+        "processing loop, finite tray action, I01/H01 previews, F3 approved, "
+        "isolated production authorized, zero active slots."
     )
     return 0
 

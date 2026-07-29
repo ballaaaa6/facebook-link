@@ -3,8 +3,8 @@
   "id": "office.facility.printer.p01",
   "familyId": "printer.multifunction.floor",
   "revision": "p01-generated-motion-preflight-r02",
-  "status": "visual-motion-preflight-owner-review",
-  "productionStage": "f2-complete-f3-owner-review",
+  "status": "visual-motion-preflight-owner-approved",
+  "productionStage": "f3-owner-approved-production-authorized",
   "developmentOnly": true,
   "activeOfficePromotion": false,
   "sourcePolicy": {
@@ -626,7 +626,7 @@
       ]
     },
     "F3": {
-      "status": "pending-owner-review",
+      "status": "passed",
       "evidence": [
         "assets/art/layout-references/office-facility-family-v1/printer-p01/01-clean-front-identity.png",
         "assets/art/layout-references/office-facility-family-v1/printer-p01/02-source-ownership-alpha.png",
@@ -645,31 +645,31 @@
     "F4": {
       "status": "blocked",
       "evidence": [
-        "Full 18 x 6 production matrix requires F3 visual approval."
+        "Authorized in the isolated production package; not fabricated here."
       ]
     },
     "F5": {
       "status": "blocked",
       "evidence": [
-        "Production routes and handoffs require F3 visual approval."
+        "Authorized in the isolated production package; not fabricated here."
       ]
     },
     "F6": {
       "status": "blocked",
       "evidence": [
-        "Two-instance reservation proof requires F3 visual approval."
+        "Authorized in the isolated production package; not fabricated here."
       ]
     },
     "F7": {
       "status": "blocked",
       "evidence": [
-        "Production evidence package is not built."
+        "Authorized in the isolated production package; not fabricated here."
       ]
     },
     "F8": {
       "status": "blocked",
       "evidence": [
-        "Production owner approval is not requested by this preflight."
+        "A separate production review package and owner decision are required."
       ]
     },
     "F9": {
@@ -817,8 +817,8 @@
   ],
   "permissions": {
     "visualMotionPreflight": true,
-    "ownerReview": true,
-    "fullSystemBuild": false,
+    "ownerReview": false,
+    "fullSystemBuild": true,
     "reservationSlotActivation": false,
     "furnitureOnlyRoom": false,
     "activeOfficePromotion": false
@@ -837,5 +837,68 @@
       "imported": false
     }
   ],
-  "ownerDecision": null
+  "ownerDecision": {
+    "decision": "approved",
+    "decidedOn": "2026-07-30",
+    "approvedRevision": "p01-generated-motion-preflight-r02",
+    "scope": "exact-review-output-hashes",
+    "approvedReviewHashes": [
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/printer-p01/01-clean-front-identity.png",
+        "sha256": "1419b441912dec7feda26c84b0f07977126f51d48d7c41dbb3330b3ba513c5a2"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/printer-p01/02-source-ownership-alpha.png",
+        "sha256": "9c1a1977484030c9dfabe136f59981538198da8e65b044f3af87f229a3881ebd"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/printer-p01/03-modular-parts.png",
+        "sha256": "35242f2327e31118d822e6a7c1860a4af849361da100218e04e0981e6e7daad0"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/printer-p01/04-scale-2x2x4.png",
+        "sha256": "3801fb376c2aefdfdce7126cdac1f7c2388c704bd98d5ed6a3fee229cd978fb3"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/printer-p01/05-footprint-approach-routes.png",
+        "sha256": "0de731d00185b54254a4b9ebb02cbc0a1e7f02427aa8caf6a0fbd6c926f4ae0a"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/printer-p01/06-processing-seam-loop.png",
+        "sha256": "4b672277c3f981ca36f5d3d4db0ef9fdb635d92de88ad2ef188bf17aff895df0"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/printer-p01/07-finite-output-sequence.png",
+        "sha256": "83cca772c6694c244eeb1d5a25ea908949448a44db1f6f127627f28ecd77f330"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/printer-p01/08-i01-h01-two-instance-preview.png",
+        "sha256": "6719a05437c981da0251b2276844a7edbe2c851ae4e6bd54f583d81d3fb28910"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/printer-p01/09-primary-grip-frame-proof.png",
+        "sha256": "582f316d1fe5235c0e11832561001f223810c41c29413a9bd385cb62d8aa9ffa"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/printer-p01/printer-p01-processing-loop.gif",
+        "sha256": "62db5b510b80c2054dbdd5d8330ed9340a5d19601dca485db074b5cff46ec970"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/printer-p01/printer-p01-anna-paper.gif",
+        "sha256": "f3944b06df48d45a983d03b6844ab84c675110d1754ba6e047d639c5e8683512"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/printer-p01/printer-p01-anna-envelope.gif",
+        "sha256": "f199bc37035eb1bccbf8962079247451fdda7246095bc11a8b780012a7f83948"
+      }
+    ],
+    "unlocks": [
+      "F4",
+      "F5",
+      "F6",
+      "F7",
+      "F8"
+    ],
+    "notes": "Owner accepted the corrected primary-grip presentation and authorized isolated production. No reservation slot is active."
+  }
 }
