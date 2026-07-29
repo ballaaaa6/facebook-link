@@ -436,9 +436,13 @@ The six-frame `interact-front` contract is:
 Water, coffee, and printer variants keep silhouettes compatible with their
 existing loops. The vending tray is processed into an item-neutral shell so a
 selected can, juice box, or snack bag never conflicts with baked output art.
-The refrigerator remains static in v1; its selected prop appears at the hand
-anchor without a door-opening animation. No carry-walk or side-facing facility
-rows are added.
+Refrigerator R01 replaces the earlier static plan with an owner-directed
+reversible finite lower-door action. Its immutable item-neutral shell composes
+with separate `closed`, `half`, and `open` lower-door children; this action
+must not be represented as an A-D-A seam loop. The selected H01 water bottle or
+yogurt box appears first at the facility output parent, moves to the existing
+I01 hand anchor, and is removed before departure. No new hand-coordinate
+system, carry-walk row, or side-facing facility row is added.
 
 ## Character Sheets
 

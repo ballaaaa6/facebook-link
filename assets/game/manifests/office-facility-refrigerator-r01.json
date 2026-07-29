@@ -1,0 +1,985 @@
+{
+  "schemaVersion": 1,
+  "id": "office.facility.refrigerator.r01",
+  "familyId": "refrigerator.modern",
+  "revision": "r01-generated-motion-preflight-r01",
+  "status": "visual-motion-preflight-owner-review",
+  "productionStage": "visual-motion-preflight",
+  "developmentOnly": true,
+  "activeOfficePromotion": false,
+  "ownerDirective": {
+    "recordedOn": "2026-07-30",
+    "physicalScale": "2x2x4",
+    "animatedDoor": true,
+    "randomHeldOutput": true,
+    "reuseExistingSpatialSystem": true,
+    "freshRefrigeratorIdentity": true
+  },
+  "sourcePolicy": {
+    "freshImageGeneration": true,
+    "originalMasterPixelReuse": false,
+    "processedCropDirectReuse": false,
+    "rejectedSideOrientationPixelReuse": false,
+    "activeOfficePixelReuse": false,
+    "otherFacilityPixelReuse": false,
+    "missingAssetFallback": false
+  },
+  "generation": {
+    "workflow": "built-in-imagegen",
+    "promptRecord": {
+      "file": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/source/IMAGEGEN_PROMPTS.md",
+      "sha256": "3bca4023d14f10f730bc02d108fdbcd25b136a063842c589070d49a8e79d2cb1"
+    },
+    "sources": [
+      {
+        "role": "front-anchor",
+        "file": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/source/01-refrigerator-front-anchor-chroma.png",
+        "sha256": "1b9f635389add56b4f0eac06b0bf4259d9abe7dc7f07185e1453ca4443bb5cec",
+        "size": [
+          1024,
+          1536
+        ],
+        "inputImageCount": 0,
+        "identityReference": null,
+        "extractionMethod": "generated-source-chroma-key",
+        "sampledKeyRgb": [
+          252,
+          4,
+          249
+        ],
+        "keyStats": {
+          "transparentPixels": 855849,
+          "partialAlphaPixels": 3876,
+          "visiblePixels": 717015
+        },
+        "ownership": [
+          {
+            "role": "front-anchor",
+            "sourceCell": [
+              0,
+              0,
+              1024,
+              1536
+            ],
+            "ownedBounds": [
+              239,
+              90,
+              785,
+              1425
+            ],
+            "visiblePixels": 717015,
+            "cellBoundaryContact": false
+          }
+        ]
+      },
+      {
+        "role": "motion-parts",
+        "file": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/source/02-refrigerator-motion-parts-chroma.png",
+        "sha256": "cdf92f7cbf77bdb64db12883f88c506bfd50c59e2f643288cc666191556b5785",
+        "size": [
+          1254,
+          1254
+        ],
+        "inputImageCount": 1,
+        "identityReference": "front-anchor",
+        "extractionMethod": "generated-source-chroma-key",
+        "sampledKeyRgb": [
+          250,
+          3,
+          237
+        ],
+        "keyStats": {
+          "transparentPixels": 1159950,
+          "partialAlphaPixels": 7097,
+          "visiblePixels": 412566
+        },
+        "ownership": [
+          {
+            "role": "shell",
+            "sourceCell": [
+              0,
+              0,
+              627,
+              680
+            ],
+            "ownedBounds": [
+              242,
+              47,
+              525,
+              644
+            ],
+            "visiblePixels": 165735,
+            "cellBoundaryContact": false
+          },
+          {
+            "role": "door-closed",
+            "sourceCell": [
+              627,
+              0,
+              1254,
+              680
+            ],
+            "ownedBounds": [
+              757,
+              161,
+              1023,
+              604
+            ],
+            "visiblePixels": 117292,
+            "cellBoundaryContact": false
+          },
+          {
+            "role": "door-half",
+            "sourceCell": [
+              0,
+              680,
+              627,
+              1254
+            ],
+            "ownedBounds": [
+              260,
+              712,
+              464,
+              1183
+            ],
+            "visiblePixels": 83255,
+            "cellBoundaryContact": false
+          },
+          {
+            "role": "door-open",
+            "sourceCell": [
+              627,
+              680,
+              1254,
+              1254
+            ],
+            "ownedBounds": [
+              866,
+              712,
+              980,
+              1171
+            ],
+            "visiblePixels": 46284,
+            "cellBoundaryContact": false
+          }
+        ]
+      }
+    ],
+    "keyedEvidence": {
+      "front": {
+        "file": "assets/game/processed/office-facility-family-v1/refrigerator-r01/authoring/source/front-anchor.keyed.png",
+        "sha256": "95a4938bbaaf54338943f2533d1011731b3fa3a55a21934c5b1a794a9e628378",
+        "size": [
+          1024,
+          1536
+        ]
+      },
+      "parts": {
+        "file": "assets/game/processed/office-facility-family-v1/refrigerator-r01/authoring/source/motion-parts.keyed.png",
+        "sha256": "a83adff270d948705e42bcbf9e6960349dc3494854c4b7e718c44802004507e3",
+        "size": [
+          1254,
+          1254
+        ]
+      },
+      "front-mask": {
+        "file": "assets/game/processed/office-facility-family-v1/refrigerator-r01/authoring/source/front-anchor.ownership.png",
+        "sha256": "67247e31f1c46f5fb4f2e3bf4148171095501324c6d3467a9d4e548c67c8a9c2",
+        "size": [
+          1024,
+          1536
+        ]
+      },
+      "parts-mask": {
+        "file": "assets/game/processed/office-facility-family-v1/refrigerator-r01/authoring/source/motion-parts.ownership.png",
+        "sha256": "89971b9bbf6a05d61a26e916ebc0efa5885a5f4ee307c3863c809707c585413f",
+        "size": [
+          1254,
+          1254
+        ]
+      }
+    }
+  },
+  "render": {
+    "physicalScale": {
+      "width": 2,
+      "depth": 2,
+      "height": 4,
+      "unit": "tile"
+    },
+    "footprint": {
+      "width": 2,
+      "depth": 2,
+      "unit": "tile"
+    },
+    "renderBox": {
+      "width": 3,
+      "height": 4,
+      "unit": "tile"
+    },
+    "authoringCanvas": [
+      384,
+      512
+    ],
+    "runtimeCanvas": [
+      96,
+      128
+    ],
+    "uniformIntegerDivisor": 4,
+    "nonUniformScaling": false,
+    "anchor": "bottom-center",
+    "requiredOrientations": [
+      "front"
+    ],
+    "basePivotRuntime": [
+      48,
+      124
+    ],
+    "sortPivotRuntime": [
+      48,
+      124
+    ],
+    "interactionTargetRuntime": [
+      48,
+      124
+    ],
+    "outputSocketRuntime": [
+      49,
+      76
+    ],
+    "doorSwingRegionRuntime": [
+      14,
+      38,
+      89,
+      124
+    ],
+    "collisionChangesDuringMotion": false,
+    "footprintChangesDuringMotion": false
+  },
+  "parts": {
+    "shell": {
+      "authoring": {
+        "file": "assets/game/processed/office-facility-family-v1/refrigerator-r01/authoring/parts/shell.png",
+        "sha256": "3eb8c930b4bfd14d1950df91e433c1c5aac8cd06bf55dae9183f10b027aa5728",
+        "size": [
+          384,
+          512
+        ]
+      },
+      "runtime": {
+        "file": "assets/game/processed/office-facility-family-v1/refrigerator-r01/runtime/parts/shell.png",
+        "sha256": "38fc0da90b6e83c4f76adcba671ad225cef740af229bda673bc63271f89883ab",
+        "size": [
+          96,
+          128
+        ]
+      },
+      "localOriginRuntime": [
+        16,
+        4
+      ],
+      "sourceResampling": "nearest"
+    },
+    "door-closed": {
+      "authoring": {
+        "file": "assets/game/processed/office-facility-family-v1/refrigerator-r01/authoring/parts/door-closed.png",
+        "sha256": "473d9871699fd8c5264a7f095d4ba3642e6e8a8d0cfbdee104c7fbcb683cf6c1",
+        "size": [
+          384,
+          512
+        ]
+      },
+      "runtime": {
+        "file": "assets/game/processed/office-facility-family-v1/refrigerator-r01/runtime/parts/door-closed.png",
+        "sha256": "bcb88b12f87d961d198c8c1469f3196edf197a53eeb7d96b557d8cf95c3a4778",
+        "size": [
+          96,
+          128
+        ]
+      },
+      "localOriginRuntime": [
+        21,
+        41
+      ],
+      "sourceResampling": "nearest"
+    },
+    "door-half": {
+      "authoring": {
+        "file": "assets/game/processed/office-facility-family-v1/refrigerator-r01/authoring/parts/door-half.png",
+        "sha256": "c308f77fed6e12ce6623b4ec436dfa53212893cb249b4dc11ef80101ff3337a0",
+        "size": [
+          384,
+          512
+        ]
+      },
+      "runtime": {
+        "file": "assets/game/processed/office-facility-family-v1/refrigerator-r01/runtime/parts/door-half.png",
+        "sha256": "029cde55bc2de821dee7ac78beb005f66c6d9a44fde5a5dae5d83a1c0f98a4c6",
+        "size": [
+          96,
+          128
+        ]
+      },
+      "localOriginRuntime": [
+        40,
+        41
+      ],
+      "sourceResampling": "nearest"
+    },
+    "door-open": {
+      "authoring": {
+        "file": "assets/game/processed/office-facility-family-v1/refrigerator-r01/authoring/parts/door-open.png",
+        "sha256": "4aee42e4d5132765c68487b2cdf50ee3b1da7ad6a2d5f21c54cf37e5bb5793ba",
+        "size": [
+          384,
+          512
+        ]
+      },
+      "runtime": {
+        "file": "assets/game/processed/office-facility-family-v1/refrigerator-r01/runtime/parts/door-open.png",
+        "sha256": "b91d764894ccb945322be1fca871117cad11b7bd1df89abd268031cda47814bb",
+        "size": [
+          96,
+          128
+        ]
+      },
+      "localOriginRuntime": [
+        58,
+        41
+      ],
+      "sourceResampling": "nearest"
+    }
+  },
+  "states": {
+    "closed": {
+      "file": "assets/game/processed/office-facility-family-v1/refrigerator-r01/runtime/states/closed.png",
+      "sha256": "ce52b3fbce5e8cdfaacb12c54b379fc64f14f7ccaed7377aaed18d7407cfc239",
+      "size": [
+        96,
+        128
+      ]
+    },
+    "half": {
+      "file": "assets/game/processed/office-facility-family-v1/refrigerator-r01/runtime/states/half.png",
+      "sha256": "acc092e383218c1b202de8d71d6f7f901132bf5faace19c4e931f5ade6bfc8b4",
+      "size": [
+        96,
+        128
+      ]
+    },
+    "open": {
+      "file": "assets/game/processed/office-facility-family-v1/refrigerator-r01/runtime/states/open.png",
+      "sha256": "d3e334f14e3427d973eda4c514d9f47518ac76dfcaf08494679df960c6d8feff",
+      "size": [
+        96,
+        128
+      ]
+    }
+  },
+  "finiteAnimation": {
+    "kind": "reversible-finite-state",
+    "repeatingAmbientLoop": false,
+    "compositionFormula": "immutableShell + lowerDoor[state]",
+    "immutableShell": "shell",
+    "movingChild": "lowerDoor",
+    "states": [
+      "closed",
+      "half",
+      "open"
+    ],
+    "forwardPath": [
+      "closed",
+      "half",
+      "open"
+    ],
+    "reversePath": [
+      "open",
+      "half",
+      "closed"
+    ],
+    "reviewTransition": [
+      "closed",
+      "half",
+      "open",
+      "half",
+      "closed"
+    ],
+    "transitionChangedPixels": [
+      4111,
+      2444,
+      2444,
+      4111
+    ],
+    "changedPixelsOutsideDoorSwingRegion": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "shellChangedPixels": 0,
+    "pivotDeltaPixels": [
+      0,
+      0
+    ],
+    "footprintDeltaTiles": [
+      0,
+      0
+    ],
+    "closedEndpointMismatchPixels": 0,
+    "interruption": {
+      "beforePickup": "reverse-to-closed; remove facility output; release",
+      "afterPickup": "close before release; remove held prop before departure",
+      "reservationReleased": true
+    },
+    "gif": {
+      "file": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/refrigerator-open-close.gif",
+      "sha256": "cd5429af37363cac3a08ada64ba1457cd8217fae10a4b231006eb529144cb02e",
+      "size": [
+        512,
+        512
+      ],
+      "frameCount": 6,
+      "durationMs": 260,
+      "previewRepeatsForReviewOnly": true
+    }
+  },
+  "interactionPreview": {
+    "semanticAction": "interact-use",
+    "visualPoseAuthority": "interact-front",
+    "capacity": 1,
+    "frontApproachCells": 1,
+    "actorId": "anna",
+    "actionAuthority": {
+      "manifest": "assets/game/manifests/office-character-action-sockets-i01.json",
+      "manifestSha256": "4958f9a16cfe13040417e551166c99d61b96a186ce39b7de3c3346b4474e97d8",
+      "status": "owner-approved"
+    },
+    "spatialAuthority": {
+      "manifest": "assets/game/manifests/office-spatial-authority-i01.json",
+      "manifestSha256": "cc9410a504fc61f13313aa113f67108a1ff194e96241dfedd2b6ad2b9f0a438f",
+      "status": "owner-approved"
+    },
+    "heldPropAuthority": {
+      "manifest": "assets/game/manifests/office-held-props-h01.json",
+      "manifestSha256": "adf9f57e41e78dd583687c1707a49a17bd6f27fc76328a62127d5e3d806d7aa4",
+      "status": "owner-approved",
+      "pool": [
+        {
+          "assetId": "held.water-bottle",
+          "runtimeFile": "assets/game/processed/office-held-props-h01/runtime/props/water-bottle.png",
+          "runtimeSha256": "56fa8083fca10b9ba603332baf3fb2ef211f91a24ae7a5d430a4cd559708ff77",
+          "visualCenterSocket": [
+            9,
+            9
+          ],
+          "attachmentMode": "front-overlay"
+        },
+        {
+          "assetId": "held.yogurt-box",
+          "runtimeFile": "assets/game/processed/office-held-props-h01/runtime/props/yogurt-box.png",
+          "runtimeSha256": "2b4e7ca06919e207ba655f7a16fa8d8e5a36b97c3714d3eaca54c64db5227144",
+          "visualCenterSocket": [
+            9,
+            9
+          ],
+          "attachmentMode": "front-overlay"
+        }
+      ]
+    },
+    "selection": {
+      "algorithm": "(stable-hash(actorId|slotId) + visitIndex) % pool.length",
+      "selectedOncePerVisit": true,
+      "frameStable": true,
+      "repeatAvoidance": "two-item pool alternates across visits",
+      "pool": [
+        "held.water-bottle",
+        "held.yogurt-box"
+      ],
+      "examples": [
+        {
+          "actorId": "anna",
+          "slotId": "refrigerator-r01-slot-0",
+          "visitIndex": 0,
+          "assetId": "held.water-bottle"
+        },
+        {
+          "actorId": "anna",
+          "slotId": "refrigerator-r01-slot-0",
+          "visitIndex": 1,
+          "assetId": "held.yogurt-box"
+        },
+        {
+          "actorId": "anna",
+          "slotId": "refrigerator-r01-slot-0",
+          "visitIndex": 2,
+          "assetId": "held.water-bottle"
+        },
+        {
+          "actorId": "anna",
+          "slotId": "refrigerator-r01-slot-0",
+          "visitIndex": 3,
+          "assetId": "held.yogurt-box"
+        }
+      ],
+      "previewVisitIndex": 0,
+      "previewAssetId": "held.water-bottle"
+    },
+    "handoff": {
+      "facilityParent": "facility.output.primary",
+      "actorParent": "actor.hand.primary.grip",
+      "childSocket": "prop.visualCenterSocket",
+      "attachmentDelta": [
+        0,
+        0
+      ],
+      "magicOffset": false,
+      "missingSocketFallback": false,
+      "newCoordinateSystem": false,
+      "foregroundMaskUses": 0
+    },
+    "timeline": [
+      {
+        "phase": "approach",
+        "animation": "walk-left",
+        "actorFrame": 0,
+        "approachOffsetX": 72,
+        "doorState": "closed",
+        "attachmentParent": null,
+        "propVisible": false,
+        "propOrigin": null,
+        "parentSocketWorld": null,
+        "attachmentDelta": null,
+        "magicOffset": false,
+        "fallbackSocket": false
+      },
+      {
+        "phase": "approach",
+        "animation": "walk-left",
+        "actorFrame": 1,
+        "approachOffsetX": 48,
+        "doorState": "closed",
+        "attachmentParent": null,
+        "propVisible": false,
+        "propOrigin": null,
+        "parentSocketWorld": null,
+        "attachmentDelta": null,
+        "magicOffset": false,
+        "fallbackSocket": false
+      },
+      {
+        "phase": "approach",
+        "animation": "walk-left",
+        "actorFrame": 2,
+        "approachOffsetX": 24,
+        "doorState": "closed",
+        "attachmentParent": null,
+        "propVisible": false,
+        "propOrigin": null,
+        "parentSocketWorld": null,
+        "attachmentDelta": null,
+        "magicOffset": false,
+        "fallbackSocket": false
+      },
+      {
+        "phase": "ready",
+        "animation": "interact-front",
+        "actorFrame": 0,
+        "approachOffsetX": 0,
+        "doorState": "closed",
+        "attachmentParent": null,
+        "propVisible": false,
+        "propOrigin": null,
+        "parentSocketWorld": null,
+        "attachmentDelta": null,
+        "magicOffset": false,
+        "fallbackSocket": false
+      },
+      {
+        "phase": "unlatch",
+        "animation": "interact-front",
+        "actorFrame": 1,
+        "approachOffsetX": 0,
+        "doorState": "half",
+        "attachmentParent": null,
+        "propVisible": false,
+        "propOrigin": null,
+        "parentSocketWorld": null,
+        "attachmentDelta": null,
+        "magicOffset": false,
+        "fallbackSocket": false
+      },
+      {
+        "phase": "open",
+        "animation": "interact-front",
+        "actorFrame": 2,
+        "approachOffsetX": 0,
+        "doorState": "open",
+        "attachmentParent": "facility.output.primary",
+        "propVisible": true,
+        "propOrigin": [
+          166,
+          92
+        ],
+        "parentSocketWorld": [
+          175,
+          101
+        ],
+        "attachmentDelta": [
+          0,
+          0
+        ],
+        "magicOffset": false,
+        "fallbackSocket": false
+      },
+      {
+        "phase": "pickup",
+        "animation": "interact-front",
+        "actorFrame": 3,
+        "approachOffsetX": 0,
+        "doorState": "open",
+        "attachmentParent": "actor.hand.primary.grip",
+        "propVisible": true,
+        "propOrigin": [
+          178,
+          110
+        ],
+        "parentSocketWorld": [
+          187,
+          119
+        ],
+        "attachmentDelta": [
+          0,
+          0
+        ],
+        "magicOffset": false,
+        "fallbackSocket": false
+      },
+      {
+        "phase": "hold",
+        "animation": "interact-front",
+        "actorFrame": 4,
+        "approachOffsetX": 0,
+        "doorState": "open",
+        "attachmentParent": "actor.hand.primary.grip",
+        "propVisible": true,
+        "propOrigin": [
+          181,
+          104
+        ],
+        "parentSocketWorld": [
+          190,
+          113
+        ],
+        "attachmentDelta": [
+          0,
+          0
+        ],
+        "magicOffset": false,
+        "fallbackSocket": false
+      },
+      {
+        "phase": "close",
+        "animation": "interact-front",
+        "actorFrame": 4,
+        "approachOffsetX": 0,
+        "doorState": "half",
+        "attachmentParent": "actor.hand.primary.grip",
+        "propVisible": true,
+        "propOrigin": [
+          181,
+          104
+        ],
+        "parentSocketWorld": [
+          190,
+          113
+        ],
+        "attachmentDelta": [
+          0,
+          0
+        ],
+        "magicOffset": false,
+        "fallbackSocket": false
+      },
+      {
+        "phase": "release",
+        "animation": "interact-front",
+        "actorFrame": 5,
+        "approachOffsetX": 0,
+        "doorState": "closed",
+        "attachmentParent": null,
+        "propVisible": false,
+        "propOrigin": null,
+        "parentSocketWorld": null,
+        "attachmentDelta": null,
+        "magicOffset": false,
+        "fallbackSocket": false
+      },
+      {
+        "phase": "depart",
+        "animation": "walk-right",
+        "actorFrame": 0,
+        "approachOffsetX": 24,
+        "doorState": "closed",
+        "attachmentParent": null,
+        "propVisible": false,
+        "propOrigin": null,
+        "parentSocketWorld": null,
+        "attachmentDelta": null,
+        "magicOffset": false,
+        "fallbackSocket": false
+      },
+      {
+        "phase": "depart",
+        "animation": "walk-right",
+        "actorFrame": 1,
+        "approachOffsetX": 48,
+        "doorState": "closed",
+        "attachmentParent": null,
+        "propVisible": false,
+        "propOrigin": null,
+        "parentSocketWorld": null,
+        "attachmentDelta": null,
+        "magicOffset": false,
+        "fallbackSocket": false
+      }
+    ],
+    "gif": {
+      "file": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/anna-open-pick-close.gif",
+      "sha256": "e6b07d302f5d91434c69057359826812b8205ac006c79e86577b23726b5bd8d0",
+      "size": [
+        768,
+        512
+      ],
+      "frameCount": 12,
+      "durationMs": 260
+    },
+    "reservationSimulationBuilt": false,
+    "rosterCasesBuilt": 0
+  },
+  "preflightAssets": {
+    "frontAnchor": {
+      "file": "assets/game/processed/office-facility-family-v1/refrigerator-r01/runtime/preflight/front-anchor.png",
+      "sha256": "4c1f59897eb54bf78844f62dcdbd6fb52e02985b97724770776e0b9b50ba5441",
+      "size": [
+        96,
+        128
+      ]
+    },
+    "runtimeAlphaBounds": [
+      16,
+      4,
+      80,
+      124
+    ]
+  },
+  "productionTargets": {
+    "basePoseCases": 108,
+    "propOverlayCasesPerTwoAssetPool": 108,
+    "builtPoseCases": 0,
+    "builtPropOverlayCases": 0,
+    "reservationDurationSeconds": 30,
+    "reservationActorCount": 2,
+    "reservationSlotContribution": 0,
+    "plannedReservationSlotContributionAfterF8": 1,
+    "facilityV1ReadySlotsBeforeRefrigeratorF8": 17,
+    "facilityV1ReadySlotsAfterRefrigeratorF8Target": 18
+  },
+  "gates": {
+    "F0": {
+      "status": "passed",
+      "evidence": [
+        "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/02-alpha-source-ownership.png",
+        "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/source/IMAGEGEN_PROMPTS.md"
+      ]
+    },
+    "F1": {
+      "status": "passed",
+      "evidence": [
+        "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/04-scale-2x2x4-and-geometry.png",
+        "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/07-approach-output-and-interruption.png"
+      ]
+    },
+    "F2": {
+      "status": "passed",
+      "evidence": [
+        "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/01-new-identity-closed-open.png",
+        "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/03-modular-shell-door-interior.png"
+      ]
+    },
+    "F3": {
+      "status": "passed",
+      "evidence": [
+        "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/05-finite-open-close-transition.png",
+        "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/06-i01-h01-reuse-and-random-pool.png",
+        "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/08-anna-open-pick-close-timeline.png",
+        "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/refrigerator-open-close.gif",
+        "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/anna-open-pick-close.gif"
+      ]
+    },
+    "F4": {
+      "status": "blocked",
+      "evidence": [
+        "F4 awaits owner approval of the exact preflight hashes."
+      ]
+    },
+    "F5": {
+      "status": "blocked",
+      "evidence": [
+        "F5 awaits the production socket and route batch."
+      ]
+    },
+    "F6": {
+      "status": "blocked",
+      "evidence": [
+        "F6 awaits 108 I01/H01 cases and 30-second contention."
+      ]
+    },
+    "F7": {
+      "status": "blocked",
+      "evidence": [
+        "F7 awaits completed production evidence."
+      ]
+    },
+    "F8": {
+      "status": "blocked",
+      "evidence": [
+        "F8 awaits completed F4-F7 production evidence."
+      ]
+    },
+    "F9": {
+      "status": "blocked",
+      "evidence": [
+        "Furniture-only room composition remains separate."
+      ]
+    },
+    "F10": {
+      "status": "blocked",
+      "evidence": [
+        "Active Office integration is outside R01 preflight."
+      ]
+    }
+  },
+  "reviewOutputs": [
+    "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/01-new-identity-closed-open.png",
+    "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/02-alpha-source-ownership.png",
+    "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/03-modular-shell-door-interior.png",
+    "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/04-scale-2x2x4-and-geometry.png",
+    "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/05-finite-open-close-transition.png",
+    "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/06-i01-h01-reuse-and-random-pool.png",
+    "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/07-approach-output-and-interruption.png",
+    "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/08-anna-open-pick-close-timeline.png",
+    "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/refrigerator-open-close.gif",
+    "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/anna-open-pick-close.gif"
+  ],
+  "reviewEvidence": [
+    {
+      "file": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/01-new-identity-closed-open.png",
+      "sha256": "b33e71112b2243558fd54a6e9403396c42b15ccdcb27c62205c9ac88d1fd4ea5",
+      "size": [
+        1600,
+        1000
+      ],
+      "kind": "png"
+    },
+    {
+      "file": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/02-alpha-source-ownership.png",
+      "sha256": "17e369c66b06f3b7b34b364863731eeb9133511f69b4f27048739356a51a1d1a",
+      "size": [
+        1800,
+        1100
+      ],
+      "kind": "png"
+    },
+    {
+      "file": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/03-modular-shell-door-interior.png",
+      "sha256": "13b5fbad4e9994348862155ea6cc168c3cfecbf6466366a72a2d31e3212c6626",
+      "size": [
+        1700,
+        1050
+      ],
+      "kind": "png"
+    },
+    {
+      "file": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/04-scale-2x2x4-and-geometry.png",
+      "sha256": "9dc60bc96117a2f31cf9a34d20b5cf019f1d83b3b1a896bb6294d25bcc37877e",
+      "size": [
+        1600,
+        1000
+      ],
+      "kind": "png"
+    },
+    {
+      "file": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/05-finite-open-close-transition.png",
+      "sha256": "79ae0273bde8398f80267dc1b9fd07137918ad268842e4e3bdecb25962f26924",
+      "size": [
+        1800,
+        950
+      ],
+      "kind": "png"
+    },
+    {
+      "file": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/06-i01-h01-reuse-and-random-pool.png",
+      "sha256": "d6b4a32b5e702ca3223ade272de6dd4ef708cb3ffe654b701102ea9fbcbb73d1",
+      "size": [
+        1800,
+        1050
+      ],
+      "kind": "png"
+    },
+    {
+      "file": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/07-approach-output-and-interruption.png",
+      "sha256": "5d1857533126650942200c6711211ccc8f18559835b2ff3b182173591aa2a5fd",
+      "size": [
+        1700,
+        1000
+      ],
+      "kind": "png"
+    },
+    {
+      "file": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/08-anna-open-pick-close-timeline.png",
+      "sha256": "8f6b58a9e62a24653ee630bf756dc778cefddc2dc71cfb6fd3aa318cdf9127d8",
+      "size": [
+        1800,
+        1100
+      ],
+      "kind": "png"
+    },
+    {
+      "file": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/refrigerator-open-close.gif",
+      "sha256": "cd5429af37363cac3a08ada64ba1457cd8217fae10a4b231006eb529144cb02e",
+      "size": [
+        512,
+        512
+      ],
+      "kind": "gif",
+      "frameCount": 6,
+      "durationMs": 260
+    },
+    {
+      "file": "assets/art/layout-references/office-facility-family-v1/refrigerator-r01/anna-open-pick-close.gif",
+      "sha256": "e6b07d302f5d91434c69057359826812b8205ac006c79e86577b23726b5bd8d0",
+      "size": [
+        768,
+        512
+      ],
+      "kind": "gif",
+      "frameCount": 12,
+      "durationMs": 260
+    }
+  ],
+  "visualApproval": null,
+  "permissions": {
+    "ownerReview": true,
+    "fullSystemBuild": false,
+    "reservationSlotActivation": false,
+    "furnitureOnlyRoom": false,
+    "activeOfficePromotion": false
+  },
+  "scopeExclusions": [
+    "apps/web/src/features/office/components/officeAssetRegistry.ts",
+    "apps/web/src/features/office/components/officeSceneRuntime.ts",
+    "assets/game/maps/office-c-v2.json",
+    "F9 furniture-only room",
+    "F10 Active Office"
+  ]
+}

@@ -223,7 +223,7 @@ metadata, parent slots, and layout validation are the enforceable contract.
 | Desktop printer | `2 x 1 x 1` | `2 x 1` | `-` | Credenza-supported; one pickup slot. |
 | Server rack | `2 x 1 x 3` | `2 x 3` | `2 x 1` | One inspection slot in front. |
 | Vending machine | `2 x 1 x 3` | `2 x 3` | `2 x 1` | One front interaction slot; one extra approach row. |
-| Refrigerator | `2 x 1 x 3` | `2 x 3` | `2 x 1` | One front interaction slot; door swing stays visual in v1. |
+| Refrigerator R01 | `2 x 2 x 4` | `3 x 4` | `2 x 2` | One front interaction slot; reversible finite lower-door swing stays inside one fixed motion region. |
 | Arcade game machine | `2 x 2 x 3` | `3 x 3` | `2 x 2` | One front interaction slot; approximate game viewport `48 x 32 px`. |
 | Camera tripod | `1 x 1 x 3` | `1 x 3` | `1 x 1` | Floor equipment. |
 | Studio light | `1 x 1 x 3` | `1 x 3` | `1 x 1` | Floor equipment. |
@@ -527,6 +527,13 @@ the four distinct authored keyframes as `A-B-C-D-A`; the final frame must
 transition naturally back into the first frame. Do not store duplicate return
 frames. A ping-pong loop is an explicit exception only when a cyclic story
 cannot be authored without a visible jump.
+
+Open/close, start/finish, and handoff actions are finite state changes, not
+seam loops. Build them from one immutable shell plus moving children, declare
+the exact start and end states, provide a reversible path, define interruption
+behavior, and return to an exact endpoint without pivot, footprint, collision,
+or support drift. Refrigerator R01 uses
+`immutableShell + lowerDoor[state]` with `closed`, `half`, and `open` states.
 
 Author animated display furniture in two passes:
 

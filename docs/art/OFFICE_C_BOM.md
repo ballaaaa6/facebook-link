@@ -90,7 +90,7 @@ Facility v1 uses these locked physical scales:
 | Printer | `2 x 1 x 1` | `2 x 1` | Parent credenza | One pickup slot |
 | Server rack | `2 x 1 x 3` | `2 x 3` | `2 x 1` | One front tile |
 | Vending machine | `2 x 1 x 3` | `2 x 3` | `2 x 1` | One front tile |
-| Refrigerator | `2 x 1 x 3` | `2 x 3` | `2 x 1` | One front tile |
+| Refrigerator R01 | `2 x 2 x 4` | `3 x 4` | `2 x 2` | One front tile; finite lower-door swing |
 | Mission review table | `6 x 2 x 2` | `6 x 3` | `6 x 2` | Four external seats |
 | Modern three-seat sofa | `4 x 2 x 2` | `4 x 3` | `4 x 2` | Three lounge slots |
 | Modern two-seat sofa | `3 x 2 x 2` | `3 x 3` | `3 x 2` | Two lounge slots |
@@ -100,6 +100,12 @@ Facility v1 uses these locked physical scales:
 The approach area is navigation clearance, not part of the furniture's
 physical `W x D x H`. Source art is cropped and scaled uniformly into the
 declared render box; it must never be stretched independently by axis.
+
+Refrigerator R01 is an owner-directed override recorded on 2026-07-30. Its
+visual/motion preflight uses a fresh front identity, immutable empty shell, and
+separate closed/half/open lower-door states. It remains at zero active slots
+until its own F8 approval; approval would advance Facility v1 from `17/20` to
+`18/20`.
 
 ### Decorative motion plan
 

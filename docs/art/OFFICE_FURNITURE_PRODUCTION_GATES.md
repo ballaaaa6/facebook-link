@@ -248,6 +248,18 @@ proof. The owner approved the exact twelve production review hashes at F8 on
 `15/20` to `17/20`. F9-F10 stay blocked. See
 `docs/art/OFFICE_FACILITY_SERVER_RACK_N02_PRODUCTION.md`.
 
+Refrigerator R01 is the next isolated family. On 2026-07-30 the owner replaced
+the audited static `2 x 1 x 3` plan with a fresh front-only `2 x 2 x 4`
+identity, a fixed `2 x 2` footprint, and a reversible finite lower-door action.
+The preflight composes `immutableShell + lowerDoor[state]` through closed,
+half, and open states. It reuses the approved I01 per-frame hand coordinates
+and the existing H01 `held.water-bottle` and `held.yogurt-box`; it creates no
+new attachment system. R01 passes F0-F3 and awaits owner review of the exact
+visual/motion hashes. It contributes zero slots while pending; F4-F10 remain
+blocked. Approval of the later production revision would advance Facility v1
+from `17/20` to `18/20`. See
+`docs/art/OFFICE_FACILITY_REFRIGERATOR_R01.md`.
+
 ## Recommended family order
 
 The first non-workstation family should be one complex single-seat facility,
