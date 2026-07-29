@@ -52,6 +52,14 @@ REVIEW_ROOT = (
 
 FAMILY_ID = "counter.bar.modular"
 REVISION = "a01"
+OWNER_DECISION = {
+    "decision": "rejected",
+    "decidedOn": "2026-07-29",
+    "notes": (
+        "Owner rejected the tapered and visually unsupported top at F8 and "
+        "directed a fresh A01-r02 source with an exact full 6x2 worktop."
+    ),
+}
 SOURCE_SHA256 = (
     "22831cfd7a9fedfc0d1733d7bca864d66ff6c71ad0dd777b0a1a7a9fea8b695f"
 )
@@ -603,7 +611,7 @@ def gates(review_paths: list[Path]) -> dict[str, dict[str, Any]]:
         "F5": {"status": "passed", "evidence": [rp(REVIEW_PATHS[8])]},
         "F6": {"status": "passed", "evidence": [rp(REVIEW_PATHS[9])]},
         "F7": {"status": "passed", "evidence": [rp(path) for path in review_paths]},
-        "F8": {"status": "pending-owner-review", "evidence": [rp(REVIEW_PATHS[2]), rp(REVIEW_PATHS[4]), rp(REVIEW_PATHS[5])]},
+        "F8": {"status": "blocked", "evidence": [rp(REVIEW_PATHS[2]), rp(REVIEW_PATHS[4]), rp(REVIEW_PATHS[5])]},
         "F9": {"status": "blocked", "evidence": []},
         "F10": {"status": "blocked", "evidence": []},
     }
@@ -696,7 +704,7 @@ def build_manifest(
         "id": "office.furniture.counter-bar.a01",
         "familyId": FAMILY_ID,
         "revision": REVISION,
-        "status": "owner-review-f8-pending",
+        "status": "rejected",
         "developmentOnly": True,
         "activeOfficePromotion": False,
         "sourcePolicy": {
@@ -821,13 +829,13 @@ def build_manifest(
         "gates": gates(REVIEW_PATHS),
         "reviewOutputs": [file_evidence(path, outputs) for path in REVIEW_PATHS],
         "permissions": {
-            "isolatedFamilyLab": True,
-            "ownerReview": True,
+            "isolatedFamilyLab": False,
+            "ownerReview": False,
             "attachedCoffeeProduction": False,
             "furnitureOnlyRoom": False,
             "activeOfficePromotion": False,
         },
-        "ownerDecision": None,
+        "ownerDecision": OWNER_DECISION,
     }
 
 
@@ -892,7 +900,7 @@ def main() -> None:
     action = "verified" if args.check else "built"
     print(
         f"Counter Bar A01 {action}: {len(outputs)} deterministic files; "
-        "F0-F7 passed, F8 pending, F9/F10 blocked."
+        "F0-F7 passed, F8 rejected, F9/F10 blocked."
     )
 
 

@@ -61,24 +61,25 @@ try {
     "Counter Bar A01 identity changed",
   );
   add(
-    manifest.status === "owner-review-f8-pending"
-      && manifest.ownerDecision === null
+    manifest.status === "rejected"
+      && manifest.ownerDecision?.decision === "rejected"
+      && manifest.ownerDecision?.decidedOn === "2026-07-29"
       && manifest.developmentOnly === true
       && manifest.activeOfficePromotion === false
-      && manifest.permissions?.isolatedFamilyLab === true
-      && manifest.permissions?.ownerReview === true
+      && manifest.permissions?.isolatedFamilyLab === false
+      && manifest.permissions?.ownerReview === false
       && manifest.permissions?.attachedCoffeeProduction === false
       && manifest.permissions?.furnitureOnlyRoom === false
       && manifest.permissions?.activeOfficePromotion === false,
-    "Counter Bar A01 must stop at independent F8 owner review",
+    "Counter Bar A01 must remain rejected historical evidence",
   );
   add(
     ["F0", "F1", "F2", "F3", "F4", "F5", "F6", "F7"]
       .every((gate) => manifest.gates?.[gate]?.status === "passed")
-      && manifest.gates?.F8?.status === "pending-owner-review"
+      && manifest.gates?.F8?.status === "blocked"
       && manifest.gates?.F9?.status === "blocked"
       && manifest.gates?.F10?.status === "blocked",
-    "Counter Bar A01 gate state changed",
+    "Counter Bar A01 rejection gate state changed",
   );
 
   add(
@@ -298,7 +299,6 @@ if (failures.length) {
 }
 
 console.log(
-  "Counter Bar A01 check passed: original source, 6x2x2 Geometry v3, "
-  + "five modular slots, four 2x1 spans, routes, movement, reservation, "
-  + "F0-F7 passed, F8 pending, F9/F10 blocked.",
+  "Counter Bar A01 rejection check passed: historical tapered-top evidence "
+  + "is hash-locked; F8/F9/F10 blocked.",
 );

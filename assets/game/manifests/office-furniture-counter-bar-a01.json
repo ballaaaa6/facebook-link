@@ -3,7 +3,7 @@
   "id": "office.furniture.counter-bar.a01",
   "familyId": "counter.bar.modular",
   "revision": "a01",
-  "status": "owner-review-f8-pending",
+  "status": "rejected",
   "developmentOnly": true,
   "activeOfficePromotion": false,
   "sourcePolicy": {
@@ -899,7 +899,7 @@
       ]
     },
     "F8": {
-      "status": "pending-owner-review",
+      "status": "blocked",
       "evidence": [
         "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01/03-clean-front.png",
         "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01/05-support-slots.png",
@@ -962,11 +962,15 @@
     }
   ],
   "permissions": {
-    "isolatedFamilyLab": true,
-    "ownerReview": true,
+    "isolatedFamilyLab": false,
+    "ownerReview": false,
     "attachedCoffeeProduction": false,
     "furnitureOnlyRoom": false,
     "activeOfficePromotion": false
   },
-  "ownerDecision": null
+  "ownerDecision": {
+    "decision": "rejected",
+    "decidedOn": "2026-07-29",
+    "notes": "Owner rejected the tapered and visually unsupported top at F8 and directed a fresh A01-r02 source with an exact full 6x2 worktop."
+  }
 }

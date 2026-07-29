@@ -1,20 +1,19 @@
 # Office Furniture Counter Bar A01
 
-Status: F0-F7 passed; owner-review-f8-pending
+Status: F0-F7 passed; F8 rejected
 Updated: 2026-07-29
-Scope: One original front-only modular cafe counter family
+Scope: Rejected tapered-top historical evidence
 
 ## Decision boundary
 
-Counter Bar A01 is a new isolated surface-furniture family made before Coffee
-Machine C01. It is a reusable cafe counter, not a machine-specific pedestal.
-The family remains development-only and is not imported by Active Office or a
-furniture-only room.
+Counter Bar A01 preserves the first isolated surface-furniture candidate. The
+owner rejected it at F8 on 2026-07-29 because its tapered top did not visually
+support edge objects and did not read as a full desk-scale `6 x 2` surface.
+Its hashes remain historical evidence and all execution permissions are
+disabled.
 
-Coffee C01 is not an A01 source, part, debug fixture, or runtime dependency.
-After the owner approves A01 at F8, Coffee can start as its own family and may
-target an A01 semantic support slot. Approval of A01 will not approve Coffee,
-F9 room composition, or F10 Active Office integration.
+`docs/art/OFFICE_FURNITURE_COUNTER_BAR_A01_R02.md` records the fresh successor.
+A01-r02 uses zero A01 pixels.
 
 ## Original clean source
 
@@ -225,10 +224,11 @@ npm run art:furniture:counter:a01:check
 ## Gate result and owner review
 
 - F0-F7: passed with hash-locked evidence;
-- F8: `pending-owner-review`;
+- F8: rejected and blocked;
 - F9: blocked;
 - F10: blocked.
 
-The owner-review decision applies only to the exact A01 manifest and output
-hashes. Until an explicit decision is recorded, attached Coffee production,
-furniture-only room composition, and Active Office promotion remain disabled.
+The owner rejection applies to the exact A01 manifest and output hashes. A01
+cannot supply pixels, geometry, placement authority, or fallbacks to A01-r02.
+Coffee production, furniture-only composition, and Active Office promotion
+remain disabled.

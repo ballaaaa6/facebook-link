@@ -271,15 +271,15 @@ production is unlocked but must pass F0-F8 independently; F9 and F10 remain
 blocked.
 
 Before Coffee begins, the owner directed production to create a reusable cafe
-counter from a completely new design. `docs/art/OFFICE_FURNITURE_COUNTER_BAR_A01.md`
-records Counter Bar A01 as a standalone surface-furniture family. A01 uses a
-new isolated ImageGen source with no concept-sheet, Active Office, processed,
-legacy, or Coffee pixels. It reserves a `6 x 2` floor footprint, exposes a
-`6 x 2` support plane at `Z=2`, and provides five independent `1 x 1` surface
-slots plus four adjacent `2 x 1` spans. Its placement, route, movement, and
-30-second contention proofs pass F0-F7. A01 is currently
-`owner-review-f8-pending`; Coffee C01 remains deferred until the owner records
-the A01 F8 decision. F9 and F10 remain blocked.
+counter from a completely new design. The first A01 candidate passed F0-F7
+but the owner rejected its tapered top at F8 on 2026-07-29.
+`docs/art/OFFICE_FURNITURE_COUNTER_BAR_A01_R02.md` records the fresh successor
+with zero A01 pixels. A01-r02 reserves a `6 x 2` floor footprint, exposes an
+exact projected `192 x 64` support plane at `Z=2`, and proves twelve complete
+`1 x 1` cells, ten `2 x 1` spans, five `2 x 2` spans, and zero edge-support
+failures. Its route, 36-case movement, and 30-second contention proofs pass
+F0-F7. A01-r02 is `owner-review-f8-pending`; Coffee C01 remains deferred until
+the owner records its F8 decision. F9 and F10 remain blocked.
 
 ## Required evidence per family
 

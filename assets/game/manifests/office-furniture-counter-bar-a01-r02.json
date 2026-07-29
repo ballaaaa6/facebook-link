@@ -1,0 +1,1410 @@
+{
+  "schemaVersion": 1,
+  "id": "office.furniture.counter-bar.a01-r02",
+  "familyId": "counter.bar.modular",
+  "revision": "a01-r02",
+  "status": "owner-review-f8-pending",
+  "developmentOnly": true,
+  "activeOfficePromotion": false,
+  "sourcePolicy": {
+    "conceptSheetPixelReuse": false,
+    "processedCropDirectReuse": false,
+    "activeOfficePixelReuse": false,
+    "legacyOrRejectedPixelReuse": false,
+    "generativeRepair": false,
+    "missingAssetFallback": false
+  },
+  "source": {
+    "kind": "generated-isolated-clean-source",
+    "path": "assets/art/layout-references/office-furniture-counter-bar-a01-r02-source.png",
+    "sha256": "3d809b2279f57590e802b792c48336428242174cc239b9bb6bfbece32bbdfe94",
+    "prompt": "Create one entirely new empty modern-bright pixel-art cafe counter from text only. The full cream terrazzo support surface must represent a complete 6-by-2 orthographic rectangle with equal parallel edges and four square corners. Place a thin slab below it, a warm oak cabinet with vertical slats, one restrained brass rail, and a thin navy plinth. The whole counter is 2 tiles high. Use a flat removable magenta background and include no machine, cup, prop, person, shadow, text, or room. Two same-lineage geometry correction passes deepened the fresh top. The builder removes source rows 529..578 without resampling so the final orthographic support envelope resolves exactly against 6-by-2 geometry.",
+    "generation": {
+      "workflow": "built-in-imagegen",
+      "inputImageCount": 0,
+      "conceptPixelsAsSource": false,
+      "geometryCorrectionCount": 2
+    },
+    "extractionMethod": "generated-source-chroma-key",
+    "geometryNormalization": {
+      "method": "orthographic-row-removal-without-resampling",
+      "sourceSurfaceBounds": [
+        123,
+        99,
+        1414,
+        579
+      ],
+      "removedRows": [
+        529,
+        579
+      ],
+      "preservedFrontAssemblyFromRow": 579,
+      "outputSurfaceBounds": [
+        123,
+        99,
+        1414,
+        529
+      ],
+      "pixelsResampled": false
+    },
+    "sampledKeyRgb": [
+      240,
+      12,
+      224
+    ],
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "ownedBounds": [
+      123,
+      99,
+      1414,
+      922
+    ],
+    "connectedComponentCount": 1,
+    "selectedVisiblePixels": 1051378,
+    "chromaStats": {
+      "transparentPixels": 521486,
+      "partialAlphaPixels": 7211,
+      "visiblePixels": 1051378
+    },
+    "authoringPadding": {
+      "left": 122,
+      "top": 127,
+      "right": 123,
+      "bottom": 60
+    },
+    "sourcePixelsResampled": false,
+    "canvasContact": false,
+    "keyedSource": {
+      "file": "assets/game/processed/office-furniture-counter-bar-a01-r02/authoring/source/counter-bar-a01-r02.keyed-source.png",
+      "sha256": "9a96c85ab1f739cc5cdbc7738a9198142a2311153d827630c6c3e19b4c01b3b4"
+    },
+    "ownershipMask": {
+      "file": "assets/game/processed/office-furniture-counter-bar-a01-r02/authoring/source/counter-bar-a01-r02.ownership-mask.png",
+      "sha256": "3905d212fe0b4925836f28dc041a5b057b33558c01349b5abb4a35e67745043c"
+    },
+    "geometryNormalizedSource": {
+      "file": "assets/game/processed/office-furniture-counter-bar-a01-r02/authoring/source/counter-bar-a01-r02.geometry-normalized-source.png",
+      "sha256": "67d9f2acbecefdf3a51c66dc7c9fb74f555952641e27dcf06b0d5c569e716a60"
+    },
+    "normalizedCutout": {
+      "file": "assets/game/processed/office-furniture-counter-bar-a01-r02/authoring/counter-bar-a01-r02.normalized.png",
+      "sha256": "e07cf18a1a5742922b6296cd98fc8203c3f3f85c6b1c1a51e08c7b1161928720"
+    }
+  },
+  "render": {
+    "authoringCanvas": [
+      1536,
+      960
+    ],
+    "runtimeCanvas": [
+      256,
+      160
+    ],
+    "uniformIntegerDivisor": 6,
+    "nonUniformScaling": false,
+    "orientation": "front",
+    "anchor": "bottom-center",
+    "projection": {
+      "screenX": "worldX * 32",
+      "screenY": "worldY * 32 - worldZ * 32",
+      "perspective": false
+    }
+  },
+  "geometry": {
+    "schemaVersion": 3,
+    "id": "geometry.counter-bar.a01-r02",
+    "assetType": "surface-furniture",
+    "placementPlane": "floor",
+    "physicalScale": {
+      "width": 6,
+      "depth": 2,
+      "height": 2,
+      "unit": "tile"
+    },
+    "footprint": {
+      "width": 6,
+      "depth": 2,
+      "unit": "tile"
+    },
+    "supportPlane": {
+      "id": "counter.bar.a01-r02-surface",
+      "width": 6,
+      "depth": 2,
+      "height": 2,
+      "unit": "tile"
+    },
+    "basePivot": {
+      "x": 3,
+      "y": 2,
+      "unit": "tile"
+    },
+    "sortPivot": {
+      "x": 3,
+      "y": 2,
+      "unit": "tile"
+    },
+    "renderBounds": {
+      "width": 1536,
+      "height": 960,
+      "unit": "authoring-pixel"
+    },
+    "renderOffset": {
+      "x": 0,
+      "y": 0,
+      "unit": "authoring-pixel"
+    },
+    "verticalExtension": {
+      "aboveBase": 2,
+      "belowBase": 0,
+      "unit": "tile"
+    },
+    "occlusionParts": [
+      {
+        "id": "counter-bar-a01-r02.rear",
+        "role": "rear",
+        "assetId": "counter-bar-a01-r02.support-surface"
+      },
+      {
+        "id": "counter-bar-a01-r02.base",
+        "role": "base",
+        "assetId": "counter-bar-a01-r02.base-shell"
+      },
+      {
+        "id": "counter-bar-a01-r02.foreground",
+        "role": "foreground",
+        "assetId": "counter-bar-a01-r02.foreground-occlusion"
+      }
+    ],
+    "attachmentSlots": [
+      {
+        "id": "surface.back.01",
+        "surfaceId": "counter.bar.a01-r02-surface",
+        "x": 0.5,
+        "y": 0.5,
+        "unit": "tile"
+      },
+      {
+        "id": "surface.back.02",
+        "surfaceId": "counter.bar.a01-r02-surface",
+        "x": 1.5,
+        "y": 0.5,
+        "unit": "tile"
+      },
+      {
+        "id": "surface.back.03",
+        "surfaceId": "counter.bar.a01-r02-surface",
+        "x": 2.5,
+        "y": 0.5,
+        "unit": "tile"
+      },
+      {
+        "id": "surface.back.04",
+        "surfaceId": "counter.bar.a01-r02-surface",
+        "x": 3.5,
+        "y": 0.5,
+        "unit": "tile"
+      },
+      {
+        "id": "surface.back.05",
+        "surfaceId": "counter.bar.a01-r02-surface",
+        "x": 4.5,
+        "y": 0.5,
+        "unit": "tile"
+      },
+      {
+        "id": "surface.back.06",
+        "surfaceId": "counter.bar.a01-r02-surface",
+        "x": 5.5,
+        "y": 0.5,
+        "unit": "tile"
+      },
+      {
+        "id": "surface.front.01",
+        "surfaceId": "counter.bar.a01-r02-surface",
+        "x": 0.5,
+        "y": 1.5,
+        "unit": "tile"
+      },
+      {
+        "id": "surface.front.02",
+        "surfaceId": "counter.bar.a01-r02-surface",
+        "x": 1.5,
+        "y": 1.5,
+        "unit": "tile"
+      },
+      {
+        "id": "surface.front.03",
+        "surfaceId": "counter.bar.a01-r02-surface",
+        "x": 2.5,
+        "y": 1.5,
+        "unit": "tile"
+      },
+      {
+        "id": "surface.front.04",
+        "surfaceId": "counter.bar.a01-r02-surface",
+        "x": 3.5,
+        "y": 1.5,
+        "unit": "tile"
+      },
+      {
+        "id": "surface.front.05",
+        "surfaceId": "counter.bar.a01-r02-surface",
+        "x": 4.5,
+        "y": 1.5,
+        "unit": "tile"
+      },
+      {
+        "id": "surface.front.06",
+        "surfaceId": "counter.bar.a01-r02-surface",
+        "x": 5.5,
+        "y": 1.5,
+        "unit": "tile"
+      }
+    ],
+    "seatSlots": [],
+    "orientation": "front"
+  },
+  "cleanAsset": {
+    "file": "assets/game/processed/office-furniture-counter-bar-a01-r02/runtime/counter-bar-a01-r02.clean.png",
+    "sha256": "7dbc45f53cbd3b523072337f6689a6c348a9df6fe4b40640f234698adf913e74"
+  },
+  "parts": [
+    {
+      "id": "counter-bar-a01-r02.base-shell",
+      "role": "base-shell",
+      "authoringFile": "assets/game/processed/office-furniture-counter-bar-a01-r02/authoring/parts/counter-bar-a01-r02.base-shell.png",
+      "authoringSha256": "9150754fc5e9ef9e57114690dca0ac4b72156a17ebbbb5139685b79daafe79c2",
+      "runtimeFile": "assets/game/processed/office-furniture-counter-bar-a01-r02/runtime/parts/counter-bar-a01-r02.base-shell.png",
+      "runtimeSha256": "4e5a93d888d8f2bed52daa34b36f4a30f10e03f46e23c8630d81a390c0739420"
+    },
+    {
+      "id": "counter-bar-a01-r02.support-surface",
+      "role": "support-surface",
+      "authoringFile": "assets/game/processed/office-furniture-counter-bar-a01-r02/authoring/parts/counter-bar-a01-r02.support-surface.png",
+      "authoringSha256": "639b0b33c2354cd71225958d2f11000007106d50ce035713306ab3be3e90a8a9",
+      "runtimeFile": "assets/game/processed/office-furniture-counter-bar-a01-r02/runtime/parts/counter-bar-a01-r02.support-surface.png",
+      "runtimeSha256": "4d098428b26b21c6f0eb9142599914bf91b969548f5c8b8f6365fe25fdb85f4d"
+    },
+    {
+      "id": "counter-bar-a01-r02.foreground-occlusion",
+      "role": "foreground-occlusion",
+      "authoringFile": "assets/game/processed/office-furniture-counter-bar-a01-r02/authoring/parts/counter-bar-a01-r02.foreground-occlusion.png",
+      "authoringSha256": "bb6bc4cf93c48e16f666f06cda820c853f2e5b4fe1ecff0992647af22a6ded52",
+      "runtimeFile": "assets/game/processed/office-furniture-counter-bar-a01-r02/runtime/parts/counter-bar-a01-r02.foreground-occlusion.png",
+      "runtimeSha256": "9a4cde315040b14648009cf4c1af43c67367dbb6b24aa6d71771fe175ef5f0ff"
+    }
+  ],
+  "spatial": {
+    "coordinateSpace": "counter-runtime-pixel",
+    "tilePixels": 32,
+    "rootSocketId": "root.floor",
+    "sortSocketId": "sort.floor",
+    "localSockets": {
+      "root.floor": [
+        128,
+        150
+      ],
+      "sort.floor": [
+        128,
+        150
+      ],
+      "support.surface.back.01": [
+        48,
+        38
+      ],
+      "support.surface.back.02": [
+        80,
+        38
+      ],
+      "support.surface.back.03": [
+        112,
+        38
+      ],
+      "support.surface.back.04": [
+        144,
+        38
+      ],
+      "support.surface.back.05": [
+        176,
+        38
+      ],
+      "support.surface.back.06": [
+        208,
+        38
+      ],
+      "support.surface.front.01": [
+        48,
+        70
+      ],
+      "support.surface.front.02": [
+        80,
+        70
+      ],
+      "support.surface.front.03": [
+        112,
+        70
+      ],
+      "support.surface.front.04": [
+        144,
+        70
+      ],
+      "support.surface.front.05": [
+        176,
+        70
+      ],
+      "support.surface.front.06": [
+        208,
+        70
+      ]
+    },
+    "attachmentFormula": "parent-socket-minus-child-socket",
+    "perSceneAttachmentOffsets": false,
+    "centerFallback": false,
+    "missingSocketFallback": false,
+    "attachmentDeltaFailures": 0
+  },
+  "surfaceContract": {
+    "supportPlaneId": "counter.bar.a01-r02-surface",
+    "slots": [
+      {
+        "id": "surface.back.01",
+        "supportPlaneId": "counter.bar.a01-r02-surface",
+        "point": {
+          "x": 0.5,
+          "y": 0.5,
+          "unit": "tile"
+        },
+        "localSocket": [
+          48,
+          38
+        ],
+        "accepts": [
+          "equipment-1x1",
+          "prop-1x1"
+        ],
+        "pairedUseLaneId": "use.01"
+      },
+      {
+        "id": "surface.back.02",
+        "supportPlaneId": "counter.bar.a01-r02-surface",
+        "point": {
+          "x": 1.5,
+          "y": 0.5,
+          "unit": "tile"
+        },
+        "localSocket": [
+          80,
+          38
+        ],
+        "accepts": [
+          "equipment-1x1",
+          "prop-1x1"
+        ],
+        "pairedUseLaneId": "use.02"
+      },
+      {
+        "id": "surface.back.03",
+        "supportPlaneId": "counter.bar.a01-r02-surface",
+        "point": {
+          "x": 2.5,
+          "y": 0.5,
+          "unit": "tile"
+        },
+        "localSocket": [
+          112,
+          38
+        ],
+        "accepts": [
+          "equipment-1x1",
+          "prop-1x1"
+        ],
+        "pairedUseLaneId": "use.03"
+      },
+      {
+        "id": "surface.back.04",
+        "supportPlaneId": "counter.bar.a01-r02-surface",
+        "point": {
+          "x": 3.5,
+          "y": 0.5,
+          "unit": "tile"
+        },
+        "localSocket": [
+          144,
+          38
+        ],
+        "accepts": [
+          "equipment-1x1",
+          "prop-1x1"
+        ],
+        "pairedUseLaneId": "use.04"
+      },
+      {
+        "id": "surface.back.05",
+        "supportPlaneId": "counter.bar.a01-r02-surface",
+        "point": {
+          "x": 4.5,
+          "y": 0.5,
+          "unit": "tile"
+        },
+        "localSocket": [
+          176,
+          38
+        ],
+        "accepts": [
+          "equipment-1x1",
+          "prop-1x1"
+        ],
+        "pairedUseLaneId": "use.05"
+      },
+      {
+        "id": "surface.back.06",
+        "supportPlaneId": "counter.bar.a01-r02-surface",
+        "point": {
+          "x": 5.5,
+          "y": 0.5,
+          "unit": "tile"
+        },
+        "localSocket": [
+          208,
+          38
+        ],
+        "accepts": [
+          "equipment-1x1",
+          "prop-1x1"
+        ],
+        "pairedUseLaneId": "use.06"
+      },
+      {
+        "id": "surface.front.01",
+        "supportPlaneId": "counter.bar.a01-r02-surface",
+        "point": {
+          "x": 0.5,
+          "y": 1.5,
+          "unit": "tile"
+        },
+        "localSocket": [
+          48,
+          70
+        ],
+        "accepts": [
+          "equipment-1x1",
+          "prop-1x1"
+        ],
+        "pairedUseLaneId": "use.01"
+      },
+      {
+        "id": "surface.front.02",
+        "supportPlaneId": "counter.bar.a01-r02-surface",
+        "point": {
+          "x": 1.5,
+          "y": 1.5,
+          "unit": "tile"
+        },
+        "localSocket": [
+          80,
+          70
+        ],
+        "accepts": [
+          "equipment-1x1",
+          "prop-1x1"
+        ],
+        "pairedUseLaneId": "use.02"
+      },
+      {
+        "id": "surface.front.03",
+        "supportPlaneId": "counter.bar.a01-r02-surface",
+        "point": {
+          "x": 2.5,
+          "y": 1.5,
+          "unit": "tile"
+        },
+        "localSocket": [
+          112,
+          70
+        ],
+        "accepts": [
+          "equipment-1x1",
+          "prop-1x1"
+        ],
+        "pairedUseLaneId": "use.03"
+      },
+      {
+        "id": "surface.front.04",
+        "supportPlaneId": "counter.bar.a01-r02-surface",
+        "point": {
+          "x": 3.5,
+          "y": 1.5,
+          "unit": "tile"
+        },
+        "localSocket": [
+          144,
+          70
+        ],
+        "accepts": [
+          "equipment-1x1",
+          "prop-1x1"
+        ],
+        "pairedUseLaneId": "use.04"
+      },
+      {
+        "id": "surface.front.05",
+        "supportPlaneId": "counter.bar.a01-r02-surface",
+        "point": {
+          "x": 4.5,
+          "y": 1.5,
+          "unit": "tile"
+        },
+        "localSocket": [
+          176,
+          70
+        ],
+        "accepts": [
+          "equipment-1x1",
+          "prop-1x1"
+        ],
+        "pairedUseLaneId": "use.05"
+      },
+      {
+        "id": "surface.front.06",
+        "supportPlaneId": "counter.bar.a01-r02-surface",
+        "point": {
+          "x": 5.5,
+          "y": 1.5,
+          "unit": "tile"
+        },
+        "localSocket": [
+          208,
+          70
+        ],
+        "accepts": [
+          "equipment-1x1",
+          "prop-1x1"
+        ],
+        "pairedUseLaneId": "use.06"
+      }
+    ],
+    "adjacentSpanGroups": [
+      {
+        "id": "span.back.01-02",
+        "slotIds": [
+          "surface.back.01",
+          "surface.back.02"
+        ],
+        "accepts": [
+          "equipment-2x1"
+        ]
+      },
+      {
+        "id": "span.back.02-03",
+        "slotIds": [
+          "surface.back.02",
+          "surface.back.03"
+        ],
+        "accepts": [
+          "equipment-2x1"
+        ]
+      },
+      {
+        "id": "span.back.03-04",
+        "slotIds": [
+          "surface.back.03",
+          "surface.back.04"
+        ],
+        "accepts": [
+          "equipment-2x1"
+        ]
+      },
+      {
+        "id": "span.back.04-05",
+        "slotIds": [
+          "surface.back.04",
+          "surface.back.05"
+        ],
+        "accepts": [
+          "equipment-2x1"
+        ]
+      },
+      {
+        "id": "span.back.05-06",
+        "slotIds": [
+          "surface.back.05",
+          "surface.back.06"
+        ],
+        "accepts": [
+          "equipment-2x1"
+        ]
+      },
+      {
+        "id": "span.front.01-02",
+        "slotIds": [
+          "surface.front.01",
+          "surface.front.02"
+        ],
+        "accepts": [
+          "equipment-2x1"
+        ]
+      },
+      {
+        "id": "span.front.02-03",
+        "slotIds": [
+          "surface.front.02",
+          "surface.front.03"
+        ],
+        "accepts": [
+          "equipment-2x1"
+        ]
+      },
+      {
+        "id": "span.front.03-04",
+        "slotIds": [
+          "surface.front.03",
+          "surface.front.04"
+        ],
+        "accepts": [
+          "equipment-2x1"
+        ]
+      },
+      {
+        "id": "span.front.04-05",
+        "slotIds": [
+          "surface.front.04",
+          "surface.front.05"
+        ],
+        "accepts": [
+          "equipment-2x1"
+        ]
+      },
+      {
+        "id": "span.front.05-06",
+        "slotIds": [
+          "surface.front.05",
+          "surface.front.06"
+        ],
+        "accepts": [
+          "equipment-2x1"
+        ]
+      }
+    ],
+    "twoByTwoSpanGroups": [
+      {
+        "id": "span.block.01-02",
+        "slotIds": [
+          "surface.back.01",
+          "surface.back.02",
+          "surface.front.01",
+          "surface.front.02"
+        ],
+        "accepts": [
+          "equipment-2x2"
+        ]
+      },
+      {
+        "id": "span.block.02-03",
+        "slotIds": [
+          "surface.back.02",
+          "surface.back.03",
+          "surface.front.02",
+          "surface.front.03"
+        ],
+        "accepts": [
+          "equipment-2x2"
+        ]
+      },
+      {
+        "id": "span.block.03-04",
+        "slotIds": [
+          "surface.back.03",
+          "surface.back.04",
+          "surface.front.03",
+          "surface.front.04"
+        ],
+        "accepts": [
+          "equipment-2x2"
+        ]
+      },
+      {
+        "id": "span.block.04-05",
+        "slotIds": [
+          "surface.back.04",
+          "surface.back.05",
+          "surface.front.04",
+          "surface.front.05"
+        ],
+        "accepts": [
+          "equipment-2x2"
+        ]
+      },
+      {
+        "id": "span.block.05-06",
+        "slotIds": [
+          "surface.back.05",
+          "surface.back.06",
+          "surface.front.05",
+          "surface.front.06"
+        ],
+        "accepts": [
+          "equipment-2x2"
+        ]
+      }
+    ],
+    "useLanes": [
+      {
+        "id": "use.01",
+        "surfaceSlotIds": [
+          "surface.back.01",
+          "surface.front.01"
+        ],
+        "stand": {
+          "x": 0.5,
+          "y": 2.5
+        },
+        "approach": {
+          "x": 0.5,
+          "y": 3.5
+        },
+        "exit": {
+          "x": 0.5,
+          "y": 4.5
+        },
+        "facing": "front"
+      },
+      {
+        "id": "use.02",
+        "surfaceSlotIds": [
+          "surface.back.02",
+          "surface.front.02"
+        ],
+        "stand": {
+          "x": 1.5,
+          "y": 2.5
+        },
+        "approach": {
+          "x": 1.5,
+          "y": 3.5
+        },
+        "exit": {
+          "x": 1.5,
+          "y": 4.5
+        },
+        "facing": "front"
+      },
+      {
+        "id": "use.03",
+        "surfaceSlotIds": [
+          "surface.back.03",
+          "surface.front.03"
+        ],
+        "stand": {
+          "x": 2.5,
+          "y": 2.5
+        },
+        "approach": {
+          "x": 2.5,
+          "y": 3.5
+        },
+        "exit": {
+          "x": 2.5,
+          "y": 4.5
+        },
+        "facing": "front"
+      },
+      {
+        "id": "use.04",
+        "surfaceSlotIds": [
+          "surface.back.04",
+          "surface.front.04"
+        ],
+        "stand": {
+          "x": 3.5,
+          "y": 2.5
+        },
+        "approach": {
+          "x": 3.5,
+          "y": 3.5
+        },
+        "exit": {
+          "x": 3.5,
+          "y": 4.5
+        },
+        "facing": "front"
+      },
+      {
+        "id": "use.05",
+        "surfaceSlotIds": [
+          "surface.back.05",
+          "surface.front.05"
+        ],
+        "stand": {
+          "x": 4.5,
+          "y": 2.5
+        },
+        "approach": {
+          "x": 4.5,
+          "y": 3.5
+        },
+        "exit": {
+          "x": 4.5,
+          "y": 4.5
+        },
+        "facing": "front"
+      },
+      {
+        "id": "use.06",
+        "surfaceSlotIds": [
+          "surface.back.06",
+          "surface.front.06"
+        ],
+        "stand": {
+          "x": 5.5,
+          "y": 2.5
+        },
+        "approach": {
+          "x": 5.5,
+          "y": 3.5
+        },
+        "exit": {
+          "x": 5.5,
+          "y": 4.5
+        },
+        "facing": "front"
+      }
+    ],
+    "projectedSupportBounds": [
+      32,
+      22,
+      224,
+      86
+    ],
+    "visualTopBounds": [
+      20,
+      21,
+      236,
+      93
+    ],
+    "edgeSupportFailures": 0,
+    "atomicOccupancy": true,
+    "rejectOverlap": true,
+    "rejectUnsupportedChild": true,
+    "childInteractionDelegated": true,
+    "coffeeC01Imported": false
+  },
+  "placementValidation": {
+    "oneByOneCases": 12,
+    "twoByOneCases": 10,
+    "twoByTwoCases": 5,
+    "configurationCount": 7,
+    "overlapRejections": 1,
+    "unsupportedChildRejections": 1,
+    "routeObstructionCount": 0,
+    "attachmentDeltaFailures": 0,
+    "configurations": [
+      {
+        "id": "empty",
+        "occupiedSlotIds": [],
+        "spanGroupIds": [],
+        "valid": true
+      },
+      {
+        "id": "twelve-independent",
+        "occupiedSlotIds": [
+          "surface.back.01",
+          "surface.back.02",
+          "surface.back.03",
+          "surface.back.04",
+          "surface.back.05",
+          "surface.back.06",
+          "surface.front.01",
+          "surface.front.02",
+          "surface.front.03",
+          "surface.front.04",
+          "surface.front.05",
+          "surface.front.06"
+        ],
+        "spanGroupIds": [],
+        "valid": true
+      },
+      {
+        "id": "equipment-and-props",
+        "occupiedSlotIds": [
+          "surface.back.02",
+          "surface.back.04",
+          "surface.front.02",
+          "surface.front.03",
+          "surface.front.05"
+        ],
+        "spanGroupIds": [],
+        "valid": true
+      },
+      {
+        "id": "two-by-one-mix",
+        "occupiedSlotIds": [
+          "surface.back.01",
+          "surface.back.02",
+          "surface.front.04",
+          "surface.front.05"
+        ],
+        "spanGroupIds": [
+          "span.back.01-02",
+          "span.front.04-05"
+        ],
+        "valid": true
+      },
+      {
+        "id": "two-by-two-center",
+        "occupiedSlotIds": [
+          "surface.back.03",
+          "surface.back.04",
+          "surface.front.03",
+          "surface.front.04"
+        ],
+        "spanGroupIds": [
+          "span.block.03-04"
+        ],
+        "valid": true
+      },
+      {
+        "id": "overlap-probe",
+        "occupiedSlotIds": [
+          "surface.back.01",
+          "surface.back.02"
+        ],
+        "spanGroupIds": [
+          "span.back.01-02",
+          "span.block.01-02"
+        ],
+        "valid": false
+      },
+      {
+        "id": "unsupported-three-wide",
+        "occupiedSlotIds": [
+          "surface.front.02",
+          "surface.front.03",
+          "surface.front.04"
+        ],
+        "spanGroupIds": [],
+        "valid": false
+      }
+    ]
+  },
+  "movementValidation": {
+    "worldPositions": [
+      [
+        0,
+        0
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        9,
+        6
+      ]
+    ],
+    "childAttachmentCases": 36,
+    "attachmentDeltaFailures": 0,
+    "propFollowFailures": 0
+  },
+  "reservationValidation": {
+    "durationSeconds": 30,
+    "contenderCount": 2,
+    "maximumConcurrentReservations": 1,
+    "blockedAttemptCount": 1,
+    "failureCount": 1,
+    "retrySuccessCount": 1,
+    "releasedAtEnd": true,
+    "samples": [
+      {
+        "second": 0,
+        "heldBy": null,
+        "states": {
+          "alpha": "available",
+          "beta": "available"
+        }
+      },
+      {
+        "second": 1,
+        "heldBy": "alpha",
+        "states": {
+          "alpha": "held",
+          "beta": "waiting"
+        }
+      },
+      {
+        "second": 2,
+        "heldBy": "alpha",
+        "states": {
+          "alpha": "held",
+          "beta": "blocked"
+        }
+      },
+      {
+        "second": 3,
+        "heldBy": "alpha",
+        "states": {
+          "alpha": "held",
+          "beta": "waiting"
+        }
+      },
+      {
+        "second": 4,
+        "heldBy": "alpha",
+        "states": {
+          "alpha": "held",
+          "beta": "waiting"
+        }
+      },
+      {
+        "second": 5,
+        "heldBy": "alpha",
+        "states": {
+          "alpha": "held",
+          "beta": "waiting"
+        }
+      },
+      {
+        "second": 6,
+        "heldBy": "alpha",
+        "states": {
+          "alpha": "held",
+          "beta": "waiting"
+        }
+      },
+      {
+        "second": 7,
+        "heldBy": null,
+        "states": {
+          "alpha": "available",
+          "beta": "available"
+        }
+      },
+      {
+        "second": 8,
+        "heldBy": "beta",
+        "states": {
+          "alpha": "released-after-failure",
+          "beta": "held"
+        }
+      },
+      {
+        "second": 9,
+        "heldBy": "beta",
+        "states": {
+          "alpha": "waiting",
+          "beta": "held"
+        }
+      },
+      {
+        "second": 10,
+        "heldBy": "beta",
+        "states": {
+          "alpha": "waiting",
+          "beta": "held"
+        }
+      },
+      {
+        "second": 11,
+        "heldBy": "beta",
+        "states": {
+          "alpha": "waiting",
+          "beta": "held"
+        }
+      },
+      {
+        "second": 12,
+        "heldBy": "beta",
+        "states": {
+          "alpha": "waiting",
+          "beta": "held"
+        }
+      },
+      {
+        "second": 13,
+        "heldBy": "beta",
+        "states": {
+          "alpha": "waiting",
+          "beta": "held"
+        }
+      },
+      {
+        "second": 14,
+        "heldBy": "beta",
+        "states": {
+          "alpha": "waiting",
+          "beta": "held"
+        }
+      },
+      {
+        "second": 15,
+        "heldBy": null,
+        "states": {
+          "alpha": "available",
+          "beta": "available"
+        }
+      },
+      {
+        "second": 16,
+        "heldBy": null,
+        "states": {
+          "alpha": "available",
+          "beta": "available"
+        }
+      },
+      {
+        "second": 17,
+        "heldBy": "alpha",
+        "states": {
+          "alpha": "held-after-retry",
+          "beta": "waiting"
+        }
+      },
+      {
+        "second": 18,
+        "heldBy": "alpha",
+        "states": {
+          "alpha": "held-after-retry",
+          "beta": "waiting"
+        }
+      },
+      {
+        "second": 19,
+        "heldBy": "alpha",
+        "states": {
+          "alpha": "held-after-retry",
+          "beta": "waiting"
+        }
+      },
+      {
+        "second": 20,
+        "heldBy": "alpha",
+        "states": {
+          "alpha": "held-after-retry",
+          "beta": "waiting"
+        }
+      },
+      {
+        "second": 21,
+        "heldBy": "alpha",
+        "states": {
+          "alpha": "held-after-retry",
+          "beta": "waiting"
+        }
+      },
+      {
+        "second": 22,
+        "heldBy": "alpha",
+        "states": {
+          "alpha": "held-after-retry",
+          "beta": "waiting"
+        }
+      },
+      {
+        "second": 23,
+        "heldBy": "alpha",
+        "states": {
+          "alpha": "held-after-retry",
+          "beta": "waiting"
+        }
+      },
+      {
+        "second": 24,
+        "heldBy": null,
+        "states": {
+          "alpha": "available",
+          "beta": "available"
+        }
+      },
+      {
+        "second": 25,
+        "heldBy": null,
+        "states": {
+          "alpha": "available",
+          "beta": "available"
+        }
+      },
+      {
+        "second": 26,
+        "heldBy": null,
+        "states": {
+          "alpha": "available",
+          "beta": "available"
+        }
+      },
+      {
+        "second": 27,
+        "heldBy": null,
+        "states": {
+          "alpha": "available",
+          "beta": "available"
+        }
+      },
+      {
+        "second": 28,
+        "heldBy": null,
+        "states": {
+          "alpha": "available",
+          "beta": "available"
+        }
+      },
+      {
+        "second": 29,
+        "heldBy": null,
+        "states": {
+          "alpha": "available",
+          "beta": "available"
+        }
+      },
+      {
+        "second": 30,
+        "heldBy": null,
+        "states": {
+          "alpha": "available",
+          "beta": "available"
+        }
+      }
+    ]
+  },
+  "gates": {
+    "F0": {
+      "status": "passed",
+      "evidence": [
+        "assets/art/layout-references/office-furniture-counter-bar-a01-r02-source.png",
+        "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/01-source-lineage-and-normalization.png"
+      ]
+    },
+    "F1": {
+      "status": "passed",
+      "evidence": [
+        "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/03-alpha-parts.png",
+        "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/04-clean-front.png"
+      ]
+    },
+    "F2": {
+      "status": "passed",
+      "evidence": [
+        "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/02-exact-6x2x2-geometry.png",
+        "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/05-twelve-surface-cells.png"
+      ]
+    },
+    "F3": {
+      "status": "passed",
+      "evidence": [
+        "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/06-four-corner-edge-support.png",
+        "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/07-modular-configurations.png",
+        "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/08-spans-and-rejections.png"
+      ]
+    },
+    "F4": {
+      "status": "passed",
+      "evidence": [
+        "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/09-use-lanes-and-routes.png"
+      ]
+    },
+    "F5": {
+      "status": "passed",
+      "evidence": [
+        "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/10-movement-socket-proof.png"
+      ]
+    },
+    "F6": {
+      "status": "passed",
+      "evidence": [
+        "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/11-reservation-timeline-30s.png"
+      ]
+    },
+    "F7": {
+      "status": "passed",
+      "evidence": [
+        "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/01-source-lineage-and-normalization.png",
+        "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/02-exact-6x2x2-geometry.png",
+        "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/03-alpha-parts.png",
+        "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/04-clean-front.png",
+        "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/05-twelve-surface-cells.png",
+        "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/06-four-corner-edge-support.png",
+        "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/07-modular-configurations.png",
+        "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/08-spans-and-rejections.png",
+        "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/09-use-lanes-and-routes.png",
+        "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/10-movement-socket-proof.png",
+        "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/11-reservation-timeline-30s.png",
+        "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/12-layer-order.png"
+      ]
+    },
+    "F8": {
+      "status": "pending-owner-review",
+      "evidence": [
+        "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/02-exact-6x2x2-geometry.png",
+        "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/04-clean-front.png",
+        "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/06-four-corner-edge-support.png"
+      ]
+    },
+    "F9": {
+      "status": "blocked",
+      "evidence": []
+    },
+    "F10": {
+      "status": "blocked",
+      "evidence": []
+    }
+  },
+  "reviewOutputs": [
+    {
+      "file": "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/01-source-lineage-and-normalization.png",
+      "sha256": "081ba330577abab2c988e82641fb26bd323e3e398b2ba9f4cbf58a9602072ae6"
+    },
+    {
+      "file": "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/02-exact-6x2x2-geometry.png",
+      "sha256": "e410b8c63abf222965c492b94dac0958bb9d9200c676358bdf4046f3a822925e"
+    },
+    {
+      "file": "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/03-alpha-parts.png",
+      "sha256": "6ce7a54d2b15c5bf9b2a249f281f4803206ae938ce98178c51505dc17a8b087b"
+    },
+    {
+      "file": "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/04-clean-front.png",
+      "sha256": "89a9f8daa4a4b51c538995a544350ff50aa627bd3c6e75b9216d8037b56ceb79"
+    },
+    {
+      "file": "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/05-twelve-surface-cells.png",
+      "sha256": "428475941249d4bcc53cba63b7a0072d7d47d3cb0456e7eae9f5c27c0d667102"
+    },
+    {
+      "file": "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/06-four-corner-edge-support.png",
+      "sha256": "a5d1fc47fe6921fea73b23d2bd42a1d800d290a31cb6f358c6af3eda562e8959"
+    },
+    {
+      "file": "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/07-modular-configurations.png",
+      "sha256": "73749d6fbf3495176187af6f3cb1f898504922cb373bbf4a6ad34568b6dbd36f"
+    },
+    {
+      "file": "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/08-spans-and-rejections.png",
+      "sha256": "dbbcb05cd8ba32fa81a6b900dbac89a99496a3312d9a92131dab1ba705dbfaaf"
+    },
+    {
+      "file": "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/09-use-lanes-and-routes.png",
+      "sha256": "2a5ba5c518d3728ca7438c318bfa9fbaff1ca06b054d52589db5615eb2bfdd9e"
+    },
+    {
+      "file": "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/10-movement-socket-proof.png",
+      "sha256": "08c79447c65083e44ec3c7c45bebe4f4ad8d65cd399ca95e0474de32809c827d"
+    },
+    {
+      "file": "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/11-reservation-timeline-30s.png",
+      "sha256": "6ce16b74dbe54939775e86344c7a409c604ab13b7529ea7a239c58e29c0cb7ef"
+    },
+    {
+      "file": "assets/art/layout-references/office-furniture-family-v1/counter-bar-a01-r02/12-layer-order.png",
+      "sha256": "f475cd20dd7ddee887317ee9eee5f624ae86a80d6d6344808147eb02a82fba49"
+    }
+  ],
+  "permissions": {
+    "isolatedFamilyLab": true,
+    "ownerReview": true,
+    "attachedCoffeeProduction": false,
+    "furnitureOnlyRoom": false,
+    "activeOfficePromotion": false
+  },
+  "ownerDecision": null
+}

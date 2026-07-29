@@ -10,41 +10,65 @@ const manifest = JSON.parse(readFileSync(new URL(
   "../../../assets/game/manifests/office-furniture-counter-bar-a01.json",
   import.meta.url,
 ), "utf8")) as OfficeSurfaceFurnitureProductionManifest;
+const revision = JSON.parse(readFileSync(new URL(
+  "../../../assets/game/manifests/office-furniture-counter-bar-a01-r02.json",
+  import.meta.url,
+), "utf8")) as OfficeSurfaceFurnitureProductionManifest;
 
-test("Counter Bar A01 stops at independent F8 owner review", () => {
+test("Counter Bar A01 remains rejected tapered-top evidence", () => {
   assert.deepEqual(validateOfficeSurfaceFurnitureProductionManifest(manifest), []);
   assert.equal(manifest.id, "office.furniture.counter-bar.a01");
   assert.equal(manifest.familyId, "counter.bar.modular");
   assert.equal(manifest.revision, "a01");
-  assert.equal(manifest.status, "owner-review-f8-pending");
-  assert.equal(manifest.gates.F8.status, "pending-owner-review");
+  assert.equal(manifest.status, "rejected");
+  assert.equal(manifest.gates.F8.status, "blocked");
   assert.equal(manifest.gates.F9.status, "blocked");
   assert.equal(manifest.gates.F10.status, "blocked");
   assert.equal(manifest.permissions.attachedCoffeeProduction, false);
-  assert.equal(manifest.ownerDecision, null);
+  assert.equal(manifest.permissions.ownerReview, false);
+  assert.equal(manifest.ownerDecision?.decision, "rejected");
 });
 
-test("Counter Bar A01 exposes reusable surface geometry", () => {
-  assert.deepEqual(manifest.render.runtimeCanvas, [224, 160]);
-  assert.deepEqual(manifest.geometry.physicalScale, {
+test("Counter Bar A01-r02 stops at independent F8 owner review", () => {
+  assert.deepEqual(validateOfficeSurfaceFurnitureProductionManifest(revision), []);
+  assert.equal(revision.id, "office.furniture.counter-bar.a01-r02");
+  assert.equal(revision.status, "owner-review-f8-pending");
+  assert.equal(revision.gates.F8.status, "pending-owner-review");
+  assert.equal(revision.gates.F9.status, "blocked");
+  assert.equal(revision.gates.F10.status, "blocked");
+  assert.equal(revision.permissions.attachedCoffeeProduction, false);
+  assert.equal(revision.ownerDecision, null);
+});
+
+test("Counter Bar A01-r02 exposes exact 6x2x2 support geometry", () => {
+  assert.deepEqual(revision.render.runtimeCanvas, [256, 160]);
+  assert.deepEqual(revision.geometry.physicalScale, {
     width: 6,
     depth: 2,
     height: 2,
     unit: "tile",
   });
-  assert.deepEqual(manifest.geometry.footprint, {
+  assert.deepEqual(revision.geometry.footprint, {
     width: 6,
     depth: 2,
     unit: "tile",
   });
-  assert.equal(manifest.surfaceContract.slots.length, 5);
-  assert.equal(manifest.surfaceContract.adjacentSpanGroups.length, 4);
-  assert.equal(manifest.surfaceContract.useLanes.length, 5);
-  assert.equal(manifest.surfaceContract.coffeeC01Imported, false);
+  assert.deepEqual(revision.surfaceContract.projectedSupportBounds, [
+    32, 22, 224, 86,
+  ]);
+  assert.deepEqual(revision.surfaceContract.visualTopBounds, [
+    20, 21, 236, 93,
+  ]);
+  assert.equal(revision.surfaceContract.edgeSupportFailures, 0);
+  assert.equal(revision.surfaceContract.slots.length, 12);
+  assert.equal(revision.surfaceContract.adjacentSpanGroups.length, 10);
+  assert.equal(revision.surfaceContract.twoByTwoSpanGroups?.length, 5);
+  assert.equal(revision.surfaceContract.useLanes.length, 6);
+  assert.equal(revision.surfaceContract.coffeeC01Imported, false);
 });
 
-test("Counter Bar A01 rejects reuse, magic attachment, and overlap", () => {
-  const invalid = structuredClone(manifest);
+test("surface furniture rejects reuse, magic attachment, and overlap", () => {
+  const invalid = structuredClone(revision);
   (invalid.sourcePolicy as { activeOfficePixelReuse: boolean })
     .activeOfficePixelReuse = true;
   (invalid.spatial as { perSceneAttachmentOffsets: boolean })
@@ -58,17 +82,18 @@ test("Counter Bar A01 rejects reuse, magic attachment, and overlap", () => {
   assert.match(issues, /fail closed/);
 });
 
-test("Counter Bar A01 proves modular placement and reservation retry", () => {
-  assert.equal(manifest.placementValidation.oneByOneCases, 5);
-  assert.equal(manifest.placementValidation.twoByOneCases, 4);
-  assert.equal(manifest.placementValidation.overlapRejections, 1);
-  assert.equal(manifest.placementValidation.unsupportedChildRejections, 1);
-  assert.equal(manifest.placementValidation.routeObstructionCount, 0);
-  assert.equal(manifest.movementValidation.childAttachmentCases, 15);
-  assert.equal(manifest.movementValidation.attachmentDeltaFailures, 0);
-  assert.equal(manifest.reservationValidation.samples.length, 31);
-  assert.equal(manifest.reservationValidation.blockedAttemptCount, 1);
-  assert.equal(manifest.reservationValidation.failureCount, 1);
-  assert.equal(manifest.reservationValidation.retrySuccessCount, 1);
-  assert.equal(manifest.reservationValidation.samples.at(-1)?.heldBy, null);
+test("Counter Bar A01-r02 proves placement and reservation retry", () => {
+  assert.equal(revision.placementValidation.oneByOneCases, 12);
+  assert.equal(revision.placementValidation.twoByOneCases, 10);
+  assert.equal(revision.placementValidation.twoByTwoCases, 5);
+  assert.equal(revision.placementValidation.overlapRejections, 1);
+  assert.equal(revision.placementValidation.unsupportedChildRejections, 1);
+  assert.equal(revision.placementValidation.routeObstructionCount, 0);
+  assert.equal(revision.movementValidation.childAttachmentCases, 36);
+  assert.equal(revision.movementValidation.attachmentDeltaFailures, 0);
+  assert.equal(revision.reservationValidation.samples.length, 31);
+  assert.equal(revision.reservationValidation.blockedAttemptCount, 1);
+  assert.equal(revision.reservationValidation.failureCount, 1);
+  assert.equal(revision.reservationValidation.retrySuccessCount, 1);
+  assert.equal(revision.reservationValidation.samples.at(-1)?.heldBy, null);
 });

@@ -21,6 +21,14 @@ export interface OfficeSurfaceFurnitureGeneratedSource {
     geometryCorrectionCount: number;
   };
   extractionMethod: "generated-source-chroma-key";
+  geometryNormalization?: {
+    method: "orthographic-row-removal-without-resampling";
+    sourceSurfaceBounds: readonly [number, number, number, number];
+    removedRows: readonly [number, number];
+    preservedFrontAssemblyFromRow: number;
+    outputSurfaceBounds: readonly [number, number, number, number];
+    pixelsResampled: false;
+  };
   sampledKeyRgb: readonly [number, number, number];
   sourceSize: readonly [number, number];
   ownedBounds: readonly [number, number, number, number];
@@ -35,6 +43,7 @@ export interface OfficeSurfaceFurnitureGeneratedSource {
   };
   keyedSource: OfficeSurfaceFurnitureFileEvidence;
   ownershipMask: OfficeSurfaceFurnitureFileEvidence;
+  geometryNormalizedSource?: OfficeSurfaceFurnitureFileEvidence;
   normalizedCutout: OfficeSurfaceFurnitureFileEvidence;
   authoringPadding: {
     left: number;
@@ -69,7 +78,8 @@ export interface OfficeSurfaceFurnitureSlot {
 
 export interface OfficeSurfaceFurnitureUseLane {
   id: string;
-  surfaceSlotId: string;
+  surfaceSlotId?: string;
+  surfaceSlotIds?: readonly string[];
   stand: { x: number; y: number };
   approach: { x: number; y: number };
   exit: { x: number; y: number };
@@ -129,7 +139,15 @@ export interface OfficeSurfaceFurnitureProductionManifest {
       slotIds: readonly [string, string];
       accepts: readonly ["equipment-2x1"];
     }[];
+    twoByTwoSpanGroups?: readonly {
+      id: string;
+      slotIds: readonly [string, string, string, string];
+      accepts: readonly ["equipment-2x2"];
+    }[];
     useLanes: readonly OfficeSurfaceFurnitureUseLane[];
+    projectedSupportBounds?: readonly [number, number, number, number];
+    visualTopBounds?: readonly [number, number, number, number];
+    edgeSupportFailures?: 0;
     atomicOccupancy: true;
     rejectOverlap: true;
     rejectUnsupportedChild: true;
@@ -139,6 +157,7 @@ export interface OfficeSurfaceFurnitureProductionManifest {
   placementValidation: {
     oneByOneCases: number;
     twoByOneCases: number;
+    twoByTwoCases?: number;
     configurationCount: number;
     overlapRejections: number;
     unsupportedChildRejections: number;
@@ -177,8 +196,8 @@ export interface OfficeSurfaceFurnitureProductionManifest {
   >;
   reviewOutputs: readonly OfficeSurfaceFurnitureFileEvidence[];
   permissions: {
-    isolatedFamilyLab: true;
-    ownerReview: true;
+    isolatedFamilyLab: boolean;
+    ownerReview: boolean;
     attachedCoffeeProduction: false;
     furnitureOnlyRoom: false;
     activeOfficePromotion: false;

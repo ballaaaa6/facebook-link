@@ -9,16 +9,21 @@ import {
   validateFileHash,
 } from "./officeFacilityProductionValidationPrimitives.ts";
 
-const outputPrefix =
-  "assets/game/processed/office-furniture-counter-bar-a01/";
-
 function isIntegerPair(value: unknown): value is [number, number] {
   return Array.isArray(value)
     && value.length === 2
     && value.every(Number.isInteger);
 }
 
-function validateGeneratedSource(value: unknown, issues: string[]) {
+function isHalfTile(value: unknown) {
+  return typeof value === "number"
+    && Number.isFinite(value)
+    && Number.isInteger(value * 2);
+}
+
+function validateGeneratedSource(
+  value: unknown, outputPrefix: string, issues: string[],
+) {
   requireValue(issues, isRecord(value), "source must be an object");
   if (!isRecord(value)) return;
   requireValue(
@@ -60,6 +65,29 @@ function validateGeneratedSource(value: unknown, issues: string[]) {
     if (isRecord(evidence)) {
       validateFileHash(evidence, "file", "sha256", outputPrefix, issues);
     }
+  }
+  if (isRecord(value.geometryNormalizedSource)) {
+    validateFileHash(
+      value.geometryNormalizedSource,
+      "file",
+      "sha256",
+      outputPrefix,
+      issues,
+    );
+  }
+  const normalization = value.geometryNormalization;
+  if (normalization !== undefined) {
+    requireValue(
+      issues,
+      isRecord(normalization)
+        && normalization.method
+          === "orthographic-row-removal-without-resampling"
+        && isBox(normalization.sourceSurfaceBounds)
+        && isIntegerPair(normalization.removedRows)
+        && isBox(normalization.outputSurfaceBounds)
+        && normalization.pixelsResampled === false,
+      "source geometry normalization must remove rows without resampling",
+    );
   }
   const padding = value.authoringPadding;
   requireValue(
@@ -112,14 +140,18 @@ function validateRender(value: unknown, issues: string[]) {
   );
 }
 
-function validateCleanAsset(value: unknown, issues: string[]) {
+function validateCleanAsset(
+  value: unknown, outputPrefix: string, issues: string[],
+) {
   requireValue(issues, isRecord(value), "cleanAsset must be an object");
   if (isRecord(value)) {
     validateFileHash(value, "file", "sha256", outputPrefix, issues);
   }
 }
 
-function validateParts(value: unknown, issues: string[]) {
+function validateParts(
+  value: unknown, outputPrefix: string, issues: string[],
+) {
   requireValue(issues, Array.isArray(value), "parts must be an array");
   if (!Array.isArray(value)) return;
   const ids = new Set<string>();
@@ -216,8 +248,8 @@ function validateSurfaceContract(
     requireValue(
       issues,
       isRecord(slot.point)
-        && Number.isInteger(slot.point.x)
-        && Number.isInteger(slot.point.y)
+        && isHalfTile(slot.point.x)
+        && isHalfTile(slot.point.y)
         && slot.point.unit === "tile"
         && isIntegerPair(slot.localSocket),
       `surface slots[${index}] must use integer tile and pixel points`,
@@ -228,11 +260,8 @@ function validateSurfaceContract(
       `surface slots[${index}] must name a use lane`,
     );
   }
-  requireValue(
-    issues,
-    Array.isArray(value.useLanes) && value.useLanes.length === value.slots.length,
-    "surface slots and use lanes must have equal counts",
-  );
+  requireValue(issues, Array.isArray(value.useLanes) && value.useLanes.length > 0,
+    "surface contract must define use lanes");
   if (Array.isArray(value.useLanes)) {
     for (const [index, lane] of value.useLanes.entries()) {
       requireValue(issues, isRecord(lane), `use lanes[${index}] must be an object`);
@@ -241,11 +270,18 @@ function validateSurfaceContract(
         issues,
         typeof lane.id === "string"
           && !laneIds.has(lane.id)
-          && ids.has(String(lane.surfaceSlotId))
+          && (
+            ids.has(String(lane.surfaceSlotId))
+            || (
+              Array.isArray(lane.surfaceSlotIds)
+              && lane.surfaceSlotIds.length > 0
+              && lane.surfaceSlotIds.every((id) => ids.has(String(id)))
+            )
+          )
           && ["stand", "approach", "exit"].every(
             (field) => isRecord(lane[field])
-              && Number.isInteger(lane[field].x)
-              && Number.isInteger(lane[field].y),
+              && isHalfTile(lane[field].x)
+              && isHalfTile(lane[field].y),
           )
           && lane.facing === "front",
         `use lanes[${index}] must be unique and route an owned slot`,
@@ -253,6 +289,13 @@ function validateSurfaceContract(
       if (typeof lane.id === "string") laneIds.add(lane.id);
     }
   }
+  requireValue(
+    issues,
+    value.slots.every(
+      (slot) => isRecord(slot) && laneIds.has(String(slot.pairedUseLaneId)),
+    ),
+    "every surface slot must pair with a declared use lane",
+  );
   requireValue(
     issues,
     isRecord(geometry)
@@ -314,6 +357,9 @@ export function validateOfficeSurfaceFurnitureProductionManifest(
 ): string[] {
   if (!isRecord(value)) return ["manifest must be an object"];
   const issues: string[] = [];
+  const revision = typeof value.revision === "string" ? value.revision : "";
+  const outputPrefix =
+    `assets/game/processed/office-furniture-counter-bar-${revision}/`;
   requireValue(issues, value.schemaVersion === 1, "schemaVersion must equal 1");
   requireValue(
     issues,
@@ -332,9 +378,9 @@ export function validateOfficeSurfaceFurnitureProductionManifest(
       requireValue(issues, setting === false, `sourcePolicy.${field} must equal false`);
     }
   }
-  validateGeneratedSource(value.source, issues);
+  validateGeneratedSource(value.source, outputPrefix, issues);
   validateRender(value.render, issues);
-  validateCleanAsset(value.cleanAsset, issues);
+  validateCleanAsset(value.cleanAsset, outputPrefix, issues);
   if (!isRecord(value.geometry)) issues.push("geometry must be an object");
   else {
     issues.push(
@@ -342,7 +388,7 @@ export function validateOfficeSurfaceFurnitureProductionManifest(
         .map((issue) => `geometry.${issue}`),
     );
   }
-  validateParts(value.parts, issues);
+  validateParts(value.parts, outputPrefix, issues);
   validateSpatial(value.spatial, issues);
   validateSurfaceContract(value.surfaceContract, value.geometry, issues);
   validateProofs(value, issues);
