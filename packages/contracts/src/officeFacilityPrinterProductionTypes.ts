@@ -11,8 +11,8 @@ export interface OfficeFacilityPrinterProductionManifest {
   id: "office.facility.printer.p01.production";
   familyId: "printer.multifunction.floor";
   revision: "p01-production-r01";
-  status: "production-owner-review";
-  productionStage: "f7-complete-f8-owner-review";
+  status: "owner-approved";
+  productionStage: "f8-owner-approved";
   developmentOnly: true;
   activeOfficePromotion: false;
   preflightAuthority: {
@@ -90,11 +90,11 @@ export interface OfficeFacilityPrinterProductionManifest {
     propSocketRule: "primary-grip-to-primary-grip";
     attachmentDelta: readonly [0, 0];
     newCoordinateSystem: false;
-    reservationSlotContribution: 0;
+    reservationSlotContribution: 2;
     plannedReservationSlotContributionAfterF8: 2;
     facilityV1ReadySlotsBeforePrinterF8: 18;
     facilityV1ReadySlotsAfterPrinterF8Target: 20;
-    facilityV1ReadySlotsCurrent: 18;
+    facilityV1ReadySlotsCurrent: 20;
   };
   rosterValidation: {
     characterCount: 18;
@@ -153,14 +153,21 @@ export interface OfficeFacilityPrinterProductionManifest {
   reviewEvidence: readonly PrinterProductionReviewEvidence[];
   permissions: {
     familyLab: true;
-    ownerReview: true;
-    reservationSlotActivation: false;
+    ownerReview: false;
+    reservationSlotActivation: true;
     furnitureOnlyRoom: false;
     otherFacilityFamilies: false;
     activeOfficePromotion: false;
   };
   activeOfficeEvidence: readonly { file: string; imported: false }[];
-  ownerDecision: null;
+  ownerDecision: {
+    decision: "approved";
+    decidedOn: "2026-07-30";
+    approvedRevision: "p01-production-r01";
+    scope: "exact-review-output-hashes";
+    approvedReviewHashes: readonly { path: string; sha256: string }[];
+    notes: string;
+  };
 }
 
 export interface PrinterProductionAsset {

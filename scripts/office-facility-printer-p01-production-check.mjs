@@ -200,6 +200,22 @@ try {
       && manifest.reservationValidation?.orphanPropCountAtEnd === 0,
     "Printer P01 production 30-second proof changed",
   );
+  add(
+    manifest.gates?.F8?.status === "passed"
+      && manifest.gates?.F9?.status === "blocked"
+      && manifest.interaction?.reservationSlotContribution === 2
+      && manifest.interaction?.facilityV1ReadySlotsCurrent === 20
+      && manifest.permissions?.ownerReview === false
+      && manifest.permissions?.reservationSlotActivation === true
+      && manifest.ownerDecision?.decision === "approved"
+      && manifest.ownerDecision?.approvedReviewHashes?.length === 17
+      && manifest.ownerDecision?.approvedReviewHashes?.every(
+        (entry, index) =>
+          entry.path === manifest.reviewEvidence?.[index]?.path
+          && entry.sha256 === manifest.reviewEvidence?.[index]?.sha256,
+      ),
+    "Printer P01 F8 owner approval is stale",
+  );
 
   for (const evidence of manifest.activeOfficeEvidence ?? []) {
     const content = readText(evidence.file);
@@ -215,18 +231,17 @@ try {
   add(
     builder.includes("approvedPreflightPixelsOnly")
       && builder.includes("primary-grip-to-primary-grip")
-      && builder.includes('"reservationSlotContribution": 0')
-      && builder.includes('"F8": pending')
+      && builder.includes('"reservationSlotContribution": 2')
+      && builder.includes('"F8": passed')
       && builder.includes('"activeOfficePromotion": False'),
     "Printer P01 production builder boundary changed",
   );
   const docs = readText(docsPath);
   add(
-    docs.includes("Status: F8 owner review pending")
+    docs.includes("Status: F8 owner-approved")
       && docs.includes("108")
       && docs.includes("primary-grip-to-primary-grip")
       && docs.includes("three users")
-      && docs.includes("18/20")
       && docs.includes("20/20")
       && docs.includes("F9-F10 remain blocked"),
     "Printer P01 production documentation is incomplete",
@@ -256,6 +271,7 @@ if (failures.length) {
   process.stdout.write(
     "Printer P01 production check passed: approved preflight pixels, "
       + "108 base poses, 108 exact primary-grip overlays, two independent "
-      + "instances, three-user 30-second proof, F8 pending, zero slots.\n",
+      + "instances, three-user 30-second proof, F8 owner-approved, "
+      + "Facility readiness 20/20.\n",
   );
 }

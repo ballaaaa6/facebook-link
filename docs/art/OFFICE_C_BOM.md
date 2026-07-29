@@ -40,10 +40,10 @@ single accepted asset for repeated objects unless a deliberate visual variant
 is required. The five sofa seats remain five independently reservable slots
 even when the sofa is split into two furniture objects.
 
-Current Facility v1 readiness is `18/20` after Refrigerator R01 F8 approval.
-The remaining two slots belong to Printer P01. N01 remains superseded
-evidence. N02 production provides two independently reservable capacity-one
-instances from one owner-approved family.
+Current Facility v1 readiness is `20/20` after Printer P01 F8 approval on
+2026-07-30. N01 remains superseded evidence. N02 and Printer P01 production
+each provide two independently reservable capacity-one instances from one
+owner-approved family. Room placement still requires a separate F9 candidate.
 
 ### Facility asset generation plan
 
@@ -83,9 +83,9 @@ and closed/half/open tray children. The owner approved the corrected r02
 primary-grip preflight on 2026-07-30. Production revision `p01-production-r01`
 consumes only those approved pixels and passes F4-F7 with `108` base poses,
 `108` exact paper/envelope grip cases, two independent capacity-one instances,
-and a thirty-second three-user proof. It stops at F8 owner review and remains
-at zero active slots. Only approval of the exact production review hashes may
-advance Facility v1 from `18/20` to `20/20`.
+and a thirty-second three-user proof. The owner approved the exact seventeen
+production review hashes on 2026-07-30. Its two readiness slots advance
+Facility v1 from `18/20` to `20/20`; F9 room placement remains separate.
 
 ### Facility scale contracts
 

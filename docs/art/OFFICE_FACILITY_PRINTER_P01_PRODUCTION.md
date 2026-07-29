@@ -1,6 +1,6 @@
 # Office Facility Printer P01 Production
 
-Status: F8 owner review pending
+Status: F8 owner-approved
 
 Revision: `p01-production-r01`
 
@@ -20,10 +20,10 @@ the owner-approved `p01-generated-motion-preflight-r02`. It creates no new
 image, repairs no pixels, reads no foreign family, and imports nothing into
 the furniture-only room, map, runtime registry, or Active Office.
 
-F4-F7 pass. F8 remains pending owner review, so both planned Printer
-reservation slots remain inactive. Facility v1 therefore remains `18/20`.
-Approval of this exact production review set would activate two capacity-one
-instances and reach the `20/20` target. F9-F10 remain blocked.
+F4-F7 pass. The owner approved the exact seventeen-file production review set
+on 2026-07-30. The two capacity-one Printer instances now contribute two
+Facility readiness slots, completing the `20/20` target. This readiness
+approval does not place either machine in a room. F9-F10 remain blocked.
 
 ## Geometry and instances
 
@@ -187,7 +187,7 @@ All seventeen files live under:
 `assets/art/layout-references/office-facility-family-v1/printer-p01-production/`
 
 The manifest pins every hash, image size, GIF frame count, and duration. F8
-approval must refer to this exact revision and review set.
+approval applies to this exact revision and review set.
 
 ## Reproduction and validation
 
@@ -197,5 +197,6 @@ npm run art:facility:printer:p01:production:rebuild:check
 npm run art:facility:printer:p01:production:check
 ```
 
-No Printer slot, F9 room placement, map change, or Active Office change is
-part of this production batch.
+No F9 room placement, map change, or Active Office change is part of this
+production batch. The two approved slots exist only in the Facility readiness
+ledger until a separate F9 candidate passes.

@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Build isolated Printer P01 F4-F8 production evidence.
+"""Build owner-approved Printer P01 F4-F8 production evidence.
 
 Production consumes only the exact owner-approved r02 preflight pixels. It
 proves modular motion, 108 I01 poses, 108 exact H01 primary-grip attachments,
 two independent capacity-one instances, and a thirty-second three-user
-reservation scenario. It stops at F8 owner review with zero active slots.
+reservation scenario. The exact review set passed F8 on 2026-07-30 and
+contributes two Facility readiness slots. F9 remains a separate room gate.
 """
 
 from __future__ import annotations
@@ -962,8 +963,8 @@ def build_outputs() -> dict[Path, bytes]:
         "id": "office.facility.printer.p01.production",
         "familyId": "printer.multifunction.floor",
         "revision": "p01-production-r01",
-        "status": "production-owner-review",
-        "productionStage": "f7-complete-f8-owner-review",
+        "status": "owner-approved",
+        "productionStage": "f8-owner-approved",
         "developmentOnly": True,
         "activeOfficePromotion": False,
         "preflightAuthority": {
@@ -1061,11 +1062,11 @@ def build_outputs() -> dict[Path, bytes]:
             "propSocketRule": "primary-grip-to-primary-grip",
             "attachmentDelta": [0, 0],
             "newCoordinateSystem": False,
-            "reservationSlotContribution": 0,
+            "reservationSlotContribution": 2,
             "plannedReservationSlotContributionAfterF8": 2,
             "facilityV1ReadySlotsBeforePrinterF8": 18,
             "facilityV1ReadySlotsAfterPrinterF8Target": 20,
-            "facilityV1ReadySlotsCurrent": 18,
+            "facilityV1ReadySlotsCurrent": 20,
         },
         "rosterValidation": {
             "authorityManifest": repo_path(ACTION_MANIFEST),
@@ -1138,9 +1139,9 @@ def build_outputs() -> dict[Path, bytes]:
                 repo_path(REVIEW_ROOT / BOARD_SPECS[13][0]),
             ),
             "F7": passed(*(repo_path(path) for path in review_paths)),
-            "F8": pending(*(repo_path(path) for path in review_paths)),
+            "F8": passed(*(repo_path(path) for path in review_paths)),
             "F9": blocked(
-                "Facility v1 remains 18/20 until this production package passes F8."
+                "Furniture-only room composition requires a separate versioned F9 candidate."
             ),
             "F10": blocked("Active Office promotion remains forbidden."),
         },
@@ -1148,8 +1149,8 @@ def build_outputs() -> dict[Path, bytes]:
         "reviewEvidence": review_evidence,
         "permissions": {
             "familyLab": True,
-            "ownerReview": True,
-            "reservationSlotActivation": False,
+            "ownerReview": False,
+            "reservationSlotActivation": True,
             "furnitureOnlyRoom": False,
             "otherFacilityFamilies": False,
             "activeOfficePromotion": False,
@@ -1158,7 +1159,21 @@ def build_outputs() -> dict[Path, bytes]:
             {"file": path, "imported": False}
             for path in ACTIVE_OFFICE_FILES
         ],
-        "ownerDecision": None,
+        "ownerDecision": {
+            "decision": "approved",
+            "decidedOn": "2026-07-30",
+            "approvedRevision": "p01-production-r01",
+            "scope": "exact-review-output-hashes",
+            "approvedReviewHashes": [
+                {"path": entry["path"], "sha256": entry["sha256"]}
+                for entry in review_evidence
+            ],
+            "notes": (
+                "Owner approved the exact Printer P01 production review set, "
+                "activating two Facility readiness slots and reaching 20/20. "
+                "F9 room composition remains separate."
+            ),
+        },
     }
     outputs[MANIFEST_PATH] = PF.json_bytes(manifest)
     return outputs
@@ -1203,14 +1218,14 @@ def main() -> int:
         print(
             "Printer P01 production validated: 108 base poses, 108 exact "
             "primary-grip cases, two independent instances, 30-second "
-            "three-user proof, F8 pending, zero active slots."
+            "three-user proof, F8 owner-approved, two readiness slots."
         )
         return 0
     write_outputs(outputs)
     print(
         "Printer P01 production built: 108 base poses, 108 exact primary-grip "
         "cases, two independent instances, 30-second three-user proof, "
-        "F8 pending, zero active slots."
+        "F8 owner-approved, two readiness slots."
     )
     return 0
 

@@ -12,17 +12,19 @@ const manifest = JSON.parse(readFileSync(new URL(
   import.meta.url,
 ), "utf8")) as OfficeFacilityPrinterProductionManifest;
 
-test("Printer P01 production stops at F8 with zero active slots", () => {
+test("Printer P01 production records exact F8 owner approval", () => {
   assert.deepEqual(
     validateOfficeFacilityPrinterProductionManifest(manifest),
     [],
   );
   assert.equal(manifest.gates.F7.status, "passed");
-  assert.equal(manifest.gates.F8.status, "pending-owner-review");
+  assert.equal(manifest.gates.F8.status, "passed");
   assert.equal(manifest.gates.F9.status, "blocked");
-  assert.equal(manifest.interaction.reservationSlotContribution, 0);
-  assert.equal(manifest.interaction.facilityV1ReadySlotsCurrent, 18);
-  assert.equal(manifest.permissions.reservationSlotActivation, false);
+  assert.equal(manifest.interaction.reservationSlotContribution, 2);
+  assert.equal(manifest.interaction.facilityV1ReadySlotsCurrent, 20);
+  assert.equal(manifest.permissions.reservationSlotActivation, true);
+  assert.equal(manifest.ownerDecision.decision, "approved");
+  assert.equal(manifest.ownerDecision.approvedReviewHashes.length, 17);
 });
 
 test("Printer P01 isolates seam-loop processing from finite tray motion", () => {
@@ -86,7 +88,7 @@ test("Printer P01 proves two independent capacity-one reservations", () => {
   assert.equal(manifest.reservationValidation.orphanPropCountAtEnd, 0);
 });
 
-test("Printer P01 rejects primary-grip drift and premature F8 activation", () => {
+test("Printer P01 rejects primary-grip drift and approved-slot rollback", () => {
   const invalid = structuredClone(manifest) as unknown as {
     propOverlayValidation: {
       cases: Array<Record<string, unknown>>;
@@ -95,10 +97,10 @@ test("Printer P01 rejects primary-grip drift and premature F8 activation", () =>
     permissions: Record<string, unknown>;
   };
   invalid.propOverlayValidation.cases[0]!.primaryGripDelta = [1, 0];
-  invalid.interaction.reservationSlotContribution = 2;
-  invalid.permissions.reservationSlotActivation = true;
+  invalid.interaction.reservationSlotContribution = 0;
+  invalid.permissions.reservationSlotActivation = false;
   const issues = validateOfficeFacilityPrinterProductionManifest(invalid);
   assert.ok(issues.some((issue) => issue.includes("primary-grip")));
-  assert.ok(issues.some((issue) => issue.includes("slot stop")));
-  assert.ok(issues.some((issue) => issue.includes("permission stop")));
+  assert.ok(issues.some((issue) => issue.includes("slot contribution")));
+  assert.ok(issues.some((issue) => issue.includes("permissions")));
 });

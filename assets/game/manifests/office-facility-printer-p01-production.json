@@ -3,8 +3,8 @@
   "id": "office.facility.printer.p01.production",
   "familyId": "printer.multifunction.floor",
   "revision": "p01-production-r01",
-  "status": "production-owner-review",
-  "productionStage": "f7-complete-f8-owner-review",
+  "status": "owner-approved",
+  "productionStage": "f8-owner-approved",
   "developmentOnly": true,
   "activeOfficePromotion": false,
   "preflightAuthority": {
@@ -550,11 +550,11 @@
       0
     ],
     "newCoordinateSystem": false,
-    "reservationSlotContribution": 0,
+    "reservationSlotContribution": 2,
     "plannedReservationSlotContributionAfterF8": 2,
     "facilityV1ReadySlotsBeforePrinterF8": 18,
     "facilityV1ReadySlotsAfterPrinterF8Target": 20,
-    "facilityV1ReadySlotsCurrent": 18
+    "facilityV1ReadySlotsCurrent": 20
   },
   "rosterValidation": {
     "authorityManifest": "assets/game/manifests/office-character-action-sockets-i01.json",
@@ -8962,7 +8962,7 @@
       ]
     },
     "F8": {
-      "status": "pending-owner-review",
+      "status": "passed",
       "evidence": [
         "assets/art/layout-references/office-facility-family-v1/printer-p01-production/01-approved-preflight-hash-lock.png",
         "assets/art/layout-references/office-facility-family-v1/printer-p01-production/02-clean-production-states.png",
@@ -8986,7 +8986,7 @@
     "F9": {
       "status": "blocked",
       "evidence": [
-        "Facility v1 remains 18/20 until this production package passes F8."
+        "Furniture-only room composition requires a separate versioned F9 candidate."
       ]
     },
     "F10": {
@@ -9178,8 +9178,8 @@
   ],
   "permissions": {
     "familyLab": true,
-    "ownerReview": true,
-    "reservationSlotActivation": false,
+    "ownerReview": false,
+    "reservationSlotActivation": true,
     "furnitureOnlyRoom": false,
     "otherFacilityFamilies": false,
     "activeOfficePromotion": false
@@ -9198,5 +9198,81 @@
       "imported": false
     }
   ],
-  "ownerDecision": null
+  "ownerDecision": {
+    "decision": "approved",
+    "decidedOn": "2026-07-30",
+    "approvedRevision": "p01-production-r01",
+    "scope": "exact-review-output-hashes",
+    "approvedReviewHashes": [
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/printer-p01-production/01-approved-preflight-hash-lock.png",
+        "sha256": "4ec61fdbff900fbe3ae68455b382554264c0d0fd680253d03d56680f88c95275"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/printer-p01-production/02-clean-production-states.png",
+        "sha256": "d8370ea2c7db999135868103cee64f398099fbe6084b12ba7079b9b6e826a128"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/printer-p01-production/03-parts-alpha-ownership.png",
+        "sha256": "9fe91b1036f4125f1c2dccc5b29ae94c5c4b12037b0716c4dded1aa17b9ac4a4"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/printer-p01-production/04-two-instance-geometry.png",
+        "sha256": "db22696a2c5bd15af8b63157fffbfdd5d54b164c79362e2f2b0d6ee7d542acce"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/printer-p01-production/05-processing-a-d-a-proof.png",
+        "sha256": "e348e166437efc21246fdd514156c87708e26e1885400ba351bb6558c29fb0fe"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/printer-p01-production/06-finite-tray-proof.png",
+        "sha256": "2b357e3ba3969fbbbc9fdfacfaf3c0dbbc1c79e25fb1ef14d514ac8df57b4763"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/printer-p01-production/07-output-child-lifecycle.png",
+        "sha256": "edacde5916a55508812c1a5e3aa1fbd95e066dbf76a87b8e3f412e43584753ee"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/printer-p01-production/08-routes-and-sockets.png",
+        "sha256": "cd2e5b21e6c281739bd90be72fe8711ea37880613cf53f9f3ef95ba9e870e124"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/printer-p01-production/09-roster-108-cases.png",
+        "sha256": "80cd7b644aa1e4b3f0ca29e1b6db7539dfd9170ecb12b3ff26ba75c29fb389c3"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/printer-p01-production/10-primary-grip-108-cases.png",
+        "sha256": "bab0765c3255202d1a7ffdf382d2bb7a3c0800d24fa4de8092735e02b00a317f"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/printer-p01-production/11-paper-envelope-closeups.png",
+        "sha256": "955f00f4df146e4e6d8b539f1dafec424d79a1e843366d7839c75d0a0680c4d7"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/printer-p01-production/12-alpha-contact-metrics.png",
+        "sha256": "eb64a4b5c2409ced5e68b9517da16c44cf176e35ed53c8a5887f9248fad0bd88"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/printer-p01-production/13-interruption-paths.png",
+        "sha256": "e3afb93c39d6a6a726faddb8003702ec2a459e577af8772c684cd9623d4b5a67"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/printer-p01-production/14-three-user-two-printer-30s.png",
+        "sha256": "adb01488a2e61323963acb550e73759be5702dac851417463149f3b579c62843"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/printer-p01-production/printer-p01-production-paper.gif",
+        "sha256": "36610ad06929041cb85e95ff3c8b416c124c08c899cb821613e069e4a6d8a637"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/printer-p01-production/printer-p01-production-envelope.gif",
+        "sha256": "0f5bd778da17f29d17cfaad55b2b8fe2f248ae35f9de34c5dc7fa74ec96d4557"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/printer-p01-production/printer-p01-production-contention.gif",
+        "sha256": "8b09ee6702fe511189c2d510163c71ebc49d51a0b3aee12dd4d03ceb9e8b0778"
+      }
+    ],
+    "notes": "Owner approved the exact Printer P01 production review set, activating two Facility readiness slots and reaching 20/20. F9 room composition remains separate."
+  }
 }

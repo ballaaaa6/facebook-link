@@ -28,10 +28,10 @@ uses:
 - two planned instances with independent reservations.
 
 The exact r02 batch passed F3 owner review on 2026-07-30. It builds no 18-character
-production matrix, no thirty-second contention proof, no F8 decision, and no
-active Printer reservation slots. Facility v1 remains `18/20`. The approval
-authorizes production to build the two independent slots needed to
-reach `20/20`. F9-F10 remain blocked.
+production matrix or thirty-second contention proof itself. The later
+`p01-production-r01` package passed F8 on 2026-07-30 and activates the two
+independent Facility readiness slots needed to reach `20/20`.
+F9-F10 remain blocked as separate room and runtime gates.
 
 ## Fresh source authority
 
@@ -200,8 +200,9 @@ F3 approval authorizes, but does not itself complete:
 - close-ups, routes, roster, handoff, and timeline evidence; and
 - a separate F8 owner decision.
 
-Only F8 approval of that production package may activate the two Printer
-slots and advance Facility v1 from `18/20` to `20/20`.
+The owner approved that exact production package at F8 on 2026-07-30,
+activating the two Printer readiness slots and advancing Facility v1 from
+`18/20` to `20/20`.
 
 The authorized production package is documented in
 `docs/art/OFFICE_FACILITY_PRINTER_P01_PRODUCTION.md`.

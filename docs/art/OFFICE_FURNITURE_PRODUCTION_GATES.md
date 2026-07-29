@@ -278,8 +278,10 @@ delta. The owner approved the exact twelve r02 preflight hashes on 2026-07-30.
 Production revision `p01-production-r01` consumes only those approved pixels
 and passes F4-F7 with `18 x 6 = 108` base I01 cases, `18 x 3 x 2 = 108`
 exact primary-grip prop cases, both interruption paths, and a thirty-second
-three-user/two-instance capacity proof. F8 owner review is pending, so both
-planned slots remain inactive and Facility v1 remains `18/20`. F9, F10, and
+three-user/two-instance capacity proof. The owner approved the exact seventeen
+production review hashes at F8 on 2026-07-30. Its two independently reservable
+instances advance Facility v1 from `18/20` to `20/20`. F9 room composition
+must still pass as a separate versioned furniture-only candidate; F10 and
 Active Office remain blocked. See
 `docs/art/OFFICE_FACILITY_PRINTER_P01.md` and
 `docs/art/OFFICE_FACILITY_PRINTER_P01_PRODUCTION.md`.

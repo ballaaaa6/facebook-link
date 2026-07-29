@@ -31,11 +31,11 @@ export function validateOfficeFacilityPrinterProductionManifest(
       && value.id === "office.facility.printer.p01.production"
       && value.familyId === "printer.multifunction.floor"
       && value.revision === "p01-production-r01"
-      && value.status === "production-owner-review"
-      && value.productionStage === "f7-complete-f8-owner-review"
+      && value.status === "owner-approved"
+      && value.productionStage === "f8-owner-approved"
       && value.developmentOnly === true
       && value.activeOfficePromotion === false,
-    "Printer P01 production identity or F8 stop changed",
+    "Printer P01 production identity or F8 approval changed",
   );
 
   const authority = value.preflightAuthority;
@@ -201,12 +201,12 @@ export function validateOfficeFacilityPrinterProductionManifest(
       && interaction.propSocketRule === "primary-grip-to-primary-grip"
       && same(interaction.attachmentDelta, [0, 0])
       && interaction.newCoordinateSystem === false
-      && interaction.reservationSlotContribution === 0
+      && interaction.reservationSlotContribution === 2
       && interaction.plannedReservationSlotContributionAfterF8 === 2
       && interaction.facilityV1ReadySlotsBeforePrinterF8 === 18
       && interaction.facilityV1ReadySlotsAfterPrinterF8Target === 20
-      && interaction.facilityV1ReadySlotsCurrent === 18,
-    "Printer P01 interaction or F8 slot stop changed",
+      && interaction.facilityV1ReadySlotsCurrent === 20,
+    "Printer P01 interaction or approved slot contribution changed",
   );
 
   const roster = value.rosterValidation;
@@ -309,7 +309,7 @@ export function validateOfficeFacilityPrinterProductionManifest(
         .includes(gate)
         ? "passed"
         : gate === "F8"
-        ? "pending-owner-review"
+        ? "passed"
         : "blocked";
       add(
         issues,
@@ -326,6 +326,7 @@ export function validateOfficeFacilityPrinterProductionManifest(
     ? value.reviewEvidence
     : [];
   const permissions = value.permissions;
+  const decision = value.ownerDecision;
   add(
     issues,
     outputs.length === 17
@@ -337,8 +338,8 @@ export function validateOfficeFacilityPrinterProductionManifest(
         && point(entry.size))
       && record(permissions)
       && permissions.familyLab === true
-      && permissions.ownerReview === true
-      && permissions.reservationSlotActivation === false
+      && permissions.ownerReview === false
+      && permissions.reservationSlotActivation === true
       && permissions.furnitureOnlyRoom === false
       && permissions.otherFacilityFamilies === false
       && permissions.activeOfficePromotion === false
@@ -346,8 +347,19 @@ export function validateOfficeFacilityPrinterProductionManifest(
       && value.activeOfficeEvidence.every(
         (entry) => record(entry) && entry.imported === false,
       )
-      && value.ownerDecision === null,
-    "Printer P01 F8 evidence or permission stop changed",
+      && record(decision)
+      && decision.decision === "approved"
+      && decision.decidedOn === "2026-07-30"
+      && decision.approvedRevision === "p01-production-r01"
+      && decision.scope === "exact-review-output-hashes"
+      && Array.isArray(decision.approvedReviewHashes)
+      && decision.approvedReviewHashes.length === 17
+      && decision.approvedReviewHashes.every((entry, index) =>
+        record(entry)
+        && record(evidence[index])
+        && entry.path === evidence[index].path
+        && entry.sha256 === evidence[index].sha256),
+    "Printer P01 F8 approval evidence or permissions changed",
   );
   return issues;
 }
