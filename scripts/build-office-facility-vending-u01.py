@@ -150,6 +150,7 @@ REVIEW_PATHS = [
     REVIEW_ROOT / "08-reservation-timeline-30s.png",
     REVIEW_ROOT / "09-socket-attachment-debug.png",
     REVIEW_ROOT / "10-r01-r02-before-after.png",
+    REVIEW_ROOT / "11-three-character-six-frame-zoom.png",
 ]
 
 PART_ROLES = {
@@ -1733,6 +1734,68 @@ def review_socket_debug(
     return board
 
 
+def review_three_character_zoom(
+    rendered: dict[str, list[Image.Image]],
+    roster: dict[str, Any],
+) -> Image.Image:
+    board = Image.new("RGBA", (2400, 1650), (234, 239, 245, 255))
+    draw = draw_title(
+        board,
+        "Vending U01-r02 — Three-character six-frame zoom",
+        "Einstein • AI Workbot • Doraemon • 2× nearest-neighbor review • exact socket parents",
+    )
+    selected = ("einstein", "ai-workbot", "doraemon")
+    records = {entry["id"]: entry for entry in roster["characters"]}
+    for row, character_id in enumerate(selected):
+        for frame_index, composition in enumerate(rendered[character_id]):
+            x = 25 + frame_index * 395
+            y = 120 + row * 500
+            metrics = records[character_id]["frames"][frame_index]
+            actor_held = metrics["attachmentParent"] == "actor.hand.primary.grip"
+            outline = (20, 145, 83, 255) if actor_held else (73, 104, 142, 255)
+            draw.rounded_rectangle(
+                (x, y, x + 370, y + 465),
+                radius=14,
+                fill=(249, 251, 253, 255),
+                outline=outline,
+                width=4 if actor_held else 2,
+            )
+            draw.text(
+                (x + 15, y + 9),
+                f"{character_id.upper()} • FRAME {frame_index + 1}",
+                font=HEADING_FONT,
+                fill=(24, 39, 57, 255),
+            )
+            preview = checkerboard((320, 392), 16)
+            crop = composition.crop((48, 28, 208, 224))
+            preview.alpha_composite(
+                crop.resize((320, 392), Image.Resampling.NEAREST),
+                (0, 0),
+            )
+            board.alpha_composite(preview, (x + 25, y + 42))
+            parent = metrics["attachmentParent"]
+            label = (
+                "HAND • exact Δ [0,0]"
+                if parent == "actor.hand.primary.grip"
+                else "FACILITY OUTPUT • exact Δ [0,0]"
+                if parent == "facility.output.primary"
+                else "NO PROP"
+            )
+            draw.text(
+                (x + 15, y + 438),
+                label,
+                font=SMALL_FONT,
+                fill=(20, 126, 72, 255) if parent else (60, 78, 98, 255),
+            )
+    draw.text(
+        (25, 1610),
+        "PASS: frames 4–5 attach H01 soda to each measured hand socket; frame 3 attaches it to the machine output.",
+        font=HEADING_FONT,
+        fill=(20, 126, 72, 255),
+    )
+    return board
+
+
 def review_before_after(new_handoff: Image.Image) -> Image.Image:
     if not R01_REVIEW_PATH.exists():
         raise ValueError("U01-r01 review evidence is missing")
@@ -1914,6 +1977,7 @@ def build_manifest_and_images() -> dict[Path, bytes]:
         review_reservation(samples),
         review_socket_debug(rendered, roster),
         review_before_after(handoff_review),
+        review_three_character_zoom(rendered, roster),
     ]
 
     outputs: dict[Path, bytes] = {

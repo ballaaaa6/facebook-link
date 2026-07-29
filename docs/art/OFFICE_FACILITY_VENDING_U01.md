@@ -193,6 +193,7 @@ Active Office.
 8. `08-reservation-timeline-30s.png`
 9. `09-socket-attachment-debug.png`
 10. `10-r01-r02-before-after.png`
+11. `11-three-character-six-frame-zoom.png`
 
 All paths, hashes, dimensions, source records, parts, animation composites,
 socket authorities, pose cases, and review boards are locked by
@@ -212,13 +213,14 @@ and Active Office isolation.
 
 ## F8 owner checklist
 
-Review all ten U01-r02 boards together and decide only this exact hash set:
+Review all eleven U01-r02 boards together and decide only this exact hash set:
 
 - the front visual and `2 x 1 x 3` scale;
 - static shell and local animation;
 - empty pickup tray and separate effect;
 - can position at the facility output socket;
 - can position and hand occlusion for all 18 characters;
+- enlarged six-frame handoff for Einstein, AI Workbot, and Doraemon;
 - the r01-to-r02 repair;
 - approach and exit cells; and
 - two-user failure/retry behavior.

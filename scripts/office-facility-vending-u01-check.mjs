@@ -334,6 +334,7 @@ try {
     ["08-reservation-timeline-30s.png", [1600, 900]],
     ["09-socket-attachment-debug.png", [1800, 1220]],
     ["10-r01-r02-before-after.png", [1600, 1030]],
+    ["11-three-character-six-frame-zoom.png", [2400, 1650]],
   ].map(([name, size]) => [`${reviewRoot}/${name}`, size]);
   add(
     same(manifest.reviewOutputs, expectedReviews.map(([path]) => path)),

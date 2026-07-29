@@ -6658,7 +6658,8 @@
         "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/07-roster-fit-18x6.png",
         "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/08-reservation-timeline-30s.png",
         "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/09-socket-attachment-debug.png",
-        "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/10-r01-r02-before-after.png"
+        "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/10-r01-r02-before-after.png",
+        "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/11-three-character-six-frame-zoom.png"
       ]
     },
     "F9": {
@@ -6684,7 +6685,8 @@
     "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/07-roster-fit-18x6.png",
     "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/08-reservation-timeline-30s.png",
     "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/09-socket-attachment-debug.png",
-    "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/10-r01-r02-before-after.png"
+    "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/10-r01-r02-before-after.png",
+    "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/11-three-character-six-frame-zoom.png"
   ],
   "reviewEvidence": [
     {
@@ -6765,6 +6767,14 @@
       "size": [
         1600,
         1030
+      ]
+    },
+    {
+      "path": "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/11-three-character-six-frame-zoom.png",
+      "sha256": "90cda590bb0f43d5cb5acaa313dab5a7186853817096bca63ba5535bd883a62e",
+      "size": [
+        2400,
+        1650
       ]
     }
   ],
