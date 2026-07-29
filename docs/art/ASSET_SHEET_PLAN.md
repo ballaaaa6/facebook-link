@@ -318,6 +318,58 @@ Count the physical object and its local motion separately:
   complete copies of a TV, vending machine, game machine, printer, server
   rack, water dispenser, coffee machine, or lamp.
 
+### Approved modular motion composition recipe
+
+Arcade G02 r02 proved the preferred authoring method for future animated
+furniture, facilities, equipment, and decor. Build one identity from stable
+pieces, animate only the pieces that own motion, and compose the final frames
+deterministically.
+
+Use these source layers:
+
+1. one immutable shell with the complete approved silhouette;
+2. one local child for each moving region, such as a screen viewport, status
+   light, fan, paper path, door leaf, drawer, liquid stream, or mechanical arm;
+3. separate transient effect and output layers when the action creates steam,
+   light, paper, water, or another handoff item; and
+4. separate actor and held-prop timelines. Never bake a person or held item
+   into the furniture frames.
+
+For repeating motion, author four distinct phases `A`, `B`, `C`, and `D`.
+Build a logical validation phase `E` from the same inputs as `A`, but do not
+store it as a fifth runtime frame. The production loop is:
+
+`A -> B -> C -> D -> A`
+
+Compose every runtime phase with the same ordered formula:
+
+`frame[n] = shell + localPart1[n] + ... + localPartN[n] + effect[n]`
+
+The canvas, shell origin, base pivot, sort pivot, collision footprint, support
+surface, and layer order are identical for every phase. A moving child may
+change pixels or an integer local transform only inside its declared motion
+region. Changed pixels outside the union of those regions must equal zero.
+Shell, controls, and other non-moving parts must remain byte-identical.
+
+Acceptance requires:
+
+- every `A -> B`, `B -> C`, `C -> D`, and `D -> A` transition to show the
+  intended motion without an accidental static duplicate;
+- logical phase `E` to match `A` exactly, proving cycle closure;
+- no independently redrawn full-object frames;
+- no per-frame magic offset, fractional coordinate, fallback socket, changing
+  pivot, or changing collision geometry;
+- a parts board, A-D-A strip, changed-pixel or motion-region proof, animated
+  preview, and hashes for the shell, children, composites, and timing; and
+- interaction animation to remain a separate route/action timeline so a
+  person can approach, use, release, and leave without changing the object's
+  motion authority.
+
+Finite state changes use the same modular pieces but do not fake a seam loop.
+A refrigerator door, drawer, printer handoff, or other open/close or
+start/finish action must declare its start state, end state, reversible path,
+and interruption behavior. Only genuinely repeating motion uses A-D-A.
+
 The approved production tiers are alternatives, not cumulative budgets:
 
 | Tier | Included work | New cells |

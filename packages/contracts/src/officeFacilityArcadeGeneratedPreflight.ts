@@ -63,11 +63,11 @@ export function validateOfficeFacilityArcadeGeneratedPreflightManifest(
   );
   add(
     issues,
-    value.status === "visual-preflight-owner-review"
-      && value.productionStage === "visual-preflight"
+    value.status === "visual-preflight-owner-approved"
+      && value.productionStage === "visual-preflight-approved"
       && value.developmentOnly === true
       && value.activeOfficePromotion === false,
-    "Arcade G02 must remain an isolated visual preflight",
+    "Arcade G02 must remain an isolated approved visual preflight",
   );
   add(
     issues,
@@ -369,16 +369,33 @@ export function validateOfficeFacilityArcadeGeneratedPreflightManifest(
         && (entry.kind === "png" || entry.kind === "gif")),
     "Arcade G02 must contain 10 boards and four hash-locked GIFs",
   );
-  add(issues, value.visualApproval === null, "visualApproval must await the owner");
+  const approval = value.visualApproval;
+  add(
+    issues,
+    record(approval)
+      && approval.status === "owner-approved"
+      && approval.approvedOn === "2026-07-29"
+      && approval.approvedRevision === "g02-preflight-r02"
+      && approval.scope === "exact-review-output-hashes"
+      && typeof approval.decision === "string"
+      && same(approval.unlocks, ["F4", "F5", "F6", "F7", "F8"])
+      && same(
+        approval.approvedReviewHashes,
+        reviewEvidence.map((entry) => record(entry)
+          ? { path: entry.path, sha256: entry.sha256 }
+          : null),
+      ),
+    "Arcade G02 visual approval must lock every r02 review hash",
+  );
   const permissions = value.permissions;
   add(
     issues,
     record(permissions)
       && permissions.ownerReview === true
-      && permissions.fullSystemBuild === false
+      && permissions.fullSystemBuild === true
       && permissions.furnitureOnlyRoom === false
       && permissions.activeOfficePromotion === false,
-    "Arcade G02 visual-preflight permissions changed",
+    "Arcade G02 permissions must unlock only the isolated full-system build",
   );
   add(
     issues,

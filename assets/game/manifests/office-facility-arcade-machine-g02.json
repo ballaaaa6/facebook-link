@@ -3,8 +3,8 @@
   "id": "office.facility.arcade-machine.g02",
   "familyId": "machine.game.arcade.generated-modern",
   "revision": "g02-preflight-r02",
-  "status": "visual-preflight-owner-review",
-  "productionStage": "visual-preflight",
+  "status": "visual-preflight-owner-approved",
+  "productionStage": "visual-preflight-approved",
   "developmentOnly": true,
   "activeOfficePromotion": false,
   "plannedInteractionMode": "machine-local-controls",
@@ -1114,19 +1114,19 @@
     "F4": {
       "status": "blocked",
       "evidence": [
-        "Production part decomposition waits for visual approval."
+        "Visual approval passed; production parts are not built."
       ]
     },
     "F5": {
       "status": "blocked",
       "evidence": [
-        "Production I01 sockets wait for visual approval."
+        "Visual approval passed; production I01 sockets are not built."
       ]
     },
     "F6": {
       "status": "blocked",
       "evidence": [
-        "Reservation and two-user timeline wait for visual approval."
+        "Reservation and two-user timeline are not built."
       ]
     },
     "F7": {
@@ -1138,7 +1138,7 @@
     "F8": {
       "status": "blocked",
       "evidence": [
-        "F8 has not started; visual approval comes first."
+        "F8 awaits completed F4-F7 production evidence."
       ]
     },
     "F9": {
@@ -1306,10 +1306,81 @@
       "durationMs": 240
     }
   ],
-  "visualApproval": null,
+  "visualApproval": {
+    "status": "owner-approved",
+    "approvedOn": "2026-07-29",
+    "approvedRevision": "g02-preflight-r02",
+    "scope": "exact-review-output-hashes",
+    "decision": "Approve the 2x2x4 cabinet, four sides, three modular A-D screen loops, and the Anna interaction preview.",
+    "approvedReviewHashes": [
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/arcade-machine-g02/01-cabinet-turnaround-4-sides.png",
+        "sha256": "5555e612d24282e3d5b0e8c7fc5d46944a4bd283a657c5a4a5f5d275eb0afdd2"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/arcade-machine-g02/02-alpha-and-source-ownership.png",
+        "sha256": "267b68ab0fa61c776f3a769077118d5ee00a459531996ed9bb32ee1236b755ce"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/arcade-machine-g02/03-scale-2x2x4-vs-actor.png",
+        "sha256": "ce8f9fd36b3caf1ffcc61c1462bc92787dc2ddd351e773271b8d23cd5c6d3b68"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/arcade-machine-g02/04-footprint-and-render-box-3x4.png",
+        "sha256": "39983b8fe2b655e9d3eb1920e3c49ff97c5a3fabafa32789b242f268870f53bd"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/arcade-machine-g02/05-screen-viewport-and-machine-controls.png",
+        "sha256": "b028c006dc88c9aa253dae9cad236fb5e46cd4ca1987afc1bb3b882c357c90c2"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/arcade-machine-g02/06-cosmic-drift-a-b-c-d-a.png",
+        "sha256": "260302b51b3e108d9690e0c344b213984affc08ced693153f0f7078f87b12fad"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/arcade-machine-g02/07-neon-rally-a-b-c-d-a.png",
+        "sha256": "1f5100fc3b33fd17263c6a7de1ed2e91862afea81c0db9827d235e58936a4e04"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/arcade-machine-g02/08-dungeon-pulse-a-b-c-d-a.png",
+        "sha256": "f3d76f20260bffcbd930e3ed6048fd0e7993a98377740c29efb696141542f8a2"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/arcade-machine-g02/09-shell-diff-and-pivot-lock.png",
+        "sha256": "e4cec34ac4b9dae18526ae05f5b073b848a113fd7c84a90c50e34c7e329816ad"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/arcade-machine-g02/10-four-orientation-floor-preview.png",
+        "sha256": "52bcf2cf97dc76da3531fa7d671d4b8fd0427ddd07ba74819601a7d00579ac4c"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/arcade-machine-g02/cosmic-drift-loop.gif",
+        "sha256": "3ea6362a61d5ac4f4910a1c58487aab0aca18f2b9b40162dcb1922c830de536a"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/arcade-machine-g02/neon-rally-loop.gif",
+        "sha256": "4cacc38ca06c4c9f7438fbeb29156f6d0af43c14f651ee6949568eaca5244913"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/arcade-machine-g02/dungeon-pulse-loop.gif",
+        "sha256": "09f4b115e55c81cdfc6f8d9af1efce7bad7074899f83463d380472573ae03ef0"
+      },
+      {
+        "path": "assets/art/layout-references/office-facility-family-v1/arcade-machine-g02/anna-approach-play-release.gif",
+        "sha256": "8dd942fed05d3da2f105c7233b29efdb7401dec822b873de5194495c28a9648d"
+      }
+    ],
+    "unlocks": [
+      "F4",
+      "F5",
+      "F6",
+      "F7",
+      "F8"
+    ]
+  },
   "permissions": {
     "ownerReview": true,
-    "fullSystemBuild": false,
+    "fullSystemBuild": true,
     "furnitureOnlyRoom": false,
     "activeOfficePromotion": false
   },

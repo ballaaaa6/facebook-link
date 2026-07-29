@@ -206,6 +206,29 @@ borrow approval from an earlier one.
 - Run contract, stability, responsive-browser, production-build, and full
   repository checks before commit and push.
 
+## Modular motion standard
+
+Every family with visible motion must follow the modular composition recipe in
+`docs/art/ASSET_SHEET_PLAN.md`. Arcade G02 r02 is the accepted reference:
+
+- preserve one immutable shell and separate every moving viewport, mechanism,
+  effect, output, actor, and held prop;
+- compose every frame from the same canvas, origin, pivots, collision geometry,
+  support geometry, and fixed layer order;
+- constrain all changed pixels to declared local motion regions;
+- use integer local transforms with no magic offset or fallback;
+- for repeating motion, validate four real A-D phases plus an unstored logical
+  phase E that equals A exactly;
+- prove the D-to-A seam in an animated preview and retain parts, transition,
+  changed-pixel, timing, and hash evidence; and
+- keep route, reservation, actor action, and handoff timelines independent
+  from the object's local motion loop.
+
+Finite open/close or start/finish actions use the same piece separation but
+must declare explicit endpoint and interruption behavior instead of pretending
+to be ambient seam loops. Failure to isolate a moving part returns the family
+to F4. Pivot, footprint, support, or collision drift returns it to F1.
+
 ## Recommended family order
 
 The first non-workstation family should be one complex single-seat facility,
@@ -308,6 +331,15 @@ comes only from the original facility-lounge master; A-D are ownership-proven
 screen-source candidates from the original mechanical-loop master. Processed
 crops and rejected side orientations remain forbidden. F0-F3 preflight
 evidence passes; visual approval is pending and F4-F10 remain blocked.
+
+`docs/art/OFFICE_FACILITY_ARCADE_MACHINE_G02.md` records the fresh generated
+successor and uses zero G01, original-master, processed-crop, or Active Office
+pixels. G02 r02 locks a `2 x 2 x 4` cabinet, four elevations, three modular
+four-frame game loops, and one development-only Anna approach/use/release
+preview. On 2026-07-29 the owner approved the exact 14 review-output hashes and
+adopted its separate-parts deterministic seam-loop method as the standard for
+future moving families. Isolated F4-F8 production is now authorized but not
+built. The planned Arcade slot, F9, F10, and Active Office remain blocked.
 
 ## Required evidence per family
 

@@ -115,9 +115,9 @@ try {
       && manifest.id === "office.facility.arcade-machine.g02"
       && manifest.familyId === "machine.game.arcade.generated-modern"
       && manifest.revision === "g02-preflight-r02"
-      && manifest.status === "visual-preflight-owner-review"
-      && manifest.productionStage === "visual-preflight"
-      && manifest.visualApproval === null,
+      && manifest.status === "visual-preflight-owner-approved"
+      && manifest.productionStage === "visual-preflight-approved"
+      && manifest.visualApproval?.status === "owner-approved",
     "Arcade G02 identity or visual stop state changed",
   );
   add(
@@ -276,8 +276,8 @@ try {
       && manifest.interactionPreview?.reservationSimulationBuilt === false
       && manifest.interactionPreview?.rosterCasesBuilt === 0
       && manifest.interactionPreview?.orientationRouteCasesBuilt === 0
-      && manifest.permissions?.fullSystemBuild === false,
-    "Arcade G02 must not fabricate a held controller or full production system",
+      && manifest.permissions?.fullSystemBuild === true,
+    "Arcade G02 approval must not fabricate held props or production evidence",
   );
   failures.push(...checkArcadeG02Interaction(manifest, reviewRoot));
   for (const gate of ["F0", "F1", "F2", "F3"]) {
@@ -381,17 +381,17 @@ try {
       && !builder.includes("facility-lounge-sheet")
       && !builder.includes("mechanical-loops-sheet")
       && !builder.includes("office-held-props-h01")
-      && builder.includes("full production is locked"),
-    "Arcade G02 builder source isolation or full-build lock changed",
+      && builder.includes("full production is approved but not implemented"),
+    "Arcade G02 builder source isolation or production-stage boundary changed",
   );
   const docs = readText(docsPath);
   add(
-    docs.includes("Status: visual preflight pending owner review")
+    docs.includes("Status: visual preflight owner-approved")
       && docs.includes("Physical scale | `2 x 2 x 4`")
-      && docs.includes("F4-F10 remain blocked")
+      && docs.includes("F4-F8 are authorized but not built")
       && docs.includes("No held controller")
       && docs.includes("development-only I01 interaction demo"),
-    "Arcade G02 documentation does not preserve the visual-preflight stop",
+    "Arcade G02 documentation does not preserve the approved preflight boundary",
   );
   const packageJson = readJson("package.json");
   add(
@@ -412,8 +412,8 @@ if (failures.length) {
   process.exitCode = 1;
 } else {
   process.stdout.write(
-    "Arcade G02 visual preflight OK: fresh 2x2x4 four-side cabinet, three "
+    "Arcade G02 approved visual preflight OK: fresh 2x2x4 cabinet, three "
       + "A-D seam loops, shell/pivot lock, 10 boards, three game GIFs, one "
-      + "I01 actor GIF, no held controller, and F4-F10 blocked.\n",
+      + "I01 actor GIF, F4-F8 authorized but not built, and F9-F10 blocked.\n",
   );
 }

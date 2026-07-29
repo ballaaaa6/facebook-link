@@ -33,8 +33,8 @@ export interface OfficeFacilityArcadeGeneratedPreflightManifest {
   id: "office.facility.arcade-machine.g02";
   familyId: "machine.game.arcade.generated-modern";
   revision: "g02-preflight-r02";
-  status: "visual-preflight-owner-review";
-  productionStage: "visual-preflight";
+  status: "visual-preflight-owner-approved";
+  productionStage: "visual-preflight-approved";
   developmentOnly: true;
   activeOfficePromotion: false;
   plannedInteractionMode: "machine-local-controls";
@@ -153,10 +153,21 @@ export interface OfficeFacilityArcadeGeneratedPreflightManifest {
     frameCount?: number;
     durationMs?: number;
   }[];
-  visualApproval: null;
+  visualApproval: {
+    status: "owner-approved";
+    approvedOn: "2026-07-29";
+    approvedRevision: "g02-preflight-r02";
+    scope: "exact-review-output-hashes";
+    decision: string;
+    approvedReviewHashes: readonly {
+      path: string;
+      sha256: string;
+    }[];
+    unlocks: readonly ["F4", "F5", "F6", "F7", "F8"];
+  };
   permissions: {
     ownerReview: true;
-    fullSystemBuild: false;
+    fullSystemBuild: true;
     furnitureOnlyRoom: false;
     activeOfficePromotion: false;
   };

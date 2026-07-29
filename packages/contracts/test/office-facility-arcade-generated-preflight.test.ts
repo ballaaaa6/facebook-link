@@ -11,7 +11,7 @@ const manifest = JSON.parse(readFileSync(new URL(
   import.meta.url,
 ), "utf8")) as OfficeFacilityArcadeGeneratedPreflightManifest;
 
-test("Arcade G02 remains a generated four-side visual preflight", () => {
+test("Arcade G02 records approval of the generated four-side visual preflight", () => {
   assert.deepEqual(
     validateOfficeFacilityArcadeGeneratedPreflightManifest(manifest),
     [],
@@ -23,7 +23,13 @@ test("Arcade G02 remains a generated four-side visual preflight", () => {
     unit: "tile",
   });
   assert.equal(manifest.render.orientations.length, 4);
-  assert.equal(manifest.visualApproval, null);
+  assert.equal(manifest.visualApproval.status, "owner-approved");
+  assert.equal(manifest.visualApproval.approvedRevision, "g02-preflight-r02");
+  assert.equal(
+    manifest.visualApproval.approvedReviewHashes.length,
+    manifest.reviewEvidence.length,
+  );
+  assert.equal(manifest.permissions.fullSystemBuild, true);
   assert.equal(manifest.gates.F3.status, "passed");
   assert.equal(manifest.gates.F4.status, "blocked");
   assert.equal(manifest.gates.F10.status, "blocked");
@@ -75,7 +81,7 @@ test("Arcade G02 rejects previous Arcade or Active Office pixels", () => {
   assert.ok(issues.some((issue) => issue.includes("activeOfficePixelReuse")));
 });
 
-test("Arcade G02 cannot animate controls or advance past the visual stop", () => {
+test("Arcade G02 cannot animate controls or skip unbuilt production gates", () => {
   const invalid = structuredClone(manifest) as unknown as {
     screenSystem: Record<string, unknown>;
     gates: Record<string, { status: string }>;
@@ -83,7 +89,7 @@ test("Arcade G02 cannot animate controls or advance past the visual stop", () =>
   };
   invalid.screenSystem.controlsChangedPixels = 1;
   invalid.gates.F4!.status = "passed";
-  invalid.permissions.fullSystemBuild = true;
+  invalid.permissions.fullSystemBuild = false;
   const issues = validateOfficeFacilityArcadeGeneratedPreflightManifest(invalid);
   assert.ok(issues.some((issue) => issue.includes("screen viewport")));
   assert.ok(issues.some((issue) => issue.includes("gates.F4")));

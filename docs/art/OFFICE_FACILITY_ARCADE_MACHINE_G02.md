@@ -1,6 +1,6 @@
 # Office Facility Arcade Machine G02
 
-Status: visual preflight pending owner review
+Status: visual preflight owner-approved
 
 Updated: 2026-07-29
 
@@ -13,10 +13,10 @@ G02 uses none of its pixels.
 This stage proves the new cabinet shape, four visual elevations, `2 x 2 x 4`
 scale, alpha ownership, screen viewport, three four-frame seam loops, and
 shell/pivot invariance. The development-only I01 interaction demo in revision
-r02 shows Anna approach, play, release, and depart. It does not
-authorize production sockets, character roster validation, reservation
-simulation, F8 review, furniture-only room composition, or Active Office
-promotion. F4-F10 remain blocked.
+r02 shows Anna approach, play, release, and depart. The owner approved the
+exact r02 review hashes on 2026-07-29. F4-F8 are authorized but not built;
+their gates remain blocked until the production evidence exists. Furniture-only
+room composition and Active Office promotion remain forbidden at F9-F10.
 
 ## Locked visual-preflight contract
 
@@ -38,6 +38,8 @@ promotion. F4-F10 remain blocked.
 | Visual pose target | I01 `interact-front` |
 | Interaction model | Machine-local controls |
 | Held prop | None |
+| Visual decision | Owner-approved on 2026-07-29 |
+| Newly authorized scope | Isolated F4-F8 production only |
 
 No held controller is created, referenced, or implied. The joystick and buttons
 remain attached to the cabinet. H01 has no Arcade controller authority.
@@ -174,9 +176,11 @@ npm run art:facility:arcade:g02:rebuild:check
 npm run art:facility:arcade:g02:check
 ```
 
-Passing `--stage full` to the builder fails while visual approval is absent.
+Passing `--stage full` to this preflight builder still fails because production
+must be implemented as a separate F4-F8 stage rather than mutating the approved
+visual producer.
 
-## Work after owner approval
+## Next authorized work
 
 Approval of the exact visual-preflight hashes unlocks an isolated production
 pass:
@@ -189,13 +193,16 @@ pass:
 6. stop at F8 for another owner review.
 
 F9 remains forbidden until Facility v1 has all 20 reservation slots. G02 does
-not add its planned slot while this visual review is pending.
+not add its planned slot until the isolated F4-F8 production pass is complete.
 
-## Owner decision requested
+## Owner decision recorded
 
-Review the four-side shape, `2 x 2 x 4` scale, three A-D-A strips, game GIFs,
-and the single-actor interaction GIF. Choose one outcome:
+On 2026-07-29 the owner approved:
 
-1. approve the exact G02 visual-preflight hashes and unlock isolated F4-F8
-   production; or
-2. reject the shape or game direction and request a new visual-only revision.
+- the exact `2 x 2 x 4` cabinet and four-side identity;
+- all three A-D-A game strips;
+- the modular piece-composition and seam-loop method; and
+- the Anna approach, play, release, and depart preview.
+
+This decision unlocks isolated F4-F8 production. It is not F8 family approval,
+does not count the G02 reservation slot, and does not authorize F9 or F10.

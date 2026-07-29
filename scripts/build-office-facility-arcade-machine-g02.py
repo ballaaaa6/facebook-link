@@ -1277,8 +1277,8 @@ def build_outputs() -> dict[Path, bytes]:
         "id": "office.facility.arcade-machine.g02",
         "familyId": "machine.game.arcade.generated-modern",
         "revision": "g02-preflight-r02",
-        "status": "visual-preflight-owner-review",
-        "productionStage": "visual-preflight",
+        "status": "visual-preflight-owner-approved",
+        "productionStage": "visual-preflight-approved",
         "developmentOnly": True,
         "activeOfficePromotion": False,
         "plannedInteractionMode": "machine-local-controls",
@@ -1434,11 +1434,11 @@ def build_outputs() -> dict[Path, bytes]:
                 repo_path(review_paths[6]), repo_path(review_paths[7]),
                 repo_path(review_paths[8]),
             ]},
-            "F4": blocked("Production part decomposition waits for visual approval."),
-            "F5": blocked("Production I01 sockets wait for visual approval."),
-            "F6": blocked("Reservation and two-user timeline wait for visual approval."),
+            "F4": blocked("Visual approval passed; production parts are not built."),
+            "F5": blocked("Visual approval passed; production I01 sockets are not built."),
+            "F6": blocked("Reservation and two-user timeline are not built."),
             "F7": blocked("The 108 actor-frame and 432 orientation cases are not built."),
-            "F8": blocked("F8 has not started; visual approval comes first."),
+            "F8": blocked("F8 awaits completed F4-F7 production evidence."),
             "F9": blocked("No furniture-only room composition is in G02 preflight."),
             "F10": blocked("Active Office promotion is forbidden in G02 preflight."),
         },
@@ -1447,10 +1447,24 @@ def build_outputs() -> dict[Path, bytes]:
             for path in [*review_paths, *gif_paths, interaction_gif_path]
         ],
         "reviewEvidence": review_evidence,
-        "visualApproval": None,
+        "visualApproval": {
+            "status": "owner-approved",
+            "approvedOn": "2026-07-29",
+            "approvedRevision": "g02-preflight-r02",
+            "scope": "exact-review-output-hashes",
+            "decision": (
+                "Approve the 2x2x4 cabinet, four sides, three modular A-D "
+                "screen loops, and the Anna interaction preview."
+            ),
+            "approvedReviewHashes": [
+                {"path": evidence["path"], "sha256": evidence["sha256"]}
+                for evidence in review_evidence
+            ],
+            "unlocks": ["F4", "F5", "F6", "F7", "F8"],
+        },
         "permissions": {
             "ownerReview": True,
-            "fullSystemBuild": False,
+            "fullSystemBuild": True,
             "furnitureOnlyRoom": False,
             "activeOfficePromotion": False,
         },
@@ -1506,7 +1520,8 @@ def main() -> None:
     args = parser.parse_args()
     if args.stage == "full":
         raise SystemExit(
-            "Arcade G02 full production is locked until visualApproval is recorded."
+            "Arcade G02 full production is approved but not implemented in the "
+            "visual-preflight producer; build F4-F8 as a separate stage."
         )
     outputs = build_outputs()
     if args.check:
@@ -1515,7 +1530,8 @@ def main() -> None:
             raise SystemExit("\n".join(failures))
         print(
             "Arcade G02 rebuild OK: fresh 2x2x4 four-side cabinet, three "
-            "deterministic A-D screen loops, one I01 actor demo, and F4-F10 "
+            "deterministic A-D screen loops, one I01 actor demo, visual "
+            "approval recorded, F4-F8 authorized but not built, and F9-F10 "
             "blocked."
         )
         return
@@ -1523,7 +1539,7 @@ def main() -> None:
     print(
         "Built Arcade G02 visual preflight: four cabinet sides, 12 screen "
         "frames, three seam-loop GIFs, one I01 actor GIF, 10 review boards, "
-        "and no full system."
+        "owner approval, and no full system yet."
     )
 
 
