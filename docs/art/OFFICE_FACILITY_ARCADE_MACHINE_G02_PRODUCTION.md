@@ -1,14 +1,14 @@
 # Office Facility Arcade Machine G02 Production
 
-Status: owner review pending at F8
+Status: owner-approved at F8
 
 Updated: 2026-07-29
 
 ## Decision boundary
 
 This is the isolated F4-F8 production pass for the owner-approved Arcade G02
-visual preflight. F0-F7 pass in production revision `g02-production-r01`. F8
-remains open for the owner to review the exact evidence hashes.
+visual preflight. F0-F8 pass in production revision `g02-production-r01`.
+The owner approved the exact evidence hashes on 2026-07-30.
 
 This pass does not place the cabinet in a room, add its planned Facility v1
 reservation slot, change another facility family, or modify Active Office.
@@ -30,8 +30,8 @@ F9 remains blocked. F10 remains blocked.
 | Action | `play-arcade-machine` |
 | Visual pose | I01 `interact-front` |
 | Held controller or prop | None |
-| Planned slot after F8 | One |
-| Current slot contribution | Zero |
+| Facility v1 slot contribution | One |
+| Facility v1 ready slots after approval | `15/20` |
 
 The production manifest is:
 
@@ -107,8 +107,8 @@ Actor A owns the reservation, retries after release, completes, and releases.
 | Releases | 2 |
 | Reservation owner at 30 seconds | None |
 
-This proves the behavior but does not yet contribute the planned Arcade slot
-to the Facility v1 count. That contribution requires explicit F8 approval.
+This proves the behavior and contributes one approved Arcade slot to the
+Facility v1 count. The approved-ready total is now `15/20`.
 
 ## F8 review outputs
 
@@ -139,9 +139,9 @@ The builder refuses to change the approved preflight and fails when any
 approved authority hash, generated asset, review board, route, roster case,
 reservation invariant, or gate boundary drifts.
 
-## Owner review required
+## Owner decision
 
-The owner should review the ten exact boards, with particular attention to:
+The owner reviewed and approved the ten exact boards on 2026-07-30, including:
 
 - four-orientation scale and silhouette;
 - separation of shell, viewport, and local controls;
@@ -149,6 +149,5 @@ The owner should review the ten exact boards, with particular attention to:
 - all 108 I01 poses and the 432-case orientation matrix; and
 - the occupied, blocked, failure, release, retry, and final-release timeline.
 
-Approval may advance this family through F8 and make its one planned
-reservation slot eligible for the later Facility v1 count. It does not
+This decision passes F8 and contributes one reservation slot. It does not
 authorize F9 room composition or F10 Active Office promotion.

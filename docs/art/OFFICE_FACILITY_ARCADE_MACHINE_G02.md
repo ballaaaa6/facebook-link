@@ -192,11 +192,13 @@ pass, which now provides:
 5. run the 30-second occupied, blocked, failure, release, and retry timeline;
 6. a deliberate stop at F8 for another owner review.
 
+The owner approved the production evidence at F8 on 2026-07-30. Arcade now
+contributes one reservation slot, bringing Facility v1 readiness to `15/20`.
 The production evidence and review boundary are documented in
 `docs/art/OFFICE_FACILITY_ARCADE_MACHINE_G02_PRODUCTION.md`.
 
-F9 remains forbidden until Facility v1 has all 20 reservation slots. G02 does
-not add its planned slot until the production revision passes F8.
+F9 remains forbidden until Facility v1 has all 20 reservation slots. G02 now
+contributes its approved slot, but the room gate remains blocked.
 
 ## Owner decision recorded
 

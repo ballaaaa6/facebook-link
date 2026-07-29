@@ -1,4 +1,4 @@
-"""Build Arcade Machine G02 production evidence through F7 and stop at F8."""
+"""Build the owner-approved Arcade Machine G02 production evidence."""
 
 from __future__ import annotations
 
@@ -1008,7 +1008,7 @@ def build_outputs() -> dict[Path, bytes]:
         "id": "office.facility.arcade-machine.g02.production",
         "familyId": "machine.game.arcade.generated-modern",
         "revision": "g02-production-r01",
-        "status": "owner-review-f8-pending",
+        "status": "owner-approved",
         "developmentOnly": True,
         "activeOfficePromotion": False,
         "preflightAuthority": {
@@ -1079,8 +1079,8 @@ def build_outputs() -> dict[Path, bytes]:
             "machineLocalControls": True,
             "heldController": False,
             "heldPropManifest": None,
-            "reservationSlotContribution": 0,
-            "plannedReservationSlotContributionAfterF8": 1,
+            "reservationSlotContribution": 1,
+            "facilityV1ReadySlotCountAfterApproval": 15,
         },
         "rosterValidation": {
             "authorityManifest": repo_path(ACTION_MANIFEST_PATH),
@@ -1133,17 +1133,17 @@ def build_outputs() -> dict[Path, bytes]:
             "F6": passed(repo_path(review_paths[9]), "capacity-one failure/retry simulation"),
             "F7": passed(repo_path(review_paths[6]), repo_path(review_paths[7]), repo_path(review_paths[8]), repo_path(review_paths[9])),
             "F8": {
-                "status": "pending-owner-review",
+                "status": "passed",
                 "evidence": [repo_path(path) for path in review_paths],
             },
-            "F9": blocked("Arcade is not counted or placed before F8 approval."),
+            "F9": blocked("Facility v1 remains incomplete; no room composition."),
             "F10": blocked("Active Office promotion is forbidden."),
         },
         "reviewOutputs": [repo_path(path) for path in review_paths],
         "reviewEvidence": review_evidence,
         "permissions": {
             "familyLab": True,
-            "ownerReview": True,
+            "ownerReview": False,
             "furnitureOnlyRoom": False,
             "otherFacilityFamilies": False,
             "activeOfficePromotion": False,
@@ -1152,7 +1152,14 @@ def build_outputs() -> dict[Path, bytes]:
             {"file": file, "imported": False}
             for file in ACTIVE_OFFICE_FILES
         ],
-        "ownerDecision": None,
+        "ownerDecision": {
+            "decision": "approved",
+            "decidedOn": "2026-07-30",
+            "notes": (
+                "Owner approved the exact Arcade G02 production F8 evidence "
+                "and its one Facility v1 reservation slot."
+            ),
+        },
     }
     outputs[MANIFEST_PATH] = json_bytes(manifest)
     return outputs
@@ -1192,13 +1199,13 @@ def main() -> None:
             raise SystemExit("\n".join(failures))
         print(
             "Arcade G02 production rebuild OK: F0-F7 pass, 108 poses, "
-            "432 orientation cases, 30-second retry proof, F8 pending."
+            "432 orientation cases, 30-second retry proof, F8 owner-approved."
         )
         return
     write_outputs(outputs)
     print(
-        "Built Arcade G02 production F4-F7: separated shell/viewport/controls, "
-        "10 review boards, and owner review pending at F8."
+        "Built Arcade G02 owner-approved F0-F8 evidence: separated shell/viewport/controls, "
+        "10 review boards, F8 owner-approved, and one Facility v1 slot."
     )
 
 

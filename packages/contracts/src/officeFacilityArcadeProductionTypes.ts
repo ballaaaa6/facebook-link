@@ -39,7 +39,7 @@ export interface OfficeFacilityArcadeProductionManifest {
   id: "office.facility.arcade-machine.g02.production";
   familyId: "machine.game.arcade.generated-modern";
   revision: "g02-production-r01";
-  status: "owner-review-f8-pending";
+  status: "owner-approved";
   developmentOnly: true;
   activeOfficePromotion: false;
   preflightAuthority: {
@@ -142,8 +142,8 @@ export interface OfficeFacilityArcadeProductionManifest {
     machineLocalControls: true;
     heldController: false;
     heldPropManifest: null;
-    reservationSlotContribution: 0;
-    plannedReservationSlotContributionAfterF8: 1;
+    reservationSlotContribution: 1;
+    facilityV1ReadySlotCountAfterApproval: 15;
   };
   rosterValidation: {
     authorityManifest: string;
@@ -217,7 +217,7 @@ export interface OfficeFacilityArcadeProductionManifest {
   }[];
   permissions: {
     familyLab: true;
-    ownerReview: true;
+    ownerReview: false;
     furnitureOnlyRoom: false;
     otherFacilityFamilies: false;
     activeOfficePromotion: false;
@@ -226,5 +226,9 @@ export interface OfficeFacilityArcadeProductionManifest {
     file: string;
     imported: false;
   }[];
-  ownerDecision: null;
+  ownerDecision: {
+    decision: "approved";
+    decidedOn: "2026-07-30";
+    notes: string;
+  };
 }

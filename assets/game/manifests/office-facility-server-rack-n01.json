@@ -1,0 +1,890 @@
+{
+  "schemaVersion": 1,
+  "id": "office.facility.server-rack.n01",
+  "familyId": "server.rack.noc",
+  "revision": "n01-preflight-r01",
+  "status": "visual-preflight-owner-review",
+  "productionStage": "visual-preflight",
+  "developmentOnly": true,
+  "activeOfficePromotion": false,
+  "sourcePolicy": {
+    "originalMasterPixelsOnly": true,
+    "processedCropDirectReuse": false,
+    "activeOfficePixelReuse": false,
+    "rejectedSidePixelReuse": false,
+    "newImageGeneration": false,
+    "generativeRepair": false,
+    "missingAssetFallback": false
+  },
+  "sourceAuthority": {
+    "audit": {
+      "file": "assets/game/manifests/office-furniture-master-audit-v1.json",
+      "sha256": "f84c85dbadb20d3c31fc63dcd4e85788858a1dbb57270f210a4b5b88069144f0"
+    },
+    "front": {
+      "auditRecordId": "modern-bright-library-v1:env-04-release-noc:server.rack.noc",
+      "sourceFile": "assets/art/layout-references/release-qa-noc-sheet-modern-bright-v1-source.png",
+      "sourceSha256": "4ac5f67ef4f49cef7c15d0db1beed11f9504f3ff2ae33d6ff4a644d9496edd5e",
+      "keyedAsset": {
+        "file": "assets/game/processed/office-facility-family-v1/server-rack-n01/authoring/source/release-qa-noc-master.keyed.png",
+        "sha256": "b37c240820cd6461781e47e248dba64396d61c7408e249c70cdb93209e74ff86",
+        "size": [
+          1254,
+          1254
+        ]
+      },
+      "ownershipMaskAsset": {
+        "file": "assets/game/processed/office-facility-family-v1/server-rack-n01/authoring/source/server-front.full-master-ownership-mask.png",
+        "sha256": "88f62868ffe092ba57034ac7dfc9845190ccec94df8c4e2e1a414933750126f6",
+        "size": [
+          1254,
+          1254
+        ]
+      },
+      "sourceBounds": [
+        0,
+        627,
+        314,
+        940
+      ],
+      "componentBounds": [
+        63,
+        661,
+        263,
+        909
+      ],
+      "componentPixels": 48498,
+      "componentCount": 1,
+      "cellBoundaryContact": false,
+      "auditDecision": "salvage-full-master-and-decompose",
+      "sampledKeyRgb": [
+        244,
+        3,
+        244
+      ],
+      "chromaStats": {
+        "transparentPixels": 822084,
+        "partialAlphaPixels": 19571,
+        "visiblePixels": 750432
+      }
+    },
+    "status": {
+      "sourceFile": "assets/art/layout-references/mechanical-loops-sheet-modern-bright-v1-source.png",
+      "sourceSha256": "31109c9ecf2bc5b0f7d35caca821c77c29819fe19d73e895c88976e3d877274a",
+      "keyedAsset": {
+        "file": "assets/game/processed/office-facility-family-v1/server-rack-n01/authoring/source/mechanical-loops-master.keyed.png",
+        "sha256": "4b8dff4c22351f158165a11403d398b4eb14017c7dc45ca0b6e2d74567169858",
+        "size": [
+          1254,
+          1254
+        ]
+      },
+      "sampledKeyRgb": [
+        247,
+        3,
+        248
+      ],
+      "chromaStats": {
+        "transparentPixels": 773972,
+        "partialAlphaPixels": 28949,
+        "visiblePixels": 798544
+      },
+      "frames": [
+        {
+          "frameId": "a",
+          "auditRecordId": "modern-bright-library-v1:env-07-animated-mechanical:server.rack.loop.a",
+          "sourceBounds": [
+            0,
+            940,
+            314,
+            1254
+          ],
+          "fullComponentBounds": [
+            66,
+            930,
+            274,
+            1195
+          ],
+          "fullComponentPixels": 53369,
+          "fullComponentCrossesNominalTop": true,
+          "selectedViewportSourceBox": [
+            95,
+            965,
+            231,
+            1161
+          ],
+          "selectedViewportTouchesCellBoundary": false,
+          "selectedViewportAlphaPixels": 26656,
+          "auditVisiblePixelsInsideCell": 51500
+        },
+        {
+          "frameId": "b",
+          "auditRecordId": "modern-bright-library-v1:env-07-animated-mechanical:server.rack.loop.b",
+          "sourceBounds": [
+            314,
+            940,
+            627,
+            1254
+          ],
+          "fullComponentBounds": [
+            368,
+            930,
+            577,
+            1195
+          ],
+          "fullComponentPixels": 53780,
+          "fullComponentCrossesNominalTop": true,
+          "selectedViewportSourceBox": [
+            397,
+            965,
+            533,
+            1161
+          ],
+          "selectedViewportTouchesCellBoundary": false,
+          "selectedViewportAlphaPixels": 26656,
+          "auditVisiblePixelsInsideCell": 51926
+        },
+        {
+          "frameId": "c",
+          "auditRecordId": "modern-bright-library-v1:env-07-animated-mechanical:server.rack.loop.c",
+          "sourceBounds": [
+            627,
+            940,
+            940,
+            1254
+          ],
+          "fullComponentBounds": [
+            670,
+            930,
+            876,
+            1195
+          ],
+          "fullComponentPixels": 53053,
+          "fullComponentCrossesNominalTop": true,
+          "selectedViewportSourceBox": [
+            699,
+            965,
+            835,
+            1161
+          ],
+          "selectedViewportTouchesCellBoundary": false,
+          "selectedViewportAlphaPixels": 26656,
+          "auditVisiblePixelsInsideCell": 51226
+        },
+        {
+          "frameId": "d",
+          "auditRecordId": "modern-bright-library-v1:env-07-animated-mechanical:server.rack.loop.d",
+          "sourceBounds": [
+            940,
+            940,
+            1254,
+            1254
+          ],
+          "fullComponentBounds": [
+            975,
+            930,
+            1181,
+            1195
+          ],
+          "fullComponentPixels": 53040,
+          "fullComponentCrossesNominalTop": true,
+          "selectedViewportSourceBox": [
+            1004,
+            965,
+            1140,
+            1161
+          ],
+          "selectedViewportTouchesCellBoundary": false,
+          "selectedViewportAlphaPixels": 26656,
+          "auditVisiblePixelsInsideCell": 51219
+        }
+      ]
+    },
+    "rejectedSides": [
+      {
+        "auditRecordId": "modern-bright-library-v1:env-12-facility-side-orientations:server.rack.noc.side-left",
+        "decision": "reject-regenerate-orientation-if-required",
+        "masterPixelsSalvageable": false,
+        "used": false
+      },
+      {
+        "auditRecordId": "modern-bright-library-v1:env-12-facility-side-orientations:server.rack.noc.side-right",
+        "decision": "reject-regenerate-orientation-if-required",
+        "masterPixelsSalvageable": false,
+        "used": false
+      }
+    ]
+  },
+  "render": {
+    "physicalScale": {
+      "width": 2,
+      "depth": 1,
+      "height": 3,
+      "unit": "tile"
+    },
+    "footprint": {
+      "width": 2,
+      "depth": 1,
+      "unit": "tile"
+    },
+    "renderBox": {
+      "width": 2,
+      "height": 3,
+      "unit": "tile"
+    },
+    "authoringCanvas": [
+      256,
+      384
+    ],
+    "runtimeCanvas": [
+      64,
+      96
+    ],
+    "uniformIntegerDivisor": 4,
+    "anchor": "bottom-center",
+    "basePivotRuntime": [
+      32,
+      92
+    ],
+    "sortPivotRuntime": [
+      32,
+      92
+    ],
+    "authoredOrientations": [
+      "front"
+    ],
+    "generatedTurns": false
+  },
+  "parts": {
+    "front": {
+      "sourceCutout": {
+        "file": "assets/game/processed/office-facility-family-v1/server-rack-n01/authoring/source/server-front.source.png",
+        "sha256": "d3b7f283fc2dbf30f77c3ced800634a64d0f6a7db9991f605f8f656b7b88c84c",
+        "size": [
+          200,
+          248
+        ]
+      },
+      "authoring": {
+        "file": "assets/game/processed/office-facility-family-v1/server-rack-n01/authoring/preflight/server-front.png",
+        "sha256": "6026491ae6ccdcf2bdc93687e7ceaa672ee50fab230d5519aec04573777163c4",
+        "size": [
+          256,
+          384
+        ]
+      },
+      "runtime": {
+        "file": "assets/game/processed/office-facility-family-v1/server-rack-n01/runtime/preflight/server-front.png",
+        "sha256": "68cd975d7cf92d58331a8f679bd80fb9f017b0fe011fe3ccc51bb2074be3a305",
+        "size": [
+          64,
+          96
+        ]
+      }
+    },
+    "shell": {
+      "authoring": {
+        "file": "assets/game/processed/office-facility-family-v1/server-rack-n01/authoring/preflight/server-shell.png",
+        "sha256": "baf3f34c0026165bc738f761440951abd739abcca513618eb2f413f79a3ce7ab",
+        "size": [
+          256,
+          384
+        ]
+      },
+      "runtime": {
+        "file": "assets/game/processed/office-facility-family-v1/server-rack-n01/runtime/preflight/server-shell.png",
+        "sha256": "0c8e6a3286bf9f6622a46f73889c4fdf3a757c69f959b1e820a25154256d39a8",
+        "size": [
+          64,
+          96
+        ]
+      }
+    },
+    "statusFrames": [
+      {
+        "frameId": "a",
+        "source": {
+          "file": "assets/game/processed/office-facility-family-v1/server-rack-n01/authoring/source/server-status-source-a.png",
+          "sha256": "b6b1fd8aaef4b1db1884dfd2c5767c1dbabced224a9609ff5f4f8dddcb66204f",
+          "size": [
+            136,
+            196
+          ]
+        },
+        "authoring": {
+          "file": "assets/game/processed/office-facility-family-v1/server-rack-n01/authoring/preflight/server-status-a.png",
+          "sha256": "e782732fcd34e81202383b14dc76227e1d3a63ae6cc5f81c933702bfab4a76fb",
+          "size": [
+            164,
+            236
+          ]
+        },
+        "runtime": {
+          "file": "assets/game/processed/office-facility-family-v1/server-rack-n01/runtime/preflight/server-status-a.png",
+          "sha256": "e8b928800800c9a8e86e0232a9a56b79a4f5f5227502ac601ac5fb6348085643",
+          "size": [
+            41,
+            59
+          ]
+        },
+        "composite": {
+          "file": "assets/game/processed/office-facility-family-v1/server-rack-n01/runtime/preflight/server-composite-a.png",
+          "sha256": "9936ce829b535fe0283e404ad6358a024122ddaeb3ec07c453d363e9f63b87bf",
+          "size": [
+            64,
+            96
+          ]
+        },
+        "sourceBox": [
+          95,
+          965,
+          231,
+          1161
+        ]
+      },
+      {
+        "frameId": "b",
+        "source": {
+          "file": "assets/game/processed/office-facility-family-v1/server-rack-n01/authoring/source/server-status-source-b.png",
+          "sha256": "edc32a5898c395760eaab77980c27e3c40f34dbc21a3b7427849cd31af543107",
+          "size": [
+            136,
+            196
+          ]
+        },
+        "authoring": {
+          "file": "assets/game/processed/office-facility-family-v1/server-rack-n01/authoring/preflight/server-status-b.png",
+          "sha256": "3d970bc5cd22359231b72dfa5a2a4c47907f8ea0d4d8020375a74269af7799f3",
+          "size": [
+            164,
+            236
+          ]
+        },
+        "runtime": {
+          "file": "assets/game/processed/office-facility-family-v1/server-rack-n01/runtime/preflight/server-status-b.png",
+          "sha256": "8cb7271ed49dc491359b4a93970c788a0aaa6b8bce10e4dbae0e85064ae264d4",
+          "size": [
+            41,
+            59
+          ]
+        },
+        "composite": {
+          "file": "assets/game/processed/office-facility-family-v1/server-rack-n01/runtime/preflight/server-composite-b.png",
+          "sha256": "3ae143be91e0edf42764737445336a4c1506575c310590993fe605decc1036c9",
+          "size": [
+            64,
+            96
+          ]
+        },
+        "sourceBox": [
+          397,
+          965,
+          533,
+          1161
+        ]
+      },
+      {
+        "frameId": "c",
+        "source": {
+          "file": "assets/game/processed/office-facility-family-v1/server-rack-n01/authoring/source/server-status-source-c.png",
+          "sha256": "3aaf162af8bd1134bd402703dc1da3162fa6f1468c66496453f79a15d716023d",
+          "size": [
+            136,
+            196
+          ]
+        },
+        "authoring": {
+          "file": "assets/game/processed/office-facility-family-v1/server-rack-n01/authoring/preflight/server-status-c.png",
+          "sha256": "5650777cae6474838949c9210ad95fd664f764779ef7d85b455aaaf405defa37",
+          "size": [
+            164,
+            236
+          ]
+        },
+        "runtime": {
+          "file": "assets/game/processed/office-facility-family-v1/server-rack-n01/runtime/preflight/server-status-c.png",
+          "sha256": "ad019301a1d823f46622c43df493112ab042d455471f27ed905f47f053ec73d6",
+          "size": [
+            41,
+            59
+          ]
+        },
+        "composite": {
+          "file": "assets/game/processed/office-facility-family-v1/server-rack-n01/runtime/preflight/server-composite-c.png",
+          "sha256": "924ebbe1411f2950cd7400a5f76786290fef9702e8468a60d07b14c720620944",
+          "size": [
+            64,
+            96
+          ]
+        },
+        "sourceBox": [
+          699,
+          965,
+          835,
+          1161
+        ]
+      },
+      {
+        "frameId": "d",
+        "source": {
+          "file": "assets/game/processed/office-facility-family-v1/server-rack-n01/authoring/source/server-status-source-d.png",
+          "sha256": "69fd8aaa2bb071fabc5cb00cb1bfef0000c693ebb2a4b0bb5833806e5204b860",
+          "size": [
+            136,
+            196
+          ]
+        },
+        "authoring": {
+          "file": "assets/game/processed/office-facility-family-v1/server-rack-n01/authoring/preflight/server-status-d.png",
+          "sha256": "ac7837df2d527cbeb53d16b0ee9cdf85bb9766ccc220200339f50e83926c37f8",
+          "size": [
+            164,
+            236
+          ]
+        },
+        "runtime": {
+          "file": "assets/game/processed/office-facility-family-v1/server-rack-n01/runtime/preflight/server-status-d.png",
+          "sha256": "aa0589112898a115d87f633212ef28427d1606eda2bc1fd1967f4cad74c1291c",
+          "size": [
+            41,
+            59
+          ]
+        },
+        "composite": {
+          "file": "assets/game/processed/office-facility-family-v1/server-rack-n01/runtime/preflight/server-composite-d.png",
+          "sha256": "bf64fae7da6ce25403792f49fad0cf00778d5b9acbde7ff4de85c7f8aecbc996",
+          "size": [
+            64,
+            96
+          ]
+        },
+        "sourceBox": [
+          1004,
+          965,
+          1140,
+          1161
+        ]
+      }
+    ]
+  },
+  "statusLoop": {
+    "compositionFormula": "immutableShell + statusViewport[n]",
+    "frameIds": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "transition": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "a"
+    ],
+    "frameDurationMs": 220,
+    "cycleDurationMs": 880,
+    "viewportAuthoring": [
+      32,
+      96,
+      196,
+      332
+    ],
+    "viewportRuntime": [
+      8,
+      24,
+      49,
+      83
+    ],
+    "transitionChangedPixels": [
+      2369,
+      2373,
+      2360,
+      2364
+    ],
+    "shellChangedPixels": 0,
+    "outsideViewportChangedPixels": 0,
+    "pivotDeltaPixels": [
+      0,
+      0
+    ],
+    "closureMismatchPixels": 0,
+    "gif": {
+      "file": "assets/art/layout-references/office-facility-family-v1/server-rack-n01/server-status-loop.gif",
+      "sha256": "8d44329cd716a88183caeb21bcdace59127f79b771ed065a60d07a4681ea2c7b",
+      "size": [
+        512,
+        512
+      ],
+      "frameCount": 4
+    }
+  },
+  "interactionPreview": {
+    "semanticAction": "inspect-front",
+    "visualPoseAuthority": "interact-front",
+    "actorId": "anna",
+    "actorAuthority": {
+      "file": "assets/game/manifests/office-character-action-sockets-i01.json",
+      "sha256": "4958f9a16cfe13040417e551166c99d61b96a186ce39b7de3c3346b4474e97d8",
+      "pendingCommercialReview": true
+    },
+    "spatialAuthority": {
+      "file": "assets/game/manifests/office-spatial-authority-i01.json",
+      "sha256": "cc9410a504fc61f13313aa113f67108a1ff194e96241dfedd2b6ad2b9f0a438f"
+    },
+    "heldProp": {
+      "id": "held.tablet",
+      "manifest": "assets/game/manifests/office-held-props-h01.json",
+      "manifestSha256": "adf9f57e41e78dd583687c1707a49a17bd6f27fc76328a62127d5e3d806d7aa4",
+      "runtimeFile": "assets/game/processed/office-held-props-h01/runtime/props/tablet.png",
+      "runtimeSha256": "77407f32838a07b8397acd641d6b197398c740013b58e719a75d1f4b30f556a2",
+      "actorSocketRule": "midpoint-primary-secondary",
+      "attachmentMode": "front-overlay",
+      "heldFrames": [
+        2,
+        3,
+        4
+      ]
+    },
+    "timeline": [
+      {
+        "phase": "approach",
+        "animation": "walk-left",
+        "actorFrame": 0,
+        "approachOffsetX": 72,
+        "statusFrame": "a",
+        "tabletVisible": false,
+        "attachmentDelta": null
+      },
+      {
+        "phase": "approach",
+        "animation": "walk-left",
+        "actorFrame": 1,
+        "approachOffsetX": 48,
+        "statusFrame": "b",
+        "tabletVisible": false,
+        "attachmentDelta": null
+      },
+      {
+        "phase": "approach",
+        "animation": "walk-left",
+        "actorFrame": 2,
+        "approachOffsetX": 24,
+        "statusFrame": "c",
+        "tabletVisible": false,
+        "attachmentDelta": null
+      },
+      {
+        "phase": "inspect",
+        "animation": "interact-front",
+        "actorFrame": 0,
+        "approachOffsetX": 0,
+        "statusFrame": "d",
+        "tabletVisible": false,
+        "attachmentDelta": null
+      },
+      {
+        "phase": "inspect",
+        "animation": "interact-front",
+        "actorFrame": 1,
+        "approachOffsetX": 0,
+        "statusFrame": "a",
+        "tabletVisible": false,
+        "attachmentDelta": null
+      },
+      {
+        "phase": "inspect",
+        "animation": "interact-front",
+        "actorFrame": 2,
+        "approachOffsetX": 0,
+        "statusFrame": "b",
+        "tabletVisible": true,
+        "attachmentDelta": [
+          0,
+          0
+        ]
+      },
+      {
+        "phase": "inspect",
+        "animation": "interact-front",
+        "actorFrame": 3,
+        "approachOffsetX": 0,
+        "statusFrame": "c",
+        "tabletVisible": true,
+        "attachmentDelta": [
+          0,
+          0
+        ]
+      },
+      {
+        "phase": "inspect",
+        "animation": "interact-front",
+        "actorFrame": 4,
+        "approachOffsetX": 0,
+        "statusFrame": "d",
+        "tabletVisible": true,
+        "attachmentDelta": [
+          0,
+          0
+        ]
+      },
+      {
+        "phase": "inspect",
+        "animation": "interact-front",
+        "actorFrame": 5,
+        "approachOffsetX": 0,
+        "statusFrame": "a",
+        "tabletVisible": false,
+        "attachmentDelta": null
+      },
+      {
+        "phase": "depart",
+        "animation": "walk-right",
+        "actorFrame": 0,
+        "approachOffsetX": 24,
+        "statusFrame": "b",
+        "tabletVisible": false,
+        "attachmentDelta": null
+      },
+      {
+        "phase": "depart",
+        "animation": "walk-right",
+        "actorFrame": 1,
+        "approachOffsetX": 48,
+        "statusFrame": "c",
+        "tabletVisible": false,
+        "attachmentDelta": null
+      },
+      {
+        "phase": "depart",
+        "animation": "walk-right",
+        "actorFrame": 2,
+        "approachOffsetX": 72,
+        "statusFrame": "d",
+        "tabletVisible": false,
+        "attachmentDelta": null
+      }
+    ],
+    "perCharacterOffsets": false,
+    "missingSocketFallback": false,
+    "countsTowardRosterValidation": false,
+    "countsTowardReservationValidation": false,
+    "gif": {
+      "file": "assets/art/layout-references/office-facility-family-v1/server-rack-n01/anna-inspect-tablet.gif",
+      "sha256": "c59cf0fe01576ceb2d1824c83577c8e310c1bde50cc0fbdacef498eeffd007e6",
+      "size": [
+        768,
+        512
+      ],
+      "frameCount": 12
+    }
+  },
+  "instancePreview": {
+    "familyInstanceCount": 2,
+    "instanceIds": [
+      "server-rack-01",
+      "server-rack-02"
+    ],
+    "sharedFamilyPixels": true,
+    "capacityTargetPerInstance": 1,
+    "independentReservationTargets": true,
+    "reservationProductionBuilt": false,
+    "reservationSlotContribution": 0,
+    "plannedReservationSlotContributionAfterF8": 2,
+    "facilityV1ReadySlotsBeforeServer": 15,
+    "facilityV1ReadySlotsAfterServerF8Target": 17
+  },
+  "gates": {
+    "F0": {
+      "status": "passed",
+      "evidence": [
+        "assets/game/manifests/office-furniture-master-audit-v1.json",
+        "assets/art/layout-references/office-facility-family-v1/server-rack-n01/01-source-ownership.png"
+      ]
+    },
+    "F1": {
+      "status": "passed",
+      "evidence": [
+        "assets/art/layout-references/office-facility-family-v1/server-rack-n01/04-scale-actor-tablet.png",
+        "assets/art/layout-references/office-facility-family-v1/server-rack-n01/05-geometry-footprint-approach.png"
+      ]
+    },
+    "F2": {
+      "status": "passed",
+      "evidence": [
+        "assets/art/layout-references/office-facility-family-v1/server-rack-n01/01-source-ownership.png",
+        "assets/art/layout-references/office-facility-family-v1/server-rack-n01/02-clean-front-alpha.png"
+      ]
+    },
+    "F3": {
+      "status": "passed",
+      "evidence": [
+        "assets/art/layout-references/office-facility-family-v1/server-rack-n01/03-parts-shell-status.png",
+        "assets/art/layout-references/office-facility-family-v1/server-rack-n01/06-status-loop-a-d-a.png",
+        "assets/art/layout-references/office-facility-family-v1/server-rack-n01/07-two-instance-preview.png",
+        "assets/art/layout-references/office-facility-family-v1/server-rack-n01/08-inspect-tablet-preview.png",
+        "assets/art/layout-references/office-facility-family-v1/server-rack-n01/server-status-loop.gif",
+        "assets/art/layout-references/office-facility-family-v1/server-rack-n01/anna-inspect-tablet.gif"
+      ]
+    },
+    "F4": {
+      "status": "blocked",
+      "evidence": [
+        "Production part authority waits for visual approval."
+      ]
+    },
+    "F5": {
+      "status": "blocked",
+      "evidence": [
+        "Production sockets and routes are not built."
+      ]
+    },
+    "F6": {
+      "status": "blocked",
+      "evidence": [
+        "Two-instance reservation simulation is not built."
+      ]
+    },
+    "F7": {
+      "status": "blocked",
+      "evidence": [
+        "The 108/216-case isolated lab is not built."
+      ]
+    },
+    "F8": {
+      "status": "blocked",
+      "evidence": [
+        "F8 waits for completed F4-F7 production evidence."
+      ]
+    },
+    "F9": {
+      "status": "blocked",
+      "evidence": [
+        "Facility v1 has only 15/20 approved slots."
+      ]
+    },
+    "F10": {
+      "status": "blocked",
+      "evidence": [
+        "Active Office promotion is forbidden."
+      ]
+    }
+  },
+  "reviewOutputs": [
+    "assets/art/layout-references/office-facility-family-v1/server-rack-n01/01-source-ownership.png",
+    "assets/art/layout-references/office-facility-family-v1/server-rack-n01/02-clean-front-alpha.png",
+    "assets/art/layout-references/office-facility-family-v1/server-rack-n01/03-parts-shell-status.png",
+    "assets/art/layout-references/office-facility-family-v1/server-rack-n01/04-scale-actor-tablet.png",
+    "assets/art/layout-references/office-facility-family-v1/server-rack-n01/05-geometry-footprint-approach.png",
+    "assets/art/layout-references/office-facility-family-v1/server-rack-n01/06-status-loop-a-d-a.png",
+    "assets/art/layout-references/office-facility-family-v1/server-rack-n01/07-two-instance-preview.png",
+    "assets/art/layout-references/office-facility-family-v1/server-rack-n01/08-inspect-tablet-preview.png",
+    "assets/art/layout-references/office-facility-family-v1/server-rack-n01/server-status-loop.gif",
+    "assets/art/layout-references/office-facility-family-v1/server-rack-n01/anna-inspect-tablet.gif"
+  ],
+  "reviewEvidence": [
+    {
+      "path": "assets/art/layout-references/office-facility-family-v1/server-rack-n01/01-source-ownership.png",
+      "sha256": "c3e351ea928542f8a26995b15f13ffe56689df6cc8686f1a5842361ee097a0f5",
+      "size": [
+        1800,
+        1100
+      ]
+    },
+    {
+      "path": "assets/art/layout-references/office-facility-family-v1/server-rack-n01/02-clean-front-alpha.png",
+      "sha256": "fe492902e89549874680518e6d33b05bf1a7dc4f52b292d52af9491bbc923213",
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "assets/art/layout-references/office-facility-family-v1/server-rack-n01/03-parts-shell-status.png",
+      "sha256": "64ad4ec6fb04fee4c3372c8446c7172fd92370d6d33881137ea3c17c225f4599",
+      "size": [
+        1700,
+        1000
+      ]
+    },
+    {
+      "path": "assets/art/layout-references/office-facility-family-v1/server-rack-n01/04-scale-actor-tablet.png",
+      "sha256": "4e73167f61e47dcb89f777bc3a03624662cb604c4a1a61c97733e5da62334435",
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "assets/art/layout-references/office-facility-family-v1/server-rack-n01/05-geometry-footprint-approach.png",
+      "sha256": "70627a92119a9910b0626e69950679f4bf13fa2feb25eda2c78fa578986d56ef",
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "path": "assets/art/layout-references/office-facility-family-v1/server-rack-n01/06-status-loop-a-d-a.png",
+      "sha256": "e86693c1b746a2de94b82118e55587891054b4f2d725e00165b00f5bdb3a8f81",
+      "size": [
+        1800,
+        950
+      ]
+    },
+    {
+      "path": "assets/art/layout-references/office-facility-family-v1/server-rack-n01/07-two-instance-preview.png",
+      "sha256": "c3e314a752bede4578a1a4ff83b59ef48d9a8ae1c1dd4fbb19337bda966aefd0",
+      "size": [
+        1800,
+        1000
+      ]
+    },
+    {
+      "path": "assets/art/layout-references/office-facility-family-v1/server-rack-n01/08-inspect-tablet-preview.png",
+      "sha256": "7288b0ec898b2f7f221edab0a2578bafb30941b42d2a91c28c106bc95d7a180d",
+      "size": [
+        1800,
+        1000
+      ]
+    },
+    {
+      "path": "assets/art/layout-references/office-facility-family-v1/server-rack-n01/server-status-loop.gif",
+      "sha256": "8d44329cd716a88183caeb21bcdace59127f79b771ed065a60d07a4681ea2c7b",
+      "size": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "assets/art/layout-references/office-facility-family-v1/server-rack-n01/anna-inspect-tablet.gif",
+      "sha256": "c59cf0fe01576ceb2d1824c83577c8e310c1bde50cc0fbdacef498eeffd007e6",
+      "size": [
+        768,
+        512
+      ]
+    }
+  ],
+  "permissions": {
+    "ownerReview": true,
+    "fullSystemBuild": false,
+    "furnitureOnlyRoom": false,
+    "otherFacilityFamilies": false,
+    "activeOfficePromotion": false
+  },
+  "activeOfficeEvidence": [
+    {
+      "file": "apps/web/src/features/office/components/officeAssetRegistry.ts",
+      "imported": false
+    },
+    {
+      "file": "assets/game/maps/office-c-v2.json",
+      "imported": false
+    },
+    {
+      "file": "apps/web/src/features/office/components/officeSceneRuntime.ts",
+      "imported": false
+    }
+  ],
+  "visualApproval": null,
+  "ownerDecision": null
+}

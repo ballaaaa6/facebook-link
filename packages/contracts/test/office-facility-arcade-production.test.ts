@@ -11,14 +11,14 @@ const manifest = JSON.parse(readFileSync(new URL(
   import.meta.url,
 ), "utf8")) as OfficeFacilityArcadeProductionManifest;
 
-test("Arcade G02 production stops at F8 after the complete isolated proof", () => {
+test("Arcade G02 production records its independent F8 approval", () => {
   assert.deepEqual(validateOfficeFacilityArcadeProductionManifest(manifest), []);
-  assert.equal(manifest.status, "owner-review-f8-pending");
+  assert.equal(manifest.status, "owner-approved");
   assert.equal(manifest.gates.F7.status, "passed");
-  assert.equal(manifest.gates.F8.status, "pending-owner-review");
+  assert.equal(manifest.gates.F8.status, "passed");
   assert.equal(manifest.gates.F9.status, "blocked");
   assert.equal(manifest.permissions.activeOfficePromotion, false);
-  assert.equal(manifest.ownerDecision, null);
+  assert.equal(manifest.ownerDecision.decision, "approved");
 });
 
 test("Arcade G02 composes immutable parts across three seam loops", () => {
@@ -63,5 +63,6 @@ test("Arcade G02 capacity-one reservation releases cleanly after retry", () => {
   assert.equal(result.samples.length, 31);
   assert.equal(result.samples[30]?.heldBy, null);
   assert.equal(manifest.interaction.heldController, false);
-  assert.equal(manifest.interaction.reservationSlotContribution, 0);
+  assert.equal(manifest.interaction.reservationSlotContribution, 1);
+  assert.equal(manifest.interaction.facilityV1ReadySlotCountAfterApproval, 15);
 });

@@ -79,7 +79,7 @@ try {
   add(
     manifest.id === "office.facility.arcade-machine.g02.production"
       && manifest.revision === "g02-production-r01"
-      && manifest.status === "owner-review-f8-pending"
+      && manifest.status === "owner-approved"
       && manifest.developmentOnly === true
       && manifest.activeOfficePromotion === false,
     "Arcade G02 production identity or F8 stop changed",
@@ -205,9 +205,9 @@ try {
       && manifest.interaction.machineLocalControls === true
       && manifest.interaction.heldController === false
       && manifest.interaction.heldPropManifest === null
-      && manifest.interaction.reservationSlotContribution === 0
-      && manifest.interaction.plannedReservationSlotContributionAfterF8 === 1,
-    "Interaction or pre-F8 reservation-slot boundary changed",
+      && manifest.interaction.reservationSlotContribution === 1
+      && manifest.interaction.facilityV1ReadySlotCountAfterApproval === 15,
+    "Interaction or approved reservation-slot contribution changed",
   );
   add(
     manifest.rosterValidation.characterCount === 18
@@ -241,15 +241,16 @@ try {
 
   add(
     passedGates.every((gate) => manifest.gates[gate].status === "passed")
-      && manifest.gates.F8.status === "pending-owner-review"
+      && manifest.gates.F8.status === "passed"
       && manifest.gates.F9.status === "blocked"
       && manifest.gates.F10.status === "blocked"
       && manifest.permissions.familyLab === true
-      && manifest.permissions.ownerReview === true
+      && manifest.permissions.ownerReview === false
       && manifest.permissions.furnitureOnlyRoom === false
       && manifest.permissions.activeOfficePromotion === false
-      && manifest.ownerDecision === null,
-    "Production must remain stopped for owner review at F8",
+      && manifest.ownerDecision?.decision === "approved"
+      && manifest.ownerDecision?.decidedOn === "2026-07-30",
+    "Production must preserve its independent F8 owner approval",
   );
   add(
     same(
@@ -268,7 +269,7 @@ try {
   const packageJson = readJson("package.json");
   add(
     existsSync(join(root, builderPath))
-      && docs.includes("Status: owner review pending at F8")
+      && docs.includes("Status: owner-approved at F8")
       && docs.includes("108")
       && docs.includes("432")
       && docs.includes("F9 remains blocked")
@@ -291,5 +292,5 @@ if (failures.length > 0) {
 
 console.log(
   "Arcade G02 production check passed: 52 modular assets, 108 poses, "
-    + "432 orientation cases, 30-second capacity-one simulation, F8 pending.",
+    + "432 orientation cases, 30-second simulation, F8 approved, slot 15/20.",
 );

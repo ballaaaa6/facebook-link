@@ -232,9 +232,19 @@ to F4. Pivot, footprint, support, or collision drift returns it to F1.
 Arcade G02 production revision `g02-production-r01` applies this standard to
 four immutable shells, four machine-local control layers, and twelve viewport
 frames. Its F4-F7 evidence passes with zero shell, control, outside-viewport,
-pivot, root, route, and seam-closure failures. The family is stopped at F8 for
-owner review; its planned reservation slot is not counted and F9-F10 remain
-blocked.
+pivot, root, route, and seam-closure failures. The owner approved F8 on
+2026-07-30, so Arcade contributes one slot and Facility v1 readiness is
+`15/20`. F9-F10 remain blocked.
+
+Server Rack N01 is the next family and is currently stopped at visual
+preflight owner review. It uses a new versioned extraction from the audited
+static front master plus interior status viewports A-D from the audited
+mechanical-loop master. Rejected side pixels remain unused. Its
+`immutableShell + statusViewport[n]` proof has zero shell, outside-viewport,
+pivot, and seam-closure failures. The two-instance and H01 tablet views are
+development-only previews; F4-F10 remain blocked, and Server Rack does not
+increase Facility v1 beyond `15/20` until a later production revision passes
+F8. See `docs/art/OFFICE_FACILITY_SERVER_RACK_N01.md`.
 
 ## Recommended family order
 
@@ -345,8 +355,9 @@ pixels. G02 r02 locks a `2 x 2 x 4` cabinet, four elevations, three modular
 four-frame game loops, and one development-only Anna approach/use/release
 preview. On 2026-07-29 the owner approved the exact 14 review-output hashes and
 adopted its separate-parts deterministic seam-loop method as the standard for
-future moving families. Isolated F4-F8 production is now authorized but not
-built. The planned Arcade slot, F9, F10, and Active Office remain blocked.
+future moving families. The isolated F4-F8 production evidence passes and the
+owner approved its exact hashes on 2026-07-30. Arcade contributes one Facility
+v1 slot; F9, F10, and Active Office remain blocked.
 
 ## Required evidence per family
 

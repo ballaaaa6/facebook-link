@@ -48,7 +48,7 @@ export function validateOfficeFacilityArcadeProductionManifest(
       && value.id === "office.facility.arcade-machine.g02.production"
       && value.familyId === "machine.game.arcade.generated-modern"
       && value.revision === "g02-production-r01"
-      && value.status === "owner-review-f8-pending"
+      && value.status === "owner-approved"
       && value.developmentOnly === true
       && value.activeOfficePromotion === false,
     "Arcade G02 production identity or F8 stop changed",
@@ -216,9 +216,9 @@ export function validateOfficeFacilityArcadeProductionManifest(
       && interaction.machineLocalControls === true
       && interaction.heldController === false
       && interaction.heldPropManifest === null
-      && interaction.reservationSlotContribution === 0
-      && interaction.plannedReservationSlotContributionAfterF8 === 1,
-    "Arcade G02 interaction must use machine-local controls with no held prop",
+      && interaction.reservationSlotContribution === 1
+      && interaction.facilityV1ReadySlotCountAfterApproval === 15,
+    "Arcade G02 interaction or approved slot contribution changed",
   );
 
   const roster = value.rosterValidation;
@@ -288,12 +288,12 @@ export function validateOfficeFacilityArcadeProductionManifest(
   add(issues, record(value.gates), "gates must be an object");
   if (record(value.gates)) {
     for (const gate of officeFacilityArcadeProductionGates) {
-      const expected = ["F0", "F1", "F2", "F3", "F4", "F5", "F6", "F7"]
+      const expected = [
+        "F0", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8",
+      ]
         .includes(gate)
         ? "passed"
-        : gate === "F8"
-          ? "pending-owner-review"
-          : "blocked";
+        : "blocked";
       add(
         issues,
         record(value.gates[gate])
@@ -325,12 +325,15 @@ export function validateOfficeFacilityArcadeProductionManifest(
     issues,
     record(permissions)
       && permissions.familyLab === true
-      && permissions.ownerReview === true
+      && permissions.ownerReview === false
       && permissions.furnitureOnlyRoom === false
       && permissions.otherFacilityFamilies === false
       && permissions.activeOfficePromotion === false
-      && value.ownerDecision === null,
-    "Arcade G02 production must stop at F8 owner review",
+      && record(value.ownerDecision)
+      && value.ownerDecision.decision === "approved"
+      && value.ownerDecision.decidedOn === "2026-07-30"
+      && typeof value.ownerDecision.notes === "string",
+    "Arcade G02 production must preserve its F8 owner approval",
   );
   return issues;
 }

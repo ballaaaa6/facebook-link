@@ -3,7 +3,7 @@
   "id": "office.facility.arcade-machine.g02.production",
   "familyId": "machine.game.arcade.generated-modern",
   "revision": "g02-production-r01",
-  "status": "owner-review-f8-pending",
+  "status": "owner-approved",
   "developmentOnly": true,
   "activeOfficePromotion": false,
   "preflightAuthority": {
@@ -992,8 +992,8 @@
     "machineLocalControls": true,
     "heldController": false,
     "heldPropManifest": null,
-    "reservationSlotContribution": 0,
-    "plannedReservationSlotContributionAfterF8": 1
+    "reservationSlotContribution": 1,
+    "facilityV1ReadySlotCountAfterApproval": 15
   },
   "rosterValidation": {
     "authorityManifest": "assets/game/manifests/office-character-action-sockets-i01.json",
@@ -14515,7 +14515,7 @@
       ]
     },
     "F8": {
-      "status": "pending-owner-review",
+      "status": "passed",
       "evidence": [
         "assets/art/layout-references/office-facility-family-v1/arcade-machine-g02-production/01-clean-four-orientations.png",
         "assets/art/layout-references/office-facility-family-v1/arcade-machine-g02-production/02-parts-shell-viewport-controls.png",
@@ -14532,7 +14532,7 @@
     "F9": {
       "status": "blocked",
       "evidence": [
-        "Arcade is not counted or placed before F8 approval."
+        "Facility v1 remains incomplete; no room composition."
       ]
     },
     "F10": {
@@ -14638,7 +14638,7 @@
   ],
   "permissions": {
     "familyLab": true,
-    "ownerReview": true,
+    "ownerReview": false,
     "furnitureOnlyRoom": false,
     "otherFacilityFamilies": false,
     "activeOfficePromotion": false
@@ -14657,5 +14657,9 @@
       "imported": false
     }
   ],
-  "ownerDecision": null
+  "ownerDecision": {
+    "decision": "approved",
+    "decidedOn": "2026-07-30",
+    "notes": "Owner approved the exact Arcade G02 production F8 evidence and its one Facility v1 reservation slot."
+  }
 }
