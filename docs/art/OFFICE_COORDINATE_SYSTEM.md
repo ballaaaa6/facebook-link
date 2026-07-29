@@ -7,8 +7,20 @@ Revision: R05-r02 P0-P3 owner-approved baseline; P4-P6 rejected floor map
 This document is the authoritative manual for composing the current Office
 desk, monitor, keyboard, real chair, and existing seated characters. The
 approved proof is isolated from Active Office. It authorizes reuse of these
-rules; it does not authorize new character art, new poses, hand sockets, other
-furniture, or Active Office promotion.
+rules; by itself it does not authorize new character art, new poses, new hand
+sockets, other furniture, or Active Office promotion.
+
+## Relationship to Spatial I01
+
+`docs/art/OFFICE_SPATIAL_SOCKET_SYSTEM_I01.md` is the separate, F8-pending
+authority for action-hand sockets, held-prop grips, generic attachment
+transforms, and future facility-local sockets. It references the approved seat
+socket authority instead of replacing it.
+
+The approved workstation rules in this document remain authoritative for
+R05-r02 desk, chair, seated contact, equipment, and paired-station geometry.
+Spatial I01 cannot change those hashes or promote either system into Active
+Office. A composition that uses both must satisfy both contracts.
 
 ## Authority order
 
@@ -54,7 +66,7 @@ screenX = worldX * 32
 screenY = worldY * 32 - worldZ * 32
 ```
 
-Every supported placement resolves center-to-center through semantic sockets:
+Every supported placement resolves socket-to-socket through semantic points:
 
 ```text
 drawOrigin = project(worldSocket.xyz) - localSocket.xy
@@ -244,6 +256,7 @@ Never use these methods as a shortcut:
 - monitor or keyboard placement from bitmap corners;
 - keyboard-over-monitor draw order in a far station;
 - character, chair, equipment, or prop pixels baked into the desk;
+- one fixed center-like coordinate used for every character-held prop;
 - an old ten-seat map patched with offsets.
 
 ## Change procedure

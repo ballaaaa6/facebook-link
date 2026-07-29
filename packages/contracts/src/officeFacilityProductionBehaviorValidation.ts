@@ -2,11 +2,18 @@ import {
   officeFacilityInteractionStates,
 } from "./officeFacilityProduction.ts";
 import {
+  hasSha256,
   isIntegerPoint,
   isRecord,
   requireValue,
   type RecordValue,
 } from "./officeFacilityProductionValidationPrimitives.ts";
+
+function isPixelPoint(value: unknown) {
+  return Array.isArray(value)
+    && value.length === 2
+    && value.every(Number.isInteger);
+}
 
 function validateInteraction(value: unknown, issues: string[]) {
   requireValue(issues, isRecord(value), "interaction must be an object");
@@ -63,9 +70,26 @@ function validateRoster(value: unknown, issues: string[]) {
   requireValue(
     issues,
     isRecord(value.poseAuthority)
-      && value.poseAuthority.status === "frozen-prototype-internal"
+      && value.poseAuthority.status === "owner-review-f8-pending"
       && value.poseAuthority.activeOfficeImported === false,
-    "roster pose authority must remain internal and isolated",
+    "roster pose authority must remain F8 pending and isolated",
+  );
+  requireValue(
+    issues,
+    isRecord(value.spatialAuthority)
+      && value.spatialAuthority.status === "owner-review-f8-pending"
+      && value.spatialAuthority.activeOfficeImported === false
+      && hasSha256(value.spatialAuthority.manifestSha256),
+    "roster spatial authority must remain F8 pending and isolated",
+  );
+  requireValue(
+    issues,
+    isRecord(value.heldPropAuthority)
+      && value.heldPropAuthority.assetId === "held.soda-can"
+      && value.heldPropAuthority.runtimeScale === 1
+      && hasSha256(value.heldPropAuthority.manifestSha256)
+      && hasSha256(value.heldPropAuthority.assetSha256),
+    "roster held prop authority must hash-lock H01 at scale one",
   );
   requireValue(
     issues,
@@ -90,6 +114,24 @@ function validateRoster(value: unknown, issues: string[]) {
       === (value.characterCount as number) * (value.activeFrames as number),
     "roster validatedPoseCases must cover every active frame",
   );
+  requireValue(
+    issues,
+    value.characterCount === 18
+      && value.activeFrames === 6
+      && value.visiblePropCases === 54
+      && value.facilityOutputAttachmentCases === 18
+      && value.actorHandAttachmentCases === 36
+      && value.attachmentDeltaFailures === 0,
+    "roster must prove 18x6 poses, 54 visible props, and zero socket drift",
+  );
+  const expectedParents = [
+    null,
+    null,
+    "facility.output.primary",
+    "actor.hand.primary.grip",
+    "actor.hand.primary.grip",
+    null,
+  ];
   const ids = new Set<string>();
   for (const [index, character] of value.characters.entries()) {
     requireValue(
@@ -111,7 +153,7 @@ function validateRoster(value: unknown, issues: string[]) {
       `${character.id} must cover every active frame`,
     );
     if (!Array.isArray(character.frames)) continue;
-    for (const frame of character.frames) {
+    for (const [frameIndex, frame] of character.frames.entries()) {
       requireValue(
         issues,
         isRecord(frame)
@@ -120,6 +162,54 @@ function validateRoster(value: unknown, issues: string[]) {
           && frame.actorInsideReviewCard === true,
         `${character.id} has a character-specific offset or leaves the review card`,
       );
+      if (!isRecord(frame)) continue;
+      const parent = expectedParents[frameIndex];
+      const actorHeld = parent === "actor.hand.primary.grip";
+      const visible = parent !== null;
+      requireValue(
+        issues,
+        frame.frame === frameIndex
+          && frame.attachmentParent === parent
+          && frame.heldAssetVisible === visible
+          && frame.heldByActor === actorHeld,
+        `${character.id} frame ${frameIndex} has an invalid attachment state`,
+      );
+      requireValue(
+        issues,
+        isPixelPoint(frame.rootSocket)
+          && isPixelPoint(frame.primaryGripSocket)
+          && isPixelPoint(frame.propGripSocket),
+        `${character.id} frame ${frameIndex} must use integer sockets`,
+      );
+      requireValue(
+        issues,
+        visible
+          ? isPixelPoint(frame.propOrigin)
+            && isPixelPoint(frame.parentSocketWorld)
+            && JSON.stringify(frame.attachmentDelta) === "[0,0]"
+          : frame.propOrigin === null
+            && frame.parentSocketWorld === null
+            && frame.attachmentDelta === null,
+        `${character.id} frame ${frameIndex} attachment does not resolve exactly`,
+      );
+      if (actorHeld) {
+        requireValue(
+          issues,
+          isRecord(frame.foregroundMask)
+            && typeof frame.foregroundMask.file === "string"
+            && frame.foregroundMask.file.startsWith(
+              "assets/game/processed/office-spatial-i01/",
+            )
+            && hasSha256(frame.foregroundMask.sha256),
+          `${character.id} frame ${frameIndex} must restore a hash-locked hand mask`,
+        );
+        requireValue(
+          issues,
+          JSON.stringify(frame.renderOrder)
+            === JSON.stringify(["actor-body", "held-prop", "hand-foreground"]),
+          `${character.id} frame ${frameIndex} render order is invalid`,
+        );
+      }
     }
   }
 }

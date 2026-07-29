@@ -1,8 +1,8 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "office.facility.vending-machine.u01",
   "familyId": "vending.machine.modern",
-  "revision": "u01",
+  "revision": "u01-r02",
   "status": "owner-review-f8-pending",
   "developmentOnly": true,
   "activeOfficePromotion": false,
@@ -12,7 +12,8 @@
     "legacyOrRejectedPixelReuse": false,
     "stagingPixelReuse": false,
     "generativeRepair": false,
-    "missingAssetFallback": false
+    "missingAssetFallback": false,
+    "sharedProductionAssetDependency": "office.held-props.h01"
   },
   "source": {
     "kind": "audited-original-mechanical-loop-master",
@@ -21,11 +22,11 @@
     "auditManifest": "assets/game/manifests/office-furniture-master-audit-v1.json",
     "extractionMethod": "full-master-component-ownership",
     "keyedSource": {
-      "file": "assets/game/processed/office-facility-family-v1/vending-u01/authoring/source/mechanical-loops-master.keyed.png",
+      "file": "assets/game/processed/office-facility-family-v1/vending-u01-r02/authoring/source/mechanical-loops-master.keyed.png",
       "sha256": "cb8ad09b88d1da475381f07ff0b316f83a98c7aef67e246a532610ebda7337db"
     },
     "ownershipMask": {
-      "file": "assets/game/processed/office-facility-family-v1/vending-u01/authoring/source/vending-u01.full-master-ownership-mask.png",
+      "file": "assets/game/processed/office-facility-family-v1/vending-u01-r02/authoring/source/vending-u01-r02.full-master-ownership-mask.png",
       "sha256": "723a571f5f3d6840b57ed80e629c3d5b38a7f31524be70c94964094cdcbbefd0"
     },
     "frames": [
@@ -61,7 +62,7 @@
           "right": 28,
           "bottom": 8
         },
-        "authoringCutout": "assets/game/processed/office-facility-family-v1/vending-u01/authoring/source/vending-u01.source-frame-a.png",
+        "authoringCutout": "assets/game/processed/office-facility-family-v1/vending-u01-r02/authoring/source/vending-u01-r02.source-frame-a.png",
         "authoringCutoutSha256": "1d36f3b972a6d639bb32b5b9c84e7cccf3acd3ee43d84ad44c4707238004b36b"
       },
       {
@@ -96,7 +97,7 @@
           "right": 29,
           "bottom": 8
         },
-        "authoringCutout": "assets/game/processed/office-facility-family-v1/vending-u01/authoring/source/vending-u01.source-frame-b.png",
+        "authoringCutout": "assets/game/processed/office-facility-family-v1/vending-u01-r02/authoring/source/vending-u01-r02.source-frame-b.png",
         "authoringCutoutSha256": "3b6ee7f1f6e82adf84ee728da09fdda2d86718f5b78699e8f71d736098d3ac81"
       },
       {
@@ -131,7 +132,7 @@
           "right": 28,
           "bottom": 8
         },
-        "authoringCutout": "assets/game/processed/office-facility-family-v1/vending-u01/authoring/source/vending-u01.source-frame-c.png",
+        "authoringCutout": "assets/game/processed/office-facility-family-v1/vending-u01-r02/authoring/source/vending-u01-r02.source-frame-c.png",
         "authoringCutoutSha256": "ab8f7f38cb9bb82443e14022ca73ae9d886e58b19b85bcbcf13d1ee5279efbe4"
       },
       {
@@ -166,7 +167,7 @@
           "right": 29,
           "bottom": 8
         },
-        "authoringCutout": "assets/game/processed/office-facility-family-v1/vending-u01/authoring/source/vending-u01.source-frame-d.png",
+        "authoringCutout": "assets/game/processed/office-facility-family-v1/vending-u01-r02/authoring/source/vending-u01-r02.source-frame-d.png",
         "authoringCutoutSha256": "cbeaa61a7e4089573ea91590320371365d4e48206283a5cc5e72f282a9d71cbb"
       }
     ]
@@ -187,9 +188,48 @@
       "front"
     ]
   },
+  "spatial": {
+    "authority": {
+      "file": "assets/game/manifests/office-spatial-authority-i01.json",
+      "sha256": "a5622fa9e8b7400ef6c7ddf3cfcae841dda9c4e87458f5ad68e8e966bb5a7453",
+      "id": "office.spatial-socket-authority.i01",
+      "status": "owner-review-f8-pending"
+    },
+    "coordinateSpace": "facility-runtime-pixel",
+    "unit": "pixel",
+    "localSockets": {
+      "base.floor": [
+        32,
+        96
+      ],
+      "sort.floor": [
+        32,
+        96
+      ],
+      "interaction.target": [
+        48,
+        96
+      ],
+      "output.primary": [
+        32,
+        78
+      ],
+      "effect.origin": [
+        27,
+        81
+      ],
+      "viewport.origin": [
+        10,
+        32
+      ]
+    },
+    "perSceneAttachmentOffsets": false,
+    "centerToCenterAttachment": false,
+    "missingSocketFallback": false
+  },
   "geometry": {
     "schemaVersion": 3,
-    "id": "vending.machine.modern.u01",
+    "id": "vending.machine.modern.u01-r02",
     "assetType": "animated-shell",
     "placementPlane": "floor",
     "physicalScale": {
@@ -233,7 +273,7 @@
       {
         "id": "base",
         "role": "base",
-        "assetId": "vending.machine.modern.u01.shell-static"
+        "assetId": "vending.machine.modern.u01-r02.shell-static"
       }
     ],
     "attachmentSlots": [],
@@ -247,89 +287,89 @@
   },
   "parts": [
     {
-      "id": "vending.machine.modern.u01.shell-static",
+      "id": "vending.machine.modern.u01-r02.shell-static",
       "role": "static-shell",
       "state": "shell-static",
       "sourceFrame": "a",
-      "authoringFile": "assets/game/processed/office-facility-family-v1/vending-u01/authoring/parts/vending-u01.shell-static.png",
+      "authoringFile": "assets/game/processed/office-facility-family-v1/vending-u01-r02/authoring/parts/vending-u01-r02.shell-static.png",
       "authoringSha256": "23022e919ce06c348e7295787509ca7fe5ffad82605ae0c0dd4bb0f05766a38b",
-      "runtimeFile": "assets/game/processed/office-facility-family-v1/vending-u01/runtime/parts/vending-u01.shell-static.png",
+      "runtimeFile": "assets/game/processed/office-facility-family-v1/vending-u01-r02/runtime/parts/vending-u01-r02.shell-static.png",
       "runtimeSha256": "a8aff975124566b9ca02f1860fee319b314b481b744211b9be2d9d8d657724a4"
     },
     {
-      "id": "vending.machine.modern.u01.viewport-a",
+      "id": "vending.machine.modern.u01-r02.viewport-a",
       "role": "animation-viewport",
       "state": "a",
       "sourceFrame": "a",
-      "authoringFile": "assets/game/processed/office-facility-family-v1/vending-u01/authoring/parts/vending-u01.viewport-a.png",
+      "authoringFile": "assets/game/processed/office-facility-family-v1/vending-u01-r02/authoring/parts/vending-u01-r02.viewport-a.png",
       "authoringSha256": "b37f3f2164e3f5e858bda3a8d2b2b8b5ef734b9e6cd87d04d0bcebff8425bada",
-      "runtimeFile": "assets/game/processed/office-facility-family-v1/vending-u01/runtime/parts/vending-u01.viewport-a.png",
+      "runtimeFile": "assets/game/processed/office-facility-family-v1/vending-u01-r02/runtime/parts/vending-u01-r02.viewport-a.png",
       "runtimeSha256": "d7e5d8d981f75b168a81e72f7890aa74bfc6ce6c977e0ddf9857c242cf1c8534"
     },
     {
-      "id": "vending.machine.modern.u01.viewport-b",
+      "id": "vending.machine.modern.u01-r02.viewport-b",
       "role": "animation-viewport",
       "state": "b",
       "sourceFrame": "b",
-      "authoringFile": "assets/game/processed/office-facility-family-v1/vending-u01/authoring/parts/vending-u01.viewport-b.png",
+      "authoringFile": "assets/game/processed/office-facility-family-v1/vending-u01-r02/authoring/parts/vending-u01-r02.viewport-b.png",
       "authoringSha256": "958b09002597d981318e4cb177ea164ba445e1bf1a98f775189526353630ec02",
-      "runtimeFile": "assets/game/processed/office-facility-family-v1/vending-u01/runtime/parts/vending-u01.viewport-b.png",
+      "runtimeFile": "assets/game/processed/office-facility-family-v1/vending-u01-r02/runtime/parts/vending-u01-r02.viewport-b.png",
       "runtimeSha256": "c449179c836b59d150d927e50bf907d165cc8f695565634bd98d4d2683a98911"
     },
     {
-      "id": "vending.machine.modern.u01.viewport-c",
+      "id": "vending.machine.modern.u01-r02.viewport-c",
       "role": "animation-viewport",
       "state": "c",
       "sourceFrame": "c",
-      "authoringFile": "assets/game/processed/office-facility-family-v1/vending-u01/authoring/parts/vending-u01.viewport-c.png",
+      "authoringFile": "assets/game/processed/office-facility-family-v1/vending-u01-r02/authoring/parts/vending-u01-r02.viewport-c.png",
       "authoringSha256": "51d046a70be7447c5994a39a989140539488f87b1ad561ceb65b312721289e70",
-      "runtimeFile": "assets/game/processed/office-facility-family-v1/vending-u01/runtime/parts/vending-u01.viewport-c.png",
+      "runtimeFile": "assets/game/processed/office-facility-family-v1/vending-u01-r02/runtime/parts/vending-u01-r02.viewport-c.png",
       "runtimeSha256": "54a6c834327a7bc5414a1985cba84844ae6af965d9430299b985d8dec2b7524d"
     },
     {
-      "id": "vending.machine.modern.u01.viewport-d",
+      "id": "vending.machine.modern.u01-r02.viewport-d",
       "role": "animation-viewport",
       "state": "d",
       "sourceFrame": "c",
-      "authoringFile": "assets/game/processed/office-facility-family-v1/vending-u01/authoring/parts/vending-u01.viewport-d.png",
+      "authoringFile": "assets/game/processed/office-facility-family-v1/vending-u01-r02/authoring/parts/vending-u01-r02.viewport-d.png",
       "authoringSha256": "51d046a70be7447c5994a39a989140539488f87b1ad561ceb65b312721289e70",
-      "runtimeFile": "assets/game/processed/office-facility-family-v1/vending-u01/runtime/parts/vending-u01.viewport-d.png",
+      "runtimeFile": "assets/game/processed/office-facility-family-v1/vending-u01-r02/runtime/parts/vending-u01-r02.viewport-d.png",
       "runtimeSha256": "54a6c834327a7bc5414a1985cba84844ae6af965d9430299b985d8dec2b7524d"
     },
     {
-      "id": "vending.machine.modern.u01.pickup-tray-empty",
+      "id": "vending.machine.modern.u01-r02.pickup-tray-empty",
       "role": "pickup-tray-empty",
       "state": "pickup-tray-empty",
       "sourceFrame": "c",
-      "authoringFile": "assets/game/processed/office-facility-family-v1/vending-u01/authoring/parts/vending-u01.pickup-tray-empty.png",
+      "authoringFile": "assets/game/processed/office-facility-family-v1/vending-u01-r02/authoring/parts/vending-u01-r02.pickup-tray-empty.png",
       "authoringSha256": "9784870b18384ea3bc969e56bc8fa17efd7c2ee66804c11b4ec230774582bc9e",
-      "runtimeFile": "assets/game/processed/office-facility-family-v1/vending-u01/runtime/parts/vending-u01.pickup-tray-empty.png",
+      "runtimeFile": "assets/game/processed/office-facility-family-v1/vending-u01-r02/runtime/parts/vending-u01-r02.pickup-tray-empty.png",
       "runtimeSha256": "eb0ef178b163a8af52b3190c603e3639af7aef838d376625abda43a2270b63fd"
     },
     {
-      "id": "vending.machine.modern.u01.effect-dispense",
+      "id": "vending.machine.modern.u01-r02.effect-dispense",
       "role": "effect-overlay",
       "state": "effect-dispense",
       "sourceFrame": "c",
-      "authoringFile": "assets/game/processed/office-facility-family-v1/vending-u01/authoring/parts/vending-u01.effect-dispense.png",
+      "authoringFile": "assets/game/processed/office-facility-family-v1/vending-u01-r02/authoring/parts/vending-u01-r02.effect-dispense.png",
       "authoringSha256": "bd0231e6a48f1899dfac3f78a53591d4787762afe8cb03fc8d1d76385590480b",
-      "runtimeFile": "assets/game/processed/office-facility-family-v1/vending-u01/runtime/parts/vending-u01.effect-dispense.png",
+      "runtimeFile": "assets/game/processed/office-facility-family-v1/vending-u01-r02/runtime/parts/vending-u01-r02.effect-dispense.png",
       "runtimeSha256": "5a1cad2ea6a964788378c32a0edcb22e496b320272abfdd3f1b12a0bef4a8b80"
     },
     {
-      "id": "vending.machine.modern.u01.held-soda-can",
+      "id": "vending.machine.modern.u01-r02.held-soda-can",
       "role": "held-output",
       "state": "held-soda-can",
-      "sourceFrame": "d",
-      "authoringFile": "assets/game/processed/office-facility-family-v1/vending-u01/authoring/parts/vending-u01.held-soda-can.png",
-      "authoringSha256": "47d432d902de66db3d4ee2ccdef8d71b3a301efe48261b746db7e6296c5506e5",
-      "runtimeFile": "assets/game/processed/office-facility-family-v1/vending-u01/runtime/parts/vending-u01.held-soda-can.png",
-      "runtimeSha256": "00664454e8859ebfd8256768fd448bad9ea60ca3d9e409ff8cc0d768653cf17b"
+      "sourceFrame": "h01",
+      "authoringFile": "assets/game/processed/office-facility-family-v1/vending-u01-r02/authoring/parts/vending-u01-r02.held-soda-can@2x.png",
+      "authoringSha256": "d2c238b10b28d3564d8c186039cceea686f42124569cd0e3eeb090c645244c0a",
+      "runtimeFile": "assets/game/processed/office-facility-family-v1/vending-u01-r02/runtime/parts/vending-u01-r02.held-soda-can.png",
+      "runtimeSha256": "3968a7ff2ce22a876388162397df1b3b3d31958576de2435f5de8dc8b90a30b2"
     }
   ],
   "animation": {
     "frameCount": 4,
-    "shellPartId": "vending.machine.modern.u01.shell-static",
+    "shellPartId": "vending.machine.modern.u01-r02.shell-static",
     "viewportBoundsAuthoring": [
       40,
       128,
@@ -349,61 +389,97 @@
     "frames": [
       {
         "id": "a",
-        "viewportPartId": "vending.machine.modern.u01.viewport-a",
+        "viewportPartId": "vending.machine.modern.u01-r02.viewport-a",
         "effectPartIds": [],
         "durationMs": 500,
-        "authoringCompositeFile": "assets/game/processed/office-facility-family-v1/vending-u01/authoring/composites/vending-u01.frame-a.png",
+        "authoringCompositeFile": "assets/game/processed/office-facility-family-v1/vending-u01-r02/authoring/composites/vending-u01-r02.frame-a.png",
         "authoringCompositeSha256": "1d36f3b972a6d639bb32b5b9c84e7cccf3acd3ee43d84ad44c4707238004b36b",
-        "runtimeCompositeFile": "assets/game/processed/office-facility-family-v1/vending-u01/runtime/composites/vending-u01.frame-a.png",
+        "runtimeCompositeFile": "assets/game/processed/office-facility-family-v1/vending-u01-r02/runtime/composites/vending-u01-r02.frame-a.png",
         "runtimeCompositeSha256": "d6061411f20b8c6eb768e469308e6901fb2b888fd8bfbe072abec17b586f9bab"
       },
       {
         "id": "b",
-        "viewportPartId": "vending.machine.modern.u01.viewport-b",
+        "viewportPartId": "vending.machine.modern.u01-r02.viewport-b",
         "effectPartIds": [],
         "durationMs": 500,
-        "authoringCompositeFile": "assets/game/processed/office-facility-family-v1/vending-u01/authoring/composites/vending-u01.frame-b.png",
+        "authoringCompositeFile": "assets/game/processed/office-facility-family-v1/vending-u01-r02/authoring/composites/vending-u01-r02.frame-b.png",
         "authoringCompositeSha256": "0d5639311be00f0b3bd31fc419bbc9cdbbf4084a2fd650871cf0296a8a402bac",
-        "runtimeCompositeFile": "assets/game/processed/office-facility-family-v1/vending-u01/runtime/composites/vending-u01.frame-b.png",
+        "runtimeCompositeFile": "assets/game/processed/office-facility-family-v1/vending-u01-r02/runtime/composites/vending-u01-r02.frame-b.png",
         "runtimeCompositeSha256": "7ff2d2029b7f22aeb228af7ec4258260714ddaaa117ed1e8c2457f19342f4a85"
       },
       {
         "id": "c",
-        "viewportPartId": "vending.machine.modern.u01.viewport-c",
+        "viewportPartId": "vending.machine.modern.u01-r02.viewport-c",
         "effectPartIds": [
-          "vending.machine.modern.u01.effect-dispense"
+          "vending.machine.modern.u01-r02.effect-dispense"
         ],
         "durationMs": 500,
-        "authoringCompositeFile": "assets/game/processed/office-facility-family-v1/vending-u01/authoring/composites/vending-u01.frame-c.png",
+        "authoringCompositeFile": "assets/game/processed/office-facility-family-v1/vending-u01-r02/authoring/composites/vending-u01-r02.frame-c.png",
         "authoringCompositeSha256": "e3af008bf46eba5d91cd3f1b6070497917f764236bb44e842ee30bbd21223733",
-        "runtimeCompositeFile": "assets/game/processed/office-facility-family-v1/vending-u01/runtime/composites/vending-u01.frame-c.png",
+        "runtimeCompositeFile": "assets/game/processed/office-facility-family-v1/vending-u01-r02/runtime/composites/vending-u01-r02.frame-c.png",
         "runtimeCompositeSha256": "fa468ebfe88cd5e60a18aba61f470070d6433c1c77e5ab34c86b9f3280e9baf3"
       },
       {
         "id": "d",
-        "viewportPartId": "vending.machine.modern.u01.viewport-d",
+        "viewportPartId": "vending.machine.modern.u01-r02.viewport-d",
         "effectPartIds": [],
         "durationMs": 500,
-        "authoringCompositeFile": "assets/game/processed/office-facility-family-v1/vending-u01/authoring/composites/vending-u01.frame-d.png",
+        "authoringCompositeFile": "assets/game/processed/office-facility-family-v1/vending-u01-r02/authoring/composites/vending-u01-r02.frame-d.png",
         "authoringCompositeSha256": "fb1c7b2a3d1d45e8c8e943be0adb3960c9e0c8115ec476fcbfc4ab110dce29ca",
-        "runtimeCompositeFile": "assets/game/processed/office-facility-family-v1/vending-u01/runtime/composites/vending-u01.frame-d.png",
+        "runtimeCompositeFile": "assets/game/processed/office-facility-family-v1/vending-u01-r02/runtime/composites/vending-u01-r02.frame-d.png",
         "runtimeCompositeSha256": "8effee6d87d2b9df6a3c7d8bc65448cdc16fed0612dfd43933f493b0c73c5850"
       }
     ]
   },
   "outputHandoff": {
-    "pickupTrayPartId": "vending.machine.modern.u01.pickup-tray-empty",
-    "heldAssetPartId": "vending.machine.modern.u01.held-soda-can",
+    "pickupTrayPartId": "vending.machine.modern.u01-r02.pickup-tray-empty",
+    "heldAssetPartId": "vending.machine.modern.u01-r02.held-soda-can",
+    "heldAssetId": "held.soda-can",
+    "heldAssetManifest": "assets/game/manifests/office-held-props-h01.json",
+    "heldAssetManifestSha256": "2e82c73986b2a3b4ab10d44cc1d43185e6742b9eaf6ea9efc5f3950b94d266bc",
+    "heldAssetRuntimeSha256": "4a9556d54f798875ddce940e17bbf6666a15e6f575b28957fb722bc5df32b569",
     "effectPartIds": [
-      "vending.machine.modern.u01.effect-dispense"
+      "vending.machine.modern.u01-r02.effect-dispense"
     ],
     "productEmbeddedInShell": false,
     "productEmbeddedInViewportFrames": false,
-    "transition": "pickup-tray-to-held-prop-layer",
+    "transition": "facility-output-socket-to-actor-hand-socket",
     "heldVisiblePoseFrames": [
       2,
       3,
       4
+    ],
+    "facilityOutputSocketId": "output.primary",
+    "actorGripSocketId": "hand.primary.grip",
+    "propGripSocketId": "grip.primary",
+    "runtimeScale": 1,
+    "handForegroundMaskRequired": true,
+    "attachmentDeltaFailures": 0,
+    "timeline": [
+      {
+        "poseFrame": 0,
+        "attachmentParent": null
+      },
+      {
+        "poseFrame": 1,
+        "attachmentParent": null
+      },
+      {
+        "poseFrame": 2,
+        "attachmentParent": "facility.output.primary"
+      },
+      {
+        "poseFrame": 3,
+        "attachmentParent": "actor.hand.primary.grip"
+      },
+      {
+        "poseFrame": 4,
+        "attachmentParent": "actor.hand.primary.grip"
+      },
+      {
+        "poseFrame": 5,
+        "attachmentParent": null
+      }
     ]
   },
   "interaction": {
@@ -442,15 +518,32 @@
   "rosterValidation": {
     "visualPose": "interact-front",
     "poseAuthority": {
-      "manifest": "assets/game/manifests/office-facility-interact-front-pose-authority-v1.json",
-      "manifestSha256": "3b15618f53e08d96c3d467ae91ac055e73c4a191dbdf6918db77000d8238e1e8",
-      "status": "frozen-prototype-internal",
+      "manifest": "assets/game/manifests/office-character-action-sockets-i01.json",
+      "manifestSha256": "7ab47c02e1834b546a40fcb4f520058dda3a0e54f4bd766725c9a000a5f8100b",
+      "status": "owner-review-f8-pending",
       "activeOfficeImported": false
+    },
+    "spatialAuthority": {
+      "manifest": "assets/game/manifests/office-spatial-authority-i01.json",
+      "manifestSha256": "a5622fa9e8b7400ef6c7ddf3cfcae841dda9c4e87458f5ad68e8e966bb5a7453",
+      "status": "owner-review-f8-pending",
+      "activeOfficeImported": false
+    },
+    "heldPropAuthority": {
+      "manifest": "assets/game/manifests/office-held-props-h01.json",
+      "manifestSha256": "2e82c73986b2a3b4ab10d44cc1d43185e6742b9eaf6ea9efc5f3950b94d266bc",
+      "assetId": "held.soda-can",
+      "assetSha256": "4a9556d54f798875ddce940e17bbf6666a15e6f575b28957fb722bc5df32b569",
+      "runtimeScale": 1
     },
     "row": 10,
     "activeFrames": 6,
     "characterCount": 18,
     "validatedPoseCases": 108,
+    "visiblePropCases": 54,
+    "facilityOutputAttachmentCases": 18,
+    "actorHandAttachmentCases": 36,
+    "attachmentDeltaFailures": 0,
     "sharedActorPosition": [
       96,
       96
@@ -515,7 +608,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 186,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              25,
+              72
+            ],
+            "secondaryGripSocket": [
+              71,
+              72
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 1,
@@ -531,7 +650,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 186,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              48,
+              101
+            ],
+            "primaryGripSocket": [
+              34,
+              63
+            ],
+            "secondaryGripSocket": [
+              70,
+              71
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 2,
@@ -547,7 +692,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 165,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": false,
+            "attachmentParent": "facility.output.primary",
+            "rootSocket": [
+              48,
+              101
+            ],
+            "primaryGripSocket": [
+              43,
+              64
+            ],
+            "secondaryGripSocket": [
+              70,
+              71
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              89,
+              105
+            ],
+            "parentSocketWorld": [
+              96,
+              118
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/einstein/interact-front-f2.png",
+              "sha256": "ac945b5de0acee47cad6c85df19a555ca1654bc7e2637a232ab97279cd82138a",
+              "pixelCount": 185,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "facility-base",
+              "held-prop",
+              "actor-body"
+            ]
           },
           {
             "frame": 3,
@@ -563,7 +749,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 165,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              42,
+              62
+            ],
+            "secondaryGripSocket": [
+              70,
+              71
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              131,
+              145
+            ],
+            "parentSocketWorld": [
+              138,
+              158
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/einstein/interact-front-f3.png",
+              "sha256": "5a3a96aafd5e13a0b85baca162d157cfbaf15d5e0b0ffde796b92e7480bdd5ce",
+              "pixelCount": 173,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 4,
@@ -579,7 +806,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 175,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              48,
+              101
+            ],
+            "primaryGripSocket": [
+              39,
+              59
+            ],
+            "secondaryGripSocket": [
+              70,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              128,
+              142
+            ],
+            "parentSocketWorld": [
+              135,
+              155
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/einstein/interact-front-f4.png",
+              "sha256": "c402ce621e6571ba91dc2e9243081957f767726da385b700ddd44711460632ee",
+              "pixelCount": 190,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 5,
@@ -595,7 +863,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 175,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              48,
+              101
+            ],
+            "primaryGripSocket": [
+              26,
+              71
+            ],
+            "secondaryGripSocket": [
+              70,
+              71
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           }
         ]
       },
@@ -618,7 +912,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 176,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              47,
+              90
+            ],
+            "primaryGripSocket": [
+              22,
+              63
+            ],
+            "secondaryGripSocket": [
+              74,
+              63
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 1,
@@ -634,7 +954,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 139,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              47,
+              90
+            ],
+            "primaryGripSocket": [
+              39,
+              64
+            ],
+            "secondaryGripSocket": [
+              57,
+              64
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 2,
@@ -650,7 +996,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 137,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": false,
+            "attachmentParent": "facility.output.primary",
+            "rootSocket": [
+              48,
+              90
+            ],
+            "primaryGripSocket": [
+              40,
+              66
+            ],
+            "secondaryGripSocket": [
+              56,
+              66
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              89,
+              105
+            ],
+            "parentSocketWorld": [
+              96,
+              118
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/doraemon/interact-front-f2.png",
+              "sha256": "6f4b898c429734598a4ac7ae3448ceb4ab40da23c492bb5ea13138c1cb3db959",
+              "pixelCount": 226,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "facility-base",
+              "held-prop",
+              "actor-body"
+            ]
           },
           {
             "frame": 3,
@@ -666,7 +1053,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 138,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              46,
+              90
+            ],
+            "primaryGripSocket": [
+              40,
+              66
+            ],
+            "secondaryGripSocket": [
+              56,
+              66
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              129,
+              149
+            ],
+            "parentSocketWorld": [
+              136,
+              162
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/doraemon/interact-front-f3.png",
+              "sha256": "8e13145d3fdece6acd92ac71da350a49858686687cd16598a4c9bcd56d98e38b",
+              "pixelCount": 226,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 4,
@@ -682,7 +1110,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 139,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              48,
+              90
+            ],
+            "primaryGripSocket": [
+              40,
+              62
+            ],
+            "secondaryGripSocket": [
+              56,
+              62
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              129,
+              145
+            ],
+            "parentSocketWorld": [
+              136,
+              158
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/doraemon/interact-front-f4.png",
+              "sha256": "bf91193a8dedbdb662e29b5dcae5ace882ba96f5135bd194d2d06cfe1eb1b9b9",
+              "pixelCount": 226,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 5,
@@ -698,7 +1167,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 184,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              47,
+              90
+            ],
+            "primaryGripSocket": [
+              22,
+              63
+            ],
+            "secondaryGripSocket": [
+              74,
+              63
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           }
         ]
       },
@@ -721,7 +1216,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 70,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              25,
+              72
+            ],
+            "secondaryGripSocket": [
+              71,
+              72
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 1,
@@ -737,7 +1258,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 70,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              29,
+              62
+            ],
+            "secondaryGripSocket": [
+              70,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 2,
@@ -753,7 +1300,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 72,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": false,
+            "attachmentParent": "facility.output.primary",
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              39,
+              63
+            ],
+            "secondaryGripSocket": [
+              70,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              89,
+              105
+            ],
+            "parentSocketWorld": [
+              96,
+              118
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/anna/interact-front-f2.png",
+              "sha256": "f33132491eb4c21864ceb8d6bc0fe7d38bffa7ad519cc44b4389e08ace830f17",
+              "pixelCount": 145,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "facility-base",
+              "held-prop",
+              "actor-body"
+            ]
           },
           {
             "frame": 3,
@@ -769,7 +1357,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 73,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              40,
+              63
+            ],
+            "secondaryGripSocket": [
+              70,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              129,
+              146
+            ],
+            "parentSocketWorld": [
+              136,
+              159
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/anna/interact-front-f3.png",
+              "sha256": "9e407e9d91cb34845a786d6805fb49561e9c68e37170d47fc03c6d95ebbdd893",
+              "pixelCount": 148,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 4,
@@ -785,7 +1414,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 70,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              43,
+              57
+            ],
+            "secondaryGripSocket": [
+              70,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              132,
+              140
+            ],
+            "parentSocketWorld": [
+              139,
+              153
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/anna/interact-front-f4.png",
+              "sha256": "fea3b221e71ed8508756f423ef9b774cfd01a70ff627377d437b7c1989a8003a",
+              "pixelCount": 148,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 5,
@@ -801,7 +1471,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 74,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              25,
+              72
+            ],
+            "secondaryGripSocket": [
+              71,
+              72
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           }
         ]
       },
@@ -824,7 +1520,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 167,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              20,
+              67
+            ],
+            "secondaryGripSocket": [
+              76,
+              67
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 1,
@@ -840,7 +1562,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 143,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              48,
+              101
+            ],
+            "primaryGripSocket": [
+              21,
+              64
+            ],
+            "secondaryGripSocket": [
+              75,
+              67
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 2,
@@ -856,7 +1604,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 171,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": false,
+            "attachmentParent": "facility.output.primary",
+            "rootSocket": [
+              48,
+              101
+            ],
+            "primaryGripSocket": [
+              39,
+              67
+            ],
+            "secondaryGripSocket": [
+              57,
+              67
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              89,
+              105
+            ],
+            "parentSocketWorld": [
+              96,
+              118
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/ai-workbot/interact-front-f2.png",
+              "sha256": "01fb2eb80444976004ce918951c7ea7cb19897db6f3e85d1c70bdcd8229f9fe8",
+              "pixelCount": 226,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "facility-base",
+              "held-prop",
+              "actor-body"
+            ]
           },
           {
             "frame": 3,
@@ -872,7 +1661,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 181,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              39,
+              67
+            ],
+            "secondaryGripSocket": [
+              57,
+              67
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              128,
+              150
+            ],
+            "parentSocketWorld": [
+              135,
+              163
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/ai-workbot/interact-front-f3.png",
+              "sha256": "408c8acf99948cfc207e06a073cc273967c917ee70fcfd469474fbb4aaae9d29",
+              "pixelCount": 226,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 4,
@@ -888,7 +1718,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 168,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              48,
+              101
+            ],
+            "primaryGripSocket": [
+              40,
+              62
+            ],
+            "secondaryGripSocket": [
+              56,
+              62
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              129,
+              145
+            ],
+            "parentSocketWorld": [
+              136,
+              158
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/ai-workbot/interact-front-f4.png",
+              "sha256": "85c85f76e140542e0bd8d3da849a9e37b2bd6b1f393d3e98834c66c034368101",
+              "pixelCount": 226,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 5,
@@ -904,7 +1775,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 168,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              48,
+              101
+            ],
+            "primaryGripSocket": [
+              20,
+              67
+            ],
+            "secondaryGripSocket": [
+              76,
+              67
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           }
         ]
       },
@@ -927,7 +1824,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 321,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              46,
+              101
+            ],
+            "primaryGripSocket": [
+              25,
+              70
+            ],
+            "secondaryGripSocket": [
+              71,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 1,
@@ -943,7 +1866,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 318,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              46,
+              101
+            ],
+            "primaryGripSocket": [
+              29,
+              61
+            ],
+            "secondaryGripSocket": [
+              70,
+              69
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 2,
@@ -959,7 +1908,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 317,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": false,
+            "attachmentParent": "facility.output.primary",
+            "rootSocket": [
+              46,
+              101
+            ],
+            "primaryGripSocket": [
+              33,
+              63
+            ],
+            "secondaryGripSocket": [
+              70,
+              69
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              89,
+              105
+            ],
+            "parentSocketWorld": [
+              96,
+              118
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/asuka-2/interact-front-f2.png",
+              "sha256": "c53ce583d59e8d9b15ced282b2328e3737cf843013c26e19de81a21f8bb891b9",
+              "pixelCount": 190,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "facility-base",
+              "held-prop",
+              "actor-body"
+            ]
           },
           {
             "frame": 3,
@@ -975,7 +1965,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 316,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              46,
+              101
+            ],
+            "primaryGripSocket": [
+              35,
+              63
+            ],
+            "secondaryGripSocket": [
+              70,
+              69
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              124,
+              146
+            ],
+            "parentSocketWorld": [
+              131,
+              159
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/asuka-2/interact-front-f3.png",
+              "sha256": "50dfab3eef014dcf630e738242c4dab215ff7ae35379e28d13fe55bec14fb59a",
+              "pixelCount": 189,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 4,
@@ -991,7 +2022,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 325,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              46,
+              101
+            ],
+            "primaryGripSocket": [
+              42,
+              57
+            ],
+            "secondaryGripSocket": [
+              70,
+              69
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              131,
+              140
+            ],
+            "parentSocketWorld": [
+              138,
+              153
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/asuka-2/interact-front-f4.png",
+              "sha256": "7bf2732e873b060b8278575445b5668a0a772fd6286a323e504b3ee7d3a10f81",
+              "pixelCount": 190,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 5,
@@ -1007,7 +2079,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 321,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              46,
+              101
+            ],
+            "primaryGripSocket": [
+              25,
+              70
+            ],
+            "secondaryGripSocket": [
+              71,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           }
         ]
       },
@@ -1030,7 +2128,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 29,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              25,
+              72
+            ],
+            "secondaryGripSocket": [
+              71,
+              72
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 1,
@@ -1046,7 +2170,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 32,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              29,
+              64
+            ],
+            "secondaryGripSocket": [
+              70,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 2,
@@ -1062,7 +2212,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 27,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": false,
+            "attachmentParent": "facility.output.primary",
+            "rootSocket": [
+              48,
+              101
+            ],
+            "primaryGripSocket": [
+              33,
+              66
+            ],
+            "secondaryGripSocket": [
+              70,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              89,
+              105
+            ],
+            "parentSocketWorld": [
+              96,
+              118
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/jesus/interact-front-f2.png",
+              "sha256": "dd824802d0c389e7c7e34877b53a1140883c5fdc1f65a46586f7ff09cd387953",
+              "pixelCount": 156,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "facility-base",
+              "held-prop",
+              "actor-body"
+            ]
           },
           {
             "frame": 3,
@@ -1078,7 +2269,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 20,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              48,
+              101
+            ],
+            "primaryGripSocket": [
+              35,
+              66
+            ],
+            "secondaryGripSocket": [
+              70,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              124,
+              149
+            ],
+            "parentSocketWorld": [
+              131,
+              162
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/jesus/interact-front-f3.png",
+              "sha256": "9af526b588e5405535015628bf020ed804b23d07c89ea13120e492ba0438f12b",
+              "pixelCount": 175,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 4,
@@ -1094,7 +2326,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 3,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              50,
+              101
+            ],
+            "primaryGripSocket": [
+              42,
+              59
+            ],
+            "secondaryGripSocket": [
+              70,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              131,
+              142
+            ],
+            "parentSocketWorld": [
+              138,
+              155
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/jesus/interact-front-f4.png",
+              "sha256": "b4daafdfd6dcdf165fe5f43bfb409d9cb5ff148b5bf7c97dbcd24fa56e28aefc",
+              "pixelCount": 202,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 5,
@@ -1110,7 +2383,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 32,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              25,
+              72
+            ],
+            "secondaryGripSocket": [
+              71,
+              72
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           }
         ]
       },
@@ -1133,7 +2432,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 219,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              48,
+              101
+            ],
+            "primaryGripSocket": [
+              25,
+              71
+            ],
+            "secondaryGripSocket": [
+              71,
+              71
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 1,
@@ -1149,7 +2474,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 205,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              48,
+              101
+            ],
+            "primaryGripSocket": [
+              24,
+              63
+            ],
+            "secondaryGripSocket": [
+              72,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 2,
@@ -1165,7 +2516,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 210,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": false,
+            "attachmentParent": "facility.output.primary",
+            "rootSocket": [
+              48,
+              101
+            ],
+            "primaryGripSocket": [
+              25,
+              64
+            ],
+            "secondaryGripSocket": [
+              72,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              89,
+              105
+            ],
+            "parentSocketWorld": [
+              96,
+              118
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/miku/interact-front-f2.png",
+              "sha256": "6c0854e7e940d6395bb6515fe3fcf5e56852b6e84fd78426874334ea7edf94d5",
+              "pixelCount": 170,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "facility-base",
+              "held-prop",
+              "actor-body"
+            ]
           },
           {
             "frame": 3,
@@ -1181,7 +2573,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 209,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              48,
+              101
+            ],
+            "primaryGripSocket": [
+              28,
+              64
+            ],
+            "secondaryGripSocket": [
+              72,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              117,
+              147
+            ],
+            "parentSocketWorld": [
+              124,
+              160
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/miku/interact-front-f3.png",
+              "sha256": "f9f8a20b26e8f92d084dc3e3f1d98cf23db58395a5a4c4f3b80b0b989d668970",
+              "pixelCount": 154,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 4,
@@ -1197,7 +2630,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 214,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              48,
+              101
+            ],
+            "primaryGripSocket": [
+              40,
+              56
+            ],
+            "secondaryGripSocket": [
+              72,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              129,
+              139
+            ],
+            "parentSocketWorld": [
+              136,
+              152
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/miku/interact-front-f4.png",
+              "sha256": "754f81dbd51f07a18299866581dd1edf1fc461b28d1fb3b214571e378e9a2f21",
+              "pixelCount": 219,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 5,
@@ -1213,7 +2687,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 213,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              48,
+              101
+            ],
+            "primaryGripSocket": [
+              25,
+              71
+            ],
+            "secondaryGripSocket": [
+              71,
+              71
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           }
         ]
       },
@@ -1236,7 +2736,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 37,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              48,
+              101
+            ],
+            "primaryGripSocket": [
+              25,
+              70
+            ],
+            "secondaryGripSocket": [
+              71,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 1,
@@ -1252,7 +2778,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 78,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              46,
+              101
+            ],
+            "primaryGripSocket": [
+              69,
+              61
+            ],
+            "secondaryGripSocket": [
+              28,
+              68
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 2,
@@ -1268,7 +2820,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 78,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": false,
+            "attachmentParent": "facility.output.primary",
+            "rootSocket": [
+              46,
+              101
+            ],
+            "primaryGripSocket": [
+              69,
+              61
+            ],
+            "secondaryGripSocket": [
+              28,
+              68
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              89,
+              105
+            ],
+            "parentSocketWorld": [
+              96,
+              118
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/rem-xl/interact-front-f2.png",
+              "sha256": "511da25b1131b6d4f2b44477f30eb70869a03410eee174e2870586edf8b0f247",
+              "pixelCount": 94,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "facility-base",
+              "held-prop",
+              "actor-body"
+            ]
           },
           {
             "frame": 3,
@@ -1284,7 +2877,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 59,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              29,
+              68
+            ],
+            "secondaryGripSocket": [
+              69,
+              62
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              118,
+              151
+            ],
+            "parentSocketWorld": [
+              125,
+              164
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/rem-xl/interact-front-f3.png",
+              "sha256": "88effa5e914b335bf36052a9c25265340d03667984934d26943a3a86c391ee8d",
+              "pixelCount": 61,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 4,
@@ -1300,7 +2934,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 62,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              29,
+              65
+            ],
+            "secondaryGripSocket": [
+              61,
+              64
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              118,
+              148
+            ],
+            "parentSocketWorld": [
+              125,
+              161
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/rem-xl/interact-front-f4.png",
+              "sha256": "843a404221e3203807400e97a1942cee0aaca38650ffe4dc00ebdf2871960c2b",
+              "pixelCount": 151,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 5,
@@ -1316,7 +2991,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 60,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              25,
+              70
+            ],
+            "secondaryGripSocket": [
+              64,
+              74
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           }
         ]
       },
@@ -1339,7 +3040,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 25,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              44,
+              101
+            ],
+            "primaryGripSocket": [
+              25,
+              70
+            ],
+            "secondaryGripSocket": [
+              71,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 1,
@@ -1355,7 +3082,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 88,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              42,
+              101
+            ],
+            "primaryGripSocket": [
+              69,
+              63
+            ],
+            "secondaryGripSocket": [
+              27,
+              69
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 2,
@@ -1371,7 +3124,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 26,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": false,
+            "attachmentParent": "facility.output.primary",
+            "rootSocket": [
+              44,
+              101
+            ],
+            "primaryGripSocket": [
+              68,
+              64
+            ],
+            "secondaryGripSocket": [
+              27,
+              69
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              89,
+              105
+            ],
+            "parentSocketWorld": [
+              96,
+              118
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/ruri/interact-front-f2.png",
+              "sha256": "9443019934051b53d715646822c0a1e2b66a93db2ccd50c783472d1457ee8481",
+              "pixelCount": 153,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "facility-base",
+              "held-prop",
+              "actor-body"
+            ]
           },
           {
             "frame": 3,
@@ -1387,7 +3181,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 24,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              44,
+              101
+            ],
+            "primaryGripSocket": [
+              67,
+              68
+            ],
+            "secondaryGripSocket": [
+              28,
+              69
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              156,
+              151
+            ],
+            "parentSocketWorld": [
+              163,
+              164
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/ruri/interact-front-f3.png",
+              "sha256": "5d8cf47b0cb1db03cde2ee896aff8dbce223b367af9df759727cf15d205bcad6",
+              "pixelCount": 162,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 4,
@@ -1403,7 +3238,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 28,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              44,
+              101
+            ],
+            "primaryGripSocket": [
+              68,
+              61
+            ],
+            "secondaryGripSocket": [
+              29,
+              69
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              157,
+              144
+            ],
+            "parentSocketWorld": [
+              164,
+              157
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/ruri/interact-front-f4.png",
+              "sha256": "fc120baeb7ecf9ac2457eb88d67a75e66c5a1264502c2f67b06d1e5ff0067a11",
+              "pixelCount": 121,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 5,
@@ -1419,7 +3295,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 33,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              44,
+              101
+            ],
+            "primaryGripSocket": [
+              25,
+              70
+            ],
+            "secondaryGripSocket": [
+              71,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           }
         ]
       },
@@ -1442,7 +3344,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 21,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              25,
+              70
+            ],
+            "secondaryGripSocket": [
+              71,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 1,
@@ -1458,7 +3386,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 43,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              46,
+              101
+            ],
+            "primaryGripSocket": [
+              28,
+              65
+            ],
+            "secondaryGripSocket": [
+              70,
+              69
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 2,
@@ -1474,7 +3428,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 43,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": false,
+            "attachmentParent": "facility.output.primary",
+            "rootSocket": [
+              46,
+              101
+            ],
+            "primaryGripSocket": [
+              29,
+              66
+            ],
+            "secondaryGripSocket": [
+              70,
+              69
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              89,
+              105
+            ],
+            "parentSocketWorld": [
+              96,
+              118
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/itachi/interact-front-f2.png",
+              "sha256": "35bcb44089fc5726e7f504d320690cae66c57c8cd39e21928c9d80b5c35eeba7",
+              "pixelCount": 209,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "facility-base",
+              "held-prop",
+              "actor-body"
+            ]
           },
           {
             "frame": 3,
@@ -1490,7 +3485,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 40,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              31,
+              72
+            ],
+            "secondaryGripSocket": [
+              70,
+              69
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              120,
+              155
+            ],
+            "parentSocketWorld": [
+              127,
+              168
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/itachi/interact-front-f3.png",
+              "sha256": "5eff5ab713ab9d9a653dd69c516ae830a46a6b0f25dc0e0075f5bdad37913323",
+              "pixelCount": 215,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 4,
@@ -1506,7 +3542,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 64,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              46,
+              101
+            ],
+            "primaryGripSocket": [
+              38,
+              54
+            ],
+            "secondaryGripSocket": [
+              70,
+              69
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              127,
+              137
+            ],
+            "parentSocketWorld": [
+              134,
+              150
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/itachi/interact-front-f4.png",
+              "sha256": "c42b5848ec0d0e07b789a068b642a134c5812730cd9a61b031492f147cbb78ac",
+              "pixelCount": 209,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 5,
@@ -1522,7 +3599,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 43,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              25,
+              70
+            ],
+            "secondaryGripSocket": [
+              71,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           }
         ]
       },
@@ -1545,7 +3648,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 205,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              25,
+              70
+            ],
+            "secondaryGripSocket": [
+              71,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 1,
@@ -1561,7 +3690,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 201,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              30,
+              62
+            ],
+            "secondaryGripSocket": [
+              66,
+              65
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 2,
@@ -1577,7 +3732,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 208,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": false,
+            "attachmentParent": "facility.output.primary",
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              34,
+              62
+            ],
+            "secondaryGripSocket": [
+              61,
+              62
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              89,
+              105
+            ],
+            "parentSocketWorld": [
+              96,
+              118
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/lian-3/interact-front-f2.png",
+              "sha256": "e4b0249e2719769d86fef7b203a1963be8b5ab10c6d080e2b9ba70dd33b3a536",
+              "pixelCount": 226,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "facility-base",
+              "held-prop",
+              "actor-body"
+            ]
           },
           {
             "frame": 3,
@@ -1593,7 +3789,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 203,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              35,
+              62
+            ],
+            "secondaryGripSocket": [
+              61,
+              62
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              124,
+              145
+            ],
+            "parentSocketWorld": [
+              131,
+              158
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/lian-3/interact-front-f3.png",
+              "sha256": "af5ae625e393e2300d554e11c1fa6069cf113f576ec4d45a9ba8208cfd1c4b1f",
+              "pixelCount": 221,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 4,
@@ -1609,7 +3846,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 202,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              39,
+              57
+            ],
+            "secondaryGripSocket": [
+              58,
+              57
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              128,
+              140
+            ],
+            "parentSocketWorld": [
+              135,
+              153
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/lian-3/interact-front-f4.png",
+              "sha256": "d2c808d942804b702d935ebf8d6725e83405d7c51013b608986c06a28b2b9f3a",
+              "pixelCount": 226,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 5,
@@ -1625,7 +3903,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 195,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              25,
+              70
+            ],
+            "secondaryGripSocket": [
+              71,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           }
         ]
       },
@@ -1648,7 +3952,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 60,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              25,
+              70
+            ],
+            "secondaryGripSocket": [
+              71,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 1,
@@ -1664,7 +3994,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 35,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              48,
+              101
+            ],
+            "primaryGripSocket": [
+              27,
+              62
+            ],
+            "secondaryGripSocket": [
+              70,
+              69
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 2,
@@ -1680,7 +4036,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 73,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": false,
+            "attachmentParent": "facility.output.primary",
+            "rootSocket": [
+              46,
+              101
+            ],
+            "primaryGripSocket": [
+              28,
+              63
+            ],
+            "secondaryGripSocket": [
+              70,
+              68
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              89,
+              105
+            ],
+            "parentSocketWorld": [
+              96,
+              118
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/taffy-2/interact-front-f2.png",
+              "sha256": "1e7390a3ec9f3cb29972c52d3feeeebc84a5ecb3a7e8fcce18547410192e847e",
+              "pixelCount": 225,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "facility-base",
+              "held-prop",
+              "actor-body"
+            ]
           },
           {
             "frame": 3,
@@ -1696,7 +4093,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 55,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              25,
+              64
+            ],
+            "secondaryGripSocket": [
+              70,
+              64
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              114,
+              147
+            ],
+            "parentSocketWorld": [
+              121,
+              160
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/taffy-2/interact-front-f3.png",
+              "sha256": "f5789adb6f8db95b2da3a3c678f71c235b171ad8205d05fd07d90e14a4907f44",
+              "pixelCount": 225,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 4,
@@ -1712,7 +4150,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 43,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              48,
+              101
+            ],
+            "primaryGripSocket": [
+              39,
+              57
+            ],
+            "secondaryGripSocket": [
+              67,
+              68
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              128,
+              140
+            ],
+            "parentSocketWorld": [
+              135,
+              153
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/taffy-2/interact-front-f4.png",
+              "sha256": "f91da55dc315432366852043125962e573ce75ceb17acb19ade639720e19ea89",
+              "pixelCount": 208,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 5,
@@ -1728,7 +4207,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 60,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              25,
+              70
+            ],
+            "secondaryGripSocket": [
+              71,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           }
         ]
       },
@@ -1751,7 +4256,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 0,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              51,
+              101
+            ],
+            "primaryGripSocket": [
+              25,
+              70
+            ],
+            "secondaryGripSocket": [
+              71,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 1,
@@ -1767,7 +4298,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 0,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              48,
+              101
+            ],
+            "primaryGripSocket": [
+              69,
+              62
+            ],
+            "secondaryGripSocket": [
+              29,
+              68
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 2,
@@ -1783,7 +4340,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 0,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": false,
+            "attachmentParent": "facility.output.primary",
+            "rootSocket": [
+              46,
+              101
+            ],
+            "primaryGripSocket": [
+              69,
+              62
+            ],
+            "secondaryGripSocket": [
+              29,
+              68
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              89,
+              105
+            ],
+            "parentSocketWorld": [
+              96,
+              118
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/yinyue-2/interact-front-f2.png",
+              "sha256": "8a90a41934bfb00346b2641f24ed0c13eaea88b3bd8196f376fdeee1884ae278",
+              "pixelCount": 203,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "facility-base",
+              "held-prop",
+              "actor-body"
+            ]
           },
           {
             "frame": 3,
@@ -1799,7 +4397,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 0,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              51,
+              101
+            ],
+            "primaryGripSocket": [
+              32,
+              59
+            ],
+            "secondaryGripSocket": [
+              69,
+              66
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              121,
+              142
+            ],
+            "parentSocketWorld": [
+              128,
+              155
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/yinyue-2/interact-front-f3.png",
+              "sha256": "4f970bc0a655589f2ae66ab1439d33d27ff167e5b856b51126dfc0c9a4997d07",
+              "pixelCount": 209,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 4,
@@ -1815,7 +4454,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 1,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              50,
+              101
+            ],
+            "primaryGripSocket": [
+              38,
+              55
+            ],
+            "secondaryGripSocket": [
+              69,
+              67
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              127,
+              138
+            ],
+            "parentSocketWorld": [
+              134,
+              151
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/yinyue-2/interact-front-f4.png",
+              "sha256": "5fdabec6adb019395be5d405db47668969e954d300305568bf87d9954577a8f7",
+              "pixelCount": 212,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 5,
@@ -1831,7 +4511,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 0,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              50,
+              101
+            ],
+            "primaryGripSocket": [
+              25,
+              70
+            ],
+            "secondaryGripSocket": [
+              71,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           }
         ]
       },
@@ -1854,7 +4560,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 54,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              25,
+              70
+            ],
+            "secondaryGripSocket": [
+              71,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 1,
@@ -1870,7 +4602,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 155,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              41,
+              101
+            ],
+            "primaryGripSocket": [
+              70,
+              61
+            ],
+            "secondaryGripSocket": [
+              28,
+              68
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 2,
@@ -1886,7 +4644,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 220,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": false,
+            "attachmentParent": "facility.output.primary",
+            "rootSocket": [
+              38,
+              101
+            ],
+            "primaryGripSocket": [
+              70,
+              55
+            ],
+            "secondaryGripSocket": [
+              28,
+              68
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              89,
+              105
+            ],
+            "parentSocketWorld": [
+              96,
+              118
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/noir-webling/interact-front-f2.png",
+              "sha256": "bbd8a55ba390bc5158e4c6628e3f5a7c1fbc7d1b86ace00aab365f23b035bb23",
+              "pixelCount": 192,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "facility-base",
+              "held-prop",
+              "actor-body"
+            ]
           },
           {
             "frame": 3,
@@ -1902,7 +4701,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 49,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              48,
+              101
+            ],
+            "primaryGripSocket": [
+              29,
+              63
+            ],
+            "secondaryGripSocket": [
+              69,
+              66
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              118,
+              146
+            ],
+            "parentSocketWorld": [
+              125,
+              159
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/noir-webling/interact-front-f3.png",
+              "sha256": "2d5c51e39135b01bf2805f2cdc4a874c78a1d62f7c37e8ac702e0d618083155e",
+              "pixelCount": 183,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 4,
@@ -1918,7 +4758,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 51,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              37,
+              58
+            ],
+            "secondaryGripSocket": [
+              69,
+              67
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              126,
+              141
+            ],
+            "parentSocketWorld": [
+              133,
+              154
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/noir-webling/interact-front-f4.png",
+              "sha256": "22e4258b5e7aa364d245854e4bddf23db533d4a1f9c9fb9ca0ed6882a96b6e42",
+              "pixelCount": 188,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 5,
@@ -1934,7 +4815,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 49,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              48,
+              101
+            ],
+            "primaryGripSocket": [
+              25,
+              70
+            ],
+            "secondaryGripSocket": [
+              71,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           }
         ]
       },
@@ -1957,7 +4864,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 161,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              50,
+              101
+            ],
+            "primaryGripSocket": [
+              25,
+              70
+            ],
+            "secondaryGripSocket": [
+              71,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 1,
@@ -1973,7 +4906,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 163,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              50,
+              101
+            ],
+            "primaryGripSocket": [
+              69,
+              62
+            ],
+            "secondaryGripSocket": [
+              29,
+              68
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 2,
@@ -1989,7 +4948,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 150,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": false,
+            "attachmentParent": "facility.output.primary",
+            "rootSocket": [
+              50,
+              101
+            ],
+            "primaryGripSocket": [
+              70,
+              60
+            ],
+            "secondaryGripSocket": [
+              29,
+              68
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              89,
+              105
+            ],
+            "parentSocketWorld": [
+              96,
+              118
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/baobao-2/interact-front-f2.png",
+              "sha256": "be8c0365223d40e3017a6a4e78e0faa3213eb53313da86cff15dc8d4e124ac0d",
+              "pixelCount": 126,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "facility-base",
+              "held-prop",
+              "actor-body"
+            ]
           },
           {
             "frame": 3,
@@ -2005,7 +5005,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 167,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              50,
+              101
+            ],
+            "primaryGripSocket": [
+              30,
+              63
+            ],
+            "secondaryGripSocket": [
+              68,
+              66
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              119,
+              146
+            ],
+            "parentSocketWorld": [
+              126,
+              159
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/baobao-2/interact-front-f3.png",
+              "sha256": "3b8b4b038bb61428c054ab1958a2808d4e6adb4daec09ac99dca86cc00f040da",
+              "pixelCount": 130,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 4,
@@ -2021,7 +5062,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 156,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              50,
+              101
+            ],
+            "primaryGripSocket": [
+              39,
+              57
+            ],
+            "secondaryGripSocket": [
+              67,
+              68
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              128,
+              140
+            ],
+            "parentSocketWorld": [
+              135,
+              153
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/baobao-2/interact-front-f4.png",
+              "sha256": "d72f9ed13a5e1c8080cfffdbe72efb840a3ac9498ed0dbf77881f39401dec3c5",
+              "pixelCount": 203,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 5,
@@ -2037,7 +5119,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 161,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              50,
+              101
+            ],
+            "primaryGripSocket": [
+              25,
+              70
+            ],
+            "secondaryGripSocket": [
+              71,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           }
         ]
       },
@@ -2060,7 +5168,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 29,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              25,
+              70
+            ],
+            "secondaryGripSocket": [
+              71,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 1,
@@ -2076,7 +5210,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 85,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              44,
+              101
+            ],
+            "primaryGripSocket": [
+              69,
+              61
+            ],
+            "secondaryGripSocket": [
+              28,
+              68
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 2,
@@ -2092,7 +5252,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 0,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": false,
+            "attachmentParent": "facility.output.primary",
+            "rootSocket": [
+              52,
+              101
+            ],
+            "primaryGripSocket": [
+              28,
+              59
+            ],
+            "secondaryGripSocket": [
+              69,
+              66
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              89,
+              105
+            ],
+            "parentSocketWorld": [
+              96,
+              118
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/gugugaga/interact-front-f2.png",
+              "sha256": "d045c31adcc7f5dd041c28b1873bd78ebcd8d4d9436796b1150e5d8c037f7d32",
+              "pixelCount": 215,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "facility-base",
+              "held-prop",
+              "actor-body"
+            ]
           },
           {
             "frame": 3,
@@ -2108,7 +5309,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 25,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              68,
+              62
+            ],
+            "secondaryGripSocket": [
+              28,
+              66
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              157,
+              145
+            ],
+            "parentSocketWorld": [
+              164,
+              158
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/gugugaga/interact-front-f3.png",
+              "sha256": "a639406a829e156fceb09dd39034887d1c3a103622580caead4354871f0e6bc8",
+              "pixelCount": 143,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 4,
@@ -2124,7 +5366,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 27,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              38,
+              61
+            ],
+            "secondaryGripSocket": [
+              59,
+              61
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              127,
+              144
+            ],
+            "parentSocketWorld": [
+              134,
+              157
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/gugugaga/interact-front-f4.png",
+              "sha256": "3356ec93694c24d103e28e178bab294ac1763cd8af58e30c6776f047b321b38a",
+              "pixelCount": 224,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 5,
@@ -2140,7 +5423,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 25,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              48,
+              101
+            ],
+            "primaryGripSocket": [
+              25,
+              70
+            ],
+            "secondaryGripSocket": [
+              71,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           }
         ]
       },
@@ -2163,7 +5472,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 117,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              42,
+              101
+            ],
+            "primaryGripSocket": [
+              25,
+              70
+            ],
+            "secondaryGripSocket": [
+              71,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 1,
@@ -2179,7 +5514,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 206,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              38,
+              101
+            ],
+            "primaryGripSocket": [
+              69,
+              61
+            ],
+            "secondaryGripSocket": [
+              28,
+              68
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 2,
@@ -2195,7 +5556,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 0,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": false,
+            "attachmentParent": "facility.output.primary",
+            "rootSocket": [
+              52,
+              101
+            ],
+            "primaryGripSocket": [
+              27,
+              63
+            ],
+            "secondaryGripSocket": [
+              69,
+              67
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              89,
+              105
+            ],
+            "parentSocketWorld": [
+              96,
+              118
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/nai-long/interact-front-f2.png",
+              "sha256": "f558f8117041e5993ea2458fd244156dd3e5d0a0d8f62eab67f338887eb7e67d",
+              "pixelCount": 202,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "facility-base",
+              "held-prop",
+              "actor-body"
+            ]
           },
           {
             "frame": 3,
@@ -2211,7 +5613,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 91,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              44,
+              101
+            ],
+            "primaryGripSocket": [
+              69,
+              62
+            ],
+            "secondaryGripSocket": [
+              28,
+              67
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              158,
+              145
+            ],
+            "parentSocketWorld": [
+              165,
+              158
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/nai-long/interact-front-f3.png",
+              "sha256": "17f16a5d54a1c33181cc9b87b816186ca4661f35e723ed8c5f427509385db54f",
+              "pixelCount": 177,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 4,
@@ -2227,7 +5670,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 115,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              42,
+              101
+            ],
+            "primaryGripSocket": [
+              38,
+              62
+            ],
+            "secondaryGripSocket": [
+              59,
+              62
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              127,
+              145
+            ],
+            "parentSocketWorld": [
+              134,
+              158
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/nai-long/interact-front-f4.png",
+              "sha256": "dd1405fdd1576f3b1cdfee8dbf6fe092e3ed6efa47a095b8d060d0ab8d0374b5",
+              "pixelCount": 226,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 5,
@@ -2243,7 +5727,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 116,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              42,
+              101
+            ],
+            "primaryGripSocket": [
+              25,
+              70
+            ],
+            "secondaryGripSocket": [
+              71,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           }
         ]
       },
@@ -2266,7 +5776,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 48,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              25,
+              70
+            ],
+            "secondaryGripSocket": [
+              71,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 1,
@@ -2282,7 +5818,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 188,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              40,
+              101
+            ],
+            "primaryGripSocket": [
+              70,
+              59
+            ],
+            "secondaryGripSocket": [
+              27,
+              68
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           },
           {
             "frame": 2,
@@ -2298,7 +5860,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 152,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": false,
+            "attachmentParent": "facility.output.primary",
+            "rootSocket": [
+              41,
+              101
+            ],
+            "primaryGripSocket": [
+              71,
+              57
+            ],
+            "secondaryGripSocket": [
+              27,
+              68
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              89,
+              105
+            ],
+            "parentSocketWorld": [
+              96,
+              118
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/qq-penguin/interact-front-f2.png",
+              "sha256": "d2683f51edc78745ea4fd39b24ca889dcf4ad751b57754780629d23d4b02dafc",
+              "pixelCount": 221,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "facility-base",
+              "held-prop",
+              "actor-body"
+            ]
           },
           {
             "frame": 3,
@@ -2314,7 +5917,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 67,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              46,
+              101
+            ],
+            "primaryGripSocket": [
+              27,
+              62
+            ],
+            "secondaryGripSocket": [
+              69,
+              68
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              116,
+              145
+            ],
+            "parentSocketWorld": [
+              123,
+              158
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/qq-penguin/interact-front-f3.png",
+              "sha256": "c2da52b0d1bcddeb8c326fb16f82c8bdbe234fb7c4e3d6da1e4afbe495cc94f9",
+              "pixelCount": 226,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 4,
@@ -2330,7 +5974,48 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 46,
-            "heldAssetVisible": true
+            "heldAssetVisible": true,
+            "heldByActor": true,
+            "attachmentParent": "actor.hand.primary.grip",
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              37,
+              63
+            ],
+            "secondaryGripSocket": [
+              68,
+              68
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": [
+              126,
+              146
+            ],
+            "parentSocketWorld": [
+              133,
+              159
+            ],
+            "attachmentDelta": [
+              0,
+              0
+            ],
+            "foregroundMask": {
+              "file": "assets/game/processed/office-spatial-i01/character-hand-masks/qq-penguin/interact-front-f4.png",
+              "sha256": "adfc4c3314b1657ca9c6226f59833c158c43bb82cbcfd640ce979b2977c24d3c",
+              "pixelCount": 226,
+              "sourcePixelExact": true
+            },
+            "renderOrder": [
+              "actor-body",
+              "held-prop",
+              "hand-foreground"
+            ]
           },
           {
             "frame": 5,
@@ -2346,7 +6031,33 @@
             ],
             "actorInsideReviewCard": true,
             "facilityOverlapPixels": 36,
-            "heldAssetVisible": false
+            "heldAssetVisible": false,
+            "heldByActor": false,
+            "attachmentParent": null,
+            "rootSocket": [
+              47,
+              101
+            ],
+            "primaryGripSocket": [
+              25,
+              70
+            ],
+            "secondaryGripSocket": [
+              71,
+              70
+            ],
+            "propGripSocket": [
+              7,
+              13
+            ],
+            "propOrigin": null,
+            "parentSocketWorld": null,
+            "attachmentDelta": null,
+            "foregroundMask": null,
+            "renderOrder": [
+              "facility-base",
+              "actor-body"
+            ]
           }
         ]
       }
@@ -2843,6 +6554,7 @@
     },
     "effectPixelCount": 129,
     "heldProductPixelCount": 1724,
+    "machineProductRemovalPixelCount": 1724,
     "embeddedProductPixelsByFrame": {
       "a": 0,
       "b": 0,
@@ -2850,6 +6562,10 @@
       "d": 0
     },
     "validatedPoseCases": 108,
+    "visiblePropCases": 54,
+    "facilityOutputAttachmentCases": 18,
+    "actorHandAttachmentCases": 36,
+    "attachmentDeltaFailures": 0,
     "shellPartHashSharedByEveryFrame": true
   },
   "gates": {
@@ -2861,80 +6577,88 @@
         "modern-bright-library-v1:env-07-animated-mechanical:vending.machine.loop.b",
         "modern-bright-library-v1:env-07-animated-mechanical:vending.machine.loop.c",
         "modern-bright-library-v1:env-07-animated-mechanical:vending.machine.loop.d",
-        "front-only U01 is required; both historical side sources remain rejected"
+        "front-only U01 is required; both historical side sources remain rejected",
+        "U01-r01 owner review exposed a fixed-center attachment defect; r02 supersedes it"
       ]
     },
     "F1": {
       "status": "passed",
       "evidence": [
-        "assets/art/layout-references/office-facility-family-v1/vending-u01/04-geometry-grid-routes.png",
+        "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/04-geometry-grid-routes.png",
         "2x1x3 tiles, 64x96 px, bottom-center, front only"
       ]
     },
     "F2": {
       "status": "passed",
       "evidence": [
-        "assets/game/processed/office-facility-family-v1/vending-u01/authoring/source/vending-u01.source-frame-a.png",
-        "assets/game/processed/office-facility-family-v1/vending-u01/authoring/source/vending-u01.source-frame-b.png",
-        "assets/game/processed/office-facility-family-v1/vending-u01/authoring/source/vending-u01.source-frame-c.png",
-        "assets/game/processed/office-facility-family-v1/vending-u01/authoring/source/vending-u01.source-frame-d.png",
+        "assets/game/processed/office-facility-family-v1/vending-u01-r02/authoring/source/vending-u01-r02.source-frame-a.png",
+        "assets/game/processed/office-facility-family-v1/vending-u01-r02/authoring/source/vending-u01-r02.source-frame-b.png",
+        "assets/game/processed/office-facility-family-v1/vending-u01-r02/authoring/source/vending-u01-r02.source-frame-c.png",
+        "assets/game/processed/office-facility-family-v1/vending-u01-r02/authoring/source/vending-u01-r02.source-frame-d.png",
         "fresh extraction from original mechanical-loop master"
       ]
     },
     "F3": {
       "status": "passed",
       "evidence": [
-        "assets/game/processed/office-facility-family-v1/vending-u01/authoring/source/mechanical-loops-master.keyed.png",
-        "assets/game/processed/office-facility-family-v1/vending-u01/authoring/source/vending-u01.full-master-ownership-mask.png",
-        "assets/art/layout-references/office-facility-family-v1/vending-u01/01-source-ownership.png"
+        "assets/game/processed/office-facility-family-v1/vending-u01-r02/authoring/source/mechanical-loops-master.keyed.png",
+        "assets/game/processed/office-facility-family-v1/vending-u01-r02/authoring/source/vending-u01-r02.full-master-ownership-mask.png",
+        "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/01-source-ownership.png"
       ]
     },
     "F4": {
       "status": "passed",
       "evidence": [
-        "assets/art/layout-references/office-facility-family-v1/vending-u01/02-alpha-parts.png",
-        "assets/art/layout-references/office-facility-family-v1/vending-u01/06-output-handoff.png",
-        "shell, viewport, empty tray, effect, and held output are separate"
+        "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/02-alpha-parts.png",
+        "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/06-output-handoff.png",
+        "assets/game/manifests/office-spatial-authority-i01.json",
+        "assets/game/manifests/office-held-props-h01.json",
+        "shell, viewport, empty tray, effect, and H01 held output are separate"
       ]
     },
     "F5": {
       "status": "passed",
       "evidence": [
-        "assets/art/layout-references/office-facility-family-v1/vending-u01/04-geometry-grid-routes.png",
-        "assets/art/layout-references/office-facility-family-v1/vending-u01/05-animation-viewport.png",
+        "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/04-geometry-grid-routes.png",
+        "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/05-animation-viewport.png",
         "base and sort pivots remain (1,1) across four frames"
       ]
     },
     "F6": {
       "status": "passed",
       "evidence": [
-        "assets/art/layout-references/office-facility-family-v1/vending-u01/08-reservation-timeline-30s.png",
+        "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/08-reservation-timeline-30s.png",
         "atomic capacity-one reservation releases on failure and supports retry"
       ]
     },
     "F7": {
       "status": "passed",
       "evidence": [
-        "assets/art/layout-references/office-facility-family-v1/vending-u01/03-clean-front.png",
-        "assets/art/layout-references/office-facility-family-v1/vending-u01/05-animation-viewport.png",
-        "assets/art/layout-references/office-facility-family-v1/vending-u01/06-output-handoff.png",
-        "assets/art/layout-references/office-facility-family-v1/vending-u01/07-roster-fit-18x6.png",
-        "assets/art/layout-references/office-facility-family-v1/vending-u01/08-reservation-timeline-30s.png",
+        "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/03-clean-front.png",
+        "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/05-animation-viewport.png",
+        "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/06-output-handoff.png",
+        "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/07-roster-fit-18x6.png",
+        "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/08-reservation-timeline-30s.png",
+        "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/09-socket-attachment-debug.png",
+        "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/10-r01-r02-before-after.png",
         "18 characters x 6 interact-front frames = 108 pose cases",
+        "36 actor-hand and 18 facility-output attachments resolve with exact delta [0,0]",
         "30-second two-user contention, failure, release, and retry lab"
       ]
     },
     "F8": {
       "status": "pending-owner-review",
       "evidence": [
-        "assets/art/layout-references/office-facility-family-v1/vending-u01/01-source-ownership.png",
-        "assets/art/layout-references/office-facility-family-v1/vending-u01/02-alpha-parts.png",
-        "assets/art/layout-references/office-facility-family-v1/vending-u01/03-clean-front.png",
-        "assets/art/layout-references/office-facility-family-v1/vending-u01/04-geometry-grid-routes.png",
-        "assets/art/layout-references/office-facility-family-v1/vending-u01/05-animation-viewport.png",
-        "assets/art/layout-references/office-facility-family-v1/vending-u01/06-output-handoff.png",
-        "assets/art/layout-references/office-facility-family-v1/vending-u01/07-roster-fit-18x6.png",
-        "assets/art/layout-references/office-facility-family-v1/vending-u01/08-reservation-timeline-30s.png"
+        "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/01-source-ownership.png",
+        "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/02-alpha-parts.png",
+        "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/03-clean-front.png",
+        "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/04-geometry-grid-routes.png",
+        "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/05-animation-viewport.png",
+        "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/06-output-handoff.png",
+        "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/07-roster-fit-18x6.png",
+        "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/08-reservation-timeline-30s.png",
+        "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/09-socket-attachment-debug.png",
+        "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/10-r01-r02-before-after.png"
       ]
     },
     "F9": {
@@ -2951,18 +6675,20 @@
     }
   },
   "reviewOutputs": [
-    "assets/art/layout-references/office-facility-family-v1/vending-u01/01-source-ownership.png",
-    "assets/art/layout-references/office-facility-family-v1/vending-u01/02-alpha-parts.png",
-    "assets/art/layout-references/office-facility-family-v1/vending-u01/03-clean-front.png",
-    "assets/art/layout-references/office-facility-family-v1/vending-u01/04-geometry-grid-routes.png",
-    "assets/art/layout-references/office-facility-family-v1/vending-u01/05-animation-viewport.png",
-    "assets/art/layout-references/office-facility-family-v1/vending-u01/06-output-handoff.png",
-    "assets/art/layout-references/office-facility-family-v1/vending-u01/07-roster-fit-18x6.png",
-    "assets/art/layout-references/office-facility-family-v1/vending-u01/08-reservation-timeline-30s.png"
+    "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/01-source-ownership.png",
+    "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/02-alpha-parts.png",
+    "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/03-clean-front.png",
+    "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/04-geometry-grid-routes.png",
+    "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/05-animation-viewport.png",
+    "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/06-output-handoff.png",
+    "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/07-roster-fit-18x6.png",
+    "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/08-reservation-timeline-30s.png",
+    "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/09-socket-attachment-debug.png",
+    "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/10-r01-r02-before-after.png"
   ],
   "reviewEvidence": [
     {
-      "path": "assets/art/layout-references/office-facility-family-v1/vending-u01/01-source-ownership.png",
+      "path": "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/01-source-ownership.png",
       "sha256": "99608212e253dea618033f92ba632894dfe003eae62c6a20f79b8623a8cfab53",
       "size": [
         1600,
@@ -2970,59 +6696,75 @@
       ]
     },
     {
-      "path": "assets/art/layout-references/office-facility-family-v1/vending-u01/02-alpha-parts.png",
-      "sha256": "9ead32f43c1ac2a04cede5a0ccd62926e45f4742a576b32dbe8e43adb2eab6c0",
+      "path": "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/02-alpha-parts.png",
+      "sha256": "be773c80ef66d656fc3c1391d1f00256319cd7aef5592daddb7cf70837376fd4",
       "size": [
         1600,
         1000
       ]
     },
     {
-      "path": "assets/art/layout-references/office-facility-family-v1/vending-u01/03-clean-front.png",
-      "sha256": "062e2583600434a4b92ae8c99f1b7e11094a18bfacc5ccc7aca56cef6bad3774",
+      "path": "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/03-clean-front.png",
+      "sha256": "1db73a91448a51496c728be31394ce6655995e4767044e2fcd438ca80f1144ed",
       "size": [
         1400,
         900
       ]
     },
     {
-      "path": "assets/art/layout-references/office-facility-family-v1/vending-u01/04-geometry-grid-routes.png",
-      "sha256": "f479a2585e185cd9297ce8a326d124834e718f7e565823b0693132f44a7306c9",
+      "path": "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/04-geometry-grid-routes.png",
+      "sha256": "7e03ac135b61fe030541b1216d8232dc55ae276ad2d1d6129e1ebcb3480c2886",
       "size": [
         1200,
         950
       ]
     },
     {
-      "path": "assets/art/layout-references/office-facility-family-v1/vending-u01/05-animation-viewport.png",
-      "sha256": "35d7878d6437a69533bb84450ca85ed59e85d5f99b00c65427cb4142f351ded0",
+      "path": "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/05-animation-viewport.png",
+      "sha256": "f99317db14359de483be3fe40f8d39e065ba8cff5fadcf10465069e6f116b00b",
       "size": [
         1600,
         900
       ]
     },
     {
-      "path": "assets/art/layout-references/office-facility-family-v1/vending-u01/06-output-handoff.png",
-      "sha256": "540e97e8b81f4a41c1b5c49c0323e8c0e18cb7c9c48e366ccbe78f4d9a4cd203",
+      "path": "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/06-output-handoff.png",
+      "sha256": "bc5ba93730149f6446443876e847188261d7404be3b37128cb8bc3026e720244",
       "size": [
         1500,
         900
       ]
     },
     {
-      "path": "assets/art/layout-references/office-facility-family-v1/vending-u01/07-roster-fit-18x6.png",
-      "sha256": "3f37f18dcdfb6be54455ddcf18ff601dc99956d2bf3d3a29ddaf7b9ffebd639e",
+      "path": "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/07-roster-fit-18x6.png",
+      "sha256": "9f0b46ff35cf337466ad8d7013432fefd1284ca3248a7c8e6513e4b63dbb65c7",
       "size": [
         1800,
         1220
       ]
     },
     {
-      "path": "assets/art/layout-references/office-facility-family-v1/vending-u01/08-reservation-timeline-30s.png",
+      "path": "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/08-reservation-timeline-30s.png",
       "sha256": "72ff3429fa9758a45e937f9b14cdd75cb54ea03ffd52eaa73655c62144722f74",
       "size": [
         1600,
         900
+      ]
+    },
+    {
+      "path": "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/09-socket-attachment-debug.png",
+      "sha256": "3b1f310581dbcb5311809a576b81d5a36ef636b91ca3e8e21d571fbf7ce1285e",
+      "size": [
+        1800,
+        1220
+      ]
+    },
+    {
+      "path": "assets/art/layout-references/office-facility-family-v1/vending-u01-r02/10-r01-r02-before-after.png",
+      "sha256": "9860a76a577cf041c86171fde1594304a88969e36fd93466e94eee84db75627f",
+      "size": [
+        1600,
+        1030
       ]
     }
   ],
@@ -3040,6 +6782,12 @@
     "file": "apps/web/src/features/office/components/officeAssetRegistry.ts",
     "sha256": "1c8752653d8818e57564f28f61870ae3eddbdabc8e46229e1364c546ec7607ef",
     "importsCandidate": false
+  },
+  "supersedes": {
+    "revision": "u01",
+    "reason": "F8 review exposed a fixed-center held-output attachment defect",
+    "historicalReview": "assets/art/layout-references/office-facility-family-v1/vending-u01/06-output-handoff.png",
+    "historicalReviewSha256": "540e97e8b81f4a41c1b5c49c0323e8c0e18cb7c9c48e366ccbe78f4d9a4cd203"
   },
   "permissions": {
     "familyLab": true,

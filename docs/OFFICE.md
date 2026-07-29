@@ -32,15 +32,25 @@ All seven Seating S01 families are independently owner-approved at F8 on
 poses, and silent expansion of the R05-r02 chair beyond its approved
 workstation scope remain blocked.
 
-The first upright facility is the isolated front-only Vending U01 vertical
+The isolated Office Spatial Socket I01 and Held Props H01 authority is
+documented in `docs/art/OFFICE_SPATIAL_SOCKET_SYSTEM_I01.md`. It defines
+integer world/local transforms, 108 per-character action-frame sockets, 54
+source-exact hand masks, 16 fresh native-scale held props, and 864 exact
+attachment cases. It forbids center anchors, scene offsets, runtime scale
+fixes, and missing-socket fallbacks. I01/H01 pass F0-F7 and remain
+`owner-review-f8-pending`; Active Office does not import them.
+
+The first upright facility is the isolated front-only Vending U01-r02 vertical
 slice documented in `docs/art/OFFICE_FACILITY_VENDING_U01.md`. It re-extracts
-four admitted components from the original mechanical-loop master, keeps one
-static shell, confines four animation states to a local viewport, and separates
-the empty pickup tray, dispense effect, and held output. Its `2 x 1 x 3`
-geometry, stand/approach/exit cells, 108 interact-front pose cases, and
-30-second two-user failure/retry simulation pass F0-F7. U01 is
-`owner-review-f8-pending`; Water/Coffee, F9 placement, F10 integration, and
-Active Office imports remain blocked.
+four admitted machine components from the original mechanical-loop master,
+keeps one static shell, confines four animation states to a local viewport,
+and separates the empty pickup tray, dispense effect, and H01 held output. R02
+supersedes r01's fixed center-like prop coordinate. The six-frame timeline now
+moves the prop from `facility.output.primary` to each character's measured
+`actor.hand.primary.grip` with delta `[0,0]`. Its `2 x 1 x 3` geometry,
+stand/approach/exit cells, 108 pose cases, and 30-second failure/retry proof
+pass F0-F7. U01-r02 is independently `owner-review-f8-pending`; Water/Coffee,
+F9, F10, and Active Office imports remain blocked.
 
 Workstation correction (2026-07-28): the isolated `5 x 4` staging layout,
 Candidate r01, and R05 final ten-seat composition are rejected evidence. The
@@ -101,6 +111,12 @@ seat, doorway, or narrow route cell.
 The authoritative distinction between floor footprints, parent support grids,
 ground pivots, render bounds, and render offsets is documented in
 `docs/art/OFFICE_2D_GEOMETRY_PRINCIPLES.md`.
+
+The isolated semantic attachment authority is documented in
+`docs/art/OFFICE_SPATIAL_SOCKET_SYSTEM_I01.md`. It resolves entity roots,
+character hands, prop grips, facility outputs, effects, supports, and
+viewports through named integer local sockets. It remains F8-pending and does
+not replace the current Active Office placement adapter.
 
 `assets/game/manifests/office-assets.json` owns integer render boxes, physical
 footprints, support types, and integer parent-slot offsets. `office-c-v2.json`

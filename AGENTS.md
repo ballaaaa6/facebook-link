@@ -53,7 +53,8 @@ Cloudflare coordinates work. It does not run Playwright browser sessions. The au
 - Office massage-chair R01 rejection history: `docs/art/OFFICE_FURNITURE_MASSAGE_CHAIR_R01.md`
 - Office massage-chair R02 approved family: `docs/art/OFFICE_FURNITURE_MASSAGE_CHAIR_R02.md`
 - Office Seating S01 approved batch: `docs/art/OFFICE_FURNITURE_SEATING_S01.md`
-- Office Vending U01 F8-pending facility: `docs/art/OFFICE_FACILITY_VENDING_U01.md`
+- Office Spatial Socket I01/Held Props H01 F8-pending authority: `docs/art/OFFICE_SPATIAL_SOCKET_SYSTEM_I01.md`
+- Office Vending U01-r02 F8-pending facility: `docs/art/OFFICE_FACILITY_VENDING_U01.md`
 
 ## Commands
 

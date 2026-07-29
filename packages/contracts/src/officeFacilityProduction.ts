@@ -104,13 +104,30 @@ export interface OfficeFacilityRosterValidation {
   poseAuthority: {
     manifest: string;
     manifestSha256: string;
-    status: "frozen-prototype-internal";
+    status: "owner-review-f8-pending";
     activeOfficeImported: false;
+  };
+  spatialAuthority: {
+    manifest: string;
+    manifestSha256: string;
+    status: "owner-review-f8-pending";
+    activeOfficeImported: false;
+  };
+  heldPropAuthority: {
+    manifest: string;
+    manifestSha256: string;
+    assetId: string;
+    assetSha256: string;
+    runtimeScale: 1;
   };
   row: number;
   activeFrames: number;
   characterCount: number;
   validatedPoseCases: number;
+  visiblePropCases: number;
+  facilityOutputAttachmentCases: number;
+  actorHandAttachmentCases: number;
+  attachmentDeltaFailures: 0;
   sharedActorPosition: readonly [number, number];
   perCharacterFacilityScaling: false;
   perCharacterActorOffsets: false;
@@ -126,12 +143,29 @@ export interface OfficeFacilityRosterValidation {
       actorInsideReviewCard: boolean;
       facilityOverlapPixels: number;
       heldAssetVisible: boolean;
+      heldByActor: boolean;
+      attachmentParent:
+        | "facility.output.primary"
+        | "actor.hand.primary.grip"
+        | null;
+      rootSocket: readonly [number, number];
+      primaryGripSocket: readonly [number, number];
+      secondaryGripSocket: readonly [number, number] | null;
+      propGripSocket: readonly [number, number];
+      propOrigin: readonly [number, number] | null;
+      parentSocketWorld: readonly [number, number] | null;
+      attachmentDelta: readonly [number, number] | null;
+      foregroundMask: {
+        file: string;
+        sha256: string;
+      } | null;
+      renderOrder: readonly string[];
     }[];
   }[];
 }
 
 export interface OfficeFacilityProductionManifest {
-  schemaVersion: 1;
+  schemaVersion: 2;
   id: string;
   familyId: string;
   revision: string;
@@ -145,6 +179,7 @@ export interface OfficeFacilityProductionManifest {
     stagingPixelReuse: false;
     generativeRepair: false;
     missingAssetFallback: false;
+    sharedProductionAssetDependency: string;
   };
   source: OfficeFacilitySourceEvidence;
   render: {
@@ -154,6 +189,20 @@ export interface OfficeFacilityProductionManifest {
     nonUniformScaling: false;
     anchor: "bottom-center";
     requiredOrientations: readonly Exclude<OfficeOrientation, "none">[];
+  };
+  spatial: {
+    authority: {
+      file: string;
+      sha256: string;
+      id: string;
+      status: "owner-review-f8-pending";
+    };
+    coordinateSpace: "facility-runtime-pixel";
+    unit: "pixel";
+    localSockets: Record<string, readonly [number, number]>;
+    perSceneAttachmentOffsets: false;
+    centerToCenterAttachment: false;
+    missingSocketFallback: false;
   };
   geometry: OfficeGeometryV3;
   parts: readonly OfficeFacilityPartEvidence[];
@@ -171,10 +220,28 @@ export interface OfficeFacilityProductionManifest {
   outputHandoff: {
     pickupTrayPartId: string;
     heldAssetPartId: string;
+    heldAssetId: string;
+    heldAssetManifest: string;
+    heldAssetManifestSha256: string;
+    heldAssetRuntimeSha256: string;
     effectPartIds: readonly string[];
     productEmbeddedInShell: false;
     productEmbeddedInViewportFrames: false;
-    transition: "pickup-tray-to-held-prop-layer";
+    transition: "facility-output-socket-to-actor-hand-socket";
+    heldVisiblePoseFrames: readonly [2, 3, 4];
+    facilityOutputSocketId: "output.primary";
+    actorGripSocketId: "hand.primary.grip";
+    propGripSocketId: "grip.primary";
+    runtimeScale: 1;
+    handForegroundMaskRequired: true;
+    attachmentDeltaFailures: 0;
+    timeline: readonly {
+      poseFrame: number;
+      attachmentParent:
+        | "facility.output.primary"
+        | "actor.hand.primary.grip"
+        | null;
+    }[];
   };
   interaction: {
     capacity: number;

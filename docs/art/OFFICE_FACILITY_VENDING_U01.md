@@ -1,4 +1,4 @@
-# Office Facility Vending U01
+# Office Facility Vending U01-r02
 
 Status: F0-F7 passed; owner review F8 pending
 Updated: 2026-07-29
@@ -6,18 +6,35 @@ Scope: One front-only `vending.machine.modern` facility family
 
 ## Decision boundary
 
-U01 is a development-only vertical slice. It is not imported by Active Office,
-is not authorized for a furniture-only room, and cannot approve another
-facility family. Water and coffee production, F9 room placement, and F10
-runtime integration remain blocked until U01 receives an explicit owner
-decision at F8.
+U01-r02 is a development-only vertical slice. It is not imported by Active
+Office, is not authorized for a furniture-only room, and cannot approve
+another facility family. Water and Coffee production, F9 room placement, and
+F10 runtime integration remain blocked until this exact revision receives an
+explicit owner decision at F8.
 
-The family uses only the original project-created mechanical-loop master
+The machine uses only the original project-created mechanical-loop master
 admitted by
-`assets/game/manifests/office-furniture-master-audit-v1.json`. The older
-processed vending crops and the item-neutral staging loop are not pixel
-sources. The staging manifest is retained only as behavior and timing
-reference.
+`assets/game/manifests/office-furniture-master-audit-v1.json`. Historical
+processed vending crops are not pixel sources. The older item-neutral staging
+loop remains behavior reference only.
+
+## Why r02 exists
+
+U01-r01 passed mechanical and reservation checks, but owner review exposed an
+attachment defect: every character received a can at one fixed center-like
+coordinate derived from `actor + (48,54)`. The item did not actually follow
+each character's hand.
+
+R02 supersedes that review candidate. It uses Office Spatial Socket I01 and
+Held Props H01:
+
+```text
+propOrigin = parentSocketWorld - propGripSocket
+attachmentDelta = [0,0]
+```
+
+The r01 board is retained as historical evidence. It is never a runtime or
+pixel source.
 
 ## Facility contract
 
@@ -33,24 +50,25 @@ reference.
 | Capacity | `1` |
 | Visual pose | `interact-front`, row `10`, six frames |
 
-The separate machine contract is implemented in
+The facility contract is implemented in
 `packages/contracts/src/officeFacilityProduction.ts`. It requires an immutable
 shell, local animation viewport, empty output state, separate effect and held
-output, atomic reservation, release on failure, 30-second validation, and the
-same F0-F10 stop rules used by the production gates.
+asset, semantic facility and hand sockets, atomic reservation, release on
+failure, 30-second validation, and the F0-F10 stop rules.
 
 ## Source ownership
 
-Source:
+Machine source:
+
 `assets/art/layout-references/mechanical-loops-sheet-modern-bright-v1-source.png`
 
 SHA-256:
+
 `31109c9ecf2bc5b0f7d35caca821c77c29819fe19d73e895c88976e3d877274a`
 
 All four front frames touch or cross the nominal bottom cell edge. The builder
-therefore keys the complete `1254 x 1254` master once, calculates connected
-components across the full image, and selects the one component with dominant
-ownership inside each audited cell.
+keys the complete `1254 x 1254` master, calculates components across the full
+image, and selects the dominant component owned by each audited cell.
 
 | Frame | Audited cell | Owned full-master bounds | Pixels |
 | --- | --- | --- | ---: |
@@ -59,34 +77,68 @@ ownership inside each audited cell.
 | C | `[627,0,940,314]` | `[678,47,878,322]` | 51,748 |
 | D | `[940,0,1254,314]` | `[981,47,1180,322]` | 51,743 |
 
-Each selected silhouette continues only into empty magenta row space, retains
-the complete feet and shadow, and does not reach the next machine or the master
-boundary. The left and right historical records remain rejected because they
-do not preserve the front-family identity, palette, or camera-locked
-silhouette.
+Every silhouette is complete and stays away from the next machine and the
+master boundary. Historical left and right vending records remain rejected
+and are not generated.
+
+The held soda is not cropped from the machine. It references `held.soda-can`
+from the independently produced H01 source authority documented in
+`docs/art/OFFICE_SPATIAL_SOCKET_SYSTEM_I01.md`.
 
 ## Part decomposition
 
-The new versioned family contains:
+The r02 family contains:
 
-1. `static-shell` — frame A pixels outside the local viewport;
-2. `viewport-a` — idle selection and closed tray;
-3. `viewport-b` — screen response while the shell stays fixed;
-4. `viewport-c` — freshly extracted empty open tray;
-5. `viewport-d` — the same item-neutral tray state used for handoff;
-6. `pickup-tray-empty` — empty tray child from original frame C;
-7. `effect-dispense` — 129 source effect pixels, separate from the tray; and
-8. `held-soda-can` — 1,724 freshly segmented source pixels from frame D.
+1. `static-shell`;
+2. four local viewport states A-D;
+3. `pickup-tray-empty`;
+4. `effect-dispense`; and
+5. a separate H01 `held.soda-can` dependency.
 
 The authoring viewport is `[40,128,220,376]`; the runtime viewport is
 `[10,32,55,94]`. Pixel comparison reports zero changed pixels outside the
-viewport for all four frames. The shell, base pivot, sort pivot, and render
-bounds are identical throughout the loop.
+viewport. The shell, base pivot, sort pivot, and render bounds stay identical
+throughout the loop.
 
-The item in original frame D is never composited back into the machine.
-Product-signature checks report zero embedded output pixels in frames A-D.
-The held asset is visible only in interact-front pose frames 3-5, matching the
-facility action contract.
+The product visible in the original mechanical frame D is removed and never
+composited back into the shell or viewport. Product-signature checks report
+zero embedded product pixels in machine frames A-D.
+
+## Facility sockets and handoff
+
+U01-r02 declares facility-local runtime sockets:
+
+| Socket | Point |
+| --- | --- |
+| `base.floor` | `[32,96]` |
+| `sort.floor` | `[32,96]` |
+| `interaction.target` | `[48,96]` |
+| `output.primary` | `[32,78]` |
+| `effect.origin` | `[27,81]` |
+| `viewport.origin` | `[10,32]` |
+
+The six-frame action timeline uses zero-based indices:
+
+| Pose frame | Prop state | Attachment parent |
+| ---: | --- | --- |
+| 0 | absent | none |
+| 1 | absent | none |
+| 2 | dispensed | `facility.output.primary` |
+| 3 | held | `actor.hand.primary.grip` |
+| 4 | held | `actor.hand.primary.grip` |
+| 5 | absent/released | none |
+
+The H01 can uses `grip.primary` at native scale `1`. Actor-held frames render:
+
+```text
+actor-body
+held-prop
+hand-foreground
+```
+
+Every visible case resolves the prop grip to its parent with exact delta
+`[0,0]`. Center attachment, per-scene offsets, per-character scale, and
+missing-socket fallbacks are disabled.
 
 ## Interaction and reservation
 
@@ -103,28 +155,31 @@ State order:
 
 `available -> reserved -> approaching -> interacting -> dispensing -> releasing`
 
-The deterministic 30-second lab uses two actors. Agent Alpha acquires the
-facility, Agent Beta is blocked and waits at the approach cell, Alpha's first
-visit fails and releases at second 7, Beta completes next, and Alpha's retry
-acquires at second 17 and succeeds. The run records one blocked attempt, one
-failure, one successful retry, no simultaneous holders, no shared route cell,
-zero collisions, and no reservation at second 30.
+The deterministic 30-second lab uses two actors. Agent Alpha acquires first,
+Agent Beta is blocked at the approach cell, Alpha's first visit fails and
+releases at second 7, Beta completes next, and Alpha retries at second 17.
+The proof records one blocked attempt, one failure, one successful retry, no
+simultaneous holder, no shared occupied cell, zero collisions, and no
+reservation at second 30.
 
-## Character evidence
+## Character and attachment evidence
 
-The frozen internal prototype roster contains 18 Office agents with
-`interact-front` on row 10. U01 validates six active frames for each agent:
+U01-r02 validates the I01 `interact-front` authority:
 
 - 18 characters;
 - 6 active frames;
 - 108 pose cases;
-- one `64 x 96` facility scale;
-- one shared actor position; and
-- no per-character scale or offset.
+- 54 visible prop cases;
+- 18 facility-output attachment cases;
+- 36 actor-hand attachment cases;
+- one facility scale;
+- H01 runtime scale `1`;
+- source-exact hand masks;
+- no per-character facility scale or actor offset; and
+- zero attachment-delta failures.
 
-The generated pose authority remains development-only,
-`pendingCommercialReview`, and outside Active Office. It does not promote the
-prototype character art for public or commercial use.
+Prototype character sheets retain `pendingCommercialReview` and remain outside
+Active Office.
 
 ## Review outputs
 
@@ -136,41 +191,38 @@ prototype character art for public or commercial use.
 6. `06-output-handoff.png`
 7. `07-roster-fit-18x6.png`
 8. `08-reservation-timeline-30s.png`
+9. `09-socket-attachment-debug.png`
+10. `10-r01-r02-before-after.png`
 
-All paths, hashes, dimensions, source records, parts, animation composites, and
-review boards are locked by
+All paths, hashes, dimensions, source records, parts, animation composites,
+socket authorities, pose cases, and review boards are locked by
 `assets/game/manifests/office-facility-vending-u01.json`.
 
 ## Reproduction
 
-Regenerate the candidate and evidence:
-
 ```bash
 npm run art:facility:vending:u01
-```
-
-Verify deterministic regeneration, the facility contract, hashes, geometry,
-pose coverage, reservation samples, rejected orientations, and Active Office
-isolation:
-
-```bash
-python scripts/build-office-facility-vending-u01.py --check
 npm run art:facility:vending:u01:check
 ```
 
+The check performs deterministic regeneration, contract validation, source
+and dependency hash checks, exact file-set checks, geometry and viewport
+checks, all 108 attachment cases, reservation samples, rejected orientations,
+and Active Office isolation.
+
 ## F8 owner checklist
 
-Review the eight evidence boards together and decide only this exact U01 hash
-set. Approval must confirm:
+Review all ten U01-r02 boards together and decide only this exact hash set:
 
 - the front visual and `2 x 1 x 3` scale;
 - static shell and local animation;
-- empty pickup tray;
-- effect and held product separation;
-- 18-character interact-front fit;
+- empty pickup tray and separate effect;
+- can position at the facility output socket;
+- can position and hand occlusion for all 18 characters;
+- the r01-to-r02 repair;
 - approach and exit cells; and
 - two-user failure/retry behavior.
 
 Until that decision is recorded, the manifest remains
-`owner-review-f8-pending`, `ownerDecision` remains `null`, and F9-F10 remain
-blocked.
+`owner-review-f8-pending`, `ownerDecision` remains `null`, and Water/Coffee,
+F9, F10, and Active Office imports remain blocked.

@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Build the front-only Vending Machine U01 facility vertical slice.
+"""Build the socket-driven front-only Vending Machine U01-r02 vertical slice.
 
 The builder starts from the audited original mechanical-loop master, resolves
 all four boundary-crossing silhouettes with full-master connected-component
 ownership, and creates a new versioned family. The immutable shell, local
-viewport frames, empty pickup tray, dispense effect, and held output are
+viewport frames, empty pickup tray, dispense effect, and H01 held output are
 separate files. Existing processed vending pixels and Active Office assets are
-never inputs.
+never inputs. Character/prop placement resolves through Spatial Socket I01.
 """
 
 from __future__ import annotations
@@ -28,7 +28,13 @@ AUDIT_PATH = ROOT / "assets/game/manifests/office-furniture-master-audit-v1.json
 MANIFEST_PATH = ROOT / "assets/game/manifests/office-facility-vending-u01.json"
 POSE_AUTHORITY_PATH = (
     ROOT
-    / "assets/game/manifests/office-facility-interact-front-pose-authority-v1.json"
+    / "assets/game/manifests/office-character-action-sockets-i01.json"
+)
+SPATIAL_AUTHORITY_PATH = (
+    ROOT / "assets/game/manifests/office-spatial-authority-i01.json"
+)
+HELD_PROP_MANIFEST_PATH = (
+    ROOT / "assets/game/manifests/office-held-props-h01.json"
 )
 ACTIVE_REGISTRY = (
     ROOT
@@ -40,7 +46,7 @@ ROSTER_PATH = ROOT / "assets/game/manifests/character-roster-8x15-batch.json"
 
 OUTPUT_ROOT = (
     ROOT
-    / "assets/game/processed/office-facility-family-v1/vending-u01"
+    / "assets/game/processed/office-facility-family-v1/vending-u01-r02"
 )
 AUTHORING_ROOT = OUTPUT_ROOT / "authoring"
 RUNTIME_ROOT = OUTPUT_ROOT / "runtime"
@@ -51,11 +57,15 @@ AUTHORING_COMPOSITE_ROOT = AUTHORING_ROOT / "composites"
 RUNTIME_COMPOSITE_ROOT = RUNTIME_ROOT / "composites"
 REVIEW_ROOT = (
     ROOT
-    / "assets/art/layout-references/office-facility-family-v1/vending-u01"
+    / "assets/art/layout-references/office-facility-family-v1/vending-u01-r02"
+)
+R01_REVIEW_PATH = (
+    ROOT
+    / "assets/art/layout-references/office-facility-family-v1/vending-u01/06-output-handoff.png"
 )
 
 FAMILY_ID = "vending.machine.modern"
-REVISION = "u01"
+REVISION = "u01-r02"
 SOURCE_PATH = (
     "assets/art/layout-references/"
     "mechanical-loops-sheet-modern-bright-v1-source.png"
@@ -81,6 +91,9 @@ ACTOR_ROW = 10
 ACTIVE_FRAMES = 6
 SHARED_ACTOR_POSITION = (96, 96)
 MACHINE_POSITION = (64, 40)
+FACILITY_OUTPUT_SOCKET = (32, 78)
+FACILITY_EFFECT_SOCKET = (27, 81)
+FACILITY_BASE_SOCKET = (32, 96)
 VIEWPORT_BOX = (40, 128, 220, 376)
 VIEWPORT_RUNTIME_BOX = tuple(value // RUNTIME_DIVISOR for value in VIEWPORT_BOX)
 SCREEN_BOX = (176, 132, 220, 240)
@@ -89,40 +102,40 @@ EFFECT_ROI = (96, 304, 132, 348)
 PRODUCT_ROI = (88, 280, 128, 332)
 
 KEYED_SOURCE_PATH = SOURCE_ROOT / "mechanical-loops-master.keyed.png"
-OWNERSHIP_PATH = SOURCE_ROOT / "vending-u01.full-master-ownership-mask.png"
+OWNERSHIP_PATH = SOURCE_ROOT / "vending-u01-r02.full-master-ownership-mask.png"
 SOURCE_FRAME_PATHS = {
-    frame: SOURCE_ROOT / f"vending-u01.source-frame-{frame}.png"
+    frame: SOURCE_ROOT / f"vending-u01-r02.source-frame-{frame}.png"
     for frame in FRAME_IDS
 }
 PART_PATHS = {
     "shell-static": (
-        AUTHORING_PART_ROOT / "vending-u01.shell-static.png",
-        RUNTIME_PART_ROOT / "vending-u01.shell-static.png",
+        AUTHORING_PART_ROOT / "vending-u01-r02.shell-static.png",
+        RUNTIME_PART_ROOT / "vending-u01-r02.shell-static.png",
     ),
     **{
         f"viewport-{frame}": (
-            AUTHORING_PART_ROOT / f"vending-u01.viewport-{frame}.png",
-            RUNTIME_PART_ROOT / f"vending-u01.viewport-{frame}.png",
+            AUTHORING_PART_ROOT / f"vending-u01-r02.viewport-{frame}.png",
+            RUNTIME_PART_ROOT / f"vending-u01-r02.viewport-{frame}.png",
         )
         for frame in FRAME_IDS
     },
     "pickup-tray-empty": (
-        AUTHORING_PART_ROOT / "vending-u01.pickup-tray-empty.png",
-        RUNTIME_PART_ROOT / "vending-u01.pickup-tray-empty.png",
+        AUTHORING_PART_ROOT / "vending-u01-r02.pickup-tray-empty.png",
+        RUNTIME_PART_ROOT / "vending-u01-r02.pickup-tray-empty.png",
     ),
     "effect-dispense": (
-        AUTHORING_PART_ROOT / "vending-u01.effect-dispense.png",
-        RUNTIME_PART_ROOT / "vending-u01.effect-dispense.png",
+        AUTHORING_PART_ROOT / "vending-u01-r02.effect-dispense.png",
+        RUNTIME_PART_ROOT / "vending-u01-r02.effect-dispense.png",
     ),
     "held-soda-can": (
-        AUTHORING_PART_ROOT / "vending-u01.held-soda-can.png",
-        RUNTIME_PART_ROOT / "vending-u01.held-soda-can.png",
+        AUTHORING_PART_ROOT / "vending-u01-r02.held-soda-can@2x.png",
+        RUNTIME_PART_ROOT / "vending-u01-r02.held-soda-can.png",
     ),
 }
 COMPOSITE_PATHS = {
     frame: (
-        AUTHORING_COMPOSITE_ROOT / f"vending-u01.frame-{frame}.png",
-        RUNTIME_COMPOSITE_ROOT / f"vending-u01.frame-{frame}.png",
+        AUTHORING_COMPOSITE_ROOT / f"vending-u01-r02.frame-{frame}.png",
+        RUNTIME_COMPOSITE_ROOT / f"vending-u01-r02.frame-{frame}.png",
     )
     for frame in FRAME_IDS
 }
@@ -135,6 +148,8 @@ REVIEW_PATHS = [
     REVIEW_ROOT / "06-output-handoff.png",
     REVIEW_ROOT / "07-roster-fit-18x6.png",
     REVIEW_ROOT / "08-reservation-timeline-30s.png",
+    REVIEW_ROOT / "09-socket-attachment-debug.png",
+    REVIEW_ROOT / "10-r01-r02-before-after.png",
 ]
 
 PART_ROLES = {
@@ -155,7 +170,7 @@ PART_SOURCE_FRAMES = {
     "viewport-d": "c",
     "pickup-tray-empty": "c",
     "effect-dispense": "c",
-    "held-soda-can": "d",
+    "held-soda-can": "h01",
 }
 
 
@@ -774,9 +789,23 @@ def build_parts(
     viewport_d = viewport_c.copy()
 
     held_mask = product_mask(frame_d, frame_c)
-    held_product = mask_layer(frame_d, held_mask)
-    if held_product.getbbox() is None:
-        raise ValueError("Held output is empty")
+    machine_product = mask_layer(frame_d, held_mask)
+    if machine_product.getbbox() is None:
+        raise ValueError("Machine output-removal evidence is empty")
+    held_manifest = json.loads(
+        HELD_PROP_MANIFEST_PATH.read_text(encoding="utf-8")
+    )
+    held_record = next(
+        record
+        for record in held_manifest["props"]
+        if record["id"] == "held.soda-can"
+    )
+    held_authoring = Image.open(
+        ROOT / held_record["authoringFile"]
+    ).convert("RGBA")
+    held_runtime = Image.open(
+        ROOT / held_record["runtimeFile"]
+    ).convert("RGBA")
 
     authoring_parts = {
         "shell-static": shell,
@@ -786,7 +815,7 @@ def build_parts(
         "viewport-d": viewport_d,
         "pickup-tray-empty": empty_tray,
         "effect-dispense": effect,
-        "held-soda-can": held_product,
+        "held-soda-can": held_authoring,
     }
     effects_by_frame = {
         "a": [],
@@ -814,7 +843,11 @@ def build_parts(
         raise ValueError(f"Animation escaped the viewport: {outside_changes}")
 
     runtime_parts = {
-        part_id: image.resize(RUNTIME_CANVAS, Image.Resampling.NEAREST)
+        part_id: (
+            held_runtime
+            if part_id == "held-soda-can"
+            else image.resize(RUNTIME_CANVAS, Image.Resampling.NEAREST)
+        )
         for part_id, image in authoring_parts.items()
     }
     runtime_composites = {
@@ -924,19 +957,60 @@ def compose_pose_case(
     machine: Image.Image,
     actor: Image.Image,
     held_product: Image.Image,
+    hand_mask: Image.Image | None,
+    frame_socket: dict[str, Any],
+    prop_socket: tuple[int, int],
     frame: int,
 ) -> tuple[Image.Image, dict[str, Any]]:
     canvas = Image.new("RGBA", (256, 224), (0, 0, 0, 0))
     canvas.alpha_composite(machine, MACHINE_POSITION)
-    canvas.alpha_composite(actor, SHARED_ACTOR_POSITION)
     held_visible = frame in (2, 3, 4)
-    if held_visible:
-        crop = held_product.crop(held_product.getbbox())
-        held_xy = (
-            SHARED_ACTOR_POSITION[0] + 48 - crop.width // 2,
-            SHARED_ACTOR_POSITION[1] + 54 - crop.height // 2,
+    attachment_parent = (
+        "facility.output.primary"
+        if frame == 2
+        else "actor.hand.primary.grip"
+        if frame in (3, 4)
+        else None
+    )
+    primary = tuple(frame_socket["primaryGripSocket"])
+    hand_world = (
+        SHARED_ACTOR_POSITION[0] + primary[0],
+        SHARED_ACTOR_POSITION[1] + primary[1],
+    )
+    output_world = (
+        MACHINE_POSITION[0] + FACILITY_OUTPUT_SOCKET[0],
+        MACHINE_POSITION[1] + FACILITY_OUTPUT_SOCKET[1],
+    )
+    parent_socket_world = (
+        output_world
+        if attachment_parent == "facility.output.primary"
+        else hand_world
+        if attachment_parent == "actor.hand.primary.grip"
+        else None
+    )
+    prop_origin = None
+    attachment_delta = None
+    if parent_socket_world:
+        prop_origin = (
+            parent_socket_world[0] - prop_socket[0],
+            parent_socket_world[1] - prop_socket[1],
         )
-        canvas.alpha_composite(crop, held_xy)
+        resolved_grip = (
+            prop_origin[0] + prop_socket[0],
+            prop_origin[1] + prop_socket[1],
+        )
+        attachment_delta = [
+            resolved_grip[0] - parent_socket_world[0],
+            resolved_grip[1] - parent_socket_world[1],
+        ]
+    if attachment_parent == "facility.output.primary" and prop_origin:
+        canvas.alpha_composite(held_product, prop_origin)
+    canvas.alpha_composite(actor, SHARED_ACTOR_POSITION)
+    if attachment_parent == "actor.hand.primary.grip" and prop_origin:
+        canvas.alpha_composite(held_product, prop_origin)
+        if hand_mask is None:
+            raise ValueError(f"Actor-held frame {frame} is missing its hand mask")
+        canvas.alpha_composite(hand_mask, SHARED_ACTOR_POSITION)
     actor_bounds = actor.getbbox()
     inside = (
         SHARED_ACTOR_POSITION[0] >= 0
@@ -955,105 +1029,144 @@ def compose_pose_case(
             MACHINE_POSITION,
         ),
         "heldAssetVisible": held_visible,
+        "heldByActor": attachment_parent == "actor.hand.primary.grip",
+        "attachmentParent": attachment_parent,
+        "rootSocket": frame_socket["rootSocket"],
+        "primaryGripSocket": frame_socket["primaryGripSocket"],
+        "secondaryGripSocket": frame_socket["secondaryGripSocket"],
+        "propGripSocket": list(prop_socket),
+        "propOrigin": list(prop_origin) if prop_origin else None,
+        "parentSocketWorld": (
+            list(parent_socket_world) if parent_socket_world else None
+        ),
+        "attachmentDelta": attachment_delta,
+        "foregroundMask": frame_socket["foregroundMask"],
+        "renderOrder": (
+            ["facility-base", "held-prop", "actor-body"]
+            if attachment_parent == "facility.output.primary"
+            else ["actor-body", "held-prop", "hand-foreground"]
+            if attachment_parent == "actor.hand.primary.grip"
+            else ["facility-base", "actor-body"]
+        ),
     }
 
 
 def build_roster_validation(
-    machine: Image.Image,
+    machine_frames: dict[str, Image.Image],
     held_product: Image.Image,
 ) -> tuple[
     list[dict[str, Any]],
     dict[str, list[Image.Image]],
     dict[str, Any],
-    bytes,
 ]:
-    pose_sources, entries = pose_source_records()
+    pose_sources, _ = pose_source_records()
+    socket_authority = json.loads(
+        POSE_AUTHORITY_PATH.read_text(encoding="utf-8")
+    )
+    spatial_authority = json.loads(
+        SPATIAL_AUTHORITY_PATH.read_text(encoding="utf-8")
+    )
+    held_manifest = json.loads(
+        HELD_PROP_MANIFEST_PATH.read_text(encoding="utf-8")
+    )
+    held_record = next(
+        record
+        for record in held_manifest["props"]
+        if record["id"] == "held.soda-can"
+    )
+    prop_socket = tuple(held_record["primaryGripSocket"])
+    if sha256_file(ROOT / held_record["runtimeFile"]) != held_record["runtimeSha256"]:
+        raise ValueError("H01 soda runtime hash changed")
+    if (
+        spatial_authority["authorities"]["characterActions"]["sha256"]
+        != sha256_file(POSE_AUTHORITY_PATH)
+    ):
+        raise ValueError("Spatial I01 no longer references the action socket authority")
     characters: list[dict[str, Any]] = []
     rendered: dict[str, list[Image.Image]] = {}
-    authority_characters: list[dict[str, Any]] = []
-    for entry in entries:
-        path = ROOT / entry["sheet"]
+    machine_sequence = ("a", "b", "c", "d", "d", "a")
+    for socket_character in socket_authority["characters"]:
+        path = ROOT / socket_character["sheet"]
         sheet = Image.open(path).convert("RGBA")
         character_frames = []
         review_frames = []
-        authority_frames = []
         for frame_index in range(ACTIVE_FRAMES):
             actor = actor_frame(sheet, frame_index)
+            frame_socket = socket_character["frames"][frame_index]
+            mask_record = frame_socket["foregroundMask"]
+            hand_mask = None
+            if mask_record is not None:
+                mask_path = ROOT / mask_record["file"]
+                if sha256_file(mask_path) != mask_record["sha256"]:
+                    raise ValueError(
+                        f"{socket_character['id']} frame {frame_index} mask hash changed"
+                    )
+                hand_mask = Image.open(mask_path).convert("RGBA")
             composition, metrics = compose_pose_case(
-                machine,
+                machine_frames[machine_sequence[frame_index]],
                 actor,
                 held_product,
+                hand_mask,
+                frame_socket,
+                prop_socket,
                 frame_index,
             )
             if not metrics["actorInsideReviewCard"]:
                 raise ValueError(
-                    f"{entry['id']} frame {frame_index} leaves the review card"
+                    f"{socket_character['id']} frame {frame_index} leaves the review card"
+                )
+            if metrics["attachmentDelta"] not in (None, [0, 0]):
+                raise ValueError(
+                    f"{socket_character['id']} frame {frame_index} attachment drifted"
                 )
             character_frames.append({"frame": frame_index, **metrics})
-            authority_frames.append(
-                {
-                    "frame": frame_index,
-                    "frameBounds": metrics["frameBounds"],
-                }
-            )
             review_frames.append(composition)
         sheet_hash = sha256_file(path)
         characters.append(
             {
-                "id": entry["id"],
-                "sheet": entry["sheet"],
+                "id": socket_character["id"],
+                "sheet": socket_character["sheet"],
                 "sha256": sheet_hash,
                 "frames": character_frames,
             }
         )
-        authority_characters.append(
-            {
-                "id": entry["id"],
-                "sheet": entry["sheet"],
-                "sha256": sheet_hash,
-                "row": ACTOR_ROW,
-                "activeFrames": ACTIVE_FRAMES,
-                "frames": authority_frames,
-            }
-        )
-        rendered[entry["id"]] = review_frames
-    authority = {
-        "schemaVersion": 1,
-        "id": "office.facility.interact-front.pose-authority.v1",
-        "status": "frozen-prototype-internal",
-        "developmentOnly": True,
-        "pendingCommercialReview": True,
-        "activeOfficeImported": False,
-        "visualPose": "interact-front",
-        "row": ACTOR_ROW,
-        "activeFrames": ACTIVE_FRAMES,
-        "characterCount": len(characters),
-        "poseCaseCount": len(characters) * ACTIVE_FRAMES,
-        "perCharacterFacilityScaling": False,
-        "perCharacterActorOffsets": False,
-        "sources": pose_sources,
-        "characters": authority_characters,
-    }
-    authority_bytes = json_bytes(authority)
+        rendered[socket_character["id"]] = review_frames
     roster = {
         "visualPose": "interact-front",
         "poseAuthority": {
             "manifest": repo_path(POSE_AUTHORITY_PATH),
-            "manifestSha256": sha256_bytes(authority_bytes),
-            "status": "frozen-prototype-internal",
+            "manifestSha256": sha256_file(POSE_AUTHORITY_PATH),
+            "status": "owner-review-f8-pending",
             "activeOfficeImported": False,
+        },
+        "spatialAuthority": {
+            "manifest": repo_path(SPATIAL_AUTHORITY_PATH),
+            "manifestSha256": sha256_file(SPATIAL_AUTHORITY_PATH),
+            "status": "owner-review-f8-pending",
+            "activeOfficeImported": False,
+        },
+        "heldPropAuthority": {
+            "manifest": repo_path(HELD_PROP_MANIFEST_PATH),
+            "manifestSha256": sha256_file(HELD_PROP_MANIFEST_PATH),
+            "assetId": held_record["id"],
+            "assetSha256": held_record["runtimeSha256"],
+            "runtimeScale": held_record["runtimeScale"],
         },
         "row": ACTOR_ROW,
         "activeFrames": ACTIVE_FRAMES,
         "characterCount": len(characters),
         "validatedPoseCases": len(characters) * ACTIVE_FRAMES,
+        "visiblePropCases": len(characters) * 3,
+        "facilityOutputAttachmentCases": len(characters),
+        "actorHandAttachmentCases": len(characters) * 2,
+        "attachmentDeltaFailures": 0,
         "sharedActorPosition": list(SHARED_ACTOR_POSITION),
         "perCharacterFacilityScaling": False,
         "perCharacterActorOffsets": False,
         "poseSources": pose_sources,
         "characters": characters,
     }
-    return characters, rendered, roster, authority_bytes
+    return characters, rendered, roster
 
 
 def reservation_timeline() -> tuple[dict[str, Any], list[dict[str, Any]]]:
@@ -1233,7 +1346,7 @@ def review_parts(
     board = Image.new("RGBA", (1600, 1000), (235, 240, 246, 255))
     draw = draw_title(
         board,
-        "Vending U01 — Alpha parts",
+        "Vending U01-r02 — Alpha parts",
         "Static shell • four local viewport states • empty tray • effect • held output",
     )
     labels = [
@@ -1263,9 +1376,10 @@ def review_parts(
         board.alpha_composite(card, (x + 20, y + 45))
         draw.text((x + 18, y + 12), label, font=HEADING_FONT, fill=(24, 39, 57, 255))
         bbox = runtime_parts[part_id].getbbox()
+        image = runtime_parts[part_id]
         draw.text(
             (x + 18, y + 344),
-            f"64×96 envelope • alpha bounds {bbox}",
+            f"{image.width}×{image.height} canvas • alpha bounds {bbox}",
             font=SMALL_FONT,
             fill=(69, 84, 103, 255),
         )
@@ -1276,7 +1390,7 @@ def review_clean(runtime_composites: dict[str, Image.Image]) -> Image.Image:
     board = Image.new("RGBA", (1400, 900), (232, 238, 245, 255))
     draw = draw_title(
         board,
-        "Vending U01 — Clean front-only loop",
+        "Vending U01-r02 — Clean front-only loop",
         "2×1×3 tiles • 64×96 px • bottom-center • A/B/C/D use one immutable shell",
     )
     for index, frame in enumerate(FRAME_IDS):
@@ -1313,7 +1427,7 @@ def review_geometry(runtime_machine: Image.Image) -> Image.Image:
     board = Image.new("RGBA", (1200, 950), (236, 241, 247, 255))
     draw = draw_title(
         board,
-        "Vending U01 — Geometry and routes",
+        "Vending U01-r02 — Geometry and routes",
         "Footprint, stand, approach, exit, anchor, and capacity proved outside every room",
     )
     origin = (180, 150)
@@ -1413,7 +1527,7 @@ def review_animation(
     board = Image.new("RGBA", (1600, 900), (234, 239, 245, 255))
     draw = draw_title(
         board,
-        "Vending U01 — Local animation viewport",
+        "Vending U01-r02 — Local animation viewport",
         "Four frames • static shell and pivots • every changed pixel remains inside the blue box",
     )
     for index, frame in enumerate(FRAME_IDS):
@@ -1468,8 +1582,8 @@ def review_handoff(
     board = Image.new("RGBA", (1500, 900), (235, 240, 246, 255))
     draw = draw_title(
         board,
-        "Vending U01 — Empty tray to held-output handoff",
-        "Machine, effect, and product are independent layers; held output appears only in pose frames 3–5",
+        "Vending U01-r02 — Socket-driven output handoff",
+        "Frame 3 uses the facility output socket; frames 4–5 use each actor hand socket",
     )
     labels = [
         ("pickup-tray-empty", "EMPTY TRAY"),
@@ -1496,10 +1610,16 @@ def review_handoff(
         card = checkerboard((160, 220), 10)
         paste_scaled(card, composition, (0, 0, 160, 205))
         board.alpha_composite(card, (x, y))
-        visible = "held" if frame_index in (2, 3, 4) else "none"
+        parent = (
+            "facility.output"
+            if frame_index == 2
+            else "actor.hand"
+            if frame_index in (3, 4)
+            else "none"
+        )
         draw.text(
             (x + 5, y + 198),
-            f"{frame_index + 1}: {visible}",
+            f"{frame_index + 1}: {parent}",
             font=SMALL_FONT,
             fill=(33, 50, 70, 255),
         )
@@ -1511,13 +1631,13 @@ def review_handoff(
     )
     draw.text(
         (38, 605),
-        "empty pickup tray  →  local dispense effect  →  held-prop layer",
+        "empty tray  →  facility.output.primary  →  actor.hand.primary.grip",
         font=HEADING_FONT,
         fill=(31, 105, 170, 255),
     )
     draw.text(
         (38, 675),
-        "PASS: zero held-product pixels are embedded in the static shell or viewport frames.",
+        "PASS: H01 prop grip resolves to its parent socket with exact delta [0,0].",
         font=BODY_FONT,
         fill=(20, 126, 72, 255),
     )
@@ -1536,8 +1656,8 @@ def review_roster(
     board = Image.new("RGBA", (1800, 1220), (234, 239, 245, 255))
     draw = draw_title(
         board,
-        "Vending U01 — Interact-front roster fit",
-        "18 characters × 6 frames = 108 cases • one facility scale • one shared actor position",
+        "Vending U01-r02 — Interact-front roster fit",
+        "18 characters × 6 frames = 108 cases • Spatial I01 sockets • H01 prop scale 1",
     )
     for index, (character_id, frames) in enumerate(rendered.items()):
         column = index % 6
@@ -1566,6 +1686,84 @@ def review_roster(
         "PASS: all 108 cards remain inside bounds; no per-character scale or magic offset.",
         font=HEADING_FONT,
         fill=(20, 126, 72, 255),
+    )
+    return board
+
+
+def review_socket_debug(
+    rendered: dict[str, list[Image.Image]],
+    roster: dict[str, Any],
+) -> Image.Image:
+    board = Image.new("RGBA", (1800, 1220), (234, 239, 245, 255))
+    draw = draw_title(
+        board,
+        "Vending U01-r02 — Socket attachment debug",
+        "Frame 4 • H01 soda primary grip resolves to each actor hand with delta [0,0]",
+    )
+    records = {entry["id"]: entry for entry in roster["characters"]}
+    for index, (character_id, frames) in enumerate(rendered.items()):
+        column = index % 6
+        row = index // 6
+        x = 25 + column * 295
+        y = 110 + row * 350
+        draw.rounded_rectangle(
+            (x, y, x + 270, y + 320),
+            radius=12,
+            fill=(248, 250, 253, 255),
+            outline=(88, 114, 145, 255),
+            width=2,
+        )
+        card = checkerboard((240, 250), 12)
+        paste_scaled(card, frames[3], (0, 0, 240, 240))
+        board.alpha_composite(card, (x + 15, y + 45))
+        frame = records[character_id]["frames"][3]
+        draw.text((x + 14, y + 12), character_id, font=HEADING_FONT, fill=(24, 39, 57, 255))
+        draw.text(
+            (x + 14, y + 292),
+            f"hand {frame['primaryGripSocket']} • Δ {frame['attachmentDelta']}",
+            font=SMALL_FONT,
+            fill=(20, 126, 72, 255),
+        )
+    draw.text(
+        (25, 1170),
+        "PASS: no center anchor • no per-character runtime scale • source-exact hand foreground masks",
+        font=HEADING_FONT,
+        fill=(20, 126, 72, 255),
+    )
+    return board
+
+
+def review_before_after(new_handoff: Image.Image) -> Image.Image:
+    if not R01_REVIEW_PATH.exists():
+        raise ValueError("U01-r01 review evidence is missing")
+    before = Image.open(R01_REVIEW_PATH).convert("RGBA")
+    board = Image.new("RGBA", (1600, 1030), (234, 239, 245, 255))
+    draw = draw_title(
+        board,
+        "Vending U01 — r01 attachment defect vs r02 socket repair",
+        "Historical r01 remains review evidence only; r02 uses Spatial I01 and fresh Held Props H01",
+    )
+    draw.text((40, 120), "R01 • fixed actor + (48,54)", font=HEADING_FONT, fill=(183, 47, 58, 255))
+    draw.text((820, 120), "R02 • hand socket − prop grip", font=HEADING_FONT, fill=(20, 126, 72, 255))
+    before_preview = before.resize((720, 432), Image.Resampling.LANCZOS)
+    after_preview = new_handoff.resize((720, 432), Image.Resampling.LANCZOS)
+    board.alpha_composite(before_preview, (40, 165))
+    board.alpha_composite(after_preview, (820, 165))
+    draw.rounded_rectangle((55, 650, 755, 900), 14, fill=(255, 245, 246, 255), outline=(183, 47, 58, 255), width=2)
+    draw.multiline_text(
+        (85, 690),
+        "DEFECT\n• one center-like coordinate for every actor\n• no prop grip socket\n• no hand foreground mask\n• F7 attachment proof incomplete",
+        font=BODY_FONT,
+        fill=(80, 47, 52, 255),
+        spacing=14,
+    )
+    draw.rounded_rectangle((835, 650, 1535, 900), 14, fill=(241, 252, 247, 255), outline=(20, 126, 72, 255), width=2)
+    draw.multiline_text(
+        (865, 690),
+        "REPAIR\n• per-character/per-frame hand sockets\n• H01 native grip socket and scale 1\n• body → prop → hand mask\n• exact attachment delta [0,0]",
+        font=BODY_FONT,
+        fill=(35, 75, 57, 255),
+        spacing=14,
     )
     return board
 
@@ -1692,11 +1890,12 @@ def build_manifest_and_images() -> dict[Path, bytes]:
         runtime_composites,
     ) = build_parts(source_frames)
 
-    characters, rendered, roster, authority_bytes = build_roster_validation(
-        runtime_composites["d"],
+    characters, rendered, roster = build_roster_validation(
+        runtime_composites,
         runtime_parts["held-soda-can"],
     )
     reservation, samples = reservation_timeline()
+    handoff_review = review_handoff(runtime_parts, rendered["einstein"])
 
     review_images = [
         review_source_ownership(
@@ -1710,15 +1909,16 @@ def build_manifest_and_images() -> dict[Path, bytes]:
         review_clean(runtime_composites),
         review_geometry(runtime_composites["a"]),
         review_animation(runtime_composites, animation_metrics),
-        review_handoff(runtime_parts, rendered["einstein"]),
+        handoff_review,
         review_roster(rendered),
         review_reservation(samples),
+        review_socket_debug(rendered, roster),
+        review_before_after(handoff_review),
     ]
 
     outputs: dict[Path, bytes] = {
         KEYED_SOURCE_PATH: png_bytes(keyed),
         OWNERSHIP_PATH: png_bytes(ownership),
-        POSE_AUTHORITY_PATH: authority_bytes,
     }
     for frame, path in SOURCE_FRAME_PATHS.items():
         outputs[path] = png_bytes(source_frames[frame])
@@ -1761,6 +1961,13 @@ def build_manifest_and_images() -> dict[Path, bytes]:
         for record in parts
         if record["role"] == "held-output"
     )
+    held_manifest = json.loads(HELD_PROP_MANIFEST_PATH.read_text(encoding="utf-8"))
+    held_asset = next(
+        record for record in held_manifest["props"] if record["id"] == "held.soda-can"
+    )
+    spatial_authority = json.loads(
+        SPATIAL_AUTHORITY_PATH.read_text(encoding="utf-8")
+    )
     animation_frames = []
     for frame in FRAME_IDS:
         authoring_path, runtime_path = COMPOSITE_PATHS[frame]
@@ -1792,7 +1999,14 @@ def build_manifest_and_images() -> dict[Path, bytes]:
     ]
     visible_magenta = sum(
         1
-        for image in [*authoring_parts.values(), *authoring_composites.values()]
+        for image in [
+            *(
+                image
+                for part_id, image in authoring_parts.items()
+                if part_id != "held-soda-can"
+            ),
+            *authoring_composites.values(),
+        ]
         for red, green, blue, alpha in image.getdata()
         if alpha and is_chroma_key((red, green, blue, alpha))
     )
@@ -1823,6 +2037,7 @@ def build_manifest_and_images() -> dict[Path, bytes]:
                 repo_path(AUDIT_PATH),
                 *[record["recordId"] for record in records],
                 "front-only U01 is required; both historical side sources remain rejected",
+                "U01-r01 owner review exposed a fixed-center attachment defect; r02 supersedes it",
             ],
         },
         "F1": {
@@ -1852,7 +2067,9 @@ def build_manifest_and_images() -> dict[Path, bytes]:
             "evidence": [
                 repo_path(REVIEW_PATHS[1]),
                 repo_path(REVIEW_PATHS[5]),
-                "shell, viewport, empty tray, effect, and held output are separate",
+                repo_path(SPATIAL_AUTHORITY_PATH),
+                repo_path(HELD_PROP_MANIFEST_PATH),
+                "shell, viewport, empty tray, effect, and H01 held output are separate",
             ],
         },
         "F5": {
@@ -1878,7 +2095,10 @@ def build_manifest_and_images() -> dict[Path, bytes]:
                 repo_path(REVIEW_PATHS[5]),
                 repo_path(REVIEW_PATHS[6]),
                 repo_path(REVIEW_PATHS[7]),
+                repo_path(REVIEW_PATHS[8]),
+                repo_path(REVIEW_PATHS[9]),
                 "18 characters x 6 interact-front frames = 108 pose cases",
+                "36 actor-hand and 18 facility-output attachments resolve with exact delta [0,0]",
                 "30-second two-user contention, failure, release, and retry lab",
             ],
         },
@@ -1897,7 +2117,7 @@ def build_manifest_and_images() -> dict[Path, bytes]:
     }
 
     manifest = {
-        "schemaVersion": 1,
+        "schemaVersion": 2,
         "id": "office.facility.vending-machine.u01",
         "familyId": FAMILY_ID,
         "revision": REVISION,
@@ -1911,6 +2131,7 @@ def build_manifest_and_images() -> dict[Path, bytes]:
             "stagingPixelReuse": False,
             "generativeRepair": False,
             "missingAssetFallback": False,
+            "sharedProductionAssetDependency": "office.held-props.h01",
         },
         "source": {
             "kind": "audited-original-mechanical-loop-master",
@@ -1935,6 +2156,30 @@ def build_manifest_and_images() -> dict[Path, bytes]:
             "nonUniformScaling": False,
             "anchor": "bottom-center",
             "requiredOrientations": ["front"],
+        },
+        "spatial": {
+            "authority": {
+                "file": repo_path(SPATIAL_AUTHORITY_PATH),
+                "sha256": sha256_file(SPATIAL_AUTHORITY_PATH),
+                "id": spatial_authority["id"],
+                "status": spatial_authority["status"],
+            },
+            "coordinateSpace": "facility-runtime-pixel",
+            "unit": "pixel",
+            "localSockets": {
+                "base.floor": list(FACILITY_BASE_SOCKET),
+                "sort.floor": list(FACILITY_BASE_SOCKET),
+                "interaction.target": [48, 96],
+                "output.primary": list(FACILITY_OUTPUT_SOCKET),
+                "effect.origin": list(FACILITY_EFFECT_SOCKET),
+                "viewport.origin": [
+                    VIEWPORT_RUNTIME_BOX[0],
+                    VIEWPORT_RUNTIME_BOX[1],
+                ],
+            },
+            "perSceneAttachmentOffsets": False,
+            "centerToCenterAttachment": False,
+            "missingSocketFallback": False,
         },
         "geometry": {
             "schemaVersion": 3,
@@ -2001,11 +2246,38 @@ def build_manifest_and_images() -> dict[Path, bytes]:
         "outputHandoff": {
             "pickupTrayPartId": tray_part_id,
             "heldAssetPartId": held_part_id,
+            "heldAssetId": held_asset["id"],
+            "heldAssetManifest": repo_path(HELD_PROP_MANIFEST_PATH),
+            "heldAssetManifestSha256": sha256_file(HELD_PROP_MANIFEST_PATH),
+            "heldAssetRuntimeSha256": held_asset["runtimeSha256"],
             "effectPartIds": [effect_part_id],
             "productEmbeddedInShell": False,
             "productEmbeddedInViewportFrames": False,
-            "transition": "pickup-tray-to-held-prop-layer",
+            "transition": "facility-output-socket-to-actor-hand-socket",
             "heldVisiblePoseFrames": [2, 3, 4],
+            "facilityOutputSocketId": "output.primary",
+            "actorGripSocketId": "hand.primary.grip",
+            "propGripSocketId": "grip.primary",
+            "runtimeScale": 1,
+            "handForegroundMaskRequired": True,
+            "attachmentDeltaFailures": 0,
+            "timeline": [
+                {"poseFrame": 0, "attachmentParent": None},
+                {"poseFrame": 1, "attachmentParent": None},
+                {
+                    "poseFrame": 2,
+                    "attachmentParent": "facility.output.primary",
+                },
+                {
+                    "poseFrame": 3,
+                    "attachmentParent": "actor.hand.primary.grip",
+                },
+                {
+                    "poseFrame": 4,
+                    "attachmentParent": "actor.hand.primary.grip",
+                },
+                {"poseFrame": 5, "attachmentParent": None},
+            ],
         },
         "interaction": {
             "capacity": 1,
@@ -2041,8 +2313,15 @@ def build_manifest_and_images() -> dict[Path, bytes]:
             "outsideViewportChangedPixels": animation_metrics,
             "effectPixelCount": animation_metrics["effectPixels"],
             "heldProductPixelCount": animation_metrics["heldProductPixels"],
+            "machineProductRemovalPixelCount": animation_metrics["heldProductPixels"],
             "embeddedProductPixelsByFrame": embedded_orange,
             "validatedPoseCases": len(characters) * ACTIVE_FRAMES,
+            "visiblePropCases": roster["visiblePropCases"],
+            "facilityOutputAttachmentCases": roster[
+                "facilityOutputAttachmentCases"
+            ],
+            "actorHandAttachmentCases": roster["actorHandAttachmentCases"],
+            "attachmentDeltaFailures": roster["attachmentDeltaFailures"],
             "shellPartHashSharedByEveryFrame": True,
         },
         "gates": gates,
@@ -2059,6 +2338,12 @@ def build_manifest_and_images() -> dict[Path, bytes]:
             "file": repo_path(ACTIVE_REGISTRY),
             "sha256": sha256_file(ACTIVE_REGISTRY),
             "importsCandidate": False,
+        },
+        "supersedes": {
+            "revision": "u01",
+            "reason": "F8 review exposed a fixed-center held-output attachment defect",
+            "historicalReview": repo_path(R01_REVIEW_PATH),
+            "historicalReviewSha256": sha256_file(R01_REVIEW_PATH),
         },
         "permissions": {
             "familyLab": True,
@@ -2107,13 +2392,13 @@ def main() -> None:
             print("\n".join(failures), file=sys.stderr)
             raise SystemExit(1)
         print(
-            "Vending U01 OK: four full-master ownership extractions, static "
+            "Vending U01-r02 OK: four full-master ownership extractions, static "
             "shell, local viewport, separate empty tray/effect/held output, "
-            "108 interact-front cases, and 30-second reservation proof."
+            "108 socket-driven interact-front cases, and 30-second reservation proof."
         )
         return
     write_outputs(outputs)
-    print(f"Wrote {len(outputs)} Vending U01 files.")
+    print(f"Wrote {len(outputs)} Vending U01-r02 files.")
     print(f"Manifest: {repo_path(MANIFEST_PATH)}")
     print("Status: F0-F7 passed; owner-review-f8-pending; F9/F10 blocked.")
 

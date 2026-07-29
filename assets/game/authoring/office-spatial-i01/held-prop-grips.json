@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "office.held-prop-grip-calibration.h01",
+  "status": "pixel-reviewed-authoring-input",
+  "runtimeCanvas": [20, 20],
+  "authoringCanvas": [40, 40],
+  "source": "assets/art/layout-references/held-props-modern-bright-v1-source.png",
+  "props": [
+    {"id": "held.water-cup-clear", "cell": [0, 0], "profile": "single-body", "primaryGrip": [4, 12], "secondaryGrip": null},
+    {"id": "held.water-cup-blue", "cell": [0, 1], "profile": "single-body", "primaryGrip": [4, 12], "secondaryGrip": null},
+    {"id": "held.water-bottle", "cell": [0, 2], "profile": "single-body", "primaryGrip": [7, 13], "secondaryGrip": null},
+    {"id": "held.coffee-mug", "cell": [0, 3], "profile": "single-handle", "primaryGrip": [16, 11], "secondaryGrip": null},
+    {"id": "held.takeaway-cup", "cell": [1, 0], "profile": "single-body", "primaryGrip": [6, 13], "secondaryGrip": null},
+    {"id": "held.tea-cup", "cell": [1, 1], "profile": "single-body", "primaryGrip": [5, 12], "secondaryGrip": null},
+    {"id": "held.soda-can", "cell": [1, 2], "profile": "single-body", "primaryGrip": [7, 13], "secondaryGrip": null},
+    {"id": "held.juice-box", "cell": [1, 3], "profile": "single-body", "primaryGrip": [6, 13], "secondaryGrip": null},
+    {"id": "held.snack-bag", "cell": [2, 0], "profile": "single-body", "primaryGrip": [4, 13], "secondaryGrip": null},
+    {"id": "held.yogurt-box", "cell": [2, 1], "profile": "single-body", "primaryGrip": [4, 12], "secondaryGrip": null},
+    {"id": "held.paper-sheet", "cell": [2, 2], "profile": "two-hand-wide", "primaryGrip": [4, 13], "secondaryGrip": [16, 13]},
+    {"id": "held.envelope", "cell": [2, 3], "profile": "two-hand-wide", "primaryGrip": [3, 11], "secondaryGrip": [17, 11]},
+    {"id": "held.label-card", "cell": [3, 0], "profile": "two-hand-wide", "primaryGrip": [3, 13], "secondaryGrip": [17, 13]},
+    {"id": "held.tablet", "cell": [3, 1], "profile": "two-hand-wide", "primaryGrip": [3, 12], "secondaryGrip": [17, 12]},
+    {"id": "held.notebook", "cell": [3, 2], "profile": "two-hand-wide", "primaryGrip": [4, 13], "secondaryGrip": [16, 13]},
+    {"id": "held.smartphone", "cell": [3, 3], "profile": "single-body", "primaryGrip": [7, 13], "secondaryGrip": null}
+  ]
+}

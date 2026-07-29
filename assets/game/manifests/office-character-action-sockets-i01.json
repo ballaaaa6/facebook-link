@@ -1,0 +1,2430 @@
+{
+  "schemaVersion": 1,
+  "id": "office.character-action-sockets.i01",
+  "status": "owner-review-f8-pending",
+  "developmentOnly": true,
+  "pendingCommercialReview": true,
+  "activeOfficeImported": false,
+  "coordinateRules": {
+    "localUnit": "runtime-pixel-1x",
+    "integerCoordinatesOnly": true,
+    "fullFrameOrigin": "top-left",
+    "normalizedCoordinatesAuthority": false,
+    "density2xDerivation": "multiply-by-two",
+    "missingSocketFallback": false
+  },
+  "authoringInput": {
+    "file": "assets/game/authoring/office-spatial-i01/character-action-sockets.json",
+    "sha256": "cf2668838166afbf1b2e172e6afb51906b530b9a53194b3ddb4ff3bf1a17334e"
+  },
+  "pose": "interact-front",
+  "row": 10,
+  "activeFrames": 6,
+  "heldFrames": [
+    2,
+    3,
+    4
+  ],
+  "characterCount": 18,
+  "frameRecordCount": 108,
+  "foregroundMaskCount": 54,
+  "characters": [
+    {
+      "id": "einstein",
+      "sheet": "assets/game/characters/einstein/runtime-spritesheet-v3.webp",
+      "sheetSha256": "5c559c215966641a5a92e55bb2b3cf159b8e4a22b19633c1813c39da58956213",
+      "frameSize": [
+        96,
+        104
+      ],
+      "pose": "interact-front",
+      "row": 10,
+      "frames": [
+        {
+          "frame": 0,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            25,
+            72
+          ],
+          "secondaryGripSocket": [
+            71,
+            72
+          ],
+          "holdState": "none",
+          "foregroundMask": null
+        },
+        {
+          "frame": 1,
+          "rootSocket": [
+            48,
+            101
+          ],
+          "primaryGripSocket": [
+            34,
+            63
+          ],
+          "secondaryGripSocket": [
+            70,
+            71
+          ],
+          "holdState": "reach",
+          "foregroundMask": null
+        },
+        {
+          "frame": 2,
+          "rootSocket": [
+            48,
+            101
+          ],
+          "primaryGripSocket": [
+            43,
+            64
+          ],
+          "secondaryGripSocket": [
+            70,
+            71
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/einstein/interact-front-f2.png",
+            "sha256": "ac945b5de0acee47cad6c85df19a555ca1654bc7e2637a232ab97279cd82138a",
+            "pixelCount": 185,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 3,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            42,
+            62
+          ],
+          "secondaryGripSocket": [
+            70,
+            71
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/einstein/interact-front-f3.png",
+            "sha256": "5a3a96aafd5e13a0b85baca162d157cfbaf15d5e0b0ffde796b92e7480bdd5ce",
+            "pixelCount": 173,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 4,
+          "rootSocket": [
+            48,
+            101
+          ],
+          "primaryGripSocket": [
+            39,
+            59
+          ],
+          "secondaryGripSocket": [
+            70,
+            70
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/einstein/interact-front-f4.png",
+            "sha256": "c402ce621e6571ba91dc2e9243081957f767726da385b700ddd44711460632ee",
+            "pixelCount": 190,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 5,
+          "rootSocket": [
+            48,
+            101
+          ],
+          "primaryGripSocket": [
+            26,
+            71
+          ],
+          "secondaryGripSocket": [
+            70,
+            71
+          ],
+          "holdState": "release",
+          "foregroundMask": null
+        }
+      ]
+    },
+    {
+      "id": "doraemon",
+      "sheet": "assets/game/characters/doraemon/runtime-spritesheet-v4.webp",
+      "sheetSha256": "ad03ecef52dd95d633734fd765a80324a436754876e5a9ba75a3ba6874c1b94f",
+      "frameSize": [
+        96,
+        104
+      ],
+      "pose": "interact-front",
+      "row": 10,
+      "frames": [
+        {
+          "frame": 0,
+          "rootSocket": [
+            47,
+            90
+          ],
+          "primaryGripSocket": [
+            22,
+            63
+          ],
+          "secondaryGripSocket": [
+            74,
+            63
+          ],
+          "holdState": "none",
+          "foregroundMask": null
+        },
+        {
+          "frame": 1,
+          "rootSocket": [
+            47,
+            90
+          ],
+          "primaryGripSocket": [
+            39,
+            64
+          ],
+          "secondaryGripSocket": [
+            57,
+            64
+          ],
+          "holdState": "reach",
+          "foregroundMask": null
+        },
+        {
+          "frame": 2,
+          "rootSocket": [
+            48,
+            90
+          ],
+          "primaryGripSocket": [
+            40,
+            66
+          ],
+          "secondaryGripSocket": [
+            56,
+            66
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/doraemon/interact-front-f2.png",
+            "sha256": "6f4b898c429734598a4ac7ae3448ceb4ab40da23c492bb5ea13138c1cb3db959",
+            "pixelCount": 226,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 3,
+          "rootSocket": [
+            46,
+            90
+          ],
+          "primaryGripSocket": [
+            40,
+            66
+          ],
+          "secondaryGripSocket": [
+            56,
+            66
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/doraemon/interact-front-f3.png",
+            "sha256": "8e13145d3fdece6acd92ac71da350a49858686687cd16598a4c9bcd56d98e38b",
+            "pixelCount": 226,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 4,
+          "rootSocket": [
+            48,
+            90
+          ],
+          "primaryGripSocket": [
+            40,
+            62
+          ],
+          "secondaryGripSocket": [
+            56,
+            62
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/doraemon/interact-front-f4.png",
+            "sha256": "bf91193a8dedbdb662e29b5dcae5ace882ba96f5135bd194d2d06cfe1eb1b9b9",
+            "pixelCount": 226,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 5,
+          "rootSocket": [
+            47,
+            90
+          ],
+          "primaryGripSocket": [
+            22,
+            63
+          ],
+          "secondaryGripSocket": [
+            74,
+            63
+          ],
+          "holdState": "release",
+          "foregroundMask": null
+        }
+      ]
+    },
+    {
+      "id": "anna",
+      "sheet": "assets/game/characters/anna/runtime-spritesheet-v3.webp",
+      "sheetSha256": "75069f368d0fd0806c8978bcf2e5077b82c9306e6c20931617173fd0f88a57bb",
+      "frameSize": [
+        96,
+        104
+      ],
+      "pose": "interact-front",
+      "row": 10,
+      "frames": [
+        {
+          "frame": 0,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            25,
+            72
+          ],
+          "secondaryGripSocket": [
+            71,
+            72
+          ],
+          "holdState": "none",
+          "foregroundMask": null
+        },
+        {
+          "frame": 1,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            29,
+            62
+          ],
+          "secondaryGripSocket": [
+            70,
+            70
+          ],
+          "holdState": "reach",
+          "foregroundMask": null
+        },
+        {
+          "frame": 2,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            39,
+            63
+          ],
+          "secondaryGripSocket": [
+            70,
+            70
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/anna/interact-front-f2.png",
+            "sha256": "f33132491eb4c21864ceb8d6bc0fe7d38bffa7ad519cc44b4389e08ace830f17",
+            "pixelCount": 145,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 3,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            40,
+            63
+          ],
+          "secondaryGripSocket": [
+            70,
+            70
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/anna/interact-front-f3.png",
+            "sha256": "9e407e9d91cb34845a786d6805fb49561e9c68e37170d47fc03c6d95ebbdd893",
+            "pixelCount": 148,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 4,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            43,
+            57
+          ],
+          "secondaryGripSocket": [
+            70,
+            70
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/anna/interact-front-f4.png",
+            "sha256": "fea3b221e71ed8508756f423ef9b774cfd01a70ff627377d437b7c1989a8003a",
+            "pixelCount": 148,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 5,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            25,
+            72
+          ],
+          "secondaryGripSocket": [
+            71,
+            72
+          ],
+          "holdState": "release",
+          "foregroundMask": null
+        }
+      ]
+    },
+    {
+      "id": "ai-workbot",
+      "sheet": "assets/game/characters/ai-workbot/runtime-spritesheet-v3.webp",
+      "sheetSha256": "f06bfeae9bf5b439f6f80b416aac1984aee627fd823c21acd90118ae26865935",
+      "frameSize": [
+        96,
+        104
+      ],
+      "pose": "interact-front",
+      "row": 10,
+      "frames": [
+        {
+          "frame": 0,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            20,
+            67
+          ],
+          "secondaryGripSocket": [
+            76,
+            67
+          ],
+          "holdState": "none",
+          "foregroundMask": null
+        },
+        {
+          "frame": 1,
+          "rootSocket": [
+            48,
+            101
+          ],
+          "primaryGripSocket": [
+            21,
+            64
+          ],
+          "secondaryGripSocket": [
+            75,
+            67
+          ],
+          "holdState": "reach",
+          "foregroundMask": null
+        },
+        {
+          "frame": 2,
+          "rootSocket": [
+            48,
+            101
+          ],
+          "primaryGripSocket": [
+            39,
+            67
+          ],
+          "secondaryGripSocket": [
+            57,
+            67
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/ai-workbot/interact-front-f2.png",
+            "sha256": "01fb2eb80444976004ce918951c7ea7cb19897db6f3e85d1c70bdcd8229f9fe8",
+            "pixelCount": 226,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 3,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            39,
+            67
+          ],
+          "secondaryGripSocket": [
+            57,
+            67
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/ai-workbot/interact-front-f3.png",
+            "sha256": "408c8acf99948cfc207e06a073cc273967c917ee70fcfd469474fbb4aaae9d29",
+            "pixelCount": 226,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 4,
+          "rootSocket": [
+            48,
+            101
+          ],
+          "primaryGripSocket": [
+            40,
+            62
+          ],
+          "secondaryGripSocket": [
+            56,
+            62
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/ai-workbot/interact-front-f4.png",
+            "sha256": "85c85f76e140542e0bd8d3da849a9e37b2bd6b1f393d3e98834c66c034368101",
+            "pixelCount": 226,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 5,
+          "rootSocket": [
+            48,
+            101
+          ],
+          "primaryGripSocket": [
+            20,
+            67
+          ],
+          "secondaryGripSocket": [
+            76,
+            67
+          ],
+          "holdState": "release",
+          "foregroundMask": null
+        }
+      ]
+    },
+    {
+      "id": "asuka-2",
+      "sheet": "assets/game/characters/asuka-2/runtime-spritesheet-v3.webp",
+      "sheetSha256": "b9f71bd45fbd8fb7c28f06c12fa800706c72fc128be48aedd14a3f099fcf064b",
+      "frameSize": [
+        96,
+        104
+      ],
+      "pose": "interact-front",
+      "row": 10,
+      "frames": [
+        {
+          "frame": 0,
+          "rootSocket": [
+            46,
+            101
+          ],
+          "primaryGripSocket": [
+            25,
+            70
+          ],
+          "secondaryGripSocket": [
+            71,
+            70
+          ],
+          "holdState": "none",
+          "foregroundMask": null
+        },
+        {
+          "frame": 1,
+          "rootSocket": [
+            46,
+            101
+          ],
+          "primaryGripSocket": [
+            29,
+            61
+          ],
+          "secondaryGripSocket": [
+            70,
+            69
+          ],
+          "holdState": "reach",
+          "foregroundMask": null
+        },
+        {
+          "frame": 2,
+          "rootSocket": [
+            46,
+            101
+          ],
+          "primaryGripSocket": [
+            33,
+            63
+          ],
+          "secondaryGripSocket": [
+            70,
+            69
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/asuka-2/interact-front-f2.png",
+            "sha256": "c53ce583d59e8d9b15ced282b2328e3737cf843013c26e19de81a21f8bb891b9",
+            "pixelCount": 190,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 3,
+          "rootSocket": [
+            46,
+            101
+          ],
+          "primaryGripSocket": [
+            35,
+            63
+          ],
+          "secondaryGripSocket": [
+            70,
+            69
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/asuka-2/interact-front-f3.png",
+            "sha256": "50dfab3eef014dcf630e738242c4dab215ff7ae35379e28d13fe55bec14fb59a",
+            "pixelCount": 189,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 4,
+          "rootSocket": [
+            46,
+            101
+          ],
+          "primaryGripSocket": [
+            42,
+            57
+          ],
+          "secondaryGripSocket": [
+            70,
+            69
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/asuka-2/interact-front-f4.png",
+            "sha256": "7bf2732e873b060b8278575445b5668a0a772fd6286a323e504b3ee7d3a10f81",
+            "pixelCount": 190,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 5,
+          "rootSocket": [
+            46,
+            101
+          ],
+          "primaryGripSocket": [
+            25,
+            70
+          ],
+          "secondaryGripSocket": [
+            71,
+            70
+          ],
+          "holdState": "release",
+          "foregroundMask": null
+        }
+      ]
+    },
+    {
+      "id": "jesus",
+      "sheet": "assets/game/characters/jesus/runtime-spritesheet-v3.webp",
+      "sheetSha256": "ba19dc354e61faddc0ff3df3b0933b7047d374cd206eeee68a6c55ea2971c665",
+      "frameSize": [
+        96,
+        104
+      ],
+      "pose": "interact-front",
+      "row": 10,
+      "frames": [
+        {
+          "frame": 0,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            25,
+            72
+          ],
+          "secondaryGripSocket": [
+            71,
+            72
+          ],
+          "holdState": "none",
+          "foregroundMask": null
+        },
+        {
+          "frame": 1,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            29,
+            64
+          ],
+          "secondaryGripSocket": [
+            70,
+            70
+          ],
+          "holdState": "reach",
+          "foregroundMask": null
+        },
+        {
+          "frame": 2,
+          "rootSocket": [
+            48,
+            101
+          ],
+          "primaryGripSocket": [
+            33,
+            66
+          ],
+          "secondaryGripSocket": [
+            70,
+            70
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/jesus/interact-front-f2.png",
+            "sha256": "dd824802d0c389e7c7e34877b53a1140883c5fdc1f65a46586f7ff09cd387953",
+            "pixelCount": 156,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 3,
+          "rootSocket": [
+            48,
+            101
+          ],
+          "primaryGripSocket": [
+            35,
+            66
+          ],
+          "secondaryGripSocket": [
+            70,
+            70
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/jesus/interact-front-f3.png",
+            "sha256": "9af526b588e5405535015628bf020ed804b23d07c89ea13120e492ba0438f12b",
+            "pixelCount": 175,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 4,
+          "rootSocket": [
+            50,
+            101
+          ],
+          "primaryGripSocket": [
+            42,
+            59
+          ],
+          "secondaryGripSocket": [
+            70,
+            70
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/jesus/interact-front-f4.png",
+            "sha256": "b4daafdfd6dcdf165fe5f43bfb409d9cb5ff148b5bf7c97dbcd24fa56e28aefc",
+            "pixelCount": 202,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 5,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            25,
+            72
+          ],
+          "secondaryGripSocket": [
+            71,
+            72
+          ],
+          "holdState": "release",
+          "foregroundMask": null
+        }
+      ]
+    },
+    {
+      "id": "miku",
+      "sheet": "assets/game/characters/miku/runtime-spritesheet-v3.webp",
+      "sheetSha256": "edbc128700f1135d4f84e3380281db966fba68b27798b4bc87a2a5949f4ae83a",
+      "frameSize": [
+        96,
+        104
+      ],
+      "pose": "interact-front",
+      "row": 10,
+      "frames": [
+        {
+          "frame": 0,
+          "rootSocket": [
+            48,
+            101
+          ],
+          "primaryGripSocket": [
+            25,
+            71
+          ],
+          "secondaryGripSocket": [
+            71,
+            71
+          ],
+          "holdState": "none",
+          "foregroundMask": null
+        },
+        {
+          "frame": 1,
+          "rootSocket": [
+            48,
+            101
+          ],
+          "primaryGripSocket": [
+            24,
+            63
+          ],
+          "secondaryGripSocket": [
+            72,
+            70
+          ],
+          "holdState": "reach",
+          "foregroundMask": null
+        },
+        {
+          "frame": 2,
+          "rootSocket": [
+            48,
+            101
+          ],
+          "primaryGripSocket": [
+            25,
+            64
+          ],
+          "secondaryGripSocket": [
+            72,
+            70
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/miku/interact-front-f2.png",
+            "sha256": "6c0854e7e940d6395bb6515fe3fcf5e56852b6e84fd78426874334ea7edf94d5",
+            "pixelCount": 170,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 3,
+          "rootSocket": [
+            48,
+            101
+          ],
+          "primaryGripSocket": [
+            28,
+            64
+          ],
+          "secondaryGripSocket": [
+            72,
+            70
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/miku/interact-front-f3.png",
+            "sha256": "f9f8a20b26e8f92d084dc3e3f1d98cf23db58395a5a4c4f3b80b0b989d668970",
+            "pixelCount": 154,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 4,
+          "rootSocket": [
+            48,
+            101
+          ],
+          "primaryGripSocket": [
+            40,
+            56
+          ],
+          "secondaryGripSocket": [
+            72,
+            70
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/miku/interact-front-f4.png",
+            "sha256": "754f81dbd51f07a18299866581dd1edf1fc461b28d1fb3b214571e378e9a2f21",
+            "pixelCount": 219,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 5,
+          "rootSocket": [
+            48,
+            101
+          ],
+          "primaryGripSocket": [
+            25,
+            71
+          ],
+          "secondaryGripSocket": [
+            71,
+            71
+          ],
+          "holdState": "release",
+          "foregroundMask": null
+        }
+      ]
+    },
+    {
+      "id": "rem-xl",
+      "sheet": "assets/game/characters/rem-xl/runtime-spritesheet-v3.webp",
+      "sheetSha256": "219034c438a93237d8a89bac6c3ee37d627a85991c9eb70915a682291017bdb1",
+      "frameSize": [
+        96,
+        104
+      ],
+      "pose": "interact-front",
+      "row": 10,
+      "frames": [
+        {
+          "frame": 0,
+          "rootSocket": [
+            48,
+            101
+          ],
+          "primaryGripSocket": [
+            25,
+            70
+          ],
+          "secondaryGripSocket": [
+            71,
+            70
+          ],
+          "holdState": "none",
+          "foregroundMask": null
+        },
+        {
+          "frame": 1,
+          "rootSocket": [
+            46,
+            101
+          ],
+          "primaryGripSocket": [
+            69,
+            61
+          ],
+          "secondaryGripSocket": [
+            28,
+            68
+          ],
+          "holdState": "reach",
+          "foregroundMask": null
+        },
+        {
+          "frame": 2,
+          "rootSocket": [
+            46,
+            101
+          ],
+          "primaryGripSocket": [
+            69,
+            61
+          ],
+          "secondaryGripSocket": [
+            28,
+            68
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/rem-xl/interact-front-f2.png",
+            "sha256": "511da25b1131b6d4f2b44477f30eb70869a03410eee174e2870586edf8b0f247",
+            "pixelCount": 94,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 3,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            29,
+            68
+          ],
+          "secondaryGripSocket": [
+            69,
+            62
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/rem-xl/interact-front-f3.png",
+            "sha256": "88effa5e914b335bf36052a9c25265340d03667984934d26943a3a86c391ee8d",
+            "pixelCount": 61,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 4,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            29,
+            65
+          ],
+          "secondaryGripSocket": [
+            61,
+            64
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/rem-xl/interact-front-f4.png",
+            "sha256": "843a404221e3203807400e97a1942cee0aaca38650ffe4dc00ebdf2871960c2b",
+            "pixelCount": 151,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 5,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            25,
+            70
+          ],
+          "secondaryGripSocket": [
+            64,
+            74
+          ],
+          "holdState": "release",
+          "foregroundMask": null
+        }
+      ]
+    },
+    {
+      "id": "ruri",
+      "sheet": "assets/game/characters/ruri/runtime-spritesheet-v3.webp",
+      "sheetSha256": "267c3703e9bc18a1a352159f198f5a33cdf17b9778d7ea9a699a79ae242fc56a",
+      "frameSize": [
+        96,
+        104
+      ],
+      "pose": "interact-front",
+      "row": 10,
+      "frames": [
+        {
+          "frame": 0,
+          "rootSocket": [
+            44,
+            101
+          ],
+          "primaryGripSocket": [
+            25,
+            70
+          ],
+          "secondaryGripSocket": [
+            71,
+            70
+          ],
+          "holdState": "none",
+          "foregroundMask": null
+        },
+        {
+          "frame": 1,
+          "rootSocket": [
+            42,
+            101
+          ],
+          "primaryGripSocket": [
+            69,
+            63
+          ],
+          "secondaryGripSocket": [
+            27,
+            69
+          ],
+          "holdState": "reach",
+          "foregroundMask": null
+        },
+        {
+          "frame": 2,
+          "rootSocket": [
+            44,
+            101
+          ],
+          "primaryGripSocket": [
+            68,
+            64
+          ],
+          "secondaryGripSocket": [
+            27,
+            69
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/ruri/interact-front-f2.png",
+            "sha256": "9443019934051b53d715646822c0a1e2b66a93db2ccd50c783472d1457ee8481",
+            "pixelCount": 153,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 3,
+          "rootSocket": [
+            44,
+            101
+          ],
+          "primaryGripSocket": [
+            67,
+            68
+          ],
+          "secondaryGripSocket": [
+            28,
+            69
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/ruri/interact-front-f3.png",
+            "sha256": "5d8cf47b0cb1db03cde2ee896aff8dbce223b367af9df759727cf15d205bcad6",
+            "pixelCount": 162,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 4,
+          "rootSocket": [
+            44,
+            101
+          ],
+          "primaryGripSocket": [
+            68,
+            61
+          ],
+          "secondaryGripSocket": [
+            29,
+            69
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/ruri/interact-front-f4.png",
+            "sha256": "fc120baeb7ecf9ac2457eb88d67a75e66c5a1264502c2f67b06d1e5ff0067a11",
+            "pixelCount": 121,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 5,
+          "rootSocket": [
+            44,
+            101
+          ],
+          "primaryGripSocket": [
+            25,
+            70
+          ],
+          "secondaryGripSocket": [
+            71,
+            70
+          ],
+          "holdState": "release",
+          "foregroundMask": null
+        }
+      ]
+    },
+    {
+      "id": "itachi",
+      "sheet": "assets/game/characters/itachi/runtime-spritesheet-v3.webp",
+      "sheetSha256": "4968e6f23a9a8731f35093e1e8b031203db57cb4312d99a0e416e9ec81fe5f2a",
+      "frameSize": [
+        96,
+        104
+      ],
+      "pose": "interact-front",
+      "row": 10,
+      "frames": [
+        {
+          "frame": 0,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            25,
+            70
+          ],
+          "secondaryGripSocket": [
+            71,
+            70
+          ],
+          "holdState": "none",
+          "foregroundMask": null
+        },
+        {
+          "frame": 1,
+          "rootSocket": [
+            46,
+            101
+          ],
+          "primaryGripSocket": [
+            28,
+            65
+          ],
+          "secondaryGripSocket": [
+            70,
+            69
+          ],
+          "holdState": "reach",
+          "foregroundMask": null
+        },
+        {
+          "frame": 2,
+          "rootSocket": [
+            46,
+            101
+          ],
+          "primaryGripSocket": [
+            29,
+            66
+          ],
+          "secondaryGripSocket": [
+            70,
+            69
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/itachi/interact-front-f2.png",
+            "sha256": "35bcb44089fc5726e7f504d320690cae66c57c8cd39e21928c9d80b5c35eeba7",
+            "pixelCount": 209,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 3,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            31,
+            72
+          ],
+          "secondaryGripSocket": [
+            70,
+            69
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/itachi/interact-front-f3.png",
+            "sha256": "5eff5ab713ab9d9a653dd69c516ae830a46a6b0f25dc0e0075f5bdad37913323",
+            "pixelCount": 215,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 4,
+          "rootSocket": [
+            46,
+            101
+          ],
+          "primaryGripSocket": [
+            38,
+            54
+          ],
+          "secondaryGripSocket": [
+            70,
+            69
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/itachi/interact-front-f4.png",
+            "sha256": "c42b5848ec0d0e07b789a068b642a134c5812730cd9a61b031492f147cbb78ac",
+            "pixelCount": 209,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 5,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            25,
+            70
+          ],
+          "secondaryGripSocket": [
+            71,
+            70
+          ],
+          "holdState": "release",
+          "foregroundMask": null
+        }
+      ]
+    },
+    {
+      "id": "lian-3",
+      "sheet": "assets/game/characters/lian-3/runtime-spritesheet-v3.webp",
+      "sheetSha256": "6ccc7dc580a4f0bd87204711dd3bcf462d0144b3e56e7ff29cbe97428d8371a8",
+      "frameSize": [
+        96,
+        104
+      ],
+      "pose": "interact-front",
+      "row": 10,
+      "frames": [
+        {
+          "frame": 0,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            25,
+            70
+          ],
+          "secondaryGripSocket": [
+            71,
+            70
+          ],
+          "holdState": "none",
+          "foregroundMask": null
+        },
+        {
+          "frame": 1,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            30,
+            62
+          ],
+          "secondaryGripSocket": [
+            66,
+            65
+          ],
+          "holdState": "reach",
+          "foregroundMask": null
+        },
+        {
+          "frame": 2,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            34,
+            62
+          ],
+          "secondaryGripSocket": [
+            61,
+            62
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/lian-3/interact-front-f2.png",
+            "sha256": "e4b0249e2719769d86fef7b203a1963be8b5ab10c6d080e2b9ba70dd33b3a536",
+            "pixelCount": 226,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 3,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            35,
+            62
+          ],
+          "secondaryGripSocket": [
+            61,
+            62
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/lian-3/interact-front-f3.png",
+            "sha256": "af5ae625e393e2300d554e11c1fa6069cf113f576ec4d45a9ba8208cfd1c4b1f",
+            "pixelCount": 221,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 4,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            39,
+            57
+          ],
+          "secondaryGripSocket": [
+            58,
+            57
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/lian-3/interact-front-f4.png",
+            "sha256": "d2c808d942804b702d935ebf8d6725e83405d7c51013b608986c06a28b2b9f3a",
+            "pixelCount": 226,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 5,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            25,
+            70
+          ],
+          "secondaryGripSocket": [
+            71,
+            70
+          ],
+          "holdState": "release",
+          "foregroundMask": null
+        }
+      ]
+    },
+    {
+      "id": "taffy-2",
+      "sheet": "assets/game/characters/taffy-2/runtime-spritesheet-v3.webp",
+      "sheetSha256": "7685dcb2eb7fd85e61601d3648b1fb3116c2c3a73b44cda30f9656ec0873b8fb",
+      "frameSize": [
+        96,
+        104
+      ],
+      "pose": "interact-front",
+      "row": 10,
+      "frames": [
+        {
+          "frame": 0,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            25,
+            70
+          ],
+          "secondaryGripSocket": [
+            71,
+            70
+          ],
+          "holdState": "none",
+          "foregroundMask": null
+        },
+        {
+          "frame": 1,
+          "rootSocket": [
+            48,
+            101
+          ],
+          "primaryGripSocket": [
+            27,
+            62
+          ],
+          "secondaryGripSocket": [
+            70,
+            69
+          ],
+          "holdState": "reach",
+          "foregroundMask": null
+        },
+        {
+          "frame": 2,
+          "rootSocket": [
+            46,
+            101
+          ],
+          "primaryGripSocket": [
+            28,
+            63
+          ],
+          "secondaryGripSocket": [
+            70,
+            68
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/taffy-2/interact-front-f2.png",
+            "sha256": "1e7390a3ec9f3cb29972c52d3feeeebc84a5ecb3a7e8fcce18547410192e847e",
+            "pixelCount": 225,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 3,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            25,
+            64
+          ],
+          "secondaryGripSocket": [
+            70,
+            64
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/taffy-2/interact-front-f3.png",
+            "sha256": "f5789adb6f8db95b2da3a3c678f71c235b171ad8205d05fd07d90e14a4907f44",
+            "pixelCount": 225,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 4,
+          "rootSocket": [
+            48,
+            101
+          ],
+          "primaryGripSocket": [
+            39,
+            57
+          ],
+          "secondaryGripSocket": [
+            67,
+            68
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/taffy-2/interact-front-f4.png",
+            "sha256": "f91da55dc315432366852043125962e573ce75ceb17acb19ade639720e19ea89",
+            "pixelCount": 208,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 5,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            25,
+            70
+          ],
+          "secondaryGripSocket": [
+            71,
+            70
+          ],
+          "holdState": "release",
+          "foregroundMask": null
+        }
+      ]
+    },
+    {
+      "id": "yinyue-2",
+      "sheet": "assets/game/characters/yinyue-2/runtime-spritesheet-v3.webp",
+      "sheetSha256": "e738a75240257f3f916f3814deb04d0dfb7e5efb6ce151664870b4d0d9ebd0ec",
+      "frameSize": [
+        96,
+        104
+      ],
+      "pose": "interact-front",
+      "row": 10,
+      "frames": [
+        {
+          "frame": 0,
+          "rootSocket": [
+            51,
+            101
+          ],
+          "primaryGripSocket": [
+            25,
+            70
+          ],
+          "secondaryGripSocket": [
+            71,
+            70
+          ],
+          "holdState": "none",
+          "foregroundMask": null
+        },
+        {
+          "frame": 1,
+          "rootSocket": [
+            48,
+            101
+          ],
+          "primaryGripSocket": [
+            69,
+            62
+          ],
+          "secondaryGripSocket": [
+            29,
+            68
+          ],
+          "holdState": "reach",
+          "foregroundMask": null
+        },
+        {
+          "frame": 2,
+          "rootSocket": [
+            46,
+            101
+          ],
+          "primaryGripSocket": [
+            69,
+            62
+          ],
+          "secondaryGripSocket": [
+            29,
+            68
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/yinyue-2/interact-front-f2.png",
+            "sha256": "8a90a41934bfb00346b2641f24ed0c13eaea88b3bd8196f376fdeee1884ae278",
+            "pixelCount": 203,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 3,
+          "rootSocket": [
+            51,
+            101
+          ],
+          "primaryGripSocket": [
+            32,
+            59
+          ],
+          "secondaryGripSocket": [
+            69,
+            66
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/yinyue-2/interact-front-f3.png",
+            "sha256": "4f970bc0a655589f2ae66ab1439d33d27ff167e5b856b51126dfc0c9a4997d07",
+            "pixelCount": 209,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 4,
+          "rootSocket": [
+            50,
+            101
+          ],
+          "primaryGripSocket": [
+            38,
+            55
+          ],
+          "secondaryGripSocket": [
+            69,
+            67
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/yinyue-2/interact-front-f4.png",
+            "sha256": "5fdabec6adb019395be5d405db47668969e954d300305568bf87d9954577a8f7",
+            "pixelCount": 212,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 5,
+          "rootSocket": [
+            50,
+            101
+          ],
+          "primaryGripSocket": [
+            25,
+            70
+          ],
+          "secondaryGripSocket": [
+            71,
+            70
+          ],
+          "holdState": "release",
+          "foregroundMask": null
+        }
+      ]
+    },
+    {
+      "id": "noir-webling",
+      "sheet": "assets/game/characters/noir-webling/runtime-spritesheet-v3.webp",
+      "sheetSha256": "ca0e5d8683b89bcce8509c06a9e72cc7d3c3cb1cb6c6e32023b7b1e0cf8b69d1",
+      "frameSize": [
+        96,
+        104
+      ],
+      "pose": "interact-front",
+      "row": 10,
+      "frames": [
+        {
+          "frame": 0,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            25,
+            70
+          ],
+          "secondaryGripSocket": [
+            71,
+            70
+          ],
+          "holdState": "none",
+          "foregroundMask": null
+        },
+        {
+          "frame": 1,
+          "rootSocket": [
+            41,
+            101
+          ],
+          "primaryGripSocket": [
+            70,
+            61
+          ],
+          "secondaryGripSocket": [
+            28,
+            68
+          ],
+          "holdState": "reach",
+          "foregroundMask": null
+        },
+        {
+          "frame": 2,
+          "rootSocket": [
+            38,
+            101
+          ],
+          "primaryGripSocket": [
+            70,
+            55
+          ],
+          "secondaryGripSocket": [
+            28,
+            68
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/noir-webling/interact-front-f2.png",
+            "sha256": "bbd8a55ba390bc5158e4c6628e3f5a7c1fbc7d1b86ace00aab365f23b035bb23",
+            "pixelCount": 192,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 3,
+          "rootSocket": [
+            48,
+            101
+          ],
+          "primaryGripSocket": [
+            29,
+            63
+          ],
+          "secondaryGripSocket": [
+            69,
+            66
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/noir-webling/interact-front-f3.png",
+            "sha256": "2d5c51e39135b01bf2805f2cdc4a874c78a1d62f7c37e8ac702e0d618083155e",
+            "pixelCount": 183,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 4,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            37,
+            58
+          ],
+          "secondaryGripSocket": [
+            69,
+            67
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/noir-webling/interact-front-f4.png",
+            "sha256": "22e4258b5e7aa364d245854e4bddf23db533d4a1f9c9fb9ca0ed6882a96b6e42",
+            "pixelCount": 188,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 5,
+          "rootSocket": [
+            48,
+            101
+          ],
+          "primaryGripSocket": [
+            25,
+            70
+          ],
+          "secondaryGripSocket": [
+            71,
+            70
+          ],
+          "holdState": "release",
+          "foregroundMask": null
+        }
+      ]
+    },
+    {
+      "id": "baobao-2",
+      "sheet": "assets/game/characters/baobao-2/runtime-spritesheet-v3.webp",
+      "sheetSha256": "eff556812cca70ce31e7d2ae429ef941150b2d32670c81b122c991fe50a3a4bf",
+      "frameSize": [
+        96,
+        104
+      ],
+      "pose": "interact-front",
+      "row": 10,
+      "frames": [
+        {
+          "frame": 0,
+          "rootSocket": [
+            50,
+            101
+          ],
+          "primaryGripSocket": [
+            25,
+            70
+          ],
+          "secondaryGripSocket": [
+            71,
+            70
+          ],
+          "holdState": "none",
+          "foregroundMask": null
+        },
+        {
+          "frame": 1,
+          "rootSocket": [
+            50,
+            101
+          ],
+          "primaryGripSocket": [
+            69,
+            62
+          ],
+          "secondaryGripSocket": [
+            29,
+            68
+          ],
+          "holdState": "reach",
+          "foregroundMask": null
+        },
+        {
+          "frame": 2,
+          "rootSocket": [
+            50,
+            101
+          ],
+          "primaryGripSocket": [
+            70,
+            60
+          ],
+          "secondaryGripSocket": [
+            29,
+            68
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/baobao-2/interact-front-f2.png",
+            "sha256": "be8c0365223d40e3017a6a4e78e0faa3213eb53313da86cff15dc8d4e124ac0d",
+            "pixelCount": 126,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 3,
+          "rootSocket": [
+            50,
+            101
+          ],
+          "primaryGripSocket": [
+            30,
+            63
+          ],
+          "secondaryGripSocket": [
+            68,
+            66
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/baobao-2/interact-front-f3.png",
+            "sha256": "3b8b4b038bb61428c054ab1958a2808d4e6adb4daec09ac99dca86cc00f040da",
+            "pixelCount": 130,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 4,
+          "rootSocket": [
+            50,
+            101
+          ],
+          "primaryGripSocket": [
+            39,
+            57
+          ],
+          "secondaryGripSocket": [
+            67,
+            68
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/baobao-2/interact-front-f4.png",
+            "sha256": "d72f9ed13a5e1c8080cfffdbe72efb840a3ac9498ed0dbf77881f39401dec3c5",
+            "pixelCount": 203,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 5,
+          "rootSocket": [
+            50,
+            101
+          ],
+          "primaryGripSocket": [
+            25,
+            70
+          ],
+          "secondaryGripSocket": [
+            71,
+            70
+          ],
+          "holdState": "release",
+          "foregroundMask": null
+        }
+      ]
+    },
+    {
+      "id": "gugugaga",
+      "sheet": "assets/game/characters/gugugaga/runtime-spritesheet-v3.webp",
+      "sheetSha256": "1a7a177fef6190896e66d6d824a1f0a35dd628a4cce0da1e7900183f8cba25ab",
+      "frameSize": [
+        96,
+        104
+      ],
+      "pose": "interact-front",
+      "row": 10,
+      "frames": [
+        {
+          "frame": 0,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            25,
+            70
+          ],
+          "secondaryGripSocket": [
+            71,
+            70
+          ],
+          "holdState": "none",
+          "foregroundMask": null
+        },
+        {
+          "frame": 1,
+          "rootSocket": [
+            44,
+            101
+          ],
+          "primaryGripSocket": [
+            69,
+            61
+          ],
+          "secondaryGripSocket": [
+            28,
+            68
+          ],
+          "holdState": "reach",
+          "foregroundMask": null
+        },
+        {
+          "frame": 2,
+          "rootSocket": [
+            52,
+            101
+          ],
+          "primaryGripSocket": [
+            28,
+            59
+          ],
+          "secondaryGripSocket": [
+            69,
+            66
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/gugugaga/interact-front-f2.png",
+            "sha256": "d045c31adcc7f5dd041c28b1873bd78ebcd8d4d9436796b1150e5d8c037f7d32",
+            "pixelCount": 215,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 3,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            68,
+            62
+          ],
+          "secondaryGripSocket": [
+            28,
+            66
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/gugugaga/interact-front-f3.png",
+            "sha256": "a639406a829e156fceb09dd39034887d1c3a103622580caead4354871f0e6bc8",
+            "pixelCount": 143,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 4,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            38,
+            61
+          ],
+          "secondaryGripSocket": [
+            59,
+            61
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/gugugaga/interact-front-f4.png",
+            "sha256": "3356ec93694c24d103e28e178bab294ac1763cd8af58e30c6776f047b321b38a",
+            "pixelCount": 224,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 5,
+          "rootSocket": [
+            48,
+            101
+          ],
+          "primaryGripSocket": [
+            25,
+            70
+          ],
+          "secondaryGripSocket": [
+            71,
+            70
+          ],
+          "holdState": "release",
+          "foregroundMask": null
+        }
+      ]
+    },
+    {
+      "id": "nai-long",
+      "sheet": "assets/game/characters/nai-long/runtime-spritesheet-v3.webp",
+      "sheetSha256": "f66a67eaf7e43be6a222fbc5b0d7e8163b73d2becc91edfb9a24589ea99f8015",
+      "frameSize": [
+        96,
+        104
+      ],
+      "pose": "interact-front",
+      "row": 10,
+      "frames": [
+        {
+          "frame": 0,
+          "rootSocket": [
+            42,
+            101
+          ],
+          "primaryGripSocket": [
+            25,
+            70
+          ],
+          "secondaryGripSocket": [
+            71,
+            70
+          ],
+          "holdState": "none",
+          "foregroundMask": null
+        },
+        {
+          "frame": 1,
+          "rootSocket": [
+            38,
+            101
+          ],
+          "primaryGripSocket": [
+            69,
+            61
+          ],
+          "secondaryGripSocket": [
+            28,
+            68
+          ],
+          "holdState": "reach",
+          "foregroundMask": null
+        },
+        {
+          "frame": 2,
+          "rootSocket": [
+            52,
+            101
+          ],
+          "primaryGripSocket": [
+            27,
+            63
+          ],
+          "secondaryGripSocket": [
+            69,
+            67
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/nai-long/interact-front-f2.png",
+            "sha256": "f558f8117041e5993ea2458fd244156dd3e5d0a0d8f62eab67f338887eb7e67d",
+            "pixelCount": 202,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 3,
+          "rootSocket": [
+            44,
+            101
+          ],
+          "primaryGripSocket": [
+            69,
+            62
+          ],
+          "secondaryGripSocket": [
+            28,
+            67
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/nai-long/interact-front-f3.png",
+            "sha256": "17f16a5d54a1c33181cc9b87b816186ca4661f35e723ed8c5f427509385db54f",
+            "pixelCount": 177,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 4,
+          "rootSocket": [
+            42,
+            101
+          ],
+          "primaryGripSocket": [
+            38,
+            62
+          ],
+          "secondaryGripSocket": [
+            59,
+            62
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/nai-long/interact-front-f4.png",
+            "sha256": "dd1405fdd1576f3b1cdfee8dbf6fe092e3ed6efa47a095b8d060d0ab8d0374b5",
+            "pixelCount": 226,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 5,
+          "rootSocket": [
+            42,
+            101
+          ],
+          "primaryGripSocket": [
+            25,
+            70
+          ],
+          "secondaryGripSocket": [
+            71,
+            70
+          ],
+          "holdState": "release",
+          "foregroundMask": null
+        }
+      ]
+    },
+    {
+      "id": "qq-penguin",
+      "sheet": "assets/game/characters/qq-penguin/runtime-spritesheet-v3.webp",
+      "sheetSha256": "ba6945e9c1183a9e0ccaebf8320a87357c3c0583ccdd66694f10a65f3ba6e001",
+      "frameSize": [
+        96,
+        104
+      ],
+      "pose": "interact-front",
+      "row": 10,
+      "frames": [
+        {
+          "frame": 0,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            25,
+            70
+          ],
+          "secondaryGripSocket": [
+            71,
+            70
+          ],
+          "holdState": "none",
+          "foregroundMask": null
+        },
+        {
+          "frame": 1,
+          "rootSocket": [
+            40,
+            101
+          ],
+          "primaryGripSocket": [
+            70,
+            59
+          ],
+          "secondaryGripSocket": [
+            27,
+            68
+          ],
+          "holdState": "reach",
+          "foregroundMask": null
+        },
+        {
+          "frame": 2,
+          "rootSocket": [
+            41,
+            101
+          ],
+          "primaryGripSocket": [
+            71,
+            57
+          ],
+          "secondaryGripSocket": [
+            27,
+            68
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/qq-penguin/interact-front-f2.png",
+            "sha256": "d2683f51edc78745ea4fd39b24ca889dcf4ad751b57754780629d23d4b02dafc",
+            "pixelCount": 221,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 3,
+          "rootSocket": [
+            46,
+            101
+          ],
+          "primaryGripSocket": [
+            27,
+            62
+          ],
+          "secondaryGripSocket": [
+            69,
+            68
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/qq-penguin/interact-front-f3.png",
+            "sha256": "c2da52b0d1bcddeb8c326fb16f82c8bdbe234fb7c4e3d6da1e4afbe495cc94f9",
+            "pixelCount": 226,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 4,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            37,
+            63
+          ],
+          "secondaryGripSocket": [
+            68,
+            68
+          ],
+          "holdState": "held",
+          "foregroundMask": {
+            "file": "assets/game/processed/office-spatial-i01/character-hand-masks/qq-penguin/interact-front-f4.png",
+            "sha256": "adfc4c3314b1657ca9c6226f59833c158c43bb82cbcfd640ce979b2977c24d3c",
+            "pixelCount": 226,
+            "sourcePixelExact": true
+          }
+        },
+        {
+          "frame": 5,
+          "rootSocket": [
+            47,
+            101
+          ],
+          "primaryGripSocket": [
+            25,
+            70
+          ],
+          "secondaryGripSocket": [
+            71,
+            70
+          ],
+          "holdState": "release",
+          "foregroundMask": null
+        }
+      ]
+    }
+  ],
+  "gates": {
+    "F0": {
+      "status": "passed",
+      "evidence": [
+        "character action socket I01 source and contamination policy locked"
+      ]
+    },
+    "F1": {
+      "status": "passed",
+      "evidence": [
+        "integer world/local coordinate contract validated"
+      ]
+    },
+    "F2": {
+      "status": "passed",
+      "evidence": [
+        "fresh source ownership and asset hashes recorded"
+      ]
+    },
+    "F3": {
+      "status": "passed",
+      "evidence": [
+        "semantic root, grip, output, and layer sockets resolved"
+      ]
+    },
+    "F4": {
+      "status": "passed",
+      "evidence": [
+        "source-exact foreground occlusion masks validated"
+      ]
+    },
+    "F5": {
+      "status": "passed",
+      "evidence": [
+        "attachment resolver returns exact zero deltas"
+      ]
+    },
+    "F6": {
+      "status": "passed",
+      "evidence": [
+        "movement and parent-switch behavior validated"
+      ]
+    },
+    "F7": {
+      "status": "passed",
+      "evidence": [
+        "full roster/prop matrix and review outputs generated"
+      ]
+    },
+    "F8": {
+      "status": "pending-owner-review",
+      "evidence": [
+        "awaiting independent owner visual review"
+      ]
+    }
+  },
+  "ownerDecision": null
+}

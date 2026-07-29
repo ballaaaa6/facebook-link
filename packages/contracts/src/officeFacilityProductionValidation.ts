@@ -26,6 +26,11 @@ function validatePolicy(value: unknown, issues: string[]) {
   ]) {
     requireValue(issues, value[field] === false, `sourcePolicy.${field} must be false`);
   }
+  requireValue(
+    issues,
+    value.sharedProductionAssetDependency === "office.held-props.h01",
+    "sourcePolicy must declare the H01 production asset dependency",
+  );
 }
 
 function validateGates(
@@ -105,7 +110,7 @@ function validateGates(
 export function validateOfficeFacilityProductionManifest(value: unknown): string[] {
   if (!isRecord(value)) return ["manifest must be an object"];
   const issues: string[] = [];
-  requireValue(issues, value.schemaVersion === 1, "schemaVersion must equal 1");
+  requireValue(issues, value.schemaVersion === 2, "schemaVersion must equal 2");
   requireValue(
     issues,
     ["owner-review-f8-pending", "owner-approved", "rejected"].includes(String(value.status)),

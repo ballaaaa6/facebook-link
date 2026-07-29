@@ -6,6 +6,9 @@ import {
   type RecordValue,
   validateFileHash,
 } from "./officeFacilityProductionValidationPrimitives.ts";
+import {
+  validateFacilitySpatialContract,
+} from "./officeFacilityProductionSpatialValidation.ts";
 
 const outputPrefix = "assets/game/processed/office-facility-family-v1/";
 
@@ -327,8 +330,55 @@ function validateOutputHandoff(
   );
   requireValue(
     issues,
-    value.transition === "pickup-tray-to-held-prop-layer",
+    value.transition === "facility-output-socket-to-actor-hand-socket",
     "output handoff transition is unsupported",
+  );
+  requireValue(
+    issues,
+    value.heldAssetId === "held.soda-can"
+      && value.heldAssetManifest === "assets/game/manifests/office-held-props-h01.json"
+      && hasSha256(value.heldAssetManifestSha256)
+      && hasSha256(value.heldAssetRuntimeSha256),
+    "output handoff must hash-lock the H01 held asset",
+  );
+  requireValue(
+    issues,
+    value.facilityOutputSocketId === "output.primary"
+      && value.actorGripSocketId === "hand.primary.grip"
+      && value.propGripSocketId === "grip.primary",
+    "output handoff socket identifiers are invalid",
+  );
+  requireValue(
+    issues,
+    value.runtimeScale === 1
+      && value.handForegroundMaskRequired === true
+      && value.attachmentDeltaFailures === 0,
+    "output handoff must use scale one, hand masks, and zero socket drift",
+  );
+  requireValue(
+    issues,
+    JSON.stringify(value.heldVisiblePoseFrames) === JSON.stringify([2, 3, 4]),
+    "output handoff visible frames must equal 2, 3, and 4",
+  );
+  const expectedParents = [
+    null,
+    null,
+    "facility.output.primary",
+    "actor.hand.primary.grip",
+    "actor.hand.primary.grip",
+    null,
+  ];
+  requireValue(
+    issues,
+    Array.isArray(value.timeline)
+      && value.timeline.length === expectedParents.length
+      && value.timeline.every(
+        (entry, index) =>
+          isRecord(entry)
+          && entry.poseFrame === index
+          && entry.attachmentParent === expectedParents[index],
+      ),
+    "output handoff timeline must move from facility output to actor hand",
   );
 }
 
@@ -338,6 +388,7 @@ export function validateFacilityAssetContract(
 ) {
   validateSource(manifest.source, issues);
   validateRender(manifest.render, issues);
+  validateFacilitySpatialContract(manifest.spatial, issues);
   const parts = validateParts(manifest.parts, issues);
   validateAnimation(manifest.animation, parts, manifest.render, issues);
   validateOutputHandoff(manifest.outputHandoff, parts, issues);

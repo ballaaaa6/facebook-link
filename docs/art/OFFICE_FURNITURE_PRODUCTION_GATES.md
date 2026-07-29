@@ -143,6 +143,8 @@ borrow approval from an earlier one.
   the butt rests on the cushion and both legs hang naturally in front.
 - Keep chairs and people separate from desks and tables.
 - Keep held props and dispensed items separate from machines and characters.
+- Give every held prop its own native-scale grip socket. Actor-held props must
+  render between the actor body and a source-exact hand foreground mask.
 - Record source rectangles and hashes for every derived part.
 
 ### F5 — Placement contract
@@ -150,6 +152,10 @@ borrow approval from an earlier one.
 - Define legal structural support.
 - Define footprint cells, render bounds, ground pivot, sort pivot, and parent
   slots.
+- Define semantic local sockets for every required root, interaction target,
+  output, effect, support, or viewport. Resolve attachments by parent socket
+  minus child socket; center anchors, scene offsets, runtime scale fixes, and
+  missing-socket fallbacks are forbidden.
 - Validate every orientation independently.
 - Reject footprint overlap, unsupported children, duplicate slots, and route
   obstruction.
@@ -167,13 +173,19 @@ borrow approval from an earlier one.
 - Render only the new family, its required children, a neutral scale actor,
   and debug geometry.
 - Test normal, occupied, foreground-mask, interaction, and failure states.
+- When a child changes parent during an action, record the frame timeline and
+  prove exact attachment delta `[0,0]` before and after the switch.
+- Test every supported character, frame, and held-prop profile at native scale.
+  Include movement proof so the child follows a moved parent without a
+  scene-specific coordinate.
 - Hold the state for at least thirty simulated seconds.
-- Capture clean, footprint, part, anchor, and reservation evidence.
+- Capture clean, footprint, part, socket, layer, movement, and reservation
+  evidence.
 
 ### F8 — Owner family approval
 
 - Present the clean shell, alpha cutout, component board, geometry grid,
-  interaction view, and provenance report together.
+  interaction view, socket debug, and provenance report together.
 - Approval applies only to the named family and exact hashes.
 - A rejection returns the family to the earliest failed gate.
 
@@ -228,13 +240,20 @@ blocked from F9-F10. This is not a room-level batch and does not weaken the
 per-family rule above.
 
 Current upright-facility execution:
+`docs/art/OFFICE_SPATIAL_SOCKET_SYSTEM_I01.md` defines the isolated I01/H01
+coordinate, hand-socket, prop-grip, foreground-mask, and movement authority.
+It proves 18 characters, 108 action frames, 16 fresh held props, 864 visible
+attachment cases, and zero attachment drift. I01/H01 remain
+`owner-review-f8-pending` and are not imported by Active Office.
+
 `docs/art/OFFICE_FACILITY_VENDING_U01.md` rebuilds the front-only
 `vending.machine.modern` family from the audited original mechanical-loop
 master. Its static shell, local four-frame viewport, empty pickup tray, effect,
-held output, 108 interact-front cases, and 30-second contention/failure/retry
-lab pass F0-F7. U01 is `owner-review-f8-pending`. Do not begin Water/Coffee,
-F9 room placement, or F10 Active Office integration until its independent F8
-decision is recorded.
+and H01 held output pass F0-F7. U01-r02 replaces the rejected fixed-center r01
+attachment with a facility-output-to-actor-hand socket timeline across 108
+interact-front cases, plus the 30-second contention/failure/retry lab. U01-r02
+is independently `owner-review-f8-pending`. Do not begin Water/Coffee, F9 room
+placement, or F10 Active Office integration until its F8 decision is recorded.
 
 ## Required evidence per family
 
@@ -246,7 +265,8 @@ Each approved family must retain:
 - final transparent cutout;
 - component and foreground files;
 - geometry and reservation manifest;
-- clean and debug-grid review images;
+- local socket and attachment-parent timeline when the family has children;
+- clean, debug-grid, socket, layer-order, and movement review images;
 - source and output hashes;
 - automated check output; and
 - explicit owner decision.

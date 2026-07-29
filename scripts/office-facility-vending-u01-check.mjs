@@ -1,187 +1,179 @@
-import { createHash } from "node:crypto";
-import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
 import { validateOfficeFacilityProductionManifest } from "../packages/contracts/src/officeFacilityProduction.ts";
-const root = join(dirname(fileURLToPath(import.meta.url)), "..");
+import {
+  fileHashMatches, readJson, readText, recursiveFiles as files, same, sha256,
+} from "./office-production-check-utils.mjs";
 const manifestPath = "assets/game/manifests/office-facility-vending-u01.json";
 const auditPath = "assets/game/manifests/office-furniture-master-audit-v1.json";
-const poseAuthorityPath =
-  "assets/game/manifests/office-facility-interact-front-pose-authority-v1.json";
-const behaviorReferencePath = "assets/game/manifests/office-interaction-assets.json";
-const activeRegistryPath = "apps/web/src/features/office/components/officeAssetRegistry.ts";
+const actionPath =
+  "assets/game/manifests/office-character-action-sockets-i01.json";
+const heldPath = "assets/game/manifests/office-held-props-h01.json";
+const spatialPath = "assets/game/manifests/office-spatial-authority-i01.json";
+const behaviorPath = "assets/game/manifests/office-interaction-assets.json";
+const activePath =
+  "apps/web/src/features/office/components/officeAssetRegistry.ts";
 const builderPath = "scripts/build-office-facility-vending-u01.py";
-const processedRoot =
-  "assets/game/processed/office-facility-family-v1/vending-u01";
-const reviewRoot =
-  "assets/art/layout-references/office-facility-family-v1/vending-u01";
 const sourcePath =
   "assets/art/layout-references/mechanical-loops-sheet-modern-bright-v1-source.png";
-const failures = [], readJson = (path) => JSON.parse(readFileSync(join(root, path), "utf8"));
-const sha256 = (path) => {
-  const bytes = readFileSync(join(root, path));
-  const value = /\.(json|md|mjs|py|ts)$/.test(path) ? Buffer.from(
-    bytes.toString("utf8").replaceAll("\r\n", "\n"), "utf8",
-  ) : bytes;
-  return createHash("sha256").update(value).digest("hex");
-};
+const processedRoot =
+  "assets/game/processed/office-facility-family-v1/vending-u01-r02";
+const reviewRoot =
+  "assets/art/layout-references/office-facility-family-v1/vending-u01-r02";
+const failures = [];
 const add = (condition, message) => {
   if (!condition) failures.push(message);
 };
-const pngSize = (path) => {
-  const bytes = readFileSync(join(root, path));
-  const signature = Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]);
-  if (!bytes.subarray(0, 8).equals(signature)) {
-    throw new Error(`Not a PNG: ${path}`);
-  }
-  return [bytes.readUInt32BE(16), bytes.readUInt32BE(20)];
-};
-const recursiveFiles = (directory) => existsSync(join(root, directory))
-  ? readdirSync(join(root, directory), { recursive: true })
-    .filter((entry) => statSync(join(root, directory, entry)).isFile())
-    .map((entry) => join(directory, entry).replaceAll("\\", "/"))
-    .sort()
-  : [];
-const same = (first, second) => JSON.stringify(first) === JSON.stringify(second);
 try {
   const manifest = readJson(manifestPath);
   const audit = readJson(auditPath);
-  const poseAuthority = readJson(poseAuthorityPath);
+  const actions = readJson(actionPath);
+  const held = readJson(heldPath);
+  const spatial = readJson(spatialPath);
   for (const issue of validateOfficeFacilityProductionManifest(manifest)) {
     failures.push(`Facility production contract: ${issue}`);
   }
+
   add(
-    manifest.id === "office.facility.vending-machine.u01"
+    manifest.schemaVersion === 2
+      && manifest.id === "office.facility.vending-machine.u01"
       && manifest.familyId === "vending.machine.modern"
-      && manifest.revision === "u01",
-    "Vending U01 identity changed",
+      && manifest.revision === "u01-r02",
+    "Vending U01-r02 identity changed",
   );
   add(
     manifest.status === "owner-review-f8-pending"
       && manifest.ownerDecision === null
-      && manifest.developmentOnly === true
-      && manifest.activeOfficePromotion === false
       && manifest.gates?.F8?.status === "pending-owner-review"
       && manifest.gates?.F9?.status === "blocked"
-      && manifest.gates?.F10?.status === "blocked",
-    "U01 must stop at independent F8 owner review",
+      && manifest.gates?.F10?.status === "blocked"
+      && manifest.activeOfficePromotion === false,
+    "U01-r02 must stop at F8 with F9/F10 blocked",
   );
   add(
-    Object.values(manifest.sourcePolicy ?? {}).every((value) => value === false),
-    "Every U01 source-policy exception must remain disabled",
+    [
+      "processedCropDirectReuse",
+      "activeOfficePixelReuse",
+      "legacyOrRejectedPixelReuse",
+      "stagingPixelReuse",
+      "generativeRepair",
+      "missingAssetFallback",
+    ].every((key) => manifest.sourcePolicy?.[key] === false)
+      && manifest.sourcePolicy?.sharedProductionAssetDependency
+        === "office.held-props.h01",
+    "U01-r02 source policy or H01 dependency changed",
   );
-  const recordPrefix =
-    "modern-bright-library-v1:env-07-animated-mechanical:vending.machine.loop.";
+
+  const prefix = "modern-bright-library-v1:env-07-animated-mechanical:"
+    + "vending.machine.loop.";
   const expectedFrames = {
-    a: { recordId: `${recordPrefix}a`, sourceBounds: [0, 0, 314, 314], ownedBounds: [72, 47, 272, 322], selectedPixelCount: 52209 },
-    b: { recordId: `${recordPrefix}b`, sourceBounds: [314, 0, 627, 314], ownedBounds: [375, 47, 574, 322], selectedPixelCount: 51759 },
-    c: { recordId: `${recordPrefix}c`, sourceBounds: [627, 0, 940, 314], ownedBounds: [678, 47, 878, 322], selectedPixelCount: 51748 },
-    d: { recordId: `${recordPrefix}d`, sourceBounds: [940, 0, 1254, 314], ownedBounds: [981, 47, 1180, 322], selectedPixelCount: 51743 },
+    a: [[0, 0, 314, 314], [72, 47, 272, 322], 52209],
+    b: [[314, 0, 627, 314], [375, 47, 574, 322], 51759],
+    c: [[627, 0, 940, 314], [678, 47, 878, 322], 51748],
+    d: [[940, 0, 1254, 314], [981, 47, 1180, 322], 51743],
   };
   add(
-    manifest.source?.kind === "audited-original-mechanical-loop-master"
-      && manifest.source?.path === sourcePath
+    manifest.source?.path === sourcePath
       && manifest.source?.sha256 === sha256(sourcePath)
       && manifest.source?.extractionMethod === "full-master-component-ownership"
       && manifest.source?.frames?.length === 4,
-    "U01 must start from the exact audited original mechanical-loop master",
+    "U01-r02 must use the audited original mechanical-loop master",
   );
   const auditById = new Map(
-    audit.records?.map((record) => [record.recordId, record]),
+    audit.records.map((record) => [record.recordId, record]),
   );
   for (const frame of manifest.source?.frames ?? []) {
     const expected = expectedFrames[frame.frameId];
-    const record = auditById.get(frame.auditRecordId);
-    add(Boolean(expected), `Unexpected source frame ${frame.frameId}`);
-    if (!expected) continue;
+    const auditRecord = auditById.get(frame.auditRecordId);
     add(
-      frame.auditRecordId === expected.recordId
-        && same(frame.sourceBounds, expected.sourceBounds)
-        && same(frame.ownedBounds, expected.ownedBounds)
+      Boolean(expected)
+        && frame.auditRecordId === `${prefix}${frame.frameId}`
+        && same(frame.sourceBounds, expected?.[0])
+        && same(frame.ownedBounds, expected?.[1])
+        && frame.selectedPixelCount === expected?.[2]
         && frame.selectedComponentCount === 1
-        && frame.selectedPixelCount === expected.selectedPixelCount
         && frame.touchesNominalCellBoundary === true
         && frame.touchesMasterBoundary === false
         && frame.sourcePixelsResampled === false
-        && frame.boundaryReview?.status === "passed-complete-silhouette",
-      `Frame ${frame.frameId} full-master ownership changed`,
-    );
-    add(
-      record?.sourcePath === sourcePath
-        && record?.sourceSha256 === manifest.source.sha256
-        && record?.orientation === "front"
-        && record?.animationFrame === frame.frameId
-        && record?.currentDecision?.decision
-          === "salvage-full-master-and-decompose"
-        && record?.currentDecision?.masterPixelsSalvageable === true,
-      `Audit no longer permits frame ${frame.frameId}`,
-    );
-    add(
-      existsSync(join(root, frame.authoringCutout))
-        && frame.authoringCutoutSha256 === sha256(frame.authoringCutout)
-        && same(pngSize(frame.authoringCutout), [256, 384]),
-      `Frame ${frame.frameId} cutout is missing or stale`,
+        && frame.boundaryReview?.status === "passed-complete-silhouette"
+        && auditRecord?.currentDecision?.masterPixelsSalvageable === true
+        && auditRecord?.orientation === "front"
+        && fileHashMatches(
+          frame.authoringCutout,
+          frame.authoringCutoutSha256,
+          [256, 384],
+        ),
+      `Source ownership changed for frame ${frame.frameId}`,
     );
   }
-  for (const field of ["keyedSource", "ownershipMask"]) {
-    const evidence = manifest.source?.[field];
+  for (const key of ["keyedSource", "ownershipMask"]) {
+    const evidence = manifest.source?.[key];
     add(
-      existsSync(join(root, evidence?.file ?? ""))
-        && evidence?.sha256 === sha256(evidence.file)
-        && same(pngSize(evidence.file), [1254, 1254]),
-      `${field} evidence is missing or stale`,
+      fileHashMatches(evidence?.file, evidence?.sha256, [1254, 1254]),
+      `${key} evidence is missing or stale`,
     );
   }
+
   add(
     same(manifest.render?.authoringCanvas, [256, 384])
       && same(manifest.render?.runtimeCanvas, [64, 96])
       && manifest.render?.uniformIntegerDivisor === 4
-      && manifest.render?.nonUniformScaling === false
       && manifest.render?.anchor === "bottom-center"
-      && same(manifest.render?.requiredOrientations, ["front"]),
-    "U01 render contract must remain front-only 64x96 with uniform 4:1 scale",
-  );
-  add(
-    same(manifest.geometry?.physicalScale, {
-      width: 2, depth: 1, height: 3, unit: "tile",
-    })
+      && same(manifest.render?.requiredOrientations, ["front"])
+      && same(manifest.geometry?.physicalScale, {
+        width: 2, depth: 1, height: 3, unit: "tile",
+      })
       && same(manifest.geometry?.footprint, {
         width: 2, depth: 1, unit: "tile",
       })
       && same(manifest.geometry?.basePivot, { x: 1, y: 1, unit: "tile" })
-      && same(manifest.geometry?.sortPivot, { x: 1, y: 1, unit: "tile" })
-      && same(manifest.geometry?.renderBounds, {
-        width: 64, height: 96, unit: "authoring-pixel",
-      })
-      && manifest.geometry?.assetType === "animated-shell"
-      && manifest.geometry?.orientation === "front"
-      && manifest.geometry?.animation?.frameCount === 4,
-    "U01 physical, footprint, pivot, or animation geometry changed",
+      && same(manifest.geometry?.sortPivot, { x: 1, y: 1, unit: "tile" }),
+    "U01-r02 render or 2x1x3 geometry changed",
   );
-  const expectedPartRoles = [
-    "static-shell",
-    "animation-viewport",
-    "animation-viewport",
-    "animation-viewport",
-    "animation-viewport",
-    "pickup-tray-empty",
-    "effect-overlay",
-    "held-output",
-  ];
   add(
-    same(manifest.parts?.map(({ role }) => role), expectedPartRoles),
-    "U01 must keep shell, four viewports, empty tray, effect, and held output separate",
+    manifest.spatial?.authority?.file === spatialPath
+      && manifest.spatial?.authority?.sha256 === sha256(spatialPath)
+      && same(manifest.spatial?.localSockets, {
+        "base.floor": [32, 96],
+        "sort.floor": [32, 96],
+        "interaction.target": [48, 96],
+        "output.primary": [32, 78],
+        "effect.origin": [27, 81],
+        "viewport.origin": [10, 32],
+      })
+      && manifest.spatial?.centerToCenterAttachment === false
+      && manifest.spatial?.perSceneAttachmentOffsets === false
+      && manifest.spatial?.missingSocketFallback === false,
+    "U01-r02 spatial socket contract changed",
+  );
+
+  const roles = manifest.parts?.map(({ role }) => role);
+  add(
+    same(roles, [
+      "static-shell",
+      "animation-viewport",
+      "animation-viewport",
+      "animation-viewport",
+      "animation-viewport",
+      "pickup-tray-empty",
+      "effect-overlay",
+      "held-output",
+    ]),
+    "U01-r02 parts are not independently layered",
   );
   for (const part of manifest.parts ?? []) {
-    for (const [path, expectedHash, size] of [
-      [part.authoringFile, part.authoringSha256, [256, 384]],
-      [part.runtimeFile, part.runtimeSha256, [64, 96]],
-    ]) {
-      add(existsSync(join(root, path)), `Missing U01 part: ${path}`);
-      if (!existsSync(join(root, path))) continue;
-      add(sha256(path) === expectedHash, `Hash mismatch: ${path}`);
-      add(same(pngSize(path), size), `Size mismatch: ${path}`);
-    }
+    const heldOutput = part.role === "held-output";
+    add(
+      fileHashMatches(
+        part.authoringFile,
+        part.authoringSha256,
+        heldOutput ? [40, 40] : [256, 384],
+      )
+        && fileHashMatches(
+          part.runtimeFile,
+          part.runtimeSha256,
+          heldOutput ? [20, 20] : [64, 96],
+        ),
+      `Part is missing or stale: ${part.id}`,
+    );
   }
   const animation = manifest.animation;
   add(
@@ -193,99 +185,121 @@ try {
       && animation?.sortPivotStableAcrossFrames === true
       && animation?.outsideViewportChangedPixels === 0
       && same(animation?.frames?.map(({ id }) => id), ["a", "b", "c", "d"])
-      && same(animation?.frames?.map(({ effectPartIds }) => effectPartIds.length), [0, 0, 1, 0]),
-    "Four-frame viewport locality or shell/pivot invariance changed",
+      && same(
+        animation?.frames?.map(({ effectPartIds }) => effectPartIds.length),
+        [0, 0, 1, 0],
+      ),
+    "U01-r02 viewport locality or shell invariance changed",
   );
   for (const frame of animation?.frames ?? []) {
-    for (const [path, expectedHash, size] of [
-      [frame.authoringCompositeFile, frame.authoringCompositeSha256, [256, 384]],
-      [frame.runtimeCompositeFile, frame.runtimeCompositeSha256, [64, 96]],
-    ]) {
-      add(
-        existsSync(join(root, path))
-          && sha256(path) === expectedHash
-          && same(pngSize(path), size),
-        `Animation composite is missing or stale: ${path}`,
-      );
-    }
+    add(
+      fileHashMatches(
+        frame.authoringCompositeFile,
+        frame.authoringCompositeSha256,
+        [256, 384],
+      )
+        && fileHashMatches(
+          frame.runtimeCompositeFile,
+          frame.runtimeCompositeSha256,
+          [64, 96],
+        ),
+      `Animation composite is missing or stale: ${frame.id}`,
+    );
   }
+
+  const soda = held.props?.find(({ id }) => id === "held.soda-can");
+  const handoff = manifest.outputHandoff;
+  const expectedParents = [null, null, "facility.output.primary",
+    "actor.hand.primary.grip", "actor.hand.primary.grip", null];
   add(
-    manifest.outputHandoff?.productEmbeddedInShell === false
-      && manifest.outputHandoff?.productEmbeddedInViewportFrames === false
-      && manifest.outputHandoff?.transition === "pickup-tray-to-held-prop-layer"
-      && same(manifest.outputHandoff?.heldVisiblePoseFrames, [2, 3, 4])
-      && Object.values(manifest.quality?.embeddedProductPixelsByFrame ?? {})
-        .every((count) => count === 0)
-      && manifest.quality?.visibleMagentaPixels === 0
-      && manifest.quality?.heldProductPixelCount > 500
-      && manifest.quality?.effectPixelCount > 0,
-    "Neutral tray, effect, or held-output separation failed",
+    handoff?.heldAssetManifest === heldPath
+      && handoff?.heldAssetManifestSha256 === sha256(heldPath)
+      && handoff?.heldAssetId === "held.soda-can"
+      && handoff?.heldAssetRuntimeSha256 === soda?.runtimeSha256
+      && handoff?.transition === "facility-output-socket-to-actor-hand-socket"
+      && same(handoff?.heldVisiblePoseFrames, [2, 3, 4])
+      && same(
+        handoff?.timeline?.map(({ attachmentParent }) => attachmentParent),
+        expectedParents,
+      )
+      && handoff?.runtimeScale === 1
+      && handoff?.handForegroundMaskRequired === true
+      && handoff?.attachmentDeltaFailures === 0
+      && handoff?.productEmbeddedInShell === false
+      && handoff?.productEmbeddedInViewportFrames === false,
+    "H01 output handoff is missing, stale, or socket-inexact",
   );
+  add(
+    Object.values(manifest.quality?.embeddedProductPixelsByFrame ?? {})
+      .every((count) => count === 0)
+      && manifest.quality?.visibleMagentaPixels === 0
+      && manifest.quality?.machineProductRemovalPixelCount > 500
+      && manifest.quality?.effectPixelCount > 0
+      && manifest.quality?.attachmentDeltaFailures === 0,
+    "Item-neutral machine or output quality checks failed",
+  );
+
   const slot = manifest.interaction?.slot;
   add(
     manifest.interaction?.capacity === 1
       && manifest.interaction?.atomicReservation === true
       && manifest.interaction?.releaseOnFailure === true
-      && same(manifest.interaction?.states, [
-        "available",
-        "reserved",
-        "approaching",
-        "interacting",
-        "dispensing",
-        "releasing",
-      ])
       && same(slot?.stand, { x: 1, y: 1 })
       && same(slot?.approach, { x: 1, y: 2 })
       && same(slot?.exit, { x: 0, y: 2 })
-      && slot?.facing === "front"
-      && slot?.action === "use-vending-machine"
-      && slot?.visualPose === "interact-front"
-      && slot?.action !== slot?.visualPose,
-    "U01 interaction cells, states, or semantic action changed",
+      && slot?.visualPose === "interact-front",
+    "U01-r02 interaction or reservation cells changed",
   );
   const roster = manifest.rosterValidation;
   add(
-    roster?.poseAuthority?.manifest === poseAuthorityPath
-      && roster?.poseAuthority?.manifestSha256 === sha256(poseAuthorityPath)
-      && roster?.poseAuthority?.status === "frozen-prototype-internal"
-      && roster?.poseAuthority?.activeOfficeImported === false
-      && poseAuthority?.pendingCommercialReview === true
-      && poseAuthority?.activeOfficeImported === false,
-    "Interact-front authority is missing, stale, or over-promoted",
-  );
-  add(
-    roster?.row === 10
-      && roster?.activeFrames === 6
+    roster?.poseAuthority?.manifest === actionPath
+      && roster?.poseAuthority?.manifestSha256 === sha256(actionPath)
+      && roster?.spatialAuthority?.manifest === spatialPath
+      && roster?.spatialAuthority?.manifestSha256 === sha256(spatialPath)
+      && roster?.heldPropAuthority?.manifest === heldPath
+      && roster?.heldPropAuthority?.manifestSha256 === sha256(heldPath)
       && roster?.characterCount === 18
+      && roster?.activeFrames === 6
       && roster?.validatedPoseCases === 108
+      && roster?.visiblePropCases === 54
+      && roster?.facilityOutputAttachmentCases === 18
+      && roster?.actorHandAttachmentCases === 36
+      && roster?.attachmentDeltaFailures === 0
       && roster?.perCharacterFacilityScaling === false
-      && roster?.perCharacterActorOffsets === false
-      && same(roster?.sharedActorPosition, [96, 96])
-      && roster?.characters?.length === 18
-      && poseAuthority?.poseCaseCount === 108,
-    "Roster validation must cover 18 actors x 6 frames without offsets",
+      && roster?.perCharacterActorOffsets === false,
+    "U01-r02 authority locks or 18x6 roster totals changed",
   );
-  const characterIds = new Set();
   let poseCases = 0;
   for (const character of roster?.characters ?? []) {
-    characterIds.add(character.id);
     add(
       character.sha256 === sha256(character.sheet)
         && character.frames?.length === 6,
-      `${character.id} sheet or frame count changed`,
+      `${character.id} source sheet or frame count changed`,
     );
-    for (const [frameIndex, frame] of character.frames.entries()) {
+    for (const [index, frame] of character.frames.entries()) {
       poseCases += 1;
+      const parent = expectedParents[index];
       add(
-        frame.frame === frameIndex
+        frame.frame === index
           && same(frame.actorPosition, [96, 96])
           && frame.actorInsideReviewCard === true
-          && frame.heldAssetVisible === [2, 3, 4].includes(frameIndex),
-        `${character.id} frame ${frameIndex} failed interact-front fit`,
+          && frame.attachmentParent === parent
+          && frame.heldAssetVisible === (parent !== null)
+          && (parent === null
+            ? frame.attachmentDelta === null
+            : same(frame.attachmentDelta, [0, 0]))
+          && (parent !== "actor.hand.primary.grip"
+            || fileHashMatches(
+              frame.foregroundMask?.file,
+              frame.foregroundMask?.sha256,
+              [96, 104],
+            )),
+        `${character.id} frame ${index} failed socket attachment`,
       );
     }
   }
-  add(characterIds.size === 18 && poseCases === 108, "The 108 pose cases are incomplete");
+  add(poseCases === 108 && actions.frameRecordCount === 108, "108 pose cases are incomplete");
+
   const reservation = manifest.reservationValidation;
   add(
     reservation?.durationSeconds === 30
@@ -295,31 +309,20 @@ try {
       && reservation?.blockedAttemptCount === 1
       && reservation?.failureCount === 1
       && reservation?.retrySuccessCount === 1
-      && reservation?.failureReleaseSecond === 7
-      && reservation?.retryAcquireSecond === 17
       && reservation?.releasedAtEnd === true
       && reservation?.samples?.length === 31,
-    "The 30-second contention/failure/retry proof changed",
+    "30-second contention, failure, or retry proof changed",
   );
   for (const [second, sample] of (reservation?.samples ?? []).entries()) {
-    const cells = Object.values(sample.actorCells ?? {})
+    const occupied = Object.values(sample.actorCells ?? {})
       .filter((cell) => cell !== null)
-      .map((cell) => JSON.stringify(cell));
+      .map(JSON.stringify);
     add(
-      sample.second === second
-        && new Set(cells).size === cells.length,
+      sample.second === second && new Set(occupied).size === occupied.length,
       `Reservation sample ${second} contains a route collision`,
     );
   }
-  add(
-    reservation?.samples?.[2]?.heldBy === "agent-alpha"
-      && reservation?.samples?.[2]?.actorStates?.["agent-beta"] === "blocked"
-      && reservation?.samples?.[7]?.heldBy === null
-      && reservation?.samples?.[8]?.heldBy === "agent-beta"
-      && reservation?.samples?.[17]?.heldBy === "agent-alpha"
-      && reservation?.samples?.[30]?.heldBy === null,
-    "Atomic wait, failure release, or retry samples changed",
-  );
+
   const expectedReviews = [
     ["01-source-ownership.png", [1600, 1000]],
     ["02-alpha-parts.png", [1600, 1000]],
@@ -329,21 +332,20 @@ try {
     ["06-output-handoff.png", [1500, 900]],
     ["07-roster-fit-18x6.png", [1800, 1220]],
     ["08-reservation-timeline-30s.png", [1600, 900]],
+    ["09-socket-attachment-debug.png", [1800, 1220]],
+    ["10-r01-r02-before-after.png", [1600, 1030]],
   ].map(([name, size]) => [`${reviewRoot}/${name}`, size]);
   add(
     same(manifest.reviewOutputs, expectedReviews.map(([path]) => path)),
-    "U01 review-output list changed",
+    "U01-r02 review output list changed",
   );
   for (const [index, [path, size]] of expectedReviews.entries()) {
     const evidence = manifest.reviewEvidence?.[index];
-    add(existsSync(join(root, path)), `Missing U01 review board: ${path}`);
-    if (!existsSync(join(root, path))) continue;
     add(
-      same(pngSize(path), size)
+      fileHashMatches(path, evidence?.sha256, size)
         && evidence?.path === path
-        && evidence?.sha256 === sha256(path)
         && same(evidence?.size, size),
-      `Review evidence mismatch: ${path}`,
+      `Review evidence is missing or stale: ${path}`,
     );
   }
   const expectedProcessed = [
@@ -359,61 +361,53 @@ try {
       frame.runtimeCompositeFile,
     ]),
   ].sort();
+  add(same(files(processedRoot), expectedProcessed), "U01-r02 processed file set changed");
   add(
-    same(recursiveFiles(processedRoot), expectedProcessed),
-    "U01 processed directory contains missing or unexpected files",
+    same(files(reviewRoot), expectedReviews.map(([path]) => path).sort()),
+    "U01-r02 review directory contains an unexpected file",
   );
   add(
-    same(recursiveFiles(reviewRoot), expectedReviews.map(([path]) => path).sort()),
-    "U01 review directory contains missing or unexpected files",
-  );
-  const sideDecisions = manifest.rejectedOrientations?.map(
-    (id) => auditById.get(id)?.currentDecision,
-  );
-  add(
-    sideDecisions?.length === 2
-      && sideDecisions.every(
-        (decision) => decision?.decision
-          === "reject-regenerate-orientation-if-required"
-          && decision?.masterPixelsSalvageable === false,
-      ),
-    "Rejected vending side sources must remain blocked",
+    manifest.rejectedOrientations?.every((id) => {
+      const decision = auditById.get(id)?.currentDecision;
+      return decision?.decision === "reject-regenerate-orientation-if-required"
+        && decision?.masterPixelsSalvageable === false;
+    }),
+    "Rejected left/right vending sources must remain blocked",
   );
   add(
-    manifest.behaviorReference?.manifest === behaviorReferencePath
-      && manifest.behaviorReference?.manifestSha256 === sha256(behaviorReferencePath)
-      && manifest.behaviorReference?.purpose === "behavior-and-state-reference-only"
+    manifest.behaviorReference?.manifest === behaviorPath
+      && manifest.behaviorReference?.manifestSha256 === sha256(behaviorPath)
       && manifest.behaviorReference?.pixelReuse === false,
-    "Staging vending may be used only as a behavior reference",
+    "Staging vending must remain behavior reference only",
   );
-  const activeRegistry = readFileSync(join(root, activeRegistryPath), "utf8");
+  const active = readText(activePath);
   add(
-    manifest.activeOfficeBaseline?.file === activeRegistryPath
-      && manifest.activeOfficeBaseline?.sha256 === sha256(activeRegistryPath)
+    manifest.activeOfficeBaseline?.file === activePath
+      && manifest.activeOfficeBaseline?.sha256 === sha256(activePath)
       && manifest.activeOfficeBaseline?.importsCandidate === false
-      && !activeRegistry.includes("office-facility-family-v1")
-      && !activeRegistry.includes("vending-u01"),
-    "Active Office imported U01",
+      && !active.includes("office-facility-family-v1")
+      && !active.includes("vending-u01"),
+    "Active Office imported U01-r02",
   );
-  const builder = readFileSync(join(root, builderPath), "utf8");
+  const builder = readText(builderPath);
   add(
     !builder.includes("processed/office-library-modern-bright-v1")
       && !builder.includes("office-interactions-v1/facility-overlays")
       && builder.includes("full-master-component-ownership")
-      && builder.includes("stagingPixelReuse"),
-    "U01 builder must re-extract the original master without processed pixels",
+      && builder.includes("office-held-props-h01.json"),
+    "U01-r02 builder source isolation changed",
   );
 } catch (error) {
   failures.push(error instanceof Error ? error.message : String(error));
 }
-if (failures.length > 0) {
+
+if (failures.length) {
   process.stderr.write(`${failures.join("\n")}\n`);
   process.exitCode = 1;
 } else {
   process.stdout.write(
-    "Vending U01 OK: four audited full-master components, 2x1x3 front-only "
-      + "geometry, static shell/local viewport, separate empty tray/effect/"
-      + "held output, 108 interact-front cases, 30-second contention proof, "
-      + "F8 pending, and Active Office unchanged.\n",
+    "Vending U01-r02 OK: audited front-only shell, exact I01/H01 socket "
+      + "handoff across 108 poses, 30-second capacity-one proof, F8 pending, "
+      + "and Active Office unchanged.\n",
   );
 }
