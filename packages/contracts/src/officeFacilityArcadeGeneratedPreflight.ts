@@ -58,7 +58,7 @@ export function validateOfficeFacilityArcadeGeneratedPreflightManifest(
     value.schemaVersion === 1
       && value.id === "office.facility.arcade-machine.g02"
       && value.familyId === "machine.game.arcade.generated-modern"
-      && value.revision === "g02-preflight-r01",
+      && value.revision === "g02-preflight-r02",
     "Arcade G02 preflight identity changed",
   );
   add(
@@ -268,6 +268,73 @@ export function validateOfficeFacilityArcadeGeneratedPreflightManifest(
       && interaction.orientationRouteCasesBuilt === 0,
     "Arcade G02 visual-preflight interaction boundary changed",
   );
+  const actorDemo = record(interaction) ? interaction.singleActorDemo : null;
+  const demoAuthority = record(actorDemo) ? actorDemo.sourceAuthority : null;
+  const demoPlacement = record(actorDemo) ? actorDemo.placement : null;
+  const demoTimeline = record(actorDemo) && Array.isArray(actorDemo.timeline)
+    ? actorDemo.timeline
+    : [];
+  const demoGif = record(actorDemo) ? actorDemo.gif : null;
+  add(
+    issues,
+    record(actorDemo)
+      && actorDemo.developmentOnly === true
+      && actorDemo.countsTowardRosterValidation === false
+      && actorDemo.countsTowardReservationValidation === false
+      && actorDemo.characterAssetsPendingCommercialReview === true
+      && actorDemo.actorId === "anna"
+      && actorDemo.pose === "interact-front"
+      && actorDemo.heldController === false
+      && record(demoAuthority)
+      && typeof demoAuthority.spatialFile === "string"
+      && sha256(demoAuthority.spatialSha256)
+      && typeof demoAuthority.actionFile === "string"
+      && sha256(demoAuthority.actionSha256)
+      && typeof demoAuthority.sheetFile === "string"
+      && sha256(demoAuthority.sheetSha256)
+      && same(demoAuthority.frameSize, [96, 104])
+      && demoAuthority.row === 10
+      && same(demoAuthority.movementRows, {
+        "walk-right": 1,
+        "walk-left": 2,
+      })
+      && same(demoAuthority.movementRootSocket, [47, 101])
+      && demoAuthority.movementRootSource === "interact-front.f0-bottom-contact"
+      && record(demoPlacement)
+      && demoPlacement.formula === "sceneRoot - frameRootSocket"
+      && same(demoPlacement.sceneRootRuntime, [166, 151])
+      && demoPlacement.integerCoordinatesOnly === true
+      && demoPlacement.magicOffset === false
+      && demoPlacement.fallbackSocket === false
+      && demoPlacement.productionSocketClaim === false
+      && demoTimeline.length === 12
+      && same(
+        demoTimeline.map((entry) => record(entry) ? entry.phase : null),
+        [
+          "approach", "approach", "approach", "ready",
+          "reach", "play", "play", "play", "play",
+          "release", "depart", "depart",
+        ],
+      )
+      && same(
+        demoTimeline.map((entry) => record(entry) ? entry.animation : null),
+        [
+          "walk-left", "walk-left", "walk-left", "interact-front",
+          "interact-front", "interact-front", "interact-front", "interact-front",
+          "interact-front", "interact-front", "walk-right", "walk-right",
+        ],
+      )
+      && demoTimeline.every((entry) =>
+        record(entry)
+        && Number.isInteger(entry.actorFrame)
+        && Number.isInteger(entry.approachOffsetX)
+        && ["a", "b", "c", "d"].includes(String(entry.screenFrame)))
+      && record(demoGif)
+      && validAsset(demoGif, [768, 512])
+      && demoGif.frameCount === 12
+      && demoGif.durationMs === 240,
+    "Arcade G02 development-only I01 actor demo changed",
+  );
   add(issues, record(value.gates), "gates must be an object");
   if (record(value.gates)) {
     for (const gate of officeFacilityArcadeGeneratedPreflightGates) {
@@ -292,15 +359,15 @@ export function validateOfficeFacilityArcadeGeneratedPreflightManifest(
     : [];
   add(
     issues,
-    reviewOutputs.length === 13
-      && reviewEvidence.length === 13
+    reviewOutputs.length === 14
+      && reviewEvidence.length === 14
       && reviewEvidence.every((entry, index) =>
         record(entry)
         && entry.path === reviewOutputs[index]
         && sha256(entry.sha256)
         && point(entry.size)
         && (entry.kind === "png" || entry.kind === "gif")),
-    "Arcade G02 must contain 10 boards and three hash-locked GIFs",
+    "Arcade G02 must contain 10 boards and four hash-locked GIFs",
   );
   add(issues, value.visualApproval === null, "visualApproval must await the owner");
   const permissions = value.permissions;

@@ -42,6 +42,28 @@ test("Arcade G02 owns three four-frame seam loops", () => {
   }
 });
 
+test("Arcade G02 actor GIF remains a development-only I01 preview", () => {
+  const demo = manifest.interactionPreview.singleActorDemo;
+  assert.equal(demo.actorId, "anna");
+  assert.equal(demo.pose, "interact-front");
+  assert.equal(demo.timeline.length, 12);
+  assert.deepEqual(
+    demo.timeline.slice(0, 3).map(({ animation }) => animation),
+    ["walk-left", "walk-left", "walk-left"],
+  );
+  assert.deepEqual(
+    demo.timeline.slice(-2).map(({ animation }) => animation),
+    ["walk-right", "walk-right"],
+  );
+  assert.equal(demo.heldController, false);
+  assert.equal(demo.countsTowardRosterValidation, false);
+  assert.equal(demo.countsTowardReservationValidation, false);
+  assert.equal(demo.placement.magicOffset, false);
+  assert.equal(demo.placement.fallbackSocket, false);
+  assert.equal(demo.placement.productionSocketClaim, false);
+  assert.deepEqual(demo.gif.size, [768, 512]);
+});
+
 test("Arcade G02 rejects previous Arcade or Active Office pixels", () => {
   const invalid = structuredClone(manifest) as unknown as {
     sourcePolicy: Record<string, unknown>;

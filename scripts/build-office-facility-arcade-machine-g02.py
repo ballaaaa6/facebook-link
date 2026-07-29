@@ -42,6 +42,13 @@ OUTPUT_ROOT = ROOT / (
     "assets/game/processed/office-facility-family-v1/arcade-machine-g02"
 )
 PROMPT_PATH = SOURCE_ROOT / "IMAGEGEN_PROMPTS.md"
+I01_SPATIAL_AUTHORITY_PATH = ROOT / (
+    "assets/game/manifests/office-spatial-authority-i01.json"
+)
+I01_ACTION_SOCKET_PATH = ROOT / (
+    "assets/game/manifests/office-character-action-sockets-i01.json"
+)
+INTERACTION_ACTOR_ID = "anna"
 
 SOURCE_SPECS = {
     "front-anchor": {
@@ -163,6 +170,23 @@ GIF_NAMES = (
     "cosmic-drift-loop.gif",
     "neon-rally-loop.gif",
     "dungeon-pulse-loop.gif",
+)
+INTERACTION_GIF_NAME = "anna-approach-play-release.gif"
+INTERACTION_GIF_SIZE = (768, 512)
+INTERACTION_FRAME_DURATION_MS = 240
+INTERACTION_TIMELINE = (
+    ("approach", "walk-left", 0, 72, 0),
+    ("approach", "walk-left", 1, 48, 1),
+    ("approach", "walk-left", 2, 24, 2),
+    ("ready", "interact-front", 0, 0, 3),
+    ("reach", "interact-front", 1, 0, 0),
+    ("play", "interact-front", 2, 0, 1),
+    ("play", "interact-front", 3, 0, 2),
+    ("play", "interact-front", 4, 0, 3),
+    ("play", "interact-front", 3, 0, 0),
+    ("release", "interact-front", 5, 0, 1),
+    ("depart", "walk-right", 0, 24, 2),
+    ("depart", "walk-right", 1, 48, 3),
 )
 
 
@@ -327,6 +351,191 @@ def gif_bytes(frames: list[Image.Image]) -> bytes:
         append_images=previews[1:],
         loop=0,
         duration=FRAME_DURATION_MS,
+        disposal=2,
+        optimize=False,
+    )
+    return buffer.getvalue()
+
+
+def load_interaction_actor() -> tuple[dict[str, Any], dict[str, list[Image.Image]]]:
+    spatial_authority = json.loads(I01_SPATIAL_AUTHORITY_PATH.read_text("utf-8"))
+    action_authority = json.loads(I01_ACTION_SOCKET_PATH.read_text("utf-8"))
+    if spatial_authority.get("status") != "owner-approved":
+        raise ValueError("I01 spatial authority is not owner-approved")
+    if (
+        action_authority.get("status") != "owner-approved"
+        or action_authority.get("pose") != "interact-front"
+        or action_authority.get("row") != 10
+        or action_authority.get("pendingCommercialReview") is not True
+    ):
+        raise ValueError("I01 interact-front development authority changed")
+    actor = next(
+        (
+            candidate
+            for candidate in action_authority.get("characters", [])
+            if candidate.get("id") == INTERACTION_ACTOR_ID
+        ),
+        None,
+    )
+    if actor is None:
+        raise ValueError(f"Missing I01 actor: {INTERACTION_ACTOR_ID}")
+    if (
+        actor.get("pose") != "interact-front"
+        or actor.get("row") != 10
+        or actor.get("frameSize") != [96, 104]
+        or len(actor.get("frames", [])) != 6
+    ):
+        raise ValueError("Anna I01 interact-front frame authority changed")
+    sheet_path = ROOT / actor["sheet"]
+    if sha256_file(sheet_path) != actor["sheetSha256"]:
+        raise ValueError("Anna I01 sheet hash changed")
+    sheet = Image.open(sheet_path).convert("RGBA")
+    frame_width, frame_height = actor["frameSize"]
+    row = actor["row"]
+    interaction_frames = [
+        sheet.crop((
+            frame["frame"] * frame_width,
+            row * frame_height,
+            (frame["frame"] + 1) * frame_width,
+            (row + 1) * frame_height,
+        ))
+        for frame in actor["frames"]
+    ]
+    for index, (frame, authority) in enumerate(
+        zip(interaction_frames, actor["frames"], strict=True)
+    ):
+        if frame.getbbox() is None:
+            raise ValueError(f"Anna I01 interact-front frame {index} is empty")
+        root_socket = authority.get("rootSocket")
+        if (
+            not isinstance(root_socket, list)
+            or len(root_socket) != 2
+            or not all(isinstance(value, int) for value in root_socket)
+        ):
+            raise ValueError(f"Anna I01 root socket {index} is invalid")
+    movement_frames = {
+        "walk-right": [
+            sheet.crop((index * frame_width, frame_height, (index + 1) * frame_width, 2 * frame_height))
+            for index in range(8)
+        ],
+        "walk-left": [
+            sheet.crop((index * frame_width, 2 * frame_height, (index + 1) * frame_width, 3 * frame_height))
+            for index in range(8)
+        ],
+    }
+    if any(
+        frame.getbbox() is None
+        for frames in movement_frames.values()
+        for frame in frames
+    ):
+        raise ValueError("Anna runtime movement row contains an empty frame")
+    return {
+        "spatialAuthority": spatial_authority,
+        "actionAuthority": action_authority,
+        "actor": actor,
+        "sheetPath": sheet_path,
+    }, {
+        "interact-front": interaction_frames,
+        **movement_frames,
+    }
+
+
+def interaction_gif_bytes(
+    machine_frames: list[Image.Image],
+    actor_frames: dict[str, list[Image.Image]],
+    actor_record: dict[str, Any],
+) -> bytes:
+    logical_size = (384, 190)
+    machine_origin = (112, 25)
+    stand_root = (166, 151)
+    previews = []
+    for (
+        phase,
+        animation,
+        actor_frame_index,
+        approach_offset_x,
+        screen_frame_index,
+    ) in (
+        INTERACTION_TIMELINE
+    ):
+        scene = Image.new("RGBA", logical_size, (218, 229, 237, 255))
+        scene_draw = ImageDraw.Draw(scene)
+        scene_draw.rectangle((0, 0, 383, 149), fill=(224, 233, 240, 255))
+        scene_draw.rectangle((0, 150, 383, 189), fill=(183, 201, 211, 255))
+        for y in range(158, 190, 8):
+            scene_draw.line((0, y, 383, y), fill=(151, 174, 188, 255), width=1)
+        for x in range(-64, 449, 32):
+            scene_draw.line(
+                (x, 150, x + 40, 189),
+                fill=(151, 174, 188, 255),
+                width=1,
+            )
+        scene_draw.line((0, 150, 383, 150), fill=(91, 118, 135, 255), width=2)
+        scene_draw.ellipse(
+            (stand_root[0] - 17, 145, stand_root[0] + 17, 157),
+            fill=(46, 208, 205, 90),
+            outline=(24, 124, 132, 220),
+            width=1,
+        )
+        scene.alpha_composite(
+            machine_frames[screen_frame_index],
+            machine_origin,
+        )
+        actor_authority = (
+            actor_record["frames"][actor_frame_index]
+            if animation == "interact-front"
+            else actor_record["frames"][0]
+        )
+        root_x, root_y = actor_authority["rootSocket"]
+        actor_origin = (
+            stand_root[0] + approach_offset_x - root_x,
+            stand_root[1] - root_y,
+        )
+        scene.alpha_composite(actor_frames[animation][actor_frame_index], actor_origin)
+
+        canvas = Image.new("RGBA", INTERACTION_GIF_SIZE, (20, 28, 42, 255))
+        canvas.alpha_composite(
+            scene.resize((768, 380), Image.Resampling.NEAREST),
+            (0, 62),
+        )
+        draw = ImageDraw.Draw(canvas)
+        draw.text(
+            (24, 15),
+            "ARCADE G02 · ANNA · I01 INTERACT-FRONT",
+            font=HEADING_FONT,
+            fill=(244, 248, 251, 255),
+        )
+        badge_width = draw.textbbox(
+            (0, 0),
+            phase.upper(),
+            font=BODY_FONT,
+        )[2] + 30
+        draw.rounded_rectangle(
+            (24, 458, 24 + badge_width, 498),
+            radius=12,
+            fill=(24, 137, 145, 255),
+        )
+        draw.text(
+            (39, 465),
+            phase.upper(),
+            font=BODY_FONT,
+            fill=(255, 255, 255, 255),
+        )
+        draw.text(
+            (24 + badge_width + 20, 467),
+            "root-aligned · no held controller · development-only demo",
+            font=SMALL_FONT,
+            fill=(190, 207, 219, 255),
+        )
+        previews.append(canvas.convert("P", palette=Image.Palette.ADAPTIVE))
+    buffer = io.BytesIO()
+    previews[0].save(
+        buffer,
+        "GIF",
+        save_all=True,
+        append_images=previews[1:],
+        loop=0,
+        duration=INTERACTION_FRAME_DURATION_MS,
         disposal=2,
         optimize=False,
     )
@@ -954,6 +1163,9 @@ def build_outputs() -> dict[Path, bytes]:
             "controlRegionChangedPixels": control_changes,
         }
 
+    interaction_authority, interaction_actor_frames = load_interaction_actor()
+    interaction_actor = interaction_authority["actor"]
+
     boards = (
         board_turnaround(runtime_orientations),
         board_source_ownership(raw_sources, ownership),
@@ -994,6 +1206,12 @@ def build_outputs() -> dict[Path, bytes]:
         path = REVIEW_ROOT / name
         outputs[path] = gif_bytes(games[game_id]["composites"])
         gif_paths.append(path)
+    interaction_gif_path = REVIEW_ROOT / INTERACTION_GIF_NAME
+    outputs[interaction_gif_path] = interaction_gif_bytes(
+        games["cosmic-drift"]["composites"],
+        interaction_actor_frames,
+        interaction_actor,
+    )
 
     source_records = []
     for role, spec in SOURCE_SPECS.items():
@@ -1044,13 +1262,21 @@ def build_outputs() -> dict[Path, bytes]:
         "frameCount": 4,
         "durationMs": FRAME_DURATION_MS,
     } for path in gif_paths)
+    review_evidence.append({
+        "path": repo_path(interaction_gif_path),
+        "sha256": sha256_bytes(outputs[interaction_gif_path]),
+        "kind": "gif",
+        "size": list(INTERACTION_GIF_SIZE),
+        "frameCount": len(INTERACTION_TIMELINE),
+        "durationMs": INTERACTION_FRAME_DURATION_MS,
+    })
 
     blocked = lambda reason: {"status": "blocked", "evidence": [reason]}
     manifest = {
         "schemaVersion": 1,
         "id": "office.facility.arcade-machine.g02",
         "familyId": "machine.game.arcade.generated-modern",
-        "revision": "g02-preflight-r01",
+        "revision": "g02-preflight-r02",
         "status": "visual-preflight-owner-review",
         "productionStage": "visual-preflight",
         "developmentOnly": True,
@@ -1138,6 +1364,61 @@ def build_outputs() -> dict[Path, bytes]:
             "reservationSimulationBuilt": False,
             "rosterCasesBuilt": 0,
             "orientationRouteCasesBuilt": 0,
+            "singleActorDemo": {
+                "developmentOnly": True,
+                "countsTowardRosterValidation": False,
+                "countsTowardReservationValidation": False,
+                "characterAssetsPendingCommercialReview": True,
+                "actorId": INTERACTION_ACTOR_ID,
+                "pose": "interact-front",
+                "sourceAuthority": {
+                    "spatialFile": repo_path(I01_SPATIAL_AUTHORITY_PATH),
+                    "spatialSha256": sha256_file(I01_SPATIAL_AUTHORITY_PATH),
+                    "actionFile": repo_path(I01_ACTION_SOCKET_PATH),
+                    "actionSha256": sha256_file(I01_ACTION_SOCKET_PATH),
+                    "sheetFile": repo_path(interaction_authority["sheetPath"]),
+                    "sheetSha256": interaction_actor["sheetSha256"],
+                    "frameSize": interaction_actor["frameSize"],
+                    "row": interaction_actor["row"],
+                    "movementRows": {"walk-right": 1, "walk-left": 2},
+                    "movementRootSocket": (
+                        interaction_actor["frames"][0]["rootSocket"]
+                    ),
+                    "movementRootSource": "interact-front.f0-bottom-contact",
+                },
+                "placement": {
+                    "formula": "sceneRoot - frameRootSocket",
+                    "sceneRootRuntime": [166, 151],
+                    "integerCoordinatesOnly": True,
+                    "magicOffset": False,
+                    "fallbackSocket": False,
+                    "productionSocketClaim": False,
+                },
+                "timeline": [
+                    {
+                        "phase": phase,
+                        "animation": animation,
+                        "actorFrame": actor_frame,
+                        "approachOffsetX": approach_offset,
+                        "screenFrame": FRAME_IDS[screen_frame],
+                    }
+                    for (
+                        phase,
+                        animation,
+                        actor_frame,
+                        approach_offset,
+                        screen_frame,
+                    ) in INTERACTION_TIMELINE
+                ],
+                "heldController": False,
+                "gif": {
+                    "file": repo_path(interaction_gif_path),
+                    "sha256": sha256_bytes(outputs[interaction_gif_path]),
+                    "size": list(INTERACTION_GIF_SIZE),
+                    "frameCount": len(INTERACTION_TIMELINE),
+                    "durationMs": INTERACTION_FRAME_DURATION_MS,
+                },
+            },
         },
         "gates": {
             "F0": {"status": "passed", "evidence": [repo_path(review_paths[1])]},
@@ -1161,7 +1442,10 @@ def build_outputs() -> dict[Path, bytes]:
             "F9": blocked("No furniture-only room composition is in G02 preflight."),
             "F10": blocked("Active Office promotion is forbidden in G02 preflight."),
         },
-        "reviewOutputs": [repo_path(path) for path in [*review_paths, *gif_paths]],
+        "reviewOutputs": [
+            repo_path(path)
+            for path in [*review_paths, *gif_paths, interaction_gif_path]
+        ],
         "reviewEvidence": review_evidence,
         "visualApproval": None,
         "permissions": {
@@ -1182,6 +1466,8 @@ def build_outputs() -> dict[Path, bytes]:
 def expected_input_paths() -> set[Path]:
     return {
         PROMPT_PATH,
+        I01_SPATIAL_AUTHORITY_PATH,
+        I01_ACTION_SOCKET_PATH,
         *(spec["path"] for spec in SOURCE_SPECS.values()),
     }
 
@@ -1229,13 +1515,15 @@ def main() -> None:
             raise SystemExit("\n".join(failures))
         print(
             "Arcade G02 rebuild OK: fresh 2x2x4 four-side cabinet, three "
-            "deterministic A-D screen loops, and F4-F10 blocked."
+            "deterministic A-D screen loops, one I01 actor demo, and F4-F10 "
+            "blocked."
         )
         return
     write_outputs(outputs)
     print(
         "Built Arcade G02 visual preflight: four cabinet sides, 12 screen "
-        "frames, three animated GIFs, 10 review boards, and no full system."
+        "frames, three seam-loop GIFs, one I01 actor GIF, 10 review boards, "
+        "and no full system."
     )
 
 

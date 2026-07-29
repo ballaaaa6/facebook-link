@@ -32,7 +32,7 @@ export interface OfficeFacilityArcadeGeneratedPreflightManifest {
   schemaVersion: 1;
   id: "office.facility.arcade-machine.g02";
   familyId: "machine.game.arcade.generated-modern";
-  revision: "g02-preflight-r01";
+  revision: "g02-preflight-r02";
   status: "visual-preflight-owner-review";
   productionStage: "visual-preflight";
   developmentOnly: true;
@@ -95,6 +95,50 @@ export interface OfficeFacilityArcadeGeneratedPreflightManifest {
     reservationSimulationBuilt: false;
     rosterCasesBuilt: 0;
     orientationRouteCasesBuilt: 0;
+    singleActorDemo: {
+      developmentOnly: true;
+      countsTowardRosterValidation: false;
+      countsTowardReservationValidation: false;
+      characterAssetsPendingCommercialReview: true;
+      actorId: "anna";
+      pose: "interact-front";
+      sourceAuthority: {
+        spatialFile: string;
+        spatialSha256: string;
+        actionFile: string;
+        actionSha256: string;
+        sheetFile: string;
+        sheetSha256: string;
+        frameSize: readonly [96, 104];
+        row: 10;
+        movementRows: { "walk-right": 1; "walk-left": 2 };
+        movementRootSocket: readonly [47, 101];
+        movementRootSource: "interact-front.f0-bottom-contact";
+      };
+      placement: {
+        formula: "sceneRoot - frameRootSocket";
+        sceneRootRuntime: readonly [166, 151];
+        integerCoordinatesOnly: true;
+        magicOffset: false;
+        fallbackSocket: false;
+        productionSocketClaim: false;
+      };
+      timeline: readonly {
+        phase: "approach" | "ready" | "reach" | "play" | "release" | "depart";
+        animation: "walk-left" | "walk-right" | "interact-front";
+        actorFrame: 0 | 1 | 2 | 3 | 4 | 5;
+        approachOffsetX: number;
+        screenFrame: "a" | "b" | "c" | "d";
+      }[];
+      heldController: false;
+      gif: {
+        file: string;
+        sha256: string;
+        size: readonly [768, 512];
+        frameCount: 12;
+        durationMs: 240;
+      };
+    };
   };
   gates: Record<
     OfficeFacilityArcadeGeneratedPreflightGate,

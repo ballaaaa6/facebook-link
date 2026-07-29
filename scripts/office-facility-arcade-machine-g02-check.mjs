@@ -4,6 +4,10 @@ import {
   validateOfficeFacilityArcadeGeneratedPreflightManifest,
 } from "../packages/contracts/src/officeFacilityArcadeGeneratedPreflight.ts";
 import {
+  checkArcadeG02Interaction,
+  interactionGifName,
+} from "./office-facility-arcade-machine-g02-interaction-check.mjs";
+import {
   fileHashMatches,
   readJson,
   readText,
@@ -12,13 +16,9 @@ import {
   same,
   sha256,
 } from "./office-production-check-utils.mjs";
-
-const manifestPath =
-  "assets/game/manifests/office-facility-arcade-machine-g02.json";
-const builderPath =
-  "scripts/build-office-facility-arcade-machine-g02.py";
-const docsPath =
-  "docs/art/OFFICE_FACILITY_ARCADE_MACHINE_G02.md";
+const manifestPath = "assets/game/manifests/office-facility-arcade-machine-g02.json";
+const builderPath = "scripts/build-office-facility-arcade-machine-g02.py";
+const docsPath = "docs/art/OFFICE_FACILITY_ARCADE_MACHINE_G02.md";
 const processedRoot =
   "assets/game/processed/office-facility-family-v1/arcade-machine-g02";
 const reviewRoot =
@@ -114,7 +114,7 @@ try {
     manifest.schemaVersion === 1
       && manifest.id === "office.facility.arcade-machine.g02"
       && manifest.familyId === "machine.game.arcade.generated-modern"
-      && manifest.revision === "g02-preflight-r01"
+      && manifest.revision === "g02-preflight-r02"
       && manifest.status === "visual-preflight-owner-review"
       && manifest.productionStage === "visual-preflight"
       && manifest.visualApproval === null,
@@ -279,6 +279,7 @@ try {
       && manifest.permissions?.fullSystemBuild === false,
     "Arcade G02 must not fabricate a held controller or full production system",
   );
+  failures.push(...checkArcadeG02Interaction(manifest, reviewRoot));
   for (const gate of ["F0", "F1", "F2", "F3"]) {
     add(manifest.gates?.[gate]?.status === "passed", `${gate} must pass`);
   }
@@ -289,6 +290,7 @@ try {
   const expectedReviews = [
     ...boardSpecs.map(([name]) => `${reviewRoot}/${name}`),
     ...gifNames.map((name) => `${reviewRoot}/${name}`),
+    `${reviewRoot}/${interactionGifName}`,
   ];
   add(
     same(manifest.reviewOutputs, expectedReviews)
@@ -319,7 +321,6 @@ try {
       `Arcade G02 review GIF is missing or stale: ${path}`,
     );
   }
-
   const expectedProcessed = [
     ...sourceRoles.map(
       (role) => `${processedRoot}/authoring/source/${role}.keyed.png`,
@@ -388,7 +389,8 @@ try {
     docs.includes("Status: visual preflight pending owner review")
       && docs.includes("Physical scale | `2 x 2 x 4`")
       && docs.includes("F4-F10 remain blocked")
-      && docs.includes("No held controller"),
+      && docs.includes("No held controller")
+      && docs.includes("development-only I01 interaction demo"),
     "Arcade G02 documentation does not preserve the visual-preflight stop",
   );
   const packageJson = readJson("package.json");
@@ -411,7 +413,7 @@ if (failures.length) {
 } else {
   process.stdout.write(
     "Arcade G02 visual preflight OK: fresh 2x2x4 four-side cabinet, three "
-      + "A-D seam loops, shell/pivot lock, 10 boards, three GIFs, no held "
-      + "controller, and F4-F10 blocked.\n",
+      + "A-D seam loops, shell/pivot lock, 10 boards, three game GIFs, one "
+      + "I01 actor GIF, no held controller, and F4-F10 blocked.\n",
   );
 }

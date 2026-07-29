@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "office.facility.arcade-machine.g02",
   "familyId": "machine.game.arcade.generated-modern",
-  "revision": "g02-preflight-r01",
+  "revision": "g02-preflight-r02",
   "status": "visual-preflight-owner-review",
   "productionStage": "visual-preflight",
   "developmentOnly": true,
@@ -939,7 +939,145 @@
     "heldController": false,
     "reservationSimulationBuilt": false,
     "rosterCasesBuilt": 0,
-    "orientationRouteCasesBuilt": 0
+    "orientationRouteCasesBuilt": 0,
+    "singleActorDemo": {
+      "developmentOnly": true,
+      "countsTowardRosterValidation": false,
+      "countsTowardReservationValidation": false,
+      "characterAssetsPendingCommercialReview": true,
+      "actorId": "anna",
+      "pose": "interact-front",
+      "sourceAuthority": {
+        "spatialFile": "assets/game/manifests/office-spatial-authority-i01.json",
+        "spatialSha256": "cc9410a504fc61f13313aa113f67108a1ff194e96241dfedd2b6ad2b9f0a438f",
+        "actionFile": "assets/game/manifests/office-character-action-sockets-i01.json",
+        "actionSha256": "4958f9a16cfe13040417e551166c99d61b96a186ce39b7de3c3346b4474e97d8",
+        "sheetFile": "assets/game/characters/anna/runtime-spritesheet-v3.webp",
+        "sheetSha256": "75069f368d0fd0806c8978bcf2e5077b82c9306e6c20931617173fd0f88a57bb",
+        "frameSize": [
+          96,
+          104
+        ],
+        "row": 10,
+        "movementRows": {
+          "walk-right": 1,
+          "walk-left": 2
+        },
+        "movementRootSocket": [
+          47,
+          101
+        ],
+        "movementRootSource": "interact-front.f0-bottom-contact"
+      },
+      "placement": {
+        "formula": "sceneRoot - frameRootSocket",
+        "sceneRootRuntime": [
+          166,
+          151
+        ],
+        "integerCoordinatesOnly": true,
+        "magicOffset": false,
+        "fallbackSocket": false,
+        "productionSocketClaim": false
+      },
+      "timeline": [
+        {
+          "phase": "approach",
+          "animation": "walk-left",
+          "actorFrame": 0,
+          "approachOffsetX": 72,
+          "screenFrame": "a"
+        },
+        {
+          "phase": "approach",
+          "animation": "walk-left",
+          "actorFrame": 1,
+          "approachOffsetX": 48,
+          "screenFrame": "b"
+        },
+        {
+          "phase": "approach",
+          "animation": "walk-left",
+          "actorFrame": 2,
+          "approachOffsetX": 24,
+          "screenFrame": "c"
+        },
+        {
+          "phase": "ready",
+          "animation": "interact-front",
+          "actorFrame": 0,
+          "approachOffsetX": 0,
+          "screenFrame": "d"
+        },
+        {
+          "phase": "reach",
+          "animation": "interact-front",
+          "actorFrame": 1,
+          "approachOffsetX": 0,
+          "screenFrame": "a"
+        },
+        {
+          "phase": "play",
+          "animation": "interact-front",
+          "actorFrame": 2,
+          "approachOffsetX": 0,
+          "screenFrame": "b"
+        },
+        {
+          "phase": "play",
+          "animation": "interact-front",
+          "actorFrame": 3,
+          "approachOffsetX": 0,
+          "screenFrame": "c"
+        },
+        {
+          "phase": "play",
+          "animation": "interact-front",
+          "actorFrame": 4,
+          "approachOffsetX": 0,
+          "screenFrame": "d"
+        },
+        {
+          "phase": "play",
+          "animation": "interact-front",
+          "actorFrame": 3,
+          "approachOffsetX": 0,
+          "screenFrame": "a"
+        },
+        {
+          "phase": "release",
+          "animation": "interact-front",
+          "actorFrame": 5,
+          "approachOffsetX": 0,
+          "screenFrame": "b"
+        },
+        {
+          "phase": "depart",
+          "animation": "walk-right",
+          "actorFrame": 0,
+          "approachOffsetX": 24,
+          "screenFrame": "c"
+        },
+        {
+          "phase": "depart",
+          "animation": "walk-right",
+          "actorFrame": 1,
+          "approachOffsetX": 48,
+          "screenFrame": "d"
+        }
+      ],
+      "heldController": false,
+      "gif": {
+        "file": "assets/art/layout-references/office-facility-family-v1/arcade-machine-g02/anna-approach-play-release.gif",
+        "sha256": "8dd942fed05d3da2f105c7233b29efdb7401dec822b873de5194495c28a9648d",
+        "size": [
+          768,
+          512
+        ],
+        "frameCount": 12,
+        "durationMs": 240
+      }
+    }
   },
   "gates": {
     "F0": {
@@ -1029,7 +1167,8 @@
     "assets/art/layout-references/office-facility-family-v1/arcade-machine-g02/10-four-orientation-floor-preview.png",
     "assets/art/layout-references/office-facility-family-v1/arcade-machine-g02/cosmic-drift-loop.gif",
     "assets/art/layout-references/office-facility-family-v1/arcade-machine-g02/neon-rally-loop.gif",
-    "assets/art/layout-references/office-facility-family-v1/arcade-machine-g02/dungeon-pulse-loop.gif"
+    "assets/art/layout-references/office-facility-family-v1/arcade-machine-g02/dungeon-pulse-loop.gif",
+    "assets/art/layout-references/office-facility-family-v1/arcade-machine-g02/anna-approach-play-release.gif"
   ],
   "reviewEvidence": [
     {
@@ -1154,6 +1293,17 @@
       ],
       "frameCount": 4,
       "durationMs": 200
+    },
+    {
+      "path": "assets/art/layout-references/office-facility-family-v1/arcade-machine-g02/anna-approach-play-release.gif",
+      "sha256": "8dd942fed05d3da2f105c7233b29efdb7401dec822b873de5194495c28a9648d",
+      "kind": "gif",
+      "size": [
+        768,
+        512
+      ],
+      "frameCount": 12,
+      "durationMs": 240
     }
   ],
   "visualApproval": null,

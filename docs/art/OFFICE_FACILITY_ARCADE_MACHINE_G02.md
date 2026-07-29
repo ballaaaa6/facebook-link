@@ -12,16 +12,18 @@ G02 uses none of its pixels.
 
 This stage proves the new cabinet shape, four visual elevations, `2 x 2 x 4`
 scale, alpha ownership, screen viewport, three four-frame seam loops, and
-shell/pivot invariance. It does not authorize production sockets, character
-roster validation, reservation simulation, F8 review, furniture-only room
-composition, or Active Office promotion. F4-F10 remain blocked.
+shell/pivot invariance. The development-only I01 interaction demo in revision
+r02 shows Anna approach, play, release, and depart. It does not
+authorize production sockets, character roster validation, reservation
+simulation, F8 review, furniture-only room composition, or Active Office
+promotion. F4-F10 remain blocked.
 
 ## Locked visual-preflight contract
 
 | Property | Value |
 | --- | --- |
 | Family | `machine.game.arcade.generated-modern` |
-| Revision | `g02-preflight-r01` |
+| Revision | `g02-preflight-r02` |
 | Physical scale | `2 x 2 x 4` tiles |
 | Floor footprint | `2 x 2` tiles |
 | Render box | `3 x 4` tiles |
@@ -39,6 +41,30 @@ composition, or Active Office promotion. F4-F10 remain blocked.
 
 No held controller is created, referenced, or implied. The joystick and buttons
 remain attached to the cabinet. H01 has no Arcade controller authority.
+
+## Single-actor interaction demo
+
+`anna-approach-play-release.gif` is a deterministic visual demonstration of
+one person arriving at the front of the machine, reaching toward its local
+controls, playing while the Cosmic Drift viewport advances, releasing, and
+leaving.
+
+The approach uses Anna's existing `walk-left` runtime row, the departure uses
+`walk-right`, and the machine action uses the six I01 `interact-front` frames.
+Every frame comes from the same hash-locked runtime sheet. Every pose is placed
+with:
+
+`sceneRoot - frameRootSocket`
+
+The scene root and every approach delta are integer coordinates. There is no
+magic offset, fallback socket, hand mask, held controller, or generated prop.
+The cabinet and screen frames are the same hash-locked G02 assets used by the
+other preflight evidence.
+
+This preview is development-only. The I01 character source remains marked
+`pendingCommercialReview`; the GIF counts as neither one of the 108 roster
+cases nor reservation, route, capacity, failure, retry, or production-socket
+validation.
 
 ## Fresh generated source authority
 
@@ -130,6 +156,7 @@ D to A; it does not add a held frame or shell animation.
 11. `cosmic-drift-loop.gif`
 12. `neon-rally-loop.gif`
 13. `dungeon-pulse-loop.gif`
+14. `anna-approach-play-release.gif`
 
 The review directory is:
 
@@ -166,8 +193,8 @@ not add its planned slot while this visual review is pending.
 
 ## Owner decision requested
 
-Review the four-side shape, `2 x 2 x 4` scale, three A-D-A strips, and animated
-GIFs. Choose one outcome:
+Review the four-side shape, `2 x 2 x 4` scale, three A-D-A strips, game GIFs,
+and the single-actor interaction GIF. Choose one outcome:
 
 1. approve the exact G02 visual-preflight hashes and unlock isolated F4-F8
    production; or
