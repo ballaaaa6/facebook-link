@@ -9,8 +9,8 @@ Use: Step 5 R04 isolated workstation components only
 Input 1: `desk-workstation-modern-v2-turnaround-chroma.png` as the edit target
 and exact desk identity/style reference.
 
-Input 2: `Gemini_Generated_Image_8c2wfh8c2wfh8c2w.png` as the elevated-camera
-and edge-touching composition reference.
+Input 2: `assets/art/layout-references/office-modern-operations-target-v2.png`
+as the elevated-camera and edge-touching composition reference.
 
 Prompt:
 

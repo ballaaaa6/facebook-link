@@ -1,12 +1,18 @@
 {
   "schemaVersion": 1,
   "id": "office-semantic-grid-v6",
-  "status": "owner-review",
+  "status": "complete-current",
   "basedOn": "office-semantic-grid-v4",
-  "proposesToSupersede": "office-semantic-grid-v5",
-  "developmentOnly": true,
-  "activeOfficePromotion": false,
-  "createdOn": "2026-07-29",
+  "supersedes": "office-semantic-grid-v5",
+  "developmentOnly": false,
+  "activeOfficePromotion": true,
+  "completedOn": "2026-07-29",
+  "promotedOn": "2026-07-30",
+  "ownerDecision": {
+    "decision": "approved",
+    "decidedOn": "2026-07-30",
+    "notes": "Approved as the final Office V1 Active Office background before the V2 engine reset."
+  },
   "ownerMarkup": {
     "file": "assets/art/layout-references/office-semantic-grid-v6/00-owner-markup.png",
     "sha256": "6a1e50a80eaf3a60a69f7bcabfae538574dbf755a0a62a5a4163f979ce2d21c0"
@@ -32,10 +38,18 @@
       941
     ]
   },
-  "activeOfficeBaseline": {
+  "currentBackground": {
+    "file": "assets/art/backgrounds/office-c-background-modern-v8-current.png",
+    "sha256": "d0c0ef48c22fd40747b63017e6a24593da1eab1186dfb5d45c3a50853b674f56",
+    "pixels": [
+      1672,
+      941
+    ]
+  },
+  "previousActiveOffice": {
     "semanticMap": {
       "file": "assets/game/maps/office-semantic-grid-v5.json",
-      "sha256": "05afb9e13eab044a02fb259b233385cce2d4b6cdb8f3a97b14cc374a1b0eb6cb"
+      "sha256": "5da8f12a5df0f81989520ca38ba29c75290dd75dfa67aecb85a49fac03e1f2a5"
     },
     "runtimeMap": {
       "file": "assets/game/maps/office-c-v2.json",
@@ -46,8 +60,13 @@
       "sha256": "57b72564ad5a483402cec55bbe46d53f50b89b6eb526188a1529646b3e1baa01"
     },
     "runtimeConsumer": "apps/web/src/features/office/components/officeSceneRuntime.ts",
-    "mustRemainUnchangedUntilOwnerApproval": true
+    "supersededOn": "2026-07-29"
   },
+  "activeOfficeMap": {
+    "file": "assets/game/maps/office-c-v2.json",
+    "sha256": "c40db448eb8e6d0f3fea67a41f716c0108aca63a4136cfad15293534273c618d"
+  },
+  "runtimeConsumer": "apps/web/src/features/office/components/officeSceneRuntime.ts",
   "grid": {
     "columns": 43,
     "rows": 24,
@@ -1339,7 +1358,7 @@
     "pillarPixelsEndBeforeRow12": true,
     "whiteboardIsLeftOnly": true,
     "rightRelaxWallRemainsBlank": true,
-    "activeOfficePromotion": false,
+    "activeOfficePromotion": true,
     "newCharacterOrFurniture": false
   }
 }

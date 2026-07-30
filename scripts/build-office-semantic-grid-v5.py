@@ -184,11 +184,14 @@ def map_data(current_content: bytes) -> dict[str, Any]:
     return {
         "schemaVersion": 1,
         "id": "office-semantic-grid-v5",
-        "status": "complete-current",
+        "status": "superseded-by-v6",
         "supersedes": "office-semantic-grid-v4",
+        "supersededBy": "office-semantic-grid-v6",
         "developmentOnly": False,
-        "activeOfficePromotion": True,
+        "activeOfficePromotion": False,
+        "previouslyActiveOfficePromotion": True,
         "completedOn": "2026-07-29",
+        "supersededOn": "2026-07-30",
         "generatedSource": {
             "file": V3.repo_path(SOURCE_PATH),
             "sha256": V3.sha256(SOURCE_PATH),
@@ -199,7 +202,7 @@ def map_data(current_content: bytes) -> dict[str, Any]:
             "sha256": V3.sha256(PREVIOUS_PATH),
             "reasonSuperseded": "localized-pillar-repairs-were-visually-inconsistent",
         },
-        "currentBackground": {
+        "historicalBackground": {
             "file": V3.repo_path(CURRENT_PATH),
             "sha256": V3.sha256_bytes(current_content),
             "pixels": [WIDTH, HEIGHT],
@@ -234,7 +237,8 @@ def map_data(current_content: bytes) -> dict[str, Any]:
             "pillarArtMatchesSemanticRanges": True,
             "pillarPixelsEndBeforeRow12": True,
             "whiteboardContentRemainsBlankInBackground": True,
-            "activeOfficePromotion": True,
+            "activeOfficePromotion": False,
+            "previouslyActiveOfficePromotion": True,
             "newCharacterOrFurniture": False,
         },
     }
@@ -248,12 +252,13 @@ def manifest_data(
     return {
         "version": 1,
         "id": "office.semantic-grid.v5",
-        "status": "complete-current",
-        "updatedOn": "2026-07-29",
+        "status": "superseded-by-v6",
+        "updatedOn": "2026-07-30",
         "supersedes": "office.semantic-grid.v4",
+        "supersededBy": "office.semantic-grid.v6",
         "map": {"file": V3.repo_path(MAP_PATH), "sha256": V3.sha256_bytes(map_content)},
         "generatedSource": {"file": V3.repo_path(SOURCE_PATH), "sha256": V3.sha256(SOURCE_PATH)},
-        "currentBackground": {
+        "historicalBackground": {
             "file": V3.repo_path(CURRENT_PATH),
             "sha256": V3.sha256_bytes(current_content),
         },
@@ -263,13 +268,14 @@ def manifest_data(
         ],
         "permissions": {
             "completedBackground": True,
-            "activeOfficePromotion": True,
+            "activeOfficePromotion": False,
+            "previouslyActiveOfficePromotion": True,
             "dynamicWhiteboardViewport": True,
             "newCharacterOrFurniture": False,
         },
         "runtime": {
             "file": V3.repo_path(RUNTIME_PATH),
-            "backgroundImport": V3.repo_path(CURRENT_PATH),
+            "historicalBackgroundImport": V3.repo_path(CURRENT_PATH),
         },
     }
 
@@ -306,8 +312,8 @@ def write_or_check(outputs: dict[Path, bytes], check: bool) -> None:
         raise SystemExit("Stale Office semantic-grid v5 outputs: " + ", ".join(stale))
     action = "verified" if check else "built"
     print(
-        f"Office semantic-grid v5 {action}: clean pillars, blank AF4:AN9 "
-        "whiteboard, AG5:AM8 status viewport, and current V7 background."
+        f"Office semantic-grid v5 {action}: historical V7 background retained; "
+        "superseded by the owner-approved V6/V8 scene."
     )
 
 

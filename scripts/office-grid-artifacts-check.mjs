@@ -120,9 +120,12 @@ function checkSemanticV5() {
   const manifest = readJson("assets/game/manifests/office-semantic-grid-v5.json");
   const map = readJson("assets/game/maps/office-semantic-grid-v5.json");
   add(manifest.id === "office.semantic-grid.v5", "Unexpected semantic-grid v5 manifest id");
-  add(manifest.status === "complete-current", "Semantic-grid v5 manifest must be complete and current");
-  add(map.status === "complete-current", "Semantic-grid v5 map must be complete and current");
-  add(map.activeOfficePromotion === true, "Semantic-grid v5 must be promoted");
+  add(manifest.status === "superseded-by-v6", "Semantic-grid v5 manifest must be superseded");
+  add(map.status === "superseded-by-v6", "Semantic-grid v5 map must be superseded");
+  add(manifest.supersededBy === "office.semantic-grid.v6", "Semantic-grid v5 must point to v6");
+  add(map.activeOfficePromotion === false, "Superseded semantic-grid v5 cannot remain active");
+  add(map.previouslyActiveOfficePromotion === true, "Semantic-grid v5 must retain its historical promotion");
+  add(map.supersededOn === "2026-07-30", "Semantic-grid v5 must record its V1 supersession date");
   add(manifest.permissions?.dynamicWhiteboardViewport === true, "V5 whiteboard viewport must be authorized");
   checkGrid(map);
   const left = map.pillarAlignments?.find((pillar) => pillar.id === "pillar-left");
@@ -137,25 +140,29 @@ function checkSemanticV5() {
   add(JSON.stringify(whiteboard?.contentPixels) === "[1244,157,1516,314]", "Whiteboard content pixels changed");
   checkRecord(manifest.map, "semantic-grid v5 map");
   checkRecord(manifest.generatedSource, "semantic-grid v5 generated source", true);
-  checkRecord(manifest.currentBackground, "semantic-grid v5 current background", true);
+  checkRecord(manifest.historicalBackground, "semantic-grid v5 historical background", true);
   checkRecords(manifest.reviewOutputs, "semantic-grid v5 review outputs");
   checkRecord(map.previousBackground, "semantic-grid v5 previous background", true);
   checkRecord(map.activeOfficeMap, "semantic-grid v5 active map");
   const runtime = readFileSync(projectPath(manifest.runtime?.file ?? ""), "utf8");
-  add(runtime.includes("office-c-background-modern-v7-current.png"), "Runtime must import the current v7 background");
-  add(runtime.includes("whiteboard: { x: 1205, y: 136, width: 350, height: 195 }"), "Runtime whiteboard frame changed");
-  add(runtime.includes("whiteboardContent: { x: 1244, y: 157, width: 272, height: 157 }"), "Runtime whiteboard viewport changed");
+  add(runtime.includes("office-c-background-modern-v8-current.png"), "Runtime must import the current v8 background");
+  add(!runtime.includes("office-c-background-modern-v7-current.png"), "Runtime cannot retain the superseded v7 background");
 }
 
 function checkSemanticV6() {
   const manifest = readJson("assets/game/manifests/office-semantic-grid-v6.json");
   const map = readJson("assets/game/maps/office-semantic-grid-v6.json");
   add(manifest.id === "office.semantic-grid.v6", "Unexpected semantic-grid v6 manifest id");
-  add(manifest.status === "owner-review", "Semantic-grid v6 manifest must remain in owner review");
-  add(map.status === "owner-review", "Semantic-grid v6 map must remain in owner review");
-  add(map.activeOfficePromotion === false, "Semantic-grid v6 cannot be active before owner approval");
-  add(manifest.permissions?.isolatedOwnerReview === true, "Semantic-grid v6 must remain isolated");
-  add(manifest.permissions?.runtimeChange === false, "Semantic-grid v6 cannot authorize a runtime change");
+  add(manifest.status === "complete-current", "Semantic-grid v6 manifest must be complete and current");
+  add(map.status === "complete-current", "Semantic-grid v6 map must be complete and current");
+  add(manifest.supersedes === "office.semantic-grid.v5", "Semantic-grid v6 must supersede v5");
+  add(map.activeOfficePromotion === true, "Semantic-grid v6 must be promoted");
+  add(manifest.permissions?.ownerApproved === true, "Semantic-grid v6 must record owner approval");
+  add(manifest.permissions?.activeOfficePromotion === true, "Semantic-grid v6 must authorize Active Office");
+  add(manifest.permissions?.runtimeBackgroundPromotion === true, "Semantic-grid v6 must authorize the runtime background");
+  add(map.promotedOn === "2026-07-30", "Semantic-grid v6 must record its V1 promotion date");
+  add(map.ownerDecision?.decision === "approved", "Semantic-grid v6 map must record owner approval");
+  add(manifest.ownerDecision?.decision === "approved", "Semantic-grid v6 manifest must record owner approval");
   checkGrid(map);
   const left = map.pillarAlignments?.find((pillar) => pillar.id === "pillar-left");
   const center = map.pillarAlignments?.find((pillar) => pillar.id === "pillar-center");
@@ -179,18 +186,27 @@ function checkSemanticV6() {
   checkRecord(manifest.ownerMarkup, "semantic-grid v6 owner markup", true);
   checkRecord(manifest.generatedSource, "semantic-grid v6 generated source", true);
   checkRecord(manifest.candidateBackground, "semantic-grid v6 candidate", true);
+  checkRecord(manifest.currentBackground, "semantic-grid v6 current background", true);
+  add(
+    manifest.candidateBackground?.sha256 === manifest.currentBackground?.sha256,
+    "Semantic-grid v6 candidate and current background must be byte-identical",
+  );
   checkRecords(manifest.reviewOutputs, "semantic-grid v6 review outputs");
   checkRecord(map.generationPrompt, "semantic-grid v6 generation prompt");
   checkRecord(map.baseBackground, "semantic-grid v6 base background", true);
-  checkRecord(map.activeOfficeBaseline?.semanticMap, "semantic-grid v6 active semantic map");
-  checkRecord(map.activeOfficeBaseline?.runtimeMap, "semantic-grid v6 active runtime map");
-  checkRecord(map.activeOfficeBaseline?.background, "semantic-grid v6 active background", true);
-  const runtimePath = map.activeOfficeBaseline?.runtimeConsumer ?? "";
+  checkRecord(map.currentBackground, "semantic-grid v6 current map background", true);
+  checkRecord(map.previousActiveOffice?.semanticMap, "semantic-grid v6 previous semantic map");
+  checkRecord(map.previousActiveOffice?.runtimeMap, "semantic-grid v6 previous runtime map");
+  checkRecord(map.previousActiveOffice?.background, "semantic-grid v6 previous background", true);
+  checkRecord(map.activeOfficeMap, "semantic-grid v6 active map");
+  const runtimePath = map.runtimeConsumer ?? "";
   add(typeof runtimePath === "string" && runtimePath.length > 0, "Semantic-grid v6 runtime consumer is missing");
   if (typeof runtimePath === "string" && runtimePath.length > 0 && existsSync(projectPath(runtimePath))) {
     const runtime = readFileSync(projectPath(runtimePath), "utf8");
-    add(runtime.includes("office-c-background-modern-v7-current.png"), "Runtime must remain on the current v7 background");
-    add(!runtime.includes("office-c-background-modern-v8-owner-review.png"), "Owner-review V8 must not enter runtime");
+    add(runtime.includes("office-c-background-modern-v8-current.png"), "Runtime must import the current v8 background");
+    add(!runtime.includes("office-c-background-modern-v8-owner-review.png"), "Runtime cannot import owner-review V8");
+    add(runtime.includes("whiteboard: { x: 117, y: 118, width: 350, height: 235 }"), "Runtime whiteboard frame changed");
+    add(runtime.includes("whiteboardContent: { x: 156, y: 157, width: 272, height: 157 }"), "Runtime whiteboard viewport changed");
   }
 }
 

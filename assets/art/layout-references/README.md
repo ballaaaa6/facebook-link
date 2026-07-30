@@ -47,16 +47,16 @@ the reference image.
 
 - Created: 2026-07-26
 - Status: current visual target for the modernized workstation presentation
-- Source: `Gemini_Generated_Image_8c2wfh8c2wfh8c2w.png`
+- Versioned source: `assets/art/layout-references/office-modern-operations-target-v2.png`
 - Intended use: guide workstation chair silhouette, desk grouping, employee
   seating composition, and modern material accents; it is not a runtime
   background or a source for copied pixels
 
-The active scene background remains
-`assets/art/backgrounds/office-c-background-modern-v2.png`. The target image
-only establishes the destination composition and chair language. Runtime
-geometry continues to come from the integer-grid map and registered, layered
-assets.
+The final V1 active scene background is
+`assets/art/backgrounds/office-c-background-modern-v8-current.png`. The target
+image only establishes the historical destination composition and chair
+language. Runtime geometry continues to come from the integer-grid map and
+registered, layered assets.
 
 Calibration sources created from this target are intentionally not registered
 as runtime assets yet:

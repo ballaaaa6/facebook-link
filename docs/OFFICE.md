@@ -1,5 +1,12 @@
 # Agent Office
 
+Office V1 closure (2026-07-30): the final V1 runtime baseline is frozen at
+the annotated tag `office-v1-final-2026-07-30`. New Office V2 work must begin
+from a separate engine boundary and must not treat the V1 renderer, map
+adapter, runtime asset registry, scene offsets, or historical candidate rules
+as V2 spatial authority. The backend `OfficeSnapshot` boundary may remain a
+shared product input.
+
 Furniture reset directive (2026-07-29): no furniture, facility, equipment, or
 decor pixel from the current Active Office, its runtime registry, rejected
 candidates, existing furniture-library crops, or legacy derived outputs may
@@ -78,16 +85,16 @@ geometry on the semantic grid and does not authorize Active Office promotion.
 The `office-semantic-grid-v3` pillar candidate is rejected because its left
 crop included floor pixels and left the visible wood base short of row 11.
 V4 corrected the geometry but its localized edits were later rejected for
-visual inconsistency. The completed `office-semantic-grid-v5` scene uses a
-clean native architectural rerender, keeps all 1,032 semantic cell assignments,
-adds a blank work-status whiteboard on the right wall, and is now the Active
-Office background `office-c-background-modern-v7-current.png`.
-The isolated `office-semantic-grid-v6` owner-review candidate replaces the
-three left wall panels with a blank whiteboard at `D4:L9`, rerenders all three
+visual inconsistency. The completed `office-semantic-grid-v5` scene used a
+clean native architectural rerender, kept all 1,032 semantic cell assignments,
+and served as the historical V7 Active Office baseline.
+The owner-approved `office-semantic-grid-v6` final scene replaces the three
+left wall panels with a blank whiteboard at `D4:L9`, rerenders all three
 wood-slat pillars inside their existing semantic boxes, and changes only the
-Office floor to light warm-oak herringbone SPC. It remains non-active as
-`office-c-background-modern-v8-owner-review.png`; V5/V7 stays authoritative
-until explicit owner approval.
+Office floor to light warm-oak herringbone SPC. The candidate and promoted
+background are byte-identical. V6 is the final V1 Active Office background as
+`office-c-background-modern-v8-current.png`; V5/V7 remains historical
+rollback evidence.
 
 The active spatial, facility-reservation, asset-addition, and layout delivery
 plan is documented in `docs/OFFICE_LAYOUT_REWORK_PLAN.md`.

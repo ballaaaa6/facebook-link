@@ -1,11 +1,14 @@
 {
   "schemaVersion": 1,
   "id": "office-semantic-grid-v5",
-  "status": "complete-current",
+  "status": "superseded-by-v6",
   "supersedes": "office-semantic-grid-v4",
+  "supersededBy": "office-semantic-grid-v6",
   "developmentOnly": false,
-  "activeOfficePromotion": true,
+  "activeOfficePromotion": false,
+  "previouslyActiveOfficePromotion": true,
   "completedOn": "2026-07-29",
+  "supersededOn": "2026-07-30",
   "generatedSource": {
     "file": "assets/art/layout-references/office-semantic-grid-v5/00-imagegen-source.png",
     "sha256": "dade3612f571d7717d9b760e82b6aae5899b0fb8f0e3af056cbfd2a5126a9bf4",
@@ -16,7 +19,7 @@
     "sha256": "035a850a9b878b9ae623eb1afac34b78fb51101992bddf0415c76cb5f02e53a5",
     "reasonSuperseded": "localized-pillar-repairs-were-visually-inconsistent"
   },
-  "currentBackground": {
+  "historicalBackground": {
     "file": "assets/art/backgrounds/office-c-background-modern-v7-current.png",
     "sha256": "57b72564ad5a483402cec55bbe46d53f50b89b6eb526188a1529646b3e1baa01",
     "pixels": [
@@ -1320,7 +1323,8 @@
     "pillarArtMatchesSemanticRanges": true,
     "pillarPixelsEndBeforeRow12": true,
     "whiteboardContentRemainsBlankInBackground": true,
-    "activeOfficePromotion": true,
+    "activeOfficePromotion": false,
+    "previouslyActiveOfficePromotion": true,
     "newCharacterOrFurniture": false
   }
 }

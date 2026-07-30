@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the isolated V8 Office review candidate from owner-marked geometry."""
+"""Build the owner-approved V8 Active Office background from marked geometry."""
 
 from __future__ import annotations
 
@@ -19,8 +19,9 @@ OWNER_MARKUP_PATH = REVIEW_DIR / "00-owner-markup.png"
 SOURCE_PATH = REVIEW_DIR / "01-imagegen-source.png"
 PROMPT_PATH = REVIEW_DIR / "IMAGEGEN_PROMPT.md"
 BASE_PATH = ROOT / "assets/art/backgrounds/office-c-background-modern-v6-current.png"
-ACTIVE_BACKGROUND_PATH = ROOT / "assets/art/backgrounds/office-c-background-modern-v7-current.png"
+PREVIOUS_ACTIVE_BACKGROUND_PATH = ROOT / "assets/art/backgrounds/office-c-background-modern-v7-current.png"
 CANDIDATE_PATH = ROOT / "assets/art/backgrounds/office-c-background-modern-v8-owner-review.png"
+CURRENT_PATH = ROOT / "assets/art/backgrounds/office-c-background-modern-v8-current.png"
 V4_MAP_PATH = ROOT / "assets/game/maps/office-semantic-grid-v4.json"
 V5_MAP_PATH = ROOT / "assets/game/maps/office-semantic-grid-v5.json"
 MAP_PATH = ROOT / "assets/game/maps/office-semantic-grid-v6.json"
@@ -174,7 +175,7 @@ def render_grid(candidate: Image.Image) -> Image.Image:
     gridded = V2.draw_grid(draw_change_overlay(candidate, False))
     return V2.add_legend(
         gridded,
-        "OFFICE SEMANTIC GRID V6 CANDIDATE - D4:L9 WHITEBOARD + NEW SLAT PILLARS",
+        "OFFICE SEMANTIC GRID V6 FINAL - D4:L9 WHITEBOARD + NEW SLAT PILLARS",
     )
 
 
@@ -193,7 +194,7 @@ def render_comparison(base: Image.Image, candidate: Image.Image) -> Image.Image:
     board.paste(candidate.resize(preview_size, Image.Resampling.LANCZOS), (836, 50))
     draw = ImageDraw.Draw(board)
     draw.text((20, 13), "BEFORE - V4 OWNER BASE", font=V2.font(18), fill=(255, 255, 255))
-    draw.text((856, 13), "AFTER - V8 OWNER-REVIEW CANDIDATE", font=V2.font(18), fill=(52, 211, 153))
+    draw.text((856, 13), "AFTER - V8 OWNER-APPROVED FINAL", font=V2.font(18), fill=(52, 211, 153))
     draw.line((836, 0, 836, 521), fill=(34, 211, 238), width=3)
     return board
 
@@ -203,12 +204,18 @@ def map_data(candidate_content: bytes) -> dict[str, Any]:
     return {
         "schemaVersion": 1,
         "id": "office-semantic-grid-v6",
-        "status": "owner-review",
+        "status": "complete-current",
         "basedOn": "office-semantic-grid-v4",
-        "proposesToSupersede": "office-semantic-grid-v5",
-        "developmentOnly": True,
-        "activeOfficePromotion": False,
-        "createdOn": "2026-07-29",
+        "supersedes": "office-semantic-grid-v5",
+        "developmentOnly": False,
+        "activeOfficePromotion": True,
+        "completedOn": "2026-07-29",
+        "promotedOn": "2026-07-30",
+        "ownerDecision": {
+            "decision": "approved",
+            "decidedOn": "2026-07-30",
+            "notes": "Approved as the final Office V1 Active Office background before the V2 engine reset.",
+        },
         "ownerMarkup": {"file": V3.repo_path(OWNER_MARKUP_PATH), "sha256": V3.sha256(OWNER_MARKUP_PATH)},
         "generationPrompt": {"file": V3.repo_path(PROMPT_PATH), "sha256": V3.sha256(PROMPT_PATH)},
         "generatedSource": {
@@ -222,16 +229,26 @@ def map_data(candidate_content: bytes) -> dict[str, Any]:
             "sha256": V3.sha256_bytes(candidate_content),
             "pixels": [WIDTH, HEIGHT],
         },
-        "activeOfficeBaseline": {
+        "currentBackground": {
+            "file": V3.repo_path(CURRENT_PATH),
+            "sha256": V3.sha256_bytes(candidate_content),
+            "pixels": [WIDTH, HEIGHT],
+        },
+        "previousActiveOffice": {
             "semanticMap": {"file": V3.repo_path(V5_MAP_PATH), "sha256": V3.sha256(V5_MAP_PATH)},
             "runtimeMap": {"file": V3.repo_path(ACTIVE_MAP_PATH), "sha256": V3.sha256(ACTIVE_MAP_PATH)},
             "background": {
-                "file": V3.repo_path(ACTIVE_BACKGROUND_PATH),
-                "sha256": V3.sha256(ACTIVE_BACKGROUND_PATH),
+                "file": V3.repo_path(PREVIOUS_ACTIVE_BACKGROUND_PATH),
+                "sha256": V3.sha256(PREVIOUS_ACTIVE_BACKGROUND_PATH),
             },
             "runtimeConsumer": V3.repo_path(RUNTIME_PATH),
-            "mustRemainUnchangedUntilOwnerApproval": True,
+            "supersededOn": "2026-07-29",
         },
+        "activeOfficeMap": {
+            "file": V3.repo_path(ACTIVE_MAP_PATH),
+            "sha256": V3.sha256(ACTIVE_MAP_PATH),
+        },
+        "runtimeConsumer": V3.repo_path(RUNTIME_PATH),
         "grid": v4_map["grid"],
         "zones": v4_map["zones"],
         "cellAssignments": v4_map["cellAssignments"],
@@ -268,7 +285,7 @@ def map_data(candidate_content: bytes) -> dict[str, Any]:
             "pillarPixelsEndBeforeRow12": True,
             "whiteboardIsLeftOnly": True,
             "rightRelaxWallRemainsBlank": True,
-            "activeOfficePromotion": False,
+            "activeOfficePromotion": True,
             "newCharacterOrFurniture": False,
         },
     }
@@ -282,10 +299,15 @@ def manifest_data(
     return {
         "version": 1,
         "id": "office.semantic-grid.v6",
-        "status": "owner-review",
-        "updatedOn": "2026-07-29",
+        "status": "complete-current",
+        "updatedOn": "2026-07-30",
         "basedOn": "office.semantic-grid.v4",
-        "proposesToSupersede": "office.semantic-grid.v5",
+        "supersedes": "office.semantic-grid.v5",
+        "ownerDecision": {
+            "decision": "approved",
+            "decidedOn": "2026-07-30",
+            "notes": "Approved as the final Office V1 Active Office background before the V2 engine reset.",
+        },
         "map": {"file": V3.repo_path(MAP_PATH), "sha256": V3.sha256_bytes(map_content)},
         "ownerMarkup": {"file": V3.repo_path(OWNER_MARKUP_PATH), "sha256": V3.sha256(OWNER_MARKUP_PATH)},
         "generatedSource": {"file": V3.repo_path(SOURCE_PATH), "sha256": V3.sha256(SOURCE_PATH)},
@@ -293,15 +315,25 @@ def manifest_data(
             "file": V3.repo_path(CANDIDATE_PATH),
             "sha256": V3.sha256_bytes(candidate_content),
         },
+        "currentBackground": {
+            "file": V3.repo_path(CURRENT_PATH),
+            "sha256": V3.sha256_bytes(candidate_content),
+        },
         "reviewOutputs": [
             {"file": V3.repo_path(path), "sha256": V3.sha256_bytes(content)}
             for path, content in review_contents.items()
         ],
         "permissions": {
-            "isolatedOwnerReview": True,
-            "activeOfficePromotion": False,
-            "runtimeChange": False,
+            "ownerApproved": True,
+            "isolatedOwnerReview": False,
+            "activeOfficePromotion": True,
+            "runtimeBackgroundPromotion": True,
+            "dynamicWhiteboardViewport": True,
             "newCharacterOrFurniture": False,
+        },
+        "runtime": {
+            "file": V3.repo_path(RUNTIME_PATH),
+            "backgroundImport": V3.repo_path(CURRENT_PATH),
         },
     }
 
@@ -319,6 +351,7 @@ def build_outputs() -> dict[Path, bytes]:
     map_content = V3.json_bytes(map_data(candidate_content))
     return {
         CANDIDATE_PATH: candidate_content,
+        CURRENT_PATH: candidate_content,
         MAP_PATH: map_content,
         **review_contents,
         MANIFEST_PATH: V3.json_bytes(manifest_data(map_content, candidate_content, review_contents)),
@@ -338,7 +371,7 @@ def write_or_check(outputs: dict[Path, bytes], check: bool) -> None:
         raise SystemExit("Stale Office semantic-grid v6 outputs: " + ", ".join(stale))
     action = "verified" if check else "built"
     print(
-        f"Office semantic-grid v6 {action}: isolated V8 owner-review candidate; "
+        f"Office semantic-grid v6 {action}: owner-approved V8 Active Office; "
         "D4:L9 left whiteboard, native slat pillars, and Office herringbone SPC."
     )
 

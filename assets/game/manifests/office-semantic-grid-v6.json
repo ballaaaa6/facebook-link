@@ -1,13 +1,18 @@
 {
   "version": 1,
   "id": "office.semantic-grid.v6",
-  "status": "owner-review",
-  "updatedOn": "2026-07-29",
+  "status": "complete-current",
+  "updatedOn": "2026-07-30",
   "basedOn": "office.semantic-grid.v4",
-  "proposesToSupersede": "office.semantic-grid.v5",
+  "supersedes": "office.semantic-grid.v5",
+  "ownerDecision": {
+    "decision": "approved",
+    "decidedOn": "2026-07-30",
+    "notes": "Approved as the final Office V1 Active Office background before the V2 engine reset."
+  },
   "map": {
     "file": "assets/game/maps/office-semantic-grid-v6.json",
-    "sha256": "d57954b29cb4b55d12a70ac3a5fc3bff4275c139a24b9727c9936091ca3e786f"
+    "sha256": "1aa01feef17de70784ae0d7b9b072d5c0b7dab00204ffc57ce5568ebd23b38ea"
   },
   "ownerMarkup": {
     "file": "assets/art/layout-references/office-semantic-grid-v6/00-owner-markup.png",
@@ -21,14 +26,18 @@
     "file": "assets/art/backgrounds/office-c-background-modern-v8-owner-review.png",
     "sha256": "d0c0ef48c22fd40747b63017e6a24593da1eab1186dfb5d45c3a50853b674f56"
   },
+  "currentBackground": {
+    "file": "assets/art/backgrounds/office-c-background-modern-v8-current.png",
+    "sha256": "d0c0ef48c22fd40747b63017e6a24593da1eab1186dfb5d45c3a50853b674f56"
+  },
   "reviewOutputs": [
     {
       "file": "assets/art/layout-references/office-semantic-grid-v6/02-candidate-grid.png",
-      "sha256": "3a24cc2b8431948f6b1ec93f566c3986a095ed349201c7664177c2e90e6e721f"
+      "sha256": "0248896efd9502416fda5f7a3c81a57ec6049ee16d12ea58dc51b271d3b90f72"
     },
     {
       "file": "assets/art/layout-references/office-semantic-grid-v6/03-v4-v8-before-after.png",
-      "sha256": "6294db7f451b332566c15c5ed67c16b59c0bf98df060b73f0b9b4d743ce255db"
+      "sha256": "ee5989f934d72d5f177a76d7d3bc30c8f3c664869ad62c55b7a3bfaf97032a0f"
     },
     {
       "file": "assets/art/layout-references/office-semantic-grid-v6/04-change-zones-grid.png",
@@ -36,9 +45,15 @@
     }
   ],
   "permissions": {
-    "isolatedOwnerReview": true,
-    "activeOfficePromotion": false,
-    "runtimeChange": false,
+    "ownerApproved": true,
+    "isolatedOwnerReview": false,
+    "activeOfficePromotion": true,
+    "runtimeBackgroundPromotion": true,
+    "dynamicWhiteboardViewport": true,
     "newCharacterOrFurniture": false
+  },
+  "runtime": {
+    "file": "apps/web/src/features/office/components/officeSceneRuntime.ts",
+    "backgroundImport": "assets/art/backgrounds/office-c-background-modern-v8-current.png"
   }
 }

@@ -159,6 +159,7 @@ const fixedOutputs = [
   "assets/game/manifests/office-semantic-grid-v5.json",
   "assets/game/maps/office-semantic-grid-v5.json",
   "assets/art/backgrounds/office-c-background-modern-v8-owner-review.png",
+  "assets/art/backgrounds/office-c-background-modern-v8-current.png",
   "assets/art/layout-references/office-semantic-grid-v6/02-candidate-grid.png",
   "assets/art/layout-references/office-semantic-grid-v6/03-v4-v8-before-after.png",
   "assets/art/layout-references/office-semantic-grid-v6/04-change-zones-grid.png",

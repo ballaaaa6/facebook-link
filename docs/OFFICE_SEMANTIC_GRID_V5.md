@@ -1,14 +1,16 @@
 # Office Semantic Grid v5
 
-Status: Complete and current
-Updated: 2026-07-29
+Status: Superseded by Semantic Grid v6; historical V1 rollback
+Updated: 2026-07-30
 
 Office Semantic Grid v5 replaces the visually inconsistent localized pillar
-repairs in V6 with a clean native architectural rerender. The final V7
-background is normalized across complete architectural segments, so no small
-patch is blended into a pillar base or wall seam.
+repairs in the earlier localized-pillar candidate with a clean native
+architectural rerender. The V7 background is normalized across complete
+architectural segments, so no small patch is blended into a pillar base or
+wall seam. It was superseded by the owner-approved Semantic Grid v6/V8
+background on 2026-07-30 and remains immutable rollback evidence.
 
-## Current scene
+## Historical scene
 
 - Background:
   `assets/art/backgrounds/office-c-background-modern-v7-current.png`
@@ -41,7 +43,7 @@ inside `whiteboardContent` without regenerating the room background.
 The approved generation prompt is recorded in
 `assets/art/layout-references/office-semantic-grid-v5/IMAGEGEN_PROMPT.md`.
 `scripts/build-office-semantic-grid-v5.py` deterministically normalizes the
-generated source to the semantic boundaries and produces the current
+generated source to the semantic boundaries and preserves the historical
 background and review images.
 
 Run `npm run art:office-semantic-grid:v5` to rebuild the deterministic outputs
