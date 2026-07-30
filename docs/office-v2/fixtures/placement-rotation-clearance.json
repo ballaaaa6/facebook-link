@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "office-placement-fixture-v1",
+  "bounds": { "width": 6, "depth": 5 },
+  "definition": {
+    "schemaVersion": "office-entity-v1",
+    "definitionId": "workstation-placeholder-v1",
+    "definitionVersion": 1,
+    "kind": "furniture",
+    "footprint": [{ "x": 0, "y": 0 }, { "x": 1, "y": 0 }],
+    "blocking": true,
+    "clearance": [{ "x": 0, "y": 1 }, { "x": 1, "y": 1 }],
+    "supportedOrientations": ["north", "east", "south", "west"],
+    "render": { "band": "world", "visualHeightPx": 64, "splitMode": "single" },
+    "sockets": [
+      { "id": "seat-one", "kind": "actor", "localPosition": { "x": 0, "y": 1, "elevation": 0 }, "facing": "north" }
+    ],
+    "interactions": ["work-at-desk"]
+  },
+  "cases": [
+    { "name": "north-valid", "anchor": { "x": 2, "y": 2, "elevation": 0 }, "orientation": "north", "expectedCells": [{ "x": 2, "y": 2 }, { "x": 3, "y": 2 }], "expected": "accepted" },
+    { "name": "east-valid", "anchor": { "x": 2, "y": 2, "elevation": 0 }, "orientation": "east", "expectedCells": [{ "x": 2, "y": 2 }, { "x": 2, "y": 3 }], "expected": "accepted" },
+    { "name": "edge-rejected", "anchor": { "x": 5, "y": 4, "elevation": 0 }, "orientation": "north", "expected": "out-of-bounds" },
+    { "name": "clearance-rejected", "anchor": { "x": 2, "y": 2, "elevation": 0 }, "orientation": "north", "occupied": [{ "x": 2, "y": 3 }], "expected": "clearance" }
+  ]
+}

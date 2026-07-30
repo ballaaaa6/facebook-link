@@ -11,6 +11,12 @@ brief -> source -> extraction -> geometry -> review -> validated runtime import
 Files cannot skip a stage. Source material stays immutable. Derived outputs are
 rebuilt by a deterministic recipe into a versioned destination.
 
+Store immutable sources under `assets/office-v2/sources/`, deterministic recipes
+under `assets/office-v2/recipes/`, admitted manifests under
+`assets/office-v2/manifests/`, and declared PNG outputs under
+`assets/office-v2/runtime/`. Manifest file paths are relative to `assets/` and
+must stay within their declared stage root.
+
 ## Provenance record
 
 Every family records project identifier, family and version, source identifier,
@@ -28,7 +34,7 @@ and connectivity variants where applicable.
 
 ## Automated validation
 
-- required files and hashes;
+- required source, recipe, output files, and hashes;
 - filename and identifier uniqueness;
 - dimensions, frame bounds, alpha, and edge contamination;
 - geometry ranges and socket containment;

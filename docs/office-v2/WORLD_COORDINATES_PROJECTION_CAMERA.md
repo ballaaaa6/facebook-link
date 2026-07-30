@@ -2,26 +2,27 @@
 
 ## Coordinate authority
 
-The first implementation uses integer world cells with fixed integer sub-cell
-precision. It declares axis directions, origin, cell dimensions, elevation unit,
-and legal bounds once in a versioned world definition.
+The first implementation uses integer world cells with four integer sub-cell
+units. Projection version `office-projection-v1` fixes a 64 by 32 logical-pixel
+cell, 16 logical pixels per elevation unit, and a non-rotating camera. Increasing
+X moves screen right/down; increasing Y moves screen left/down.
 
 Screen position is derived. Components may not persist pixel offsets as world
 placement. Asset metadata may define a sprite origin only for presentation.
 
 ## Projection contract
 
-A projection exposes pure `project` and `unprojectGround` operations. An initial
-isometric candidate can be tested with:
+A projection exposes pure `project` and `unprojectGround` operations. The
+accepted 2:1 isometric projection uses:
 
 ```text
 screenX = originX + (worldX - worldY) * halfTileWidth
 screenY = originY + (worldX + worldY) * halfTileHeight - elevation * elevationHeight
 ```
 
-This formula is a replaceable hypothesis. It is not copied into React or asset
-components. Pointer picking uses the inverse operation and an explicit rounding
-policy.
+This formula is versioned by `decisions/0001-projection-grid.md`. It is not
+copied into React or asset components. Pointer picking uses the inverse operation
+and a half-open edge policy with `(y, x)` as the stable tie-breaker.
 
 ## Camera contract
 

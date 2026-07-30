@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "office-trace-v1",
+  "traceId": "pilot-replay",
+  "initialSnapshot": {
+    "schemaVersion": "office-snapshot-v1",
+    "engineVersion": "office-engine-v1",
+    "worldId": "minimal-office",
+    "tickRateHz": 10,
+    "tick": 0,
+    "randomStreams": { "gameplay": 1201, "presentation": 9917 },
+    "acceptedCommandIds": [],
+    "actors": [
+      {
+        "id": "actor-one",
+        "state": "idle",
+        "position": { "x": 1, "y": 3, "elevation": 0 },
+        "facing": "north",
+        "route": [],
+        "progressTicks": 0
+      }
+    ],
+    "reservations": []
+  },
+  "inputs": [
+    { "id": "move-one", "tick": 1, "kind": "command", "payload": { "actorId": "actor-one", "targetEntityId": "workstation-one" } }
+  ],
+  "stateHashes": [
+    { "tick": 0, "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" },
+    { "tick": 1, "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" },
+    { "tick": 30, "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" }
+  ]
+}

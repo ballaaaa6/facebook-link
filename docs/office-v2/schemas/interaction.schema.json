@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/interaction.schema.json",
+  "title": "Office V2 Interaction Definition",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "interactionId", "interactionVersion", "targetKinds", "approaches", "durationTicks", "capacity", "preconditions", "cancellation", "resultEvent"],
+  "properties": {
+    "schemaVersion": { "const": "office-interaction-v1" },
+    "interactionId": { "$ref": "common.schema.json#/$defs/id" },
+    "interactionVersion": { "type": "integer", "minimum": 1 },
+    "targetKinds": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "enum": ["furniture", "facility", "structure"] }
+    },
+    "approaches": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "cell", "facing", "actorSocketId"],
+        "properties": {
+          "id": { "$ref": "common.schema.json#/$defs/id" },
+          "cell": { "$ref": "common.schema.json#/$defs/cell" },
+          "facing": { "$ref": "common.schema.json#/$defs/direction" },
+          "actorSocketId": { "$ref": "common.schema.json#/$defs/id" },
+          "heldItemSocketId": { "$ref": "common.schema.json#/$defs/id" }
+        }
+      }
+    },
+    "durationTicks": { "type": "integer", "minimum": 1 },
+    "capacity": { "type": "integer", "minimum": 1 },
+    "preconditions": {
+      "type": "array",
+      "items": { "$ref": "common.schema.json#/$defs/id" }
+    },
+    "cancellation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["releaseReservations", "retainProgress", "heldItemPolicy", "resultEvent"],
+      "properties": {
+        "releaseReservations": { "const": true },
+        "retainProgress": { "type": "boolean" },
+        "heldItemPolicy": { "enum": ["return-to-source", "retain-by-actor", "drop-at-target"] },
+        "resultEvent": { "$ref": "common.schema.json#/$defs/id" }
+      }
+    },
+    "resultEvent": { "$ref": "common.schema.json#/$defs/id" }
+  }
+}

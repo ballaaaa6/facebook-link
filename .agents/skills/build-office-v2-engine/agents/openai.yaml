@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build Office V2 Engine"
+  short_description: "Build and validate the clean-room Office V2 engine."
+  default_prompt: "Use the Office V2 knowledge pack and gates to implement or review this engine change."

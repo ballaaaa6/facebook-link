@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/connectivity.schema.json",
+  "title": "Office V2 Connectivity Family",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "familyId", "familyVersion", "directions", "maskBits", "supportedMasks", "variants"],
+  "properties": {
+    "schemaVersion": { "const": "office-connectivity-v1" },
+    "familyId": { "$ref": "common.schema.json#/$defs/id" },
+    "familyVersion": { "type": "integer", "minimum": 1 },
+    "directions": { "const": ["north", "east", "south", "west"] },
+    "maskBits": { "const": { "north": 1, "east": 2, "south": 4, "west": 8 } },
+    "supportedMasks": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "integer", "minimum": 0, "maximum": 15 }
+    },
+    "variants": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["mask", "role", "variantId"],
+        "properties": {
+          "mask": { "type": "integer", "minimum": 0, "maximum": 15 },
+          "role": { "$ref": "common.schema.json#/$defs/id" },
+          "variantId": { "$ref": "common.schema.json#/$defs/id" }
+        }
+      }
+    },
+    "cases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "cells", "expectedMasks"],
+        "properties": {
+          "name": { "$ref": "common.schema.json#/$defs/id" },
+          "cells": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "$ref": "common.schema.json#/$defs/cell" }
+          },
+          "expectedMasks": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "integer", "minimum": 0, "maximum": 15 }
+          }
+        }
+      }
+    }
+  }
+}

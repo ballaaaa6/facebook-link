@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/common.schema.json",
+  "title": "Office V2 Common Types",
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{1,63}$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "direction": {
+      "enum": ["north", "east", "south", "west"]
+    },
+    "cell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["x", "y"],
+      "properties": {
+        "x": { "type": "integer" },
+        "y": { "type": "integer" }
+      }
+    },
+    "position": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["x", "y", "elevation"],
+      "properties": {
+        "x": { "type": "integer" },
+        "y": { "type": "integer" },
+        "elevation": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "spritePoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["xPx", "yPx"],
+      "properties": {
+        "xPx": { "type": "integer" },
+        "yPx": { "type": "integer" }
+      }
+    },
+    "renderBand": {
+      "enum": ["floor", "ground", "world", "upper", "effect"]
+    },
+    "socketKind": {
+      "enum": ["approach", "actor", "held-item", "effect"]
+    },
+    "socket": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "localPosition"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "kind": { "$ref": "#/$defs/socketKind" },
+        "localPosition": { "$ref": "#/$defs/position" },
+        "spritePoint": { "$ref": "#/$defs/spritePoint" },
+        "facing": { "$ref": "#/$defs/direction" }
+      }
+    }
+  }
+}

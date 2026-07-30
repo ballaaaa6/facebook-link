@@ -4,15 +4,17 @@
 
 The initial coarse order is:
 
-1. floor and ground markings;
-2. ground objects and lower object parts;
-3. actors and ordinary furniture;
+1. floor surfaces;
+2. ground markings and flat shadows;
+3. world bodies, including actors, ordinary furniture, and lower object parts;
 4. upper object parts and structural occluders;
 5. world effects;
 6. screen-space labels and controls.
 
-A production asset declares one allowed band. Objects are split into lower and
-upper parts only when one depth key cannot represent the required visibility.
+A production asset declares one allowed band per render part. Actors and
+ordinary furniture share the `world` band so their projected ground contacts can
+interleave. Objects are split into lower and upper parts only when one depth key
+cannot represent the required visibility.
 
 ## Deterministic depth
 

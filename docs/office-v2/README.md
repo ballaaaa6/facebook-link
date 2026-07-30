@@ -43,10 +43,12 @@ only the resulting state is rendered.
 
 ## Current state
 
-The clean-room boundary, a data-free development lab, repository guards, and
-the canonical knowledge base exist. The production Office route is an empty V2
-mount until the headless contracts and renderer gates are passed. No renderer
-library or production asset pipeline has been chosen.
+The clean-room boundary, data-free development lab, repository guards,
+machine-readable readiness pack, accepted foundation decisions, and validation
+fixtures exist. The production Office route remains an empty V2 mount until the
+headless implementation and renderer gates pass. Renderer selection is
+deliberately deferred behind the accepted benchmark decision; no production
+runtime art has been admitted.
 
 ## Knowledge rule
 
@@ -67,20 +69,35 @@ must not restate the canonical documents.
 - `FOUNDATIONS.md`: concepts and invariants the implementation must understand
 - `PRODUCT_AND_GAME_LOOP.md`: visible product behavior and non-goals
 - `GLOSSARY_AND_INVARIANTS.md`: one vocabulary for code, art, and QA
+- `READINESS_MATRIX.md`: implementation authority and outstanding gates
 - `WORLD_COORDINATES_PROJECTION_CAMERA.md`: world-to-screen mathematics
 - `WORLD_MODEL_OCCUPANCY_PLACEMENT.md`: spatial truth and placement rules
+- `ROOMS_SURFACES_STRUCTURES_ZONES.md`: floors, edges, doors, and cutaways
 - `RENDERING_DEPTH_OCCLUSION.md`: render bands and deterministic visibility
 - `CONNECTIVITY_AUTO_TILING.md`: neighbor masks and connected variants
 - `SIMULATION_TIME_RANDOMNESS_REPLAY.md`: deterministic execution rules
 - `ACTORS_NAVIGATION_INTERACTIONS.md`: movement, reservations, and sockets
 - `CHARACTERS_ANIMATION_HELD_PROPS.md`: presentation contracts for actors
+- `INPUT_PICKING_AND_DEBUG_OVERLAYS.md`: semantic input and diagnostics
+- `SAVE_SNAPSHOT_MIGRATION.md`: persisted forms and compatibility policy
+- `MAP_AUTHORING_AND_IMPORT.md`: editor-neutral canonical world flow
 - `ART_DIRECTION_PIXEL_SPEC.md`: original visual-language constraints
+- `FURNITURE_PRODUCTION_BIBLE.md`: furniture-family production rules
+- `CHARACTER_PRODUCTION_BIBLE.md`: character-family production rules
 - `ASSET_PIPELINE_PROVENANCE_VALIDATION.md`: runtime asset admission gates
 - `OPERATIONS_ADAPTER_UI_SAFETY.md`: control-plane integration boundary
 - `TESTING_ACCEPTANCE_BUDGETS.md`: release evidence and budgets
+- `PILOT_DEVICE_AND_PERFORMANCE_MATRIX.md`: benchmark environments and metrics
+- `FAILURE_DIAGNOSTICS.md`: stable error ownership and evidence
 - `IMPLEMENTATION_PLAN.md`: gated vertical delivery sequence
 - `RESEARCH.md`: primary projects and documentation used for engineering study
-- `schemas/*.schema.json`: machine-readable world and asset vocabulary
+- `DEPENDENCY_LEDGER.md`: observed versions, licenses, and adoption state
+- `decisions/*.md`: accepted choices and bounded deferrals
+- `schemas/*.schema.json`: machine-readable engine and asset vocabulary
 - `fixtures/*.json`: canonical valid examples for implementation tests
+- `templates/*`: briefs and definitions that start from the accepted contracts
 - `apps/web/src/features/office-v2/foundation.ts`: executable layer vocabulary
+- `scripts/office-v2-knowledge-check.mjs`: schema and semantic fixture gate
+- `scripts/office-v2-asset-check.mjs`: runtime asset admission gate
 - `scripts/office-v2-clean-room-check.mjs`: repository isolation guard
+- `.agents/skills/build-office-v2-engine`: repository-scoped workflow router

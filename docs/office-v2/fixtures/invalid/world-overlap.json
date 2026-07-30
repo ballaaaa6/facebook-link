@@ -1,0 +1,23 @@
+{
+  "schema": "world.schema.json",
+  "expectedFailure": "world.occupied",
+  "definitions": [
+    { "definitionId": "single-cell-furniture", "footprint": [{ "x": 0, "y": 0 }], "blocking": true }
+  ],
+  "document": {
+    "schemaVersion": "office-world-v1",
+    "worldId": "overlap-office",
+    "projection": { "id": "office-projection-v1", "subCellUnits": 4, "tileWidthPx": 64, "tileHeightPx": 32, "elevationHeightPx": 16, "cameraRotation": 0 },
+    "tickRateHz": 10,
+    "bounds": { "width": 2, "depth": 2, "maxElevation": 0 },
+    "zones": [],
+    "surfaces": [
+      { "cell": { "x": 0, "y": 0 }, "kind": "office-floor", "elevation": 0, "supports": ["furniture"], "traversalCost": null }
+    ],
+    "structures": [],
+    "entities": [
+      { "id": "chair-one", "definitionId": "single-cell-furniture", "anchor": { "x": 0, "y": 0, "elevation": 0 }, "orientation": "north" },
+      { "id": "chair-two", "definitionId": "single-cell-furniture", "anchor": { "x": 0, "y": 0, "elevation": 0 }, "orientation": "north" }
+    ]
+  }
+}

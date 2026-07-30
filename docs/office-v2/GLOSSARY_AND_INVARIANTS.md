@@ -9,7 +9,9 @@
 - **Ground contact**: presentation point where a sprite touches the floor.
 - **Sprite origin**: pixel-space point aligned to the projected anchor.
 - **Socket**: named relative point for approach, actor, held item, or effect use.
-- **Render band**: coarse visibility group such as floor, actor, or upper object.
+- **Render band**: coarse visibility group: floor, ground, shared world, upper,
+  or effect. Actors and ordinary furniture share the world band so depth may
+  interleave them.
 - **Depth key**: deterministic fine ordering inside a render band.
 - **Approach cell**: legal actor destination for an interaction.
 - **Reservation**: temporary ownership of a cell, socket, or facility capacity.

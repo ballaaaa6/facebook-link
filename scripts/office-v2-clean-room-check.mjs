@@ -12,9 +12,11 @@ const retiredRoots = [
   "tools/art",
 ];
 const allowedOfficePaths = [
+  ".agents/skills/build-office-v2-engine/",
   "apps/web/src/features/office-v2/",
+  "assets/office-v2/",
   "docs/office-v2/",
-  "scripts/office-v2-clean-room-check.mjs",
+  "scripts/office-v2-",
 ];
 const forbiddenReferences = [
   "@affiliate-ops/office-read-model",

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/simulation-trace.schema.json",
+  "title": "Office V2 Simulation Trace",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "traceId", "initialSnapshot", "inputs", "stateHashes"],
+  "properties": {
+    "schemaVersion": { "const": "office-trace-v1" },
+    "traceId": { "$ref": "common.schema.json#/$defs/id" },
+    "initialSnapshot": { "$ref": "simulation-snapshot.schema.json" },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "tick", "kind", "payload"],
+        "properties": {
+          "id": { "$ref": "common.schema.json#/$defs/id" },
+          "tick": { "type": "integer", "minimum": 0 },
+          "kind": { "enum": ["command", "external", "random-seed"] },
+          "payload": { "type": "object" }
+        }
+      }
+    },
+    "stateHashes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["tick", "sha256"],
+        "properties": {
+          "tick": { "type": "integer", "minimum": 0 },
+          "sha256": { "$ref": "common.schema.json#/$defs/sha256" }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "office-asset-v1",
+  "familyId": "replace-family",
+  "familyVersion": 1,
+  "projectionId": "office-projection-v1",
+  "source": {
+    "schemaVersion": "office-provenance-v1",
+    "sourceId": "replace-source",
+    "sourceFile": "office-v2/sources/replace-family/v1/source.aseprite",
+    "authoringMethod": "hand-drawn",
+    "authorOrTool": "replace-author-or-tool",
+    "createdAt": "2026-07-31T00:00:00Z",
+    "licenseStatus": "project-owned",
+    "commercialStatus": "approved",
+    "sourceSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "recipeFile": "office-v2/recipes/replace-family/v1/extract.json",
+    "recipeVersion": 1,
+    "recipeSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "briefOrPrompt": "Replace with the approved original creation brief.",
+    "reviewerDecision": "approved"
+  },
+  "geometry": {
+    "canvas": { "widthPx": 64, "heightPx": 64 },
+    "footprint": [{ "x": 0, "y": 0 }],
+    "anchor": { "x": 0, "y": 0, "elevation": 0 },
+    "spriteOrigin": { "xPx": 32, "yPx": 48 },
+    "groundContact": { "xPx": 32, "yPx": 48 },
+    "visualHeightPx": 48,
+    "sockets": []
+  },
+  "render": { "band": "world", "pixelDensity": 1, "filtering": "nearest", "splitMode": "single" },
+  "orientations": ["north"],
+  "variants": [
+    { "id": "replace-variant", "file": "office-v2/runtime/replace-family/v1/replace-variant.png", "sha256": "0000000000000000000000000000000000000000000000000000000000000000", "orientation": "north", "widthPx": 64, "heightPx": 64 }
+  ],
+  "approval": { "geometry": "approved", "visual": "approved", "commercial": "approved" }
+}

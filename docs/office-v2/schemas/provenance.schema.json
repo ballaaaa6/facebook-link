@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/provenance.schema.json",
+  "title": "Office V2 Asset Provenance",
+  "$defs": {
+    "record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "sourceId", "sourceFile", "authoringMethod", "authorOrTool", "createdAt", "licenseStatus", "commercialStatus", "sourceSha256", "recipeFile", "recipeVersion", "recipeSha256", "reviewerDecision"],
+      "properties": {
+        "schemaVersion": { "const": "office-provenance-v1" },
+        "sourceId": { "$ref": "common.schema.json#/$defs/id" },
+        "sourceFile": { "type": "string", "pattern": "^office-v2/sources/[a-z0-9/_-]+\\.[a-z0-9]+$" },
+        "authoringMethod": { "enum": ["hand-drawn", "generated-assisted", "licensed-third-party"] },
+        "authorOrTool": { "type": "string", "minLength": 1 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "licenseStatus": { "enum": ["project-owned", "licensed"] },
+        "commercialStatus": { "enum": ["approved", "pending-review", "rejected"] },
+        "sourceSha256": { "$ref": "common.schema.json#/$defs/sha256" },
+        "recipeFile": { "type": "string", "pattern": "^office-v2/recipes/[a-z0-9/_-]+\\.(json|md|mjs)$" },
+        "recipeVersion": { "type": "integer", "minimum": 1 },
+        "recipeSha256": { "$ref": "common.schema.json#/$defs/sha256" },
+        "briefOrPrompt": { "type": "string", "minLength": 1 },
+        "reviewerDecision": { "enum": ["approved", "pending", "rejected"] }
+      }
+    }
+  },
+  "$ref": "#/$defs/record"
+}

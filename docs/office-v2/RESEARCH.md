@@ -23,8 +23,17 @@ engineering techniques; do not copy protected visual identity or game content.
 - [Tiled](https://github.com/mapeditor/tiled) and its
   [object-layer manual](https://doc.mapeditor.org/en/stable/manual/objects/) —
   map data, custom properties, object layers, templates, and export structure.
+- [Tiled custom properties](https://doc.mapeditor.org/en/stable/manual/custom-properties/),
+  [terrains](https://doc.mapeditor.org/en/latest/manual/terrain/), and
+  [tileset alignment](https://doc.mapeditor.org/en/stable/manual/editing-tilesets/) —
+  typed authoring metadata, Wang-style connections, external tilesets, and
+  bottom-aligned isometric objects.
 - [Unity 2D Extras](https://github.com/Unity-Technologies/2d-extras) — reference
   implementations for grid brushes, tile rules, and 2D authoring concepts.
+- [Godot TileMap documentation](https://docs.godotengine.org/en/stable/tutorials/2d/using_tilemaps.html) —
+  independent render, collision, navigation, occlusion, and terrain layers.
+- [OpenTTD viewport source](https://docs.openttd.org/source/d3/d91/viewport__func_8h) —
+  sortable world bounds and parent/child sprite groups for complex occlusion.
 
 ## State, pathfinding, and verification
 
@@ -41,8 +50,16 @@ engineering techniques; do not copy protected visual identity or game content.
 
 ## Pixel production
 
-- [Aseprite documentation](https://www.aseprite.org/docs/) — layers, tags,
-  slices, sprite sheets, and animation-export concepts.
+- [Aseprite documentation](https://www.aseprite.org/docs/) and
+  [CLI reference](https://www.aseprite.org/docs/cli/) — layers, tags, slices,
+  sprite sheets, JSON metadata, and deterministic batch-export concepts.
+
+## Data validation
+
+- [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12) — canonical
+  schema dialect for Office definitions and fixtures.
+- [Ajv](https://ajv.js.org/json-schema.html) — Node validator used by repository
+  gates, with the Draft 2020-12 entry point explicitly selected.
 
 ## Research rule
 

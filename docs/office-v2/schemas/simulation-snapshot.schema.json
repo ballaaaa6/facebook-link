@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/simulation-snapshot.schema.json",
+  "title": "Office V2 Simulation Snapshot",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "engineVersion", "worldId", "tickRateHz", "tick", "randomStreams", "acceptedCommandIds", "actors", "reservations"],
+  "properties": {
+    "schemaVersion": { "const": "office-snapshot-v1" },
+    "engineVersion": { "$ref": "common.schema.json#/$defs/id" },
+    "worldId": { "$ref": "common.schema.json#/$defs/id" },
+    "tickRateHz": { "const": 10 },
+    "tick": { "type": "integer", "minimum": 0 },
+    "randomStreams": {
+      "type": "object",
+      "additionalProperties": { "type": "integer", "minimum": 0 }
+    },
+    "acceptedCommandIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "common.schema.json#/$defs/id" }
+    },
+    "actors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "state", "position", "facing", "route", "progressTicks"],
+        "properties": {
+          "id": { "$ref": "common.schema.json#/$defs/id" },
+          "state": { "enum": ["idle", "planning", "moving", "interacting", "blocked"] },
+          "position": { "$ref": "common.schema.json#/$defs/position" },
+          "facing": { "$ref": "common.schema.json#/$defs/direction" },
+          "route": {
+            "type": "array",
+            "items": { "$ref": "common.schema.json#/$defs/cell" }
+          },
+          "targetEntityId": { "$ref": "common.schema.json#/$defs/id" },
+          "progressTicks": { "type": "integer", "minimum": 0 },
+          "blockedReason": { "$ref": "common.schema.json#/$defs/id" }
+        }
+      }
+    },
+    "reservations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "kind", "resourceId", "ownerActorId", "expiresTick"],
+        "properties": {
+          "id": { "$ref": "common.schema.json#/$defs/id" },
+          "kind": { "enum": ["cell", "socket", "facility-capacity"] },
+          "resourceId": { "$ref": "common.schema.json#/$defs/id" },
+          "ownerActorId": { "$ref": "common.schema.json#/$defs/id" },
+          "expiresTick": { "type": "integer", "minimum": 0 }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "office-interaction-v1",
+  "interactionId": "replace-interaction",
+  "interactionVersion": 1,
+  "targetKinds": ["furniture"],
+  "approaches": [
+    { "id": "replace-approach", "cell": { "x": 0, "y": 1 }, "facing": "north", "actorSocketId": "replace-actor-socket" }
+  ],
+  "durationTicks": 10,
+  "capacity": 1,
+  "preconditions": [],
+  "cancellation": {
+    "releaseReservations": true,
+    "retainProgress": false,
+    "heldItemPolicy": "return-to-source",
+    "resultEvent": "interaction-cancelled"
+  },
+  "resultEvent": "interaction-completed"
+}

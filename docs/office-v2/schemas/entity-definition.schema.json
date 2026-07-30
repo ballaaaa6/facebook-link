@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/entity-definition.schema.json",
+  "title": "Office V2 Entity Definition",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "definitionId", "definitionVersion", "kind", "footprint", "blocking", "clearance", "supportedOrientations", "render", "sockets", "interactions"],
+  "properties": {
+    "schemaVersion": { "const": "office-entity-v1" },
+    "definitionId": { "$ref": "common.schema.json#/$defs/id" },
+    "definitionVersion": { "type": "integer", "minimum": 1 },
+    "kind": { "enum": ["actor", "furniture", "facility", "structure"] },
+    "assetFamilyId": { "$ref": "common.schema.json#/$defs/id" },
+    "assetFamilyVersion": { "type": "integer", "minimum": 1 },
+    "footprint": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "common.schema.json#/$defs/cell" }
+    },
+    "blocking": { "type": "boolean" },
+    "clearance": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "common.schema.json#/$defs/cell" }
+    },
+    "supportedOrientations": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "common.schema.json#/$defs/direction" }
+    },
+    "render": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["band", "visualHeightPx", "splitMode"],
+      "properties": {
+        "band": { "$ref": "common.schema.json#/$defs/renderBand" },
+        "visualHeightPx": { "type": "integer", "minimum": 1 },
+        "splitMode": { "enum": ["single", "lower-upper"] }
+      }
+    },
+    "sockets": {
+      "type": "array",
+      "items": { "$ref": "common.schema.json#/$defs/socket" }
+    },
+    "interactions": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "common.schema.json#/$defs/id" }
+    },
+    "connectivityFamilyId": { "$ref": "common.schema.json#/$defs/id" }
+  }
+}

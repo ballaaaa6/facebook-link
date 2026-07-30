@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "office-structure-fixture-v1",
+  "definitions": [
+    {
+      "schemaVersion": "office-structure-v1",
+      "definitionId": "office-wall-v1",
+      "definitionVersion": 1,
+      "kind": "wall",
+      "blockingStates": ["solid"],
+      "render": { "lowerBand": "world", "upperBand": "upper", "cutaway": "camera-facing" }
+    },
+    {
+      "schemaVersion": "office-structure-v1",
+      "definitionId": "office-door-v1",
+      "definitionVersion": 1,
+      "kind": "door",
+      "blockingStates": ["closed", "locked", "unavailable"],
+      "render": { "lowerBand": "world", "upperBand": "upper", "cutaway": "selected-room" }
+    }
+  ],
+  "cases": [
+    { "name": "closed-door-blocks", "state": "closed", "expectedTraversable": false },
+    { "name": "open-door-passes", "state": "open", "expectedTraversable": true },
+    { "name": "cutaway-keeps-collision", "state": "closed", "cutawayVisible": false, "expectedTraversable": false }
+  ]
+}

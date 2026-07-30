@@ -11,17 +11,19 @@ Status: complete.
 - Add a repository guard for the clean-room boundary.
 - Provide an isolated data-free lab.
 - Provide a production Office route with an explicitly empty V2 engine mount.
-- Establish the canonical knowledge pack, schemas, and valid fixtures.
+- Establish the canonical knowledge pack, accepted decisions, schemas, valid and
+  rejected fixtures, templates, repository skill, and validation gates.
 
 Exit: the full repository gate passes with no game renderer or runtime art, the
-Office shell communicates the empty state, and all knowledge fixtures parse.
+Office shell communicates the empty state, every knowledge schema compiles,
+valid fixtures pass, and rejected fixtures fail for their declared reason.
 
 ## Phase 1 — Executable world contracts
 
 - Define branded identifier types for entity, cell, zone, command, and tick.
 - Define world bounds, integer sub-cell units, footprints, anchors, and sockets.
 - Define scene serialization and validation errors.
-- Implement projection and inverse-projection functions behind one interface.
+- Implement `office-projection-v1` and inverse-projection behind one interface.
 - Add unit and property tests using geometric placeholders only.
 
 Exit: coordinate round-trips, invalid scene rejection, stable depth ordering, and

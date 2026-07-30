@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "office-interaction-fixture-v1",
+  "definition": {
+    "schemaVersion": "office-interaction-v1",
+    "interactionId": "work-at-desk",
+    "interactionVersion": 1,
+    "targetKinds": ["furniture"],
+    "approaches": [
+      { "id": "south-seat", "cell": { "x": 0, "y": 1 }, "facing": "north", "actorSocketId": "seat-one", "heldItemSocketId": "desk-prop" }
+    ],
+    "durationTicks": 30,
+    "capacity": 1,
+    "preconditions": ["task-assigned"],
+    "cancellation": {
+      "releaseReservations": true,
+      "retainProgress": false,
+      "heldItemPolicy": "return-to-source",
+      "resultEvent": "interaction-cancelled"
+    },
+    "resultEvent": "interaction-completed"
+  },
+  "cases": [
+    { "name": "complete", "events": [{ "tick": 0, "type": "start" }, { "tick": 30, "type": "advance" }], "expected": "interaction-completed" },
+    { "name": "cancel", "events": [{ "tick": 0, "type": "start" }, { "tick": 8, "type": "cancel" }], "expected": "interaction-cancelled", "expectedReservationReleased": true },
+    { "name": "timeout", "events": [{ "tick": 0, "type": "reserve" }, { "tick": 20, "type": "timeout" }], "expected": "interaction-cancelled", "expectedReservationReleased": true }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "schema": "connectivity.schema.json",
+  "expectedFailure": "connectivity.missing-variant",
+  "document": {
+    "schemaVersion": "office-connectivity-v1",
+    "familyId": "broken-connected-desk",
+    "familyVersion": 1,
+    "directions": ["north", "east", "south", "west"],
+    "maskBits": { "north": 1, "east": 2, "south": 4, "west": 8 },
+    "supportedMasks": [0, 2, 8, 10],
+    "variants": [
+      { "mask": 0, "role": "isolated", "variantId": "desk-isolated" },
+      { "mask": 2, "role": "left-end", "variantId": "desk-left-end" },
+      { "mask": 8, "role": "right-end", "variantId": "desk-right-end" }
+    ]
+  }
+}

@@ -3,8 +3,10 @@
 ## World definition
 
 A world definition contains a version, bounds, zones, static surfaces, and
-entities. Entities reference asset definitions but own their identity, anchor,
-orientation, elevation, and semantic tags in the world.
+entities. Versioned entity definitions own footprint, clearance, supported
+orientations, sockets, interaction IDs, and render metadata. World instances
+reference those definitions and own identity, anchor, orientation, elevation,
+and semantic tags.
 
 Zones describe meaning such as work, review, circulation, service, or quiet.
 They do not alter coordinate mathematics.

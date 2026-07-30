@@ -4,94 +4,87 @@
   "title": "Office V2 Asset Family",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schemaVersion", "familyId", "familyVersion", "source", "geometry", "render", "variants"],
+  "required": ["schemaVersion", "familyId", "familyVersion", "projectionId", "source", "geometry", "render", "orientations", "variants", "approval"],
   "properties": {
     "schemaVersion": { "const": "office-asset-v1" },
-    "familyId": { "$ref": "#/$defs/id" },
+    "familyId": { "$ref": "common.schema.json#/$defs/id" },
     "familyVersion": { "type": "integer", "minimum": 1 },
-    "source": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["sourceId", "authoringMethod", "licenseStatus", "commercialStatus", "sha256", "recipeVersion"],
-      "properties": {
-        "sourceId": { "$ref": "#/$defs/id" },
-        "authoringMethod": { "type": "string", "minLength": 1 },
-        "licenseStatus": { "enum": ["project-owned", "licensed"] },
-        "commercialStatus": { "enum": ["approved", "pending-review", "rejected"] },
-        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
-        "recipeVersion": { "type": "integer", "minimum": 1 }
-      }
-    },
+    "projectionId": { "const": "office-projection-v1" },
+    "source": { "$ref": "provenance.schema.json#/$defs/record" },
     "geometry": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["footprint", "anchor", "spriteOrigin", "groundContact", "visualHeight", "sockets"],
+      "required": ["canvas", "footprint", "anchor", "spriteOrigin", "groundContact", "visualHeightPx", "sockets"],
       "properties": {
-        "footprint": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/point" } },
-        "anchor": { "$ref": "#/$defs/point" },
-        "spriteOrigin": { "$ref": "#/$defs/point" },
-        "groundContact": { "$ref": "#/$defs/point" },
-        "visualHeight": { "type": "integer", "minimum": 1 },
+        "canvas": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["widthPx", "heightPx"],
+          "properties": {
+            "widthPx": { "type": "integer", "minimum": 1 },
+            "heightPx": { "type": "integer", "minimum": 1 }
+          }
+        },
+        "footprint": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "common.schema.json#/$defs/cell" }
+        },
+        "anchor": { "$ref": "common.schema.json#/$defs/position" },
+        "spriteOrigin": { "$ref": "common.schema.json#/$defs/spritePoint" },
+        "groundContact": { "$ref": "common.schema.json#/$defs/spritePoint" },
+        "visualHeightPx": { "type": "integer", "minimum": 1 },
         "sockets": {
           "type": "array",
-          "items": {
-            "type": "object",
-            "additionalProperties": false,
-            "required": ["id", "kind", "point"],
-            "properties": {
-              "id": { "$ref": "#/$defs/id" },
-              "kind": { "enum": ["approach", "actor", "held-item", "effect"] },
-              "point": { "$ref": "#/$defs/point" }
-            }
-          }
+          "items": { "$ref": "common.schema.json#/$defs/socket" }
         }
       }
     },
     "render": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["band", "pixelDensity", "filtering"],
+      "required": ["band", "pixelDensity", "filtering", "splitMode"],
       "properties": {
-        "band": { "enum": ["floor", "ground-object", "actor", "upper-object", "effect"] },
+        "band": { "$ref": "common.schema.json#/$defs/renderBand" },
         "pixelDensity": { "type": "integer", "minimum": 1 },
-        "filtering": { "const": "nearest" }
+        "filtering": { "const": "nearest" },
+        "splitMode": { "enum": ["single", "lower-upper"] }
       }
     },
-    "connectivity": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["family", "directions", "maskBits"],
-      "properties": {
-        "family": { "$ref": "#/$defs/id" },
-        "directions": { "const": ["north", "east", "south", "west"] },
-        "maskBits": { "const": { "north": 1, "east": 2, "south": 4, "west": 8 } }
-      }
+    "orientations": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "common.schema.json#/$defs/direction" }
     },
+    "connectivityFamilyId": { "$ref": "common.schema.json#/$defs/id" },
     "variants": {
       "type": "array",
       "minItems": 1,
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["id", "file", "sha256", "neighborMask"],
+        "required": ["id", "file", "sha256", "orientation", "widthPx", "heightPx"],
         "properties": {
-          "id": { "$ref": "#/$defs/id" },
+          "id": { "$ref": "common.schema.json#/$defs/id" },
           "file": { "type": "string", "pattern": "^[a-z0-9/_-]+\\.png$" },
-          "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
-          "neighborMask": { "type": "integer", "minimum": 0, "maximum": 15 }
+          "sha256": { "$ref": "common.schema.json#/$defs/sha256" },
+          "orientation": { "$ref": "common.schema.json#/$defs/direction" },
+          "neighborMask": { "type": "integer", "minimum": 0, "maximum": 15 },
+          "widthPx": { "type": "integer", "minimum": 1 },
+          "heightPx": { "type": "integer", "minimum": 1 }
         }
       }
-    }
-  },
-  "$defs": {
-    "id": { "type": "string", "pattern": "^[a-z][a-z0-9-]{1,63}$" },
-    "point": {
+    },
+    "approval": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["x", "y"],
+      "required": ["geometry", "visual", "commercial"],
       "properties": {
-        "x": { "type": "integer" },
-        "y": { "type": "integer" }
+        "geometry": { "const": "approved" },
+        "visual": { "const": "approved" },
+        "commercial": { "const": "approved" }
       }
     }
   }

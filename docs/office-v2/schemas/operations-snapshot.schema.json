@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/operations-snapshot.schema.json",
+  "title": "Office V2 Operations Snapshot",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "snapshotId", "observedAt", "freshness", "agents"],
+  "properties": {
+    "schemaVersion": { "const": "office-operations-v1" },
+    "snapshotId": { "$ref": "common.schema.json#/$defs/id" },
+    "observedAt": { "type": "string", "format": "date-time" },
+    "freshness": { "enum": ["live", "stale", "reconnecting", "unavailable"] },
+    "agents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["agentId", "displayName", "displayStatus", "progress", "updatedAt", "capabilities"],
+        "properties": {
+          "agentId": { "$ref": "common.schema.json#/$defs/id" },
+          "displayName": { "type": "string", "minLength": 1 },
+          "displayStatus": { "enum": ["working", "waiting", "review", "blocked", "unavailable", "idle"] },
+          "currentTask": { "type": ["string", "null"] },
+          "progress": { "type": ["integer", "null"], "minimum": 0, "maximum": 100 },
+          "updatedAt": { "type": "string", "format": "date-time" },
+          "capabilities": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": { "$ref": "common.schema.json#/$defs/id" }
+          }
+        }
+      }
+    }
+  }
+}

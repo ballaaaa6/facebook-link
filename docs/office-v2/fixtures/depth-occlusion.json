@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "office-depth-fixture-v1",
+  "cases": [
+    {
+      "name": "actor-crosses-tall-object",
+      "entities": [
+        { "id": "cabinet-lower", "band": "world", "groundY": 96, "elevation": 0 },
+        { "id": "actor-behind", "band": "world", "groundY": 88, "elevation": 0 },
+        { "id": "actor-front", "band": "world", "groundY": 112, "elevation": 0 },
+        { "id": "cabinet-upper", "band": "upper", "groundY": 96, "elevation": 0 }
+      ],
+      "expectedBackToFront": ["actor-behind", "cabinet-lower", "actor-front", "cabinet-upper"]
+    },
+    {
+      "name": "stable-ground-tie",
+      "entities": [
+        { "id": "actor-beta", "band": "world", "groundY": 80, "elevation": 0 },
+        { "id": "actor-alpha", "band": "world", "groundY": 80, "elevation": 0 }
+      ],
+      "expectedBackToFront": ["actor-alpha", "actor-beta"]
+    }
+  ]
+}

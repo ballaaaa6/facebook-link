@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "office-asset-v1",
+  "familyId": "pilot-workstation",
+  "familyVersion": 1,
+  "projectionId": "office-projection-v1",
+  "source": {
+    "schemaVersion": "office-provenance-v1",
+    "sourceId": "pilot-workstation-source",
+    "sourceFile": "office-v2/sources/pilot-workstation/v1/source.aseprite",
+    "authoringMethod": "hand-drawn",
+    "authorOrTool": "project-art-team",
+    "createdAt": "2026-07-31T12:00:00Z",
+    "licenseStatus": "project-owned",
+    "commercialStatus": "approved",
+    "sourceSha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+    "recipeFile": "office-v2/recipes/pilot-workstation/v1/extract.json",
+    "recipeVersion": 1,
+    "recipeSha256": "abababababababababababababababababababababababababababababababab",
+    "briefOrPrompt": "Original compact office workstation for the neutral geometry board.",
+    "reviewerDecision": "approved"
+  },
+  "geometry": {
+    "canvas": { "widthPx": 128, "heightPx": 96 },
+    "footprint": [{ "x": 0, "y": 0 }, { "x": 1, "y": 0 }],
+    "anchor": { "x": 0, "y": 0, "elevation": 0 },
+    "spriteOrigin": { "xPx": 64, "yPx": 80 },
+    "groundContact": { "xPx": 64, "yPx": 80 },
+    "visualHeightPx": 72,
+    "sockets": [
+      { "id": "seat-one", "kind": "actor", "localPosition": { "x": 0, "y": 1, "elevation": 0 }, "spritePoint": { "xPx": 64, "yPx": 80 }, "facing": "north" }
+    ]
+  },
+  "render": { "band": "world", "pixelDensity": 1, "filtering": "nearest", "splitMode": "single" },
+  "orientations": ["north"],
+  "connectivityFamilyId": "connected-desk-placeholder",
+  "variants": [
+    { "id": "desk-isolated", "file": "office-v2/runtime/pilot-workstation/v1/desk-isolated.png", "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", "orientation": "north", "neighborMask": 0, "widthPx": 128, "heightPx": 96 }
+  ],
+  "approval": { "geometry": "approved", "visual": "approved", "commercial": "approved" }
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/surface-structure.schema.json",
+  "title": "Office V2 Surface and Structure Definition",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "definitionId", "definitionVersion", "kind", "blockingStates", "render"],
+  "properties": {
+    "schemaVersion": { "const": "office-structure-v1" },
+    "definitionId": { "$ref": "common.schema.json#/$defs/id" },
+    "definitionVersion": { "type": "integer", "minimum": 1 },
+    "kind": { "enum": ["floor", "wall", "door", "window"] },
+    "blockingStates": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "enum": ["solid", "open", "closed", "locked", "unavailable"] }
+    },
+    "render": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lowerBand", "upperBand", "cutaway"],
+      "properties": {
+        "lowerBand": { "$ref": "common.schema.json#/$defs/renderBand" },
+        "upperBand": { "$ref": "common.schema.json#/$defs/renderBand" },
+        "cutaway": { "enum": ["never", "camera-facing", "selected-room"] }
+      }
+    }
+  }
+}

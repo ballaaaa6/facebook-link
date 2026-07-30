@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "office-navigation-fixture-v1",
+  "bounds": { "width": 5, "depth": 5 },
+  "blockedCells": [{ "x": 2, "y": 1 }, { "x": 2, "y": 2 }, { "x": 2, "y": 3 }],
+  "cases": [
+    {
+      "name": "stable-detour",
+      "start": { "x": 1, "y": 2 },
+      "goal": { "x": 3, "y": 2 },
+      "expectedPath": [{ "x": 1, "y": 2 }, { "x": 1, "y": 1 }, { "x": 1, "y": 0 }, { "x": 2, "y": 0 }, { "x": 3, "y": 0 }, { "x": 3, "y": 1 }, { "x": 3, "y": 2 }]
+    },
+    {
+      "name": "exclusive-socket",
+      "resourceId": "desk-seat-one",
+      "requests": [
+        { "actorId": "actor-alpha", "issuedTick": 4, "commandId": "reserve-alpha" },
+        { "actorId": "actor-beta", "issuedTick": 4, "commandId": "reserve-beta" }
+      ],
+      "expectedOwner": "actor-alpha",
+      "expectedWaiting": ["actor-beta"]
+    }
+  ]
+}

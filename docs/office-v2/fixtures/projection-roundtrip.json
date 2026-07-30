@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "office-projection-fixture-v1",
+  "projectionId": "office-projection-v1",
+  "origin": { "xPx": 320, "yPx": 64 },
+  "cases": [
+    { "name": "origin", "world": { "x": 0, "y": 0, "elevation": 0 }, "screen": { "xPx": 320, "yPx": 64 } },
+    { "name": "east-cell", "world": { "x": 1, "y": 0, "elevation": 0 }, "screen": { "xPx": 352, "yPx": 80 } },
+    { "name": "south-cell", "world": { "x": 0, "y": 1, "elevation": 0 }, "screen": { "xPx": 288, "yPx": 80 } },
+    { "name": "mixed-cell", "world": { "x": 2, "y": 1, "elevation": 0 }, "screen": { "xPx": 352, "yPx": 112 } },
+    { "name": "elevated-cell", "world": { "x": 2, "y": 1, "elevation": 1 }, "screen": { "xPx": 352, "yPx": 96 } }
+  ],
+  "edgePolicy": {
+    "kind": "half-open",
+    "tieOrder": ["lowest-y", "lowest-x"]
+  }
+}

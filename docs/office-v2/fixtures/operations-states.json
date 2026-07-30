@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "office-operations-fixture-v1",
+  "snapshots": [
+    {
+      "schemaVersion": "office-operations-v1",
+      "snapshotId": "live-snapshot",
+      "observedAt": "2026-07-31T12:00:00Z",
+      "freshness": "live",
+      "agents": [
+        { "agentId": "agent-one", "displayName": "Agent One", "displayStatus": "working", "currentTask": "Analyze candidate", "progress": 40, "updatedAt": "2026-07-31T12:00:00Z", "capabilities": ["inspect-task"] }
+      ]
+    },
+    {
+      "schemaVersion": "office-operations-v1",
+      "snapshotId": "stale-snapshot",
+      "observedAt": "2026-07-31T11:45:00Z",
+      "freshness": "stale",
+      "agents": [
+        { "agentId": "agent-one", "displayName": "Agent One", "displayStatus": "unavailable", "currentTask": null, "progress": null, "updatedAt": "2026-07-31T11:45:00Z", "capabilities": [] }
+      ]
+    }
+  ]
+}

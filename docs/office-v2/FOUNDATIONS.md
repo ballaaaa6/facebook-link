@@ -31,19 +31,22 @@ Start with integer world cells and fixed sub-cell units. Floating-point screen
 coordinates are allowed only after projection. Never store screen pixels as
 authoritative positions.
 
-For an isometric candidate, the initial mathematical prototype may use:
+Projection version `office-projection-v1` is a fixed 2:1 isometric diamond with
+64 by 32 logical pixels per cell, four integer sub-cell units, 16 pixels per
+elevation unit, and no camera rotation. It uses:
 
 ```text
 screenX = originX + (worldX - worldY) * halfTileWidth
 screenY = originY + (worldX + worldY) * halfTileHeight - elevation * elevationHeight
 ```
 
-This equation is a hypothesis to test with a no-art fixture, not permission to
-hard-code placement offsets throughout components.
+The equation is owned by the projection module and its accepted decision. It is
+not permission to hard-code placement offsets throughout components.
 
 ## 3. Deterministic simulation knowledge
 
-- Advance state with a fixed logical tick independent from display frame rate.
+- Advance state at 10 fixed logical ticks per second, independent from display
+  frame rate.
 - Treat wall-clock time, random values, and external event arrival as injected
   inputs that can be recorded and replayed.
 - Represent actor behavior as explicit states and commands, not chained UI
@@ -62,7 +65,8 @@ requires them.
   separate.
 - Reserve destination and interaction cells explicitly when concurrent actors
   are introduced.
-- Define whether diagonal travel is allowed and prevent corner cutting.
+- The first slice permits four cardinal directions only; diagonals and corner
+  cutting are not part of projection version 1.
 - Re-plan only on relevant world changes, not every rendered frame.
 - Surface unreachable targets as a state the UI can explain.
 
@@ -75,8 +79,9 @@ local steering are later concerns.
   entity identity.
 - Split tall or overhanging objects only when one depth key cannot represent the
   required occlusion.
-- Keep floors, ground objects, actors, upper object parts, effects, and UI in
-  explicit render bands.
+- Keep floors, ground marks, depth-sorted world entities, upper object parts,
+  effects, and UI in explicit render bands. Actors and ordinary furniture share
+  the `world` band so their ground-contact depth can interleave.
 - Derive responsive camera behavior from the world bounds. Do not resize the
   world to fit a phone screen.
 - Validate the scene at target viewport sizes with screenshots and geometric

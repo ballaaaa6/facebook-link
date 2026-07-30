@@ -1,0 +1,40 @@
+{
+  "schema": "asset.schema.json",
+  "expectedFailure": "asset.commercial-review",
+  "document": {
+    "schemaVersion": "office-asset-v1",
+    "familyId": "unreviewed-workstation",
+    "familyVersion": 1,
+    "projectionId": "office-projection-v1",
+    "source": {
+      "schemaVersion": "office-provenance-v1",
+      "sourceId": "unreviewed-source",
+      "sourceFile": "office-v2/sources/unreviewed/v1/source.png",
+      "authoringMethod": "generated-assisted",
+      "authorOrTool": "unrecorded-generator",
+      "createdAt": "2026-07-31T12:00:00Z",
+      "licenseStatus": "project-owned",
+      "commercialStatus": "pending-review",
+      "sourceSha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "recipeFile": "office-v2/recipes/unreviewed/v1/extract.json",
+      "recipeVersion": 1,
+      "recipeSha256": "1212121212121212121212121212121212121212121212121212121212121212",
+      "reviewerDecision": "pending"
+    },
+    "geometry": {
+      "canvas": { "widthPx": 64, "heightPx": 64 },
+      "footprint": [{ "x": 0, "y": 0 }],
+      "anchor": { "x": 0, "y": 0, "elevation": 0 },
+      "spriteOrigin": { "xPx": 32, "yPx": 48 },
+      "groundContact": { "xPx": 32, "yPx": 48 },
+      "visualHeightPx": 48,
+      "sockets": []
+    },
+    "render": { "band": "world", "pixelDensity": 1, "filtering": "nearest", "splitMode": "single" },
+    "orientations": ["north"],
+    "variants": [
+      { "id": "unreviewed-single", "file": "office-v2/runtime/unreviewed/v1/single.png", "sha256": "1111111111111111111111111111111111111111111111111111111111111111", "orientation": "north", "widthPx": 64, "heightPx": 64 }
+    ],
+    "approval": { "geometry": "approved", "visual": "approved", "commercial": "pending" }
+  }
+}
