@@ -7,6 +7,20 @@ and branding. Genre references may guide readability and management-game density
 but no proprietary pixel, character identity, exact room layout, or signature
 composition is reproduced.
 
+The accepted target is an original warm **2:1 dimetric/isometric pixel-art
+management simulation** shown as a building cutaway. It is not orthographic
+top-down art and it is not an attempt to reproduce a named studio's visual
+identity. `FIRST_FLOOR_BRIEF.md` owns the target scene; this document owns the
+measurable family rules.
+
+## Pending numeric style profile
+
+Bulk art remains blocked until Phase 1 records a versioned style profile with
+character height, furniture and doorway scale, wall height, native canvas
+classes, palette roles, outline width, light and shadow vector, transparent
+padding, detail-density bands, and supported zoom stops. A reference image or
+adjective is not a measurable style contract.
+
 ## Locked family brief
 
 Before creating a family, record:

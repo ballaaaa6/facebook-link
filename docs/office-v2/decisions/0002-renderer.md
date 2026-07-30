@@ -21,7 +21,7 @@ rendering dependency before measuring the slice would make removal expensive.
 ## Decision
 
 Define a renderer port and keep production free of either dependency until
-Phase 3. Benchmark Canvas 2D against exactly PixiJS 8.19.0 using the same
+Phase 4. Benchmark Canvas 2D against exactly PixiJS 8.19.0 using the same
 geometric snapshot, camera, picking, depth bands, viewport matrix, and cleanup
 tests. Record numeric budgets and select one implementation by updating this
 record with a superseding decision.
@@ -31,11 +31,11 @@ owns the mount and accessible inspector; no React component owns simulation.
 
 ## Consequences
 
-Phase 1 and Phase 2 remain headless. Renderer-specific agent skills are not
+Phases 1 through 3 remain headless. Renderer-specific agent skills are not
 installed before the benchmark. The losing proof is removed without changing
 world, simulation, projection, fixtures, or adapter contracts.
 
 ## Evidence
 
-`PILOT_DEVICE_AND_PERFORMANCE_MATRIX.md`, Phase 3 benchmark results, responsive
+`PILOT_DEVICE_AND_PERFORMANCE_MATRIX.md`, Phase 4 benchmark results, responsive
 captures, bundle analysis, and lifecycle tests.

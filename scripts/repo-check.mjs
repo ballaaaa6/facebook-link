@@ -25,6 +25,7 @@ const requiredPaths = [
   "docs/README.md",
   "docs/REPOSITORY_LAYOUT.md",
   "docs/office-v2/README.md",
+  "docs/office-v2/FIRST_FLOOR_BRIEF.md",
   "docs/office-v2/READINESS_MATRIX.md",
   "docs/office-v2/schemas/common.schema.json",
   "scripts/office-v2-knowledge-check.mjs",

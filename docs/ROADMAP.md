@@ -14,7 +14,7 @@
 - Replace dashboard mock values with read-model data.
 - Reconcile jobs, agent runs, audit events, and outbox records idempotently.
 
-## M2 — Office Engine V2 vertical slice
+## M2 — Office Engine V2 foundation and first-floor path
 
 - Finish the world, simulation, projection, and presentation contracts.
 - Prove one empty room, one placeholder actor, one target, and one interaction
@@ -22,9 +22,16 @@
 - Validate movement, occupancy, depth, input, camera, and responsive behavior.
 - Introduce one newly produced asset family only after its provenance and
   geometry gates pass.
+- Build the reusable asset factory, environment kit, room templates, and
+  operations adapter needed by the accepted ground-floor headquarters target.
+- Expand from one actor to the ten canonical roles and a fifteen-actor capacity
+  fixture without creating fake staff or fake workflow state.
 - Keep the engine an optional read-only visualization of operational state.
 
-Detailed gates are in `docs/office-v2/IMPLEMENTATION_PLAN.md`.
+The target is defined in `docs/office-v2/FIRST_FLOOR_BRIEF.md`; detailed gates
+are in `docs/office-v2/IMPLEMENTATION_PLAN.md`. Full first-floor visual expansion
+may continue alongside M3 and M4, but it cannot display a connector or role as
+working before the corresponding feature is enabled and observed.
 
 ## M3 — One-account Shopee pilot
 

@@ -17,6 +17,19 @@ existing management games describe a genre, not a visual target to copy.
 4. Propose an allowed action through the existing control plane.
 5. Review the result in operational records and see the world update.
 
+## Target first floor
+
+The production target is one complete ground-floor headquarters, not the small
+proof room used to build the engine. It provides facilities for the ten
+canonical AutoPost roles, validates capacity for fifteen operational actors,
+contains work, strategy, creative, review, publishing, reliability, meeting,
+pantry, lounge, entry, and circulation zones, and includes a bounded exterior
+sidewalk and road presentation.
+
+The target and its acceptance contract are defined in `FIRST_FLOOR_BRIEF.md`.
+Only operations-adapter records become visible employees. Reserved capacity and
+disabled roles do not become decorative workers.
+
 ## Visible state contract
 
 Every visual state must map to one of these meanings:
@@ -30,12 +43,15 @@ Every visual state must map to one of these meanings:
 
 Animation may emphasize a state but cannot change its meaning.
 
-## First playable slice
+## First playable construction slice
 
 The first complete slice contains one small room, one actor, one workstation,
 one task, one reachable interaction, one unreachable case, and one inspector.
 It must work first with geometric placeholders and then with one approved
 original asset family without changing simulation behavior.
+
+This slice proves reusable systems. It is expanded through the gated roadmap
+into the first-floor target rather than becoming a separate production layout.
 
 ## Non-goals for the foundation
 

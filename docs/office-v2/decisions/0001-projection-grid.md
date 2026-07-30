@@ -46,4 +46,4 @@ camera and surrounding UI, not the world.
 ## Evidence
 
 `schemas/world.schema.json`, `fixtures/projection-roundtrip.json`, the knowledge
-gate, and Phase 1 projection property tests.
+gate, and Phase 2 projection property tests.

@@ -45,9 +45,11 @@ only the resulting state is rendered.
 
 The clean-room boundary, data-free development lab, repository guards,
 machine-readable readiness pack, accepted foundation decisions, and validation
-fixtures exist. The production Office route remains an empty V2 mount until the
-headless implementation and renderer gates pass. Renderer selection is
-deliberately deferred behind the accepted benchmark decision; no production
+fixtures exist. The complete first-floor product target is accepted, while its
+building, composition, operations, crowd, style, and asset-factory contracts
+remain gated in Phase 1. The production Office route remains an empty V2 mount
+until the headless implementation and renderer gates pass. Renderer selection
+is deliberately deferred behind the accepted benchmark decision; no production
 runtime art has been admitted.
 
 ## Knowledge rule
@@ -68,6 +70,7 @@ must not restate the canonical documents.
 
 - `FOUNDATIONS.md`: concepts and invariants the implementation must understand
 - `PRODUCT_AND_GAME_LOOP.md`: visible product behavior and non-goals
+- `FIRST_FLOOR_BRIEF.md`: accepted ground-floor target, capacity, zones, and acceptance
 - `GLOSSARY_AND_INVARIANTS.md`: one vocabulary for code, art, and QA
 - `READINESS_MATRIX.md`: implementation authority and outstanding gates
 - `WORLD_COORDINATES_PROJECTION_CAMERA.md`: world-to-screen mathematics

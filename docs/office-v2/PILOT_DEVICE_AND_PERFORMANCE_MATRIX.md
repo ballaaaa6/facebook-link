@@ -8,13 +8,13 @@
 | Compact desktop/tablet | 1024x768 | Layout, camera fit, and interaction density |
 | Phone | 390x844 | Semantic parity, inspector access, and bounded camera |
 
-The pilot desktop hardware and browser build are recorded with the Phase 3
+The pilot desktop hardware and browser build are recorded with the Phase 4
 benchmark. Visual baselines are generated and compared in the same controlled
 environment.
 
 ## Measured budgets
 
-Before choosing a renderer, record the baseline for 1, 10, 25, and 50 actors and
+Before choosing a renderer, record the baseline for 1, 10, 15, 25, and 50 actors and
 for small and target-sized rooms:
 
 - simulation tick p50 and p95;

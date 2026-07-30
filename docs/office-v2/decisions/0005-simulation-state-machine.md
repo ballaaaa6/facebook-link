@@ -36,5 +36,5 @@ must preserve snapshot and trace semantics and pass the same fixtures.
 
 ## Evidence
 
-Simulation snapshot and trace schemas, replay fixtures, and Phase 2 identical
+Simulation snapshot and trace schemas, replay fixtures, and Phase 3 identical
 state-hash tests.

@@ -36,5 +36,5 @@ enabled as presentation tweaks.
 
 ## Evidence
 
-`fixtures/navigation-reservations.json`, Phase 2 path legality tests, and replay
+`fixtures/navigation-reservations.json`, Phase 3 path legality tests, and replay
 state hashes.

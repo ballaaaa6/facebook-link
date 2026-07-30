@@ -1,6 +1,22 @@
-# Office Engine V2 Implementation Plan
+# Office Engine V2 Production Roadmap
 
-Each phase must pass its exit criteria before the next phase starts.
+The destination is the complete ground-floor headquarters in
+`FIRST_FLOOR_BRIEF.md`. Build it through reusable vertical slices. A phase may
+begin only after the prior phase's exit evidence passes; art volume never hides
+an unresolved world, simulation, or asset-pipeline decision.
+
+## Roadmap principles
+
+- Build contracts, fixtures, and diagnostics before producers and consumers.
+- Prove one reusable family and interaction before making a large art batch.
+- Keep operations truth, deterministic simulation, and visual presentation
+  separate at every phase.
+- Reserve fifteen actor slots but instantiate only real adapter records.
+- Treat the small room as a construction proof for the large floor, not as a
+  competing production map.
+- Study open systems for architecture and testing methods only. Do not copy
+  proprietary pixels, characters, branding, layouts, scene data, or code that
+  has not passed a dependency and license decision.
 
 ## Phase 0 — Clean-room baseline
 
@@ -8,96 +24,232 @@ Status: complete.
 
 - Retain the affiliate control panel and operations packages.
 - Remove the prior game subsystem and all runtime visual material.
-- Add a repository guard for the clean-room boundary.
-- Provide an isolated data-free lab.
-- Provide a production Office route with an explicitly empty V2 engine mount.
-- Establish the canonical knowledge pack, accepted decisions, schemas, valid and
-  rejected fixtures, templates, repository skill, and validation gates.
+- Add the clean-room guard, data-free lab, and empty production mount.
+- Establish the canonical knowledge pack, decisions, schemas, fixtures,
+  templates, project skill, and validation gates.
 
 Exit: the full repository gate passes with no game renderer or runtime art, the
-Office shell communicates the empty state, every knowledge schema compiles,
-valid fixtures pass, and rejected fixtures fail for their declared reason.
+Office shell communicates the empty state, valid fixtures pass, and rejected
+fixtures fail for their declared reason.
 
-## Phase 1 — Executable world contracts
+## Phase 1 — First-floor knowledge and contract closure
 
-- Define branded identifier types for entity, cell, zone, command, and tick.
-- Define world bounds, integer sub-cell units, footprints, anchors, and sockets.
-- Define scene serialization and validation errors.
-- Implement `office-projection-v1` and inverse-projection behind one interface.
-- Add unit and property tests using geometric placeholders only.
+Status: in progress. The target brief exists; the following contracts do not.
 
-Exit: coordinate round-trips, invalid scene rejection, stable depth ordering, and
-serialization determinism pass without React or a renderer library.
+### Operational truth
 
-## Phase 2 — Headless vertical slice
+- Resolve the ownership conflict between Product Ranker and Growth Strategist
+  for winner selection and update the catalog and workflow documentation.
+- Define operations snapshot V2 with separate role and agent-instance IDs,
+  workflow run, task, stage, durable transition, structured wait/review/block
+  reason, freshness, session health, feature availability, and diagnostic owner.
+- Define fan-out and join semantics for copy and visual production before
+  `content_ready` so two jobs never appear as one ambiguous handoff.
+- Define the data-owned roster binding:
 
-- Build a small room fixture with one actor, one target, and blocked cells.
-- Implement fixed ticks, command handling, A* planning, path following, and one
-  interaction state machine.
-- Record a state trace and prove replay produces the same result.
-- Adapt one fake operational event into an actor task without writing back.
+```text
+agent instance -> role -> character definition -> home facility
+               -> allowed interactions -> feature availability
+```
 
-Exit: the actor reaches the target, interacts, handles an unreachable variant,
-and replays identically in Node tests.
+### Building and composition
 
-## Phase 3 — Renderer proof
+- Decide and version building, floor, exterior, and vertical-portal ownership.
+- Define whether each floor is an independent world and how floor-local saves,
+  loading, camera selection, routing, and migration work.
+- Define room templates, facility slots, prop slots, circulation clearance,
+  density bands, focal points, and deterministic decoration streams.
+- Define the first-floor geometric fixture with ten assigned stations, five
+  reserved actor slots, shared facilities, entrance, sidewalk, road context,
+  and a reserved stair or lift core.
 
-- Benchmark the current PixiJS release against a minimal Canvas implementation.
-- Choose the renderer in a short decision record based on batching, camera,
-  pointer picking, accessibility integration, bundle size, and maintenance.
-- Render only geometric placeholders from simulation snapshots.
-- Add camera pan, bounded zoom, picking, depth bands, and responsive viewport QA.
+### Visual production
 
-Exit: no rendering component owns simulation state; desktop, tablet, and phone
-captures pass; the performance budget is recorded.
+- Lock a measurable style profile for the original warm 2:1 pixel-art cutaway:
+  character scale, wall height, canvas classes, palette roles, outline width,
+  light and shadow direction, detail budget, transparent padding, native scale,
+  and supported zoom stops.
+- Define environment-kit, character-modularity, sprite-atlas, room-template,
+  contact-sheet, and visual-review contracts with valid and rejected fixtures.
+- Define the contracts, rejected fixtures, diagnostic ownership, and automated
+  evidence requirements for PNG alpha, frame bounds, contact tolerance, socket
+  containment, palette drift, seams, atlas registry, and review evidence.
 
-## Phase 4 — First original asset family
+### Planned contract pack
 
-- Write the art brief and measurable geometry before generation or drawing.
-- Produce one isolated family with source provenance and a reproducible recipe.
-- Register footprint, origin, sockets, and render band in data.
-- Validate the family on a neutral board, then in the one-interaction slice.
+Create or extend these canonical files during the named phase; do not create a
+second document that owns the same rule.
 
-Exit: every runtime pixel has recorded provenance, missing files fail the build,
-and the slice works unchanged with geometric placeholders disabled.
+| Capability | Canonical documentation | Machine-readable output |
+| --- | --- | --- |
+| Building, floor, exterior, and portals | new `BUILDING_FLOORS_EXTERIOR.md` | `building.schema.json`, target-floor and future two-floor fixtures |
+| Room program and circulation | extend `ROOMS_SURFACES_STRUCTURES_ZONES.md` | `room-template.schema.json`, capacity and blocked-entrance fixtures |
+| Deterministic scene composition | new `SCENE_COMPOSITION_GRAMMAR.md` | `scene-plan.schema.json`, density and adjacency fixtures |
+| Operations choreography | extend `OPERATIONS_ADAPTER_UI_SAFETY.md` | operations snapshot V2, `activity-routing.schema.json`, ten-role and fan-out/join fixtures |
+| Crowds, queues, and deadlocks | new `CROWD_QUEUES_AND_DEADLOCKS.md` | shared-facility, narrow-door, target-removal, and 15-actor fixtures |
+| Numeric visual target | extend `ART_DIRECTION_PIXEL_SPEC.md` | `style-profile.schema.json`, geometry, palette, and scale boards |
+| Asset factory and runtime bundle | extend `ASSET_PIPELINE_PROVENANCE_VALIDATION.md` | export-recipe, asset-catalog, and scene-bundle schemas plus compiler fixtures |
+| Character, furniture, and interactions | extend the two production bibles and `ACTORS_NAVIGATION_INTERACTIONS.md` | character-definition and semantic-variant contracts plus interaction-catalog fixture |
+| Renderer and visual acceptance | extend decision 0002, the performance matrix, and testing budgets | benchmark report, reviewed goldens, accessibility and lifecycle evidence |
 
-## Phase 5 — Character and behavior slice
+Exit: every target feature has one canonical owner, contract, valid fixture,
+rejected fixture, automated evidence plan, and migration effect. No production
+asset needs a scene-specific pixel offset or an unresolved scale decision.
 
-- Produce one original character with the minimum required facings and clips.
-- Map semantic simulation states to presentation clips.
-- Validate contact points, facing, held-item sockets, cancellation, and reduced
-  motion behavior.
-- Add one companion or second actor only after reservation rules are tested.
+## Phase 2 — Executable world kernel
 
-Exit: no animation callback controls task truth, and the recorded state trace is
-identical with animation enabled or disabled.
+- Define branded identifier types for building, floor, room, entity, cell,
+  facility, command, and tick.
+- Implement world bounds, floor-local coordinates, footprints, anchors,
+  structures, occupancy, zones, room templates, and placement diagnostics.
+- Implement `office-projection-v1`, inverse ground picking, depth inputs,
+  canonical serialization, and version rejection behind pure interfaces.
+- Add unit and property tests using geometric data only.
 
-## Phase 6 — Operations integration
+Exit: projection round-trips, invalid-world rejection, rotated placement,
+structural normalization, stable depth, and byte-identical serialization pass
+without React or a renderer library.
 
-- Define a versioned read adapter from workflow and agent events.
-- Add stale, reconnecting, and unavailable data states.
-- Add inspector UI and action proposals behind existing safety policy.
-- Verify the Dashboard, Settings, API, and runner still operate independently.
+## Phase 3 — Headless operational vertical slice
 
-Exit: event retries are idempotent, stale data is visible, and the engine cannot
-execute a connector directly.
+- Build one geometric room with one actor, one workstation, one target, blocked
+  cells, one waiting position, and one unreachable case.
+- Implement fixed ticks, idempotent commands, internal four-way A*, movement,
+  reservations, queues, cancellation, and one interaction reducer.
+- Adapt one fake but schema-valid workflow transition into presentation intent
+  without writing back to operational truth.
+- Record a complete trace and prove replay equality with presentation disabled.
 
-## Phase 7 — Production expansion
+Exit: the actor reaches and uses the target, releases every resource after
+cancel or timeout, exposes an unreachable reason, and replays identically.
 
-- Expand room zones and asset families one reviewed batch at a time.
-- Add multi-actor reservations, queues, facilities, effects, and time-of-day only
-  when each has a contract and test.
-- Track draw calls, texture memory, tick time, frame time, and mobile usability.
+## Phase 4 — Renderer benchmark and selection
 
-Exit: production acceptance criteria are written and passed for every target
-viewport and supported actor count.
+- Define one renderer port for mount, snapshot render, camera, picking, resize,
+  resource load, context recovery, diagnostics, and teardown.
+- Benchmark a minimal Canvas 2D implementation against the pinned PixiJS 8
+  candidate using identical geometric scenes at 1, 10, 15, 25, and 50 actors.
+- Measure frame time, draw calls, textures, decoded memory, bundle contribution,
+  load time, picking latency, responsive behavior, and cleanup.
+- Select one renderer by superseding decision 0002 and remove the losing proof.
 
-## Definition of done for any feature
+Exit: desktop, compact, and phone evidence passes, the numeric budget is
+recorded, and no renderer component owns world or simulation state.
 
-- Owning layer is explicit.
-- Contract and failure states are documented.
-- Deterministic tests cover behavior.
-- Visual QA covers presentation when applicable.
-- Accessibility and reduced motion are considered.
-- No unrelated operational boundary imports the renderer.
-- Documentation and the code map are current.
+## Phase 5 — Reproducible asset factory
+
+- Implement deterministic source export, sprite-sheet or atlas metadata,
+  manifest generation, provenance, and runtime registry generation.
+- Implement neutral geometry boards, alpha boards, seam matrices, character
+  turnarounds, animation contact sheets, and light/dark review backgrounds.
+- Implement automated checks promised by the asset specification and make every
+  diagnostic name the family, version, variant, file, and owning rule.
+- Produce the first approved connected-workstation family end to end: versioned
+  source, deterministic export, manifest, provenance, isolated/left-end/middle/
+  right-end variants, seated socket, neutral board, runtime registry, admission
+  gate, and the Phase 3 small-room interaction using a geometric actor.
+- Create and validate three project workflow skills:
+  `author-office-v2-asset-family`, `compose-office-v2-room`, and
+  `review-office-v2-visuals`.
+
+Exit: rebuilding an unchanged source produces byte-identical outputs and
+metadata; missing, altered, unapproved, geometrically invalid, or unregistered
+material fails before runtime import; the first workstation family passes the
+complete source-to-runtime slice before any environment or furniture batch.
+
+## Phase 6 — Environment kit and empty first-floor shell
+
+- Produce original floor, transition, wall, corner, end, door, window, glass,
+  column, entrance, and cutaway families.
+- Produce the exterior sidewalk, curb, road, planting, backdrop, and reserved
+  vertical-circulation shell as separately owned presentation families.
+- Assemble the complete first-floor geometry through room templates and
+  canonical world data, initially without populated desks or characters.
+- Prove every required route, room boundary, cutaway, camera fit, and structural
+  depth case with geometric and approved environment assets.
+
+Exit: the large empty floor is deterministic, traversable, inspectable, and
+responsive; removing presentation assets leaves identical world truth.
+
+## Phase 7 — Reusable furniture and character systems
+
+- Extend the approved connected-workstation family only with target-required
+  rotations or connections, then expand the furniture catalog through the same
+  proven pipeline.
+- Add chairs, boards, review and meeting tables, storage, printer, reliability
+  equipment, pantry, lounge, plant, and declared prop-slot families in reviewed
+  batches.
+- Complete one modular original character body with four facings, idle, move,
+  interact, and blocked clips, attachment sockets, and reduced-motion states.
+- Produce ten identity variants that preserve the shared geometry and animation
+  contract; keep identity separate from operational role and state.
+- Add only the held props required by accepted interactions.
+
+Exit: every family can be added by brief, source, export, manifest, gate, and
+family ID without CSS offsets, renderer branches, or manual registry edits.
+
+## Phase 8 — Ten-role AutoPost office integration
+
+- Implement operations snapshot V2 and roster-to-facility binding for all ten
+  canonical roles.
+- Map durable workflow events to idempotent presentation intents and visible
+  handoffs across discovery, ranking, strategy, attribution, content, QA,
+  publishing, analytics, and session recovery.
+- Represent disabled feature flags as unavailable or empty stations, never
+  working or idle actors.
+- Add TeamBrain as a command-console facility that can display answers and
+  action proposals but cannot execute connectors.
+- Prove 10- and 15-actor routes, reservations, facility capacities, queues,
+  cancellation, stale data, retries, and transition deduplication.
+
+Exit: the complete simulated AutoPost workflow is traceable across the floor,
+and the visual trace cannot advance or repeat durable work.
+
+## Phase 9 — Full first-floor composition and acceptance
+
+- Populate the approved room templates while preserving all circulation and
+  interaction constraints.
+- Add controlled prop-slot decoration, original signage, feedback effects, and
+  exterior composition without embedding semantic state in background pixels.
+- Verify visual density, focal hierarchy, character readability, wall cutaways,
+  glass, tall-object occlusion, picking, labels, and inspector parity.
+- Run full contract, property, replay, visual, accessibility, responsive,
+  performance, context-loss, cleanup, and clean-room acceptance.
+
+Exit: every acceptance item in `FIRST_FLOOR_BRIEF.md` passes and production can
+render the floor from a valid adapter snapshot with no hidden fallback.
+
+## Phase 10 — Future multi-floor expansion
+
+- Activate the accepted building and floor contract with a second test floor.
+- Add stair or lift portal interactions, floor switching, lazy asset loading,
+  cross-floor intent policy, save migration, and camera continuity.
+- Keep each floor independently testable and renderable; do not enlarge one
+  world coordinate plane until it behaves like multiple floors by accident.
+
+Exit: two geometric floors load, save, switch, and route through declared
+portals without changing first-floor snapshots or asset families.
+
+## Relationship to the affiliate roadmap
+
+- M1 provides trustworthy simulated read models for Phase 8 fixtures.
+- M3 may replace discovery, ranking, attribution, and Shopee metrics simulations
+  with live records after their product gates pass.
+- M4 may activate copy, visual, QA, scheduling, publishing, and reconciliation
+  displays after Gemini, Flow, and Meta connectors pass their own gates.
+- Office work may proceed in parallel, but it cannot show a connector or role as
+  working before the corresponding feature is enabled and observed.
+- The Office remains optional and must never block the one-account pilot.
+
+## Definition of done for any phase deliverable
+
+1. The owning architectural layer and canonical rule are explicit.
+2. Valid input, failures, versioning, migration, and feature availability are
+   documented and machine-checked where applicable.
+3. Deterministic tests cover behavior and retry or cancellation.
+4. Presentation has reviewed native-scale and viewport evidence where relevant.
+5. Accessibility and reduced motion preserve semantic parity.
+6. Performance is measured against the current recorded budget.
+7. No external connector, proprietary asset, retired Office path, or hidden
+   fallback enters the engine boundary.
+8. Repository, knowledge, asset, clean-room, type, test, and build gates pass.

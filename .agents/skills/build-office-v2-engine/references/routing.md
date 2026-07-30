@@ -4,7 +4,7 @@ Always read `README.md`, `FOUNDATIONS.md`, and `READINESS_MATRIX.md` first. Path
 
 ## Product or game loop
 
-Read `PRODUCT_AND_GAME_LOOP.md`, `GLOSSARY_AND_INVARIANTS.md`, `OPERATIONS_ADAPTER_UI_SAFETY.md`, and `IMPLEMENTATION_PLAN.md`.
+Read `PRODUCT_AND_GAME_LOOP.md`, `FIRST_FLOOR_BRIEF.md`, `GLOSSARY_AND_INVARIANTS.md`, `OPERATIONS_ADAPTER_UI_SAFETY.md`, and `IMPLEMENTATION_PLAN.md`.
 
 ## Coordinates, camera, input, or rendering
 
@@ -12,7 +12,7 @@ Read `WORLD_COORDINATES_PROJECTION_CAMERA.md`, `RENDERING_DEPTH_OCCLUSION.md`, `
 
 ## World, rooms, maps, placement, or connectivity
 
-Read `WORLD_MODEL_OCCUPANCY_PLACEMENT.md`, `ROOMS_SURFACES_STRUCTURES_ZONES.md`, `MAP_AUTHORING_AND_IMPORT.md`, `CONNECTIVITY_AUTO_TILING.md`, decisions `0003-map-authoring.md` and `0004-navigation-movement.md`, then the applicable schemas and fixtures.
+Read `FIRST_FLOOR_BRIEF.md`, `WORLD_MODEL_OCCUPANCY_PLACEMENT.md`, `ROOMS_SURFACES_STRUCTURES_ZONES.md`, `MAP_AUTHORING_AND_IMPORT.md`, `CONNECTIVITY_AUTO_TILING.md`, decisions `0003-map-authoring.md` and `0004-navigation-movement.md`, then the applicable schemas and fixtures.
 
 ## Simulation, navigation, interactions, or saves
 
@@ -32,4 +32,4 @@ Read `OPERATIONS_ADAPTER_UI_SAFETY.md`, `FAILURE_DIAGNOSTICS.md`, `operations-sn
 
 ## Performance, testing, or dependency selection
 
-Read `TESTING_ACCEPTANCE_BUDGETS.md`, `PILOT_DEVICE_AND_PERFORMANCE_MATRIX.md`, `DEPENDENCY_LEDGER.md`, `RESEARCH.md`, and `IMPLEMENTATION_PLAN.md`.
+Read `FIRST_FLOOR_BRIEF.md`, `TESTING_ACCEPTANCE_BUDGETS.md`, `PILOT_DEVICE_AND_PERFORMANCE_MATRIX.md`, `DEPENDENCY_LEDGER.md`, `RESEARCH.md`, and `IMPLEMENTATION_PLAN.md`.
