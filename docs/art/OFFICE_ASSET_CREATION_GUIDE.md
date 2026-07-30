@@ -1,1060 +1,703 @@
 # Office Asset Creation Guide
 
-Status: Production guide; R05-r02 workstation placement owner-approved
-Scope: Office assets created for the latest orthographic pixel-art reference
-Current workstation authority: `docs/art/OFFICE_COORDINATE_SYSTEM.md`
-Next workstation plan: `docs/art/OFFICE_WORKSTATION_TEN_SEAT_NEXT_PLAN.md`
-Historical migration plan: `docs/art/OFFICE_REF_MIGRATION_ROADMAP.md`
+Status: Primary Camera C furniture authoring guide; R05-r02 workstation placement owner-approved
+Updated: 2026-07-30
+Scope: Camera C furniture geometry, image authoring, four-direction source art,
+wall contact, and preflight review
 
-Furniture reset gate (2026-07-29): no current Active Office, legacy,
-rejected-candidate, derived, or existing furniture-library crop is promotable
-into a new Office candidate. The R05-r02 workstation family is the only
-furniture exception and must remain pixel-exact. All other furniture,
-facilities, equipment, and decor require clean new sources and the complete
-gate sequence in `docs/art/OFFICE_FURNITURE_PRODUCTION_GATES.md`. Tables in
-this guide describe scale and anatomy; they do not approve an existing file.
+This is the primary Office furniture image-authoring guide. It records the
+owner-accepted Camera C method demonstrated with the `2 x 2 x 4` refrigerator
+mockup. The acceptance covers the geometry method, not any production asset,
+room candidate, source pixel, or runtime hash.
 
-Workstation reset gate (2026-07-28): the former `5 x 4` / `5 x 3` workstation
-contract and Candidate r01 are rejected. The owner approved the corrected
-`3 x 2` blueprint and accepted the bare desk v2 source, its front/back
-normalization, semantic layers, and Step 4 QA boards. The owner then authorized
-the Step 5 one-seat lab. R01 and R02 are rejected evidence. R03 corrected the
-logical ruler and measured the failed pixels. R04 chair/person/equipment
-composition was later rejected; only its full-top desk remains accepted.
-The owner approved the R05-r02 coordinate, socket, equipment-depth, and paired
-desk proof on 2026-07-28. R05-r02 replaces R05 final, whose ten-seat
-composition is rejected. Current workstation work must resolve world sockets
-to local sockets, use per-character/per-frame seat contacts, join desk rows at
-64 pixels, and draw far equipment in physical depth order. No new character,
-pose, or workstation-family art is allowed. This freeze does not authorize
-other existing furniture; non-workstation families must be produced through
-the current furniture gates. Active Office promotion remains blocked.
+Production approval and source authority still come from:
 
-## 1. Purpose
+- `docs/art/OFFICE_FURNITURE_PRODUCTION_GATES.md`;
+- `docs/art/OFFICE_2D_GEOMETRY_PRINCIPLES.md`; or
+- a family-specific F1 geometry contract and F8 owner decision.
 
-This guide defines the repeatable workflow for creating, extracting, registering, and validating office furniture, equipment, screen overlays, and character poses.
+The production gates always win. In particular, this guide does not authorize
+copying pixels from the Active Office, a rejected candidate, a processed
+library crop, or an unaudited master. A family that adopts Camera C must record
+that decision in a new versioned F1 contract before producing promotable art.
 
-The latest office reference is a layered, orthographic scene. It is not a single background image. Every interactive or visible object must be created so it can be placed, rotated, occluded, animated, and validated independently.
+## 1. The Camera C rule
 
-The current composition target is
-`assets/art/layout-references/office-modern-operations-target-v2.png`.
-The active modern scene plate remains
-`assets/art/backgrounds/office-c-background-modern-v2.png`.
-The target establishes the modern workstation and chair language; it does not
-replace the layered scene or authorize baking chairs and characters together.
+Camera C is a raised, axis-aligned furniture presentation.
 
-For the office migration, this guide takes precedence over older office-specific sheet layouts. Generic chroma-key extraction and 32 px grid rules remain applicable.
+Each orientation may show:
 
-## 2. Production principles
+1. one top plane; and
+2. exactly one vertical face.
 
-1. Build one calibrated vertical slice before producing a large batch.
-2. Separate physical furniture from equipment and screen content.
-3. Treat `anchor`, `footprint`, and `viewport` as contracts, not visual guesses.
-4. Generate one consistent turnaround for an object before generating animation.
-5. Animate local details as a seam loop while keeping the world anchor and
-   silhouette stable.
-6. Use aliases for static frames instead of duplicating identical pixel data.
-7. Use original designs with no copied brands, logos, characters, or UI layouts.
-8. Treat generated sheets as source material; crop, normalize, and validate before runtime use.
+It must not show two vertical faces at once. A visible front plane plus a
+visible side plane is a three-quarter view and is rejected. A visible side
+plane plus a broad rear plane is also a three-quarter view and is rejected.
 
-## 3. Shared visual contract
-
-Lock these values before creating production assets:
-
-- 32 px integer world tile grid.
-- Orthographic straight-on pixel-art presentation.
-- Concept C warm studio palette for the room; new furniture may use the
-  approved modern-bright skin below.
-- Consistent dark outline weight.
-- Consistent upper-left light direction.
-- No baked runtime labels, HUD, task text, or branded UI.
-- No perspective convergence or isometric camera.
-- No oblique, three-quarter, 15°, 30°, or 45° furniture views. The default
-  view is straight orthographic; a side view is a deliberate 90° turn.
-- Hard gate: front must be 0° straight-on, back must be the exact horizontal
-  flip of the front shell at 180°, and left/right must be strict 90° profiles.
-  Reject any diagonal tilt, visible perspective/foreshortening, three-quarter
-  angle, or exposed perspective top surface.
-- Authored exception: `table.review.long.modern` stays at 0° with no left/right
-  yaw, but uses a slightly raised frontal view so a standing character can see
-  the rectangular tabletop and the legs below it. Its front/back and left/right
-  tabletop edges remain parallel; perspective convergence and three-quarter
-  rotation are still rejected.
-- Authored exception: `desk.workstation.modern.v2` uses an elevated straight
-  front/back camera so its complete rectangular `3 x 2` top remains a broad,
-  usable support plane. Its far/near edges stay horizontal and equal length;
-  its left/right edges stay vertical and equal depth. Trapezoids, narrowed far
-  edges, diagonal yaw, and perspective convergence remain rejected.
-- No transparent padding changes between animation frames.
-
-Use the same pixel scale for every view of one asset. Do not create the front at one camera distance and the back at another.
-
-### 3.1 Modern-bright furniture skin
-
-The new Facility v1 furniture should read as modern equipment inside the warm
-studio, not as a second unrelated art style:
-
-- Use lighter charcoal, graphite, warm white, brushed metal, and pale slate
-  for the main shell surfaces.
-- Use controlled cyan, teal, lime, amber, and coral accents for screens,
-  indicators, buttons, and small trim.
-- Keep dark outlines and the established upper-left light direction so the
-  brighter palette still belongs to the same office.
-- Prefer clean flat panels, thin bezels, rounded corners, compact feet, and
-  simple readable silhouettes.
-- Do not use neon glow, gradients, glossy reflections, brands, or random
-  rainbow changes as substitutes for authored screen motion.
-- Screen and display content must use a bright high-value palette: warm white,
-  pale sky, cyan, mint, teal, lime, amber, coral, or lavender. Do not use a
-  mostly black, navy, dark-blue, or near-black screen background. Dark outlines
-  may remain on the furniture shell, but the active display must stay readable
-  and visibly bright at 1:1.
-
-The shell palette is static across all frames. Only the declared local display,
-indicator, paper, steam, or light region may change.
-
-### 3.2 Office scale and coordinate authority
-
-Shared workstation scale and placement are authoritative in
-`docs/art/OFFICE_COORDINATE_SYSTEM.md`,
-`assets/game/manifests/office-workstation-step5-r05-r02.json`, and
-`assets/game/manifests/office-character-seat-sockets-v1.json`. Earlier Camera
-Bible manifests and calibration boards are historical evidence only. This
-section is explanatory and cannot override the approved socket contract.
-
-Lock scale before generating any office asset. The canonical comparison is one
-standing adult:
+Camera C changes pitch, not yaw:
 
 ```text
-adult = 1 wide x 1 deep x 3 high
-1 tile = 32 authoring pixels
+accepted: top + front
+accepted: top + back
+accepted: top + left profile
+accepted: top + right profile
+rejected: top + front + side
+rejected: top + side + rear
 ```
 
-The current Active Office actor visual is the scale authority, not a new
-calibration drawing. At 32 pixels per tile it renders at `96 x 104` pixels,
-while reserving only a `1 x 1` floor cell. Hair, head, clothing, arms, and
-seated limbs may visibly overflow that cell. Do not clip the sprite or enlarge
-collision to match its render envelope. Per-character scale overrides are
-forbidden for the current 19-character prototype roster.
-
-Every object must record three independent values: floor footprint, logical
-`W x D x H` volume, and visible render envelope. A workstation chair is
-`1 x 1 x 2` even though its backrest visibly rises above its `1 x 1` floor
-footprint. Its backrest and seat/base must remain separable for actor
-occlusion. Desk code must request `public-side` or `seat-side`; do not infer
-spatial meaning from historical `.front` or `.back` filenames.
-
-`W x D x H` describes the intended physical mass used in prompts and layout
-planning. `renderBox` describes the integer tile canvas used to draw the
-orthographic sprite. `footprint` describes only the floor cells blocked by
-collision. A render box may be wider or taller than the physical mass to allow
-for perspective, animation, hair, arms, foliage, or transparent padding.
-
-Wall and supported assets use `-` for floor footprint. Their parent wall,
-desk, counter, table, credenza, or rack owns the collision.
-
-#### Structural surface contract
-
-The map, rather than the backdrop pixels, is the source of truth for legal
-placement. Every Office map declares named structural `surfaces` with a
-`support` of `floor`, `wall`, or `ceiling` and integer-grid bounds.
-
-- A coordinate-placed object must declare `surfaceId`. Its asset `supports`
-  list must contain that surface's support.
-- A floor object's complete footprint must remain inside its declared floor
-  surface.
-- A wall or ceiling object's anchor must remain inside its declared structural
-  surface.
-- Workstations must reference a floor surface; their collision rectangle and
-  seat, work, approach, and stand points must remain inside it.
-- A desk-, table-, counter-, credenza-, or rack-supported object must use a
-  parent slot and must not declare a structural `surfaceId`.
-
-The visual wall and floor may share one non-interactive architecture backdrop.
-That image never grants placement permission. Surface regions, asset support
-metadata, parent slots, and layout validation are the enforceable contract.
-
-#### Actors and architecture
-
-| Asset or family | Locked W x D x H | Render box W x H | Floor footprint W x D | Notes |
-| --- | ---: | ---: | ---: | --- |
-| Standing adult agent | `1 x 1 x 3` | approximately `3 x 3.25` | `1 x 1` | Identity reference for every furniture prompt; feet use bottom-center anchor. |
-| Seated adult agent | `1 x 1 x 3` | same `96 x 104` character frame | shared `1 x 1` chair cell | Per-frame seat contact resolves to the chair socket; furniture is not baked into the character. |
-| Office mascot / small companion | `1 x 1 x 1` | `2 x 2` | `1 x 1` | May use transparent padding for its walk cycle. |
-| Floor tile | `1 x 1 x 0` | code-generated | `-` | Architecture, not an image-generation cell. |
-| Wall segment | `1 x 0 x 3` | code-generated | `-` | Wall height establishes the adult and appliance ceiling reference. |
-| Entry rug / zone rug | `4 x 2 x 0` | code-generated | `-` | Visual floor layer only. |
-| Door | `2 x 0 x 3` | `2 x 3` | `-` | Wall anchor; opening clearance is handled by the map. |
-| Window module | `4 x 0 x 3` | code-generated or `4 x 3` | `-` | Wall-only; never reserves floor collision. |
-| Glass or planter partition | `4 x 1 x 3` | `4 x 3` | `4 x 1` | Use only when an authored map requires a physical divider. |
-
-#### Core furniture and seating
-
-| Asset or family | Locked W x D x H | Render box W x H | Floor footprint W x D | Seats / support |
-| --- | ---: | ---: | ---: | --- |
-| Standard desk | `3 x 2 x 2` | `3 x 4` render canvas | `3 x 2` | Existing full-top pixels accepted; complete `3 x 2` support plane; no employee-edge row. |
-| Creative desk | `3 x 2 x 2` | `3 x 4` render canvas | `3 x 2` | Same accepted desk family; role equipment changes, geometry does not. |
-| NOC desk | `3 x 2 x 2` | `3 x 4` render canvas | `3 x 2` | Same accepted desk family; role equipment changes, geometry does not. |
-| Office task chair | `1 x 1 x 2` | `1 x 2` | `1 x 1` | One seat slot. |
-| Studio task chair | `1 x 1 x 2` | `1 x 2` | `1 x 1` | One seat slot. |
-| Cafe / meeting chair | `1 x 1 x 2` | `1 x 2` | `1 x 1` | One review or cafe seat. |
-| Four-person mission table | `6 x 2 x 2` | `6 x 3` | `6 x 2` | Four separate review slots; chairs remain separate. |
-| Round cafe table | `2 x 2 x 2` | `2 x 2` | `2 x 2` | Supported tabletop slot. |
-| Coffee table | `3 x 2 x 1` | `3 x 2` | `3 x 2` | Low furniture; no reservation slot by default. |
-| Coffee counter | `4 x 2 x 2` | `4 x 3` | `4 x 2` | Three supported counter slots. |
-| Printer credenza / low bookshelf | `4 x 1 x 2` | `4 x 2` | `4 x 1` | Printer and decor parent slots. |
-| Magazine bookshelf | `2 x 1 x 2` | `2 x 2` | `2 x 1` | Static unless reading interaction is activated. |
-| Filing cabinet | `2 x 1 x 3` | `2 x 3` | `2 x 1` | Tall storage. |
-| Planter divider | `4 x 1 x 2` | `4 x 2` | `4 x 1` | Soft zone boundary. |
-| Existing sectional sofa | `6 x 3 x 2` | `6 x 4` | `6 x 3` | Existing large lounge asset. |
-| Modern three-seat sofa | `4 x 2 x 2` | `4 x 3` | `4 x 2` | Three independent lounge slots. |
-| Modern two-seat sofa | `3 x 2 x 2` | `3 x 3` | `3 x 2` | Two independent lounge slots. |
-| Lounge stool | `1 x 1 x 1` | `1 x 1` | `1 x 1` | One optional seat. |
-| Massage chair | `2 x 2 x 2` | `2 x 3` | `2 x 2` | One lounge slot; one approach row in front. |
-| Round pet bed | `2 x 2 x 1` | `2 x 2` | `2 x 2` | Mascot home slot. |
-
-#### Facilities and large equipment
-
-| Asset or family | Locked W x D x H | Render box W x H | Floor footprint W x D | Interaction contract |
-| --- | ---: | ---: | ---: | --- |
-| Wall TV | `3 x 0 x 2` | `3 x 2` | `-` | Approximate inner viewport `80 x 40 px` in a `96 x 64 px` authoring render. |
-| Water dispenser | `1 x 1 x 3` | `1 x 3` | `1 x 1` | One front interaction slot. |
-| Coffee machine | `1 x 1 x 2` | `1 x 2` | `-` | Counter-supported; one front interaction slot belongs to the counter. |
-| Printer P01 floor copier | `2 x 2 x 4` | `3 x 4` | `2 x 2` | Front-only; one pickup slot per instance. |
-| Server rack | `2 x 1 x 3` | `2 x 3` | `2 x 1` | One inspection slot in front. |
-| Vending machine | `2 x 1 x 3` | `2 x 3` | `2 x 1` | One front interaction slot; one extra approach row. |
-| Refrigerator R01 | `2 x 2 x 4` | `3 x 4` | `2 x 2` | One front interaction slot; reversible finite lower-door swing stays inside one fixed motion region. |
-| Arcade game machine | `2 x 2 x 3` | `3 x 3` | `2 x 2` | One front interaction slot; approximate game viewport `48 x 32 px`. |
-| Camera tripod | `1 x 1 x 3` | `1 x 3` | `1 x 1` | Floor equipment. |
-| Studio light | `1 x 1 x 3` | `1 x 3` | `1 x 1` | Floor equipment. |
-| CCTV camera | `1 x 0 x 1` | `1 x 1` | `-` | Wall support. |
-
-#### Workstation and supported equipment
-
-| Asset or family | Locked W x D x H | Render box W x H | Floor footprint | Parent support |
-| --- | ---: | ---: | ---: | --- |
-| Workstation monitor | actor-far `3 x 1` reservation | existing `52 x 40` px | `-` | Desk surface; `[26,40]` base socket centered on the middle cell. |
-| Dual-monitor set | `2 x 1 x 2` | `2 x 2` | `-` | Desk surface. |
-| Keyboard and mouse | actor-near center `1 x 1` reservation | existing `48 x 24` px | `-` | Desk surface; horizontal visual overflow remains inside the tabletop. |
-| Open laptop | `2 x 1 x 2` | `2 x 2` | `-` | Desk or table surface. |
-| Drawing tablet | `1 x 1 x 1` | `1 x 1` | `-` | Desk surface. |
-| Phone / preview device | `1 x 1 x 1` | `1 x 1` | `-` | Desk surface. |
-| Multi-device preview station | `2 x 1 x 2` | `2 x 2` | `-` | Desk surface. |
-| Network stack | `1 x 1 x 2` | `1 x 2` | `-` | Rack surface. |
-| Desktop speaker | `1 x 1 x 1` | `1 x 1` | `-` | Desk, shelf, or counter surface. |
-
-#### Plants, lighting, safety, and small decor
-
-| Asset or family | Locked W x D x H | Render box W x H | Floor footprint | Support |
-| --- | ---: | ---: | ---: | --- |
-| Small plant | `1 x 1 x 1` | `1 x 2` | `1 x 1` when floor-supported | Floor or supported surface. |
-| Medium potted plant | `1 x 1 x 2` | `1 x 2` | `1 x 1` | Floor. |
-| Tall plant | `1 x 1 x 3` | `2 x 3` | `1 x 1` | Floor; foliage may overhang transparently. |
-| Floor lamp | `1 x 1 x 3` | `1 x 3` | `1 x 1` | Floor. |
-| Desk lamp | `1 x 1 x 1` | `1 x 1` | `-` | Desk surface. |
-| Wall art | `2 x 0 x 1` | `2 x 1` | `-` | Wall. |
-| Wall clock | `1 x 0 x 1` | `1 x 1` | `-` | Wall. |
-| Exit sign | `2 x 0 x 1` | `2 x 1` | `-` | Wall. |
-| Fire extinguisher | `1 x 0 x 2` | `1 x 2` | `-` | Wall. |
-| Waste bin | `1 x 1 x 1` | `1 x 1` | `1 x 1` | Floor. |
-| Parcel box | `1 x 1 x 1` | `1 x 1` | `1 x 1` | Floor. |
-| Coffee cup | `1 x 1 x 1` | `1 x 1` | `-` | Table or counter surface. |
-| Paper stack | `1 x 1 x 1` | `1 x 1` | `-` | Desk, table, or credenza surface. |
-| Small ornament | `1 x 1 x 1` | `1 x 1` | `-` | Shelf or supported surface. |
-| Decorative wall light | `1 x 0 x 1` | `1 x 1` | `-` | Wall. |
-
-#### Planned storage and Phase 2 lounge assets
-
-| Asset or family | Locked W x D x H | Render box W x H | Floor footprint W x D | Planned behavior |
-| --- | ---: | ---: | ---: | --- |
-| Personal locker bank, 15 compartments | `5 x 1 x 3` | `5 x 3` | `5 x 1` | Static decor/personal storage in v1. |
-| Figure display case | `2 x 1 x 3` | `2 x 3` | `2 x 1` | Static decor. |
-| Beanbag | `2 x 2 x 1` | `2 x 2` | `2 x 2` | One lounge slot when Phase 2 is activated. |
-| Board-game table | `3 x 3 x 2` | `3 x 3` | `3 x 3` | Four external seat slots; chairs remain separate. |
-| Reading bookshelf | `2 x 1 x 3` | `2 x 3` | `2 x 1` | One or two reading slots when activated. |
-| Reading chair | `1 x 1 x 2` | `1 x 2` | `1 x 1` | One reading slot. |
-
-### 3.3 Scale and clearance rules
-
-- The scale table is mandatory prompt input, not a suggestion inferred after
-  generation.
-- Preserve the declared `W x D x H` ratio. Scale uniformly; never stretch an
-  asset independently on one axis to fill its render box.
-- Crop source padding, scale the visible object with nearest-neighbor sampling,
-  and add transparent padding to the locked render box.
-- A floor facility reserves its footprint plus one clear approach tile in
-  front. The approach tile is not part of the furniture's physical size.
-- A seated facility reserves its furniture footprint, seat slots, and one
-  reachable entry side. Do not count the entire sofa footprint as one slot.
-- Supported props do not create new floor collision. Their parent surface owns
-  placement and collision.
-- Internal viewports may use pixel dimensions that are fractions of a tile;
-  world placement, render boxes, and footprints remain integer tile values.
-- Validate each large or interactive asset beside a neutral `1 x 1 x 3` adult
-  scale silhouette before approving the asset. The silhouette is a QA overlay,
-  not part of the exported sprite.
-
-### 3.4 Machine-readable scale and prompt workflow
-
-The written coordinate and asset guides explain intent. Generation must read
-the same contracts from machine-readable manifests:
-
-- Registered runtime assets:
-  `assets/game/manifests/office-assets.json`
-- Planned assets that do not yet have accepted runtime files:
-  `assets/game/manifests/office-planned-assets.json`
-
-Every entry declares `physicalScale`, `renderBox`, support, anchor, and any
-floor footprint. Do not copy scale numbers manually into an ad hoc prompt.
-Generate the scale-locked prompt instead:
-
-```bash
-npm run art:prompt -- vending.machine.modern
-npm run art:prompt -- chair.office.up --orientations=front,back,side
-npm run art:prompt -- --list
-```
-
-Validate both catalogs with:
-
-```bash
-npm run art:prompt:check
-```
-
-`npm run check` includes this catalog validation. A planned asset moves into
-the runtime manifest only after its raster, anchor, collision footprint, and
-map placement are accepted.
-
-## 4. Asset classes
-
-### 4.1 Furniture
-
-Furniture defines physical room geometry and collision:
-
-- Desk.
-- Chair.
-- Sofa.
-- Coffee table.
-- Bookshelf.
-- Vending machine.
-- Water dispenser.
-- Server rack.
-
-Furniture must have an explicit floor footprint and an anchor.
-
-### 4.2 Equipment
-
-Equipment is a separate object attached to furniture or placed on the floor:
-
-- Monitor shell.
-- Keyboard.
-- Mouse.
-- Printer.
-- Camera.
-- Network equipment.
-
-Equipment must declare its parent attachment or floor anchor. Do not bake equipment into a desk if the equipment can vary by employee role.
-
-### 4.3 Screen overlays
-
-Screen overlays are content-only images placed inside a monitor shell's fixed viewport:
-
-- Coding.
-- Analytics.
-- Document.
-- Chat/support.
-- System dashboard.
-
-Screen overlays must not contain a monitor bezel, stand, desk, or keyboard.
-
-### 4.4 Characters
-
-Characters are animated actors with independent world anchors:
-
-- Standing movement.
-- Seated work.
-- Review.
-- Relax.
-- Interaction.
-
-The seated anchor is the seat or pelvis contact point, not the center of the visible alpha bounds.
-
-## 5. Furniture creation workflow
-
-### 5.0 Current workstation calibration
-
-Do not generate a new chair or seated character row for the current prototype.
-Reuse the real chair pixels and existing seated atlases approved by R05-r02.
-Any future chair family requires a separately named art decision and must first
-prove the same socket and occlusion contract in isolation.
-
-The chair contract is:
-
-- `renderBox`: 1 x 2 tiles.
-- `footprint`: 1 x 1 floor tile.
-- `floorSocket`: bottom-center at the caster contact point.
-- `seatSocket`: the physical cushion contact point, never the alpha-box center.
-- `foregroundMask`: the backrest or armrest pixels that should occlude the
-  seated lower body.
-
-Do not place the chair inside a character sprite. The chair, seated actor, and
-desk foreground mask remain separate layers.
-
-The seat-socket manifest now establishes the reusable seated reference:
-
-- `assets/game/manifests/office-character-seat-sockets-v1.json` records all
-  216 approved actor contacts.
-- `assets/game/manifests/office-workstation-step5-r05-r02.json` locks the chair
-  seat/floor sockets and placement formula.
-
-The chair, actor, and chair foreground remain separate layers. Do not derive a
-universal back-facing offset from Einstein or another single character.
-
-### Step 1 — Define the physical contract
-
-Before prompting, write the intended dimensions:
-
-```json
-{
-  "id": "desk.workstation.modern.v3",
-  "renderBox": { "width": 3, "height": 4 },
-  "footprint": {
-    "width": 3,
-    "depth": 2
-  },
-  "logicalVolume": { "width": 3, "depth": 2, "height": 2 },
-  "supportPlane": { "width": 3, "depth": 2, "z": 2 },
-  "basePivot": { "x": 1.5, "y": 2 }
-}
-```
-
-`renderBox` is the visible image area. `footprint` is the floor contact area used for collision. A tall object can have a small floor footprint and a taller render box.
-
-### Step 2 — Create the turnaround
-
-Declare `requiredOrientations` from the active map before prompting. The
-contact-sheet grid does not require every object to have four views.
-
-Use this decision gate:
-
-| Required views | Use when |
-| ---: | --- |
-| 1 | The object is wall-mounted, rotationally symmetric, fixed against a wall/counter, or used by the map from one direction only. |
-| 2 | The map needs front/back, or a rectangular object needs horizontal/vertical footprints only. |
-| 3 | The map needs front, back, and one side view, and left/right mirroring is visually safe. |
-| 4 | The object is genuinely rotatable, asymmetric, or needs independent left/right collision or occlusion geometry. |
-
-Read workstation `facing`, facility `approach`, `interactionFacing`, object
-placement, and footprint requirements before choosing the list. Do not
-generate an orientation for a future hypothetical layout. Add it later as a
-targeted sheet when a real map placement requires it.
-
-Mirroring is safe only when it does not reverse text, controls, door hinges,
-asymmetric arms, attached props, material highlights, or the locked upper-left
-light direction. If any of those would look wrong, generate both side views.
-
-Orientation is discrete, never approximate:
-
-- `front` and `back` are straight orthographic views.
-- `left` and `right` are straight 90-degree side views.
-- Do not generate a three-quarter, oblique, diagonal, tilted, or perspective
-  view as a compromise between them.
-- If a prompt or source sheet produces an angled object, reject that cell and
-  regenerate it as the declared straight view.
-
-Examples:
-
-- Wall TV, vending machine, refrigerator, water dispenser, server rack,
-  printer, coffee machine, game machine, wall art, and extinguisher normally
-  use one front view when their placement is fixed.
-- Round tables, cups, bins, and visually rotationally symmetric plants use one
-  view.
-- A café chair may use front, back, and one mirror-safe side view.
-- A reusable work desk or office-chair calibration may use all four views.
-
-When four views are actually required, create one consistent design in:
+The top plane is centered and symmetric. Its left and right insets must match.
+The vertical face remains straight and axis-aligned. There is no diagonal
+turn, vanishing-point drift, or second vertical plane.
+
+## 2. Keep the physical contracts separate
+
+Every furniture family must record these values independently:
+
+- logical physical size `W x D x H`;
+- floor footprint `W x D`;
+- visible render envelope;
+- base pivot;
+- sort pivot;
+- support plane, when applicable;
+- interaction or seat facing;
+- required orientations; and
+- foreground occlusion parts.
+
+Height never becomes floor depth. A `2 x 2 x 4` refrigerator always reserves
+`2 x 2` floor cells. The `4` controls vertical mass and render height; it must
+never create a `2 x 4` footprint.
+
+The visible bitmap is not the collision rectangle. Handles, feet, foliage,
+open doors, top projection, and transparent padding may exceed the footprint
+without adding collision cells.
+
+## 3. Camera C calibration
+
+Use one logical tile as the authoring ruler:
 
 ```text
-front
-back
-left
-right
+T = 32 authoring pixels
 ```
 
-For rectangular furniture rotated 90 degrees:
+The accepted refrigerator reference measured approximately:
 
 ```text
-front/back: width 4, depth 2
-left/right: width 2, depth 4
+top depth             = 77 reference pixels
+vertical face height  = 570 reference pixels
+physical depth        = 2 tiles
+physical height       = 4 tiles
 ```
 
-Do not assume a simple rectangle for irregular furniture. Use orientation-specific masks when arms, protrusions, wheels, or attached props change the collision shape.
-
-Required turnaround invariants:
-
-- Front and back preserve the same overall width.
-- Left and right preserve the same depth.
-- The object uses one consistent height and material design.
-- Front-only props do not appear in the back view.
-- Side views show depth rather than a compressed front view.
-- All views share a common baseline and anchor.
-
-### Step 3 — Extract the physical asset
-
-After generation:
-
-1. Remove the chroma-key background.
-2. Crop each declared required orientation into its own cell; reject
-   undeclared extra views.
-3. Preserve the dark outline.
-4. Normalize to the declared render box.
-5. Align the declared anchor to the integer grid.
-6. Record the footprint and any foreground mask.
-7. Validate front/back/side proportions at 1:1 scale.
-
-### Step 4 — Add optional animation
-
-Do not animate the entire furniture silhouette by redrawing it independently
-for every frame. Select exactly one cell contract before generating:
+This produces the Camera C depth-projection coefficient:
 
 ```text
-static rigid shell             1 cell
-screen / LED / status motion   4 true keyframes: A, B, C, D
-mechanical / ambient motion    4 true keyframes: A, B, C, D
+kC = (77 / 2) / (570 / 4)
+   = 0.2702
+   ≈ 0.27
 ```
 
-Seam-loop is the default for every animated or changing prop. Runtime plays
-the four distinct authored keyframes as `A-B-C-D-A`; the final frame must
-transition naturally back into the first frame. Do not store duplicate return
-frames. A ping-pong loop is an explicit exception only when a cyclic story
-cannot be authored without a visible jump.
-
-Open/close, start/finish, and handoff actions are finite state changes, not
-seam loops. Build them from one immutable shell plus moving children, declare
-the exact start and end states, provide a reversible path, define interruption
-behavior, and return to an exact endpoint without pivot, footprint, collision,
-or support drift. Refrigerator R01 uses
-`immutableShell + lowerDoor[state]` with `closed`, `half`, and `open` states.
-Its isolated production proves both before-pickup and after-pickup
-interruption paths; neither path may release the reservation while the door or
-held-prop lifecycle is incomplete.
-
-Author animated display furniture in two passes:
-
-1. Create one locked shell cell.
-2. Create only the changing screen, LED, paper, steam, or light frames.
-3. Measure the local viewport and deterministically precompose full-frame
-   runtime variants from the same shell.
-
-The runtime may use the precomposed full-frame variants so the current
-single-asset renderer does not need a second overlay layer. The source
-manifest still records the shell, viewport, and four content keyframes for
-future themes or live overlays. Never ask the generator to redraw the full
-furniture independently for each animation frame; that causes bezel, anchor,
-and collision drift.
-
-The base furniture must retain the same anchor, dimensions, and collision
-footprint in every frame. For example, a wall TV uses one shell cell plus four
-screen-content cells, then produces four derived full-frame runtime images.
-The four derived images are processing outputs, not four additional AI
-generation prompts.
-
-Facility production uses three alternative tiers:
-
-- Static-only: six missing facility shell cells.
-- Facility v1 motion: six shells plus four-frame TV, vending, and game
-  seam-loop sources, for 18 new source cells and 12 derived runtime frames.
-- Full ambient polish: 62 new source cells under
-  `docs/art/ASSET_SHEET_PLAN.md`; this replaces the simpler Facility v1 motion
-  strips and is not added on top of them.
-
-Before extraction, confirm whether a generated strip is a shell, an overlay,
-or a full local-motion frame set. Never mix those roles inside one strip.
-
-## 6. Equipment and monitor workflow
-
-### 6.1 Monitor shell
-
-Create a monitor shell independently:
+Use these authoring constants for Camera C preflight:
 
 ```text
-monitor-front
-monitor-back
-monitor-left
-monitor-right
+depthProjectionCoefficient = 0.27
+topFarEdgeScale            = 0.92
+topSymmetryTolerance       = 1 pixel
 ```
 
-The shell contains:
+`topFarEdgeScale` creates the small, symmetric inset visible in the accepted
+C reference. It does not authorize a second vertical face.
 
-- Bezel.
-- Housing.
-- Stand.
-- Buttons or indicator light if physically visible.
+### 3.1 Projection formulas
 
-The shell does not contain role-specific screen content.
-
-### 6.2 Screen viewport
-
-Measure the inner screen rectangle from the front monitor shell and lock it:
-
-```json
-{
-  "monitor": "office-monitor-v1",
-  "viewport": {
-    "x": 8,
-    "y": 6,
-    "width": 52,
-    "height": 30
-  }
-}
-```
-
-Every screen theme and frame must use this exact viewport size. Do not let the generator choose a different screen rectangle per theme.
-
-### 6.3 Screen themes
-
-Start with five themes so five adjacent workstations can look different:
-
-1. Coding editor.
-2. Analytics dashboard.
-3. Document/content workspace.
-4. Chat/support inbox.
-5. System/management dashboard.
-
-Each theme has four seam-loop keyframes:
+For a front or back orientation:
 
 ```text
-A, B, C, D
+faceWidthPx       = W * T
+verticalFacePx    = H * T
+projectedTopPx    = round(D * T * 0.27)
+topNearWidthPx    = faceWidthPx
+topFarWidthPx     = round(faceWidthPx * 0.92)
+topSideInsetPx    = round((topNearWidthPx - topFarWidthPx) / 2)
+rotatedFootprint  = W x D
 ```
 
-Runtime playback is cyclic:
+For a left or right orientation:
 
 ```text
-A -> B -> C -> D -> A
+faceWidthPx       = D * T
+verticalFacePx    = H * T
+projectedTopPx    = round(W * T * 0.27)
+topNearWidthPx    = faceWidthPx
+topFarWidthPx     = round(faceWidthPx * 0.92)
+topSideInsetPx    = round((topNearWidthPx - topFarWidthPx) / 2)
+rotatedFootprint  = D x W
 ```
 
-Frame `D` must be a natural predecessor of frame `A`, not a reset screen.
-Keep 65–75% of the screen layout static and animate a visible 20–35% region.
-The four frames should read as one scene or one game state evolving over time,
-not four unrelated screenshots.
-
-Recommended motion:
-
-- Coding: highlighted block or progress line moves several rows.
-- Analytics: large bars, line point, and status ring change.
-- Document: progress bar, section highlight, or thumbnail moves.
-- Chat: one message bubble enters and an unread badge changes.
-- System: CPU/memory bars and status dots pulse.
-
-Avoid:
-
-- Cursor-only animation that disappears at small scale.
-- Full-screen redesign between frames.
-- Screen content that changes theme, camera, or game rules between frames.
-- A direct `D -> A` cut when the endpoints are visually different.
-
-### 6.4 Screen overlay extraction
-
-Screen overlays must contain only the content rectangle. Remove:
-
-- Monitor bezel.
-- Monitor frame.
-- Stand.
-- Desk.
-- Keyboard.
-
-The source pipeline composes:
+With `bodyJoinY` at the top of the vertical face, the top polygon is:
 
 ```text
-monitor shell
-+ screen overlay
--> precomposed full-frame runtime variant
+(x, bodyJoinY)
+(x + topNearWidthPx, bodyJoinY)
+(x + topNearWidthPx - topSideInsetPx, bodyJoinY - projectedTopPx)
+(x + topSideInsetPx, bodyJoinY - projectedTopPx)
 ```
 
-Store true keyframes once:
+The two sloped top edges must be mirror images. Do not push one corner farther
+back to imply yaw.
 
-```json
-{
-  "keyframes": ["analytics-a", "analytics-b", "analytics-c", "analytics-d"],
-  "loop": "seam",
-  "frameDurationMs": 700
-}
-```
+### 3.2 Why low furniture shows more top
 
-Do not store duplicate copies of `B` or `C` merely to represent the return
-leg. Validate the `D -> A` seam at 1:1 scale before packing.
+Do not apply the refrigerator's `13.5%` top-to-face ratio to every object.
+That ratio belongs to one `D2 / H4` volume.
 
-## 7. Character creation workflow
-
-### 7.1 Standard pose contract
-
-Every production character starts from an approved PetDex-compatible base atlas.
-The base contract is an 8x9 sheet; do not redraw the identity or regenerate
-working rows that already exist. Add only the missing semantic rows required by
-the office:
+The general ratio is:
 
 ```text
-idle-front
-walk-down
-walk-up
-walk-left
-walk-right
-working
-review
-failed
-waiting
-reaction-or-wave
+topToFaceRatio = (projected depth / vertical height)
+               = (D / H) * 0.27        for front/back
+               = (W / H) * 0.27        for left/right
 ```
 
-The facility-ready extension adds four rows to the same atlas:
+The formula naturally produces the intended visual behavior:
+
+- low furniture has a large top relative to its vertical face;
+- medium furniture has a readable but controlled top;
+- tall furniture has a smaller top relative to its height; and
+- increasing physical depth increases the visible top without changing
+  logical height.
+
+Examples at `T = 32`:
+
+| Asset blockout | Orientation | Vertical face | Projected top | Top/face |
+| --- | --- | ---: | ---: | ---: |
+| Refrigerator `2 x 2 x 4` | front/back | `128 px` | `17 px` | `13.3%` |
+| Desk `3 x 2 x 2` | front/back | `64 px` | `17 px` | `26.6%` |
+| Desk `3 x 2 x 2` | left/right | `64 px` | `26 px` | `40.6%` |
+| Coffee table `3 x 2 x 1` | front/back | `32 px` | `17 px` | `53.1%` |
+| Bookshelf `2 x 1 x 3` | front/back | `96 px` | `9 px` | `9.4%` |
+
+These are blockout measurements. Feet, lips, cushions, bezels, foliage, and
+other overflows remain separate from the logical volume.
+
+### 3.3 Render-envelope consequence
+
+Camera C adds projected top pixels above the vertical face:
 
 ```text
-working-back
-interact-front
-inspect-front
-lounge-front
+minimumVisibleHeight = verticalFacePx + projectedTopPx + baseOverflowPx
 ```
 
-This produces an 8x13 atlas (104 cells). Each extension row uses six active
-frames plus two empty cells. Facility orientation is handled by map placement:
-the actor approaches from the front, so no side or back facility animation is
-required for the pilot. Desk furniture remains separate from the character.
+Do not shrink the object vertically to force this silhouette into an old
+render box. If the current render box cannot contain the Camera C result, stop
+at F1 and version the render-box contract before generating art.
 
-### 7.1.1 Seated work extension
+If runtime requires one fixed canvas for all orientations, use an envelope
+large enough for the maximum front, back, left, and right bounds. Center each
+orientation on its declared pivot. If runtime supports orientation-specific
+render bounds, record every bound explicitly. Never rescale one orientation
+independently merely to fill its cell.
 
-The approved seated-work contract adds two required character-only rows after
-the facility rows before the final workstation roster is accepted:
+## 4. Four-direction contract
+
+Author only the orientations required by the map. A four-direction family
+uses these exact turns:
+
+| Furniture facing | Source view | Allowed visible surfaces |
+| --- | --- | --- |
+| down / toward viewer | `front` | top + front |
+| up / away from viewer | `back` | top + back |
+| right | `facing-right` | top + strict right-facing profile |
+| left | `facing-left` | top + strict left-facing profile |
+
+The side cells must represent a physical 90-degree turn. Do not compress the
+front view, shear the front view, or expose a broad door/front plane to make a
+side view easier to read. A handle, hinge, trim edge, or door thickness may
+appear as a narrow edge detail when physically correct; it must not become a
+second vertical face.
+
+Use semantic facing rather than trusting an old filename. Verify orientation
+from doors, handles, controls, seat direction, shelf opening, and interaction
+side before assigning `left` or `right`.
+
+Required four-view invariants:
+
+- one identity, palette, material language, outline, and light direction;
+- one physical height across all views;
+- front/back face width derived from `W`;
+- side face width derived from `D`;
+- correct `W x D` to `D x W` footprint rotation;
+- one common ground-contact rule;
+- stable base and sort pivots;
+- no front-only controls or openings on the back;
+- no rear service details on the front; and
+- no second vertical plane in any cell.
+
+## 5. Wall placement and inward-facing use
+
+Wall location, furniture facing, visible source view, and wall contact are
+four different concepts. Do not infer one from another.
+
+For furniture whose physical back must touch the wall and whose usable front
+must face the room center:
+
+| Room wall | Furniture faces | Use this source | Physical face touching wall |
+| --- | --- | --- | --- |
+| top / north | down | `front` | back |
+| bottom / south | up | `back` | back |
+| left / west | right | `facing-right` | back |
+| right / east | left | `facing-left` | back |
+
+This mapping is mandatory for usable appliances, cabinets, vending machines,
+and other front-operated furniture placed against a perimeter wall.
+
+### 5.1 Flush placement does not delete the object
+
+When a refrigerator is flush against the bottom foreground wall, the object
+still occupies its complete `2 x 2` footprint. The wall hides the rear
+vertical face that touches it, while the Camera C top remains visible.
+
+The correct compositor behavior is:
 
 ```text
-working-back-seated
-working-front-seated
+draw floor
+draw furniture in sort-pivot order
+draw foreground/bottom wall occlusion
+draw debug overlays or UI
 ```
-
-With the four facility rows retained, the complete contract is 8x15. Both
-seated rows use six active frames plus two empty cells. The rear row is a
-dead-center back view with symmetric shoulders and naturally hanging legs; it
-must not drift into a three-quarter or side view. The front row is a
-dead-center upright office-chair pose whose lower legs may be hidden by the
-desk foreground mask. Neither row contains a chair, desk, monitor, or floor.
-
-Use the approved Einstein seated rows and the modern chair calibration as the
-shared morphology and anchor reference for every character. Generate the
-character-only rows directly. Do not repeat the chair-in-frame-and-remove step
-unless a new character's proportions cannot match the shared seat height.
-Calibrate one rear frame and one front frame first; expand to six-frame
-animation rows only after both pelvis and visible-leg anchors pass the chair
-overlay check.
-
-### 7.2 Character anchors
-
-Standing characters anchor at the feet. Seated characters anchor at the seat or pelvis contact point.
 
 Do not:
 
-- Center a frame using its visible alpha bounds.
-- Shift the whole body when an arm moves.
-- Use the standing foot anchor for a seated pose.
-- Hide a standing character behind a desk as a substitute for a seated pose.
+- remove the bottom-wall refrigerator row;
+- replace the refrigerator with a top-only asset;
+- bake a brown wall into the refrigerator sprite; or
+- change its footprint because the body is hidden.
 
-For action poses such as waving, keep the body anchor fixed and move only the hand or upper body inside the same frame envelope.
+The same full `back` sprite is used for both flush and separated placement.
+The wall layer determines visible pixels.
 
-### 7.3 Character prompt requirements
+### 5.2 Pulling furniture away from the wall
 
-Character prompts must specify:
-
-- The supplied PetDex/base atlas as the identity reference.
-- Straight orthographic game sprite style.
-- Fixed body proportions.
-- Exact pose.
-- Stable feet/pelvis anchor.
-- No furniture or facility props in the character frame; those remain map layers.
-- No text, logos, or watermark.
-- Same frame size and baseline across the sheet.
-
-For the four extension rows, explicitly request:
-
-- `working-back`: back-facing head and shoulders with subtle typing motion.
-- `interact-front`: front-facing hands reaching toward an unseen facility.
-- `inspect-front`: front-facing look/hand inspection of an unseen facility.
-- `lounge-front`: front-facing seated idle; sofa/beanbag is a separate map asset.
-
-For `working-back-seated`, explicitly request a dead-center rear view with
-symmetrical shoulders, hands reaching toward an unseen keyboard, and a compact
-lower-body silhouette with naturally hanging legs. For
-`working-front-seated`, request a dead-center upright office-chair pose with
-legs down but mostly ready for desk occlusion. Use the approved Einstein
-seated rows as the morphology and anchor reference; do not draw the chair.
-
-Always request a single horizontal strip of eight equal cells: six active
-frames followed by two empty cells. Generate one missing row at a time.
-
-### 7.4 Character extraction
-
-After generation:
-
-1. Remove chroma key.
-2. Detect the six generated frame bounds and slice the row.
-3. Normalize the standing or seated box separately.
-4. Align standing feet and seated pelvis/seat anchors.
-5. Validate row-to-row scale against the PetDex base atlas.
-6. Append accepted rows without modifying the base rows.
-7. Pack the result into a versioned 8x13 interim atlas or 8x15 final atlas,
-   depending on whether the seated-work rows are present.
-8. Record the extension rows and any per-character scale override explicitly.
-
-## 8. Prompt templates
-
-### 8.1 Furniture turnaround
+Moving a bottom-wall object inward by `g` whole floor cells shifts its sprite
+by the normal world-grid projection. The newly visible rear-face band is
+approximately:
 
 ```text
-Create one original orthographic pixel-art [FURNITURE] in ONLY these required
-orientations: [REQUIRED_ORIENTATIONS].
-Use the current Office coordinate-system adult reference of 1 wide x 1 deep x 3 high.
-The furniture's locked physical scale is [WIDTH] x [DEPTH] x [HEIGHT] tiles.
-Its target render box is [RENDER_WIDTH] x [RENDER_HEIGHT] tiles and its floor
-footprint is [FOOTPRINT_WIDTH] x [FOOTPRINT_DEPTH] tiles.
-Use exactly one equal cell per listed orientation and do not add extra views.
-Use one exact design and preserve width, depth, height, material, outline,
-lighting direction, and anchor across every view.
-When both front and back are requested, preserve the same overall width and
-remove front-only props from the back. When side views are requested, rotate
-the object correctly and expose its depth rather than compressing the front.
-Place one isolated object per equal cell on a flat #FF00FF chroma-key background.
-No people, room, text, logos, watermark, perspective, or isometric camera.
-All views must be straight orthographic: front/back face the camera directly,
-and left/right are exact 90-degree turns. Never use an oblique or three-quarter
-view.
-Do not make the furniture wider, shorter, taller, or bulkier merely to fill
-the cell; preserve the declared scale and leave empty chroma-key padding.
+rearRevealPx = min(verticalFacePx, g * T)
 ```
 
-### 8.2 Screen animation
+At a zero-cell gap, the rear vertical face is hidden and the top remains. At a
+one-cell gap, the upper rear band becomes visible. The exact band may be
+clipped by the authored wall height, but it must come from the same sprite and
+the same pivot rule.
 
-```text
-Create a screen-content-only sprite strip for a fixed [WIDTH]x[HEIGHT] viewport.
-Produce four keyframes A, B, C, D of one [THEME] dashboard, display, or game.
-Keep the viewport, toolbar, sidebar, and major layout fixed.
-Use a bright high-value display palette with warm white, pale sky, cyan, mint,
-teal, lime, amber, coral, or lavender. Do not use a mostly black, navy, or
-dark-blue screen background.
-Animate one large readable region so 20–35% of the pixels visibly change
-between adjacent frames.
-Design the sequence as one continuous seam loop:
-A-B-C-D-A. Frame D must naturally lead into frame A.
-Keep the same scene, dashboard, or game rules in all four frames.
-Do not include a monitor bezel, stand, desk, keyboard, text labels outside the UI,
-logos, watermark, or any object outside the viewport.
-```
+With zero yaw, side-wall assets must not suddenly expose a broad rear plane.
+A side placement may reveal floor clearance or a narrow physical edge, but a
+large rear surface would be a forbidden three-quarter turn.
 
-For a wall TV, vending display, or game display, replace `[THEME] dashboard`
-with the intended screen content while preserving the same four-cell seam-loop
-contract. The prompt must not include the TV housing, machine shell, floor,
-wall, or cast shadow.
+### 5.3 Corners and perimeter filling
 
-### 8.2.1 Mechanical or ambient overlay
+Place footprints before drawing art:
 
-```text
-Use the supplied accepted [ASSET] shell as the fixed anchor and style
-reference. Create ONLY the local [MOTION] overlay as four distinct keyframes.
-Keep the render box, anchor, lighting direction, palette, and affected region
-identical across all four cells. Pixels outside the moving LED, paper, button,
-steam, plant, or light region must remain transparent.
-Use a flat #FF00FF chroma-key background. Do not redraw the furniture shell,
-change its footprint, move its baseline, add a room, add text, or add shadows.
-```
+1. reserve the top-wall ring;
+2. reserve the bottom-wall ring;
+3. reserve the left and right rings without overlapping corners;
+4. fit only complete integer footprints; and
+5. record any remainder cell as an intentional gap.
 
-### 8.3 PetDex character extension
+An occluded footprint still participates in collision and overlap checks.
+Never use visible alpha to decide whether a corner is free.
 
-```text
-Use the supplied PetDex-compatible [CHARACTER] atlas as the identity and style
-reference. Create ONLY the missing [POSE] animation row.
-Output one horizontal strip of exactly eight equal cells: six active frames and
-two empty cells. Preserve body proportions, frame size, baseline, feet/pelvis
-anchor, palette, outline, and silhouette from the base atlas.
-For working-back, show only the back-facing character with subtle typing motion.
-For interact-front and inspect-front, show only the front-facing character;
-the facility itself is a separate map asset. For lounge-front, show only the
-front-facing seated character; do not draw the sofa or beanbag.
-Use a flat #FF00FF chroma-key background. No furniture, props, logos, text,
-watermark, extra rows, grid lines, or perspective.
-```
+## 6. How to adapt each furniture family
 
-### 8.4 Seated work rows from the approved reference
+Start from the logical blockout, not from the old bitmap silhouette.
 
-```text
-Use the supplied PetDex-compatible [CHARACTER] atlas as the identity reference
-and the approved Einstein seated rows as the seated morphology and anchor
-reference. Create ONLY the missing [working-back-seated or
-working-front-seated] character row.
+### 6.1 Tall closed shells
 
-Output one horizontal strip of exactly eight equal cells: six active frames and
-two empty cells. Preserve the character's exact head scale, body proportions,
-palette, outline, seated pelvis height, and visible-leg placement from the
-reference. For working-back-seated use a dead-center straight rear view with
-symmetrical shoulders, hands reaching toward an unseen keyboard, and naturally
-hanging legs. For working-front-seated use a dead-center upright front view
-with legs down and lower-body detail ready for desk occlusion.
+Examples: refrigerator, vending machine, server rack, filing cabinet, tall
+storage cabinet, and floor copier.
 
-Use a flat #FF00FF chroma-key background. Character only: do not draw the
-chair, desk, monitor, keyboard, floor, shadows, text, logos, watermark, side
-angles, or perspective.
-```
+Adjust them as follows:
 
-## 9. Naming and manifest conventions
+1. Lock `W x D x H` and the floor footprint.
+2. Build the Camera C cap from the complete physical depth.
+3. Keep the front shell flat and axis-aligned.
+4. Put doors, controls, outputs, and user-facing handles only on the front.
+5. Put vents, service panels, cables, and access covers only on the back.
+6. Use pure side profiles for left and right.
+7. Allow only narrow front-edge hardware in side profiles.
+8. Separate doors, drawers, screens, outputs, and effects from the immutable
+   shell before animation.
 
-Use English, stable, descriptive names:
+Do not enlarge the footprint to match height. Do not expose a broad door plane
+inside a side cell.
 
-```text
-office-desk-v1-front.webp
-office-desk-v1-back.webp
-office-desk-v1-left.webp
-office-desk-v1-right.webp
+### 6.2 Desks, tables, counters, and low cabinets
 
-office-monitor-v1-front.webp
-screen-analytics-v1-a.webp
-screen-analytics-v1-b.webp
-screen-analytics-v1-c.webp
+These objects must show more top than a tall cabinet because their `D / H`
+ratio is larger.
 
-office-agent-working-back-v1.webp
-office-agent-review-back-v1.webp
-```
+1. Project the complete logical support plane with Camera C.
+2. Keep the near and far tabletop edges centered and symmetric.
+3. Place aprons, drawers, legs, and cabinets below the support plane.
+4. Keep supported equipment separate from the furniture shell.
+5. Preserve the support plane in logical world coordinates even though its
+   screen polygon is compressed by `0.27`.
+6. Verify adjacent tables join by footprint, not by render-envelope height.
 
-Suggested furniture manifest:
+Do not reduce the top to a decorative strip. Do not create a trapezoid by
+turning the table left or right; Camera C inset is symmetric and has zero yaw.
+
+### 6.3 Chairs, sofas, and seating
+
+Seating is not one solid cuboid. Decompose it into:
+
+- floor base or legs;
+- seat support plane;
+- backrest;
+- arms; and
+- foreground occlusion parts.
+
+Apply Camera C independently to physical horizontal surfaces such as the seat
+cushion and arm tops. Keep the backrest as an axis-aligned vertical structure.
+The seat contact, actor contact, floor pivot, and foreground mask remain
+separate contracts.
+
+Only author side orientations when a real map placement requires them. A
+chair or sofa must not contain a baked person, pose, held prop, or approach
+marker.
+
+### 6.4 Shelves and open storage
+
+1. Use the full shell depth to create the top plane.
+2. Keep shelf openings on the declared usable face.
+3. Use a closed or mechanically credible rear shell for the back view.
+4. Side profiles show shelf depth, not a compressed front opening.
+5. Separate removable books, boxes, or display props when they animate or
+   change by state.
+
+### 6.5 Round or visually symmetric furniture
+
+Examples: round tables, stools, bins, simple pots, and some lamps.
+
+Use one orientation when rotation does not change operation, collision,
+lighting, or silhouette. Camera C still controls the visible horizontal
+surface, but symmetry may make additional directional cells unnecessary.
+
+Do not generate four near-identical cells merely to fill a turnaround sheet.
+
+### 6.6 Plants and irregular silhouettes
+
+Apply the Camera C blockout to the physical pot, planter, trunk base, or other
+collision-bearing structure. Foliage may overflow the render envelope but
+does not enlarge the floor footprint. Preserve the same root/pot pivot across
+all required orientations.
+
+Organic foliage must not be used to hide a wrong pot angle or a contaminated
+source edge.
+
+### 6.7 Wall-mounted and supported assets
+
+Wall TVs, signs, clocks, art, and supported desk/counter equipment do not gain
+a floor footprint. Use their wall or parent support contract. Do not add a
+Camera C top cap when the object's physical thickness and placement do not
+make that top visible.
+
+Supported props inherit world placement from a declared parent socket. Their
+bitmap size never creates new floor collision.
+
+## 7. Conversion decision table
+
+| Current condition | Required action |
+| --- | --- |
+| Authorized clean source already matches Camera C | Normalize bounds, pivot, and padding; do not redraw it. |
+| Correct identity but wrong pitch | Re-author from a clean allowed source using a Camera C blockout. Do not vertically stretch the bitmap. |
+| Any three-quarter or oblique source | Reject and regenerate the affected orientation. Do not shear, crop, or paint over it. |
+| Front is valid but side is missing | Create a targeted strict 90-degree side source from the accepted identity reference. |
+| Top is too small | Recompute only the top plane from physical depth; preserve face scale and ground pivot. |
+| Top is too large on a tall asset | Recompute with `(depth / height) * 0.27`; do not scale the entire object down. |
+| Side looks mostly like front or rear | Reject it and rebuild a pure side profile with only narrow edge hardware. |
+| Front/back widths differ | Return to blockout; normalize world scale before detailing. |
+| Footprint uses logical height | Correct F1 immediately; `H` never occupies floor cells. |
+| Bottom-wall row disappears | Restore the placements and fix wall occlusion/layer order. |
+| Full rear panel is visible while flush to the bottom wall | Fix the foreground wall mask; do not create a new sprite. |
+| Mirroring reverses text, hinges, controls, or light | Author both left and right sources independently. |
+| Old render box clips the Camera C top | Version the F1 render envelope; do not compress the art. |
+| Source is Active Office, rejected, processed, or unaudited | Use it only as dimensional reference and create a clean authorized source. |
+
+## 8. End-to-end authoring workflow
+
+### Step 1 — Declare the family contract
+
+Before prompting or drawing, record:
 
 ```json
 {
-  "id": "desk.workstation.modern.v3",
-  "requiredOrientations": ["public-side", "seat-side"],
-  "orientations": {
-    "public-side": ["rear", "surface", "base", "foreground"],
-    "seat-side": ["rear", "surface", "base", "foreground"]
+  "physicalScale": { "width": 2, "depth": 2, "height": 4 },
+  "footprint": { "width": 2, "depth": 2 },
+  "camera": {
+    "profile": "camera-c",
+    "yawDegrees": 0,
+    "depthProjectionCoefficient": 0.27,
+    "topFarEdgeScale": 0.92,
+    "visibleVerticalPlanes": 1
   },
-  "footprints": {
-    "public-side": { "width": 3, "depth": 2 },
-    "seat-side": { "width": 3, "depth": 2 }
-  },
-  "supportPlane": { "width": 3, "depth": 2, "z": 2 },
-  "basePivot": { "x": 1.5, "y": 2 }
+  "requiredOrientations": [
+    "front",
+    "back",
+    "facing-left",
+    "facing-right"
+  ],
+  "basePivot": "footprint-front-edge-center",
+  "sortPivot": "footprint-front-edge-center"
 }
 ```
 
-A fixed front-facing facility declares only the orientation it uses:
+Also declare support, slots, approaches, animation parts, source authority, and
+the intended wall placements.
 
-```json
-{
-  "id": "vending-machine-v1",
-  "requiredOrientations": ["front"],
-  "orientations": {
-    "front": "vending-machine-v1-front"
-  },
-  "footprints": {
-    "front": { "width": 2, "depth": 1 }
-  },
-  "anchor": "bottom-center"
-}
+### Step 2 — Draw four cuboid blockouts
+
+Create a geometry-only sheet before detailed art:
+
+1. draw the `W x D x H` front block;
+2. create the exact back block;
+3. rotate the footprint to `D x W` for the right-facing block;
+4. create the exact left-facing block;
+5. add the Camera C top polygon with the formulas above;
+6. mark the base pivot and footprint cells; and
+7. reject the sheet if any cell shows two vertical faces.
+
+Do not proceed from blockout to detailed generation until width, depth, height,
+top projection, and pivots pass at 1:1.
+
+### Step 3 — Create a clean identity source
+
+Follow F0-F3 in `OFFICE_FURNITURE_PRODUCTION_GATES.md`.
+
+- Create one original isolated family.
+- Use a uniform removable chroma background.
+- Keep generous padding.
+- Keep people, room pixels, labels, brands, effects, and props out.
+- Use the cuboid silhouettes as strict composition guides.
+- Generate or draw only required orientations.
+- Reject any cell that changes identity, scale, pitch, or yaw.
+
+Image generation may supply shaded source pixels, but it must not decide the
+camera. Geometry guides, masks, extraction, scaling, pivots, and placement are
+deterministic.
+
+### Step 4 — Extract and normalize
+
+1. Remove the chroma key.
+2. Verify transparent corners and border clearance.
+3. Crop each declared orientation independently.
+4. Preserve one scale across all views.
+5. Align the base pivot to the integer grid.
+6. Add transparent padding to the approved render envelope.
+7. Record orientation-specific alpha bounds.
+8. Verify no magenta fringe or neighboring component remains.
+
+Never use alpha bounds as footprint or collision data.
+
+### Step 5 — Decompose semantic parts
+
+Separate, when applicable:
+
+- immutable shell;
+- support surface;
+- rear structure;
+- base;
+- foreground occlusion;
+- door or drawer;
+- screen or viewport;
+- output item;
+- effect; and
+- interaction socket.
+
+The Camera C shell and pivot remain byte-stable while children animate.
+
+### Step 6 — Test on an empty grid
+
+Produce a test board containing:
+
+- the four direction sprites;
+- a `W x D x H` cuboid proof;
+- footprint rectangles;
+- facing arrows;
+- one neutral `1 x 1 x 3` adult ruler;
+- a zero-cell wall-contact state; and
+- a one-cell wall-gap state.
+
+The zero-cell state must keep the full placement while the wall hides the
+contact face. The one-cell state must reveal the expected rear band without
+changing sprite identity or pivot.
+
+### Step 7 — Test a four-wall room
+
+Before adding people:
+
+1. place top-wall assets facing down;
+2. place bottom-wall assets facing up;
+3. place left-wall assets facing right;
+4. place right-wall assets facing left;
+5. reserve corners only once;
+6. record integer remainder cells;
+7. sort by ground pivot; and
+8. draw the foreground wall after furniture.
+
+Run overlap validation against complete footprints, including objects whose
+vertical faces are hidden.
+
+### Step 8 — Stop for owner review
+
+Camera C preflight does not grant production approval. Present the clean
+turnaround, alpha proof, blockout, wall test, placement plan, and provenance
+together. Continue only under the family-specific gate sequence.
+
+## 9. Prompt templates
+
+### 9.1 Clean Camera C turnaround
+
+```text
+Create one original [FURNITURE FAMILY] as isolated game-furniture source art.
+Its locked logical size is [W] wide x [D] deep x [H] high tiles, and its floor
+footprint is [W] x [D] tiles.
+
+Create ONLY these required orientations: [ORIENTATIONS]. Use the supplied
+Camera C cuboid guides as strict silhouettes.
+
+Camera contract for every orientation:
+- raised axis-aligned Camera C;
+- pitch only and exactly 0-degree yaw;
+- one visible top plane plus exactly one vertical face;
+- no second vertical face;
+- front/back are direct views;
+- left/right are exact 90-degree profiles;
+- centered symmetric top plane;
+- preserve one design, scale, baseline, pivot, palette, material, outline,
+  and upper-left light direction across all cells.
+
+Front-facing controls, openings, handles, and interaction outputs belong only
+on the front. Rear vents and service panels belong only on the back. A side
+view may show narrow edge hardware but must not expose a broad front or rear
+plane.
+
+Place one isolated object per declared cell on a perfectly flat solid #FF00FF
+chroma-key background. Keep generous empty padding. No room, floor, wall,
+person, character, prop, labels, logos, watermark, cast shadow, reflection,
+three-quarter view, diagonal turn, isometric camera, asymmetric convergence,
+or vanishing-point drift beyond the supplied symmetric Camera C top guide.
 ```
 
-Suggested workstation manifest:
+The prompt does not replace the geometric guide. Reject output that violates
+the blockout even when its materials and details look attractive.
 
-```json
-{
-  "id": "workstation-r05-r02",
-  "desk": "desk.workstation.modern.v3",
-  "chair": "chair.office.modern.r05",
-  "seatSockets": "office-character-seat-sockets-v1",
-  "monitorReservation": { "width": 3, "depth": 1 },
-  "keyboardReservation": { "width": 1, "depth": 1 },
-  "placementFormula": "project(worldSocket) - localSocket",
-  "depthwiseDeskDeltaTiles": 2
-}
+### 9.2 Targeted missing side
+
+```text
+Use the supplied accepted [FURNITURE FAMILY] identity only as the design,
+palette, material, outline, and scale reference. Create ONLY the missing
+[FACING-LEFT or FACING-RIGHT] Camera C source.
+
+The result is an exact 90-degree profile with pitch only and 0-degree yaw. It
+shows one centered top plane and one side vertical face. It must not show a
+broad front plane, rear plane, person, prop, room, label, logo, watermark,
+shadow, or reflection. Preserve the declared physical scale, ground pivot,
+and upper-left lighting. Use a perfectly flat solid #FF00FF chroma-key
+background with generous padding.
 ```
 
-## 10. QA checklist
+Do not use this template to repair an unauthorized or contaminated source.
+
+## 10. Required review artifacts
+
+Create these review files for each Camera C family before room promotion:
+
+1. `01-camera-c-measurement-lock.png`;
+2. `02-camera-c-cuboid-four-directions.png`;
+3. `03-camera-c-four-direction-turnaround.png`;
+4. `04-wall-flush-vs-gap-proof.png`;
+5. `05-four-wall-facing-footprint-plan.png`;
+6. `06-four-wall-grid-test.png`;
+7. `07-four-wall-clean-test.png`; and
+8. a manifest containing formulas, pivots, bounds, placements, counts, source
+   hashes, and intentional gaps.
+
+These files are review evidence only until the production gates and owner
+approval explicitly promote the named family.
+
+## 11. Camera C QA checklist
+
+### Projection
+
+- [ ] Camera profile is explicitly `camera-c`.
+- [ ] Yaw is exactly `0` degrees.
+- [ ] Every view shows one top plane and one vertical face.
+- [ ] No view shows a second vertical face.
+- [ ] The top is horizontally centered.
+- [ ] Left and right top insets differ by no more than one pixel.
+- [ ] Projected top depth comes from physical depth and `kC = 0.27`.
+- [ ] Low furniture shows more relative top than tall furniture.
+- [ ] One orientation was not independently stretched to fill its cell.
 
 ### Geometry
 
-- [ ] The asset uses the locked `W x D x H` entry from the current coordinate or asset-family authority.
-- [ ] A neutral `1 x 1 x 3` adult scale overlay confirms the intended height
-      and bulk.
-- [ ] `requiredOrientations` is derived from current map placements and interaction facings.
-- [ ] No cell was generated for an undeclared or hypothetical orientation.
-- [ ] One-view and symmetric objects are not expanded into unnecessary turnarounds.
-- [ ] Left/right mirroring preserves controls, hinges, props, highlights, and lighting direction.
-- [ ] All views use the same intended object design.
-- [ ] Every view is straight orthographic; side views are exact 90-degree turns.
-- [ ] No oblique, three-quarter, diagonal, tilted, or perspective cell was
-      accepted.
-- [ ] Front/back width matches.
-- [ ] Side depth matches.
-- [ ] Footprint is integer-aligned.
-- [ ] Irregular objects use orientation-specific masks.
-- [ ] Anchor does not change between frames.
-- [ ] Actor seat contact resolves to the chair seat with `[0,0]` error in every frame.
-- [ ] Depthwise desk origins differ by 64 pixels, not by render-canvas height.
-- [ ] The visible object was scaled uniformly and was not stretched to fill
-      the render box.
+- [ ] Logical `W x D x H` is recorded.
+- [ ] Floor footprint excludes `H`.
+- [ ] Front/back use `W x D`; side views rotate to `D x W`.
+- [ ] Render envelope, footprint, and alpha bounds remain independent.
+- [ ] Base and sort pivots are integer-grid stable.
+- [ ] Handles, doors, feet, and foliage overflow without changing collision.
+- [ ] The render box contains the complete Camera C top without compression.
 
-### Layering
+### Direction
 
-- [ ] Desk, monitor, screen, props, and character are separate.
-- [ ] Every coordinate-placed object declares a compatible structural surface.
-- [ ] Floor footprints and wall or ceiling anchors remain inside that surface.
-- [ ] Supported objects use one compatible parent slot and no structural surface.
-- [ ] Foreground mask hides the seated lower body.
-- [ ] Screen overlay is clipped to the monitor viewport.
-- [ ] Back views do not show front-only props.
-- [ ] A held prop visibly touches its declared hand socket. A zero-delta
-      midpoint calculation is insufficient when the prop alpha remains
-      visually detached from both hands.
-- [ ] Grip-critical previews record the actor grip, prop grip, resolved grip,
-      and `[0,0]` delta for every visible held frame.
+- [ ] Top-wall furniture faces down into the room.
+- [ ] Bottom-wall furniture faces up into the room.
+- [ ] Left-wall furniture faces right into the room.
+- [ ] Right-wall furniture faces left into the room.
+- [ ] Side labels were verified from physical features rather than filenames.
+- [ ] Mirroring does not reverse controls, hinges, text, props, or lighting.
 
-### Animation
+### Wall contact and occlusion
 
-- [ ] Static assets use aliases rather than duplicate pixels.
-- [ ] A rigid shell occupies one cell per required orientation.
-- [ ] Screen, LED, and status overlays contain exactly four true seam-loop
-      keyframes.
-- [ ] Mechanical and ambient sets contain exactly four true keyframes.
-- [ ] Overlay frames do not redraw the furniture shell.
-- [ ] Animated assets keep a fixed silhouette.
-- [ ] Screen movement is visible at final 1:1 size.
-- [ ] Screen content is bright and high-value at 1:1; it is not mostly black,
-      navy, or dark-blue.
-- [ ] Screen playback uses `A-B-C-D-A`.
-- [ ] The `D -> A` endpoint seam is visually continuous.
-- [ ] Adjacent frames tell one continuous scene, status sequence, or game.
-- [ ] Independent phase offsets prevent synchronized displays.
+- [ ] Flush furniture retains its complete placement and footprint.
+- [ ] The wall-contact rear face is hidden by layer order, not deleted art.
+- [ ] The Camera C top remains visible at zero gap.
+- [ ] A one-cell gap reveals the expected rear band.
+- [ ] Side-wall assets do not expose a broad rear plane.
+- [ ] Foreground wall pixels are not baked into furniture sprites.
+- [ ] Hidden footprints still participate in overlap and route checks.
 
-### Extraction
+### Source and production safety
 
-- [ ] Chroma key is removed.
-- [ ] No magenta fringe or alpha halo remains.
-- [ ] Transparent padding does not alter the floor footprint.
-- [ ] Render box and collision footprint are recorded separately.
-- [ ] Accepted files are packed and registered.
+- [ ] Source authority is recorded before art creation.
+- [ ] No Active Office, rejected, processed, or unaudited pixels were reused.
+- [ ] A clean source or admitted full-master extraction passed F2-F3.
+- [ ] Chroma, alpha, padding, connected components, and border contact pass.
+- [ ] Animation uses an immutable shell plus local children.
+- [ ] Review evidence does not claim F8, F9, F10, or Active Office approval.
 
-### In-game review
+## 12. Hard rejection conditions
 
-- [ ] One workstation works before batching.
-- [ ] Ten workstations do not overlap.
-- [ ] Characters can reach, sit, work, and leave.
-- [ ] Screen content remains readable behind the character.
-- [ ] Furniture remains stable when orientation changes.
-- [ ] Mobile and narrow viewports remain usable.
+Reject the asset or placement immediately when any of these occurs:
 
-## 11. Recommended production order
+- a side cell becomes a three-quarter view;
+- two vertical faces are visible;
+- physical height is used as floor depth;
+- the top plane is guessed independently for each asset;
+- a tall object and a low object receive the same top-to-face ratio;
+- the bottom-wall row is removed because its body is occluded;
+- a flush bottom-wall object shows its complete rear panel through the wall;
+- left-wall furniture faces left or right-wall furniture faces right;
+- one orientation changes object scale or identity;
+- the pivot moves between states or orientations;
+- a wall mask is baked into the furniture source;
+- an old render box clips the Camera C top and the art is compressed to fit;
+- a missing source silently falls back to an old library asset; or
+- review evidence is treated as production approval.
 
-```text
-1. Preserve the owner-approved R05-r02 manifests and pixel hashes.
-2. Freeze a new ten-seat world-coordinate contract.
-3. Validate one 2-by-2 desk intersection.
-4. Assemble five columns by two rows from the approved station primitive.
-5. Run deterministic seat, join, support, depth, and isolation checks.
-6. Capture desktop/mobile clean and debug evidence.
-7. Stop for owner review before other furniture or Active Office work.
-```
-
-The detailed next phase is
-`docs/art/OFFICE_WORKSTATION_TEN_SEAT_NEXT_PLAN.md`.
-
-The best quality and speed come from locking the shared interfaces first. Once the desk, monitor viewport, screen overlay, seated anchor, and foreground mask are correct, the rest of the office becomes controlled asset production instead of repeated one-off fixes.
+The guiding rule is simple: define the physical block first, project it with
+one shared Camera C, author only the required axis-aligned faces, and let the
+map compositor decide occlusion. Art must follow geometry; geometry must not
+be reverse-engineered from whichever generated image looks most attractive.
