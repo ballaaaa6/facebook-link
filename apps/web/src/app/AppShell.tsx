@@ -3,14 +3,12 @@ import type { ThemeName } from "../shared/types";
 import type { AppRoute } from "./useRoute";
 
 const navigation: readonly { route: AppRoute; code: string; label: string }[] = [
-  { route: "/", code: "HQ", label: "Office" },
-  { route: "/dashboard", code: "DB", label: "Dashboard" },
+  { route: "/", code: "DB", label: "Dashboard" },
   { route: "/settings", code: "ST", label: "Settings" },
 ];
 
 const pageTitles: Record<AppRoute, { eyebrow: string; title: string }> = {
-  "/": { eyebrow: "Affiliate Operations", title: "Warm Studio HQ" },
-  "/dashboard": { eyebrow: "Performance Center", title: "Operations Dashboard" },
+  "/": { eyebrow: "Performance Center", title: "Operations Dashboard" },
   "/settings": { eyebrow: "Control Plane", title: "Workflow Settings" },
 };
 
@@ -26,13 +24,13 @@ export function AppShell({ route, navigate, theme, children }: { route: AppRoute
           </button>
         ))}
         <div className="nav-spacer" />
-        <div className="nav-version">v0.1</div>
+        <div className="nav-version">CORE</div>
       </nav>
 
       <main className="main-column">
         <header className="top-bar">
           <div><span className="eyebrow">{page.eyebrow}</span><h1>{page.title}</h1></div>
-          <div className="system-pill"><i /> Simulation ready <small>10 agents</small></div>
+          <div className="system-pill"><i /> Control plane ready <small>10 agents</small></div>
         </header>
         {children}
       </main>

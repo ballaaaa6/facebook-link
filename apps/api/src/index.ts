@@ -1,7 +1,6 @@
 import { agentCatalog } from "@affiliate-ops/agent-catalog";
 import { createBrainProvider, defaultLeaderAiModel, defaultWorkersAiModel, MockBrainProvider, type AiTextRunner } from "@affiliate-ops/brain";
 import type { BrainRequest, HealthReport } from "@affiliate-ops/contracts";
-import { createDemoOfficeSnapshot } from "@affiliate-ops/office-read-model";
 
 const serviceVersion = "0.1.0";
 
@@ -78,10 +77,6 @@ export default {
         brainModel: env.BRAIN_MODEL ?? defaultWorkersAiModel,
         leaderBrainModel: env.LEADER_BRAIN_MODEL ?? defaultLeaderAiModel,
       });
-    }
-
-    if (request.method === "GET" && url.pathname === "/v1/office") {
-      return json(createDemoOfficeSnapshot());
     }
 
     if (request.method === "POST" && url.pathname === "/v1/brain/respond") {

@@ -23,7 +23,7 @@ One Shopee Affiliate account and one Facebook page complete this loop reliably:
 
 - Settings: accounts, schedules, quotas, content briefs, prompts, review policy, and feature flags.
 - Dashboard: workflow throughput, failures, session health, publishing, attribution, and business metrics.
-- Agent office: live visual representation of agent states and handoffs.
+- Office Engine V2: optional read-only visualization of agent states and handoffs, built behind clean-room architecture and asset gates.
 - Discord: approved commands and notifications after signature verification and access control.
 
 ## Explicit non-goals for the pilot

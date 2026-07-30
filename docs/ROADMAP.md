@@ -1,319 +1,55 @@
-# Roadmap
+# Delivery Roadmap
 
-Furniture reset directive (2026-07-29): all reuse, derived-composite, and
-historical accepted-staging statements below are non-promotable for furniture,
-facilities, equipment, and decor in a new Office candidate. Current Active
-Office assets remain rollback evidence only. R05-r02 is the sole approved
-furniture family. New families must follow
-`docs/art/OFFICE_FURNITURE_PRODUCTION_GATES.md` one at a time. Historical
-completion labels do not waive those gates.
+## M0 — Safe foundation
 
-Workstation correction (2026-07-28): R01, R02, R04, R05 final, Candidate r01,
-and the former `5 x 4` staging workstations are rejected or historical
-evidence. R05-r02 P0-P3 is the owner-approved baseline: 32 pixels per tile,
-person `1 x 1 x 3`, real chair `1 x 1 x 2`, full-top desk `3 x 2 x 2`,
-monitor `3 x 1` reservation centered by its base, keyboard `1 x 1`
-reservation, per-character/per-frame seat sockets, and a 64-pixel depthwise
-desk join with physical occlusion order.
+- Maintain monorepo boundaries, repository gates, secret rules, and disabled
+  external connectors.
+- Keep Dashboard and Settings usable without any game-renderer dependency.
+- Preserve durable workflow, attribution, storage, and audit contracts.
 
-P4-P6 is rejected floor-map evidence. Although its visual desk joins and seat
-contacts passed, its far-row standing and clearance cells overlap the wall
-because the composition omitted a canonical world offset. The neutral
-full-image grid in `docs/OFFICE_FULL_GRID.md` now provides owner-labelled
-coordinates without inferring floor, wall, pillar, furniture, or route zones.
-Other furniture and Active Office promotion remain blocked.
+## M1 — Observable one-account simulation
 
-## M0 — Repository foundation (complete)
+- Persist a complete simulated workflow through SQLite.
+- Expose workflow and system-health read models through the API.
+- Replace dashboard mock values with read-model data.
+- Reconcile jobs, agent runs, audit events, and outbox records idempotently.
 
-- Monorepo boundaries, contracts, workflow state machine, database migration, local object storage, code-health gates, configuration, security rules, CI, art pipeline, and responsive three-route prototype.
+## M2 — Office Engine V2 vertical slice
 
-## M1 — Observable local workflow
+- Finish the world, simulation, projection, and presentation contracts.
+- Prove one empty room, one placeholder actor, one target, and one interaction
+  with deterministic tests before adding production art.
+- Validate movement, occupancy, depth, input, camera, and responsive behavior.
+- Introduce one newly produced asset family only after its provenance and
+  geometry gates pass.
+- Keep the engine an optional read-only visualization of operational state.
 
-- Office UI reads a versioned API read model with a safe local simulation fallback.
-- The working fake pipeline persists jobs, agent runs, audit events, and outbox events idempotently through SQLite.
-- Complete the local runner-to-control-plane event relay and replace remaining dashboard/settings mock values.
-- Replace fake Sheets transport with a credentialed connector behind the same interface.
-- Office motion, stable inspection, settings, dashboard, mock brain, action proposals, and fake connectors already exist.
+Detailed gates are in `docs/office-v2/IMPLEMENTATION_PLAN.md`.
 
-Current focus after the 2026-07-27 character-roster freeze is the two incomplete
-M1 items above plus the staging-to-active Office integration defined below. New
-character production is not on the prototype critical path.
+## M3 — One-account Shopee pilot
 
-### Immediate Office art tranche — Einstein and transient held props
+- Import login and session recovery through a connector.
+- Discover products, snapshot evidence, rank winners, create attributed links,
+  and collect affiliate metrics.
 
-Before replacing the active Office interior, prepare and validate one complete
-runtime slice against the accepted Modern v3 background, seasonal window, and
-clock:
+## M4 — Content and Meta publishing
 
-1. Complete Einstein as the golden PetDex-compatible 8x15 character by adding
-   the four missing facility rows (`working-back`, `interact-front`,
-   `inspect-front`, and `lounge-front`) and packing the two accepted seated-work
-   rows.
-2. Produce one controlled 4x4 sheet containing sixteen isolated handheld props
-   for water, coffee, vending, refrigerator, printer, review, lounge, massage,
-   and server interactions.
-3. Register deterministic per-facility prop pools. A prop appears only during
-   the six-frame interaction, never becomes part of the character atlas, and
-   is not carried away from the facility.
-4. Derive chair, meeting-table, sofa, and massage-chair foreground masks from
-   the accepted furniture pixels; do not regenerate masks as approximate art.
-5. Validate Einstein's `interact-front` row with representative dispensing,
-   document, review, and lounge props before generating extension rows for the
-   rest of the PetDex roster.
-6. Promote only validated modern-bright assets, animation groups, anchors,
-   masks, and prop pools into a runtime-ready catalog. The active Office keeps
-   the current interior until this slice passes.
+- Produce copy through the Gemini browser experience.
+- Produce visuals through the Google Flow browser experience.
+- Add content QA, Meta Graph API scheduling, and publication reconciliation.
 
-The locked execution and acceptance contract is maintained in
-`docs/art/EINSTEIN_HELD_PROP_VERTICAL_SLICE.md`.
+## M5 — Learning loop and Oracle migration
 
-Implementation status (2026-07-27):
+- Join Shopee and Meta metrics, propose strategy versions, run controlled
+  experiments, and alert on failures.
+- Migrate encrypted runner state to Oracle Linux and pass a seven-day acceptance.
 
-- Complete: generated and packed Einstein's four missing rows plus the two
-  accepted seated rows as an 8x15 staging atlas at 1x and 2x.
-- Complete: generated, extracted, and registered the controlled sixteen-item
-  held-prop sheet.
-- Complete: added the 15-row contract, six measured hand anchors,
-  deterministic facility pools, no-repeat selection, and frames 3-5 visibility
-  policy.
-- Complete: derived five foreground masks from accepted furniture pixels and
-  produced an item-neutral vending tray loop.
-- Complete: added a runtime-ready staging catalog, a React interaction harness,
-  a sixteen-case `interact-front` visual contact sheet, and automated contract
-  tests.
-- Complete: built an isolated eight-facility composition lab at the real
-  32px-tile runtime scale. It is not routed into the web app. All eight cases
-  pass geometry checks; standing machines use a front-right `(1,+1)` candidate
-  slot so the actor does not hide the facility, and the printer is composed on
-  `cabinet.storage.low`.
-- Complete: replaced the rejected angled review-table candidate with the
-  centered Modern v3 `table.review.long.modern`. Its authored raised-frontal
-  exception exposes the tabletop and both legs without left/right rotation or
-  perspective convergence. The table has a 4x1 floor footprint, a 4x2 render
-  box, and four seats split two per long side using only
-  `working-front-seated` and `working-back-seated`.
-- Complete: the same controlled 4x4 source provides fifteen library-only decor
-  variants: long and low planters, cactus and office-plant families, a floor
-  vase, sculptures, an hourglass, a globe, and a terrarium. Existing Printer,
-  Water, and Coffee assets are reused instead of regenerated. All sixteen
-  cells are extracted and registered; the active Office remains unchanged.
-- Complete: closed Doraemon as the second 8x15 character by adding only its two
-  seated-work rows, then completed a morphology transfer pilot with Anna
-  (human-like) and AI Workbot (non-human robot). All three versioned atlases
-  preserve their accepted base rows pixel-exactly, contain six active frames
-  plus two empty cells per new row, and are available only through the staging
-  asset catalog. The active Office registry remains on the prior versions.
-- Complete: extended the remaining fourteen selected PetDex characters across
-  standard-human, stylized-human, compact-costume, and non-human morphology
-  families. All 84 source strips extract to exactly six frames; every v3 atlas
-  is 8x15 at 1x and 2x, preserves visible RGBA and alpha across its nine
-  accepted base rows,
-  records provisional hand/seat calibration data, and is registered only in
-  the staging catalog. The active Office registry and map remain unchanged.
-- Complete: added explicit `floor` and `wall` regions to the active Office map.
-  Coordinate-placed objects and workstations now name their structural
-  surface; runtime validation rejects incompatible supports, anchors or
-  footprints outside the region, and supported props that bypass parent slots.
-- Held at the intended gate: none of these staging assets replaces the active
-  Office interior. The previously planned direct Facility v1 composition and
-  interior swap is superseded by the geometry-remediation program below.
+## M6 — Multi-account scale
 
-### Historical Office geometry remediation — former Steps 1-4
+- Add profile isolation, queue partitions, quotas, per-account policy, rate
+  limits, and operational dashboards.
 
-This section records the 2026-07-27 remediation tranche. It is not the current
-execution plan.
+## M7 — Rental product
 
-Verified baseline on 2026-07-27:
-
-- 212 modern Office library assets across 14 sheets;
-- 50 current runtime geometry entries and 16 planning-only entries;
-- 19 character directories;
-- 35 library assets without a declared `layer`;
-- a `4 x 2` standard-desk Scale Bible conflicting with the isolated lab's
-  `5 x 4` desk collision contract;
-- v6 lab captures that must be retained as rejected regression evidence rather
-  than used as the production geometry template.
-
-The former first batch delivered Steps 1-4 together, with sequential gates:
-
-1. Quarantine the rejected v6 composition, preserve it as a negative
-   regression case, and prove that the Active Office remains unchanged.
-2. Define Office Geometry Contract v3, including independent placement planes,
-   footprints, support planes, pivots, render bounds, offsets, occlusion parts,
-   attachment slots, seat slots, and orientations.
-3. Generate and review a complete asset audit with one explicit disposition
-   and reason for every discovered record.
-4. Lock a machine-readable Camera/Scale Bible and deterministic calibration
-   board before authorizing replacement asset generation.
-
-Production image generation, renderer replacement, character recalibration,
-and Active Office promotion remain blocked until the combined Step 1-4 gate
-passes. The detailed execution order, planned files, validation strategy, and
-acceptance criteria are maintained in
-`docs/art/OFFICE_GEOMETRY_REMEDIATION_ROADMAP.md`.
-
-Implementation status (2026-07-27): Steps 1-4 are complete. The v6 composition
-and its v5 desk inputs are explicitly rejected, preserved as negative
-regression evidence, and covered by automated isolation checks. Geometry v3
-now has a written contract, JSON Schema, shared TypeScript types, a validator,
-and positive and negative fixtures for all eight asset types. The historical
-workstation decision incorrectly locked `5 x 4 x 2.4` physical scale, a
-`5 x 4` floor footprint, and a `5 x 3` support plane. The deterministic audit reconciles 297
-records representing 235 distinct asset keys: 20 reuse, 142 metadata fixes, 77
-clean derivatives/composites, 7 regenerations, 32 orientation blocks, and 19
-license blocks. It reports all 35 missing library layer declarations, no
-missing referenced images, and no unreviewed records. The former
-machine-readable Camera/Scale Bible and calibration board are now historical;
-their `5 x 4` / `5 x 3` workstation values are revoked. Active Office data,
-renderer behavior, and visuals remained unchanged during that tranche.
-
-### Historical rejected Office workstation vertical slice — former Steps 5-8
-
-The following 2026-07-27 tranche is preserved for audit only. Its `5 x 4` desk
-contract is superseded by the current `3 x 2` authority and none of its former
-acceptance claims authorize current or Active Office work:
-
-5. `Workstation Bundle v1` composed the then-canonical desk, four orientation
-   part sets, support slots, the then-accepted chair and monitor families, a neutral
-   calibration actor, and a viewport-local four-frame screen loop. Standard,
-   Creative, and NOC variants share one physical desk family.
-6. A deterministic generator produces one modular bare-desk family in four
-   orthographic orientations, split into `rear`, `surface`, `base`, and
-   `foreground` parts. Its `5 x 4 x 2.4` scale, `5 x 4` footprint, and `5 x 3`
-   support plane matched the now-superseded Camera/Scale Bible. No equipment, chair,
-   or character pixels are baked into the desk.
-7. A Geometry v3 compositor now exists behind the development-only
-   `?lab=workstation-v1` route. Semantic part order and the workstation
-   `sortPivot` determine depth; the monitor animation is a viewport-local
-   child. The active renderer and active registry do not import this bundle.
-8. The isolated vertical slice contains exactly two edge-touching
-   workstations: a far down-facing station and a near up-facing station. It
-   supports seated, standing, furniture-only, and geometry-debug inspection.
-   Automated checks cover footprint adjacency, seat placement, composition
-   order, all sixteen desk parts, the 30-second screen-loop interval, and
-   Active Office isolation. Desktop and 390 px mobile visual QA passed with no
-   horizontal overflow.
-
-Historical status on 2026-07-27 was `accepted-staging`; it is now
-`rejected-superseded`. This is not Active Office promotion and does not approve
-the 19 prototype character identities for commercial use.
-
-### Historical rejected Office structural deployment — former Steps 9-12
-
-9. Office Map v2 now defines explicit `floor-region`, `wall-segment`,
-   `window-opening`, and `door-opening` structures, structural IDs, portals,
-   and workstation deployments. The legacy Active Office remains readable
-   without changing its map or renderer.
-10. `office-ten-v1.json` assembles the exact ten-agent roster in a 29 x 20
-    staging room. Two edge-touching rows used the now-rejected 5 x 4 desk footprint,
-    external seats, protected access aisles, and the required Standard,
-    Creative, and NOC split of 7 / 2 / 1.
-11. The staging renderer creates deterministic floor and wall layers, a
-    wall-local window shell with all sixteen viewport-local seasonal views, a
-    semantic door and portal, and workstation composites driven by one shared
-    scene clock. The original door asset remains provenance and is not
-    overwritten.
-12. The development-only `?lab=office-ten-v1` route integrates workstation,
-    equipment, structure, door, window, actor, and debug states. Automated
-    checks and desktop, tablet, 390 px, and 320 px browser QA pass with no
-    horizontal overflow or console errors.
-
-Historical status on 2026-07-27 was `accepted-staging`; it is now
-`rejected-superseded`, with `activeOfficePromotion: false`
-and `commercialCharacterApproval: false`. The acceptance record is maintained
-in `docs/OFFICE_TEN_WORKSTATION_ACCEPTANCE.md`. Furniture-family migration and
-Active Office promotion remain separate future decisions. Commercial character
-replacement and batch character calibration are removed from the current
-prototype roadmap by the roster-freeze decision below.
-
-### Immediate Office furniture/facility derivation — Steps 13-16 complete in staging
-
-13. A deterministic source-hash-locked pipeline resolves 24 static cleanup
-    records. It preserves source canvas coordinates, removes only pixels
-    outside the reviewed primary component envelope, and emits before,
-    derived, and difference evidence without overwriting source art.
-14. Forty animation records are resolved as ten four-frame families. Frame
-    canvases and timing remain stable. Sixteen reviewed inputs that contain
-    one coherent alpha component are retained as explicit verified no-op
-    derivatives instead of deleting pixels without a defensible boundary.
-15. Six library furniture/facility records now have Geometry v3 staging
-    metadata and exact source-pixel foreground overlays: two sofas, board-game
-    and side tables, low storage, and the utility cart.
-16. Seven legacy runtime records now have isolated staging composites:
-    bookshelf, coffee counter, sectional sofa, three tables, and the semantic
-    door. The development-only `?lab=office-derived-v1` route tests all
-    thirteen composites with a neutral actor, geometry labels, filters, and
-    the four wave evidence boards.
-
-Status on 2026-07-27: `accepted-staging`. All 77 audit records are resolved,
-89 versioned images and four QA boards are locked, browser QA passes at
-desktop, 390 px, and 320 px, and `activeOfficePromotion` remains false. The
-acceptance record is `docs/OFFICE_DERIVED_ASSET_WAVES_ACCEPTANCE.md`.
-
-### Owner decision — freeze the current prototype character library
-
-Decision recorded on 2026-07-27:
-
-- Retain the existing nineteen-directory character library and all completed
-  pose assets. The eighteen office-agent identities keep their completed 8x15
-  staging atlases; Boba keeps its existing companion states.
-- Do not create replacement identities, replacement atlases, or additional pose
-  rows during the current prototype phase.
-- Accept the current hand anchors and seated offsets for prototype integration.
-  Make a targeted correction only when a reproducible visible runtime defect is
-  found; do not run a full-roster calibration pass.
-- Keep every affected asset `pending-commercial-review`, keep
-  `commercialCharacterApproval: false`, and do not describe the library as
-  approved for a public, paid, or commercial release.
-- Reopen character rights clearance or replacement only through an explicit
-  owner decision before commercialization, currently represented by M6.
-
-### Historical Office Candidate review — Steps 21-23 rejected
-
-This tranche requires no character generation or batch pose calibration:
-
-21. `office-candidate-v1.json` locks the accepted Geometry v3 structure,
-    workstation, deployment, and 77-record derived manifest by hash. It also
-    locks four Active Office baseline files and keeps both promotion flags false.
-22. The development-only `?lab=office-candidate-v1` route provides live,
-    workstation, facility, and roster review scenarios. The workstation scene
-    replaces neutral silhouettes with the existing staged 8x15 characters.
-23. Review revision `r01` records ten PNG captures, a 69-second stability run,
-    all eighteen office-agent identities, Boba, all thirteen composites, zero
-    broken images, zero browser warnings/errors, and responsive passes at
-    desktop, 768 px, 390 px, and 320 px.
-
-Historical status on 2026-07-27 was `awaiting-owner-review`; it is now
-`rejected-visual`, with
-`activeOfficePromotion: false`, `commercialCharacterApproval: false`, and
-`ownerApproval: false`. Evidence is maintained in
-`docs/OFFICE_CANDIDATE_V1_REVIEW.md`.
-
-### Active Office promotion — Step 24 blocked on a new accepted candidate
-
-24. After the owner approves a new specific Candidate revision, wire that exact
-    shared scene into Active Office behind a reversible feature flag, run the
-    production and browser parity gates, and retain `office-c-v2` as rollback.
-    Do not begin this step while the Candidate status is
-    planned, `awaiting-owner-review`, or `changes-requested`.
-
-## M2 — One-account Shopee pilot
-
-- Import the existing login/session recovery approach through a connector.
-- Discover products, snapshot evidence, rank winners, create attributed links, and collect affiliate metrics.
-
-## M3 — Content and Meta publishing
-
-- Gemini browser copy, Google Flow browser visuals, QA gate, Meta Graph API scheduling, and publication reconciliation.
-
-## M4 — Learning loop and Oracle migration
-
-- Join Shopee and Meta metrics, strategy proposals, controlled experiments, alerts, encrypted profile migration, and seven-day Oracle acceptance.
-
-## M5 — Multi-account scale
-
-- Profile isolation, queue partitioning, quotas, per-account policies, rate limits, and operational dashboards.
-
-## M6 — Rental product
-
-- Authentication, tenant isolation, billing, onboarding, support tooling, legal terms, retention controls, and commercial asset licensing.
+- Add authentication, tenant isolation, billing, onboarding, support tooling,
+  legal terms, retention controls, and commercial asset licensing.

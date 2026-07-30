@@ -27,9 +27,9 @@ Cloudflare coordinates work. It does not run Playwright browser sessions. The au
 5. Every external action must be idempotent, auditable, retryable, and attributable to a workflow and agent run.
 6. Human review remains available before publishing and before activating a strategy version.
 7. Do not edit applied database migrations or generated asset reports. The initial migration may change only before the first durable pilot database is created.
-8. Do not regenerate visual assets casually. Follow `docs/art/ASSET_SHEET_PLAN.md` and run asset validation.
-9. A new Office candidate must use zero furniture, facility, equipment, or decor pixels from the current Active Office, its runtime asset registry, legacy runtime directories, rejected candidates, or previously processed furniture-library crops. Those files are rollback or visual-reference evidence only. An original project-created master sheet may supply pixels only through a new versioned extraction when `assets/game/manifests/office-furniture-master-audit-v1.json` marks the exact source salvageable and the family passes `docs/art/OFFICE_FURNITURE_PRODUCTION_GATES.md`. The owner-approved R05-r02 workstation family is the sole already-approved furniture exception. Missing assets must fail instead of falling back.
-10. Petdex assets marked `pending-commercial-review` are prototype-only.
+8. Office Engine V2 is a clean-room subsystem. Do not copy renderer code, maps, scene offsets, runtime registries, tests, or visual pixels from another branch or Git history.
+9. New visual assets require a versioned source, provenance record, deterministic extraction recipe, geometry metadata, and validation before runtime import. Missing assets must fail instead of falling back.
+10. Petdex references marked `pending-commercial-review` are prototype-only and are not runtime assets.
 11. No connector may execute real external actions while its feature flag is disabled.
 12. After completing a requested change and passing the relevant checks, commit the change and push the current branch to its configured remote so the deployed/source-of-truth view is updated. Skip the push only when the user explicitly requests local-only work or provides a different delivery target.
 
@@ -47,14 +47,10 @@ Cloudflare coordinates work. It does not run Playwright browser sessions. The au
 - TeamBrain: `docs/TEAM_BRAIN.md`
 - Code health: `docs/CODE_STANDARDS.md`
 - Delivery sequence: `docs/ROADMAP.md`
-- Office furniture authority: `docs/art/OFFICE_FURNITURE_PRODUCTION_GATES.md`
-- Office furniture source audit: `assets/game/manifests/office-furniture-master-audit-v1.json`
-- Office furniture audit summary: `docs/art/OFFICE_FURNITURE_MASTER_AUDIT_V1.md`
-- Office massage-chair R01 rejection history: `docs/art/OFFICE_FURNITURE_MASSAGE_CHAIR_R01.md`
-- Office massage-chair R02 approved family: `docs/art/OFFICE_FURNITURE_MASSAGE_CHAIR_R02.md`
-- Office Seating S01 approved batch: `docs/art/OFFICE_FURNITURE_SEATING_S01.md`
-- Office Spatial Socket I01/Held Props H01 F8-pending authority: `docs/art/OFFICE_SPATIAL_SOCKET_SYSTEM_I01.md`
-- Office Vending U01-r02 F8-pending facility: `docs/art/OFFICE_FACILITY_VENDING_U01.md`
+- Office Engine boundary: `docs/office-v2/README.md`
+- Office Engine foundations: `docs/office-v2/FOUNDATIONS.md`
+- Office Engine delivery gates: `docs/office-v2/IMPLEMENTATION_PLAN.md`
+- Office Engine research: `docs/office-v2/RESEARCH.md`
 
 ## Commands
 

@@ -52,7 +52,7 @@ export function persistPilotSimulation(
       insertRun.run(`agent-run-${job.id}`, job.workspaceId, job.workflowId, agentId, result.status, job.attempt, JSON.stringify(job.payload), JSON.stringify(result.result ?? {}), job.createdAt, result.completedAt);
       const payload = JSON.stringify({ stage: job.stage, status: result.status, connectorId: job.connectorId });
       insertAudit.run(`audit-${job.id}`, job.workspaceId, "agent.completed", agentId, job.workflowId, payload, result.completedAt, job.traceId);
-      insertOutbox.run(`outbox-${job.id}`, job.workspaceId, job.id, "office.agent.updated", payload, result.completedAt);
+      insertOutbox.run(`outbox-${job.id}`, job.workspaceId, job.id, "workflow.agent.updated", payload, result.completedAt);
     }
     database.exec("COMMIT;");
   } catch (error) {

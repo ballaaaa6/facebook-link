@@ -1,19 +1,18 @@
 # Affiliate Operations HQ
 
-An automation control plane for product discovery, affiliate attribution, browser-assisted content production, publishing, and performance learning. It combines a Cloudflare control plane with a local/Oracle automation runner.
+An automation control plane for product discovery, affiliate attribution,
+browser-assisted content production, publishing, and performance learning. The
+Cloudflare control plane coordinates a local or Oracle-hosted automation runner.
 
 ## Repository status
 
-- Git-ready npm monorepo boundaries
-- React/TypeScript control panel with Office, Dashboard, and Settings routes
+- React and TypeScript control panel with Dashboard and Settings surfaces
 - Safe TeamBrain mock with agent routing and confirmation proposals
 - Cloudflare API and Discord Worker safety scaffolds
-- Local/Oracle automation-runner contracts
-- Shared workflow, agent, attribution, and domain packages
-- Local SQLite schema, content-addressed filesystem storage, and deployment documentation
-- Google Sheet mirror with 10 operational tabs
-- 48 validated environment assets and one animated pilot character
-- CI, repository checks, security rules, and AI working context
+- Shared workflow, agent, attribution, storage, and database packages
+- Local SQLite schema and content-addressed filesystem storage
+- Office Engine V2 clean-room foundation and isolated development lab
+- CI, repository checks, security rules, and agent working context
 
 ## Run locally
 
@@ -22,9 +21,11 @@ npm install
 npm run dev
 ```
 
-Open `http://127.0.0.1:4173/`.
+Open `http://127.0.0.1:4173/`. During local development only, the empty Office
+Engine foundation is available at
+`http://127.0.0.1:4173/?lab=office-engine-v2`.
 
-Required quality gate (architecture, size budgets, duplication, code map, types, tests, and builds):
+Run the complete quality gate before committing:
 
 ```bash
 npm run check
@@ -36,64 +37,36 @@ npm run check
 apps/web/                       Cloudflare-hosted React control panel
 apps/api/                       Cloudflare Worker API boundary
 apps/discord-bot/               Verified Discord interaction boundary
-services/automation-runner/     Browser/API execution plane
+services/automation-runner/     Browser and API execution plane
 packages/contracts/             Shared domain contracts
 packages/brain/                 Replaceable TeamBrain provider boundary
 packages/workflows/             Workflow state machine
 packages/agent-catalog/         Agent responsibilities and handoffs
 packages/attribution/           Shopee Sub ID encoder
 packages/database/              SQLite migrations and local database opener
-packages/storage/               Local/Oracle content-addressed object storage
+packages/storage/               Local and Oracle object storage
 config/                         Safe editable runtime examples
-infrastructure/                 Cloudflare and Oracle runbooks/templates
-assets/art/style-concepts/      Approved visual references
-assets/game/                    Office maps, manifests, and sprites
-assets/references/              Unprocessed design references
+infrastructure/                 Cloudflare and Oracle runbooks and templates
+assets/references/              Non-runtime design references
+docs/office-v2/                 Office Engine V2 source of truth
 docs/                           Product and engineering source of truth
 legacy/                         Preserved pre-monorepo tools
-tools/art/                      Reproducible asset-processing utilities
 ```
-
-## Asset processing
-
-Generated sheets use a flat magenta background. Convert and split a sheet with:
-
-```bash
-python tools/art/process_asset_sheet.py \
-  --input assets/game/processed/core-furniture-c-v1-alpha.png \
-  --manifest assets/game/manifests/core-furniture-sheet.json \
-  --output-dir assets/game/processed/core-furniture-c-v1 \
-  --report assets/game/manifests/core-furniture-c-v1.report.json
-```
-
-The processor uses alpha-connected components instead of rigid cell crops, so tall objects can cross visual grid boundaries without contaminating neighboring assets.
-
-Reviewed Office cleanup and composite records use the source-hash-locked
-derivation pipeline. It never overwrites the reviewed source files:
-
-```bash
-npm run art:derived
-npm run art:derived:check
-npm run art:derived:contract:check
-```
-
-## Asset provenance
-
-Generated office art is original project material. The Petdex pilot is marked `pending-commercial-review` and is limited to internal prototype use until its redistribution and commercial-use terms are recorded. Do not remove provenance fields from character manifests.
 
 ## Read next
 
 - `AGENTS.md`: fastest context for a coding agent
 - `docs/PRODUCT.md`: pilot scope and acceptance gates
-- `docs/ARCHITECTURE.md`: Cloudflare/local/Oracle boundaries
+- `docs/ARCHITECTURE.md`: Cloudflare, local, and Oracle boundaries
+- `docs/office-v2/README.md`: clean-room engine boundary
+- `docs/office-v2/FOUNDATIONS.md`: required game-system knowledge
+- `docs/office-v2/IMPLEMENTATION_PLAN.md`: vertical delivery sequence
 - `docs/WORKFLOWS.md`: durable stages and handoffs
 - `docs/SECURITY.md`: credential and profile rules
-- `docs/STORAGE.md`: SQLite and local/Oracle file layout
-- `docs/SHEET_SYNC.md`: Google Sheet mirror contract
-- `docs/TEAM_BRAIN.md`: mock-to-Cloudflare provider boundary
-- `docs/CODE_STANDARDS.md`: anti-bloat and module rules
-- `docs/ROADMAP.md`: implementation sequence
+- `docs/ROADMAP.md`: product delivery sequence
 
 ## Next engineering milestone
 
-Persist the simulation through SQLite, connect the first local Shopee read-only discovery worker, and replace dashboard mock values with API read models. Real external actions remain disabled until their explicit pilot gates pass.
+Persist the affiliate simulation through SQLite, connect the first read-only
+Shopee discovery worker, and replace dashboard mock values with API read models.
+Office Engine work proceeds independently through its own gated vertical slice.

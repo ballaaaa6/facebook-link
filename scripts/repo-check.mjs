@@ -1,9 +1,5 @@
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { basename, join, relative, resolve } from "node:path";
-import {
-  resolveOfficeLayout,
-  validateOfficeLayout,
-} from "../apps/web/src/features/office/layout/officeLayout.ts";
 
 const root = resolve(import.meta.dirname, "..");
 const ignoredDirectories = new Set([".git", "node_modules", "dist", ".wrangler", "coverage"]);
@@ -13,6 +9,7 @@ const requiredPaths = [
   "AGENTS.md",
   ".env.example",
   "apps/web/package.json",
+  "apps/web/src/features/office-v2/foundation.ts",
   "apps/api/src/index.ts",
   "apps/discord-bot/src/index.ts",
   "services/automation-runner/src/index.ts",
@@ -24,6 +21,7 @@ const requiredPaths = [
   "config/agents.json",
   "config/attribution.json",
   "docs/ARCHITECTURE.md",
+  "docs/office-v2/README.md",
   "docs/SECURITY.md",
 ];
 
@@ -36,8 +34,7 @@ function walk(directory) {
   for (const name of readdirSync(directory)) {
     if (ignoredDirectories.has(name)) continue;
     const absolute = join(directory, name);
-    const stats = statSync(absolute);
-    if (stats.isDirectory()) entries.push(...walk(absolute));
+    if (statSync(absolute).isDirectory()) entries.push(...walk(absolute));
     else entries.push(absolute);
   }
   return entries;
@@ -62,163 +59,12 @@ for (const file of files) {
   }
 }
 
-const agents = JSON.parse(readFileSync(join(root, "config/agents.json"), "utf8")).agents;
+const agents = JSON.parse(readFileSync(join(root, "config/agents.json"), "utf8").replace(/^\uFEFF/, "")).agents;
 if (agents.length !== 10) failures.push(`Expected 10 pilot agents, found ${agents.length}`);
 if (new Set(agents.map((agent) => agent.id)).size !== agents.length) failures.push("Agent IDs must be unique");
 
-const attribution = JSON.parse(readFileSync(join(root, "config/attribution.json"), "utf8"));
+const attribution = JSON.parse(readFileSync(join(root, "config/attribution.json"), "utf8").replace(/^\uFEFF/, ""));
 if (attribution.dimensions.length !== 5) failures.push("Attribution must define exactly five Sub ID dimensions");
-
-const officeMap = JSON.parse(readFileSync(join(root, "assets/game/maps/office-c-v2.json"), "utf8"));
-const officeGeometry = JSON.parse(readFileSync(join(root, "assets/game/manifests/office-assets.json"), "utf8"));
-const characterRegistry = JSON.parse(readFileSync(join(root, "assets/game/characters/registry.json"), "utf8"));
-const agentIds = new Set(agents.map((agent) => agent.id));
-const characterSlugs = [
-  ...Object.values(characterRegistry.agents),
-  ...Object.values(characterRegistry.companions),
-];
-for (const slug of characterSlugs) {
-  for (const sheet of [characterRegistry.activeRuntime.sheet1x, characterRegistry.activeRuntime.sheet2x]) {
-    if (!existsSync(join(root, "assets/game/characters", slug, sheet))) {
-      failures.push(`Missing active character runtime sheet: ${slug}/${sheet}`);
-    }
-  }
-}
-const officeAssetIds = new Set(
-  ["core-furniture-sheet.json", "decor-mechanical-sheet.json", "equipment-sheet.json", "office-utility-sheet.json", "office-furniture-c-v2.json"]
-    .flatMap((manifest) => JSON.parse(readFileSync(join(root, "assets/game/manifests", manifest), "utf8")).cells)
-    .map((cell) => cell.id),
-);
-if (officeMap.workstations.length !== agents.length) failures.push("Office map must provide one workstation per pilot agent");
-if (Object.keys(characterRegistry.agents).length !== agents.length) failures.push("Character registry must provide one character per pilot agent");
-if (!Array.isArray(officeMap.objects) || officeMap.objects.length < 20) failures.push("Office map must provide a populated objects layer");
-const officeObjectIds = new Set();
-const officeParentIds = new Set([
-  ...officeMap.workstations.map((station) => station.id),
-  ...(officeMap.objects ?? []).filter((object) => Number.isFinite(object.x) && Number.isFinite(object.y)).map((object) => object.id),
-]);
-const officeAttachmentSlots = new Set(
-  Object.values(officeGeometry.slotSets).flatMap((slots) => Object.keys(slots)),
-);
-for (const [assetId, geometry] of Object.entries(officeGeometry.assets)) {
-  for (const [field, value] of [
-    ["physicalScale.width", geometry.physicalScale?.width],
-    ["physicalScale.height", geometry.physicalScale?.height],
-    ["renderBox.width", geometry.renderBox?.width],
-    ["renderBox.height", geometry.renderBox?.height],
-    ["footprint.width", geometry.footprint?.width],
-    ["footprint.depth", geometry.footprint?.depth],
-  ]) {
-    if (value !== undefined && (!Number.isInteger(value) || value < 1)) {
-      failures.push(`Office geometry must use positive integer ${field}: ${assetId}`);
-    }
-  }
-  if (!Number.isInteger(geometry.physicalScale?.depth) || geometry.physicalScale.depth < 0) {
-    failures.push(`Office geometry must use non-negative integer physicalScale.depth: ${assetId}`);
-  }
-}
-for (const [slotSetId, slots] of Object.entries(officeGeometry.slotSets)) {
-  for (const [slotId, slot] of Object.entries(slots)) {
-    if (!Number.isInteger(slot.x) || !Number.isInteger(slot.y)) {
-      failures.push(`Office surface slot must use integer coordinates: ${slotSetId}.${slotId}`);
-    }
-  }
-}
-for (const object of officeMap.objects ?? []) {
-  if (officeObjectIds.has(object.id)) failures.push(`Duplicate office object ID: ${object.id}`);
-  officeObjectIds.add(object.id);
-  if (!officeAssetIds.has(object.asset)) failures.push(`Unknown office object asset: ${object.asset}`);
-  const geometry = officeGeometry.assets[object.asset];
-  if (!geometry) failures.push(`Missing office geometry: ${object.asset}`);
-  if (!["wall", "furniture", "equipment", "decor"].includes(object.layer)) failures.push(`Invalid office object layer: ${object.id}`);
-  if (!["center", "bottom-center", "wall-top", "wall-right"].includes(object.anchor)) failures.push(`Invalid office object anchor: ${object.id}`);
-  if (geometry && geometry.layer !== object.layer) failures.push(`Office object layer differs from geometry: ${object.id}`);
-  if (geometry && geometry.anchor !== object.anchor) failures.push(`Office object anchor differs from geometry: ${object.id}`);
-  const hasPosition = Number.isFinite(object.x) && Number.isFinite(object.y);
-  const hasAttachment = typeof object.parentId === "string" && typeof object.slot === "string";
-  if (hasPosition === hasAttachment) failures.push(`Office object must use either coordinates or an attachment: ${object.id}`);
-  if (hasAttachment && !officeParentIds.has(object.parentId)) failures.push(`Unknown office object parent: ${object.id}`);
-  if (hasAttachment && !officeAttachmentSlots.has(object.slot)) failures.push(`Unknown office object slot: ${object.id}`);
-  if (hasPosition && (object.x < 0 || object.x > officeMap.width || object.y < 0 || object.y > officeMap.height)) {
-    failures.push(`Office object outside map bounds: ${object.id}`);
-  }
-  if (object.anchor === "wall-top" && (!hasPosition || object.y > 2.4)) failures.push(`Top-wall object is not attached to the wall: ${object.id}`);
-  if (object.anchor === "wall-right" && (!hasPosition || object.x < officeMap.width - 1.5)) failures.push(`Right-wall object is not attached to the wall: ${object.id}`);
-}
-const officeLayout = resolveOfficeLayout(officeMap, officeGeometry.assets, officeGeometry.slotSets);
-for (const issue of validateOfficeLayout(officeMap, officeGeometry.assets, officeLayout)) {
-  failures.push(`Office layout: ${issue}`);
-}
-for (const station of officeMap.workstations) {
-  if (!agentIds.has(station.id)) failures.push(`Unknown office workstation agent: ${station.id}`);
-  if (!characterRegistry.agents[station.id]) failures.push(`Missing runtime character mapping: ${station.id}`);
-  if (!officeAssetIds.has(station.desk)) failures.push(`Unknown workstation desk asset: ${station.desk}`);
-  const workPoint = station.work;
-  if (!workPoint || workPoint.x < 0 || workPoint.x > officeMap.width || workPoint.y < 0 || workPoint.y > officeMap.height) {
-    failures.push(`Invalid work anchor for ${station.id}`);
-  }
-  for (const anchorName of ["seat", "stand"]) {
-    const point = station[anchorName];
-    if (!point || point.x < 0 || point.x > officeMap.width || point.y < 0 || point.y > officeMap.height) {
-      failures.push(`Invalid ${anchorName} anchor for ${station.id}`);
-      continue;
-    }
-    const hitbox = station.collision;
-    const collides = point.x >= hitbox.x
-      && point.x <= hitbox.x + hitbox.width
-      && point.y >= hitbox.y
-      && point.y <= hitbox.y + hitbox.height;
-    if (collides) failures.push(`${station.id} ${anchorName} anchor intersects its desk collision`);
-  }
-}
-for (const companion of officeMap.companions ?? []) {
-  if (!characterRegistry.companions[companion.id]) failures.push(`Missing companion character mapping: ${companion.id}`);
-  for (const [pointId, point] of [["home", companion.home], ...companion.route.map((point, index) => [`route[${index}]`, point])]) {
-    if (!Number.isInteger(point.x) || !Number.isInteger(point.y)) {
-      failures.push(`Office companion must use integer coordinates: ${companion.id}.${pointId}`);
-    }
-  }
-}
-if (!Array.isArray(officeMap.routes) || officeMap.routes.length < 8) {
-  failures.push("Office map must protect its primary walking routes");
-} else {
-  const routeContains = (point) => officeMap.routes.some((route) => (
-    point.x >= route.x
-    && point.x <= route.x + route.width
-    && point.y >= route.y
-    && point.y <= route.y + route.height
-  ));
-  const navigationNodes = new Map((officeMap.navigation?.nodes ?? []).map((node) => [node.id, node]));
-  for (const object of (officeMap.objects ?? []).filter((item) => item.layer !== "wall" && Number.isFinite(item.x) && Number.isFinite(item.y))) {
-    if (routeContains(object)) failures.push(`Office object center blocks a protected route: ${object.id}`);
-  }
-  for (const [fromId, toId] of officeMap.navigation?.edges ?? []) {
-    const from = navigationNodes.get(fromId);
-    const to = navigationNodes.get(toId);
-    if (!from || !to) {
-      failures.push(`Office navigation edge references an unknown node: ${fromId} -> ${toId}`);
-      continue;
-    }
-    if (from.x !== to.x && from.y !== to.y) {
-      failures.push(`Office navigation edge must be axis-aligned: ${fromId} -> ${toId}`);
-      continue;
-    }
-    const length = Math.hypot(to.x - from.x, to.y - from.y);
-    const steps = Math.max(1, Math.ceil(length * 4));
-    for (let step = 0; step <= steps; step += 1) {
-      const ratio = step / steps;
-      const sample = { x: from.x + (to.x - from.x) * ratio, y: from.y + (to.y - from.y) * ratio };
-      if (!routeContains(sample)) {
-        failures.push(`Office navigation leaves protected routes: ${fromId} -> ${toId}`);
-        break;
-      }
-    }
-  }
-}
-for (const [agentId, slug] of Object.entries(characterRegistry.agents)) {
-  const sheetPath = join(root, "assets/game/characters", slug, "spritesheet.webp");
-  if (!existsSync(sheetPath)) failures.push(`Missing spritesheet for ${agentId}: ${slug}`);
-}
 
 const validationReports = files.filter((file) => file.endsWith(".report.json"));
 let validatedAssets = 0;
@@ -228,7 +74,7 @@ for (const file of validationReports) {
   if ((report.summary?.failed ?? 0) > 0) failures.push(`Asset validation failure: ${relative(root, file)}`);
 }
 
-if (failures.length) {
+if (failures.length > 0) {
   console.error(failures.map((failure) => `- ${failure}`).join("\n"));
   process.exitCode = 1;
 } else {

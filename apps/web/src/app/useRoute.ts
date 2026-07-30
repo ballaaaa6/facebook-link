@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
-export type AppRoute = "/" | "/dashboard" | "/settings";
+export type AppRoute = "/" | "/settings";
 
 function normalize(pathname: string): AppRoute {
-  if (pathname === "/dashboard" || pathname === "/settings") return pathname;
+  if (pathname === "/settings") return pathname;
   return "/";
 }
 

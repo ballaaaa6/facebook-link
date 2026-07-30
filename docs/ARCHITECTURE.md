@@ -50,17 +50,16 @@ All meaningful changes produce an append-only audit event. Current state is stor
 - SQLite is authoritative; sheet sync is idempotent by record ID and version.
 - Chat providers may answer or propose actions, but cannot execute tools directly.
 
-## Office spatial authority
+## Office Engine boundary
 
-The neutral full-image coordinates in `docs/OFFICE_FULL_GRID.md` are the owner
-review surface for assigning future floor, wall, pillar, furniture, and route
-zones. The grid itself infers no zones. The Active Office map remains a
-separate runtime boundary.
+Office Engine V2 is an optional read-only visualization. It consumes a versioned
+adapter snapshot derived from durable agent and workflow events; it does not own
+operational truth, call external connectors, or write storage records directly.
 
-`docs/OFFICE_SEMANTIC_GRID_V2.md` records the isolated semantic candidate
-derived from those owner assignments. Its revised background, window, and
-floor boundary remain review-only and cannot replace Active Office without a
-separate promotion decision.
+World, simulation, projection, and presentation dependencies flow in one
+direction. The engine and its future visual assets live behind the clean-room
+rules in `docs/office-v2/README.md`. Dashboard, Settings, API, and runner builds
+must not require the renderer.
 
 ## Scale path
 
