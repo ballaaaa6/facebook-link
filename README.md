@@ -32,6 +32,13 @@ Run the complete quality gate before committing:
 npm run check
 ```
 
+Remove disposable build output, local caches, and temporary logs without touching
+dependencies, runtime data, references, or legacy tools:
+
+```bash
+npm run clean:local
+```
+
 ## Project map
 
 ```text
@@ -51,7 +58,10 @@ infrastructure/                 Cloudflare and Oracle runbooks and templates
 assets/references/              Non-runtime design references
 docs/office-v2/                 Office Engine V2 source of truth
 docs/                           Product and engineering source of truth
+prompts/                        Versioned browser prompt artifacts
+runtime-data/                   Ignored local pilot state; never cleaned automatically
 legacy/                         Preserved pre-monorepo tools
+tmp/, dist/, .wrangler/         Ignored disposable local output
 ```
 
 ## Read next
@@ -59,6 +69,7 @@ legacy/                         Preserved pre-monorepo tools
 - `AGENTS.md`: fastest context for a coding agent
 - `docs/PRODUCT.md`: pilot scope and acceptance gates
 - `docs/ARCHITECTURE.md`: Cloudflare, local, and Oracle boundaries
+- `docs/REPOSITORY_LAYOUT.md`: current, reference, legacy, runtime, and generated files
 - `docs/office-v2/README.md`: clean-room engine boundary
 - `docs/office-v2/FOUNDATIONS.md`: required game-system knowledge
 - `docs/office-v2/IMPLEMENTATION_PLAN.md`: vertical delivery sequence

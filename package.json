@@ -18,6 +18,7 @@
     "build": "npm run build --workspaces --if-present",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "test": "npm run test --workspaces --if-present",
+    "clean:local": "node scripts/clean-local-artifacts.mjs",
     "repo:check": "node scripts/repo-check.mjs",
     "office:v2:clean-room:check": "node scripts/office-v2-clean-room-check.mjs",
     "architecture:check": "node scripts/architecture-check.mjs",

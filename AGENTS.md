@@ -47,6 +47,7 @@ Cloudflare coordinates work. It does not run Playwright browser sessions. The au
 - TeamBrain: `docs/TEAM_BRAIN.md`
 - Code health: `docs/CODE_STANDARDS.md`
 - Delivery sequence: `docs/ROADMAP.md`
+- Repository file ownership: `docs/REPOSITORY_LAYOUT.md`
 - Office Engine boundary: `docs/office-v2/README.md`
 - Office Engine foundations: `docs/office-v2/FOUNDATIONS.md`
 - Office Engine delivery gates: `docs/office-v2/IMPLEMENTATION_PLAN.md`

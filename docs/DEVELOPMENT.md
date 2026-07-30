@@ -26,6 +26,15 @@ This verifies repository shape, the Office Engine V2 clean-room boundary,
 import boundaries, file-size budgets, source duplication, the generated code
 map, TypeScript, tests, and builds across workspaces.
 
+After local builds or asset experiments, remove disposable output with:
+
+```bash
+npm run clean:local
+```
+
+This command preserves `node_modules/`, `runtime-data/`, `assets/`, and `legacy/`.
+File ownership and old/current status are defined in `REPOSITORY_LAYOUT.md`.
+
 Run a focused guard while iterating:
 
 ```bash

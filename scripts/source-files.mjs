@@ -3,7 +3,7 @@ import path from "node:path";
 
 export const root = process.cwd();
 export const sourceExtensions = new Set([".ts", ".tsx", ".js", ".jsx", ".mjs", ".css"]);
-const ignored = new Set(["node_modules", "dist", ".git", "runtime-data", "coverage"]);
+const ignored = new Set(["node_modules", "dist", ".git", ".wrangler", "runtime-data", "tmp", "coverage"]);
 
 export async function walk(directory = root) {
   const entries = await readdir(directory, { withFileTypes: true });

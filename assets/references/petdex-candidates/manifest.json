@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "reference-collection-v1",
+  "collectionId": "petdex-candidates",
+  "kind": "visual-reference",
+  "runtimeEligible": false,
+  "commercialStatus": "pending-commercial-review",
+  "sourceNote": "Owner-supplied screenshots retained with their original capture filenames.",
+  "items": [
+    { "id": "candidate-01", "file": "Screenshot 2026-07-23 050908.png", "capturedAt": "2026-07-23T05:09:08+07:00", "sha256": "9f5e11ef0cd9fe7222fd92411d24603f32b9209955e4d7b2ec18e45d76ae2679" },
+    { "id": "candidate-02", "file": "Screenshot 2026-07-23 051200.png", "capturedAt": "2026-07-23T05:12:00+07:00", "sha256": "e418484599e475d2361950bc01b20d34b9a2c75dcc1112130fdd4856f9b90754" },
+    { "id": "candidate-03", "file": "Screenshot 2026-07-23 051354.png", "capturedAt": "2026-07-23T05:13:54+07:00", "sha256": "f22ac518cd201b724c4cdc07675f2f10a93999d29cee0852faaeaac1fc375d0b" },
+    { "id": "candidate-04", "file": "Screenshot 2026-07-23 051357.png", "capturedAt": "2026-07-23T05:13:57+07:00", "sha256": "f768a009fbec248ca928154a70ebe907c86233819cc4bfad1460b58a24664890" },
+    { "id": "candidate-05", "file": "Screenshot 2026-07-23 051359.png", "capturedAt": "2026-07-23T05:13:59+07:00", "sha256": "bf24428cd66ec866445f8ea63697304f93bc72bbb5044b4dd5fe543f52c928cc" },
+    { "id": "candidate-06", "file": "Screenshot 2026-07-23 051401.png", "capturedAt": "2026-07-23T05:14:01+07:00", "sha256": "9928df2e5443ced5de2980108cdd155399b9e0cf50218579d6820de991b7d1cb" },
+    { "id": "candidate-07", "file": "Screenshot 2026-07-23 051404.png", "capturedAt": "2026-07-23T05:14:04+07:00", "sha256": "906e5c35c6dba0d0b733db4c174ec9f0e5e8e51b9851b939e073dbb4a62bc376" },
+    { "id": "candidate-08", "file": "Screenshot 2026-07-23 051408.png", "capturedAt": "2026-07-23T05:14:08+07:00", "sha256": "021de4c28a65a670ca60f6e2ea013748c108d25792decce2e96efb4ec7089e44" },
+    { "id": "candidate-09", "file": "Screenshot 2026-07-23 051412.png", "capturedAt": "2026-07-23T05:14:12+07:00", "sha256": "f76909b867992b4040c7433f0c7d2ee9238db012b2a17723eee927b4bf0561b2" },
+    { "id": "candidate-10", "file": "Screenshot 2026-07-23 051415.png", "capturedAt": "2026-07-23T05:14:15+07:00", "sha256": "363517220a378e2b551ffbc598643350724afbe0bbc5741b667c260f6cdb07d0" },
+    { "id": "candidate-11", "file": "Screenshot 2026-07-23 051418.png", "capturedAt": "2026-07-23T05:14:18+07:00", "sha256": "b7fcc595cc7e6e5ffcdd11c2600c9f7c42157509d6e75a494d7d6712437f84d1" },
+    { "id": "candidate-12", "file": "Screenshot 2026-07-23 051421.png", "capturedAt": "2026-07-23T05:14:21+07:00", "sha256": "ffb94a174b607916e8950ccec136a64a66419cdc9a5b6c1fd5361f0649a0b6e2" },
+    { "id": "candidate-13", "file": "Screenshot 2026-07-23 051423.png", "capturedAt": "2026-07-23T05:14:23+07:00", "sha256": "815d1b3548bf1d661fb3614868b61327ad9bf3e9b8ed3ed20bf178d5732d57b1" },
+    { "id": "candidate-14", "file": "Screenshot 2026-07-23 051426.png", "capturedAt": "2026-07-23T05:14:26+07:00", "sha256": "35c13550e5b4977d7128970f24643ad4bf723bb1d387b0de7b32594ed765b1f7" },
+    { "id": "candidate-15", "file": "Screenshot 2026-07-23 051431.png", "capturedAt": "2026-07-23T05:14:31+07:00", "sha256": "023135ec4bf1a9274feae159ceb3eb3a32ada88118d9d57f024f12fc4ad4baf4" },
+    { "id": "candidate-16", "file": "Screenshot 2026-07-23 051435.png", "capturedAt": "2026-07-23T05:14:35+07:00", "sha256": "a5c1cc8ab101bb849bd750038117f98704095ee23cd43cc693ee0faf50e93bf4" },
+    { "id": "candidate-17", "file": "Screenshot 2026-07-23 051438.png", "capturedAt": "2026-07-23T05:14:38+07:00", "sha256": "ac31b77f049b74a02707cf5cdcd5a179a4794a334d23eb992f9f5b0bdabc55d6" },
+    { "id": "candidate-18", "file": "Screenshot 2026-07-23 051441.png", "capturedAt": "2026-07-23T05:14:41+07:00", "sha256": "db0c40f1f9215ca8529c74b7ed08577128a4e93274638742321f53a73a1505d8" },
+    { "id": "candidate-19", "file": "Screenshot 2026-07-23 051448.png", "capturedAt": "2026-07-23T05:14:48+07:00", "sha256": "a441fd681e014b7bff1e8758f7f7e9335474dc9567552e971803021a4a064cf9" },
+    { "id": "candidate-20", "file": "Screenshot 2026-07-23 051453.png", "capturedAt": "2026-07-23T05:14:53+07:00", "sha256": "056c701e535c990cc2b47af5b8db69ffca5044f69851c09d26cf38c342f49ba1" },
+    { "id": "candidate-21", "file": "Screenshot 2026-07-23 051457.png", "capturedAt": "2026-07-23T05:14:57+07:00", "sha256": "805ebfd5bcd7a9a8dce3bb339e029441ee75ed8462c4399f474dc8114a79e091" }
+  ]
+}

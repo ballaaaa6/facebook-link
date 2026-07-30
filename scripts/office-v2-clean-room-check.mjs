@@ -2,7 +2,7 @@ import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative, resolve } from "node:path";
 
 const root = resolve(import.meta.dirname, "..");
-const ignoredDirectories = new Set([".git", "node_modules", "dist", ".wrangler", "coverage"]);
+const ignoredDirectories = new Set([".git", "node_modules", "dist", ".wrangler", "runtime-data", "tmp", "coverage"]);
 const retiredRoots = [
   "apps/web/src/features/office",
   "packages/office-read-model",
