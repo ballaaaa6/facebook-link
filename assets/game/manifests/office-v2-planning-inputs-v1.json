@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "office-v2-planning-inputs-v1",
+  "status": "planning-only",
+  "createdOn": "2026-07-30",
+  "branchBase": {
+    "tag": "office-v1-final-2026-07-30",
+    "commit": "679757c0feff063ac7cb7ce538ffc59342ff4f7a"
+  },
+  "sourceAuthority": {
+    "background": {
+      "file": "assets/art/backgrounds/office-c-background-modern-v8-current.png",
+      "sha256": "d0c0ef48c22fd40747b63017e6a24593da1eab1186dfb5d45c3a50853b674f56"
+    },
+    "neutralGrid": {
+      "file": "assets/game/maps/office-full-grid-v1.json",
+      "sha256": "51b759d6ea7dadb77b35a3d97e5e31cc6ce606acf72500421bf321111b2bb5ff"
+    }
+  },
+  "artifacts": [
+    {
+      "file": "assets/art/layout-references/office-v2-planning/01-zone-boundary-interpretation.png",
+      "sha256": "f1ab91e602b94fd2aeb9b2c8eac51974a4efe2a11b5b9d95c149da0bb0f475b7",
+      "purpose": "color-boundary-interpretation-without-semantic-assignment"
+    },
+    {
+      "file": "assets/art/layout-references/office-v2-planning/02-semantic-zone-map-review-draft.png",
+      "sha256": "674ad4d408551156221e328116224a223a875fded3a5169d0c34e255e149e914",
+      "purpose": "review-draft-semantic-zone-interpretation"
+    }
+  ],
+  "permissions": {
+    "planningReferenceOnly": true,
+    "runtimeImport": false,
+    "assetPixelSource": false,
+    "spatialAuthority": false,
+    "collisionAuthority": false,
+    "navigationAuthority": false,
+    "activeOfficePromotion": false
+  }
+}
