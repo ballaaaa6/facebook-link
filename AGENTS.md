@@ -51,6 +51,7 @@ Cloudflare coordinates work. It does not run Playwright browser sessions. The au
 - Office Engine boundary: `docs/office-v2/README.md`
 - Office Engine foundations: `docs/office-v2/FOUNDATIONS.md`
 - Office Engine evidence audit: `docs/office-v2/KNOWLEDGE_COMPLETENESS_AUDIT.md`
+- Office Engine readiness remediation: `docs/office-v2/READINESS_REMEDIATION_PLAN.md`
 - Office Engine delivery gates: `docs/office-v2/IMPLEMENTATION_PLAN.md`
 - Office Engine research: `docs/office-v2/RESEARCH.md`
 

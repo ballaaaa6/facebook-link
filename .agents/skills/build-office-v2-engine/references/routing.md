@@ -1,7 +1,8 @@
 # Office V2 task routing
 
 Always read `README.md`, `FOUNDATIONS.md`, `KNOWLEDGE_COMPLETENESS_AUDIT.md`,
-and `READINESS_MATRIX.md` first. Paths below are relative to `docs/office-v2/`.
+`READINESS_MATRIX.md`, and `READINESS_REMEDIATION_PLAN.md` first. Paths
+below are relative to `docs/office-v2/`.
 
 ## Product or game loop
 

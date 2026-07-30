@@ -73,6 +73,8 @@ must not restate the canonical documents.
 - `GLOSSARY_AND_INVARIANTS.md`: one vocabulary for code, art, and QA
 - `READINESS_MATRIX.md`: implementation authority and outstanding gates
 - `KNOWLEDGE_COMPLETENESS_AUDIT.md`: evidence-level audit and closure backlog
+- `READINESS_REMEDIATION_PLAN.md`: ordered remediation work, test ladder,
+  commit boundaries, and promotion gates
 - `WORLD_COORDINATES_PROJECTION_CAMERA.md`: world-to-screen mathematics
 - `WORLD_MODEL_OCCUPANCY_PLACEMENT.md`: spatial truth and placement rules
 - `ROOMS_SURFACES_STRUCTURES_ZONES.md`: floors, edges, doors, and cutaways

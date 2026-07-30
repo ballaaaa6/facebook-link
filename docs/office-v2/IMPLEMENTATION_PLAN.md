@@ -38,6 +38,10 @@ Status: in progress. The target brief exists; the following contracts do not.
 `KNOWLEDGE_COMPLETENESS_AUDIT.md` is the evidence inventory for this phase. Its
 P0 contradictions must close before persistent engine implementation, and its
 minimum safe-to-produce gate must pass before the large floor or any art batch.
+`READINESS_REMEDIATION_PLAN.md` owns the dependency-ordered remediation, commit
+sequence, and cross-phase T0–T6 promotion evidence. Phase 1 closes the contract
+and bounded-probe portion of that plan; later implementation remains in the
+phases below.
 
 ### Identity and deterministic execution
 
@@ -116,10 +120,12 @@ second document that owns the same rule.
 | Renderer and visual acceptance | extend decision 0002, the performance matrix, and testing budgets | benchmark report, reviewed goldens, accessibility and lifecycle evidence |
 
 Exit: every target feature has one canonical owner, contract, valid fixture,
-rejected fixture, executable evidence, and migration effect; every P0
-contradiction in the audit is resolved. The target geometric fixture compiles
-deterministically and no production asset needs a scene-specific pixel offset
-or an unresolved scale decision.
+rejected fixture, applicable Phase 1 executable contract/semantic evidence, and
+migration effect; every P0 contradiction in the audit is resolved. The target
+geometric fixture compiles deterministically and no production asset needs a
+scene-specific pixel offset or an unresolved scale decision. This exit
+authorizes Phase 2; it does not claim that the T2–T6 implementation gates in
+`READINESS_REMEDIATION_PLAN.md` have already passed.
 
 ## Phase 2 — Executable world kernel
 

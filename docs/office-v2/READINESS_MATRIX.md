@@ -8,6 +8,8 @@ and migration rule all exist. Prose alone never marks a row ready.
 matrix. Its current verdict is no-go for the large floor, bulk art, renderer
 integration, and target crowds. A `Ready for Phase` label below authorizes only
 the narrow behavior named in that row; it does not imply target readiness.
+`READINESS_REMEDIATION_PLAN.md` defines the ordered remediation and T0–T6
+promotion ladder; planning a gate does not change any status in this matrix.
 
 | Topic | Decision | Contract | Fixtures | Automated evidence | Status |
 | --- | --- | --- | --- | --- | --- |
@@ -50,3 +52,8 @@ disposable or pure contract probes only. Persistent world/simulation code starts
 after Closure A and the applicable parts of Closure B are accepted. Bulk art,
 the large map, target crowds, and renderer integration remain blocked until the
 minimum safe-to-produce gate passes.
+
+The immediate target is T1 — Semantic Foundation in
+`READINESS_REMEDIATION_PLAN.md`. T1 remains blocked until the current gate is
+made honest and identity, coordinate, geometry, building, reference-closure, and
+deterministic scene-compilation evidence passes.
