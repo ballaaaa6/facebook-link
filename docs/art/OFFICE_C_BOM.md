@@ -55,9 +55,11 @@ Counter A01-r02 remains retained, and F9 v1 remains unchanged. See
 The exact F3 hashes are now owner-approved. The isolated production revision
 completes F4-F7 with four seam loops, 432 total pose cases, 1,728
 orientation-placement cases, exact I01/H01 or working-front seat reuse, and
-four thirty-second reservation proofs. It stops at F8 owner review with zero
-candidate slots active. See
-`docs/art/OFFICE_FACILITY_UPSIZE_2X2X4_PRODUCTION_V1.md`.
+four thirty-second reservation proofs. The owner accepted those behavior and
+spatial contracts but rejected the procedural motion artwork at F8. Motion V2
+replaces only the effect pixels with 52 built-in ImageGen-authored components
+and stops for a new visual review. Zero candidate slots are active. See
+`docs/art/OFFICE_FACILITY_UPSIZE_MOTION_V2.md`.
 
 ### Facility asset generation plan
 

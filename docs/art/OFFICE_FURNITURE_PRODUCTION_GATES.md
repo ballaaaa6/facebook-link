@@ -434,9 +434,20 @@ sequences, 432 actor pose cases, 1,728 four-orientation placement cases, and
 four thirty-second reservation scenarios. Coffee, Water, and Vending reuse
 exact I01/H01 primary grips; Massage reuses the approved working-front seat
 row and remains interaction-front-only while retaining four static placement
-elevations. The batch status is `production-owner-review`: F8, all five slot
-transfers, F9 v2, F10, and Active Office remain blocked. See
+elevations. The owner accepted this behavior evidence but rejected its
+procedural motion artwork at F8. All five slot transfers, F9 v2, F10, and
+Active Office remain blocked. See
 `docs/art/OFFICE_FACILITY_UPSIZE_2X2X4_PRODUCTION_V1.md`.
+
+Motion Artwork V2 applies the Arcade G02 standard: moving pixels must
+originate in an authored raster part atlas. Runtime code may crop,
+nearest-resize, integer-transform, clip, and alpha-composite those pixels but
+may not draw an effect with primitives. Coffee C02, Water W02, Vending U02,
+and Massage R03 now provide 52 fresh ImageGen-authored components, sixteen
+A-D seam frames, twenty-four finite-use frames, and four person-interaction
+previews. The V2 visual hashes are `pending-owner-review`; the 108/432
+production rebuild, five-slot transfer, F9, F10, and Active Office remain
+blocked. See `docs/art/OFFICE_FACILITY_UPSIZE_MOTION_V2.md`.
 
 ## Required evidence per family
 

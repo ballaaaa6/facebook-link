@@ -1,8 +1,16 @@
 # Office Facility Upsize 2x2x4 Production V1
 
-Status: `production-owner-review`
+Status: `f8-rejected-motion-artwork`
 
 Date: 2026-07-30
+
+Owner review update: the physical designs and system behavior remain accepted,
+but the motion artwork was rejected at F8 because its effects were drawn with
+procedural primitives instead of authored raster parts. The immutable V2
+successor and exact rejection boundary are recorded in
+`docs/art/OFFICE_FACILITY_UPSIZE_MOTION_V2.md`. No candidate slot activated.
+The frozen V1 manifest retains its former `production-owner-review` status as
+historical evidence; it is not an active approval claim.
 
 This isolated F4-F8 production batch consumes only the exact F3-approved
 Coffee Machine C02, Water Dispenser W02, Vending Machine U02, and Massage
