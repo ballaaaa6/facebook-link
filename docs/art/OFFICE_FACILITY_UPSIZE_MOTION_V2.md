@@ -1,6 +1,6 @@
 # Office Facility Upsize Motion Artwork V2
 
-Status: `motion-artwork-owner-review`
+Status: `effects-approved-shell-integration-rejected`
 
 Updated: 2026-07-30
 
@@ -18,6 +18,15 @@ replaces only the visual motion source and stops before the 108/432 production
 rebuild.
 
 No reservation slots transfer. F9 and Active Office remain unchanged.
+
+## Subsequent owner review
+
+The owner accepted all 52 Motion V2 effect parts but rejected their visual
+integration with the reused four shells. The committed Motion V2 manifest
+retains its historical `pending-owner-review` state as immutable evidence.
+Integrated Shell V3 consumes the accepted effect cutouts by exact hash and
+creates fresh four-side shell pixels with no old-shell pixel reuse. See
+`docs/art/OFFICE_FACILITY_UPSIZE_SHELL_V3.md`.
 
 ## V1 motion artwork rejection
 

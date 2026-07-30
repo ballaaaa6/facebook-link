@@ -26,6 +26,32 @@ export function pngSize(path) {
   return [bytes.readUInt32BE(16), bytes.readUInt32BE(20)];
 }
 
+export function gifSize(path) {
+  const bytes = readFileSync(join(root, path));
+  const signature = bytes.toString("ascii", 0, 6);
+  if (signature !== "GIF87a" && signature !== "GIF89a") {
+    throw new Error(`Not a GIF: ${path}`);
+  }
+  return [bytes.readUInt16LE(6), bytes.readUInt16LE(8)];
+}
+
+export function collectFileAssets(rootValue) {
+  const assets = new Map();
+  const visit = (value) => {
+    if (!value || typeof value !== "object") return;
+    if (
+      typeof value.file === "string"
+      && typeof value.sha256 === "string"
+      && Array.isArray(value.size)
+    ) {
+      assets.set(value.file, value);
+    }
+    for (const child of Object.values(value)) visit(child);
+  };
+  visit(rootValue);
+  return assets;
+}
+
 export function recursiveFiles(directory) {
   if (!existsSync(join(root, directory))) return [];
   return readdirSync(join(root, directory), { recursive: true })

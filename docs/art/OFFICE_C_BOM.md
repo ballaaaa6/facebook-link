@@ -61,6 +61,13 @@ replaces only the effect pixels with 52 built-in ImageGen-authored components
 and stops for a new visual review. Zero candidate slots are active. See
 `docs/art/OFFICE_FACILITY_UPSIZE_MOTION_V2.md`.
 
+The owner accepted those 52 effects but rejected their integration with the
+reused shells. Integrated Shell V3 creates sixteen fresh ImageGen-authored
+front/left/right/back shell views and wraps the accepted effect parts with
+authored rear/foreground shell layers. It remains a visual-only preflight;
+the 108/432 production rebuild, five-slot transfer, F9, F10, and Active Office
+remain blocked. See `docs/art/OFFICE_FACILITY_UPSIZE_SHELL_V3.md`.
+
 ### Facility asset generation plan
 
 The current registry already contains reusable visuals for most Facility v1

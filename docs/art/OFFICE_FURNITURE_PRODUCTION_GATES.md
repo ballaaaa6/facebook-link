@@ -449,6 +449,18 @@ previews. The V2 visual hashes are `pending-owner-review`; the 108/432
 production rebuild, five-slot transfer, F9, F10, and Active Office remain
 blocked. See `docs/art/OFFICE_FACILITY_UPSIZE_MOTION_V2.md`.
 
+The owner accepted the 52 Motion V2 effect parts but rejected the reused shell
+integration. `office.facility.upsize-shell.v3` therefore creates four entirely
+new ImageGen shell turnarounds: sixteen retained front/left/right/back views.
+No old shell pixels or newly generated effect pixels are permitted. The
+runtime compositor uses only authored shell crops, the approved Motion V2
+cutouts, nearest resize, integer placement, alpha masks, and alpha compositing.
+All sixteen A-D frames keep the shell and `[48,124]` pivot stable, and all four
+finite sequences return to the exact initial idle hash. Shell V3 is
+`pending-owner-review`; the 108/432 rebuild, five-slot transfer, F9, F10, and
+Active Office remain blocked. See
+`docs/art/OFFICE_FACILITY_UPSIZE_SHELL_V3.md`.
+
 ## Required evidence per family
 
 Each approved family must retain:

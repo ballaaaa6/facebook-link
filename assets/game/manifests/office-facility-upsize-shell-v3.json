@@ -1,0 +1,3311 @@
+{
+  "schemaVersion": 1,
+  "id": "office.facility.upsize-shell.v3",
+  "revision": "integrated-shell-v3-visual-r01",
+  "status": "shell-integration-owner-review",
+  "createdOn": "2026-07-30",
+  "developmentOnly": true,
+  "decisionBoundary": {
+    "motionV2": {
+      "manifest": "assets/game/manifests/office-facility-upsize-motion-v2.json",
+      "manifestSha256": "8b9986c3b52513827a2914d624c66ee2df6b891ec2528ec019d87390aa825946",
+      "effects": "accepted",
+      "shellIntegration": "rejected-at-owner-review"
+    },
+    "replacementScope": "fresh-shell-pixels-and-integration-only",
+    "approvedEffectRegeneration": false,
+    "fullProductionRebuildBeforeVisualApproval": false
+  },
+  "sourcePolicy": {
+    "workflow": "built-in ImageGen",
+    "promptRecord": {
+      "file": "assets/art/layout-references/office-facility-upsize-shell-v3/source/IMAGEGEN_PROMPTS.md",
+      "sha256": "230126237331635757f751cf532eaee937b20cf01ece07ea43e9b4ba7c094b0c"
+    },
+    "oldShellPixelReuse": false,
+    "approvedMotionV2EffectReuse": true,
+    "freshShellPixelGeneration": true,
+    "proceduralRuntimeShellPixels": false,
+    "proceduralRuntimeEffectPixels": false,
+    "codeMayCrop": true,
+    "codeMayChromaRemove": true,
+    "codeMayNearestResize": true,
+    "codeMayIntegerTranslate": true,
+    "codeMayAlphaMask": true,
+    "codeMayAlphaComposite": true,
+    "missingAssetFallback": false
+  },
+  "physicalContract": {
+    "physicalScaleTiles": [
+      2,
+      2,
+      4
+    ],
+    "floorFootprintTiles": [
+      2,
+      2
+    ],
+    "renderBoxTiles": [
+      3,
+      4
+    ],
+    "runtimeCanvas": [
+      96,
+      128
+    ],
+    "basePivotPixels": [
+      48,
+      124
+    ]
+  },
+  "families": [
+    {
+      "slug": "coffee-machine-c02",
+      "label": "Coffee Machine C02",
+      "kind": "coffee",
+      "shellSource": {
+        "chroma": {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/source/coffee-machine-c02-shell-turnaround-chroma.png",
+          "sha256": "4bac0a70d8d17f68c638ea206934f04eda0853e307c4dd85be1a2aa50034e4e2",
+          "size": [
+            1774,
+            887
+          ]
+        },
+        "alpha": {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/source-alpha/coffee-machine-c02-shell-turnaround-alpha.png",
+          "sha256": "b0409e6c3a110c7a494aff657a6cd11d78a129579be8cdedea2f299e2eaf7616",
+          "size": [
+            1774,
+            887
+          ]
+        },
+        "views": [
+          {
+            "view": "front",
+            "sourceBox": [
+              73,
+              97,
+              406,
+              803
+            ],
+            "sourceSize": [
+              333,
+              706
+            ],
+            "runtimeOrigin": [
+              20,
+              4
+            ],
+            "runtimeSize": [
+              57,
+              120
+            ]
+          },
+          {
+            "view": "left",
+            "sourceBox": [
+              502,
+              97,
+              803,
+              803
+            ],
+            "sourceSize": [
+              301,
+              706
+            ],
+            "runtimeOrigin": [
+              23,
+              4
+            ],
+            "runtimeSize": [
+              51,
+              120
+            ]
+          },
+          {
+            "view": "right",
+            "sourceBox": [
+              930,
+              97,
+              1262,
+              803
+            ],
+            "sourceSize": [
+              332,
+              706
+            ],
+            "runtimeOrigin": [
+              20,
+              4
+            ],
+            "runtimeSize": [
+              56,
+              120
+            ]
+          },
+          {
+            "view": "back",
+            "sourceBox": [
+              1355,
+              97,
+              1691,
+              803
+            ],
+            "sourceSize": [
+              336,
+              706
+            ],
+            "runtimeOrigin": [
+              20,
+              4
+            ],
+            "runtimeSize": [
+              57,
+              120
+            ]
+          }
+        ]
+      },
+      "runtimeShell": {
+        "views": {
+          "front": {
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/coffee-machine-c02/runtime/shell/front.png",
+            "sha256": "7d40a1806f6fe05bf5112680ce7cd23404fbc8722bdde6b28739b7eb55bb94cc",
+            "size": [
+              96,
+              128
+            ]
+          },
+          "left": {
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/coffee-machine-c02/runtime/shell/left.png",
+            "sha256": "fd1ecd84a7c0dfb61c2ba8ad0d80024e9879968670b10cb7b13fbbdf6e40bbf9",
+            "size": [
+              96,
+              128
+            ]
+          },
+          "right": {
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/coffee-machine-c02/runtime/shell/right.png",
+            "sha256": "de8febf18517abeb275276513d345bf5f594b7cdcd2ca81ab281c25c8ec47ef2",
+            "size": [
+              96,
+              128
+            ]
+          },
+          "back": {
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/coffee-machine-c02/runtime/shell/back.png",
+            "sha256": "e06f193e20547b5b68ecf21adbb389062cfc5d897adfb37bbd9bfd0bf03164e4",
+            "size": [
+              96,
+              128
+            ]
+          }
+        },
+        "foreground": {
+          "file": "assets/game/processed/office-facility-upsize-shell-v3/coffee-machine-c02/runtime/shell/front-foreground.png",
+          "sha256": "fd253c4046a0b148d61f1d2a7e50fe02e686dbc18976a8e54089de3a7e7c70ef",
+          "size": [
+            96,
+            128
+          ]
+        }
+      },
+      "effectAuthority": {
+        "manifest": "assets/game/manifests/office-facility-upsize-motion-v2.json",
+        "regions": {
+          "screen": [
+            25,
+            14,
+            71,
+            37
+          ],
+          "steam": [
+            32,
+            43,
+            64,
+            76
+          ],
+          "pour": [
+            40,
+            52,
+            56,
+            78
+          ]
+        },
+        "parts": [
+          {
+            "role": "screen",
+            "phase": "a",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/coffee-machine-c02/source-cutouts/screen-a.png",
+              "sha256": "070197386246da5a9cc5d87499b3190e2508259875134190da8c628fea6eefd2",
+              "sourceRecord": {
+                "role": "screen",
+                "phase": "a",
+                "sourceBox": [
+                  70,
+                  156,
+                  293,
+                  334
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  223,
+                  178
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/coffee-machine-c02/runtime/parts/screen-a.png",
+              "sha256": "83f40cd5a76aad52df45aec6a16ac58c0afea4d4f9e7cfc6cdbcc1467071d891",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "screen",
+            "phase": "b",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/coffee-machine-c02/source-cutouts/screen-b.png",
+              "sha256": "63fd6bb8c2c73255f2ab34baf7f686efa07ff34453cac96b01e104b03b2a3604",
+              "sourceRecord": {
+                "role": "screen",
+                "phase": "b",
+                "sourceBox": [
+                  368,
+                  156,
+                  590,
+                  334
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  222,
+                  178
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/coffee-machine-c02/runtime/parts/screen-b.png",
+              "sha256": "9b1df1591520b4632243c7fa7501298e1b9b2b60d7ea1e8fecda642978f0b456",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "screen",
+            "phase": "c",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/coffee-machine-c02/source-cutouts/screen-c.png",
+              "sha256": "500ef621172a5e39c1113241d84cf04ddf61c9679568ab944cb986f0e1a60373",
+              "sourceRecord": {
+                "role": "screen",
+                "phase": "c",
+                "sourceBox": [
+                  666,
+                  156,
+                  888,
+                  334
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  222,
+                  178
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/coffee-machine-c02/runtime/parts/screen-c.png",
+              "sha256": "f9a6c5e1e306a74df9f9be9c779bffac2f8b22086087704d005ec539acab98cd",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "screen",
+            "phase": "d",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/coffee-machine-c02/source-cutouts/screen-d.png",
+              "sha256": "a5d1385dc086b00cf70409b7bfde064b55d61637cdf6d4bda1a6dc982044c0b9",
+              "sourceRecord": {
+                "role": "screen",
+                "phase": "d",
+                "sourceBox": [
+                  963,
+                  156,
+                  1185,
+                  334
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  222,
+                  178
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/coffee-machine-c02/runtime/parts/screen-d.png",
+              "sha256": "a6e8f472f859c194609f532c442b829987ee09066cc94aa87425ba8c376d6c5c",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "steam",
+            "phase": "a",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/coffee-machine-c02/source-cutouts/steam-a.png",
+              "sha256": "4dfa3ae303c13a1c00540b6c53b20dfdc77c3db9c1115a2d0f4513c20cc1e5ee",
+              "sourceRecord": {
+                "role": "steam",
+                "phase": "a",
+                "sourceBox": [
+                  149,
+                  585,
+                  216,
+                  728
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  67,
+                  143
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/coffee-machine-c02/runtime/parts/steam-a.png",
+              "sha256": "571b70d96969e96e77c73bc7b2c64b950b176e4b9861092a0d2d99a26e77f803",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "steam",
+            "phase": "b",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/coffee-machine-c02/source-cutouts/steam-b.png",
+              "sha256": "180bbe550a5856a8a1bfbc23be349e57f593735bdc51b22964eb154df5674211",
+              "sourceRecord": {
+                "role": "steam",
+                "phase": "b",
+                "sourceBox": [
+                  390,
+                  503,
+                  546,
+                  728
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  156,
+                  225
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/coffee-machine-c02/runtime/parts/steam-b.png",
+              "sha256": "5cc3f86eade7839dbdbedc6f6847bb77d793ae10feb0838d699e0b03aa86bfc5",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "steam",
+            "phase": "c",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/coffee-machine-c02/source-cutouts/steam-c.png",
+              "sha256": "1d096270b368d537dda36ebdff2a4ced14030c37ea443aa63129d335fcad91f6",
+              "sourceRecord": {
+                "role": "steam",
+                "phase": "c",
+                "sourceBox": [
+                  680,
+                  455,
+                  882,
+                  729
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  202,
+                  274
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/coffee-machine-c02/runtime/parts/steam-c.png",
+              "sha256": "a3ae89de9ca022d4fd0083f966ebd642d0ea489576424b7e313897fcddf98670",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "steam",
+            "phase": "d",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/coffee-machine-c02/source-cutouts/steam-d.png",
+              "sha256": "31c82e07cc49c90545585acb26f3e0626e768803da8e070077d6a74a8d4c4625",
+              "sourceRecord": {
+                "role": "steam",
+                "phase": "d",
+                "sourceBox": [
+                  1013,
+                  535,
+                  1142,
+                  728
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  129,
+                  193
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/coffee-machine-c02/runtime/parts/steam-d.png",
+              "sha256": "bad209f48545237e7d90b78b2a872b5cc4c0d98b8f76c7307cbebd736708e2a0",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "pour",
+            "phase": "a",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/coffee-machine-c02/source-cutouts/pour-a.png",
+              "sha256": "1b8d06ddd84019d075ec1ab2355e384c883e90a4cb1f371fe3d5c12a314d2395",
+              "sourceRecord": {
+                "role": "pour",
+                "phase": "a",
+                "sourceBox": [
+                  159,
+                  970,
+                  194,
+                  1044
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  35,
+                  74
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/coffee-machine-c02/runtime/parts/pour-a.png",
+              "sha256": "c2b85da3b624e8a87116915628a13de63aca4f534ab0b45e67da680fff06d9dd",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "pour",
+            "phase": "b",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/coffee-machine-c02/source-cutouts/pour-b.png",
+              "sha256": "f19f96e7170e5025e35c25bb986481448f340ab0723d87d5420ee0585d57e9d5",
+              "sourceRecord": {
+                "role": "pour",
+                "phase": "b",
+                "sourceBox": [
+                  449,
+                  857,
+                  492,
+                  1098
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  43,
+                  241
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/coffee-machine-c02/runtime/parts/pour-b.png",
+              "sha256": "d0e4e553263f055688775f324827aa3e3a944f7c5832de09d906a8e316dd001c",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "pour",
+            "phase": "c",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/coffee-machine-c02/source-cutouts/pour-c.png",
+              "sha256": "ce2eae7771d5916acbc9c55bdccd40541d453b9511cbff76891b4d127784f367",
+              "sourceRecord": {
+                "role": "pour",
+                "phase": "c",
+                "sourceBox": [
+                  689,
+                  857,
+                  856,
+                  1123
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  167,
+                  266
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/coffee-machine-c02/runtime/parts/pour-c.png",
+              "sha256": "e1a8da61c9fc5e7cff66132f3aef15edea2e5054a50b0a56b9023f40c2d22786",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "pour",
+            "phase": "d",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/coffee-machine-c02/source-cutouts/pour-d.png",
+              "sha256": "df851f13408e015546350cc87b5edd7e51ec4c6349474c77e634e7217b316c84",
+              "sourceRecord": {
+                "role": "pour",
+                "phase": "d",
+                "sourceBox": [
+                  1054,
+                  965,
+                  1098,
+                  1051
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  44,
+                  86
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/coffee-machine-c02/runtime/parts/pour-d.png",
+              "sha256": "d50a63f9c9a74ee5a3661a98840534ee090560ce90bfb1739a9b692dab57e9ab",
+              "size": [
+                96,
+                128
+              ]
+            }
+          }
+        ]
+      },
+      "seamLoop": {
+        "transition": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "a"
+        ],
+        "durationMs": 240,
+        "frames": [
+          {
+            "phase": "a",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/coffee-machine-c02/runtime/seam/a.png",
+            "sha256": "c8548e28df3eaa013357a1e115f59ae6f6d15a80f673298f20ab3a6e4ec23a65",
+            "size": [
+              96,
+              128
+            ]
+          },
+          {
+            "phase": "b",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/coffee-machine-c02/runtime/seam/b.png",
+            "sha256": "c9acf7138db5ccd19a8efbd3ee34cc3b9adb75c4517dbdae920e97c2c7ba6011",
+            "size": [
+              96,
+              128
+            ]
+          },
+          {
+            "phase": "c",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/coffee-machine-c02/runtime/seam/c.png",
+            "sha256": "5cf0f1ea6b67516efaa248c759293ca7ce89558ccfc7a50950cd7f63f18eefc0",
+            "size": [
+              96,
+              128
+            ]
+          },
+          {
+            "phase": "d",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/coffee-machine-c02/runtime/seam/d.png",
+            "sha256": "37eee57495042ba3dbed957ea453ace7b03e84a8ae7a95631febc82b8a88f25b",
+            "size": [
+              96,
+              128
+            ]
+          }
+        ],
+        "gif": {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/coffee-machine-c02/coffee-machine-c02-shell-v3-seam-loop.gif",
+          "sha256": "5504aab55a97977302dc6d42a7b2ac17e1a89402d719b24db4c1d0624e540f4c",
+          "size": [
+            384,
+            512
+          ]
+        },
+        "outsideDeclaredChangedPixels": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pivotDeltaPixels": [
+          0,
+          0
+        ]
+      },
+      "finiteUse": {
+        "states": [
+          "idle",
+          "wake",
+          "preheat",
+          "pour",
+          "finish",
+          "idle"
+        ],
+        "frames": [
+          {
+            "index": 0,
+            "state": "idle",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/coffee-machine-c02/runtime/finite/00-idle.png",
+            "sha256": "96b69eab022a7c76974b6a410204eedfe020fbe598e7afb17588dd58d4d8cf1a",
+            "size": [
+              96,
+              128
+            ]
+          },
+          {
+            "index": 1,
+            "state": "wake",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/coffee-machine-c02/runtime/finite/01-wake.png",
+            "sha256": "f2a7d00dba668c0c7d49482279e2df2898d896c733f6e1dffcaf529fac2667f3",
+            "size": [
+              96,
+              128
+            ]
+          },
+          {
+            "index": 2,
+            "state": "preheat",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/coffee-machine-c02/runtime/finite/02-preheat.png",
+            "sha256": "41fe0b9e0131293437eb12ec23a1c22f94c28a9d843054147dc8e445776bf843",
+            "size": [
+              96,
+              128
+            ]
+          },
+          {
+            "index": 3,
+            "state": "pour",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/coffee-machine-c02/runtime/finite/03-pour.png",
+            "sha256": "1c7abe620453c7d456d4ae9df751bc87e8b08361a4515b3299d7f9d38538f747",
+            "size": [
+              96,
+              128
+            ]
+          },
+          {
+            "index": 4,
+            "state": "finish",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/coffee-machine-c02/runtime/finite/04-finish.png",
+            "sha256": "bd18b5db2d0739eae0c4fb75fd2f22323dbd2216f2e5d93dcf98719e47277575",
+            "size": [
+              96,
+              128
+            ]
+          },
+          {
+            "index": 5,
+            "state": "idle",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/coffee-machine-c02/runtime/finite/05-idle.png",
+            "sha256": "96b69eab022a7c76974b6a410204eedfe020fbe598e7afb17588dd58d4d8cf1a",
+            "size": [
+              96,
+              128
+            ]
+          }
+        ],
+        "idleReturnExact": true,
+        "interactionGif": {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/coffee-machine-c02/coffee-machine-c02-shell-v3-interaction.gif",
+          "sha256": "95585a7e761b471127734c8374d69b9813df6a494b3f6cea3add4cbaf0774d4c",
+          "size": [
+            1152,
+            640
+          ]
+        }
+      }
+    },
+    {
+      "slug": "water-dispenser-w02",
+      "label": "Water Dispenser W02",
+      "kind": "water",
+      "shellSource": {
+        "chroma": {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/source/water-dispenser-w02-shell-turnaround-chroma.png",
+          "sha256": "20f3d148c8ac2b2da64d1fae304c1b77bf4d17b529ca43c2cc652a8129d70dce",
+          "size": [
+            1774,
+            887
+          ]
+        },
+        "alpha": {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/source-alpha/water-dispenser-w02-shell-turnaround-alpha.png",
+          "sha256": "31003d5c48bcf25c0e06e6d41267ae01f2c9a647c932c0e3e402ed67ebad6183",
+          "size": [
+            1774,
+            887
+          ]
+        },
+        "views": [
+          {
+            "view": "front",
+            "sourceBox": [
+              71,
+              113,
+              424,
+              782
+            ],
+            "sourceSize": [
+              353,
+              669
+            ],
+            "runtimeOrigin": [
+              17,
+              4
+            ],
+            "runtimeSize": [
+              63,
+              120
+            ]
+          },
+          {
+            "view": "left",
+            "sourceBox": [
+              508,
+              113,
+              813,
+              782
+            ],
+            "sourceSize": [
+              305,
+              669
+            ],
+            "runtimeOrigin": [
+              21,
+              4
+            ],
+            "runtimeSize": [
+              55,
+              120
+            ]
+          },
+          {
+            "view": "right",
+            "sourceBox": [
+              954,
+              113,
+              1261,
+              782
+            ],
+            "sourceSize": [
+              307,
+              669
+            ],
+            "runtimeOrigin": [
+              21,
+              4
+            ],
+            "runtimeSize": [
+              55,
+              120
+            ]
+          },
+          {
+            "view": "back",
+            "sourceBox": [
+              1349,
+              113,
+              1691,
+              782
+            ],
+            "sourceSize": [
+              342,
+              669
+            ],
+            "runtimeOrigin": [
+              18,
+              4
+            ],
+            "runtimeSize": [
+              61,
+              120
+            ]
+          }
+        ]
+      },
+      "runtimeShell": {
+        "views": {
+          "front": {
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/water-dispenser-w02/runtime/shell/front.png",
+            "sha256": "91157e2d50634d83601e1567529d2ab4172e415e543a79c86e92d050342c6d11",
+            "size": [
+              96,
+              128
+            ]
+          },
+          "left": {
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/water-dispenser-w02/runtime/shell/left.png",
+            "sha256": "9609dd5ac9185ce22d2e214a4779de660bf2332625475b55b9b6c8e69827df99",
+            "size": [
+              96,
+              128
+            ]
+          },
+          "right": {
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/water-dispenser-w02/runtime/shell/right.png",
+            "sha256": "f41405a13dbadf68f24d6c7ef4120e45feb2e0ad4f56be3436633b0807898cee",
+            "size": [
+              96,
+              128
+            ]
+          },
+          "back": {
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/water-dispenser-w02/runtime/shell/back.png",
+            "sha256": "69809c64edb2687a40b1a38163201ecd9553d0adcd6aa9f6026729aa6e11ba3d",
+            "size": [
+              96,
+              128
+            ]
+          }
+        },
+        "foreground": {
+          "file": "assets/game/processed/office-facility-upsize-shell-v3/water-dispenser-w02/runtime/shell/front-foreground.png",
+          "sha256": "ca24f64efeb17570631501bb8e20ef4a522d7fa1c2364c37b84826067230a4f2",
+          "size": [
+            96,
+            128
+          ]
+        }
+      },
+      "effectAuthority": {
+        "manifest": "assets/game/manifests/office-facility-upsize-motion-v2.json",
+        "regions": {
+          "screen": [
+            22,
+            11,
+            74,
+            34
+          ],
+          "flow": [
+            40,
+            45,
+            56,
+            79
+          ],
+          "splash": [
+            30,
+            73,
+            66,
+            85
+          ]
+        },
+        "parts": [
+          {
+            "role": "screen",
+            "phase": "a",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/water-dispenser-w02/source-cutouts/screen-a.png",
+              "sha256": "1d4a79d1da19114d7578a0a796282813343fa4b65a2a654bb6cfb42f6801141c",
+              "sourceRecord": {
+                "role": "screen",
+                "phase": "a",
+                "sourceBox": [
+                  45,
+                  121,
+                  299,
+                  326
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  254,
+                  205
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/water-dispenser-w02/runtime/parts/screen-a.png",
+              "sha256": "1cfb16d92e87bb85e6ae36570f997b9ba9383c135690c4633067a15f554715fc",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "screen",
+            "phase": "b",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/water-dispenser-w02/source-cutouts/screen-b.png",
+              "sha256": "7c9530d9212fdf7fc00f58522e547dac70254db2d7a5aaddb4db2239d4bd8b96",
+              "sourceRecord": {
+                "role": "screen",
+                "phase": "b",
+                "sourceBox": [
+                  347,
+                  121,
+                  601,
+                  326
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  254,
+                  205
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/water-dispenser-w02/runtime/parts/screen-b.png",
+              "sha256": "3e720c20a8a38f44eca1a9ba58206febe4ab0cec00fb8fcd31538d9378f5c1f7",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "screen",
+            "phase": "c",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/water-dispenser-w02/source-cutouts/screen-c.png",
+              "sha256": "3e5d74f1c1e70054c1d85aef1e37b38430f16972594d64033be0d86eaa31d5d4",
+              "sourceRecord": {
+                "role": "screen",
+                "phase": "c",
+                "sourceBox": [
+                  652,
+                  121,
+                  905,
+                  326
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  253,
+                  205
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/water-dispenser-w02/runtime/parts/screen-c.png",
+              "sha256": "82528637076174884636630da1e39f44a8a44f8947a71c80a6d81dc51c3746c0",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "screen",
+            "phase": "d",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/water-dispenser-w02/source-cutouts/screen-d.png",
+              "sha256": "1d785238c8d918adca6994b7018a41ea8a3d4380e2ef232e77168a53c01cf626",
+              "sourceRecord": {
+                "role": "screen",
+                "phase": "d",
+                "sourceBox": [
+                  954,
+                  121,
+                  1206,
+                  326
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  252,
+                  205
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/water-dispenser-w02/runtime/parts/screen-d.png",
+              "sha256": "d53673e04df3747c4267bc7022e3e170e98ef38670339bc3523e0c92c3d97b4f",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "flow",
+            "phase": "a",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/water-dispenser-w02/source-cutouts/flow-a.png",
+              "sha256": "6e958802442bfaff69e03a3a30d4742a7d198941a3f74e8380870b3c69954c98",
+              "sourceRecord": {
+                "role": "flow",
+                "phase": "a",
+                "sourceBox": [
+                  150,
+                  563,
+                  195,
+                  666
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  45,
+                  103
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/water-dispenser-w02/runtime/parts/flow-a.png",
+              "sha256": "de64163091b8f85f84f6452c30d019c194f17f3aa644a8efb8501d01e70e04a2",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "flow",
+            "phase": "b",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/water-dispenser-w02/source-cutouts/flow-b.png",
+              "sha256": "0e47891b2b98d6d346f538ea36f25a3bf54c0042de23e0cba1e5f19cdee708ba",
+              "sourceRecord": {
+                "role": "flow",
+                "phase": "b",
+                "sourceBox": [
+                  454,
+                  462,
+                  487,
+                  746
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  33,
+                  284
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/water-dispenser-w02/runtime/parts/flow-b.png",
+              "sha256": "984ad90de8309e7da237901c8bff3aa03016b032a6c826d64e340b5f8b2ad396",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "flow",
+            "phase": "c",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/water-dispenser-w02/source-cutouts/flow-c.png",
+              "sha256": "5c56bba2c85b8f69030bc608d1f9aac102844cbf595f0ff165c062ca9d2cdd44",
+              "sourceRecord": {
+                "role": "flow",
+                "phase": "c",
+                "sourceBox": [
+                  709,
+                  461,
+                  840,
+                  793
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  131,
+                  332
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/water-dispenser-w02/runtime/parts/flow-c.png",
+              "sha256": "49e46cec7744fd5f674f3cb0dd3c461556df99845044560eef574776cfaf0b6c",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "flow",
+            "phase": "d",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/water-dispenser-w02/source-cutouts/flow-d.png",
+              "sha256": "0ad297994296849e841ffcc7a7aa4760477ec1c27c456854c959258c72e38fe8",
+              "sourceRecord": {
+                "role": "flow",
+                "phase": "d",
+                "sourceBox": [
+                  1035,
+                  461,
+                  1119,
+                  792
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  84,
+                  331
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/water-dispenser-w02/runtime/parts/flow-d.png",
+              "sha256": "163695a64c23c7d7346f10e3e9d04e512ce082288db06feb90a683c0d7bf48d9",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "splash",
+            "phase": "a",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/water-dispenser-w02/source-cutouts/splash-a.png",
+              "sha256": "cab57fa032e2038b7ed232830cc6c18f421adc5b10294bcb26c235067c804182",
+              "sourceRecord": {
+                "role": "splash",
+                "phase": "a",
+                "sourceBox": [
+                  60,
+                  979,
+                  280,
+                  1148
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  220,
+                  169
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/water-dispenser-w02/runtime/parts/splash-a.png",
+              "sha256": "18ced4907f33ed7404ec2e0a655d48969bd6cda3d8af04418e3bd430242bac3d",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "splash",
+            "phase": "b",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/water-dispenser-w02/source-cutouts/splash-b.png",
+              "sha256": "6b92b28a07352902ab946236723bbc640d16d7eb9ed43ac285e0c3ed615f0001",
+              "sourceRecord": {
+                "role": "splash",
+                "phase": "b",
+                "sourceBox": [
+                  347,
+                  950,
+                  593,
+                  1148
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  246,
+                  198
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/water-dispenser-w02/runtime/parts/splash-b.png",
+              "sha256": "02f00151a0c01efdeba8afa25b95ecf8b12cceb52c31f103487be26b90c06ecb",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "splash",
+            "phase": "c",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/water-dispenser-w02/source-cutouts/splash-c.png",
+              "sha256": "4263cc5cb5f3665e08aa9eb62ad7a170e7d0dd1deb549528d459d9b6dd6a22ec",
+              "sourceRecord": {
+                "role": "splash",
+                "phase": "c",
+                "sourceBox": [
+                  653,
+                  1026,
+                  897,
+                  1148
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  244,
+                  122
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/water-dispenser-w02/runtime/parts/splash-c.png",
+              "sha256": "fa0e06f0aaa20cc7a765cd64405d510e138621608646efd277b4bd19fd130134",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "splash",
+            "phase": "d",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/water-dispenser-w02/source-cutouts/splash-d.png",
+              "sha256": "463a66f4b09e5f31f30a52ee106af805af1f389b3c1d0370b5a02802be2268b4",
+              "sourceRecord": {
+                "role": "splash",
+                "phase": "d",
+                "sourceBox": [
+                  960,
+                  1012,
+                  1195,
+                  1148
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  235,
+                  136
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/water-dispenser-w02/runtime/parts/splash-d.png",
+              "sha256": "adedc4a3adb6c13ed329ad4a492efa9cf3c9b14da40cbb44affb88c12f60a243",
+              "size": [
+                96,
+                128
+              ]
+            }
+          }
+        ]
+      },
+      "seamLoop": {
+        "transition": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "a"
+        ],
+        "durationMs": 240,
+        "frames": [
+          {
+            "phase": "a",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/water-dispenser-w02/runtime/seam/a.png",
+            "sha256": "cffd6fefef639a88a90168a4b80b547c1ec9758e308881ca1f60a532228a7d34",
+            "size": [
+              96,
+              128
+            ]
+          },
+          {
+            "phase": "b",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/water-dispenser-w02/runtime/seam/b.png",
+            "sha256": "a7c73912fcaa5f7bdc64b89e57fb56d69be3d1f7dcda198fe73afe7067e42353",
+            "size": [
+              96,
+              128
+            ]
+          },
+          {
+            "phase": "c",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/water-dispenser-w02/runtime/seam/c.png",
+            "sha256": "bcfa5d51dca527b8f6d6f1d9cb1440048b71f020baa7f22f44d4333338999d91",
+            "size": [
+              96,
+              128
+            ]
+          },
+          {
+            "phase": "d",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/water-dispenser-w02/runtime/seam/d.png",
+            "sha256": "e2519db7f16fd2d5cadc8d2cadfb70aedb63f7e709ef92af58641df68056dbd3",
+            "size": [
+              96,
+              128
+            ]
+          }
+        ],
+        "gif": {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/water-dispenser-w02/water-dispenser-w02-shell-v3-seam-loop.gif",
+          "sha256": "14f6f965124dbddcef779794a836ebf37e8febded2710ca9b440b36eabe0f678",
+          "size": [
+            384,
+            512
+          ]
+        },
+        "outsideDeclaredChangedPixels": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pivotDeltaPixels": [
+          0,
+          0
+        ]
+      },
+      "finiteUse": {
+        "states": [
+          "idle",
+          "ready",
+          "dispense-start",
+          "dispense",
+          "drip-stop",
+          "idle"
+        ],
+        "frames": [
+          {
+            "index": 0,
+            "state": "idle",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/water-dispenser-w02/runtime/finite/00-idle.png",
+            "sha256": "28248318f152c4e14e2db80a1cc6206f735f0a9b57893512cd60c8b3d4651002",
+            "size": [
+              96,
+              128
+            ]
+          },
+          {
+            "index": 1,
+            "state": "ready",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/water-dispenser-w02/runtime/finite/01-ready.png",
+            "sha256": "ef5fcb2815fa2c281f5712d9220a44630be62a3991db75028094165931422f7a",
+            "size": [
+              96,
+              128
+            ]
+          },
+          {
+            "index": 2,
+            "state": "dispense-start",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/water-dispenser-w02/runtime/finite/02-dispense-start.png",
+            "sha256": "4a4d63520e4e1b45237b82cee990d7fc113483d5f69f02d2ce1efc3583664983",
+            "size": [
+              96,
+              128
+            ]
+          },
+          {
+            "index": 3,
+            "state": "dispense",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/water-dispenser-w02/runtime/finite/03-dispense.png",
+            "sha256": "c7ec3462df07be872ff89059e17afa046ac6cf9d206d44c53b1d97207ac543fc",
+            "size": [
+              96,
+              128
+            ]
+          },
+          {
+            "index": 4,
+            "state": "drip-stop",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/water-dispenser-w02/runtime/finite/04-drip-stop.png",
+            "sha256": "979dee15694ee352a6e8c0b4d2947c66d58bdb89fb4a9ba345a5ea8fa02a9c72",
+            "size": [
+              96,
+              128
+            ]
+          },
+          {
+            "index": 5,
+            "state": "idle",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/water-dispenser-w02/runtime/finite/05-idle.png",
+            "sha256": "28248318f152c4e14e2db80a1cc6206f735f0a9b57893512cd60c8b3d4651002",
+            "size": [
+              96,
+              128
+            ]
+          }
+        ],
+        "idleReturnExact": true,
+        "interactionGif": {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/water-dispenser-w02/water-dispenser-w02-shell-v3-interaction.gif",
+          "sha256": "a1d498e28ef1487f174edc258d76c8051bd510575131c8cb905d866034d84952",
+          "size": [
+            1152,
+            640
+          ]
+        }
+      }
+    },
+    {
+      "slug": "vending-machine-u02",
+      "label": "Vending Machine U02",
+      "kind": "vending",
+      "shellSource": {
+        "chroma": {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/source/vending-machine-u02-shell-turnaround-chroma.png",
+          "sha256": "561de0bc07874fe0293c15cb75afc76bf9b6934ebce0d90d5170a6781b7a6b2b",
+          "size": [
+            1774,
+            887
+          ]
+        },
+        "alpha": {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/source-alpha/vending-machine-u02-shell-turnaround-alpha.png",
+          "sha256": "2f81bc43a36a63b11ba5ea1c5a68b98d0b6a491ef85bda39fb2c432ce64799ac",
+          "size": [
+            1774,
+            887
+          ]
+        },
+        "views": [
+          {
+            "view": "front",
+            "sourceBox": [
+              62,
+              68,
+              507,
+              799
+            ],
+            "sourceSize": [
+              445,
+              731
+            ],
+            "runtimeOrigin": [
+              13,
+              8
+            ],
+            "runtimeSize": [
+              71,
+              116
+            ]
+          },
+          {
+            "view": "left",
+            "sourceBox": [
+              594,
+              73,
+              850,
+              799
+            ],
+            "sourceSize": [
+              256,
+              726
+            ],
+            "runtimeOrigin": [
+              28,
+              8
+            ],
+            "runtimeSize": [
+              41,
+              116
+            ]
+          },
+          {
+            "view": "right",
+            "sourceBox": [
+              950,
+              73,
+              1194,
+              799
+            ],
+            "sourceSize": [
+              244,
+              726
+            ],
+            "runtimeOrigin": [
+              29,
+              8
+            ],
+            "runtimeSize": [
+              39,
+              116
+            ]
+          },
+          {
+            "view": "back",
+            "sourceBox": [
+              1321,
+              72,
+              1684,
+              799
+            ],
+            "sourceSize": [
+              363,
+              727
+            ],
+            "runtimeOrigin": [
+              19,
+              8
+            ],
+            "runtimeSize": [
+              58,
+              116
+            ]
+          }
+        ]
+      },
+      "runtimeShell": {
+        "views": {
+          "front": {
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/vending-machine-u02/runtime/shell/front.png",
+            "sha256": "268812452ca48ea01d60a306ad17a768bbbe1f2dea73cd4b5baedba079cd0bc5",
+            "size": [
+              96,
+              128
+            ]
+          },
+          "left": {
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/vending-machine-u02/runtime/shell/left.png",
+            "sha256": "18ebe5f49c47e106cea8d05582c03e39d8fbc3d405bd8523fd8521bf61d2007a",
+            "size": [
+              96,
+              128
+            ]
+          },
+          "right": {
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/vending-machine-u02/runtime/shell/right.png",
+            "sha256": "1dfad3431da768b44a5de976c5dff3fded04a0de282885d18911c5ea10c30ee9",
+            "size": [
+              96,
+              128
+            ]
+          },
+          "back": {
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/vending-machine-u02/runtime/shell/back.png",
+            "sha256": "599f9717414a90d9f4677f29a7098d1eb60aa8bf5eeac072db1969316d602e24",
+            "size": [
+              96,
+              128
+            ]
+          }
+        },
+        "foreground": {
+          "file": "assets/game/processed/office-facility-upsize-shell-v3/vending-machine-u02/runtime/shell/front-foreground.png",
+          "sha256": "ba4df2d21edb0f25e0e0b105a077dcde79a3c14d7121d46cbbe63b704c73455f",
+          "size": [
+            96,
+            128
+          ]
+        }
+      },
+      "effectAuthority": {
+        "manifest": "assets/game/manifests/office-facility-upsize-motion-v2.json",
+        "regions": {
+          "merchandise": [
+            16,
+            12,
+            64,
+            66
+          ],
+          "display": [
+            67,
+            14,
+            84,
+            27
+          ],
+          "coil": [
+            22,
+            42,
+            58,
+            62
+          ],
+          "package": [
+            20,
+            82,
+            64,
+            104
+          ]
+        },
+        "parts": [
+          {
+            "role": "merchandise",
+            "phase": "a",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/vending-machine-u02/source-cutouts/merchandise-a.png",
+              "sha256": "b022904da4d8ded3fced3515bd648300d40e14b775f650fc9603ecb5ae2d8aea",
+              "sourceRecord": {
+                "role": "merchandise",
+                "phase": "a",
+                "sourceBox": [
+                  67,
+                  88,
+                  304,
+                  469
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  237,
+                  381
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/vending-machine-u02/runtime/parts/merchandise-a.png",
+              "sha256": "e65783a4274ef9df81632a290f54e69e7c858460c71914b687018b0debf7f3bc",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "merchandise",
+            "phase": "b",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/vending-machine-u02/source-cutouts/merchandise-b.png",
+              "sha256": "6fa0c053862ff4d15eb5297e0c949b001c025e200a750bc31ea4d3ed2613556e",
+              "sourceRecord": {
+                "role": "merchandise",
+                "phase": "b",
+                "sourceBox": [
+                  361,
+                  88,
+                  597,
+                  469
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  236,
+                  381
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/vending-machine-u02/runtime/parts/merchandise-b.png",
+              "sha256": "68c278412fa6f1d66fe97c9822482fb16e1cbfca5dd507fbd3fc359b6ad61083",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "merchandise",
+            "phase": "c",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/vending-machine-u02/source-cutouts/merchandise-c.png",
+              "sha256": "39e0760db4701609c3370fba9a0a21cc9900a2d7fbbabd8d43a3c7062889d8d5",
+              "sourceRecord": {
+                "role": "merchandise",
+                "phase": "c",
+                "sourceBox": [
+                  656,
+                  88,
+                  892,
+                  469
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  236,
+                  381
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/vending-machine-u02/runtime/parts/merchandise-c.png",
+              "sha256": "294e042c025d21f38ecde25dded03c77d822136e204359b0a5de9e9ee2f6caa4",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "merchandise",
+            "phase": "d",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/vending-machine-u02/source-cutouts/merchandise-d.png",
+              "sha256": "9c9e8dd65390b156913e5db7faf91d5da80ccc411bd134834611c8cf1a4b9d50",
+              "sourceRecord": {
+                "role": "merchandise",
+                "phase": "d",
+                "sourceBox": [
+                  949,
+                  88,
+                  1185,
+                  469
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  236,
+                  381
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/vending-machine-u02/runtime/parts/merchandise-d.png",
+              "sha256": "7d09ed1bc7ac8a09d7aee7037fcd39063ecea19702fa092cd0cc5c0befe1a8d5",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "display",
+            "phase": "a",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/vending-machine-u02/source-cutouts/display-a.png",
+              "sha256": "23bfcb317fc9b69f030b2a977dde6551d6a67446e07a8f9af2011f8b6c0a763c",
+              "sourceRecord": {
+                "role": "display",
+                "phase": "a",
+                "sourceBox": [
+                  64,
+                  547,
+                  304,
+                  679
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  240,
+                  132
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/vending-machine-u02/runtime/parts/display-a.png",
+              "sha256": "fa9dc569bb8b6e182c3c116a8e742373a68b8a2a8dff5f98bb176a3dcde1d1d4",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "display",
+            "phase": "b",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/vending-machine-u02/source-cutouts/display-b.png",
+              "sha256": "d1148f2eff39bb184ba0b5fc00974a91dab5562cfb07b5f9956907ba89b2eaf7",
+              "sourceRecord": {
+                "role": "display",
+                "phase": "b",
+                "sourceBox": [
+                  358,
+                  547,
+                  599,
+                  679
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  241,
+                  132
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/vending-machine-u02/runtime/parts/display-b.png",
+              "sha256": "cb64ba0b409d69833f203f0c442a21b1667824a06e6e54e759abc6f172cd2f8b",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "display",
+            "phase": "c",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/vending-machine-u02/source-cutouts/display-c.png",
+              "sha256": "ed50d2fd65306ea77043370ee60313ccc2aaae9bb858aae7aba75d5a08e6bd79",
+              "sourceRecord": {
+                "role": "display",
+                "phase": "c",
+                "sourceBox": [
+                  649,
+                  547,
+                  893,
+                  679
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  244,
+                  132
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/vending-machine-u02/runtime/parts/display-c.png",
+              "sha256": "2e301df94b01147bc2ef3e61f354ee1333154645aadb97b2b17180e273b845ba",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "display",
+            "phase": "d",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/vending-machine-u02/source-cutouts/display-d.png",
+              "sha256": "051805f59637aa62519b7cd911dbbb675cae5dafdafd121dfb6bcc4c974ac2dd",
+              "sourceRecord": {
+                "role": "display",
+                "phase": "d",
+                "sourceBox": [
+                  942,
+                  547,
+                  1186,
+                  679
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  244,
+                  132
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/vending-machine-u02/runtime/parts/display-d.png",
+              "sha256": "52866a1dc9eafa69ed909ca7da68fd3c97ec91b13561f681289a5b366d4ca985",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "coil",
+            "phase": "a",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/vending-machine-u02/source-cutouts/coil-a.png",
+              "sha256": "1adf57d3b17e871431462782b145de8c65a106906de0eb463596365741ac1d93",
+              "sourceRecord": {
+                "role": "coil",
+                "phase": "a",
+                "sourceBox": [
+                  76,
+                  759,
+                  287,
+                  912
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  211,
+                  153
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/vending-machine-u02/runtime/parts/coil-a.png",
+              "sha256": "1f3c8a5a0976fdae9c28f6c9430eb4e711f3fb5682c6c2510feaa41c55210dee",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "coil",
+            "phase": "b",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/vending-machine-u02/source-cutouts/coil-b.png",
+              "sha256": "5e994c468bc1291466e8d00cdcb0675b1c8dd254d9bec289c1167d411f2ec22d",
+              "sourceRecord": {
+                "role": "coil",
+                "phase": "b",
+                "sourceBox": [
+                  365,
+                  759,
+                  597,
+                  912
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  232,
+                  153
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/vending-machine-u02/runtime/parts/coil-b.png",
+              "sha256": "7e8c6a57e1b6bae3762ec4a8dd0b7e3d6c764708826a1ac1c24a55c72dd72733",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "coil",
+            "phase": "c",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/vending-machine-u02/source-cutouts/coil-c.png",
+              "sha256": "c276c25acd4fb859a5d0fb9f8dcb784d3479b016a1dbde0b721c76e1f6b86760",
+              "sourceRecord": {
+                "role": "coil",
+                "phase": "c",
+                "sourceBox": [
+                  649,
+                  759,
+                  893,
+                  912
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  244,
+                  153
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/vending-machine-u02/runtime/parts/coil-c.png",
+              "sha256": "364a1b3e0dd828724a282f4c281a3b364e5e08011ac8993fc51d1c142a04c685",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "coil",
+            "phase": "d",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/vending-machine-u02/source-cutouts/coil-d.png",
+              "sha256": "26afa7fd5c8a6ae48cf7e637809cad9890e62b1c7208d2968b7117849a490acb",
+              "sourceRecord": {
+                "role": "coil",
+                "phase": "d",
+                "sourceBox": [
+                  942,
+                  759,
+                  1183,
+                  912
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  241,
+                  153
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/vending-machine-u02/runtime/parts/coil-d.png",
+              "sha256": "5c7f1f12842ef39692c21a741144ef2a70619e472c8cb66cdf28307c2332339a",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "package",
+            "phase": "a",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/vending-machine-u02/source-cutouts/package-a.png",
+              "sha256": "b6098aab6d02871771c95c3d4182f9fcb7f2b9438dfe70b2a4c21a8613f65bba",
+              "sourceRecord": {
+                "role": "package",
+                "phase": "a",
+                "sourceBox": [
+                  74,
+                  997,
+                  292,
+                  1117
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  218,
+                  120
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/vending-machine-u02/runtime/parts/package-a.png",
+              "sha256": "63acb1a13ace9173e254a4b230d474ff4222c958363e9a16cbad23add6786d45",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "package",
+            "phase": "b",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/vending-machine-u02/source-cutouts/package-b.png",
+              "sha256": "093186f6ae48a54418ecd540a78d74709ed99790fcb30083ecd80b4a784b9a93",
+              "sourceRecord": {
+                "role": "package",
+                "phase": "b",
+                "sourceBox": [
+                  367,
+                  997,
+                  581,
+                  1191
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  214,
+                  194
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/vending-machine-u02/runtime/parts/package-b.png",
+              "sha256": "561a4d9bbb8bc1913445d2672af4c05be89e318cfe9b579a3fe360e613d9e934",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "package",
+            "phase": "c",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/vending-machine-u02/source-cutouts/package-c.png",
+              "sha256": "585c58839ced5679d1e4ae5c2616f6750f6fb44e97de15878b9389ea388fb8df",
+              "sourceRecord": {
+                "role": "package",
+                "phase": "c",
+                "sourceBox": [
+                  649,
+                  1033,
+                  882,
+                  1164
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  233,
+                  131
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/vending-machine-u02/runtime/parts/package-c.png",
+              "sha256": "eb71b222a8216d6e7efc2cf46676b2e06ebfb68e5bb0240bb2f4fa5eb250de5a",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "package",
+            "phase": "d",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/vending-machine-u02/source-cutouts/package-d.png",
+              "sha256": "f789a04c351665edad515bb70ff327900b32c3eb93b559ed978b9ec16c384ac7",
+              "sourceRecord": {
+                "role": "package",
+                "phase": "d",
+                "sourceBox": [
+                  939,
+                  997,
+                  1181,
+                  1164
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  242,
+                  167
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/vending-machine-u02/runtime/parts/package-d.png",
+              "sha256": "080df928e66c1863d7d06d320301be643e67ccabd5acde14527ae8bc26a2f131",
+              "size": [
+                96,
+                128
+              ]
+            }
+          }
+        ]
+      },
+      "seamLoop": {
+        "transition": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "a"
+        ],
+        "durationMs": 240,
+        "frames": [
+          {
+            "phase": "a",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/vending-machine-u02/runtime/seam/a.png",
+            "sha256": "7fa46d01815abb210f0741f035f98579a30a935cef4f43e46c3762ba67dc8deb",
+            "size": [
+              96,
+              128
+            ]
+          },
+          {
+            "phase": "b",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/vending-machine-u02/runtime/seam/b.png",
+            "sha256": "2296fb01ec7a1c096dcb38049a3bb3e264277b568bdef7006f7af48d9af2e1db",
+            "size": [
+              96,
+              128
+            ]
+          },
+          {
+            "phase": "c",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/vending-machine-u02/runtime/seam/c.png",
+            "sha256": "6bc3f33b7d7fab03c1f437b31b386f738ff483e7b08fff7fc802e14caae01803",
+            "size": [
+              96,
+              128
+            ]
+          },
+          {
+            "phase": "d",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/vending-machine-u02/runtime/seam/d.png",
+            "sha256": "602f4ff89ea514ed46fbc996a2a221f39bdcaec9e7463e50ea60a6260e0ae3d2",
+            "size": [
+              96,
+              128
+            ]
+          }
+        ],
+        "gif": {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/vending-machine-u02/vending-machine-u02-shell-v3-seam-loop.gif",
+          "sha256": "be8f01d9d68eea18fab9913bb1cb8463549dddab3a17a712dbc1646b75513b58",
+          "size": [
+            384,
+            512
+          ]
+        },
+        "outsideDeclaredChangedPixels": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pivotDeltaPixels": [
+          0,
+          0
+        ]
+      },
+      "finiteUse": {
+        "states": [
+          "idle",
+          "select",
+          "payment",
+          "dispense",
+          "pickup-ready",
+          "idle"
+        ],
+        "frames": [
+          {
+            "index": 0,
+            "state": "idle",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/vending-machine-u02/runtime/finite/00-idle.png",
+            "sha256": "7fa46d01815abb210f0741f035f98579a30a935cef4f43e46c3762ba67dc8deb",
+            "size": [
+              96,
+              128
+            ]
+          },
+          {
+            "index": 1,
+            "state": "select",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/vending-machine-u02/runtime/finite/01-select.png",
+            "sha256": "2296fb01ec7a1c096dcb38049a3bb3e264277b568bdef7006f7af48d9af2e1db",
+            "size": [
+              96,
+              128
+            ]
+          },
+          {
+            "index": 2,
+            "state": "payment",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/vending-machine-u02/runtime/finite/02-payment.png",
+            "sha256": "be33bb36ea9bfdf19fdb5570cd481668a9e049bc4b6770b946c3dc14cf9c00ff",
+            "size": [
+              96,
+              128
+            ]
+          },
+          {
+            "index": 3,
+            "state": "dispense",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/vending-machine-u02/runtime/finite/03-dispense.png",
+            "sha256": "faae0b5d9c9db76a23d057ec5e52b8fc48d5b66db23390f292e3094c8db15ba0",
+            "size": [
+              96,
+              128
+            ]
+          },
+          {
+            "index": 4,
+            "state": "pickup-ready",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/vending-machine-u02/runtime/finite/04-pickup-ready.png",
+            "sha256": "406d6c0813115e6891e46147aa5a5f0e1897080e11be606cc60f00870f4bb131",
+            "size": [
+              96,
+              128
+            ]
+          },
+          {
+            "index": 5,
+            "state": "idle",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/vending-machine-u02/runtime/finite/05-idle.png",
+            "sha256": "7fa46d01815abb210f0741f035f98579a30a935cef4f43e46c3762ba67dc8deb",
+            "size": [
+              96,
+              128
+            ]
+          }
+        ],
+        "idleReturnExact": true,
+        "interactionGif": {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/vending-machine-u02/vending-machine-u02-shell-v3-interaction.gif",
+          "sha256": "ed6aab9413bb5ea4c44c40ad7fac29dadbe22d7a77f6399c1cb40a21b85d51c7",
+          "size": [
+            1152,
+            640
+          ]
+        }
+      }
+    },
+    {
+      "slug": "massage-chair-r03",
+      "label": "Massage Chair R03",
+      "kind": "massage",
+      "shellSource": {
+        "chroma": {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/source/massage-chair-r03-shell-turnaround-chroma.png",
+          "sha256": "5d0d15ec6746488fc6734d4c228e58d90779659fa57fad7098b86daaec7e0e57",
+          "size": [
+            1774,
+            887
+          ]
+        },
+        "alpha": {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/source-alpha/massage-chair-r03-shell-turnaround-alpha.png",
+          "sha256": "7e657f4467fd08dd058ff60e9a9e12123e454c7a630450cce464d42dbaa7d5c6",
+          "size": [
+            1774,
+            887
+          ]
+        },
+        "views": [
+          {
+            "view": "front",
+            "sourceBox": [
+              38,
+              115,
+              398,
+              778
+            ],
+            "sourceSize": [
+              360,
+              663
+            ],
+            "runtimeOrigin": [
+              18,
+              12
+            ],
+            "runtimeSize": [
+              61,
+              112
+            ]
+          },
+          {
+            "view": "left",
+            "sourceBox": [
+              485,
+              116,
+              829,
+              777
+            ],
+            "sourceSize": [
+              344,
+              661
+            ],
+            "runtimeOrigin": [
+              19,
+              12
+            ],
+            "runtimeSize": [
+              58,
+              112
+            ]
+          },
+          {
+            "view": "right",
+            "sourceBox": [
+              939,
+              116,
+              1284,
+              778
+            ],
+            "sourceSize": [
+              345,
+              662
+            ],
+            "runtimeOrigin": [
+              19,
+              12
+            ],
+            "runtimeSize": [
+              58,
+              112
+            ]
+          },
+          {
+            "view": "back",
+            "sourceBox": [
+              1374,
+              115,
+              1719,
+              778
+            ],
+            "sourceSize": [
+              345,
+              663
+            ],
+            "runtimeOrigin": [
+              19,
+              12
+            ],
+            "runtimeSize": [
+              58,
+              112
+            ]
+          }
+        ]
+      },
+      "runtimeShell": {
+        "views": {
+          "front": {
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/massage-chair-r03/runtime/shell/front.png",
+            "sha256": "09fa96e33744a5f150a329dd134920e80f76c5b99e9d5542003a896e0c2ce4d6",
+            "size": [
+              96,
+              128
+            ]
+          },
+          "left": {
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/massage-chair-r03/runtime/shell/left.png",
+            "sha256": "a0edf5e60be760c85803ac2bc5bb2b516a3c3cbe207560bdeff5e046de18e1e8",
+            "size": [
+              96,
+              128
+            ]
+          },
+          "right": {
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/massage-chair-r03/runtime/shell/right.png",
+            "sha256": "65100e1b2b5051dc333cb8e16b6f4ec635921528d76f0bcf87f52607d86e62d4",
+            "size": [
+              96,
+              128
+            ]
+          },
+          "back": {
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/massage-chair-r03/runtime/shell/back.png",
+            "sha256": "d341ecb7a631c6610ac895f65fdf7f0a51749a6bbcba3d768d24fc1af09a0df3",
+            "size": [
+              96,
+              128
+            ]
+          }
+        },
+        "foreground": {
+          "file": "assets/game/processed/office-facility-upsize-shell-v3/massage-chair-r03/runtime/shell/front-foreground.png",
+          "sha256": "ec127e4ca9fa8a777df99c9dcec9b7bb1ab5afab5f70b94aaf9bcc01a22efe77",
+          "size": [
+            96,
+            128
+          ]
+        }
+      },
+      "effectAuthority": {
+        "manifest": "assets/game/manifests/office-facility-upsize-motion-v2.json",
+        "regions": {
+          "seat": [
+            28,
+            23,
+            69,
+            113
+          ],
+          "roller": [
+            31,
+            33,
+            66,
+            101
+          ],
+          "display": [
+            75,
+            45,
+            87,
+            69
+          ]
+        },
+        "parts": [
+          {
+            "role": "seat",
+            "phase": "a",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/massage-chair-r03/source-cutouts/seat-a.png",
+              "sha256": "15d40ac00adbae41183d76d21782d186ac9dbea3b53b932bccf0bbfb8764f744",
+              "sourceRecord": {
+                "role": "seat",
+                "phase": "a",
+                "sourceBox": [
+                  51,
+                  62,
+                  273,
+                  524
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  222,
+                  462
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/massage-chair-r03/runtime/parts/seat-a.png",
+              "sha256": "86933d18840decc6e254b84c705f61b6f424da22689af0b11bda1df311552f48",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "seat",
+            "phase": "b",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/massage-chair-r03/source-cutouts/seat-b.png",
+              "sha256": "6fae07753e9c925b23812c67c60f9a7ad36ff1a2df3d793bc2dc8c7748ff5c81",
+              "sourceRecord": {
+                "role": "seat",
+                "phase": "b",
+                "sourceBox": [
+                  351,
+                  95,
+                  582,
+                  524
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  231,
+                  429
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/massage-chair-r03/runtime/parts/seat-b.png",
+              "sha256": "16f4693f4503cdae7e5758f5566c9d4b8fb9738a353bc8a7960acea43f3beba3",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "seat",
+            "phase": "c",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/massage-chair-r03/source-cutouts/seat-c.png",
+              "sha256": "ed7e47338628be5b81fea67255e5700f0128388795fbb2c9c4a217899b7e9431",
+              "sourceRecord": {
+                "role": "seat",
+                "phase": "c",
+                "sourceBox": [
+                  657,
+                  197,
+                  889,
+                  524
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  232,
+                  327
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/massage-chair-r03/runtime/parts/seat-c.png",
+              "sha256": "f46f0ab309ab7525ca9ee8f409b30413e0c00d7bc22c7ce83730fb9cbafa2bc7",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "seat",
+            "phase": "d",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/massage-chair-r03/source-cutouts/seat-d.png",
+              "sha256": "6ec6fde7c3c2a5af644192f4c48e95b4305cb731b1bea31e782ce4b8d01eb984",
+              "sourceRecord": {
+                "role": "seat",
+                "phase": "d",
+                "sourceBox": [
+                  968,
+                  125,
+                  1200,
+                  524
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  232,
+                  399
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/massage-chair-r03/runtime/parts/seat-d.png",
+              "sha256": "e3f7ef4d410baf98b3d9e18de22ac823901e59bab54d98699e245fc76e0cd6d8",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "roller",
+            "phase": "a",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/massage-chair-r03/source-cutouts/roller-a.png",
+              "sha256": "d42ba2b162799d47f79304e2c8b1f494f54dcda2ca3ebbe3c37c43825fa2086b",
+              "sourceRecord": {
+                "role": "roller",
+                "phase": "a",
+                "sourceBox": [
+                  51,
+                  576,
+                  270,
+                  969
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  219,
+                  393
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/massage-chair-r03/runtime/parts/roller-a.png",
+              "sha256": "d7875710e53cd4ae9b255a69956a9426951776205ee4a48752ef63ca6762a6fa",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "roller",
+            "phase": "b",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/massage-chair-r03/source-cutouts/roller-b.png",
+              "sha256": "f57a27ae3053847d8cd0c80b464f96f515b10a5780a76aaab89095ef7eefda66",
+              "sourceRecord": {
+                "role": "roller",
+                "phase": "b",
+                "sourceBox": [
+                  355,
+                  576,
+                  578,
+                  969
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  223,
+                  393
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/massage-chair-r03/runtime/parts/roller-b.png",
+              "sha256": "a122eb14dbc9d0728ec7f6ed169bba6accfbb4e2f90d80d6566310f7efdb33b2",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "roller",
+            "phase": "c",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/massage-chair-r03/source-cutouts/roller-c.png",
+              "sha256": "e876db20ff67c2dbb38b607f0b121315230327dc2563743198c209fb92c0e7f1",
+              "sourceRecord": {
+                "role": "roller",
+                "phase": "c",
+                "sourceBox": [
+                  663,
+                  576,
+                  885,
+                  969
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  222,
+                  393
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/massage-chair-r03/runtime/parts/roller-c.png",
+              "sha256": "2d720c9d826e39876c1464f65022b22da8c801e6d63dc8212fa8afb16361e022",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "roller",
+            "phase": "d",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/massage-chair-r03/source-cutouts/roller-d.png",
+              "sha256": "b9fa4d724d07c321f9d2be0294445e80225f59d8814b2ed55570bf9c868810b4",
+              "sourceRecord": {
+                "role": "roller",
+                "phase": "d",
+                "sourceBox": [
+                  971,
+                  576,
+                  1193,
+                  969
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  222,
+                  393
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/massage-chair-r03/runtime/parts/roller-d.png",
+              "sha256": "9b5d9127489b2a8c83109c38f719887efd33f1750e10db81f2d62b8d87a9efcd",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "display",
+            "phase": "a",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/massage-chair-r03/source-cutouts/display-a.png",
+              "sha256": "f4c8f8befd4edab4d338d93d6745405f27e03156723313fc1fc505b7151f9799",
+              "sourceRecord": {
+                "role": "display",
+                "phase": "a",
+                "sourceBox": [
+                  51,
+                  1045,
+                  274,
+                  1174
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  223,
+                  129
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/massage-chair-r03/runtime/parts/display-a.png",
+              "sha256": "b764ab1b38e10cf2f3cc7af9e3901ade82b0850c038027896849dbb3a5d295a5",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "display",
+            "phase": "b",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/massage-chair-r03/source-cutouts/display-b.png",
+              "sha256": "4ada6fc7a2c78b1b2edff7f34bcf977238339415b56fe17f02fa05b69ce6effe",
+              "sourceRecord": {
+                "role": "display",
+                "phase": "b",
+                "sourceBox": [
+                  351,
+                  1045,
+                  575,
+                  1174
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  224,
+                  129
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/massage-chair-r03/runtime/parts/display-b.png",
+              "sha256": "d8e84bf0b02be5e4df4f7db469284a21a1f8bb001058b8987296fff4d593693d",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "display",
+            "phase": "c",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/massage-chair-r03/source-cutouts/display-c.png",
+              "sha256": "bacaf8e6c0c311c5d71974c9ffc4867a7700e0fd9995c7d662e382783a240224",
+              "sourceRecord": {
+                "role": "display",
+                "phase": "c",
+                "sourceBox": [
+                  657,
+                  1045,
+                  889,
+                  1174
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  232,
+                  129
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/massage-chair-r03/runtime/parts/display-c.png",
+              "sha256": "136f1422ddb4b2e6040a5699114e076ab1c36679b1ab7a8617e80816627e7b2d",
+              "size": [
+                96,
+                128
+              ]
+            }
+          },
+          {
+            "role": "display",
+            "phase": "d",
+            "approvedEffectSource": {
+              "file": "assets/game/processed/office-facility-upsize-motion-v2/massage-chair-r03/source-cutouts/display-d.png",
+              "sha256": "a92b7105cd23efc60d378e2f76ce9d7ffa467658b2c487e97a28d5e877dd6ccd",
+              "sourceRecord": {
+                "role": "display",
+                "phase": "d",
+                "sourceBox": [
+                  968,
+                  1045,
+                  1198,
+                  1174
+                ],
+                "sourceCellTouchesAtlasBoundary": false,
+                "size": [
+                  230,
+                  129
+                ]
+              }
+            },
+            "runtimeLayer": {
+              "file": "assets/game/processed/office-facility-upsize-shell-v3/massage-chair-r03/runtime/parts/display-d.png",
+              "sha256": "4353ec0259d54dc12578af53a37b7228957806779cc597da434ef2667d26ceed",
+              "size": [
+                96,
+                128
+              ]
+            }
+          }
+        ]
+      },
+      "seamLoop": {
+        "transition": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "a"
+        ],
+        "durationMs": 240,
+        "frames": [
+          {
+            "phase": "a",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/massage-chair-r03/runtime/seam/a.png",
+            "sha256": "6cd905e20ef17431ff890bee7f61d0fa2544cbcbeab9dae5fe1867935a6b9796",
+            "size": [
+              96,
+              128
+            ]
+          },
+          {
+            "phase": "b",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/massage-chair-r03/runtime/seam/b.png",
+            "sha256": "fe028e9bca52798ea3b858e662b598c1f78f351ff6973681daaa383adc72982f",
+            "size": [
+              96,
+              128
+            ]
+          },
+          {
+            "phase": "c",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/massage-chair-r03/runtime/seam/c.png",
+            "sha256": "6c187893a7b1f80c3d5f217b4ce8e729cb857997ec03696d25ca18d9a1f16941",
+            "size": [
+              96,
+              128
+            ]
+          },
+          {
+            "phase": "d",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/massage-chair-r03/runtime/seam/d.png",
+            "sha256": "f64b8d1585e924a73011bc7773750cb2d7c2eb5e5e912b3fa1c25a9c05447246",
+            "size": [
+              96,
+              128
+            ]
+          }
+        ],
+        "gif": {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/massage-chair-r03/massage-chair-r03-shell-v3-seam-loop.gif",
+          "sha256": "d517002002d864a055954d9fd0db17edc3f5058f7e67fa1a3018291997f05260",
+          "size": [
+            384,
+            512
+          ]
+        },
+        "outsideDeclaredChangedPixels": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pivotDeltaPixels": [
+          0,
+          0
+        ]
+      },
+      "finiteUse": {
+        "states": [
+          "upright",
+          "recline-half",
+          "reclined",
+          "massage-hold",
+          "recline-half",
+          "upright"
+        ],
+        "frames": [
+          {
+            "index": 0,
+            "state": "upright",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/massage-chair-r03/runtime/finite/00-upright.png",
+            "sha256": "2c5a15abcb9b9fefe0326de6d728191521bcd2f47a6791b671aa653657292cdf",
+            "size": [
+              96,
+              128
+            ]
+          },
+          {
+            "index": 1,
+            "state": "recline-half",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/massage-chair-r03/runtime/finite/01-recline-half.png",
+            "sha256": "4d3d52aba6a0c60306add7e6a96654978307226df5be07f310ab78f6e0d4ff20",
+            "size": [
+              96,
+              128
+            ]
+          },
+          {
+            "index": 2,
+            "state": "reclined",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/massage-chair-r03/runtime/finite/02-reclined.png",
+            "sha256": "d21dd24e90efeb1a8f7abac0f7f758885f383fc680c76b159f70df87d324d8e7",
+            "size": [
+              96,
+              128
+            ]
+          },
+          {
+            "index": 3,
+            "state": "massage-hold",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/massage-chair-r03/runtime/finite/03-massage-hold.png",
+            "sha256": "0c6073f5dbfbc9d3df7f4f28167e1f9b18ade69203a1c33678cb6bfb5cfeac9b",
+            "size": [
+              96,
+              128
+            ]
+          },
+          {
+            "index": 4,
+            "state": "recline-half",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/massage-chair-r03/runtime/finite/04-recline-half.png",
+            "sha256": "317de49e48c721c61c10fbc0bf34a1261aea53bbbc765d11abb2cc5852abcef4",
+            "size": [
+              96,
+              128
+            ]
+          },
+          {
+            "index": 5,
+            "state": "upright",
+            "file": "assets/game/processed/office-facility-upsize-shell-v3/massage-chair-r03/runtime/finite/05-upright.png",
+            "sha256": "2c5a15abcb9b9fefe0326de6d728191521bcd2f47a6791b671aa653657292cdf",
+            "size": [
+              96,
+              128
+            ]
+          }
+        ],
+        "idleReturnExact": true,
+        "interactionGif": {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/massage-chair-r03/massage-chair-r03-shell-v3-interaction.gif",
+          "sha256": "d5c499c056437ec5af13e176d0897a3cb5a31e1035d1fd71e0bee5d44d2921e2",
+          "size": [
+            1152,
+            640
+          ]
+        }
+      }
+    }
+  ],
+  "reviews": [
+    {
+      "slug": "coffee-machine-c02",
+      "artifacts": [
+        {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/coffee-machine-c02/01-new-shell-four-sides.png",
+          "sha256": "59328dee83ea89950f48f290d9317db5fa32d60d4740468e9e558fca02156678",
+          "kind": "png",
+          "size": [
+            1900,
+            1050
+          ]
+        },
+        {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/coffee-machine-c02/02-integrated-seam-a-d-a.png",
+          "sha256": "543c7247ed6a8dec1f8fb63897364137f235d1f15c4848b1ce2fe4c1224dd683",
+          "kind": "png",
+          "size": [
+            1900,
+            1050
+          ]
+        },
+        {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/coffee-machine-c02/03-integrated-finite-use.png",
+          "sha256": "418345b6bc0eee00dc352dc2b9e81bfa9ac33086c3cae88ff5f55a8e5bcd4bac",
+          "kind": "png",
+          "size": [
+            1900,
+            1050
+          ]
+        },
+        {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/coffee-machine-c02/04-person-interaction.png",
+          "sha256": "fda28cc98b77c94e2cf0295a6c69e5fb672b2902b26258c74cb7e3434e9a6e19",
+          "kind": "png",
+          "size": [
+            1900,
+            1050
+          ]
+        },
+        {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/coffee-machine-c02/05-layers-regions-pivot.png",
+          "sha256": "0cd4a45432b3ac0cfe3e99e8157359600693d837610c350f9c531ef82a858433",
+          "kind": "png",
+          "size": [
+            1900,
+            1050
+          ]
+        },
+        {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/coffee-machine-c02/coffee-machine-c02-shell-v3-seam-loop.gif",
+          "sha256": "5504aab55a97977302dc6d42a7b2ac17e1a89402d719b24db4c1d0624e540f4c",
+          "kind": "gif",
+          "size": [
+            384,
+            512
+          ]
+        },
+        {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/coffee-machine-c02/coffee-machine-c02-shell-v3-interaction.gif",
+          "sha256": "95585a7e761b471127734c8374d69b9813df6a494b3f6cea3add4cbaf0774d4c",
+          "kind": "gif",
+          "size": [
+            1152,
+            640
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "water-dispenser-w02",
+      "artifacts": [
+        {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/water-dispenser-w02/01-new-shell-four-sides.png",
+          "sha256": "86e76689c4898dadd86c28de2fce8f43648502c46cb0108f6b5afcd18464be91",
+          "kind": "png",
+          "size": [
+            1900,
+            1050
+          ]
+        },
+        {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/water-dispenser-w02/02-integrated-seam-a-d-a.png",
+          "sha256": "28d1bd0c2a73bf1856cb15e4ebf007f543acf34d9068a06314c47496f0494783",
+          "kind": "png",
+          "size": [
+            1900,
+            1050
+          ]
+        },
+        {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/water-dispenser-w02/03-integrated-finite-use.png",
+          "sha256": "a3b55d2162cba418d50424fc3e9aafe26d6328b634e3d555351d99df2b260597",
+          "kind": "png",
+          "size": [
+            1900,
+            1050
+          ]
+        },
+        {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/water-dispenser-w02/04-person-interaction.png",
+          "sha256": "446940e782df8a883f3e8064a6ae6c9a5f2b9157b4781a72492078ca33b7c447",
+          "kind": "png",
+          "size": [
+            1900,
+            1050
+          ]
+        },
+        {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/water-dispenser-w02/05-layers-regions-pivot.png",
+          "sha256": "92899cca06a4f1046e3098a47c4b7dc08a55f627e6a24fcdc97eec7e47ae09de",
+          "kind": "png",
+          "size": [
+            1900,
+            1050
+          ]
+        },
+        {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/water-dispenser-w02/water-dispenser-w02-shell-v3-seam-loop.gif",
+          "sha256": "14f6f965124dbddcef779794a836ebf37e8febded2710ca9b440b36eabe0f678",
+          "kind": "gif",
+          "size": [
+            384,
+            512
+          ]
+        },
+        {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/water-dispenser-w02/water-dispenser-w02-shell-v3-interaction.gif",
+          "sha256": "a1d498e28ef1487f174edc258d76c8051bd510575131c8cb905d866034d84952",
+          "kind": "gif",
+          "size": [
+            1152,
+            640
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "vending-machine-u02",
+      "artifacts": [
+        {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/vending-machine-u02/01-new-shell-four-sides.png",
+          "sha256": "a113c9c4c3b522666943cbf4cc349976be3c9e8fdbe58158ad0bbda296bbd0fb",
+          "kind": "png",
+          "size": [
+            1900,
+            1050
+          ]
+        },
+        {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/vending-machine-u02/02-integrated-seam-a-d-a.png",
+          "sha256": "1eaff71566cc43762879a2b4f4a2dfaeb129be42542d1953e859fcffd6b8f2fd",
+          "kind": "png",
+          "size": [
+            1900,
+            1050
+          ]
+        },
+        {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/vending-machine-u02/03-integrated-finite-use.png",
+          "sha256": "cad6796f037480c7d1ef3bb38c8df1cf803989bf193963c99c71820fb86282ec",
+          "kind": "png",
+          "size": [
+            1900,
+            1050
+          ]
+        },
+        {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/vending-machine-u02/04-person-interaction.png",
+          "sha256": "658bcfbea3ce4c689b5ba69e176ae22299b8e2841df75f1b765523f74ac41a0d",
+          "kind": "png",
+          "size": [
+            1900,
+            1050
+          ]
+        },
+        {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/vending-machine-u02/05-layers-regions-pivot.png",
+          "sha256": "04864475cce3747a27ab987ebf2ddb003fcdebddb608b9af1476564a200f8a93",
+          "kind": "png",
+          "size": [
+            1900,
+            1050
+          ]
+        },
+        {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/vending-machine-u02/vending-machine-u02-shell-v3-seam-loop.gif",
+          "sha256": "be8f01d9d68eea18fab9913bb1cb8463549dddab3a17a712dbc1646b75513b58",
+          "kind": "gif",
+          "size": [
+            384,
+            512
+          ]
+        },
+        {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/vending-machine-u02/vending-machine-u02-shell-v3-interaction.gif",
+          "sha256": "ed6aab9413bb5ea4c44c40ad7fac29dadbe22d7a77f6399c1cb40a21b85d51c7",
+          "kind": "gif",
+          "size": [
+            1152,
+            640
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "massage-chair-r03",
+      "artifacts": [
+        {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/massage-chair-r03/01-new-shell-four-sides.png",
+          "sha256": "2a4c4467005ba9ba3875eafb5719104bfd08465065426fe361483092c86d84d6",
+          "kind": "png",
+          "size": [
+            1900,
+            1050
+          ]
+        },
+        {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/massage-chair-r03/02-integrated-seam-a-d-a.png",
+          "sha256": "55722364492bb4bff975085d93b59de3c7d05870345d0f281a40ce973003a22f",
+          "kind": "png",
+          "size": [
+            1900,
+            1050
+          ]
+        },
+        {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/massage-chair-r03/03-integrated-finite-use.png",
+          "sha256": "7f89b4e15e0a48ce5454c87e16d242aa4c5c117b320ea98c1ec433cee8a6f663",
+          "kind": "png",
+          "size": [
+            1900,
+            1050
+          ]
+        },
+        {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/massage-chair-r03/04-person-interaction.png",
+          "sha256": "ccb06b68dfebf67cdc60cf599964a3feda62cc01a4564f3cec3cb43661ba19bd",
+          "kind": "png",
+          "size": [
+            1900,
+            1050
+          ]
+        },
+        {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/massage-chair-r03/05-layers-regions-pivot.png",
+          "sha256": "60a87307fc6d80f227e0ee9e9cec6310655656c53ee8f4198fcb0459df6440c6",
+          "kind": "png",
+          "size": [
+            1900,
+            1050
+          ]
+        },
+        {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/massage-chair-r03/massage-chair-r03-shell-v3-seam-loop.gif",
+          "sha256": "d517002002d864a055954d9fd0db17edc3f5058f7e67fa1a3018291997f05260",
+          "kind": "gif",
+          "size": [
+            384,
+            512
+          ]
+        },
+        {
+          "file": "assets/art/layout-references/office-facility-upsize-shell-v3/massage-chair-r03/massage-chair-r03-shell-v3-interaction.gif",
+          "sha256": "d5c499c056437ec5af13e176d0897a3cb5a31e1035d1fd71e0bee5d44d2921e2",
+          "kind": "gif",
+          "size": [
+            1152,
+            640
+          ]
+        }
+      ]
+    }
+  ],
+  "batchReview": {
+    "file": "assets/art/layout-references/office-facility-upsize-shell-v3/00-shell-v3-batch-review.png",
+    "sha256": "d7abb27a641247b23d31e5c370562a43f8c48c958cb2bb0ab2c6cecd2dcc93e8",
+    "kind": "png",
+    "size": [
+      1900,
+      1050
+    ]
+  },
+  "gates": {
+    "V3_SOURCE": {
+      "status": "passed"
+    },
+    "V3_ALPHA": {
+      "status": "passed"
+    },
+    "V3_FOUR_SIDES": {
+      "status": "passed"
+    },
+    "V3_EFFECT_INTEGRATION": {
+      "status": "passed"
+    },
+    "V3_VISUAL_REVIEW": {
+      "status": "pending-owner-review"
+    },
+    "F4_F7_REBUILD": {
+      "status": "blocked"
+    },
+    "F8": {
+      "status": "blocked"
+    },
+    "SLOT_TRANSFER": {
+      "status": "blocked"
+    },
+    "F9": {
+      "status": "blocked"
+    },
+    "F10_ACTIVE_OFFICE": {
+      "status": "blocked"
+    }
+  },
+  "roomIsolation": {
+    "f9Manifest": "assets/game/manifests/office-furniture-only-f9-v1.json",
+    "f9ManifestSha256": "d1d20351eae9adcb71209a6b0055878178caf20f751bbd4a255afb7a4b11c1c5",
+    "f9Changed": false,
+    "activeOfficeChanged": false,
+    "reservationSlotsActivated": 0
+  },
+  "permissions": {
+    "visualReview": true,
+    "fullProductionRebuild": false,
+    "reservationSlotTransfer": false,
+    "f9Composition": false,
+    "activeOfficePromotion": false
+  },
+  "ownerDecision": null
+}

@@ -25,6 +25,7 @@ export * from "./officeFacilityPrinterProduction.ts";
 export * from "./officeFacilityUpsizeGeneratedPreflight.ts";
 export * from "./officeFacilityUpsizeGeneratedProduction.ts";
 export * from "./officeFacilityUpsizeMotionV2.ts";
+export * from "./officeFacilityUpsizeShellV3.ts";
 export * from "./officeFurnitureProduction.ts";
 export * from "./officeFurnitureOnlyRoomF9.ts";
 export * from "./officeSurfaceFurnitureProduction.ts";
