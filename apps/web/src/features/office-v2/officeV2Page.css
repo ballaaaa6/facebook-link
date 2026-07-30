@@ -1,0 +1,219 @@
+.office-v2-layout {
+  display: grid;
+  grid-template-columns: minmax(460px, 1fr) 220px minmax(250px, 280px);
+  gap: 12px;
+  min-height: min(760px, calc(100vh - 190px));
+}
+
+.office-v2-stage,
+.office-v2-inspector,
+.office-v2-layout > .team-chat {
+  min-width: 0;
+  min-height: 0;
+}
+
+.office-v2-stage {
+  display: grid;
+  grid-template-rows: auto minmax(430px, 1fr);
+  padding: 12px;
+}
+
+.office-v2-stage__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 2px 4px 12px;
+}
+
+.office-v2-stage__header div {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.office-v2-stage__header h2 {
+  font-size: 18px;
+}
+
+.office-v2-stage__status {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--muted);
+  font: 600 9px "IBM Plex Mono", monospace;
+  text-transform: uppercase;
+}
+
+.office-v2-stage__status i,
+.office-v2-inspector__status {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--amber);
+  box-shadow: 0 0 0 4px rgba(220, 174, 87, 0.14);
+}
+
+.office-v2-mount {
+  position: relative;
+  display: grid;
+  overflow: hidden;
+  place-items: center;
+  border: 2px solid rgba(31, 81, 72, 0.65);
+  border-radius: 15px;
+  background-color: #edf0e8;
+  background-image: linear-gradient(rgba(31, 81, 72, 0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(31, 81, 72, 0.055) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.office-v2-mount::after {
+  position: absolute;
+  inset: 18px;
+  border: 1px dashed rgba(31, 81, 72, 0.18);
+  border-radius: 10px;
+  content: "";
+  pointer-events: none;
+}
+
+.office-v2-mount__message {
+  z-index: 1;
+  max-width: 410px;
+  padding: 24px;
+  color: #426057;
+  text-align: center;
+}
+
+.office-v2-mount__message > span {
+  display: grid;
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 16px;
+  place-items: center;
+  border: 1px solid rgba(31, 81, 72, 0.22);
+  border-radius: 17px;
+  color: var(--green-800);
+  background: rgba(255, 255, 255, 0.7);
+  font: 700 15px "IBM Plex Mono", monospace;
+}
+
+.office-v2-mount__message h3 {
+  margin: 0 0 7px;
+  color: var(--ink);
+  font-size: 19px;
+}
+
+.office-v2-mount__message p {
+  font-size: 12px;
+}
+
+.office-v2-mount__facts {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  left: 14px;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid rgba(31, 81, 72, 0.12);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(6px);
+}
+
+.office-v2-mount__facts div + div {
+  border-left: 1px solid var(--line);
+}
+
+.office-v2-mount__facts dt,
+.office-v2-mount__facts dd {
+  margin: 0;
+  text-align: center;
+  font-size: 9px;
+}
+
+.office-v2-mount__facts dt {
+  color: var(--muted);
+}
+
+.office-v2-mount__facts dd {
+  margin-top: 2px;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.office-v2-inspector,
+.office-v2-layout > .team-chat {
+  display: flex;
+  flex-direction: column;
+  padding: 14px;
+}
+
+.office-v2-inspector .section-heading h2 {
+  font-size: 16px;
+}
+
+.office-v2-inspector__empty {
+  display: grid;
+  flex: 1;
+  min-height: 210px;
+  place-content: center;
+  color: var(--muted);
+  text-align: center;
+}
+
+.office-v2-inspector__empty span {
+  font: 500 42px "IBM Plex Mono", monospace;
+}
+
+.office-v2-inspector__empty p {
+  margin-top: 8px;
+  font-size: 11px;
+}
+
+.office-v2-inspector dl {
+  margin: 0;
+  border-top: 1px solid var(--line);
+}
+
+.office-v2-inspector dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 9px;
+}
+
+.office-v2-inspector dt {
+  color: var(--muted);
+}
+
+.office-v2-inspector dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+.office-v2-layout > .team-chat .chat-log {
+  flex: 1;
+}
+
+@media (max-width: 1180px) {
+  .office-v2-layout { grid-template-columns: minmax(0, 1fr) 230px; }
+  .office-v2-layout > .team-chat { grid-column: 1 / -1; min-height: 420px; }
+}
+
+@media (max-width: 760px) {
+  .office-v2-layout { grid-template-columns: 1fr; min-height: 0; }
+  .office-v2-stage { grid-template-rows: auto minmax(470px, 68vh); border-radius: 17px; }
+  .office-v2-inspector, .office-v2-layout > .team-chat { min-height: 360px; }
+  .office-v2-layout > .team-chat { grid-column: auto; }
+}
+
+@media (max-width: 420px) {
+  .office-v2-stage { grid-template-rows: auto minmax(430px, 64vh); padding: 9px; }
+  .office-v2-stage__header { align-items: flex-start; flex-direction: column; }
+  .office-v2-mount__facts { grid-template-columns: 1fr; }
+  .office-v2-mount__facts div + div { margin-top: 6px; padding-top: 6px; border-top: 1px solid var(--line); border-left: 0; }
+}

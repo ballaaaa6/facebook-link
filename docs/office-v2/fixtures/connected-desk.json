@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "office-connectivity-fixture-v1",
+  "familyId": "connected-desk-placeholder",
+  "maskBits": { "north": 1, "east": 2, "south": 4, "west": 8 },
+  "requiredMasks": [0, 2, 8, 10],
+  "variants": [
+    { "mask": 0, "role": "isolated", "variantId": "desk-isolated" },
+    { "mask": 2, "role": "left-end", "variantId": "desk-left-end" },
+    { "mask": 8, "role": "right-end", "variantId": "desk-right-end" },
+    { "mask": 10, "role": "middle", "variantId": "desk-middle" }
+  ],
+  "cases": [
+    { "name": "single", "cells": [{ "x": 0, "y": 0 }], "expectedMasks": [0] },
+    { "name": "pair", "cells": [{ "x": 0, "y": 0 }, { "x": 1, "y": 0 }], "expectedMasks": [2, 8] },
+    { "name": "row-of-three", "cells": [{ "x": 0, "y": 0 }, { "x": 1, "y": 0 }, { "x": 2, "y": 0 }], "expectedMasks": [2, 10, 8] }
+  ]
+}

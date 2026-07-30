@@ -10,8 +10,11 @@ Status: complete.
 - Remove the prior game subsystem and all runtime visual material.
 - Add a repository guard for the clean-room boundary.
 - Provide an isolated data-free lab.
+- Provide a production Office route with an explicitly empty V2 engine mount.
+- Establish the canonical knowledge pack, schemas, and valid fixtures.
 
-Exit: the full repository gate passes with no game renderer or runtime art.
+Exit: the full repository gate passes with no game renderer or runtime art, the
+Office shell communicates the empty state, and all knowledge fixtures parse.
 
 ## Phase 1 — Executable world contracts
 

@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "office-world-v1",
+  "worldId": "minimal-office",
+  "coordinateSystem": {
+    "projection": "isometric-diamond",
+    "subCellUnits": 4,
+    "tileWidthPx": 64,
+    "tileHeightPx": 32,
+    "elevationHeightPx": 16
+  },
+  "bounds": { "width": 6, "depth": 5, "maxElevation": 2 },
+  "zones": [
+    {
+      "id": "work-zone",
+      "kind": "work",
+      "cells": [{ "x": 2, "y": 1 }, { "x": 3, "y": 1 }]
+    },
+    {
+      "id": "main-route",
+      "kind": "circulation",
+      "cells": [{ "x": 1, "y": 3 }, { "x": 2, "y": 3 }, { "x": 3, "y": 3 }]
+    }
+  ],
+  "entities": [
+    {
+      "id": "actor-one",
+      "kind": "actor",
+      "definitionId": "actor-placeholder-v1",
+      "anchor": { "x": 1, "y": 3, "elevation": 0 },
+      "orientation": "north",
+      "footprint": [{ "x": 0, "y": 0 }]
+    },
+    {
+      "id": "workstation-one",
+      "kind": "furniture",
+      "definitionId": "workstation-placeholder-v1",
+      "anchor": { "x": 2, "y": 1, "elevation": 0 },
+      "orientation": "south",
+      "footprint": [{ "x": 0, "y": 0 }, { "x": 1, "y": 0 }]
+    }
+  ]
+}

@@ -6,7 +6,7 @@ Cloudflare control plane coordinates a local or Oracle-hosted automation runner.
 
 ## Repository status
 
-- React and TypeScript control panel with Dashboard and Settings surfaces
+- React and TypeScript control panel with Office, Dashboard, and Settings surfaces
 - Safe TeamBrain mock with agent routing and confirmation proposals
 - Cloudflare API and Discord Worker safety scaffolds
 - Shared workflow, agent, attribution, storage, and database packages
@@ -21,8 +21,9 @@ npm install
 npm run dev
 ```
 
-Open `http://127.0.0.1:4173/`. During local development only, the empty Office
-Engine foundation is available at
+Open `http://127.0.0.1:4173/` for the empty Office V2 production mount. The
+Dashboard is at `/dashboard` and Settings is at `/settings`. During local
+development only, the detailed engine foundation lab is available at
 `http://127.0.0.1:4173/?lab=office-engine-v2`.
 
 Run the complete quality gate before committing:

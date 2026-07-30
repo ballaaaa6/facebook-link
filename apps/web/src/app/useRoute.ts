@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 
-export type AppRoute = "/" | "/settings";
+export type AppRoute = "/" | "/dashboard" | "/settings";
 
-function normalize(pathname: string): AppRoute {
-  if (pathname === "/settings") return pathname;
+export function normalizeRoute(pathname: string): AppRoute {
+  if (pathname === "/dashboard" || pathname === "/settings") return pathname;
   return "/";
 }
 
 export function useRoute() {
-  const [route, setRoute] = useState<AppRoute>(() => normalize(window.location.pathname));
+  const [route, setRoute] = useState<AppRoute>(() => normalizeRoute(window.location.pathname));
 
   useEffect(() => {
-    const onPopState = () => setRoute(normalize(window.location.pathname));
+    const onPopState = () => setRoute(normalizeRoute(window.location.pathname));
     window.addEventListener("popstate", onPopState);
     return () => window.removeEventListener("popstate", onPopState);
   }, []);

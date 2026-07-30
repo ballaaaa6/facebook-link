@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/asset.schema.json",
+  "title": "Office V2 Asset Family",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "familyId", "familyVersion", "source", "geometry", "render", "variants"],
+  "properties": {
+    "schemaVersion": { "const": "office-asset-v1" },
+    "familyId": { "$ref": "#/$defs/id" },
+    "familyVersion": { "type": "integer", "minimum": 1 },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sourceId", "authoringMethod", "licenseStatus", "commercialStatus", "sha256", "recipeVersion"],
+      "properties": {
+        "sourceId": { "$ref": "#/$defs/id" },
+        "authoringMethod": { "type": "string", "minLength": 1 },
+        "licenseStatus": { "enum": ["project-owned", "licensed"] },
+        "commercialStatus": { "enum": ["approved", "pending-review", "rejected"] },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "recipeVersion": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "geometry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["footprint", "anchor", "spriteOrigin", "groundContact", "visualHeight", "sockets"],
+      "properties": {
+        "footprint": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/point" } },
+        "anchor": { "$ref": "#/$defs/point" },
+        "spriteOrigin": { "$ref": "#/$defs/point" },
+        "groundContact": { "$ref": "#/$defs/point" },
+        "visualHeight": { "type": "integer", "minimum": 1 },
+        "sockets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "kind", "point"],
+            "properties": {
+              "id": { "$ref": "#/$defs/id" },
+              "kind": { "enum": ["approach", "actor", "held-item", "effect"] },
+              "point": { "$ref": "#/$defs/point" }
+            }
+          }
+        }
+      }
+    },
+    "render": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["band", "pixelDensity", "filtering"],
+      "properties": {
+        "band": { "enum": ["floor", "ground-object", "actor", "upper-object", "effect"] },
+        "pixelDensity": { "type": "integer", "minimum": 1 },
+        "filtering": { "const": "nearest" }
+      }
+    },
+    "connectivity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["family", "directions", "maskBits"],
+      "properties": {
+        "family": { "$ref": "#/$defs/id" },
+        "directions": { "const": ["north", "east", "south", "west"] },
+        "maskBits": { "const": { "north": 1, "east": 2, "south": 4, "west": 8 } }
+      }
+    },
+    "variants": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "file", "sha256", "neighborMask"],
+        "properties": {
+          "id": { "$ref": "#/$defs/id" },
+          "file": { "type": "string", "pattern": "^[a-z0-9/_-]+\\.png$" },
+          "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+          "neighborMask": { "type": "integer", "minimum": 0, "maximum": 15 }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[a-z][a-z0-9-]{1,63}$" },
+    "point": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["x", "y"],
+      "properties": {
+        "x": { "type": "integer" },
+        "y": { "type": "integer" }
+      }
+    }
+  }
+}

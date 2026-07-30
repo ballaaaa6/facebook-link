@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/world.schema.json",
+  "title": "Office V2 World Definition",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "worldId", "coordinateSystem", "bounds", "zones", "entities"],
+  "properties": {
+    "schemaVersion": { "const": "office-world-v1" },
+    "worldId": { "$ref": "#/$defs/id" },
+    "coordinateSystem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["projection", "subCellUnits", "tileWidthPx", "tileHeightPx", "elevationHeightPx"],
+      "properties": {
+        "projection": { "enum": ["isometric-diamond"] },
+        "subCellUnits": { "type": "integer", "minimum": 1 },
+        "tileWidthPx": { "type": "integer", "minimum": 1 },
+        "tileHeightPx": { "type": "integer", "minimum": 1 },
+        "elevationHeightPx": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "bounds": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["width", "depth", "maxElevation"],
+      "properties": {
+        "width": { "type": "integer", "minimum": 1 },
+        "depth": { "type": "integer", "minimum": 1 },
+        "maxElevation": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "zones": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "kind", "cells"],
+        "properties": {
+          "id": { "$ref": "#/$defs/id" },
+          "kind": { "enum": ["work", "review", "circulation", "service", "quiet"] },
+          "cells": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/cell" } }
+        }
+      }
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "kind", "definitionId", "anchor", "orientation", "footprint"],
+        "properties": {
+          "id": { "$ref": "#/$defs/id" },
+          "kind": { "enum": ["actor", "furniture", "facility", "structure"] },
+          "definitionId": { "$ref": "#/$defs/id" },
+          "anchor": { "$ref": "#/$defs/position" },
+          "orientation": { "enum": ["north", "east", "south", "west"] },
+          "footprint": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/cell" } },
+          "connectivityFamily": { "$ref": "#/$defs/id" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[a-z][a-z0-9-]{1,63}$" },
+    "cell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["x", "y"],
+      "properties": {
+        "x": { "type": "integer" },
+        "y": { "type": "integer" }
+      }
+    },
+    "position": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["x", "y", "elevation"],
+      "properties": {
+        "x": { "type": "integer" },
+        "y": { "type": "integer" },
+        "elevation": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}

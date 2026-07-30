@@ -1,0 +1,46 @@
+# Actors, Navigation, and Interactions
+
+## Actor state
+
+The minimum actor machine is `idle`, `planning`, `moving`, `interacting`, and
+`blocked`. State transitions are simulation decisions. Presentation maps them to
+clips without owning the transition.
+
+## Navigation
+
+A navigation graph is derived from world occupancy and declared traversal rules.
+A planner selects a legal route; a movement follower advances along it. The two
+systems have separate inputs, outputs, and tests.
+
+- Diagonal policy and corner cutting are explicit.
+- Replanning occurs after relevant world changes, not every frame.
+- Route cost has stable integer units and deterministic tie-breaking.
+- An unreachable target produces a visible blocked reason.
+
+## Reservations and queues
+
+Actors reserve destinations, approach cells, sockets, and limited facility
+capacity before committing to an interaction. Reservation acquisition order and
+timeouts are deterministic. Waiting actors occupy real legal cells and never
+stack through presentation offsets.
+
+## Interaction definition
+
+Every interaction declares target type, approach cells, required facing, actor
+socket, optional prop socket, preconditions, duration, capacity, cancellation,
+and result event. The target definition owns these rules; character components
+do not contain facility-specific positioning.
+
+## Interruptions
+
+Cancellation states whether reservations are released, progress is retained,
+held items are returned, and a follow-up event is emitted. Disconnects and stale
+operational data cannot leave permanent reservations.
+
+## Required evidence
+
+- Every planned step is legal in the snapshot where it is executed.
+- Equivalent route choices resolve identically across runs.
+- Two actors cannot own an exclusive socket at the same tick.
+- Cancel, timeout, and target removal release declared resources.
+- Interaction completion is unchanged when animation is disabled.

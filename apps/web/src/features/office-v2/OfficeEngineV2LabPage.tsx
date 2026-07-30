@@ -10,7 +10,7 @@ export function OfficeEngineV2LabPage() {
           <h1>Office Engine V2</h1>
           <p>The renderer is intentionally empty. Architecture and tests come before scene art.</p>
         </div>
-        <a href="/">Return to dashboard</a>
+        <a href="/">Return to Office</a>
       </header>
 
       <section className="engine-lab__notice" aria-label="Current status">
