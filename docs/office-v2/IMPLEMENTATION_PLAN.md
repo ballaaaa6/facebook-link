@@ -35,6 +35,24 @@ fixtures fail for their declared reason.
 ## Phase 1 — First-floor knowledge and contract closure
 
 Status: in progress. The target brief exists; the following contracts do not.
+`KNOWLEDGE_COMPLETENESS_AUDIT.md` is the evidence inventory for this phase. Its
+P0 contradictions must close before persistent engine implementation, and its
+minimum safe-to-produce gate must pass before the large floor or any art batch.
+
+### Identity and deterministic execution
+
+- Establish one geometry authority and validate all entity, asset, interaction,
+  atlas, and renderer references against it.
+- Separate cell, sub-cell, local-pixel, screen-pixel, floor-local, and facing
+  types and prove their transforms.
+- Separate immutable definitions, placed instances, mutable runtime state, and
+  derived presentation; version-pin every reference.
+- Define fixed tick phase order, typed command/result/event envelopes,
+  validate/apply behavior, same-tick ordering, canonical serialization, PRNG
+  algorithm and streams, and real reducer-produced replay hashes.
+- Define activity intents, capability-based facility selection, use-slot state,
+  actor action queues, preemption, cleanup, and the operational/presentation
+  two-clock boundary.
 
 ### Operational truth
 
@@ -82,19 +100,26 @@ second document that owns the same rule.
 
 | Capability | Canonical documentation | Machine-readable output |
 | --- | --- | --- |
+| Definition, instance, geometry, and runtime state | new `DEFINITION_INSTANCE_RUNTIME_STATE.md`; extend coordinates and world documents | geometry and definition-bundle contracts, cross-reference fixtures and semantic linter |
 | Building, floor, exterior, and portals | new `BUILDING_FLOORS_EXTERIOR.md` | `building.schema.json`, target-floor and future two-floor fixtures |
 | Room program and circulation | extend `ROOMS_SURFACES_STRUCTURES_ZONES.md` | `room-template.schema.json`, capacity and blocked-entrance fixtures |
 | Deterministic scene composition | new `SCENE_COMPOSITION_GRAMMAR.md` | `scene-plan.schema.json`, density and adjacency fixtures |
+| Commands and simulation pipeline | new `SIMULATION_PIPELINE_COMMANDS.md`; extend simulation and save documents | command/event/result and snapshot/trace V2 schemas, real replay and mid-action restore fixtures |
+| Jobs, intents, and facilities | new `JOBS_INTENTS_ASSIGNMENT.md`; extend actor and interaction documents | activity-intent, facility-slot, action-queue, preemption and cleanup fixtures |
 | Operations choreography | extend `OPERATIONS_ADAPTER_UI_SAFETY.md` | operations snapshot V2, `activity-routing.schema.json`, ten-role and fan-out/join fixtures |
 | Crowds, queues, and deadlocks | new `CROWD_QUEUES_AND_DEADLOCKS.md` | shared-facility, narrow-door, target-removal, and 15-actor fixtures |
 | Numeric visual target | extend `ART_DIRECTION_PIXEL_SPEC.md` | `style-profile.schema.json`, geometry, palette, and scale boards |
-| Asset factory and runtime bundle | extend `ASSET_PIPELINE_PROVENANCE_VALIDATION.md` | export-recipe, asset-catalog, and scene-bundle schemas plus compiler fixtures |
+| Asset geometry and render parts | new `ASSET_GEOMETRY_REGISTRATION_RENDER_PARTS.md`; extend depth rules | sprite-frame and render-part contracts, contact, composite, tall-object and trimming fixtures |
+| Asset factory and runtime bundle | new `ATLAS_CATALOG_BUNDLE_LIFECYCLE.md`; extend `ASSET_PIPELINE_PROVENANCE_VALIDATION.md` | export-recipe, source-set, atlas, asset-catalog, scene-bundle, review and migration schemas plus compiler fixtures |
 | Character, furniture, and interactions | extend the two production bibles and `ACTORS_NAVIGATION_INTERACTIONS.md` | character-definition and semantic-variant contracts plus interaction-catalog fixture |
+| Replay and diagnosis | new `REPLAY_DEBUGGING_PLAYBOOK.md`; extend failure diagnostics | canonical serializer, bug-bundle, first-divergence, trace-view and diagnostic fixtures |
 | Renderer and visual acceptance | extend decision 0002, the performance matrix, and testing budgets | benchmark report, reviewed goldens, accessibility and lifecycle evidence |
 
 Exit: every target feature has one canonical owner, contract, valid fixture,
-rejected fixture, automated evidence plan, and migration effect. No production
-asset needs a scene-specific pixel offset or an unresolved scale decision.
+rejected fixture, executable evidence, and migration effect; every P0
+contradiction in the audit is resolved. The target geometric fixture compiles
+deterministically and no production asset needs a scene-specific pixel offset
+or an unresolved scale decision.
 
 ## Phase 2 — Executable world kernel
 

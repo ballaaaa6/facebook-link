@@ -2,10 +2,12 @@
 
 ## Purpose
 
-Office V2 already has enough general game-engine knowledge to begin its pure
-world kernel. The remaining problem is turning that knowledge into project-owned
-contracts, authoring tools, deterministic fixtures, and acceptance gates so a
-new asset family can be created once and assembled without scene-by-scene fixes.
+Office V2 has enough general game-engine knowledge for bounded pure-function
+probes, but `KNOWLEDGE_COMPLETENESS_AUDIT.md` finds it is not yet safe to begin a
+persistent world kernel, the large floor, target crowds, or production art. The
+remaining work is turning the research into project-owned decisions, contracts,
+authoring tools, deterministic fixtures, and acceptance gates so a new asset
+family can be created once and assembled without scene-by-scene fixes.
 
 The target visual category is an original **2:1 dimetric/isometric pixel-art
 management simulation**, or more briefly a **2:1 isometric pixel-art office
@@ -62,7 +64,10 @@ Tiled is optional authoring input, never runtime truth. A pinned converter must
 translate editor data to canonical Office JSON, convert projected/editor
 coordinates to world cells, reject unknown classes, sort stable identifiers,
 and hash both input and output. Editor pixel offsets never become simulation
-coordinates.
+coordinates. Tiled's isometric shape-object positions use a projected convention
+based on tile height, so the Office 64-by-32 transform requires explicit fixtures.
+The profile must pin map-format, tool, and project compatibility versions and
+hash every project, template, external tileset, and class-registry dependency.
 
 ### Sprite and asset production
 
@@ -97,6 +102,14 @@ registry, provenance, commercial, and visual checks pass.
 These sources must result in real reducer-produced replay hashes, not sample hash
 strings, plus crowd and cancellation fixtures that replay byte-identically.
 
+[RFC 8785 JSON Canonicalization Scheme](https://www.rfc-editor.org/rfc/rfc8785.html)
+is the primary candidate for invariant JSON hashing. Office must either accept
+it or record an equally precise alternative, including number constraints,
+recursive property ordering, array-order ownership, encoding, and negative-zero
+behavior from the [verified errata](https://www.rfc-editor.org/errata/rfc8785).
+Office also needs a separate semantic normalization contract for collections
+declared unordered; `JSON.stringify` alone is not the replay contract.
+
 ### Verification and accessibility
 
 - [fast-check configuration](https://fast-check.dev/docs/configuration/) and
@@ -118,6 +131,27 @@ strings, plus crowd and cancellation fixtures that replay byte-identically.
 Geometric assertions remain separate from screenshot comparison. Golden images
 are accepted only in one recorded environment with a named human reviewer.
 
+### Browser and renderer lifecycle
+
+- [requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame)
+  normally pauses in background tabs and the
+  [Page Visibility API](https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API)
+  documents background throttling. A project lifecycle port, not browser
+  timers, owns pause, reconcile, coalesce, and resume behavior.
+- [HTML page transitions](https://html.spec.whatwg.org/multipage/nav-history-apis.html)
+  require explicit `pagehide` and `pageshow` handling for bfcache restores.
+  Restored heaps must refresh and resubscribe without duplicate listeners,
+  pollers, intents, animation loops, or operations events.
+- The [WebGL specification](https://registry.khronos.org/webgl/specs/latest/1.0/index.html)
+  and [WEBGL_lose_context](https://registry.khronos.org/webgl/extensions/WEBGL_lose_context/)
+  make context loss and restoration testable. Restored contexts require
+  registry-driven resource recreation while world and simulation state remain
+  unchanged.
+- Playwright screenshot baselines are environment-specific. The capture
+  protocol must freeze the Office tick, seed, camera, assets, fonts, browser,
+  viewport, DPR, renderer and preferences; a normal test run never updates a
+  golden.
+
 ## Indirect architecture studies
 
 These projects are useful for questions and patterns, not for importing their
@@ -135,11 +169,34 @@ runtime code or content into Office V2.
 - [FreeSO project structure](https://github.com/riperiperi/FreeSO/wiki/Project-structure):
   separation of simulation VM and presentation, command serialization,
   snapshots, room maps, routing, and static versus dynamic world data.
+- [Unknown Horizons world objects](https://github.com/unknown-horizons/unknown-horizons/blob/master/horizons/util/worldobject.py),
+  [scheduler](https://github.com/unknown-horizons/unknown-horizons/blob/master/horizons/scheduler.py),
+  and [build command](https://github.com/unknown-horizons/unknown-horizons/blob/master/horizons/command/building.py):
+  stable world IDs, deterministic tick scheduling, stable application order,
+  and placement revalidation when a command executes.
+- [Widelands command queue](https://github.com/widelands/widelands/blob/master/src/commands/cmd_queue.h),
+  [worker tasks](https://github.com/widelands/widelands/blob/master/src/logic/map_objects/tribes/worker.h),
+  and [request model](https://github.com/widelands/widelands/blob/master/src/economy/request.h):
+  deterministic command order, explicit worker tasks and homes, capability
+  requests, ownership, transfer cancellation, and persisted pending commands.
+- [KeeperRL task map](https://github.com/miki151/keeperrl/blob/master/task_map.h),
+  [tasks](https://github.com/miki151/keeperrl/blob/master/task.h), and
+  [level links](https://github.com/miki151/keeperrl/blob/master/level.h):
+  task identity, ownership, priority, transfer and cancellation separated from
+  level and landing-point identity.
+- [OpenRA map format](https://github.com/OpenRA/OpenRA/wiki/Map-format) and
+  [trait reference](https://docs.openra.net/en/release/traits/): versioned map
+  packages, upgrade tooling, named actors, cell and sub-cell positions, and
+  composable data-defined capabilities with explicit dependencies.
 
 The usable output of a study is a neutral observation, project decision,
 project schema, valid and rejected fixture, and original implementation test.
 No source values, scene composition, behavior table, art, or branding becomes a
 default merely because an open project uses it.
+
+The game/codebase survey is now broad enough for the target architecture. More
+unbounded browsing is not a readiness gate. The next research occurs only to
+answer a named unresolved decision or evaluate a bounded tool candidate.
 
 ## Knowledge closure program
 

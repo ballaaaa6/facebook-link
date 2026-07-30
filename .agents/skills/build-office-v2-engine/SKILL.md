@@ -10,7 +10,8 @@ Treat `docs/office-v2/` as executable engineering knowledge, not optional backgr
 ## Start every task
 
 1. Read the repository `AGENTS.md`.
-2. Read `docs/office-v2/README.md`, `FOUNDATIONS.md`, and `READINESS_MATRIX.md`.
+2. Read `docs/office-v2/README.md`, `FOUNDATIONS.md`,
+   `KNOWLEDGE_COMPLETENESS_AUDIT.md`, and `READINESS_MATRIX.md`.
 3. Run `node .agents/skills/build-office-v2-engine/scripts/preflight.mjs` from the repository root.
 4. Open [references/routing.md](references/routing.md) and read every document listed for the task category.
 5. Identify the owning layer: world, simulation, projection, presentation, operations adapter, or asset pipeline.

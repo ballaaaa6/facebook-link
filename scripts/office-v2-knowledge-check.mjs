@@ -14,6 +14,7 @@ const expectedKnowledge = {
     "CHARACTER_PRODUCTION_BIBLE.md", "CONNECTIVITY_AUTO_TILING.md", "DEPENDENCY_LEDGER.md",
     "FAILURE_DIAGNOSTICS.md", "FIRST_FLOOR_BRIEF.md", "FOUNDATIONS.md", "FURNITURE_PRODUCTION_BIBLE.md",
     "GLOSSARY_AND_INVARIANTS.md", "IMPLEMENTATION_PLAN.md", "INPUT_PICKING_AND_DEBUG_OVERLAYS.md",
+    "KNOWLEDGE_COMPLETENESS_AUDIT.md",
     "MAP_AUTHORING_AND_IMPORT.md", "OPERATIONS_ADAPTER_UI_SAFETY.md",
     "PILOT_DEVICE_AND_PERFORMANCE_MATRIX.md", "PRODUCT_AND_GAME_LOOP.md", "READINESS_MATRIX.md",
     "README.md", "RENDERING_DEPTH_OCCLUSION.md", "RESEARCH.md",
@@ -84,7 +85,7 @@ function validateSchema(ajv, schemaName, document, label, shouldPass = true) {
 
 function checkInventory() {
   const expected = Object.values(expectedKnowledge).flat().sort();
-  if (expected.length !== 65) fail(`Knowledge inventory definition has ${expected.length} entries instead of 65`);
+  if (expected.length !== 66) fail(`Knowledge inventory definition has ${expected.length} entries instead of 66`);
   for (const path of expected) {
     const absolute = join(knowledgeRoot, path);
     if (!existsSync(absolute)) fail(`Missing knowledge file: ${path}`);
@@ -275,7 +276,7 @@ export function runKnowledgeCheck() {
     checkNegativeWorld(ajv);
   }
   if (failures.length) throw new Error(failures.map((message) => `- ${message}`).join("\n"));
-  console.log("Office V2 knowledge OK: 65 files, 12 schemas, and 11 behavior fixtures validated.");
+  console.log("Office V2 knowledge OK: 66 files inventoried, 12 schemas loaded, and 11 current fixture groups checked; see the readiness audit for scope.");
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
