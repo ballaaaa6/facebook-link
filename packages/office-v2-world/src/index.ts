@@ -18,3 +18,17 @@ export type {
   WorldReferenceDiagnostic,
   WorldReferenceDiagnosticCode,
 } from "./reference-closure.ts";
+export {
+  geometryFingerprint,
+  inverseWorldOrientation,
+  rotateDefinitionLocalCell,
+  rotateDefinitionLocalSubCell,
+  transformGeometry,
+  validateGeometry,
+  validateGeometryAgreement,
+} from "./geometry-validation.ts";
+export type {
+  DerivedGeometryProjection,
+  GeometryValidationResult,
+  TransformedGeometry,
+} from "./geometry-validation.ts";

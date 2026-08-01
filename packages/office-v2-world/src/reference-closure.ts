@@ -9,7 +9,13 @@ import type {
 export type WorldReferenceDiagnosticCode =
   | "contract.reference-latest-forbidden"
   | "contract.reference-version-missing"
+  | "world.asset-occupancy-forbidden"
+  | "world.geometry-authority-violation"
+  | "world.geometry-conflict"
+  | "world.geometry-rotation-invalid"
   | "world.orientation-unsupported"
+  | "world.socket-duplicate"
+  | "world.use-slot-duplicate"
   | "world.reference-duplicate"
   | "world.reference-kind-mismatch"
   | "world.reference-missing"
