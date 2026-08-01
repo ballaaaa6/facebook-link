@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/scene-plan.schema.json",
+  "title": "Office V2 Scene Plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "scene",
+    "building",
+    "floorPlans",
+    "reservedCores",
+    "collectionDeclarations",
+    "semanticVariant",
+    "compositionProfile"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "office-scene-plan-v1" },
+    "scene": { "$ref": "#/$defs/sceneReference" },
+    "building": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/buildingReference" },
+    "floorPlans": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/floorPlan" }
+    },
+    "reservedCores": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/reservedCore" }
+    },
+    "collectionDeclarations": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/collectionDeclaration" }
+    },
+    "semanticVariant": { "enum": ["ground-floor-office-v1"] },
+    "compositionProfile": { "enum": ["operations", "review"] }
+  },
+  "$defs": {
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{1,63}$"
+    },
+    "positiveVersion": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "sceneReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "version": { "$ref": "#/$defs/positiveVersion" }
+      }
+    },
+    "floorPlan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["floor", "room"],
+      "properties": {
+        "floor": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/floorReference" },
+        "room": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/roomReference" }
+      }
+    },
+    "reservedCore": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "floor", "cells"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "kind": { "enum": ["stair", "lift"] },
+        "floor": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/floorReference" },
+        "cells": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/floorLocalCellPosition" }
+        }
+      }
+    },
+    "collectionDeclaration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pointer", "order", "keyField"],
+      "properties": {
+        "pointer": { "enum": ["/floorPlans", "/reservedCores"] },
+        "order": { "const": "unordered" },
+        "keyField": { "enum": ["floor.id.value", "room.id.value", "id"] }
+      }
+    }
+  }
+}

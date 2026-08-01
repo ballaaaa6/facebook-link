@@ -3,20 +3,25 @@
 ## Purpose and ownership
 
 This document owns the deterministic authoring rules for an Office V2 scene
-plan. The scene-plan schema and compiler are W1.5 integration deliverables;
-this document first fixes the serialization and collection-order vocabulary
-that they must use.
+plan. Decision 0014 and the scene compiler are W1.5 integration deliverables;
+this document fixes the serialization and collection-order vocabulary that
+they must use.
 
 The canonical representation versions are:
 
 - office-canonical-json-v1 for canonical UTF-8 JSON bytes;
 - office-sha256-envelope-v1 for domain-separated SHA-256 digests;
-- scene-plan-v1 for the first scene-plan contract, once its schema is admitted.
+- office-scene-plan-v1 for the admitted scene-plan contract;
+- office-world-v2-v1 for the floor-local renderer-neutral world;
+- office-compiled-building-v1 for the composed building envelope;
+- office-compilation-report-v1 for the auditable compiler result.
 
-The scene compiler consumes an editor-neutral scene plan and emits a
-versioned, renderer-neutral world document. It never emits PNG references as
-world truth, CSS offsets, renderer branches, character identity, or IDs
-derived from array positions.
+The scene compiler consumes an editor-neutral scene plan plus independently
+validated topology and room-template documents. It emits a versioned,
+renderer-neutral world document and a composed building/report pair. It never
+emits PNG references as world truth, CSS offsets, renderer branches, character
+identity, or IDs derived from array positions. Site context remains outside
+the floor-local world.
 
 ## Serialization pipeline
 
@@ -87,7 +92,7 @@ The digest input is the canonical serialization of this envelope:
       "envelopeVersion": "office-sha256-envelope-v1",
       "canonicalizationVersion": "office-canonical-json-v1",
       "domain": "office-v2:scene",
-      "domainVersion": "scene-plan-v1",
+      "domainVersion": "office-scene-plan-v1",
       "payload": {}
     }
 

@@ -7,7 +7,7 @@
   "required": ["schemaVersion", "building", "siteEnvelope", "floors", "portals"],
   "properties": {
     "schemaVersion": { "const": "office-building-topology-v1" },
-    "building": { "$ref": "common-v2.schema.json#/$defs/buildingReference" },
+    "building": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/buildingReference" },
     "siteEnvelope": { "$ref": "#/$defs/siteEnvelope" },
     "floors": {
       "type": "array",
@@ -21,13 +21,13 @@
     "migration": { "$ref": "#/$defs/migration" }
   },
   "$defs": {
-    "slug": { "$ref": "common-v2.schema.json#/$defs/slug" },
-    "positiveVersion": { "$ref": "common-v2.schema.json#/$defs/positiveVersion" },
-    "safeInteger": { "$ref": "common-v2.schema.json#/$defs/safeInteger" },
-    "nonNegativeSafeInteger": { "$ref": "common-v2.schema.json#/$defs/nonNegativeSafeInteger" },
-    "buildingReference": { "$ref": "common-v2.schema.json#/$defs/buildingReference" },
-    "floorReference": { "$ref": "common-v2.schema.json#/$defs/floorReference" },
-    "floorLocalCellPosition": { "$ref": "common-v2.schema.json#/$defs/floorLocalCellPosition" },
+    "slug": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+    "positiveVersion": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/positiveVersion" },
+    "safeInteger": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/safeInteger" },
+    "nonNegativeSafeInteger": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/nonNegativeSafeInteger" },
+    "buildingReference": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/buildingReference" },
+    "floorReference": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/floorReference" },
+    "floorLocalCellPosition": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/floorLocalCellPosition" },
     "siteReference": {
       "type": "object",
       "additionalProperties": false,

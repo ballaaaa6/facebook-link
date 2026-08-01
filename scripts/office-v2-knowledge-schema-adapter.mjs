@@ -11,6 +11,8 @@ export function runSchemaEvidence(context, ajv) {
     ["world.schema.json", read("fixtures/minimal-office.json"), "minimal world", "fixtures/minimal-office.json"],
     ["building.schema.json", read("fixtures/building-topology-one-floor.json"), "one-floor topology", "fixtures/building-topology-one-floor.json"],
     ["building.schema.json", read("fixtures/building-topology-two-floors.json"), "two-floor topology", "fixtures/building-topology-two-floors.json"],
+    ["building.schema.json", read("fixtures/building-topology-target-floor.json"), "target-floor topology", "fixtures/building-topology-target-floor.json"],
+    ["scene-plan.schema.json", read("fixtures/scene-plan-target-floor.json")?.plan, "target-floor scene plan", "fixtures/scene-plan-target-floor.json"],
     ["connectivity.schema.json", read("fixtures/connected-desk.json"), "connected desk", "fixtures/connected-desk.json"],
     ["connectivity.schema.json", read("fixtures/proof-workstation-connectivity-v2.json")?.definition, "proof workstation", "fixtures/proof-workstation-connectivity-v2.json"],
     ["entity-definition.schema.json", read("fixtures/placement-rotation-clearance.json")?.definition, "placement definition", "fixtures/placement-rotation-clearance.json"],

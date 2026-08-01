@@ -67,11 +67,18 @@ transforms are now gated. W1.2 completed on 2026-08-02: geometry,
 entity-definition, entity-instance, and definition-bundle schemas; deterministic
 multi-schema generation; public-package reference closure; cardinal geometry
 transforms and agreement; and exact rejection/drift evidence are now gated.
-The current evidence is 89 inventoried files, 18 schemas, 21 fixtures, 70/70
-semantic cases, and 15 exact diagnostics. No persistent world or simulation
-behavior, renderer, runtime asset, or new dependency was admitted;
-reducer/replay and property/model evidence remain zero, and T1 remains blocked.
-W1.3 is the next authorized package.
+The W1.5 evidence run reports 114 inventoried files, 24 schemas, 37 fixtures,
+87/87 semantic cases, and 35 exact diagnostics. No persistent world or
+simulation behavior, renderer, runtime asset, or new dependency was admitted;
+reducer/replay and property/model evidence remain zero.
+W1.3, W1.4, and W1.5 completed on 2026-08-02: building topology,
+room-program validation, canonical scene compilation, the target-floor fixture,
+and bounded T1 evidence are now gated. The current evidence is 114 inventoried
+files, 24 schemas, 37 fixtures, 87/87 semantic cases, and 35 exact diagnostics.
+No persistent world or simulation behavior, renderer, runtime asset, or new
+dependency was admitted; reducer/replay and property/model evidence remain
+zero. W1.6 cross-track specification closure is the next authorized package.
+The historical W0.3 closure register remains unchanged as its pre-T1 baseline.
 
 ## Knowledge rule
 

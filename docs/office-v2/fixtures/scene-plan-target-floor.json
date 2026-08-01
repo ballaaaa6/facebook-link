@@ -1,0 +1,47 @@
+{
+  "schema": "scene-plan.schema.json",
+  "topologyFixture": "fixtures/building-topology-target-floor.json",
+  "roomTemplateFixtures": ["fixtures/room-template-ground-floor.json"],
+  "plan": {
+    "schemaVersion": "office-scene-plan-v1",
+    "scene": { "id": "hq-ground-floor-scene", "version": 1 },
+    "building": { "id": { "kind": "building", "value": "hq" }, "version": 1 },
+    "floorPlans": [
+      {
+        "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 },
+        "room": { "id": { "kind": "room", "value": "hq-ground-floor-operations" }, "version": 1 }
+      }
+    ],
+    "reservedCores": [
+      {
+        "id": "future-stair-core",
+        "kind": "stair",
+        "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 },
+        "cells": [
+          { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 27, "y": 2, "elevation": 0 } },
+          { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 27, "y": 3, "elevation": 0 } }
+        ]
+      },
+      {
+        "id": "future-lift-core",
+        "kind": "lift",
+        "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 },
+        "cells": [
+          { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 29, "y": 2, "elevation": 0 } },
+          { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 29, "y": 3, "elevation": 0 } }
+        ]
+      }
+    ],
+    "collectionDeclarations": [
+      { "pointer": "/floorPlans", "order": "unordered", "keyField": "floor.id.value" },
+      { "pointer": "/reservedCores", "order": "unordered", "keyField": "id" }
+    ],
+    "semanticVariant": "ground-floor-office-v1",
+    "compositionProfile": "operations"
+  },
+  "cases": [
+    { "name": "target-floor-compiles", "expectedValid": true },
+    { "name": "authoring-order-is-semantic-free", "mutation": "reorder-input", "expectedValid": true },
+    { "name": "semantic-profile-changes-hash", "mutation": "change-composition-profile", "expectedValid": true }
+  ]
+}

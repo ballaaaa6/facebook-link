@@ -1,0 +1,11 @@
+{
+  "schema": "scene-plan.schema.json",
+  "baseFixture": "fixtures/scene-plan-target-floor.json",
+  "cases": [
+    { "name": "unresolved-room-reference", "mutation": "unresolved-room-reference", "expectedFailure": "contract.reference-unresolved" },
+    { "name": "array-index-derived-core-id", "mutation": "array-index-derived-id", "expectedFailure": "contract.array-index-derived-id" },
+    { "name": "unsupported-semantic-variant", "mutation": "unsupported-semantic-variant", "expectedFailure": "world.semantic-variant-unsupported" },
+    { "name": "site-occupancy-leak", "mutation": "site-occupancy-leak", "expectedFailure": "world.site-occupancy-leak" },
+    { "name": "direct-v1-world-input", "mutation": "direct-v1-world", "expectedFailure": "contract.v1-world-rejected" }
+  ]
+}

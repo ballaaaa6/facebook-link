@@ -1,8 +1,8 @@
 # Office Engine V2 Knowledge Completeness Audit
 
 Status: audited on 2026-07-31; T0 re-audited on 2026-08-01; W0.3
-contradiction closure and the bounded W1.1 contract slice re-audited on
-2026-08-02; W1.2 contract closure re-audited on 2026-08-02.
+contradiction closure and W1.1–W1.5 contract slices re-audited on
+2026-08-02.
 Re-audit after every Phase 1 closure wave.
 
 ## Purpose and authority
@@ -34,15 +34,29 @@ geometric probes. Three narrow areas are close enough for such probes:
 - single-actor four-direction A*.
 
 T0 now passes, W0.3 closes the twelve decision-level P0 contradictions, and the
-bounded W1.1 identity/coordinate contract slice passes its schema, exact
-diagnostic, generated-drift, compile-time, and pure-transform gates. W1.2 now
-also passes its geometry/bundle schemas, public-world reference graph,
-cardinal transforms, geometry agreement, and exact rejection/drift gates. The
-current evidence is 89 files, 18 schemas, 21 fixtures, 70/70 semantic cases,
-and 15 exact diagnostics. The gates report only the schema-shape, bounded
-semantic, exact-diagnostic, and resolution evidence they execute. This does not
-change the no-go decision for persistent engine work or production content;
-W1.3 is next and T1 remains blocked.
+bounded W1.1–W1.5 contract slices pass their schema, exact-diagnostic,
+generated-drift, pure-validator, compiler, reorder/hash, and reference-graph
+gates. The current evidence is 114 files, 24 schemas, 37 fixtures, 87/87
+semantic cases, and 35 exact diagnostics. The bounded T1 semantic-foundation
+evidence passes; the gates report only the schema-shape, bounded semantic,
+exact-diagnostic, and resolution evidence they execute. This does not change
+the no-go decision for persistent engine work or production content; W1.6
+cross-track specification closure is next.
+
+### W1.5 closure record
+
+W1.5 is complete for the bounded scene-composition/compiler slice. Decision
+0014 supersedes the historical V1 map-authoring boundary for V2 runtime world
+output. The scene-plan, world-v2, compiled-building, and compilation-report
+schemas are generated and drift-checked. The target-floor fixture compiles to
+one large floor with ten assigned workstations, five reserved actor slots,
+shared facilities, a legal entrance, presentation-only sidewalk/road context,
+and reserved stair/lift cores. Reordering declared authoring collections keeps
+canonical bytes and hashes unchanged; changing the composition profile changes
+the source and world hashes; unresolved references, index-derived IDs,
+unsupported variants, site occupancy leaks, and direct V1 world input reject
+with exact diagnostics. No persistent world, simulation, renderer, or asset
+admission is claimed.
 
 ### W1.2 closure record
 
@@ -194,14 +208,14 @@ dispositions executable through `registers/p0-resolution-register.json` and
 - all accepted decision references exist and carry accepted status;
 - the exact 27 JSON schemas and fixtures that predate W0.3 are pinned by raw
   SHA-256, so changing either registered hashes or historical bytes fails;
-- the knowledge inventory now contains 89 files, including 18 schemas and 21
-  fixtures; the knowledge gate executes all 70/70 declared semantic cases and
-  compares 15 exact rejected diagnostics;
+- the knowledge inventory now contains 114 files, including 24 schemas and 37
+  fixtures; the knowledge gate executes all 87/87 declared semantic cases and
+  compares 35 exact rejected diagnostics;
 - reducer/replay evidence remains `0`, property/model evidence remains `0`,
   asset admission remains `basic-only`, renderer admission remains `none`,
   runtime asset manifests remain `0`, and no dependency is admitted;
-- W1.1 and W1.2 are complete for their bounded contract slices; W1.3 is next,
-  while T1 remains blocked.
+- W1.1–W1.5 are complete for their bounded contract/compiler slices; W1.6 is
+  next, while persistent engine and production-content gates remain blocked.
 
 This is resolution evidence, not world, simulation, renderer, or production-art
 evidence. The V1 files in the historical set remain frozen.

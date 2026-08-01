@@ -40,6 +40,31 @@ export const officeV2SchemaDescriptors = Object.freeze([
     generatedRelativePath: "packages/office-v2-contracts/src/generated/room-template.ts",
     schemaId: "https://affiliate-operations.example/schemas/office-v2/room-template.schema.json",
   }),
+  Object.freeze({
+    schemaRelativePath: "docs/office-v2/schemas/building.schema.json",
+    generatedRelativePath: "packages/office-v2-contracts/src/generated/building.ts",
+    schemaId: "https://affiliate-operations.example/schemas/office-v2/building.schema.json",
+  }),
+  Object.freeze({
+    schemaRelativePath: "docs/office-v2/schemas/scene-plan.schema.json",
+    generatedRelativePath: "packages/office-v2-contracts/src/generated/scene-plan.ts",
+    schemaId: "https://affiliate-operations.example/schemas/office-v2/scene-plan.schema.json",
+  }),
+  Object.freeze({
+    schemaRelativePath: "docs/office-v2/schemas/world-v2.schema.json",
+    generatedRelativePath: "packages/office-v2-contracts/src/generated/world-v2.ts",
+    schemaId: "https://affiliate-operations.example/schemas/office-v2/world-v2.schema.json",
+  }),
+  Object.freeze({
+    schemaRelativePath: "docs/office-v2/schemas/compiled-building.schema.json",
+    generatedRelativePath: "packages/office-v2-contracts/src/generated/compiled-building.ts",
+    schemaId: "https://affiliate-operations.example/schemas/office-v2/compiled-building.schema.json",
+  }),
+  Object.freeze({
+    schemaRelativePath: "docs/office-v2/schemas/compilation-report.schema.json",
+    generatedRelativePath: "packages/office-v2-contracts/src/generated/compilation-report.ts",
+    schemaId: "https://affiliate-operations.example/schemas/office-v2/compilation-report.schema.json",
+  }),
 ]);
 
 function typeNameFromDefinition(name) {
