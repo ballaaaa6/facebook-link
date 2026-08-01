@@ -35,6 +35,11 @@ export const officeV2SchemaDescriptors = Object.freeze([
     generatedRelativePath: "packages/office-v2-contracts/src/generated/definition-bundle.ts",
     schemaId: "https://affiliate-operations.example/schemas/office-v2/definition-bundle.schema.json",
   }),
+  Object.freeze({
+    schemaRelativePath: "docs/office-v2/schemas/room-template.schema.json",
+    generatedRelativePath: "packages/office-v2-contracts/src/generated/room-template.ts",
+    schemaId: "https://affiliate-operations.example/schemas/office-v2/room-template.schema.json",
+  }),
 ]);
 
 function typeNameFromDefinition(name) {

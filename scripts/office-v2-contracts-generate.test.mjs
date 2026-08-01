@@ -45,6 +45,7 @@ test("the descriptor registry is explicit and deterministically sorted", () => {
       "docs/office-v2/schemas/entity-definition-v2.schema.json",
       "docs/office-v2/schemas/entity-instance.schema.json",
       "docs/office-v2/schemas/geometry.schema.json",
+      "docs/office-v2/schemas/room-template.schema.json",
     ],
   );
   assert.deepEqual(

@@ -21,6 +21,12 @@ import { evaluateCommonV2Case } from "./office-v2-common-v2-evidence.mjs";
 import { evaluateDefinitionBundleMutation } from "./office-v2-knowledge-world-adapter.mjs";
 import { evaluateBuildingTopologyFixture } from "./office-v2-building-topology-adapter.mjs";
 import {
+  assertGroundFloorRoomEvidence,
+  evaluateRoomTemplateCase,
+  roomTemplateFixturePath,
+  roomTemplateFixturePaths,
+} from "./office-v2-room-template-evidence.mjs";
+import {
   caseKind,
   compareExpectedDiagnostic,
   mismatch,
@@ -36,6 +42,7 @@ function executeCase(context, registration, fixture, entry, ajv) {
     || (caseRunner === "interaction" && entry.events && entry.expected)
     || (caseRunner === "structure" && typeof entry.state === "string" && typeof entry.expectedTraversable === "boolean")
     || (caseRunner === "common-v2" && (typeof entry.definition === "string" || typeof entry.semantic === "string"))
+    || (caseRunner === "room-template" && (entry.document || entry.mutation || entry.expectedValid === true))
     || (caseRunner === "navigation" && ["path", "reservation"].includes(caseKind(entry)))
   );
   if (!handled) {
@@ -72,6 +79,9 @@ function executeCase(context, registration, fixture, entry, ajv) {
       const expectedValid = entry.expectedValid === true;
       mismatch(context, path, entry, "common V2 schema validity", result.valid, expectedValid);
       if (!expectedValid) compareExpectedDiagnostic(context, path, entry.expectedFailure, result.diagnostic);
+    } else if (caseRunner === "room-template") {
+      const result = evaluateRoomTemplateCase(context, ajv, path, fixture, entry);
+      if (result) assertGroundFloorRoomEvidence(context, path, entry, result);
     } else if (caseKind(entry) === "path") {
       const result = findPath(fixture, entry);
       mismatch(context, path, entry, "navigation path", result.path, entry.expectedPath);
@@ -101,7 +111,11 @@ export function runFixtureCases(context, ajv) {
         context.add(diagnostic.code, diagnostic.message, diagnostic.context, diagnostic.owner);
       }
     }
-    const cases = Array.isArray(fixture.cases) ? fixture.cases : [];
+    const cases = Array.isArray(fixture.cases)
+      ? fixture.cases
+      : registration.caseRunner === "room-template" && roomTemplateFixturePaths.has(registration.path)
+        ? [{ name: registration.path === roomTemplateFixturePath ? "ground-floor-contract" : "room-template-contract", document: fixture, expectedValid: true }]
+        : [];
     context.coverage.declaredCases += cases.length;
     const names = new Set();
     for (const [index, entry] of cases.entries()) {

@@ -1,0 +1,16 @@
+{
+  "schema": "room-template.schema.json",
+  "baseFixture": "fixtures/room-template-ground-floor.json",
+  "cases": [
+    {
+      "name": "insufficient-assigned-workstations",
+      "mutation": "require-eleven-assigned-workstations",
+      "expectedFailure": "room.capacity-insufficient"
+    },
+    {
+      "name": "overflow-reserved-actor-slots",
+      "mutation": "declare-four-reserved-slots",
+      "expectedFailure": "room.capacity-overflow"
+    }
+  ]
+}
