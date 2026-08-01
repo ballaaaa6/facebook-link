@@ -140,10 +140,10 @@ world identity, bounds, site footprint, entrance endpoint, and local entity
 coordinates remain byte-for-byte the same as the one-floor envelope.
 
 The invalid topology fixtures each exercise one stable rejection: duplicate
-floor, missing endpoint, missing landing, vertical direction mismatch,
-exterior/interior overlap, elevation-as-floor inference, and incomplete V1
-migration context. Schema validation proves the shape; the pure topology
-validator proves the cross-record rule.
+floor, duplicate portal, missing endpoint, missing landing, vertical direction
+mismatch, exterior/interior overlap, elevation-as-floor inference, and
+incomplete V1 migration context. Schema validation proves the shape; the pure
+topology validator proves the cross-record rule.
 
 ## Migration and later work
 

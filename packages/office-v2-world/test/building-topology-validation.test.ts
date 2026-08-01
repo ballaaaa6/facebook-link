@@ -68,6 +68,14 @@ for (const [name, mutation, expected] of [
     copy.floors.push(structuredClone(copy.floors[0]));
     return copy;
   }, "world.floor-duplicate"],
+  ["duplicate portal", (document: BuildingTopologyDocument) => {
+    const copy = structuredClone(document);
+    const duplicate = structuredClone(copy.portals[0]);
+    if (duplicate.endpoint) duplicate.endpoint.id = `${duplicate.endpoint.id}-duplicate`;
+    if (duplicate.landing) duplicate.landing.id = `${duplicate.landing.id}-duplicate`;
+    copy.portals.push(duplicate);
+    return copy;
+  }, "world.portal-duplicate"],
   ["missing endpoint", (document: BuildingTopologyDocument) => {
     const copy = structuredClone(document);
     delete (copy.portals[0] as { endpoint?: unknown }).endpoint;

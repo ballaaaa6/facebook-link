@@ -12,6 +12,11 @@ export function applyBuildingTopologyMutation(document, mutation) {
   const copy = structuredClone(document);
   if (mutation === "duplicate-floors[0]") {
     copy.floors.push(structuredClone(copy.floors[0]));
+  } else if (mutation === "duplicate-portals[0]-unique-endpoints") {
+    const duplicate = structuredClone(copy.portals[0]);
+    if (duplicate.endpoint) duplicate.endpoint.id = `${duplicate.endpoint.id}-duplicate`;
+    if (duplicate.landing) duplicate.landing.id = `${duplicate.landing.id}-duplicate`;
+    copy.portals.push(duplicate);
   } else if (mutation === "delete-portals[0].endpoint") {
     delete copy.portals[0].endpoint;
   } else if (mutation === "delete-portals[0].landing") {

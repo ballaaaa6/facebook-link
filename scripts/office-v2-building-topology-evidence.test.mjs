@@ -17,6 +17,7 @@ test("W1.3 valid topology envelopes pass schema and pure semantic validation", (
 
 for (const fixturePath of [
   "fixtures/invalid/building-topology-duplicate-floor.json",
+  "fixtures/invalid/building-topology-duplicate-portal.json",
   "fixtures/invalid/building-topology-missing-endpoint.json",
   "fixtures/invalid/building-topology-missing-landing.json",
   "fixtures/invalid/building-topology-direction-mismatch.json",

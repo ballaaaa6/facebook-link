@@ -28,6 +28,7 @@ export function runSchemaEvidence(context, ajv) {
   for (const fixturePath of [
     "fixtures/invalid/building-topology-direction-mismatch.json",
     "fixtures/invalid/building-topology-duplicate-floor.json",
+    "fixtures/invalid/building-topology-duplicate-portal.json",
     "fixtures/invalid/building-topology-elevation-floor.json",
     "fixtures/invalid/building-topology-exterior-overlap.json",
     "fixtures/invalid/building-topology-incomplete-migration.json",
