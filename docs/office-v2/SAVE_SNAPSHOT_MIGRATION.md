@@ -11,6 +11,11 @@
 Each form declares its schema version. Engine build identifiers are diagnostic;
 schema versions own compatibility.
 
+W1.1 identity and coordinate values use the discriminated shapes in
+`DEFINITION_INSTANCE_RUNTIME_STATE.md` and `common-v2.schema.json`. A floor-local
+coordinate carries an explicit versioned floor reference; an elevation or
+screen pixel cannot stand in for that reference.
+
 A building references independently versioned floor-local worlds. Saves and
 snapshots identify building, selected floor, floor version, world revision, and
 stable portal endpoint IDs explicitly. Elevation cannot stand in for a floor,

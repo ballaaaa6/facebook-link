@@ -45,6 +45,12 @@ not originate a world, simulation, adapter, presentation, or asset failure.
 Renderer code cannot reinterpret a missing world or adapter fact as a
 presentation success.
 
+W1.1 contract diagnostics include coordinate-space, safe-range, typed-identity,
+versioned-reference, generic-position, and generated-drift failures. Their
+stable `contract.*` codes are defined in
+`DEFINITION_INSTANCE_RUNTIME_STATE.md`; schema adapters preserve JSON pointers
+and structured context but do not leak validator-specific wording.
+
 ## Debug evidence
 
 A bug report can include the validated world definition, initial snapshot,

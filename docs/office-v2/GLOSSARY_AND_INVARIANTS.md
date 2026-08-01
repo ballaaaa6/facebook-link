@@ -6,6 +6,8 @@
   placement; it is not a movement or pixel value.
 - **Sub-cell position**: integral floor-local movement position using the
   projection version's fixed number of units per cell.
+- **Floor-local position**: a coordinate paired with an explicit versioned floor
+  reference; elevation never supplies the missing floor identity.
 - **Definition-local geometry**: world or sub-cell geometry relative to a
   definition's anchor basis; it is not a pixel coordinate.
 - **Definition-local pixel**: pixel coordinate in a versioned authored source
@@ -57,6 +59,12 @@
 - **State hash**: lowercase SHA-256 digest of a canonical domain/version
   envelope and its approved hashable payload.
 - **Adapter**: one-way translation from operational records into engine input.
+- **Definition**: immutable authored capability and geometry reference.
+- **Instance**: a version-pinned placed occurrence of a definition in one floor.
+- **Runtime state**: mutable simulation state at one logical tick.
+- **Derived view**: disposable presentation data recomputed from runtime state.
+- **Typed identity**: an ID envelope whose namespace discriminator is part of
+  its serialized identity and generated TypeScript brand.
 
 ## Non-interchangeable concepts
 
@@ -99,6 +107,10 @@
     every applicable claim, slot, cell, reservation, ticket, and held prop.
 16. A missing legal deadlock yield cell fails diagnostically instead of
     permitting an exceptional movement rule.
+17. Every V2 coordinate carries an explicit space discriminator and every
+    mutation-sensitive reference carries an explicit positive version.
+18. Definition, instance, runtime state, and derived view are separate records;
+    no presentation record can become an authority by being easier to render.
 
 ## Rule writing template
 

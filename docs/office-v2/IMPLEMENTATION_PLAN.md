@@ -129,6 +129,11 @@ authorizes Phase 2; it does not claim that the T2–T6 implementation gates in
 
 ## Phase 2 — Executable world kernel
 
+Phase 1 W1.1 creates the branded identity and coordinate contracts plus their
+generated TypeScript types. Phase 2 consumes those types to implement the pure
+world kernel; defining a brand in W1.1 does not claim that runtime world
+behavior, placement, inverse picking, or persistence already exists.
+
 - Define branded identifier types for building, floor, room, entity, cell,
   facility, command, and tick.
 - Implement world bounds, floor-local coordinates, footprints, anchors,

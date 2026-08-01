@@ -28,6 +28,11 @@ W1.1 introduces `common-v2.schema.json` rather than changing the historical
 shape. A V1 value without complete version, floor, coordinate-space, and
 projection context fails migration instead of being guessed.
 
+The exact serialized coordinate discriminators, safe-number policy, floor-local
+envelopes, identity namespaces, and named W1.1 conversions are owned by
+`DEFINITION_INSTANCE_RUNTIME_STATE.md`. Every V2 boundary uses a named space;
+no unqualified `position` field is accepted across a package boundary.
+
 ## Facing transform
 
 World and simulation truth uses `north`, `east`, `south`, and `west`. Under
@@ -83,6 +88,8 @@ depth inputs. Render ordering is owned by `RENDERING_DEPTH_OCCLUSION.md`.
 - Projection round-trips at bounds and representative sub-cell positions.
 - The four world facings map to the four screen facings exactly.
 - Schema and generated-type checks reject coordinate-space substitution.
+- Cell origins and negative sub-cell values use the fixed four-unit rule with
+  mathematical floor semantics and safe-range rejection.
 - Pointer picking states its edge and tie behavior.
 - Camera fitting passes desktop, tablet, and phone fixtures.
 - Repeated projection of the same input produces byte-identical test output.
