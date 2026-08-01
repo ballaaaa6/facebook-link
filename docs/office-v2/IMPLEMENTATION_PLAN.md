@@ -34,10 +34,11 @@ fixtures fail for their declared reason.
 
 ## Phase 1 — First-floor knowledge and contract closure
 
-Status: in progress. W1.1 and W1.2 are complete for their bounded
-identity/coordinate and geometry/reference slices; W1.3 is the next package.
-The target brief exists and the remaining building, room, compiler, simulation,
-renderer, and asset contracts do not.
+Status: in progress. W1.1 through W1.5 are complete for their bounded
+identity/coordinate, geometry/reference, topology, room, and scene-compiler
+slices. W1.6 cross-track specification closure is next. The target brief and
+contract/compiler evidence exist; simulation, renderer, and asset-factory
+implementation remain later work.
 `KNOWLEDGE_COMPLETENESS_AUDIT.md` is the evidence inventory for this phase. Its
 P0 contradictions must close before persistent engine implementation, and its
 minimum safe-to-produce gate must pass before the large floor or any art batch.
@@ -132,10 +133,11 @@ authorizes Phase 2; it does not claim that the T2–T6 implementation gates in
 
 ## Phase 2 — Executable world kernel
 
-Phase 1 W1.1 creates the branded identity and coordinate contracts plus their
-generated TypeScript types. Phase 2 consumes those types to implement the pure
-world kernel; defining a brand in W1.1 does not claim that runtime world
-behavior, placement, inverse picking, or persistence already exists.
+Phase 1 W1.1–W1.5 create the branded identity, coordinate, geometry, topology,
+room, and scene contracts plus their generated TypeScript types. Phase 2
+consumes those types to implement the pure world kernel; contract closure does
+not claim that runtime world behavior, placement, inverse picking, or
+persistence already exists.
 
 - Define branded identifier types for building, floor, room, entity, cell,
   facility, command, and tick.

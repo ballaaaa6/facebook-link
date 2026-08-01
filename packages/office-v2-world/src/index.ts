@@ -58,3 +58,26 @@ export type {
   RoomTemplateDiagnosticCode,
   RoomTemplateValidationResult,
 } from "./room-template-validation.ts";
+export {
+  COMPILED_BUILDING_VERSION,
+  COMPILATION_REPORT_VERSION,
+  SCENE_COMPILER_VERSION,
+  SCENE_PLAN_VERSION,
+  WORLD_V2_VERSION,
+  compileScenePlan,
+  compilationReportCanonicalJson,
+} from "./scene-plan-compiler.ts";
+export type {
+  CompilationDiagnosticReport,
+  SceneCollectionDeclaration,
+  SceneCompilerDependencies,
+  SceneCompilerDiagnostic,
+  SceneCompilerDiagnosticCode,
+  SceneCompilationResult,
+  SceneFloorPlan,
+  ScenePlanDocument,
+  SceneReference,
+  SceneReservedCore,
+  WorldV2Document,
+  CompiledBuildingDocument,
+} from "./scene-plan-compiler.ts";

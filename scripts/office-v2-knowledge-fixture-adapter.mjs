@@ -20,6 +20,7 @@ import {
 import { evaluateCommonV2Case } from "./office-v2-common-v2-evidence.mjs";
 import { evaluateDefinitionBundleMutation } from "./office-v2-knowledge-world-adapter.mjs";
 import { evaluateBuildingTopologyFixture } from "./office-v2-building-topology-adapter.mjs";
+import { evaluateScenePlanCase } from "./office-v2-scene-compiler-evidence.mjs";
 import {
   assertGroundFloorRoomEvidence,
   evaluateRoomTemplateCase,
@@ -43,6 +44,7 @@ function executeCase(context, registration, fixture, entry, ajv) {
     || (caseRunner === "structure" && typeof entry.state === "string" && typeof entry.expectedTraversable === "boolean")
     || (caseRunner === "common-v2" && (typeof entry.definition === "string" || typeof entry.semantic === "string"))
     || (caseRunner === "room-template" && (entry.document || entry.mutation || entry.expectedValid === true))
+    || (caseRunner === "scene-plan" && (entry.mutation || entry.expectedValid === true))
     || (caseRunner === "navigation" && ["path", "reservation"].includes(caseKind(entry)))
   );
   if (!handled) {
@@ -82,6 +84,8 @@ function executeCase(context, registration, fixture, entry, ajv) {
     } else if (caseRunner === "room-template") {
       const result = evaluateRoomTemplateCase(context, ajv, path, fixture, entry);
       if (result) assertGroundFloorRoomEvidence(context, path, entry, result);
+    } else if (caseRunner === "scene-plan") {
+      evaluateScenePlanCase(context, ajv, path, fixture, entry);
     } else if (caseKind(entry) === "path") {
       const result = findPath(fixture, entry);
       mismatch(context, path, entry, "navigation path", result.path, entry.expectedPath);

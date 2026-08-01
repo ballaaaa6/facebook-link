@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/compilation-report.schema.json",
+  "title": "Office V2 Scene Compilation Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "compilerVersion", "status", "sourcePlanHash", "canonicalWorldHash", "referenceGraph", "diagnostics"],
+  "properties": {
+    "schemaVersion": { "const": "office-compilation-report-v1" },
+    "compilerVersion": { "const": "office-scene-compiler-v1" },
+    "status": { "enum": ["accepted", "rejected"] },
+    "sourcePlanHash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "canonicalWorldHash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "referenceGraph": { "$ref": "#/$defs/referenceGraph" },
+    "diagnostics": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/diagnostic" }
+    }
+  },
+  "$defs": {
+    "referenceGraph": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["nodes", "edges"],
+      "properties": {
+        "nodes": { "type": "array", "items": { "$ref": "#/$defs/referenceNode" } },
+        "edges": { "type": "array", "items": { "$ref": "#/$defs/referenceEdge" } }
+      }
+    },
+    "referenceNode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "kind"],
+      "properties": {
+        "key": { "type": "string", "minLength": 1 },
+        "kind": { "type": "string", "pattern": "^[a-z][a-z0-9-]{1,63}$" }
+      }
+    },
+    "referenceEdge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["from", "to", "relation"],
+      "properties": {
+        "from": { "type": "string", "minLength": 1 },
+        "to": { "type": "string", "minLength": 1 },
+        "relation": { "type": "string", "pattern": "^[a-z][a-z0-9-]{1,63}$" }
+      }
+    },
+    "diagnostic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "owner", "version", "message", "relatedKeys"],
+      "properties": {
+        "code": { "type": "string", "pattern": "^[a-z][a-z0-9.-]{1,127}$" },
+        "owner": { "enum": ["contract", "world"] },
+        "version": { "type": "integer", "const": 1 },
+        "message": { "type": "string", "minLength": 1 },
+        "pointer": { "type": "string" },
+        "relatedKeys": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

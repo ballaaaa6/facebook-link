@@ -43,17 +43,21 @@ probes named below.
 ## The next test, precisely
 
 W0.3 completed on 2026-08-02. W1.1 closed its common identity/coordinate
-contract slice, and W1.2 closed its geometry authority/reference-closure slice
-on 2026-08-02. The next authorized work package is **W1.3 — Building, floor,
-exterior, entrance, and portals**. The next promotion target remains T1 and
-does not pass merely because a wave begins.
+contract slice, W1.2 closed geometry authority/reference closure, and W1.3–W1.5
+closed topology, room composition, and deterministic scene compilation on
+2026-08-02. The bounded T1 semantic-foundation evidence now passes. The next
+authorized work package is **W1.6 — Cross-track Phase 1 specification closure**;
+the historical W0.3 closure register remains unchanged as a pre-T1 promotion
+baseline.
 
-The next promotion target is **T1 — Semantic Foundation**. It is a headless
-contract/compiler test, not a visual prototype.
+The completed promotion target is **T1 — Semantic Foundation**. It is a
+headless contract/compiler test, not a visual prototype. The evidence is
+bounded to contract closure and does not claim persistent simulation, renderer,
+crowd, or asset readiness.
 
-T1 may start only after Wave 0 corrects the current gate and Wave 1 supplies the
-coordinate, identity, geometry, building, and reference contracts. T1 passes
-only when:
+The bounded T1 record is complete because Wave 0 is green and Wave 1 supplies
+the coordinate, identity, geometry, building, room, reference, and scene
+contracts. It passes because:
 
 1. every declared valid and rejected fixture case executes;
 2. every rejected case produces its exact stable diagnostic code;
@@ -285,7 +289,8 @@ Evidence and exit:
 - asset admission remains basic-only, with no renderer, runtime asset manifest,
   new dependency admission, world implementation, or simulation reducer;
 - W1.1 was the next package at this historical W0.3 handoff; its bounded
-  contract slice is now complete, while T1 remains blocked.
+  contract slice is now complete, and the current W1.3–W1.5 bounded T1 record
+  passes while the historical promotion baseline remains unchanged.
 
 ## Wave 1 — Identity, geometry, topology, and composition
 
@@ -343,7 +348,7 @@ Evidence and exit:
 - `@affiliate-ops/office-v2-world` exposes only the named W1.1 pure operations
   `cellOriginToSubCell`, `splitSubCellPosition`, and the two facing transforms;
 - W1.2 owns the completed geometry-authority and reference-closure contracts;
-  W1.3 owns the next building/floor/exterior/portal contracts.
+  W1.3–W1.5 own the completed topology, room, and scene/compiler contracts.
 
 ### W1.2 One geometry authority and reference closure
 
@@ -401,7 +406,7 @@ Rejected evidence:
 
 Evidence and exit:
 
-- the knowledge gate inventories 89 files, loads 18 schemas, evidences 21/21
+- at the W1.2 closure point, the knowledge gate inventoried 89 files, loaded 18 schemas, evidenced 21/21
   fixtures, executes 70/70 semantic cases, and compares 15 exact diagnostics;
 - the generated contract gate emits five deterministic modules and detects
   external Office imports, cycles, descriptor collisions, and unexpected files;
@@ -416,10 +421,16 @@ Evidence and exit:
   renderer, no runtime manifest, and no new dependency admission.
 
 Exit: changing authoritative geometry either updates all permitted derived
-evidence deterministically or fails before runtime import. W1.3 now owns
-building/floor/site/portal contracts; T1 remains blocked.
+evidence deterministically or fails before runtime import. W1.3–W1.5 now own
+the topology, room, and scene/compiler contracts; bounded T1 evidence passes.
 
 ### W1.3 Building, floor, exterior, entrance, and portals
+
+Status: completed on 2026-08-02. The building topology schema, one-floor and
+future two-floor fixtures, target-floor envelope, pure validator, migration
+rejections, portal closure evidence, and knowledge adapter are green. This
+closes topology ownership only; persistent save/load and cross-floor gameplay
+remain later work.
 
 Canonical changes:
 
@@ -443,6 +454,11 @@ coordinates or entity IDs. Actual persistent load/save and restore evidence
 belongs to Phases 2–3.
 
 ### W1.4 Room templates, capacity, and circulation
+
+Status: completed on 2026-08-02. The room-template schema, target room fixture,
+capacity/circulation/placement validator, deterministic navigation projection,
+and exact rejected cases are green. This remains pure geometry; queues,
+reservations, and runtime actor state remain later work.
 
 Canonical changes:
 
@@ -471,6 +487,12 @@ vertical core, zone adjacency, and focal hierarchy before the target fixture in
 W1.5 is finalized.
 
 ### W1.5 Deterministic scene plan and target-floor compiler
+
+Status: completed on 2026-08-02. The canonical serializer/hash primitives,
+Decision 0014, generated scene/world/building/report contracts, pure scene
+compiler, target-floor fixture, reference report, reorder/hash checks, and
+five fail-closed compiler diagnostics are green. No renderer, PNG, CSS offset,
+character identity, persistent world, or simulation reducer is admitted.
 
 Canonical changes:
 
@@ -1177,9 +1199,9 @@ Each numbered unit remains independently green and reviewable. A unit may use
 several commits when generated evidence is large, but unrelated units are not
 combined merely to reduce commit count.
 
-Units 1–4 are complete through W0.3. Unit 5 (W1.1) and unit 6 (W1.2) are
-complete; unit 7 (W1.3 building/floor/exterior/portal contracts) is the next
-authorized work package.
+Units 1–4 are complete through W0.3. Units 5–9 (W1.1 through W1.5) are
+complete, including the bounded T1 record; unit 10 (W1.6 cross-track Phase 1
+specification closure) is the next authorized work package.
 
 1. Register this remediation plan and repair knowledge inventory wording.
 2. Correct existing gate semantics and diagnostic assertions.

@@ -40,12 +40,17 @@ test("the descriptor registry is explicit and deterministically sorted", () => {
   assert.deepEqual(
     officeV2SchemaDescriptors.map(({ schemaRelativePath }) => schemaRelativePath).toSorted(),
     [
+      "docs/office-v2/schemas/building.schema.json",
       "docs/office-v2/schemas/common-v2.schema.json",
+      "docs/office-v2/schemas/compilation-report.schema.json",
+      "docs/office-v2/schemas/compiled-building.schema.json",
       "docs/office-v2/schemas/definition-bundle.schema.json",
       "docs/office-v2/schemas/entity-definition-v2.schema.json",
       "docs/office-v2/schemas/entity-instance.schema.json",
       "docs/office-v2/schemas/geometry.schema.json",
       "docs/office-v2/schemas/room-template.schema.json",
+      "docs/office-v2/schemas/scene-plan.schema.json",
+      "docs/office-v2/schemas/world-v2.schema.json",
     ],
   );
   assert.deepEqual(

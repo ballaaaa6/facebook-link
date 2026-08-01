@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/compiled-building.schema.json",
+  "title": "Office V2 Compiled Building",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "building", "sourcePlan", "siteEnvelope", "floors"],
+  "properties": {
+    "schemaVersion": { "const": "office-compiled-building-v1" },
+    "building": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/buildingReference" },
+    "sourcePlan": { "$ref": "#/$defs/sceneReference" },
+    "siteEnvelope": { "$ref": "https://affiliate-operations.example/schemas/office-v2/building.schema.json#/$defs/siteEnvelope" },
+    "floors": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/compiledFloor" }
+    }
+  },
+  "$defs": {
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{1,63}$"
+    },
+    "positiveVersion": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "sceneReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "version": { "$ref": "#/$defs/positiveVersion" }
+      }
+    },
+    "compiledFloor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["floor", "world", "worldHash"],
+      "properties": {
+        "floor": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/floorReference" },
+        "world": { "$ref": "https://affiliate-operations.example/schemas/office-v2/world-v2.schema.json#/$defs/worldDocument" },
+        "worldHash": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+      }
+    }
+  }
+}
