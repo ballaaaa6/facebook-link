@@ -66,6 +66,7 @@ for (const [fixtureName, wrongCode] of [
   ["connectivity-missing-mask.json", "connectivity.wrong-code"],
   ["proof-workstation-unsupported-mask.json", "connectivity.wrong-code"],
   ["world-overlap.json", "world.wrong-code"],
+  ["definition-bundle-reference-closure.json", "world.wrong-code"],
 ]) {
   test(`${fixtureName} rejects an incorrect expected diagnostic`, () => {
     withKnowledgeCopy((copyRoot) => {

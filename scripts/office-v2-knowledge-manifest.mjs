@@ -46,6 +46,7 @@ export const expectedKnowledge = {
     "fixtures/room-structure-cutaway.json",
     "fixtures/invalid/asset-admission.json", "fixtures/invalid/connectivity-missing-mask.json",
     "fixtures/invalid/common-v2-rejections.json",
+    "fixtures/invalid/definition-bundle-reference-closure.json",
     "fixtures/invalid/proof-workstation-unsupported-mask.json",
     "fixtures/invalid/world-overlap.json",
   ],
@@ -77,6 +78,7 @@ export const fixtureRegistry = [
   ["fixtures/invalid/asset-admission.json", null],
   ["fixtures/invalid/connectivity-missing-mask.json", null],
   ["fixtures/invalid/common-v2-rejections.json", "common-v2"],
+  ["fixtures/invalid/definition-bundle-reference-closure.json", null],
   ["fixtures/invalid/proof-workstation-unsupported-mask.json", null],
   ["fixtures/invalid/world-overlap.json", null],
 ].map(([path, caseRunner]) => ({ path, caseRunner }));

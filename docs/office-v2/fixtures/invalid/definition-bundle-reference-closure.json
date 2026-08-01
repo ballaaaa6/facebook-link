@@ -1,0 +1,6 @@
+{
+  "schema": "definition-bundle.schema.json",
+  "baseFixture": "fixtures/definition-bundle-v2.json",
+  "mutation": "remove-references.assetFamilyRefs[0]",
+  "expectedFailure": "world.reference-missing"
+}

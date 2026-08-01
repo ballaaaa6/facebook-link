@@ -18,6 +18,7 @@ import {
   findWorldOverlap,
 } from "./office-v2-knowledge-probes.mjs";
 import { evaluateCommonV2Case } from "./office-v2-common-v2-evidence.mjs";
+import { evaluateDefinitionBundleMutation } from "./office-v2-knowledge-world-adapter.mjs";
 import {
   caseKind,
   compareExpectedDiagnostic,
@@ -154,5 +155,11 @@ export function runNegativeDiagnostics(context) {
       context: overlap,
     } : null;
     compareExpectedDiagnostic(context, worldPath, world.expectedFailure, actual);
+  }
+  const bundlePath = "fixtures/invalid/definition-bundle-reference-closure.json";
+  const bundleFixture = context.readJson(bundlePath);
+  if (bundleFixture) {
+    const evaluation = evaluateDefinitionBundleMutation(context, bundleFixture);
+    compareExpectedDiagnostic(context, bundlePath, bundleFixture.expectedFailure, evaluation?.diagnostics[0] ?? null);
   }
 }

@@ -19,6 +19,9 @@ for (const command of [
   ["scripts/office-v2-contracts-generate.mjs", "--check"],
   ["--test", "scripts/office-v2-contracts-generate.test.mjs"],
   ["--test", "packages/office-v2-world/test/coordinate-semantics.test.ts"],
+  ["--test", "packages/office-v2-world/test/reference-closure.test.ts"],
+  ["--test", "packages/office-v2-world/test/geometry-validation.test.ts"],
+  ["--test", "scripts/office-v2-world-w1-2-evidence.test.mjs"],
   ["scripts/office-v2-knowledge-check.mjs"],
   ["scripts/office-v2-asset-check.mjs"],
 ]) {
