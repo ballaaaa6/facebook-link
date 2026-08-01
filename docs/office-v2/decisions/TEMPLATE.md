@@ -2,7 +2,8 @@
 
 - Status: proposed | accepted | superseded
 - Date: YYYY-MM-DD
-- Owners: product, world, simulation, projection, presentation, or pipeline
+- Owners: product, architecture, contracts, world, simulation, projection,
+  operations adapter, presentation, or asset pipeline
 
 ## Context
 

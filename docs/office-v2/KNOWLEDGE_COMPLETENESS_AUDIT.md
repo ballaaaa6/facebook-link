@@ -564,9 +564,11 @@ Required tools before the target floor:
 
 ## Planned evidence volume
 
-The pack currently contains 68 inventoried knowledge files. Closing the target
-does not require hundreds of pages, but it does require materially more
-machine-readable evidence. The current planning budget is:
+The pack currently contains 69 inventoried knowledge files after Decision 0007;
+the T0 closure record above correctly records the 68 files present when that
+gate passed. Closing the target does not require hundreds of pages, but it does
+require materially more machine-readable evidence. The current planning budget
+is:
 
 | Kind | Minimum planned change | Notes |
 | --- | --- | --- |

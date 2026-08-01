@@ -56,10 +56,36 @@ Office Engine V2 is an optional read-only visualization. It consumes a versioned
 adapter snapshot derived from durable agent and workflow events; it does not own
 operational truth, call external connectors, or write storage records directly.
 
-World, simulation, projection, and presentation dependencies flow in one
-direction. The engine and its future visual assets live behind the clean-room
-rules in `docs/office-v2/README.md`. Dashboard, Settings, API, and runner builds
-must not require the renderer.
+Decision 0007 fixes the package import graph. Arrows point from the consumer to
+the dependency it may import:
+
+```text
+@affiliate-ops/office-v2-world
+  -> @affiliate-ops/office-v2-contracts
+
+@affiliate-ops/office-v2-simulation
+  -> @affiliate-ops/office-v2-world
+  -> @affiliate-ops/office-v2-contracts
+
+@affiliate-ops/office-v2-operations
+  -> @affiliate-ops/contracts
+  -> @affiliate-ops/office-v2-contracts
+
+apps/web/src/features/office-v2
+  -> all four Office packages
+```
+
+The world package keeps renderer-neutral projection mathematics in a separate
+pure module; browser camera, input, renderer, and React concerns remain in the
+Web presentation boundary. Operations adapts shared operational contracts and
+does not depend on world or simulation. Packages never import applications,
+services, React, renderers, database or storage implementations, connectors,
+providers, or the automation runner.
+
+The engine and its future visual assets live behind the clean-room rules in
+`docs/office-v2/README.md`. Dashboard, Settings, API, and runner builds must not
+require the renderer. Any new Office root or package edge requires a superseding
+decision and an exact gate change.
 
 ## Scale path
 

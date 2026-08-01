@@ -37,7 +37,7 @@ const expectedKnowledge = {
     "decisions/0001-projection-grid.md", "decisions/0002-renderer.md",
     "decisions/0003-map-authoring.md", "decisions/0004-navigation-movement.md",
     "decisions/0005-simulation-state-machine.md", "decisions/0006-asset-authoring-export.md",
-    "decisions/TEMPLATE.md",
+    "decisions/0007-package-ownership-and-import-boundaries.md", "decisions/TEMPLATE.md",
   ],
   schemas: [
     "schemas/animation.schema.json", "schemas/asset.schema.json", "schemas/common.schema.json",
