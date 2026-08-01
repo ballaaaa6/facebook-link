@@ -39,6 +39,13 @@ fixture that exercises transitions, and metadata proving equal anchor, scale,
 and contact geometry. The first family supports only the masks required by the
 approved product slice.
 
+Decision 0013 locks the proof workstation to local east-west masks `0`, `2`,
+`8`, and `10`. North/south, vertical-middle, corner, tee, and cross masks fail
+with `connectivity.unsupported-mask`; they are not rotated or replaced by the
+nearest visual variant. The historical V1 connected-desk fixture remains
+unchanged. `proof-workstation-connectivity-v2.json` is the authoritative
+bounded fixture for this family.
+
 ## Required evidence
 
 - Resolution is independent of entity insertion order.

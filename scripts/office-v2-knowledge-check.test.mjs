@@ -1,16 +1,6 @@
 import assert from "node:assert/strict";
-import {
-  cpSync,
-  mkdtempSync,
-  readFileSync,
-  readdirSync,
-  rmSync,
-  statSync,
-  unlinkSync,
-  writeFileSync,
-} from "node:fs";
-import { tmpdir } from "node:os";
-import { join, relative, resolve } from "node:path";
+import { unlinkSync } from "node:fs";
+import { join } from "node:path";
 import test from "node:test";
 import {
   evaluateOfficeKnowledge,
@@ -18,61 +8,15 @@ import {
   runKnowledgeCheck,
 } from "./office-v2-knowledge-check.mjs";
 import { findPath } from "./office-v2-knowledge-probes.mjs";
-
-const repositoryRoot = resolve(import.meta.dirname, "..");
-const knowledgeRoot = join(repositoryRoot, "docs", "office-v2");
-
-function collectFiles(directory) {
-  return readdirSync(directory).flatMap((name) => {
-    const absolute = join(directory, name);
-    return statSync(absolute).isDirectory() ? collectFiles(absolute) : [absolute];
-  });
-}
-
-function readJson(path) {
-  return JSON.parse(readFileSync(path, "utf8"));
-}
-
-function writeJson(path, value) {
-  writeFileSync(path, `${JSON.stringify(value, null, 2)}\n`);
-}
-
-function expectedInventory(root) {
-  const knowledgeFiles = collectFiles(root)
-    .map((file) => relative(root, file).replaceAll("\\", "/"))
-    .filter((file) => file.endsWith(".md") || file.endsWith(".json"));
-  return {
-    totalFiles: knowledgeFiles.length,
-    schemaFiles: knowledgeFiles.filter((file) => file.startsWith("schemas/") && file.endsWith(".schema.json")).length,
-    fixtureFiles: knowledgeFiles.filter((file) => file.startsWith("fixtures/") && file.endsWith(".json")).length,
-  };
-}
-
-function expectedFixtureCounts(root) {
-  const fixtureRoot = join(root, "fixtures");
-  const fixtures = collectFiles(fixtureRoot)
-    .filter((file) => file.endsWith(".json"))
-    .map(readJson);
-  return {
-    declaredCases: fixtures.reduce((total, fixture) => total + (fixture.cases?.length ?? 0), 0),
-    exactDiagnostics: fixtures.filter((fixture) => typeof fixture.expectedFailure === "string").length,
-  };
-}
-
-function withKnowledgeCopy(callback) {
-  const temporaryRoot = mkdtempSync(join(tmpdir(), "office-v2-knowledge-"));
-  const copyRoot = join(temporaryRoot, "office-v2");
-  cpSync(knowledgeRoot, copyRoot, { recursive: true });
-  try {
-    return callback(copyRoot);
-  } finally {
-    rmSync(temporaryRoot, { force: true, recursive: true });
-  }
-}
-
-function hasDiagnostic(report, code) {
-  return report.diagnostics.some((diagnostic) => diagnostic.code === code);
-}
+import {
+  expectedFixtureCounts,
+  expectedInventory,
+  hasDiagnostic,
+  knowledgeRoot,
+  readJson,
+  withKnowledgeCopy,
+  writeJson,
+} from "./office-v2-knowledge-test-helpers.mjs";
 
 test("real knowledge root passes with filesystem-derived inventory and complete case coverage", () => {
   const inventory = expectedInventory(knowledgeRoot);
@@ -122,6 +66,7 @@ test("a failed evaluation cannot be formatted as an OK report", () => {
 for (const [fixtureName, wrongCode] of [
   ["asset-admission.json", "asset.wrong-code"],
   ["connectivity-missing-mask.json", "connectivity.wrong-code"],
+  ["proof-workstation-unsupported-mask.json", "connectivity.wrong-code"],
   ["world-overlap.json", "world.wrong-code"],
 ]) {
   test(`${fixtureName} rejects an incorrect expected diagnostic`, () => {
@@ -168,6 +113,49 @@ test("connectivity rejection disappears when the missing supported mask is suppl
 
     assert.equal(report.ok, false);
     assert.equal(hasDiagnostic(report, "knowledge.expected-diagnostic-mismatch"), true);
+  });
+});
+
+test("proof workstation rejects north-south and corner masks exactly", () => {
+  const fixture = readJson(join(
+    knowledgeRoot,
+    "fixtures",
+    "invalid",
+    "proof-workstation-unsupported-mask.json",
+  ));
+
+  assert.deepEqual(fixture.document.supportedMasks, [0, 2, 8, 10]);
+  assert.deepEqual(fixture.requestedMasks, [1, 3, 4, 5]);
+  const report = evaluateOfficeKnowledge({ knowledgeRoot });
+  assert.equal(report.ok, true, JSON.stringify(report.diagnostics, null, 2));
+  assert.equal(report.evidence.exactDiagnostics, expectedFixtureCounts(knowledgeRoot).exactDiagnostics);
+});
+
+test("proof workstation rejection fails when any requested mask becomes supported", () => {
+  withKnowledgeCopy((copyRoot) => {
+    const fixturePath = join(copyRoot, "fixtures", "invalid", "proof-workstation-unsupported-mask.json");
+    const fixture = readJson(fixturePath);
+    fixture.requestedMasks[0] = 0;
+    writeJson(fixturePath, fixture);
+
+    const report = evaluateOfficeKnowledge({ knowledgeRoot: copyRoot });
+
+    assert.equal(report.ok, false);
+    assert.equal(hasDiagnostic(report, "knowledge.expected-diagnostic-mismatch"), true);
+  });
+});
+
+test("proof workstation rejection cannot drift from the valid definition", () => {
+  withKnowledgeCopy((copyRoot) => {
+    const fixturePath = join(copyRoot, "fixtures", "invalid", "proof-workstation-unsupported-mask.json");
+    const fixture = readJson(fixturePath);
+    fixture.document.familyVersion = 2;
+    writeJson(fixturePath, fixture);
+
+    const report = evaluateOfficeKnowledge({ knowledgeRoot: copyRoot });
+
+    assert.equal(report.ok, false);
+    assert.equal(hasDiagnostic(report, "knowledge.proof-workstation-definition-mismatch"), true);
   });
 });
 
@@ -280,6 +268,62 @@ test("the valid connectivity fixture rejects duplicate variant identifiers", () 
     assert.equal(report.ok, false);
     assert.equal(hasDiagnostic(report, "connectivity.duplicate-variant-id"), true);
   });
+});
+
+test("the proof workstation fixture locks the exact east-west mask set", () => {
+  withKnowledgeCopy((copyRoot) => {
+    const fixturePath = join(copyRoot, "fixtures", "proof-workstation-connectivity-v2.json");
+    const fixture = readJson(fixturePath);
+    fixture.definition.supportedMasks.push(4);
+    fixture.definition.variants.push({
+      mask: 4,
+      role: "south-neighbor-end",
+      variantId: "workstation-south-neighbor-end",
+    });
+    writeJson(fixturePath, fixture);
+
+    const invalidPath = join(copyRoot, "fixtures", "invalid", "proof-workstation-unsupported-mask.json");
+    const invalid = readJson(invalidPath);
+    invalid.document = fixture.definition;
+    writeJson(invalidPath, invalid);
+
+    const report = evaluateOfficeKnowledge({ knowledgeRoot: copyRoot });
+
+    assert.equal(report.ok, false);
+    assert.equal(hasDiagnostic(report, "connectivity.proof-workstation-mask-scope"), true);
+    assert.equal(hasDiagnostic(report, "connectivity.proof-workstation-variant-scope"), true);
+  });
+});
+
+test("the proof workstation fixture rejects missing or extra variants", () => {
+  withKnowledgeCopy((copyRoot) => {
+    const fixturePath = join(copyRoot, "fixtures", "proof-workstation-connectivity-v2.json");
+    const fixture = readJson(fixturePath);
+    fixture.definition.variants = fixture.definition.variants.filter(({ mask }) => mask !== 10);
+    fixture.definition.variants.push({
+      mask: 1,
+      role: "north-neighbor-end",
+      variantId: "workstation-north-neighbor-end",
+    });
+    writeJson(fixturePath, fixture);
+
+    const report = evaluateOfficeKnowledge({ knowledgeRoot: copyRoot });
+
+    assert.equal(report.ok, false);
+    assert.equal(hasDiagnostic(report, "connectivity.missing-variant"), true);
+    assert.equal(hasDiagnostic(report, "connectivity.proof-workstation-variant-scope"), true);
+  });
+});
+
+test("the proof workstation fixture executes its east-west row", () => {
+  const report = evaluateOfficeKnowledge({ knowledgeRoot });
+  assert.equal(report.ok, true, JSON.stringify(report.diagnostics, null, 2));
+  assert.equal(
+    report.coverage.executedCaseIds.includes(
+      "fixtures/proof-workstation-connectivity-v2.json#east-west-row",
+    ),
+    true,
+  );
 });
 
 test("a second path case is executed instead of being skipped", () => {

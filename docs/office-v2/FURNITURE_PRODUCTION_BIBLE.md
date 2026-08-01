@@ -36,6 +36,17 @@ does not expand occupancy unless clearance explicitly declares it.
 ## First approved family
 
 The first family is one workstation with isolated, left-end, middle, and
-right-end east-west states, one seated interaction, and geometric placeholders
-for every other state. Corners and four-way masks are added only when the product
+right-end east-west states and one seated interaction. Geometric placeholders
+for unsupported arrangements may appear only on labeled review boards; they are
+not runtime variants. Corners and four-way masks are added only when the product
 slice requires them and the entire mask table is validated.
+
+Its local supported masks are exactly `0` (isolated), `2` (east neighbor), `8`
+(west neighbor), and `10` (east-west middle). North, south, vertical-middle,
+corner, tee, or cross arrangements fail as `connectivity.unsupported-mask`.
+They cannot select a nearest-looking sprite or silently rotate an east-west
+variant. A later family version and full evidence are required to add a mask.
+
+Multipart workstation visuals use an acyclic render-part dependency graph.
+Ordinary upper parts cannot jump every actor through the global `upper` band,
+and no presentation part can change the workstation's authoritative geometry.

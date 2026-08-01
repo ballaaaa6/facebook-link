@@ -3,6 +3,13 @@ import { join, relative, resolve } from "node:path";
 import Ajv2020 from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
 import {
+  evaluateConnectivityDefinition,
+  evaluateUnsupportedProofWorkstationFixture,
+  proofWorkstationFixturePath,
+  rejectedProofWorkstationFixturePath,
+} from "./office-v2-proof-workstation-evidence.mjs";
+import { expectedKnowledge, fixtureRegistry } from "./office-v2-knowledge-manifest.mjs";
+import {
   connectivityFailures,
   evaluateConnectivity,
   evaluateDepth,
@@ -18,72 +25,6 @@ import {
 } from "./office-v2-knowledge-probes.mjs";
 const repositoryRoot = resolve(import.meta.dirname, "..");
 export const defaultKnowledgeRoot = join(repositoryRoot, "docs", "office-v2");
-const expectedKnowledge = {
-  documents: [
-    "ACTORS_NAVIGATION_INTERACTIONS.md", "ART_DIRECTION_PIXEL_SPEC.md",
-    "ASSET_PIPELINE_PROVENANCE_VALIDATION.md", "CHARACTERS_ANIMATION_HELD_PROPS.md",
-    "CHARACTER_PRODUCTION_BIBLE.md", "CONNECTIVITY_AUTO_TILING.md", "DEPENDENCY_LEDGER.md",
-    "FAILURE_DIAGNOSTICS.md", "FIRST_FLOOR_BRIEF.md", "FOUNDATIONS.md", "FURNITURE_PRODUCTION_BIBLE.md",
-    "GLOSSARY_AND_INVARIANTS.md", "IMPLEMENTATION_PLAN.md", "INPUT_PICKING_AND_DEBUG_OVERLAYS.md",
-    "KNOWLEDGE_COMPLETENESS_AUDIT.md", "MAP_AUTHORING_AND_IMPORT.md",
-    "OPERATIONS_ADAPTER_UI_SAFETY.md", "PILOT_DEVICE_AND_PERFORMANCE_MATRIX.md",
-    "PRODUCT_AND_GAME_LOOP.md", "READINESS_MATRIX.md", "READINESS_REMEDIATION_PLAN.md",
-    "README.md", "RENDERING_DEPTH_OCCLUSION.md", "RESEARCH.md",
-    "ROOMS_SURFACES_STRUCTURES_ZONES.md", "SAVE_SNAPSHOT_MIGRATION.md",
-    "SIMULATION_TIME_RANDOMNESS_REPLAY.md", "TESTING_ACCEPTANCE_BUDGETS.md",
-    "WORLD_COORDINATES_PROJECTION_CAMERA.md", "WORLD_MODEL_OCCUPANCY_PLACEMENT.md",
-  ],
-  decisions: [
-    "decisions/0001-projection-grid.md", "decisions/0002-renderer.md",
-    "decisions/0003-map-authoring.md", "decisions/0004-navigation-movement.md",
-    "decisions/0005-simulation-state-machine.md", "decisions/0006-asset-authoring-export.md",
-    "decisions/0007-package-ownership-and-import-boundaries.md",
-    "decisions/0008-coordinate-and-facing-semantics.md",
-    "decisions/0009-geometry-authority.md",
-    "decisions/0010-building-floor-site-and-portal-ownership.md",
-    "decisions/0011-canonical-serialization-and-hashing.md",
-    "decisions/0012-queue-reservation-and-deadlock-policy.md", "decisions/TEMPLATE.md",
-  ],
-  schemas: [
-    "schemas/animation.schema.json", "schemas/asset.schema.json", "schemas/common.schema.json",
-    "schemas/connectivity.schema.json", "schemas/entity-definition.schema.json",
-    "schemas/interaction.schema.json", "schemas/operations-snapshot.schema.json",
-    "schemas/provenance.schema.json", "schemas/simulation-snapshot.schema.json",
-    "schemas/simulation-trace.schema.json", "schemas/surface-structure.schema.json",
-    "schemas/world.schema.json",
-  ],
-  fixtures: [
-    "fixtures/asset-family-valid.json", "fixtures/connected-desk.json",
-    "fixtures/depth-occlusion.json", "fixtures/deterministic-replay.json",
-    "fixtures/interaction-cancel-timeout.json", "fixtures/minimal-office.json",
-    "fixtures/navigation-reservations.json", "fixtures/navigation-reservations-v2.json",
-    "fixtures/operations-states.json", "fixtures/placement-rotation-clearance.json",
-    "fixtures/projection-roundtrip.json", "fixtures/room-structure-cutaway.json",
-    "fixtures/invalid/asset-admission.json", "fixtures/invalid/connectivity-missing-mask.json",
-    "fixtures/invalid/world-overlap.json",
-  ],
-  templates: [
-    "templates/acceptance-review.md", "templates/asset-family-brief.md",
-    "templates/asset-family-manifest.json", "templates/interaction-definition.json",
-  ],
-};
-const fixtureRegistry = [
-  ["fixtures/asset-family-valid.json", null],
-  ["fixtures/connected-desk.json", "connectivity"],
-  ["fixtures/depth-occlusion.json", "depth"],
-  ["fixtures/deterministic-replay.json", null],
-  ["fixtures/interaction-cancel-timeout.json", "interaction"],
-  ["fixtures/minimal-office.json", null],
-  ["fixtures/navigation-reservations.json", "navigation"],
-  ["fixtures/navigation-reservations-v2.json", "navigation"],
-  ["fixtures/operations-states.json", null],
-  ["fixtures/placement-rotation-clearance.json", "placement"],
-  ["fixtures/projection-roundtrip.json", "projection"],
-  ["fixtures/room-structure-cutaway.json", "structure"],
-  ["fixtures/invalid/asset-admission.json", null],
-  ["fixtures/invalid/connectivity-missing-mask.json", null],
-  ["fixtures/invalid/world-overlap.json", null],
-].map(([path, caseRunner]) => ({ path, caseRunner }));
 function collectFiles(directory) {
   if (!existsSync(directory)) return [];
   return readdirSync(directory).flatMap((name) => {
@@ -205,6 +146,7 @@ function runSchemaEvidence(context, ajv) {
   const checks = [
     ["world.schema.json", read("fixtures/minimal-office.json"), "minimal world", "fixtures/minimal-office.json"],
     ["connectivity.schema.json", read("fixtures/connected-desk.json"), "connected desk", "fixtures/connected-desk.json"],
+    ["connectivity.schema.json", read("fixtures/proof-workstation-connectivity-v2.json")?.definition, "proof workstation", "fixtures/proof-workstation-connectivity-v2.json"],
     ["entity-definition.schema.json", read("fixtures/placement-rotation-clearance.json")?.definition, "placement definition", "fixtures/placement-rotation-clearance.json"],
     ["interaction.schema.json", read("fixtures/interaction-cancel-timeout.json")?.definition, "interaction definition", "fixtures/interaction-cancel-timeout.json"],
     ["simulation-trace.schema.json", read("fixtures/deterministic-replay.json"), "replay trace shape", "fixtures/deterministic-replay.json"],
@@ -229,6 +171,11 @@ function runSchemaEvidence(context, ajv) {
   for (const path of ["fixtures/invalid/connectivity-missing-mask.json", "fixtures/invalid/world-overlap.json"]) {
     const rejected = read(path);
     if (rejected) validateSchema(context, ajv, rejected.schema, rejected.document, `${path} shape`, true, path);
+  }
+  const unsupportedPath = "fixtures/invalid/proof-workstation-unsupported-mask.json";
+  const unsupported = read(unsupportedPath);
+  if (unsupported) {
+    validateSchema(context, ajv, unsupported.schema, unsupported.document, "unsupported proof workstation mask shape", true, unsupportedPath);
   }
 }
 
@@ -309,12 +256,13 @@ function runFixtureCases(context) {
   for (const registration of fixtureRegistry) {
     const fixture = context.readJson(registration.path);
     if (!fixture) continue;
-    if (registration.path === "fixtures/connected-desk.json") {
-      context.evidence.semanticRules += 2;
-      const missingMasks = connectivityFailures(fixture);
-      if (missingMasks.length) context.add("connectivity.missing-variant", "Connected desk lacks a supported mask variant.", { fixture: registration.path, missingMasks }, "connectivity");
-      const variantIds = fixture.variants.map(({ variantId }) => variantId);
-      if (new Set(variantIds).size !== variantIds.length) context.add("connectivity.duplicate-variant-id", "Connected desk variant IDs must be unique.", { fixture: registration.path }, "connectivity");
+    if (registration.caseRunner === "connectivity") {
+      const definition = fixture.definition ?? fixture;
+      const evaluation = evaluateConnectivityDefinition(registration.path, definition);
+      context.evidence.semanticRules += evaluation.semanticRules;
+      for (const diagnostic of evaluation.diagnostics) {
+        context.add(diagnostic.code, diagnostic.message, diagnostic.context, diagnostic.owner);
+      }
     }
     const cases = Array.isArray(fixture.cases) ? fixture.cases : [];
     context.coverage.declaredCases += cases.length;
@@ -344,6 +292,20 @@ function runNegativeDiagnostics(context) {
       context: { missingMasks },
     } : null;
     compareExpectedDiagnostic(context, connectivityPath, connectivity.expectedFailure, actual);
+  }
+  const unsupportedPath = rejectedProofWorkstationFixturePath;
+  const unsupported = context.readJson(unsupportedPath);
+  if (unsupported) {
+    const proof = context.readJson(proofWorkstationFixturePath);
+    const evaluation = evaluateUnsupportedProofWorkstationFixture(unsupported, proof?.definition);
+    if (!evaluation.definitionMatches) {
+      context.add(
+        "knowledge.proof-workstation-definition-mismatch",
+        "Unsupported-mask fixture must use the proof workstation definition unchanged.",
+        { fixture: unsupportedPath },
+      );
+    }
+    compareExpectedDiagnostic(context, unsupportedPath, unsupported.expectedFailure, evaluation.diagnostic);
   }
   const worldPath = "fixtures/invalid/world-overlap.json";
   const world = context.readJson(worldPath);

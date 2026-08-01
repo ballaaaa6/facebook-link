@@ -34,6 +34,12 @@ the victim actor ID, intent ID, wait-for participants, world revision, and
 evaluated yield-cell IDs. Presentation may display it but cannot recode the
 failure or move the actor specially.
 
+Decision 0013 reserves `connectivity.unsupported-mask` for an arrangement the
+versioned family deliberately does not admit. Its context names family and
+version, requested mask, instance or fixture case, and compatible neighbors.
+It is distinct from `connectivity.missing-variant`, which means a family claims
+to support a mask but omits its required variant.
+
 The contracts package owns the diagnostic envelope and catalog types but does
 not originate a world, simulation, adapter, presentation, or asset failure.
 Renderer code cannot reinterpret a missing world or adapter fact as a
