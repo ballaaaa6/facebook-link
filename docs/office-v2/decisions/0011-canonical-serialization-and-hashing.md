@@ -59,15 +59,19 @@ The hash input is the canonical serialization of this envelope:
 
 ```json
 {
+  "envelopeVersion": "office-sha256-envelope-v1",
+  "canonicalizationVersion": "office-canonical-json-v1",
   "domain": "office-v2:<owning-domain>",
-  "version": "<contract-or-projection-version>",
+  "domainVersion": "<contract-or-projection-version>",
   "payload": {}
 }
 ```
 
-The lowercase hexadecimal SHA-256 digest covers the entire envelope. Domains
-and versions are explicit nonempty contract values; the same payload under a
-different domain or version must hash differently.
+The lowercase hexadecimal SHA-256 digest covers the entire envelope, including
+the envelope and canonicalization versions. Domain and domain version are
+explicit nonempty contract values; the same payload under a different domain,
+domain version, envelope version, or canonicalization version must hash
+differently.
 
 The raw loader, canonical byte serializer, envelope validator, and SHA-256
 primitive belong to a shared pure contract utility under

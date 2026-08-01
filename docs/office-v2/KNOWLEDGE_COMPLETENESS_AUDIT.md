@@ -1,6 +1,7 @@
 # Office Engine V2 Knowledge Completeness Audit
 
-Status: audited on 2026-07-31; T0 gate evidence re-audited on 2026-08-01.
+Status: audited on 2026-07-31; T0 re-audited on 2026-08-01; W0.3
+contradiction closure re-audited on 2026-08-02.
 Re-audit after every Phase 1 closure wave.
 
 ## Purpose and authority
@@ -31,9 +32,11 @@ geometric probes. Three narrow areas are close enough for such probes:
 - a simple four-neighbor connectivity-mask resolver;
 - single-actor four-direction A*.
 
-T0 now passes: the foundation gate reports only the schema-shape, bounded
-semantic, and exact-diagnostic evidence that it executes. This correction does
-not change the no-go decision for persistent engine work or production content.
+T0 now passes, and W0.3 closes the twelve decision-level P0 contradictions.
+The gates report only the schema-shape, bounded semantic, exact-diagnostic, and
+resolution evidence they execute. This does not change the no-go decision for
+persistent engine work or production content. W1.1 is the next authorized work
+package; T1 remains blocked.
 
 The pack is a strong architectural foundation, but it is not yet the desired
 production system:
@@ -105,30 +108,30 @@ and performance. A schema alone is E3 at most.
 | Sub-cell positions, inverse picking, and camera | E2 | Coordinate units, diamond-edge ambiguity, zoom, fit, crop, and negative bounds lack executable evidence |
 | Placement and occupancy | E4, narrow | A few rotation, clearance, and overlap cases do not cover the documented rules |
 | Surfaces, structures, zones, and cutaways | E3 overall with narrow E4 door traversal | Both definitions validate and all three structure-traversability cases execute, including collision independence from a cutaway visibility flag; cutaway rendering, zone semantics, structural normalization, and room integration remain absent |
-| Building, floors, exterior, and portals | E1 | No accepted decision, schema, migration, or two-floor contract fixture |
+| Building, floors, exterior, and portals | E2 | Decision 0010 owns the topology split; schemas, migration, and a two-floor contract fixture remain absent |
 | Room templates and scene composition | E1 | No capacity, adjacency, entrance, density, or deterministic compiler contract |
 | Connectivity | E4, narrow | Basic masks work; rotations, geometry, semantic state, and seam continuity are unproved |
 | Definition, instance, and runtime state | E1 | The layers are implied but not separately contracted or version-pinned |
 | Facilities and use slots | E1 | Capacity is named; slot allocation, capability, queue, and mutable state are absent |
 | Interaction lifecycle | E3-E4, narrow | All three sample cases execute through a shallow duration/cancel/timeout truth table; there is no reducer, acquisition, queue, or cleanup lifecycle proof |
 | Fixed ticks, commands, and phase order | E2 | Ten hertz is fixed; within-tick subsystem and same-tick command order are not |
-| Randomness and replay | E3, shape only | No reducer produces the sample hashes; canonical serialization and PRNG algorithm are open |
+| Randomness and replay | E3, shape only | Decision 0011 owns canonical bytes and the hash envelope; no reducer produces the sample hashes and the PRNG remains open |
 | Single-actor navigation | E4, narrow | The versioned path oracle executes six steps at 100 units per step and asserts final cost 600; movement, replanning, and crowds remain unproved |
-| Crowds, queues, fairness, and deadlocks | E1 | Current accepted navigation scope explicitly excludes the target crowd |
+| Crowds, queues, fairness, and deadlocks | E2 | Decision 0012 ratifies acquisition, queue, cleanup, and victim policy; no queue engine or target-crowd evidence exists |
 | Jobs, intents, assignment, and preemption | E0-E1 | Operations status would otherwise become per-role animation special cases |
 | Save and migration | E2 | No migration registry, mid-action restore fixture, or executable round trip |
 | Operations adapter V1 | E3-E4, lab only | Suitable for the data-free status lab, not authoritative choreography |
-| Operations adapter V2 and roster binding | E1 | No durable cursor, role/instance split, fan-out/join, capability binding, or ten-role trace |
+| Operations adapter V2 and roster binding | E2 plus project workflow tests | Winner ownership and copy/visual join are enforced centrally; no durable cursor, Office roster binding, capability binding, or ten-role trace exists |
 | Character animation | E3, shape only | No character-definition schema, seated contract, per-frame contacts, or complete clip fixture |
 | Character production | E2 | No identity-layer decision, rig proof, asymmetric-facing policy, or admitted character |
-| Furniture production | E2-E3, fragments | Geometry authority, render parts, semantic variants, and composite evidence are unresolved |
+| Furniture production | E2-E4, bounded | Decisions 0009 and 0013 own geometry and render parts; the proof workstation executes only masks 0, 2, 8, and 10, with no admitted pixels or composite runtime proof |
 | Numeric visual style | E1 | Scale, palette, outlines, lighting, padding, tolerances, and zoom stops remain pending |
 | Asset provenance and admission | E4, basic only | The gate checks paths, hashes, PNG signature and dimensions, not actual pixel or geometry promises |
 | Atlas, catalog, bundle, and load lifecycle | E0-E1 | No contracts, compiler, orphan detection, unload, or recovery proof |
 | Map authoring and import | E2 | No pinned profile, converter, canonical report, or invalid-input suite |
-| Depth and occlusion | E3-E4, narrow | Simple band sorting passes; tall and multipart objects can still occlude actors incorrectly |
+| Depth and occlusion | E3-E4, narrow | Decision 0013 rejects a universal upper band and requires an acyclic part graph; no renderer or tall/multipart crossing proof exists |
 | Renderer | E2, intentionally deferred | No port, benchmark, lifecycle proof, or selection exists |
-| Diagnostics and debug tools | E2 plus narrow E4 checks | The three current rejected fixtures match exact stable codes; no diagnostic catalog/schema, replay diff, bug bundle, or trace viewer exists |
+| Diagnostics and debug tools | E2 plus narrow E4 checks | The four current rejected fixtures match exact stable codes; no diagnostic catalog/schema, replay diff, bug bundle, or trace viewer exists |
 | Accessibility and responsive behavior | E2 | No executable canvas-to-DOM semantic or 15-actor keyboard strategy |
 | Performance | E2 | No pinned pilot hardware and no measured numeric budget |
 | Complete runtime floor | E0 by design | The V2 mount is empty and no runtime assets are admitted |
@@ -161,6 +164,30 @@ manual totals:
 This is T0 only. It does not prove pointer picking, crowd behavior, real state
 hashes, a reproducible asset factory, or any target-floor behavior.
 
+### W0.3 contradiction closure record — 2026-08-02
+
+W0.3 accepts Decisions 0008–0013 and project ADR 0003, then makes their P0
+dispositions executable through `registers/p0-resolution-register.json` and
+`office:v2:contradictions:check`:
+
+- all twelve P0 IDs occur exactly once and retain their exact audit headings;
+- every entry names its resolution owner, accepted decisions, canonical
+  documents, intended contract versions, migration or rejection effect,
+  implementation gate, test packages, test owner, and status;
+- all accepted decision references exist and carry accepted status;
+- the exact 27 JSON schemas and fixtures that predate W0.3 are pinned by raw
+  SHA-256, so changing either registered hashes or historical bytes fails;
+- the knowledge inventory now contains 79 files, including 13 schemas and 17
+  fixtures, while all 29 bounded semantic cases and four exact rejected
+  diagnostics continue to execute;
+- reducer/replay evidence remains `0`, property/model evidence remains `0`,
+  asset admission remains `basic-only`, renderer admission remains `none`,
+  runtime asset manifests remain `0`, and no dependency is admitted;
+- W1.1 is next, while T1 remains blocked.
+
+This is resolution evidence, not world, simulation, renderer, or production-art
+evidence. The V1 files in the historical set remain frozen.
+
 ### Semantic schema smoke test
 
 During the audit, four copies of currently valid fixtures were mutated into
@@ -183,8 +210,25 @@ behavior gates, not in prose.
 
 ## P0 contradictions and rework traps
 
-These must be resolved before persistent engine or production-art work. They
-are not cosmetic documentation issues.
+These were the decision-level blockers for W0.3. Their exact dispositions are
+registered below. A resolved contradiction authorizes only its named future
+implementation gate; it does not authorize persistent engine or production-art
+work.
+
+| P0 ID | Audit heading | Disposition | Authority | Implementation gate |
+| --- | --- | --- | --- | --- |
+| `p0-01-geometry-authority` | One fact currently has several possible owners | resolved | Decision 0009 | W1.2 |
+| `p0-02-coordinate-spaces` | Cell and sub-cell values are ambiguous | resolved | Decision 0008 | W1.1 |
+| `p0-03-facing-transform` | Simulation and art use different facing names | resolved | Decision 0008 | W1.1 |
+| `p0-04-proof-workstation-connectivity` | The first connected desk contract disagrees with its fixture | resolved | Decision 0013 | W6.1 |
+| `p0-05-a-star-cost-units` | A* cost correction — closed for the bounded T0 probe | closed-T0 | Decision 0004 | T0 |
+| `p0-06-canonical-replay-hashes` | Replay hashes are placeholders | ratified-deferred | Decision 0011 | W2.2 |
+| `p0-07-asset-gate-scope` | The asset gate implements only a small part of the specification | ratified-deferred | Decisions 0006 and 0013 | W4.4 / W6.1 |
+| `p0-08-exact-rejected-diagnostics` | Current rejected-fixture diagnostics — closed for T0 scope | closed-T0 | Decisions 0006, 0009, and 0013 | T0 |
+| `p0-09-operational-stage-ownership` | Operational stage ownership conflicts | resolved | Project ADR 0003 | W0.3 / W3.1 |
+| `p0-10-live-workforce-vs-capacity` | Capacity is not the live workforce | resolved | Project ADR 0003 | W3.2 |
+| `p0-11-floor-and-exterior-ownership` | Exterior and floor structure have competing interpretations | resolved | Decision 0010 | W1.3 |
+| `p0-12-multipart-occlusion` | A global upper render band is not a complete occlusion model | ratified-deferred | Decision 0013 | W4.2 / W5.1 |
 
 ### One fact currently has several possible owners
 
@@ -193,8 +237,13 @@ across entity, asset, interaction, and connectivity contracts. No cross-contract
 validator proves that they agree. A desk can therefore pass each schema while
 having a different footprint or nonexistent socket in another file.
 
-Required resolution: one immutable geometry authority, with other manifests
-referencing or carrying validated generated projections of it.
+The required resolution was one immutable geometry authority, with other
+manifests referencing or carrying validated generated projections of it.
+
+W0.3 resolution: Decision 0009 makes versioned world geometry the sole spatial
+authority. Assets own pixel/composition facts, interactions reference use-slot
+IDs, and instances own placement and orientation only. W1.2 implements the V2
+contracts and agreement linter.
 
 ### Cell and sub-cell values are ambiguous
 
@@ -203,6 +252,11 @@ whole cells for placement and four sub-cell units for movement. Fixtures look
 like whole-cell values. The project needs distinct types for cell, sub-cell,
 local sprite geometry, projected screen pixel, and floor-local position.
 
+W0.3 resolution: Decision 0008 separates cell, sub-cell, floor-local,
+definition-local geometry, definition-local pixel, sprite-pixel, and
+screen-pixel semantics. Ambiguous V1 positions stay frozen and fail migration
+without complete context. W1.1 implements the branded types.
+
 ### Simulation and art use different facing names
 
 World data uses north/east/south/west; the character bible uses
@@ -210,11 +264,19 @@ north-east/south-east/south-west/north-west. The mapping is not a versioned
 contract or fixture, so characters, props, sockets, and paths can interpret the
 same facing differently.
 
+W0.3 resolution: Decision 0008 fixes world facings to north/east/south/west and
+the `office-projection-v1` presentation mapping to north-east, south-east,
+south-west, and north-west respectively. Mirroring remains presentation-only.
+
 ### The first connected desk contract disagrees with its fixture
 
 The furniture bible calls the first workstation east-west only, while the
 fixture includes north/south ends and a vertical middle. Art cannot be
 commissioned until the supported masks and rotations are one accepted set.
+
+W0.3 resolution: Decision 0013 and the V2 proof fixture accept only east-west
+masks `0`, `2`, `8`, and `10`. North-south and corner masks fail with
+`connectivity.unsupported-mask`; the V1 fixture is unchanged.
 
 ### A* cost correction — closed for the bounded T0 probe
 
@@ -229,6 +291,11 @@ The replay fixture uses repeated sample strings such as `aaaa...`; no reducer
 produces or verifies them. Shape validation must not be reported as replay
 evidence.
 
+W0.3 resolution: Decision 0011 ratifies the semantic normalizer, duplicate-key
+rejecting loader, canonical bytes, and versioned SHA-256 envelope. The existing
+hash strings remain placeholders; W2.2 must generate evidence from a real
+reducer, so reducer/replay evidence remains zero.
+
 ### The asset gate implements only a small part of the specification
 
 It does not decode RGBA pixels and therefore cannot prove alpha edges, palette,
@@ -236,11 +303,17 @@ frame bounds, contact drift, socket alignment, connected seams, atlas overlap,
 clip completeness, review boards, or reproducible export. It also does not
 reject every orphan source, recipe, runtime, or registry file.
 
+W0.3 disposition: Decisions 0006 and 0013 keep this gate explicitly
+`basic-only`. The fuller pixel, geometry, catalog, bundle, and reproducibility
+evidence remains deferred to W4.4 and W6.1; no runtime asset is admitted.
+
 ### Current rejected-fixture diagnostics — closed for T0 scope
 
-All three current rejected fixtures now emit an independently derived stable
-diagnostic and compare it exactly with the expected code. Mutation tests prove
-that an invalid document with the wrong expected reason fails the harness.
+All four current rejected fixtures now emit independently derived stable
+diagnostics and compare them exactly: `asset.commercial-review`,
+`connectivity.missing-variant`, `connectivity.unsupported-mask`, and
+`world.occupied`. Mutation tests prove that an invalid document with the wrong
+expected reason fails the harness. This closes only the bounded T0 scope.
 
 ### Operational stage ownership conflicts
 
@@ -248,11 +321,22 @@ Workflow documentation assigns the `selected` transition to Growth Strategist,
 while the agent catalog says Product Ranker selects winners. Choreography cannot
 bind roles to stations until the operational owner is authoritative.
 
+W0.3 resolution: project ADR 0003 and shared contracts make Product Ranker the
+ranking-evidence owner and Growth Strategist the sole winner owner. Copy and
+visual complete independently; only the `workflow-coordinator` system actor
+emits the deterministic `content_ready` join. The coordinator is not an agent,
+connector job, or agent run.
+
 ### Capacity is not the live workforce
 
 The floor reserves fifteen positions, but current feature flags enable only six
 roles. Ten and fifteen actors may be deterministic load fixtures; production
 must spawn only real, enabled records and show disabled stations as unavailable.
+
+W0.3 resolution: project ADR 0003 preserves the ten-role catalog and the pilot
+configuration's six enabled and four disabled roles. Fifteen remains physical
+capacity, not a fabricated live roster. W3.2 must bind enabled operational
+records to actor instances.
 
 ### Exterior and floor structure have competing interpretations
 
@@ -261,12 +345,21 @@ surface connected to the entrance. `surface-structure.schema.json` also permits
 `floor` while the world already owns surfaces. These choices affect bounds,
 camera, picking, bundles, saves, and future floors.
 
+W0.3 resolution: Decision 0010 makes the building the owner of floor references
+and portal links, each floor an independent world, the site envelope
+presentation-only, and Floor 1 the indoor/entrance owner. The V1 surface kind
+`floor` stays frozen and is not building-floor identity.
+
 ### A global upper render band is not a complete occlusion model
 
 Rendering every `upper` part after every world actor can make a tall cabinet or
 desk front cover an actor who is geometrically in front. Multipart objects need
 explicit depth attachment or occlusion dependencies and target fixtures; split
 sprites must not become a universal manual workaround.
+
+W0.3 disposition: Decision 0013 requires an acyclic attachment/depth dependency
+graph and separate structure, glass, cutaway, effect, and tall-furniture
+policies. Implementation remains deferred to W4.2 and renderer proof to W5.1.
 
 ## Comparable systems studied
 
@@ -564,11 +657,11 @@ Required tools before the target floor:
 
 ## Planned evidence volume
 
-The pack currently contains 69 inventoried knowledge files after Decision 0007;
-the T0 closure record above correctly records the 68 files present when that
-gate passed. Closing the target does not require hundreds of pages, but it does
-require materially more machine-readable evidence. The current planning budget
-is:
+The pack now contains 79 inventoried knowledge files after W0.3. The T0 closure
+record above correctly records the 68 files present when that gate passed, and
+the Decision 0007 boundary point contained 69. Closing the target does not
+require hundreds of pages, but it does require materially more machine-readable
+evidence. The current planning budget is:
 
 | Kind | Minimum planned change | Notes |
 | --- | --- | --- |

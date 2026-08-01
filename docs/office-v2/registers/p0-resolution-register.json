@@ -1,0 +1,289 @@
+{
+  "$schema": "../schemas/p0-resolution-register.schema.json",
+  "schemaVersion": "office-p0-resolution-register-v1",
+  "auditDocument": "docs/office-v2/KNOWLEDGE_COMPLETENESS_AUDIT.md",
+  "closureEvidence": {
+    "reducerReplay": 0,
+    "propertyModel": 0,
+    "assetAdmission": "basic-only",
+    "rendererAdmission": "none",
+    "runtimeAssetManifests": 0,
+    "newDependencyAdmissions": [],
+    "t1Status": "blocked",
+    "nextWorkPackage": "W1.1"
+  },
+  "historicalEvidence": [
+    { "path": "docs/office-v2/fixtures/asset-family-valid.json", "sha256": "851d892564791f8152ef6ea145f88d0f3febec8f1feacd355bde23f9bd2d6b0b" },
+    { "path": "docs/office-v2/fixtures/connected-desk.json", "sha256": "b835d75d8d2b9fd08bee728eedc3e8524ad6b2f40abd84aa6c4182404b1a7357" },
+    { "path": "docs/office-v2/fixtures/depth-occlusion.json", "sha256": "391832272e5e29c820413a44fc9550e07589ecd40220119fe0fe46588a21e295" },
+    { "path": "docs/office-v2/fixtures/deterministic-replay.json", "sha256": "cbb787a4cf8873bcc8e0ab6fdeff870d4fdadb01979b6f98016245233c1a2403" },
+    { "path": "docs/office-v2/fixtures/interaction-cancel-timeout.json", "sha256": "d6d293ad4593254c8d5e1f97405a291bfc85d24fc23e9ef0e57adf590ddd57c9" },
+    { "path": "docs/office-v2/fixtures/invalid/asset-admission.json", "sha256": "adca60c042383347caa44c09a5728a7306c826ad67bdb35cac41f06003f4440f" },
+    { "path": "docs/office-v2/fixtures/invalid/connectivity-missing-mask.json", "sha256": "e3830a355fcca3d99d83e733605c7cb2a9d9cdae055addc5a2c810f79543a947" },
+    { "path": "docs/office-v2/fixtures/invalid/world-overlap.json", "sha256": "45306421d419c708d9f5caea5ba8fc35a7af25adf86720b75bb0dfd9d87c35f5" },
+    { "path": "docs/office-v2/fixtures/minimal-office.json", "sha256": "c5cf809156cef69fbbe16163f833f405af379ae612c085b40c55d13cbb39fe40" },
+    { "path": "docs/office-v2/fixtures/navigation-reservations-v2.json", "sha256": "f3872df3adc94e0ce258676c4d9978ab294a6c11d35eebb864b4f35fd40dfd87" },
+    { "path": "docs/office-v2/fixtures/navigation-reservations.json", "sha256": "8552e277b0b13bd3b37f18eace7fd09bad83335609ff4dcec934811eed539691" },
+    { "path": "docs/office-v2/fixtures/operations-states.json", "sha256": "43ccf89f7213c8a62d49bb1b8fd7656a1cd7a258cb600b665ce4427ee1dae12d" },
+    { "path": "docs/office-v2/fixtures/placement-rotation-clearance.json", "sha256": "6b3647bb12a98962ab3faf4f75e0272e127d588426617982e26877193d98a35f" },
+    { "path": "docs/office-v2/fixtures/projection-roundtrip.json", "sha256": "937537d6b7dc583a88b6fa87b37b04b4c8db30ec8bb615b64a12484cae082391" },
+    { "path": "docs/office-v2/fixtures/room-structure-cutaway.json", "sha256": "c754c6508ca790e36d3c06f8118d7bd2272f46fefcb83f3b9fe965c34ae63fbc" },
+    { "path": "docs/office-v2/schemas/animation.schema.json", "sha256": "f19392533a36e8bb5b3658d740cff76b6e25ea3aa7cb334805f13b790eee0cc2" },
+    { "path": "docs/office-v2/schemas/asset.schema.json", "sha256": "c6f75d11233fe8c288a5493385ea92ab2b728ff9723cae72738538e437d37199" },
+    { "path": "docs/office-v2/schemas/common.schema.json", "sha256": "4fb9d1e4909818c8ed6b57a2f632d3babbd4e53eebe66dc034ea0669ae342cf9" },
+    { "path": "docs/office-v2/schemas/connectivity.schema.json", "sha256": "ad81e79b6bc6d0bea9130520df93c9c561cc1881a98a6eefd87d0e9c1f978ff7" },
+    { "path": "docs/office-v2/schemas/entity-definition.schema.json", "sha256": "9f6437a091ffbd7e423a0f78ed562b43f89a0b7269a75519f4587b0cffca3d32" },
+    { "path": "docs/office-v2/schemas/interaction.schema.json", "sha256": "6ebb988fdc5b41b0a1f09fc933c4d85a4991738340fc7ca0d612167232411d1a" },
+    { "path": "docs/office-v2/schemas/operations-snapshot.schema.json", "sha256": "d04d53cdfd43ab9666ba4fa6b62ff120b21d1490d75d202a6f1550b44c011fa3" },
+    { "path": "docs/office-v2/schemas/provenance.schema.json", "sha256": "9877c21d8665a5d8912fe747fb073a345db7f86af4e18f1c7a45a8f7d8263a44" },
+    { "path": "docs/office-v2/schemas/simulation-snapshot.schema.json", "sha256": "56e8b2aa7c6bc662359869755982d2015ce46903f6535f7b913748c487922009" },
+    { "path": "docs/office-v2/schemas/simulation-trace.schema.json", "sha256": "3c03ffb6e4f8ccf1f34aa85b9a7023720a3db23a4c2c53bbd5c456efc152694e" },
+    { "path": "docs/office-v2/schemas/surface-structure.schema.json", "sha256": "5959692db8e76ea9c4eef7009779e190bacba7bf42295d0f7432d73c05960c36" },
+    { "path": "docs/office-v2/schemas/world.schema.json", "sha256": "8362e01581ce3420e33cbbbe8f4748e73ea3df286fed26e908f15bb96081dbde" }
+  ],
+  "resolutions": [
+    {
+      "id": "p0-01-geometry-authority",
+      "auditHeading": "One fact currently has several possible owners",
+      "resolutionOwner": "world-contracts",
+      "acceptedDecisions": ["docs/office-v2/decisions/0009-geometry-authority.md"],
+      "canonicalDocuments": [
+        "docs/office-v2/WORLD_MODEL_OCCUPANCY_PLACEMENT.md",
+        "docs/office-v2/ACTORS_NAVIGATION_INTERACTIONS.md",
+        "docs/office-v2/ASSET_PIPELINE_PROVENANCE_VALIDATION.md"
+      ],
+      "intendedContractVersions": ["office-geometry-v2", "office-entity-definition-v2", "office-entity-instance-v2"],
+      "migrationOrRejectionEffect": {
+        "kind": "rejection",
+        "description": "Ambiguous V1 geometry is frozen and cannot be inferred into the V2 authority split."
+      },
+      "implementationGate": "W1.2",
+      "testPackages": ["@affiliate-ops/office-v2-contracts", "@affiliate-ops/office-v2-world"],
+      "testOwner": "world-contracts",
+      "status": "resolved"
+    },
+    {
+      "id": "p0-02-coordinate-spaces",
+      "auditHeading": "Cell and sub-cell values are ambiguous",
+      "resolutionOwner": "contracts",
+      "acceptedDecisions": ["docs/office-v2/decisions/0008-coordinate-and-facing-semantics.md"],
+      "canonicalDocuments": [
+        "docs/office-v2/WORLD_COORDINATES_PROJECTION_CAMERA.md",
+        "docs/office-v2/GLOSSARY_AND_INVARIANTS.md"
+      ],
+      "intendedContractVersions": ["common-v2.schema.json", "office-coordinate-semantics-v1"],
+      "migrationOrRejectionEffect": {
+        "kind": "rejection",
+        "description": "A V1 position without floor identity, coordinate-space kind, form version, and projection context is rejected."
+      },
+      "implementationGate": "W1.1",
+      "testPackages": ["@affiliate-ops/office-v2-contracts"],
+      "testOwner": "contracts",
+      "status": "resolved"
+    },
+    {
+      "id": "p0-03-facing-transform",
+      "auditHeading": "Simulation and art use different facing names",
+      "resolutionOwner": "projection",
+      "acceptedDecisions": ["docs/office-v2/decisions/0008-coordinate-and-facing-semantics.md"],
+      "canonicalDocuments": [
+        "docs/office-v2/WORLD_COORDINATES_PROJECTION_CAMERA.md",
+        "docs/office-v2/CHARACTERS_ANIMATION_HELD_PROPS.md",
+        "docs/office-v2/CHARACTER_PRODUCTION_BIBLE.md"
+      ],
+      "intendedContractVersions": ["common-v2.schema.json", "animation-v2.schema.json", "office-projection-v1"],
+      "migrationOrRejectionEffect": {
+        "kind": "rejection",
+        "description": "A V1 facing without its world or screen space and projection context is not migrated by inference."
+      },
+      "implementationGate": "W1.1",
+      "testPackages": ["@affiliate-ops/office-v2-contracts", "@affiliate-ops/office-v2-world"],
+      "testOwner": "projection",
+      "status": "resolved"
+    },
+    {
+      "id": "p0-04-proof-workstation-connectivity",
+      "auditHeading": "The first connected desk contract disagrees with its fixture",
+      "resolutionOwner": "asset-pipeline",
+      "acceptedDecisions": ["docs/office-v2/decisions/0013-render-parts-and-proof-workstation.md"],
+      "canonicalDocuments": [
+        "docs/office-v2/FURNITURE_PRODUCTION_BIBLE.md",
+        "docs/office-v2/CONNECTIVITY_AUTO_TILING.md",
+        "docs/office-v2/RENDERING_DEPTH_OCCLUSION.md"
+      ],
+      "intendedContractVersions": ["proof-workstation-connectivity-v2", "render-part-v1"],
+      "migrationOrRejectionEffect": {
+        "kind": "preservation",
+        "description": "The V1 connected-desk fixture stays frozen; the bounded proof definition accepts only masks 0, 2, 8, and 10."
+      },
+      "implementationGate": "W6.1",
+      "testPackages": ["office:v2:knowledge:test", "office:v2:assets:check"],
+      "testOwner": "asset-pipeline",
+      "status": "resolved"
+    },
+    {
+      "id": "p0-05-a-star-cost-units",
+      "auditHeading": "A* cost correction — closed for the bounded T0 probe",
+      "resolutionOwner": "world-navigation",
+      "acceptedDecisions": ["docs/office-v2/decisions/0004-navigation-movement.md"],
+      "canonicalDocuments": [
+        "docs/office-v2/ACTORS_NAVIGATION_INTERACTIONS.md",
+        "docs/office-v2/TESTING_ACCEPTANCE_BUDGETS.md"
+      ],
+      "intendedContractVersions": ["navigation-reservations-v2"],
+      "migrationOrRejectionEffect": {
+        "kind": "scope-closure",
+        "description": "T0 proves the six-step cost-600 oracle only and admits no navigation engine or crowd claim."
+      },
+      "implementationGate": "T0",
+      "testPackages": ["office:v2:knowledge:test"],
+      "testOwner": "knowledge-gate",
+      "status": "closed-T0"
+    },
+    {
+      "id": "p0-06-canonical-replay-hashes",
+      "auditHeading": "Replay hashes are placeholders",
+      "resolutionOwner": "simulation",
+      "acceptedDecisions": ["docs/office-v2/decisions/0011-canonical-serialization-and-hashing.md"],
+      "canonicalDocuments": [
+        "docs/office-v2/SIMULATION_TIME_RANDOMNESS_REPLAY.md",
+        "docs/office-v2/SAVE_SNAPSHOT_MIGRATION.md",
+        "docs/office-v2/TESTING_ACCEPTANCE_BUDGETS.md"
+      ],
+      "intendedContractVersions": ["office-canonical-json-v1", "office-sha256-envelope-v1", "simulation-trace-v2"],
+      "migrationOrRejectionEffect": {
+        "kind": "preservation",
+        "description": "V1 sample hashes remain shape-only placeholders; W2.2 must produce hashes from the real reducer."
+      },
+      "implementationGate": "W2.2",
+      "testPackages": ["@affiliate-ops/office-v2-contracts", "@affiliate-ops/office-v2-simulation"],
+      "testOwner": "simulation",
+      "status": "ratified-deferred"
+    },
+    {
+      "id": "p0-07-asset-gate-scope",
+      "auditHeading": "The asset gate implements only a small part of the specification",
+      "resolutionOwner": "asset-pipeline",
+      "acceptedDecisions": [
+        "docs/office-v2/decisions/0006-asset-authoring-export.md",
+        "docs/office-v2/decisions/0013-render-parts-and-proof-workstation.md"
+      ],
+      "canonicalDocuments": [
+        "docs/office-v2/ASSET_PIPELINE_PROVENANCE_VALIDATION.md",
+        "docs/office-v2/FURNITURE_PRODUCTION_BIBLE.md",
+        "docs/office-v2/RENDERING_DEPTH_OCCLUSION.md"
+      ],
+      "intendedContractVersions": ["asset-v2.schema.json", "render-part-v1", "scene-bundle-v1"],
+      "migrationOrRejectionEffect": {
+        "kind": "scope-closure",
+        "description": "Admission remains basic-only; no runtime manifest, production family, renderer, or batch is admitted by W0.3."
+      },
+      "implementationGate": "W4.4 / W6.1",
+      "testPackages": ["office:v2:assets:check", "office:v2:knowledge:test"],
+      "testOwner": "asset-pipeline",
+      "status": "ratified-deferred"
+    },
+    {
+      "id": "p0-08-exact-rejected-diagnostics",
+      "auditHeading": "Current rejected-fixture diagnostics — closed for T0 scope",
+      "resolutionOwner": "knowledge-gate",
+      "acceptedDecisions": [
+        "docs/office-v2/decisions/0006-asset-authoring-export.md",
+        "docs/office-v2/decisions/0009-geometry-authority.md",
+        "docs/office-v2/decisions/0013-render-parts-and-proof-workstation.md"
+      ],
+      "canonicalDocuments": [
+        "docs/office-v2/FAILURE_DIAGNOSTICS.md",
+        "docs/office-v2/TESTING_ACCEPTANCE_BUDGETS.md"
+      ],
+      "intendedContractVersions": ["office-diagnostic-v1", "office-knowledge-evidence-v1"],
+      "migrationOrRejectionEffect": {
+        "kind": "scope-closure",
+        "description": "T0 exact-matches four rejected fixtures only; no general diagnostic catalog or runtime debugger is claimed."
+      },
+      "implementationGate": "T0",
+      "testPackages": ["office:v2:knowledge:test"],
+      "testOwner": "knowledge-gate",
+      "status": "closed-T0"
+    },
+    {
+      "id": "p0-09-operational-stage-ownership",
+      "auditHeading": "Operational stage ownership conflicts",
+      "resolutionOwner": "workflows",
+      "acceptedDecisions": ["docs/adr/0003-workflow-ownership-and-content-join.md"],
+      "canonicalDocuments": [
+        "docs/WORKFLOWS.md",
+        "docs/office-v2/OPERATIONS_ADAPTER_UI_SAFETY.md"
+      ],
+      "intendedContractVersions": ["workflow-event-actor-v1", "workflow-content-join-v1"],
+      "migrationOrRejectionEffect": {
+        "kind": "rejection",
+        "description": "Direct content_ready transitions and agent-owned joins are rejected; the system coordinator emits the deterministic join event."
+      },
+      "implementationGate": "W0.3 / W3.1",
+      "testPackages": ["@affiliate-ops/workflows", "@affiliate-ops/agent-catalog", "@affiliate-ops/automation-runner"],
+      "testOwner": "workflows",
+      "status": "resolved"
+    },
+    {
+      "id": "p0-10-live-workforce-vs-capacity",
+      "auditHeading": "Capacity is not the live workforce",
+      "resolutionOwner": "operations-adapter",
+      "acceptedDecisions": ["docs/adr/0003-workflow-ownership-and-content-join.md"],
+      "canonicalDocuments": [
+        "docs/office-v2/FIRST_FLOOR_BRIEF.md",
+        "docs/office-v2/OPERATIONS_ADAPTER_UI_SAFETY.md",
+        "docs/WORKFLOWS.md"
+      ],
+      "intendedContractVersions": ["operations-snapshot-v1", "office-floor-capacity-v1"],
+      "migrationOrRejectionEffect": {
+        "kind": "preservation",
+        "description": "The ten configured roles remain distinct from six enabled pilot roles and fifteen physical capacity positions."
+      },
+      "implementationGate": "W3.2",
+      "testPackages": ["@affiliate-ops/agent-catalog", "@affiliate-ops/office-v2-operations"],
+      "testOwner": "operations-adapter",
+      "status": "resolved"
+    },
+    {
+      "id": "p0-11-floor-and-exterior-ownership",
+      "auditHeading": "Exterior and floor structure have competing interpretations",
+      "resolutionOwner": "world-contracts",
+      "acceptedDecisions": ["docs/office-v2/decisions/0010-building-floor-site-and-portal-ownership.md"],
+      "canonicalDocuments": [
+        "docs/office-v2/ROOMS_SURFACES_STRUCTURES_ZONES.md",
+        "docs/office-v2/MAP_AUTHORING_AND_IMPORT.md",
+        "docs/office-v2/WORLD_MODEL_OCCUPANCY_PLACEMENT.md"
+      ],
+      "intendedContractVersions": ["building-v2.schema.json", "world-v2.schema.json", "surface-structure-v2.schema.json"],
+      "migrationOrRejectionEffect": {
+        "kind": "rejection",
+        "description": "The V1 surface kind floor cannot be inferred into building-floor identity; incomplete topology context is rejected."
+      },
+      "implementationGate": "W1.3",
+      "testPackages": ["@affiliate-ops/office-v2-contracts", "@affiliate-ops/office-v2-world"],
+      "testOwner": "world-contracts",
+      "status": "resolved"
+    },
+    {
+      "id": "p0-12-multipart-occlusion",
+      "auditHeading": "A global upper render band is not a complete occlusion model",
+      "resolutionOwner": "presentation",
+      "acceptedDecisions": ["docs/office-v2/decisions/0013-render-parts-and-proof-workstation.md"],
+      "canonicalDocuments": [
+        "docs/office-v2/RENDERING_DEPTH_OCCLUSION.md",
+        "docs/office-v2/FURNITURE_PRODUCTION_BIBLE.md",
+        "docs/office-v2/ASSET_PIPELINE_PROVENANCE_VALIDATION.md"
+      ],
+      "intendedContractVersions": ["render-part-v1", "presentation-snapshot-v1"],
+      "migrationOrRejectionEffect": {
+        "kind": "scope-closure",
+        "description": "The global upper convention is rejected as universal; multipart dependency implementation waits for W4.2 and renderer proof for W5.1."
+      },
+      "implementationGate": "W4.2 / W5.1",
+      "testPackages": ["@affiliate-ops/office-v2-contracts", "@affiliate-ops/web"],
+      "testOwner": "presentation",
+      "status": "ratified-deferred"
+    }
+  ]
+}

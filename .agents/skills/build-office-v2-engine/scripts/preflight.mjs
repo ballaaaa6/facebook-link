@@ -13,9 +13,11 @@ for (const path of required) {
 }
 
 for (const script of [
+  "scripts/office-v2-clean-room-check.mjs",
+  "scripts/office-v2-boundary-check.mjs",
+  "scripts/office-v2-contradictions-check.mjs",
   "scripts/office-v2-knowledge-check.mjs",
   "scripts/office-v2-asset-check.mjs",
-  "scripts/office-v2-clean-room-check.mjs",
 ]) {
   const result = spawnSync(process.execPath, [script], { cwd: root, encoding: "utf8" });
   if (result.stdout) process.stdout.write(result.stdout);

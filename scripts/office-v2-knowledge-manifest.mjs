@@ -31,7 +31,7 @@ export const expectedKnowledge = {
     "schemas/interaction.schema.json", "schemas/operations-snapshot.schema.json",
     "schemas/provenance.schema.json", "schemas/simulation-snapshot.schema.json",
     "schemas/simulation-trace.schema.json", "schemas/surface-structure.schema.json",
-    "schemas/world.schema.json",
+    "schemas/world.schema.json", "schemas/p0-resolution-register.schema.json",
   ],
   fixtures: [
     "fixtures/asset-family-valid.json", "fixtures/connected-desk.json",
@@ -48,6 +48,9 @@ export const expectedKnowledge = {
   templates: [
     "templates/acceptance-review.md", "templates/asset-family-brief.md",
     "templates/asset-family-manifest.json", "templates/interaction-definition.json",
+  ],
+  registers: [
+    "registers/p0-resolution-register.json",
   ],
 };
 

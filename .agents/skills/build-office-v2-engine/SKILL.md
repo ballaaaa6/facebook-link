@@ -23,7 +23,10 @@ Stop if preflight fails. Repair the knowledge pack or report its diagnostic befo
 - Do not inspect or copy V1 Office renderer code, maps, registries, coordinates, tests, visual pixels, other branches, or Git history.
 - Do not import from `legacy/`, `assets/references/`, or retired Office paths.
 - Do not invent missing runtime assets or silently substitute placeholders. Missing or unapproved material must fail its gate.
-- Keep new engine code under `apps/web/src/features/office-v2/` until an approved package boundary is introduced.
+- Keep headless engine code inside the four roots approved by Decision 0007 and
+  presentation composition inside `apps/web/src/features/office-v2/`. Do not
+  add a package root or reverse consumer edge without a superseding decision
+  and boundary tests.
 
 ## Implement contract first
 
@@ -51,7 +54,11 @@ Use the fixed `office-projection-v1`, 10 Hz logical simulation, four-way determi
 Run these gates from the repository root:
 
 ```text
+npm run office:v2:contradictions:check
+npm run office:v2:contradictions:test
 npm run office:v2:knowledge:check
+npm run office:v2:boundaries:check
+npm run office:v2:boundaries:test
 npm run office:v2:assets:check
 npm run office:v2:clean-room:check
 npm run check

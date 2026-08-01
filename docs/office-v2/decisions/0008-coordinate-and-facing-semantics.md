@@ -8,7 +8,8 @@
 
 The V1 foundation contracts use a generic integer `position`, while the
 canonical documents distinguish whole-cell placement, four-unit sub-cell
-movement, local geometry, sprite-canvas pixels, and projected screen pixels.
+movement, definition-local geometry, authored local pixels, exported
+sprite-canvas pixels, and projected screen pixels.
 The simulation also stores world-cardinal facings while the character
 production target names the four diagonal-looking screen facings. Persistent
 contracts cannot begin while either distinction is implicit.
@@ -29,9 +30,11 @@ Adopt coordinate semantics version `office-coordinate-semantics-v1`.
 - `CellPosition` is an integral floor-local occupancy and placement value.
 - `SubCellPosition` is an integral floor-local movement value using exactly
   four sub-cell units per cell under `office-projection-v1`.
-- Definition-local geometry, sprite-canvas pixels, and projected screen pixels
-  are separate coordinate spaces. A field from one space is not accepted in
-  another without a named transform.
+- Definition-local geometry units, definition-local authored pixels, exported
+  sprite-canvas or frame pixels, and projected screen pixels are separate
+  coordinate spaces. A definition-local pixel exists before runtime export or
+  atlas packing and is not a sprite-frame pixel. A field from any space is not
+  accepted in another without a named transform.
 - Building and floor identity travel in versioned owning references or
   envelopes; elevation is not a floor identifier.
 - Simulation and interaction truth use `WorldFacing` values `north`, `east`,

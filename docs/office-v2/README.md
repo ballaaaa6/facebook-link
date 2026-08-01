@@ -45,9 +45,9 @@ only the resulting state is rendered.
 
 The clean-room boundary, data-free development lab, repository guards,
 machine-readable readiness pack, accepted foundation decisions, and validation
-fixtures exist. T0 passed on 2026-08-01: every current fixture case executes,
-the three rejected fixtures match exact diagnostics, and the gate reports
-schema, semantic, and reducer/replay evidence separately. The evidence audit
+fixtures exist. T0 passed on 2026-08-01: every declared fixture case executes,
+and the gate reports schema, semantic, and reducer/replay evidence separately.
+The current four rejected fixtures match exact diagnostics. The evidence audit
 remains no-go for persistent engine work, the large floor, target crowds,
 renderer integration, and production art until the named Phase 1 closures
 pass. The production Office route remains an empty V2 mount. Renderer selection
@@ -57,8 +57,12 @@ runtime art has been admitted.
 W0.1 completed on 2026-08-01. Decision 0007 approves the four headless Office
 packages and the presentation-only Web composition boundary; their empty
 scaffolds, manifest graph, exact clean-room roots, and negative import/dependency
-tests now pass. W0.3 contradiction resolution is next. No world or simulation
-behavior was added, and reducer/replay plus property/model evidence remain zero.
+tests now pass. W0.3 completed on 2026-08-02: Decisions 0008–0013 and project
+ADR 0003 are accepted, all twelve P0 dispositions are registered and checked,
+and the historical V1 evidence set is hash-locked. W1.1 is the next authorized
+work package. No world or simulation behavior, renderer, runtime asset, or new
+dependency was admitted; reducer/replay and property/model evidence remain
+zero, and T1 remains blocked.
 
 ## Knowledge rule
 
@@ -108,10 +112,15 @@ must not restate the canonical documents.
 - `DEPENDENCY_LEDGER.md`: observed versions, licenses, and adoption state
 - `decisions/*.md`: accepted choices and bounded deferrals
 - `schemas/*.schema.json`: machine-readable engine and asset vocabulary
+- `registers/p0-resolution-register.json`: exact W0.3 P0 dispositions and
+  historical V1 evidence hashes
 - `fixtures/*.json`: canonical valid examples for implementation tests
 - `templates/*`: briefs and definitions that start from the accepted contracts
 - `apps/web/src/features/office-v2/foundation.ts`: executable layer vocabulary
 - `scripts/office-v2-knowledge-check.mjs`: schema and semantic fixture gate
+- `scripts/office-v2-contradictions-check.mjs`: P0 resolution and historical
+  evidence gate
+- `scripts/office-v2-boundary-check.mjs`: package and reverse-consumer import gate
 - `scripts/office-v2-asset-check.mjs`: runtime asset admission gate
 - `scripts/office-v2-clean-room-check.mjs`: repository isolation guard
 - `.agents/skills/build-office-v2-engine`: repository-scoped workflow router

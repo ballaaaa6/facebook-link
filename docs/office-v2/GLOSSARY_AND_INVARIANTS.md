@@ -6,8 +6,11 @@
   placement; it is not a movement or pixel value.
 - **Sub-cell position**: integral floor-local movement position using the
   projection version's fixed number of units per cell.
-- **Definition-local pixel**: pixel coordinate inside an authored definition's
-  local geometry; it is not a sprite-frame or projected coordinate.
+- **Definition-local geometry**: world or sub-cell geometry relative to a
+  definition's anchor basis; it is not a pixel coordinate.
+- **Definition-local pixel**: pixel coordinate in a versioned authored source
+  before runtime export or atlas packing; it is not definition-local geometry,
+  an exported sprite-frame pixel, or a projected coordinate.
 - **Sprite pixel**: pixel coordinate inside a sprite canvas or frame.
 - **Screen pixel**: derived coordinate after world projection and camera
   transformation; it is never authoritative world state.
@@ -77,8 +80,9 @@
 4. Every collection with visible ordering has a stable tie-breaker.
 5. Wall-clock time and randomness enter as recorded inputs.
 6. Invalid or missing assets fail visibly; no legacy fallback is allowed.
-7. Every interaction names its approach, facing, duration, cancellation, and
-   result instead of relying on component-specific offsets.
+7. Every interaction references a geometry-owned `useSlotId` and owns its
+   duration, cancellation, and result. It never repeats approach, waiting,
+   facing, socket geometry, or component-specific offsets.
 8. Every external proposal passes existing review, idempotency, and feature-flag
    policy outside the engine.
 9. Floor identity is explicit and cannot be inferred from elevation.

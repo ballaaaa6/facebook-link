@@ -42,6 +42,10 @@ probes named below.
 
 ## The next test, precisely
 
+W0.3 completed on 2026-08-02. The next authorized work package is **W1.1 —
+Branded identity and coordinate vocabulary**. The next promotion target remains
+T1 and does not pass merely because W1.1 begins.
+
 The next promotion target is **T1 — Semantic Foundation**. It is a headless
 contract/compiler test, not a visual prototype.
 
@@ -213,7 +217,7 @@ Evidence and exit:
 ### W0.2 Correct test semantics before adding coverage
 
 Status: completed on 2026-08-01. The gate executes 26/26 declared semantic
-cases, matches all three current rejected diagnostics exactly, asserts the
+cases, matches the three rejected diagnostics present at W0.2 exactly, asserts the
 six-step A* cost of 600 under 100-unit step and heuristic costs, isolates every
 invocation, computes its report, and states that reducer/replay evidence is
 zero. The property/model profile is pinned but remains non-executable until its
@@ -255,18 +259,30 @@ Evidence and exit:
 
 ### W0.3 Ratify contradiction resolutions
 
-Create clarifying or superseding decisions for coordinate/facing semantics,
-geometry ownership, building/floor ownership, serialization and hashing, queue
-policy, and asset/render-part ownership. Resolve Product Ranker/Growth
-Strategist ownership and copy/visual fan-out/join in `docs/WORKFLOWS.md`, the
-workflow contracts and implementation, the agent catalog/configuration, pilot
-producer, and tests here—not after Operations Snapshot V2 is designed. Update
-canonical documents and historical status references without rewriting an
-accepted historical fixture in place. Create a new fixture version when
-behavior changes.
+Status: completed on 2026-08-02. Decisions 0008–0013 ratify coordinate/facing,
+geometry, building/floor/site/portal, serialization/hash, queue/reservation,
+and render-part/proof-workstation ownership. Project ADR 0003 resolves Product
+Ranker/Growth Strategist ownership and the deterministic copy/visual join.
 
-Exit: every P0 item in the audit has one named resolution owner, intended schema
-version, migration effect, and test package.
+The machine-readable `registers/p0-resolution-register.json` maps all twelve
+audit headings to an owner, accepted decision set, canonical documents,
+intended contract versions, migration or rejection effect, implementation
+gate, test owner, and disposition. `office:v2:contradictions:check` validates
+that register and hash-locks the 27 pre-W0.3 V1 schemas and fixtures. No
+accepted historical JSON was rewritten.
+
+Evidence and exit:
+
+- all twelve P0 IDs are present exactly once and reference accepted decisions;
+- shared workflow, catalog, and pilot tests prove winner ownership, branch
+  correlation, order-independent join, system audit ownership, and idempotent
+  persistence;
+- reverse Office imports from workflows, API, runner, and non-Office Web code
+  fail the boundary gate;
+- reducer/replay and property/model evidence remain zero;
+- asset admission remains basic-only, with no renderer, runtime asset manifest,
+  new dependency admission, world implementation, or simulation reducer;
+- W1.1 is next and T1 remains blocked.
 
 ## Wave 1 — Identity, geometry, topology, and composition
 
@@ -1097,6 +1113,9 @@ through later roadmap phases.
 Each numbered unit remains independently green and reviewable. A unit may use
 several commits when generated evidence is large, but unrelated units are not
 combined merely to reduce commit count.
+
+Units 1–4 are complete through W0.3. Unit 5 is W1.1 and is the next authorized
+work package.
 
 1. Register this remediation plan and repair knowledge inventory wording.
 2. Correct existing gate semantics and diagnostic assertions.

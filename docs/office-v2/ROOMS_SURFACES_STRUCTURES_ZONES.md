@@ -16,8 +16,8 @@ cell's north or west edge.
 ## Surface contract
 
 Each floor cell declares a surface kind, elevation, placement categories, and
-traversal cost. A missing floor is not walkable and cannot support furniture.
-Decorative floor graphics cannot alter these values.
+traversal cost. A missing supporting surface cell is not walkable and cannot
+support furniture. Decorative floor graphics cannot alter these values.
 
 The `floor` kind in `surface-structure.schema.json` is frozen V1 evidence and is
 not a building-floor contract. W1.3 introduces versioned V2 floor/world/surface

@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/p0-resolution-register.schema.json",
+  "title": "Office V2 P0 Resolution Register",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "auditDocument",
+    "closureEvidence",
+    "historicalEvidence",
+    "resolutions"
+  ],
+  "properties": {
+    "$schema": { "const": "../schemas/p0-resolution-register.schema.json" },
+    "schemaVersion": { "const": "office-p0-resolution-register-v1" },
+    "auditDocument": { "const": "docs/office-v2/KNOWLEDGE_COMPLETENESS_AUDIT.md" },
+    "closureEvidence": { "$ref": "#/$defs/closureEvidence" },
+    "historicalEvidence": {
+      "type": "array",
+      "minItems": 27,
+      "maxItems": 27,
+      "items": { "$ref": "#/$defs/historicalEvidence" }
+    },
+    "resolutions": {
+      "type": "array",
+      "minItems": 12,
+      "maxItems": 12,
+      "items": { "$ref": "#/$defs/resolution" }
+    }
+  },
+  "$defs": {
+    "nonBlank": { "type": "string", "pattern": "\\S" },
+    "projectDocument": {
+      "type": "string",
+      "pattern": "^docs/(?!.*\\.\\.)[A-Za-z0-9_./-]+\\.(?:md|json)$"
+    },
+    "closureEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reducerReplay",
+        "propertyModel",
+        "assetAdmission",
+        "rendererAdmission",
+        "runtimeAssetManifests",
+        "newDependencyAdmissions",
+        "t1Status",
+        "nextWorkPackage"
+      ],
+      "properties": {
+        "reducerReplay": { "const": 0 },
+        "propertyModel": { "const": 0 },
+        "assetAdmission": { "const": "basic-only" },
+        "rendererAdmission": { "const": "none" },
+        "runtimeAssetManifests": { "const": 0 },
+        "newDependencyAdmissions": { "type": "array", "maxItems": 0 },
+        "t1Status": { "const": "blocked" },
+        "nextWorkPackage": { "const": "W1.1" }
+      }
+    },
+    "historicalEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {
+          "type": "string",
+          "pattern": "^docs/office-v2/(?:schemas|fixtures)/(?!.*\\.\\.)[a-z0-9/_.-]+\\.json$"
+        },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+      }
+    },
+    "migrationOrRejectionEffect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "description"],
+      "properties": {
+        "kind": {
+          "enum": ["migration", "rejection", "preservation", "scope-closure"]
+        },
+        "description": { "$ref": "#/$defs/nonBlank" }
+      }
+    },
+    "resolution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "auditHeading",
+        "resolutionOwner",
+        "acceptedDecisions",
+        "canonicalDocuments",
+        "intendedContractVersions",
+        "migrationOrRejectionEffect",
+        "implementationGate",
+        "testPackages",
+        "testOwner",
+        "status"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^p0-[0-9]{2}-[a-z0-9-]+$" },
+        "auditHeading": { "$ref": "#/$defs/nonBlank" },
+        "resolutionOwner": { "$ref": "#/$defs/nonBlank" },
+        "acceptedDecisions": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/projectDocument" }
+        },
+        "canonicalDocuments": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/projectDocument" }
+        },
+        "intendedContractVersions": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/nonBlank" }
+        },
+        "migrationOrRejectionEffect": { "$ref": "#/$defs/migrationOrRejectionEffect" },
+        "implementationGate": { "$ref": "#/$defs/nonBlank" },
+        "testPackages": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/nonBlank" }
+        },
+        "testOwner": { "$ref": "#/$defs/nonBlank" },
+        "status": { "enum": ["resolved", "closed-T0", "ratified-deferred"] }
+      }
+    }
+  }
+}
