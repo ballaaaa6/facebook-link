@@ -84,6 +84,20 @@ for (const [fixtureName, wrongCode] of [
   });
 }
 
+test("common V2 rejection fails when its expected diagnostic drifts", () => {
+  withKnowledgeCopy((copyRoot) => {
+    const fixturePath = join(copyRoot, "fixtures", "invalid", "common-v2-rejections.json");
+    const fixture = readJson(fixturePath);
+    fixture.cases[0].expectedFailure = "contract.wrong-code";
+    writeJson(fixturePath, fixture);
+
+    const report = evaluateOfficeKnowledge({ knowledgeRoot: copyRoot });
+
+    assert.equal(report.ok, false);
+    assert.equal(hasDiagnostic(report, "knowledge.expected-diagnostic-mismatch"), true);
+  });
+});
+
 test("asset rejection fails when an unrelated schema error accompanies the expected reason", () => {
   withKnowledgeCopy((copyRoot) => {
     const fixturePath = join(copyRoot, "fixtures", "invalid", "asset-admission.json");

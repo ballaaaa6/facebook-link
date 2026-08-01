@@ -43,9 +43,14 @@ export function expectedFixtureCounts(root) {
   const fixtures = collectFiles(join(root, "fixtures"))
     .filter((file) => file.endsWith(".json"))
     .map(readJson);
+  const exactDiagnostics = fixtures.reduce((total, fixture) => (
+    total
+      + (typeof fixture.expectedFailure === "string" ? 1 : 0)
+      + (fixture.cases?.filter((entry) => typeof entry.expectedFailure === "string").length ?? 0)
+  ), 0);
   return {
     declaredCases: fixtures.reduce((total, fixture) => total + (fixture.cases?.length ?? 0), 0),
-    exactDiagnostics: fixtures.filter((fixture) => typeof fixture.expectedFailure === "string").length,
+    exactDiagnostics,
   };
 }
 

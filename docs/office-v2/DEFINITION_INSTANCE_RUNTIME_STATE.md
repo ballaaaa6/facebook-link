@@ -137,6 +137,8 @@ W1.1 stable contract diagnostics are:
 | `contract.identifier-namespace-mismatch` | A typed ID is used in the wrong reference namespace |
 | `contract.reference-version-missing` | A mutation-sensitive reference has no positive version |
 | `contract.reference-latest-forbidden` | A reference attempts to use a `latest` alias |
+| `contract.facing-invalid` | A world or screen facing is outside the accepted vocabulary |
+| `contract.schema-invalid` | A common V2 value fails for an unclassified schema reason |
 | `contract.generated-drift` | Generated TypeScript differs from the accepted schema output |
 
 Schema adapters may preserve JSON pointers and validator context, but they must

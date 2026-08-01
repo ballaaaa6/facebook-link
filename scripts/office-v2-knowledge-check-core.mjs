@@ -23,6 +23,7 @@ import {
   findWorldOverlap,
   same,
 } from "./office-v2-knowledge-probes.mjs";
+import { evaluateCommonV2Case } from "./office-v2-common-v2-evidence.mjs";
 const repositoryRoot = resolve(import.meta.dirname, "..");
 export const defaultKnowledgeRoot = join(repositoryRoot, "docs", "office-v2");
 function collectFiles(directory) {
@@ -195,7 +196,7 @@ function caseKind(entry) {
   return null;
 }
 
-function executeCase(context, registration, fixture, entry) {
+function executeCase(context, registration, fixture, entry, ajv) {
   const { path, caseRunner } = registration;
   const handled = (
     (caseRunner === "projection" && entry.world && entry.screen)
@@ -204,6 +205,7 @@ function executeCase(context, registration, fixture, entry) {
     || (caseRunner === "connectivity" && entry.cells && entry.expectedMasks)
     || (caseRunner === "interaction" && entry.events && entry.expected)
     || (caseRunner === "structure" && typeof entry.state === "string" && typeof entry.expectedTraversable === "boolean")
+    || (caseRunner === "common-v2" && (typeof entry.definition === "string" || typeof entry.semantic === "string"))
     || (caseRunner === "navigation" && ["path", "reservation"].includes(caseKind(entry)))
   );
   if (!handled) {
@@ -235,6 +237,11 @@ function executeCase(context, registration, fixture, entry) {
       }
     } else if (caseRunner === "structure") {
       mismatch(context, path, entry, "structure traversability", evaluateStructure(fixture, entry).traversable, entry.expectedTraversable);
+    } else if (caseRunner === "common-v2") {
+      const result = evaluateCommonV2Case(ajv, entry);
+      const expectedValid = entry.expectedValid === true;
+      mismatch(context, path, entry, "common V2 schema validity", result.valid, expectedValid);
+      if (!expectedValid) compareExpectedDiagnostic(context, path, entry.expectedFailure, result.diagnostic);
     } else if (caseKind(entry) === "path") {
       const result = findPath(fixture, entry);
       mismatch(context, path, entry, "navigation path", result.path, entry.expectedPath);
@@ -252,7 +259,7 @@ function executeCase(context, registration, fixture, entry) {
   }
 }
 
-function runFixtureCases(context) {
+function runFixtureCases(context, ajv) {
   for (const registration of fixtureRegistry) {
     const fixture = context.readJson(registration.path);
     if (!fixture) continue;
@@ -274,7 +281,7 @@ function runFixtureCases(context) {
       } else names.add(entry.name);
       if (!registration.caseRunner) {
         context.add("knowledge.unhandled-fixture-case", `${registration.path}: fixture declares cases without a runner`, { fixture: registration.path, case: entry });
-      } else executeCase(context, registration, fixture, entry);
+      } else executeCase(context, registration, fixture, entry, ajv);
     }
   }
 }
@@ -338,7 +345,7 @@ export function evaluateOfficeKnowledge({ knowledgeRoot = defaultKnowledgeRoot }
     try {
       const ajv = createOfficeSchemaValidator({ knowledgeRoot });
       runSchemaEvidence(context, ajv);
-      runFixtureCases(context);
+      runFixtureCases(context, ajv);
       runNegativeDiagnostics(context);
       finalizeFixtureEvidence(context);
     } catch (error) {

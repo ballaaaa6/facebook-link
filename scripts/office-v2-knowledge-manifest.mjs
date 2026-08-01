@@ -35,6 +35,7 @@ export const expectedKnowledge = {
   ],
   fixtures: [
     "fixtures/asset-family-valid.json", "fixtures/connected-desk.json",
+    "fixtures/common-v2-valid.json",
     "fixtures/depth-occlusion.json", "fixtures/deterministic-replay.json",
     "fixtures/interaction-cancel-timeout.json", "fixtures/minimal-office.json",
     "fixtures/navigation-reservations.json", "fixtures/navigation-reservations-v2.json",
@@ -42,6 +43,7 @@ export const expectedKnowledge = {
     "fixtures/projection-roundtrip.json", "fixtures/proof-workstation-connectivity-v2.json",
     "fixtures/room-structure-cutaway.json",
     "fixtures/invalid/asset-admission.json", "fixtures/invalid/connectivity-missing-mask.json",
+    "fixtures/invalid/common-v2-rejections.json",
     "fixtures/invalid/proof-workstation-unsupported-mask.json",
     "fixtures/invalid/world-overlap.json",
   ],
@@ -57,6 +59,7 @@ export const expectedKnowledge = {
 export const fixtureRegistry = [
   ["fixtures/asset-family-valid.json", null],
   ["fixtures/connected-desk.json", "connectivity"],
+  ["fixtures/common-v2-valid.json", "common-v2"],
   ["fixtures/depth-occlusion.json", "depth"],
   ["fixtures/deterministic-replay.json", null],
   ["fixtures/interaction-cancel-timeout.json", "interaction"],
@@ -70,6 +73,7 @@ export const fixtureRegistry = [
   ["fixtures/room-structure-cutaway.json", "structure"],
   ["fixtures/invalid/asset-admission.json", null],
   ["fixtures/invalid/connectivity-missing-mask.json", null],
+  ["fixtures/invalid/common-v2-rejections.json", "common-v2"],
   ["fixtures/invalid/proof-workstation-unsupported-mask.json", null],
   ["fixtures/invalid/world-overlap.json", null],
 ].map(([path, caseRunner]) => ({ path, caseRunner }));
