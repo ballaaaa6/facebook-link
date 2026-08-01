@@ -1,5 +1,9 @@
-import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
-import { extname, join, posix, relative, resolve } from "node:path";
+import { extname, posix, resolve } from "node:path";
+import {
+  collectOfficeV2WorkspaceInput,
+  officeV2SourceExtensions as sourceExtensions,
+} from "./office-v2-boundary-input.mjs";
+import { evaluateOfficeV2ConsumerManifest } from "./office-v2-boundary-consumer-manifest.mjs";
 import { analyzeModuleLoads } from "./office-v2-module-loads.mjs";
 
 export const officeV2PackageRules = Object.freeze([
@@ -40,12 +44,9 @@ export const generatedTypeHeader =
 
 const repositoryRoot = resolve(import.meta.dirname, "..");
 const webFeatureRoot = "apps/web/src/features/office-v2";
-const sourceExtensions = new Set([
-  ".cjs", ".cts", ".js", ".jsx", ".mjs", ".mts", ".ts", ".tsx",
-]);
+const webPackageRoot = "apps/web";
 const runtimeDependencySections = ["dependencies", "optionalDependencies", "peerDependencies"];
 const dependencySections = [...runtimeDependencySections, "devDependencies"];
-const ignoredDirectories = new Set(["node_modules", "dist", "coverage"]);
 
 function normalizePath(value) {
   return value.replaceAll("\\", "/").replace(/^\.\//, "");
@@ -53,15 +54,6 @@ function normalizePath(value) {
 
 function diagnostic(code, path, message, context = {}) {
   return { code, owner: "architecture", version: 1, path, message, context };
-}
-
-function collectFiles(directory) {
-  if (!existsSync(directory)) return [];
-  return readdirSync(directory).flatMap((name) => {
-    if (ignoredDirectories.has(name)) return [];
-    const absolute = join(directory, name);
-    return statSync(absolute).isDirectory() ? collectFiles(absolute) : [absolute];
-  });
 }
 
 function findOwningRule(projectPath) {
@@ -74,6 +66,15 @@ function findOfficePackage(specifier) {
   return officeV2PackageRules.find(
     (rule) => specifier === rule.name || specifier.startsWith(`${rule.name}/`),
   );
+}
+
+function isWebFeatureFile(projectPath) {
+  return projectPath.startsWith(`${webFeatureRoot}/`);
+}
+
+function resolveRelativeProjectPath(filePath, specifier) {
+  const canonicalSpecifier = specifier.replaceAll("\\", "/");
+  return normalizePath(posix.normalize(posix.join(posix.dirname(filePath), canonicalSpecifier)));
 }
 
 function forbiddenSpecifierKind(specifier) {
@@ -210,7 +211,7 @@ function validatePackageImport(file, rule, specifier, diagnostics) {
     return;
   }
   if (specifier.startsWith(".")) {
-    const target = normalizePath(posix.normalize(posix.join(posix.dirname(file.path), specifier)));
+    const target = resolveRelativeProjectPath(file.path, specifier);
     if (target !== rule.root && !target.startsWith(`${rule.root}/`)) {
       diagnostics.push(diagnostic(
         "architecture.office-v2.relative-boundary",
@@ -270,6 +271,40 @@ function validatePackageImport(file, rule, specifier, diagnostics) {
   }
 }
 
+function validateConsumerImport(file, specifier, diagnostics) {
+  if (specifier.startsWith(".")) {
+    const target = resolveRelativeProjectPath(file.path, specifier);
+    const officePackage = findOwningRule(target);
+    if (officePackage) {
+      diagnostics.push(diagnostic(
+        "architecture.office-v2.relative-boundary",
+        file.path,
+        `Office V2 package ${officePackage.name} must be consumed through its public bare package root.`,
+        { package: officePackage.name, specifier, target },
+      ));
+    }
+    return;
+  }
+
+  const officePackage = findOfficePackage(specifier);
+  if (!officePackage) return;
+  if (!isWebFeatureFile(file.path)) {
+    diagnostics.push(diagnostic(
+      "architecture.office-v2.import-direction",
+      file.path,
+      `Only ${webFeatureRoot} may import Office V2 packages.`,
+      { allowedConsumer: webFeatureRoot, package: officePackage.name, specifier },
+    ));
+  } else if (specifier !== officePackage.name) {
+    diagnostics.push(diagnostic(
+      "architecture.office-v2.public-entrypoint",
+      file.path,
+      `Web composition must use the public package root ${officePackage.name}.`,
+      { specifier },
+    ));
+  }
+}
+
 export function evaluateOfficeV2BoundaryInput(input) {
   const diagnostics = [];
   const presentRoots = new Set((input.presentRoots ?? []).map(normalizePath));
@@ -286,6 +321,18 @@ export function evaluateOfficeV2BoundaryInput(input) {
       ));
     }
     validateManifest(rule, manifests[rule.root], diagnostics);
+  }
+
+  for (const [projectRoot, record] of Object.entries(manifests)) {
+    const normalizedProjectRoot = normalizePath(projectRoot);
+    if (!officeV2PackageRules.some((rule) => rule.root === normalizedProjectRoot)) {
+      diagnostics.push(...evaluateOfficeV2ConsumerManifest(
+        normalizedProjectRoot,
+        record,
+        officeV2PackageRules,
+        webPackageRoot,
+      ));
+    }
   }
 
   for (const file of files) {
@@ -333,48 +380,14 @@ export function evaluateOfficeV2BoundaryInput(input) {
     );
     for (const specifier of specifiers) {
       if (rule) validatePackageImport(file, rule, specifier, diagnostics);
-      else if (file.path.startsWith(`${webFeatureRoot}/`)) {
-        const officePackage = findOfficePackage(specifier);
-        if (officePackage && specifier !== officePackage.name) {
-          diagnostics.push(diagnostic(
-            "architecture.office-v2.public-entrypoint",
-            file.path,
-            `Web composition must use the public package root ${officePackage.name}.`,
-            { specifier },
-          ));
-        }
-      }
+      else validateConsumerImport(file, specifier, diagnostics);
     }
   }
   return diagnostics;
 }
 
 export function collectOfficeV2BoundaryInput(root = repositoryRoot) {
-  const presentRoots = [];
-  const manifests = {};
-  const files = [];
-  const rootsToScan = [...officeV2PackageRules.map((rule) => rule.root), webFeatureRoot];
-  for (const projectRoot of rootsToScan) {
-    const absoluteRoot = join(root, projectRoot);
-    if (!existsSync(absoluteRoot)) continue;
-    if (projectRoot.startsWith("packages/")) presentRoots.push(projectRoot);
-    for (const absolute of collectFiles(absoluteRoot)) {
-      const projectPath = normalizePath(relative(root, absolute));
-      if (sourceExtensions.has(extname(projectPath)) || projectPath.endsWith(".schema.json")) {
-        files.push({ path: projectPath, content: readFileSync(absolute, "utf8") });
-      }
-    }
-  }
-  for (const rule of officeV2PackageRules) {
-    const manifestPath = join(root, rule.root, "package.json");
-    if (!existsSync(manifestPath)) continue;
-    try {
-      manifests[rule.root] = { value: JSON.parse(readFileSync(manifestPath, "utf8")) };
-    } catch (error) {
-      manifests[rule.root] = { parseError: error.message };
-    }
-  }
-  return { files, manifests, presentRoots };
+  return collectOfficeV2WorkspaceInput(root, officeV2PackageRules);
 }
 
 export function evaluateOfficeV2Boundaries(root = repositoryRoot) {
