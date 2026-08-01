@@ -7,6 +7,11 @@ is input to a converter, never a format consumed directly by simulation or
 presentation. The accepted decision is recorded in
 `decisions/0003-map-authoring.md`.
 
+The V1 world format remains frozen. The V2 flow places each canonical world
+under an explicit versioned building/floor reference and keeps the site
+envelope outside indoor geometry. W1.3 owns those references; W1.5 compiles the
+accepted `office-world-v2` output.
+
 ## Authoring flow
 
 ```text
@@ -34,7 +39,9 @@ origins or be rejected.
 
 Reject unknown classes, duplicate identifiers, unsupported rotation, dangling
 object references, non-integral world placement, embedded runtime assets,
-unapproved absolute paths, and properties with no canonical schema owner.
+unapproved absolute paths, site context authored as indoor occupancy,
+elevation used as floor identity, unstable portal endpoints, and properties
+with no canonical schema owner.
 
 ## Required evidence
 

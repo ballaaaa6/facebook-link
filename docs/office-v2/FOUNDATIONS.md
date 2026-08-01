@@ -4,8 +4,8 @@
 
 The engine has four one-way layers:
 
-1. **World model** — stable identities, coordinates, footprints, anchors,
-   occupancy, zones, and static definitions.
+1. **World model** — stable building/floor identities, floor-local coordinates,
+   footprints, anchors, occupancy, zones, portals, and static definitions.
 2. **Simulation** — time, actor intent, path following, tasks, interactions,
    queues, and deterministic state transitions.
 3. **Projection** — the mathematical conversion from world position and
@@ -132,6 +132,10 @@ availability. It does not depend on storage tables or connector payloads.
 Operational state changes only through existing audited commands. Clicking an
 agent or object may inspect state or propose an action; it cannot bypass review,
 feature flags, idempotency, or connector policy.
+
+The site envelope is presentation context, not an operational or simulation
+world. Each building floor remains an independently versioned world addressed
+through stable portal endpoints.
 
 ## 10. Verification knowledge
 

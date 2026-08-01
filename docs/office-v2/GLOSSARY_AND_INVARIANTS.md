@@ -14,6 +14,14 @@
 - **World facing**: `north`, `east`, `south`, or `west` in world axes.
 - **Screen facing**: the diagonal-looking presentation direction produced by a
   versioned world-facing transform.
+- **Building**: versioned topology owner that references independent floors,
+  one site envelope, and links between stable portal endpoints.
+- **Floor**: independently versioned floor-local world and save/load unit;
+  elevation is not its identity.
+- **Site envelope**: presentation-only exterior context such as sidewalk, curb,
+  road, planting, dressing, and backdrop references.
+- **Portal endpoint**: stable versioned topology identity owned by a floor, not
+  a screen coordinate or array position.
 - **Footprint**: ground cells reserved by an entity; it excludes visual height.
 - **Anchor basis**: geometry-owned origin from which footprint, clearance, and
   world/sub-cell sockets are defined.
@@ -64,6 +72,10 @@
 9. Floor identity is explicit and cannot be inferred from elevation.
 10. Coordinate conversions and facing transforms are named, versioned pure
     operations rather than consumer conventions.
+11. Site-envelope context never enters indoor occupancy, pathfinding, facility
+    capacity, or simulation state.
+12. Portal relations use stable endpoint IDs and never derive identity from
+    elevation or screen position.
 
 ## Rule writing template
 

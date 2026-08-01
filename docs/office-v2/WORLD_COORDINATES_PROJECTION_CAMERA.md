@@ -62,6 +62,11 @@ and a half-open edge policy with `(y, x)` as the stable tie-breaker.
 The camera owns world focus, viewport, zoom, and world-space bounds. It does not
 resize or rearrange the world for small screens.
 
+Camera focus is scoped to one explicit building/floor reference. Switching a
+floor selects another independently versioned floor-local world; elevation and
+camera Y never select a floor. Presentation-only site bounds may inform framing
+but cannot expand world occupancy or picking into an indoor route.
+
 - Pan and zoom are bounded and deterministic for a given viewport.
 - Zoom limits preserve legibility and prevent texture over-scaling.
 - Fit-to-world adds documented safe margins.

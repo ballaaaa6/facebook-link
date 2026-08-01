@@ -11,6 +11,11 @@
 Each form declares its schema version. Engine build identifiers are diagnostic;
 schema versions own compatibility.
 
+A building references independently versioned floor-local worlds. Saves and
+snapshots identify building, selected floor, floor version, world revision, and
+stable portal endpoint IDs explicitly. Elevation cannot stand in for a floor,
+and a screen position cannot stand in for a portal endpoint.
+
 ## Migration policy
 
 Migrations are pure, ordered, and one-directional. A reader either validates the
@@ -20,10 +25,18 @@ input. It never guesses defaults for a semantic field.
 Historical fixtures are immutable. When a contract changes, add a new fixture
 and migration test rather than editing the old input to resemble the new one.
 
+V1 world and surface/structure inputs have no complete building/floor envelope.
+A migration accepts them only with explicit building, floor, site, bounds, and
+portal context that passes reference closure. It rejects missing or conflicting
+context instead of deriving floor identity from `worldId`, elevation, array
+position, or the V1 structure kind named `floor`.
+
 ## Snapshot rules
 
 - Store integer world and simulation values, stable identifiers, reservations,
   command deduplication state, named random streams, and the tick rate.
+- Store versioned floor references and stable portal endpoint IDs whenever
+  state can cross a floor boundary.
 - Do not store renderer objects, DOM references, decoded textures, functions,
   wall-clock timers, or screen pixels.
 - Canonical serialization sorts maps and visible collections by declared keys.

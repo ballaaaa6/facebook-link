@@ -2,8 +2,10 @@
 
 ## World definition
 
-A world definition contains a version, bounds, zones, static surfaces, and
-entities. A versioned world geometry definition is the single owner of anchor
+A world definition is owned by one explicit building/floor reference and
+contains a version, floor-local bounds, zones, static surfaces, and entities.
+It never uses elevation as floor identity and never absorbs presentation-only
+site context. A versioned world geometry definition is the single owner of anchor
 basis, footprint, blocking occupancy, clearance, supported orientations,
 world/sub-cell sockets, and use-slot geometry. Entity definitions reference
 that geometry and own semantic kind, capabilities, and versioned interaction
@@ -53,6 +55,10 @@ The V1 schemas repeat some spatial fields and remain frozen historical
 evidence. W1.2 replaces those cross-contract copies with version-pinned
 geometry references and rejects a V1 migration when the repeated values do not
 agree or complete migration context is unavailable.
+
+The V1 world schema also lacks building and floor identity. W1.3 defines the
+versioned envelope and V2 references. A V1 world without complete building,
+floor, site, and portal migration context fails closed.
 
 ## Required evidence
 

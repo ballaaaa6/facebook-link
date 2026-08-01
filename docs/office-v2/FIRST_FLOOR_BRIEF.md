@@ -28,6 +28,10 @@ look busy.
 
 ## Site and building envelope
 
+Decision 0010 owns the topology split. A versioned building references each
+floor as an independent versioned floor-local world. Elevation is height inside
+a floor and cannot identify one.
+
 The first delivered world contains:
 
 - one large ground-floor interior with bounded work and shared zones;
@@ -38,14 +42,21 @@ The first delivered world contains:
 - a camera composition that shows the complete floor on the pilot desktop and
   preserves inspectability at compact and phone viewports.
 
-The exterior is presentation context in the first release. Vehicles and street
-pedestrians, if later added, require their own simulation contract and cannot be
-baked into the office world as unexplained activity.
+The site envelope owns sidewalk, curb, road, planting, street dressing, and
+backdrop references as presentation-only context in the first release. Those
+records cannot enter indoor surfaces, occupancy, pathfinding, facilities, or
+simulation. Floor 1 owns its interior, entrance geometry, entrance portal, and
+stable indoor endpoint. The building/site relation may compose that portal but
+does not author a competing indoor endpoint.
 
-Before a second floor is implemented, add a versioned building definition with
-stable building and floor identifiers, per-floor world bounds, vertical links,
-cross-floor routing policy, camera selection, loading, saves, and migration.
-Elevation alone is not a multi-floor model.
+Vehicles and street pedestrians, if later added, require their own simulation
+contract and cannot be baked into the office world as unexplained activity.
+
+Before a second floor is implemented, add its independent floor world and
+stable portal endpoint, then link it through the versioned building definition.
+Cross-floor routing policy, camera selection, loading, saves, and migration
+remain explicit gates. Existing floor-1 coordinates and entity identities do
+not change.
 
 ## Operational zones
 

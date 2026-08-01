@@ -2,10 +2,11 @@
 
 ## Spatial ownership
 
-A room is a bounded collection of supporting floor cells, structural edges,
-zones, and placed entities. Floors support placement. Walls, doors, and windows
-live on cell edges rather than pretending to occupy an arbitrary sprite-sized
-rectangle.
+A room is a bounded collection inside one explicitly identified floor-local
+world. Supporting surface cells permit placement. Walls, doors, and windows live
+on cell edges rather than pretending to occupy an arbitrary sprite-sized
+rectangle. A building floor is not a surface or structure kind, and elevation
+inside a surface does not change floor identity.
 
 World axes and edge names come from `decisions/0001-projection-grid.md`.
 Structural edges use the owner cell plus `north` or `west` so one physical edge
@@ -17,6 +18,11 @@ cell's north or west edge.
 Each floor cell declares a surface kind, elevation, placement categories, and
 traversal cost. A missing floor is not walkable and cannot support furniture.
 Decorative floor graphics cannot alter these values.
+
+The `floor` kind in `surface-structure.schema.json` is frozen V1 evidence and is
+not a building-floor contract. W1.3 introduces versioned V2 floor/world/surface
+references rather than widening this schema. Migration requires complete
+building and floor context or rejects the V1 input.
 
 ## Structure contract
 
@@ -42,3 +48,4 @@ projection, occupancy, or sprite depth.
 - Overlapping zones resolve through an explicit priority rule or are rejected.
 - Room fixtures cover edges, corners, door transitions, missing floors, and
   camera-facing cutaways.
+- Site-envelope context cannot become a room surface, route, or placement cell.
