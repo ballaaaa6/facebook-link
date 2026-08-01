@@ -15,6 +15,11 @@ Rejected commands return structured reasons and do not partially mutate state.
 Events are facts emitted by accepted state transitions. Presentation events may
 request sound or effects but are not operational facts.
 
+Reservation and queue changes are reducer facts, not side effects. Resource
+sets acquire all-or-none, queue tickets use the Decision 0012 total order, and
+every terminal path records idempotent cleanup before the tick's hash boundary.
+Deadlock victim selection and missing-yield failure are therefore replayable.
+
 ## Randomness
 
 All random choices use a named seeded stream recorded in the snapshot or trace.
@@ -59,4 +64,6 @@ its hashable-state projection, reducer/replay evidence remains zero.
 - Simulation results are identical at different display frame rates.
 - Duplicate command application is a no-op after the first accepted result.
 - Cancel, block, and unreachable paths are present in fixtures.
+- Queue, cleanup, and deadlock outcomes are derived from stable resource,
+  ticket, intent, and actor identities rather than arrival order.
 - Replay failure reports the first divergent tick and owning subsystem.

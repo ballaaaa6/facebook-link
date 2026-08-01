@@ -38,6 +38,12 @@
 - **Use slot**: geometry-owned set of approach candidates, waiting cells,
   required facing, and socket references used by an interaction.
 - **Reservation**: temporary ownership of a cell, socket, or facility capacity.
+- **Resource set**: normalized typed keys requested and committed atomically by
+  an activity; partial acquisition is not retained while waiting.
+- **Queue ticket**: stable wait identity ordered by priority class, enqueue tick,
+  and canonical ticket ID.
+- **Yield cell**: declared legal cell to which a deterministic deadlock victim
+  may route after cleanup; it is never improvised by presentation.
 - **Neighbor mask**: encoded compatible neighbors used to select a visual variant.
 - **Snapshot**: complete serializable simulation state at one logical tick.
 - **Trace**: ordered commands, inputs, and snapshots used for deterministic replay.
@@ -85,6 +91,10 @@
 13. Duplicate raw keys, lone surrogates, non-finite numbers, and unsafe integers
     fail before canonical hashing; negative zero normalizes to zero.
 14. Canonical serialization never invents collection order semantics.
+15. Cancellation, timeout, removal, preemption, completion, and failure release
+    every applicable claim, slot, cell, reservation, ticket, and held prop.
+16. A missing legal deadlock yield cell fails diagnostically instead of
+    permitting an exceptional movement rule.
 
 ## Rule writing template
 

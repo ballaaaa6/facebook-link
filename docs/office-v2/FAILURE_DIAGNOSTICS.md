@@ -28,6 +28,12 @@ family.
 | `presentation.*` | `apps/web/src/features/office-v2` | Missing presentation resources, unsupported clips, browser lifecycle, input, accessibility, and renderer capability |
 | `asset.*` | Office asset pipeline | Provenance, files, hashes, pixel/frame geometry, variants, catalogs, bundles, and review |
 
+Decision 0012 reserves `simulation.deadlock-no-yield-cell` for a deterministic
+deadlock victim that has no declared legal yield cell. The diagnostic includes
+the victim actor ID, intent ID, wait-for participants, world revision, and
+evaluated yield-cell IDs. Presentation may display it but cannot recode the
+failure or move the actor specially.
+
 The contracts package owns the diagnostic envelope and catalog types but does
 not originate a world, simulation, adapter, presentation, or asset failure.
 Renderer code cannot reinterpret a missing world or adapter fact as a

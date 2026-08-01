@@ -41,7 +41,8 @@ const expectedKnowledge = {
     "decisions/0008-coordinate-and-facing-semantics.md",
     "decisions/0009-geometry-authority.md",
     "decisions/0010-building-floor-site-and-portal-ownership.md",
-    "decisions/0011-canonical-serialization-and-hashing.md", "decisions/TEMPLATE.md",
+    "decisions/0011-canonical-serialization-and-hashing.md",
+    "decisions/0012-queue-reservation-and-deadlock-policy.md", "decisions/TEMPLATE.md",
   ],
   schemas: [
     "schemas/animation.schema.json", "schemas/asset.schema.json", "schemas/common.schema.json",

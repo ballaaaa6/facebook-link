@@ -20,9 +20,25 @@ systems have separate inputs, outputs, and tests.
 ## Reservations and queues
 
 Actors reserve destinations, approach cells, sockets, and limited facility
-capacity before committing to an interaction. Reservation acquisition order and
-timeouts are deterministic. Waiting actors occupy real legal cells and never
-stack through presentation offsets.
+capacity before committing to an interaction. Decision 0012 requires a typed
+resource set to be normalized, fully validated, and acquired all-or-none. An
+actor cannot hold one newly requested resource while waiting for another in the
+same set.
+
+Waiting actors have stable tickets and occupy declared legal cells; they never
+stack through presentation offsets. Queue order is durable-before-decorative,
+then enqueue tick, then canonical ticket ID. Input, render, and wall-clock order
+cannot change the winner.
+
+Cancellation, timeout, target or actor removal, preemption, route invalidation,
+completion, and failure run one idempotent cleanup path that releases every
+applicable task claim, facility/use slot, approach or waiting cell, reservation,
+queue entry, and held prop.
+
+After a fixture-defined no-progress threshold, a wait-for cycle yields its
+lowest-priority, latest-intent, greatest-actor-ID victim. The victim may move
+only to a declared legal yield cell. Missing yield geometry blocks with
+`simulation.deadlock-no-yield-cell`; it never permits an exceptional move.
 
 ## Interaction definition
 
@@ -46,4 +62,7 @@ operational data cannot leave permanent reservations.
 - Two actors cannot own an exclusive socket at the same tick.
 - A missing or conflicting use-slot/socket reference fails before interaction.
 - Cancel, timeout, and target removal release declared resources.
+- Reversing request input preserves normalized acquisition and queue order.
+- Every deadlock fixture has a deterministic victim and either a legal yield
+  route or the exact missing-yield diagnostic.
 - Interaction completion is unchanged when animation is disabled.

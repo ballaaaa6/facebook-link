@@ -71,6 +71,8 @@ requires them.
   separate.
 - Reserve destination and interaction cells explicitly when concurrent actors
   are introduced.
+- Normalize multi-resource requests and acquire the full set or none. Waiting
+  actors do not retain a partial newly requested set.
 - The first slice permits four cardinal directions only; diagonals and corner
   cutting are not part of projection version 1.
 - Re-plan only on relevant world changes, not every rendered frame.
@@ -104,6 +106,10 @@ the visual state and validated pixel contacts.
 
 Actors interact through geometry-owned sockets. They are never positioned by
 an object-specific CSS transform or an asset-authored world coordinate.
+
+All terminal paths share idempotent cleanup for claims, slots, cells,
+reservations, queue tickets, and held props. Queue order and any deadlock victim
+come from stable priority, tick, intent, ticket, and actor identities.
 
 ## 7. Animation knowledge
 

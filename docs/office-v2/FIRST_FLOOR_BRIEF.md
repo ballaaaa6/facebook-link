@@ -127,7 +127,9 @@ The six display states use one semantic grammar across every role:
   operational meaning, such as sitting, coffee, or a short lounge visit.
 
 Decorative behavior uses a separate seeded random stream and yields immediately
-when an operational intent arrives.
+when an operational intent arrives. Yielding uses the same complete cleanup
+path as cancellation; it cannot leave a task claim, facility slot, cell,
+reservation, queue ticket, or held prop behind.
 
 ## Initial interaction catalog
 
@@ -147,6 +149,11 @@ Every interaction is data that references a geometry-owned use slot for
 approach cells, facing, and sockets, while its behavior owns duration, capacity,
 cancellation, and result events. No interaction may copy spatial facts or
 require a component-specific pixel offset.
+
+Shared facilities use stable queue tickets and all-or-none resource
+acquisition. Durable operational work precedes decorative work. If a declared
+deadlock yield route is unavailable, the actor becomes explainably blocked
+rather than being moved through collision.
 
 ## Minimum reusable asset catalog
 

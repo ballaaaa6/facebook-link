@@ -37,6 +37,10 @@ position, or the V1 structure kind named `floor`.
   command deduplication state, named random streams, and the tick rate.
 - Store versioned floor references and stable portal endpoint IDs whenever
   state can cross a floor boundary.
+- Store task claims, facility/use-slot ownership, approach and waiting cells,
+  queue tickets and their enqueue ticks, complete reservation sets, held-prop
+  ownership, intent priority/issue tick, cleanup idempotency state, and the
+  wait-for evidence required to continue an in-progress action.
 - Do not store renderer objects, DOM references, decoded textures, functions,
   wall-clock timers, or screen pixels.
 - A domain-owned semantic normalizer stable-sorts only collections explicitly
@@ -58,3 +62,6 @@ subsystem.
 A historical placeholder digest is not migrated into evidence. A new version
 must normalize and serialize through the accepted pipeline and reproduce its
 digest independently or fail closed.
+
+A V1 in-progress action without the complete Decision 0012 resource and queue
+state is rejected rather than reconstructed from actor position or target ID.
