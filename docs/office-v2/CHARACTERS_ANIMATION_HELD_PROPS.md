@@ -17,9 +17,15 @@ They do not complete tasks or move the world actor.
 
 ## Facing
 
-Facing is simulation or interaction state expressed in world directions. The
-presentation layer maps it to available art, including a documented mirror policy
-when permitted by the art specification.
+Facing is simulation or interaction state expressed as world `north`, `east`,
+`south`, or `west`. Under `office-projection-v1`, presentation maps them to
+`north-east`, `south-east`, `south-west`, and `north-west` respectively. The
+mapping is owned by Decision 0008 rather than individual clips or components.
+
+Mirror policy is separate presentation metadata. A mirrored frame still
+represents the mapped screen facing and cannot rewrite the actor's world-facing
+state. The V1 animation schema remains frozen; the later versioned character
+contract will distinguish world-facing inputs from screen-facing art keys.
 
 ## Held props
 

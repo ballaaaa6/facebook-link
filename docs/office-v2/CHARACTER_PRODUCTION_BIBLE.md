@@ -15,8 +15,10 @@ drawing the final sheet.
 
 ## Minimum first character
 
-- Required facings: north-east, south-east, south-west, and north-west, with an
-  explicitly reviewed mirror rule where used.
+- Required screen facings: north-east, south-east, south-west, and north-west,
+  mapped from world north, east, south, and west by Decision 0008.
+- Required mirror metadata: an explicitly reviewed policy for every mirrored
+  frame; mirroring never changes world-facing semantics.
 - Required clips: idle, move, interact, and blocked feedback.
 - Required attachments: one held-item socket and one interaction alignment
   socket per supported facing.
@@ -32,4 +34,5 @@ overshoot, idle variation, effects, and sound are presentation only.
 
 Review the isolated contact sheet, motion at native and supported zoom stops,
 socket alignment, crossing behind and in front of furniture, reduced motion,
-and missing-clip failure before placing the character in a populated room.
+all four world-to-screen facing mappings, asymmetric mirror rejection, and
+missing-clip failure before placing the character in a populated room.

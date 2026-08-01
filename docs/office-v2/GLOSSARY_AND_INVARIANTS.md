@@ -2,8 +2,18 @@
 
 ## Canonical terms
 
-- **World cell**: smallest integer unit used for occupancy and navigation.
-- **Sub-cell unit**: fixed integer precision inside a world cell.
+- **Cell position**: integral floor-local position used for occupancy and
+  placement; it is not a movement or pixel value.
+- **Sub-cell position**: integral floor-local movement position using the
+  projection version's fixed number of units per cell.
+- **Definition-local pixel**: pixel coordinate inside an authored definition's
+  local geometry; it is not a sprite-frame or projected coordinate.
+- **Sprite pixel**: pixel coordinate inside a sprite canvas or frame.
+- **Screen pixel**: derived coordinate after world projection and camera
+  transformation; it is never authoritative world state.
+- **World facing**: `north`, `east`, `south`, or `west` in world axes.
+- **Screen facing**: the diagonal-looking presentation direction produced by a
+  versioned world-facing transform.
 - **Footprint**: ground cells reserved by an entity; it excludes visual height.
 - **Anchor**: world-space reference from which footprint and sockets are defined.
 - **Ground contact**: presentation point where a sprite touches the floor.
@@ -29,6 +39,9 @@
 - Path planning is not movement following.
 - Operational status is not an actor's decorative idle variation.
 - Missing data is not idle.
+- Cell, sub-cell, definition-local pixel, sprite-pixel, and screen-pixel values
+  are not interchangeable.
+- World facing is not screen facing or mirror metadata.
 
 ## Global invariants
 
@@ -42,6 +55,9 @@
    result instead of relying on component-specific offsets.
 8. Every external proposal passes existing review, idempotency, and feature-flag
    policy outside the engine.
+9. Floor identity is explicit and cannot be inferred from elevation.
+10. Coordinate conversions and facing transforms are named, versioned pure
+    operations rather than consumer conventions.
 
 ## Rule writing template
 
