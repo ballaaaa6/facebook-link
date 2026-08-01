@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/building.schema.json",
+  "title": "Office V2 Building and Floor Topology Envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "building", "siteEnvelope", "floors", "portals"],
+  "properties": {
+    "schemaVersion": { "const": "office-building-topology-v1" },
+    "building": { "$ref": "common-v2.schema.json#/$defs/buildingReference" },
+    "siteEnvelope": { "$ref": "#/$defs/siteEnvelope" },
+    "floors": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/floor" }
+    },
+    "portals": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/portal" }
+    },
+    "migration": { "$ref": "#/$defs/migration" }
+  },
+  "$defs": {
+    "slug": { "$ref": "common-v2.schema.json#/$defs/slug" },
+    "positiveVersion": { "$ref": "common-v2.schema.json#/$defs/positiveVersion" },
+    "safeInteger": { "$ref": "common-v2.schema.json#/$defs/safeInteger" },
+    "nonNegativeSafeInteger": { "$ref": "common-v2.schema.json#/$defs/nonNegativeSafeInteger" },
+    "buildingReference": { "$ref": "common-v2.schema.json#/$defs/buildingReference" },
+    "floorReference": { "$ref": "common-v2.schema.json#/$defs/floorReference" },
+    "floorLocalCellPosition": { "$ref": "common-v2.schema.json#/$defs/floorLocalCellPosition" },
+    "siteReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "version": { "$ref": "#/$defs/positiveVersion" }
+      }
+    },
+    "worldReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "version": { "$ref": "#/$defs/positiveVersion" }
+      }
+    },
+    "siteCell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["space", "x", "y"],
+      "properties": {
+        "space": { "const": "site-cell" },
+        "x": { "$ref": "#/$defs/safeInteger" },
+        "y": { "$ref": "#/$defs/safeInteger" }
+      }
+    },
+    "bounds": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["width", "depth", "maxElevation"],
+      "properties": {
+        "width": { "type": "integer", "minimum": 1, "maximum": 9007199254740991 },
+        "depth": { "type": "integer", "minimum": 1, "maximum": 9007199254740991 },
+        "maxElevation": { "$ref": "#/$defs/nonNegativeSafeInteger" }
+      }
+    },
+    "siteContextCell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "coordinate"],
+      "properties": {
+        "kind": { "enum": ["sidewalk", "curb", "road", "planting", "street-furniture", "backdrop"] },
+        "coordinate": { "$ref": "#/$defs/siteCell" }
+      }
+    },
+    "siteEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "presentationOnly", "contextKinds", "contextCells"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "version": { "$ref": "#/$defs/positiveVersion" },
+        "presentationOnly": { "const": true },
+        "contextKinds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "enum": ["sidewalk", "curb", "road", "planting", "street-furniture", "backdrop"] }
+        },
+        "contextCells": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/siteContextCell" }
+        }
+      }
+    },
+    "floor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["floor", "world", "coordinateSpace", "bounds", "siteFootprint", "identitySource"],
+      "properties": {
+        "floor": { "$ref": "#/$defs/floorReference" },
+        "world": { "$ref": "#/$defs/worldReference" },
+        "coordinateSpace": { "const": "floor-local" },
+        "bounds": { "$ref": "#/$defs/bounds" },
+        "siteFootprint": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/siteCell" }
+        },
+        "identitySource": { "enum": ["declared", "elevation"] }
+      }
+    },
+    "endpointReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "ownerKind"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "version": { "$ref": "#/$defs/positiveVersion" },
+        "ownerKind": { "enum": ["floor", "site"] },
+        "floor": { "$ref": "#/$defs/floorReference" },
+        "site": { "$ref": "#/$defs/siteReference" },
+        "coordinate": { "$ref": "#/$defs/floorLocalCellPosition" },
+        "siteCoordinate": { "$ref": "#/$defs/siteCell" }
+      }
+    },
+    "portal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "kind", "ownerFloor", "direction"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "version": { "$ref": "#/$defs/positiveVersion" },
+        "kind": { "enum": ["entrance", "vertical"] },
+        "ownerFloor": { "$ref": "#/$defs/floorReference" },
+        "direction": { "enum": ["inbound", "outbound", "bidirectional"] },
+        "endpoint": { "$ref": "#/$defs/endpointReference" },
+        "landing": { "$ref": "#/$defs/endpointReference" }
+      }
+    },
+    "migrationContext": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "building": { "$ref": "#/$defs/buildingReference" },
+        "floor": { "$ref": "#/$defs/floorReference" },
+        "siteEnvelope": { "$ref": "#/$defs/siteReference" },
+        "bounds": { "$ref": "#/$defs/bounds" },
+        "portalContext": { "type": "boolean" }
+      }
+    },
+    "migration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sourceSchema"],
+      "properties": {
+        "sourceSchema": { "enum": ["office-world-v1", "office-structure-v1"] },
+        "context": { "$ref": "#/$defs/migrationContext" }
+      }
+    }
+  }
+}

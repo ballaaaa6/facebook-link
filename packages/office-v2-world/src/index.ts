@@ -32,3 +32,18 @@ export type {
   GeometryValidationResult,
   TransformedGeometry,
 } from "./geometry-validation.ts";
+export { floorLocalCoordinateKey, validateBuildingTopology } from "./building-topology-validation.ts";
+export type {
+  BuildingMigrationDocument,
+  BuildingTopologyDiagnostic,
+  BuildingTopologyDiagnosticCode,
+  BuildingTopologyDocument,
+  BuildingTopologyResult,
+  FloorTopologyDocument,
+  PortalDocument,
+  PortalEndpointDocument,
+  SiteCell,
+  SiteEnvelopeDocument,
+  TopologyBounds,
+  VersionedSlugReference,
+} from "./building-topology-validation.ts";
