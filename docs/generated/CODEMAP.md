@@ -13,6 +13,10 @@
 | `@affiliate-ops/contracts` | `packages/contracts` | Workspace module |
 | `@affiliate-ops/database` | `packages/database` | Workspace module |
 | `@affiliate-ops/observability` | `packages/observability` | Workspace module |
+| `@affiliate-ops/office-v2-contracts` | `packages/office-v2-contracts` | Workspace module |
+| `@affiliate-ops/office-v2-operations` | `packages/office-v2-operations` | Workspace module |
+| `@affiliate-ops/office-v2-simulation` | `packages/office-v2-simulation` | Workspace module |
+| `@affiliate-ops/office-v2-world` | `packages/office-v2-world` | Workspace module |
 | `@affiliate-ops/storage` | `packages/storage` | Workspace module |
 | `@affiliate-ops/workflows` | `packages/workflows` | Workspace module |
 | `@affiliate-ops/automation-runner` | `services/automation-runner` | Workspace module |

@@ -177,6 +177,13 @@ locked. Final pixels and asset batches remain blocked until their later gates.
 
 ### W0.1 Register ownership and package boundaries
 
+Status: completed on 2026-08-01. Decision 0007 approves the four exact package
+roots and Web composition boundary. Empty package scaffolds, manifest and source
+import enforcement, exact clean-room roots, generated-type boundary reservation,
+handwritten-duplicate rejection, and the negative boundary matrix pass. No
+engine behavior or new external dependency was admitted; reducer/replay and
+property/model evidence remain zero.
+
 Deliverables:
 
 - add a contract-ownership table to `REPOSITORY_LAYOUT.md` before creating

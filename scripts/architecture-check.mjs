@@ -1,6 +1,10 @@
 import path from "node:path";
 import { readFile } from "node:fs/promises";
 import { relative, root, sourceFiles } from "./source-files.mjs";
+import {
+  evaluateOfficeV2Boundaries,
+  formatOfficeV2BoundaryDiagnostic,
+} from "./office-v2-boundary-check-core.mjs";
 
 const failures = [];
 const importPattern = /(?:from\s+|import\s*\()["']([^"']+)["']/g;
@@ -24,6 +28,10 @@ for (const file of await sourceFiles()) {
       failures.push(`${rel}: features must communicate through app/shared contracts, not ${target}`);
     }
   }
+}
+
+for (const diagnostic of evaluateOfficeV2Boundaries(root)) {
+  failures.push(formatOfficeV2BoundaryDiagnostic(diagnostic));
 }
 
 if (failures.length) {

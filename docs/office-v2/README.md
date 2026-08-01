@@ -54,6 +54,12 @@ pass. The production Office route remains an empty V2 mount. Renderer selection
 is deliberately deferred behind the accepted benchmark decision; no production
 runtime art has been admitted.
 
+W0.1 completed on 2026-08-01. Decision 0007 approves the four headless Office
+packages and the presentation-only Web composition boundary; their empty
+scaffolds, manifest graph, exact clean-room roots, and negative import/dependency
+tests now pass. W0.3 contradiction resolution is next. No world or simulation
+behavior was added, and reducer/replay plus property/model evidence remain zero.
+
 ## Knowledge rule
 
 Documentation is not accepted as a rule by itself. A production rule must have

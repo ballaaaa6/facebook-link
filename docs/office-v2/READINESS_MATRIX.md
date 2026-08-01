@@ -15,6 +15,7 @@ promote any target-floor, persistent-engine, renderer, crowd, or asset status.
 
 | Topic | Decision | Contract | Fixtures | Automated evidence | Status |
 | --- | --- | --- | --- | --- | --- |
+| Package ownership and import direction | `decisions/0007-package-ownership-and-import-boundaries.md` | four package manifests, generated-type boundary, and Web composition root | positive graph plus bare, manifest, relative, forbidden-import, generated-boundary, and fake-root negatives | `office:v2:boundaries:test` executes the negative matrix; boundary, architecture, and clean-room gates enforce the current tree | W0.1 complete; W0.3 is next; no W1 or engine behavior authorized |
 | Forward projection | `decisions/0001-projection-grid.md` | projection section and common types | five integer cases in `projection-roundtrip.json` | T0 gate executes 5/5 bounded cases | Ready for a bounded pure-function probe |
 | Sub-cell projection, inverse picking, and camera | decision requires clarification | coordinate types and camera contract incomplete | no edge, sub-cell, zoom, crop, or camera fixture | property and viewport tests missing | Not ready |
 | Renderer boundary | `decisions/0002-renderer.md` | renderer port in Phase 4 | geometric benchmark scene | Phase 4 benchmark | Intentionally deferred |
@@ -48,15 +49,16 @@ promote any target-floor, persistent-engine, renderer, crowd, or asset status.
 
 ## Current entry point
 
-Phase 1 closes the target-specific contracts and the P0 contradictions recorded
-in `KNOWLEDGE_COMPLETENESS_AUDIT.md`. Existing narrow rows may be used for
+W0.1 package ownership is complete. W0.3 contradiction resolution is the next
+work package before W1.1 begins. Phase 1 then closes the target-specific
+contracts and the P0 contradictions recorded in
+`KNOWLEDGE_COMPLETENESS_AUDIT.md`. Existing narrow rows may be used for
 disposable or pure contract probes only. Persistent world/simulation code starts
 after Closure A and the applicable parts of Closure B are accepted. Bulk art,
 the large map, target crowds, and renderer integration remain blocked until the
 minimum safe-to-produce gate passes.
 
-The immediate target is T1 — Semantic Foundation in
-`READINESS_REMEDIATION_PLAN.md`. The T0 gate is now honest. T1 remains blocked
-until package ownership and contradiction closure complete and identity,
-coordinate, geometry, building, reference-closure, and deterministic
-scene-compilation evidence passes.
+The promotion target remains T1 — Semantic Foundation in
+`READINESS_REMEDIATION_PLAN.md`. T0 and W0.1 are complete. T1 remains blocked
+until W0.3 contradiction closure and the identity, coordinate, geometry,
+building, reference-closure, and deterministic scene-compilation evidence pass.

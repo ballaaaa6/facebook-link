@@ -1,0 +1,14 @@
+{
+  "name": "@affiliate-ops/office-v2-simulation",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": "./src/index.ts",
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@affiliate-ops/office-v2-contracts": "0.1.0",
+    "@affiliate-ops/office-v2-world": "0.1.0"
+  }
+}
