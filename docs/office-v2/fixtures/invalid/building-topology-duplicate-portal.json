@@ -1,0 +1,6 @@
+{
+  "schema": "building.schema.json",
+  "baseFixture": "fixtures/building-topology-one-floor.json",
+  "mutation": "duplicate-portals[0]-unique-endpoints",
+  "expectedFailure": "world.portal-duplicate"
+}

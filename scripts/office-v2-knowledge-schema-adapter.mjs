@@ -3,11 +3,14 @@ import {
   compareExpectedDiagnostic,
   validateSchema,
 } from "./office-v2-knowledge-evidence.mjs";
+import { evaluateBuildingTopologyFixture } from "./office-v2-building-topology-adapter.mjs";
 
 export function runSchemaEvidence(context, ajv) {
   const read = (path) => context.readJson(path);
   const checks = [
     ["world.schema.json", read("fixtures/minimal-office.json"), "minimal world", "fixtures/minimal-office.json"],
+    ["building.schema.json", read("fixtures/building-topology-one-floor.json"), "one-floor topology", "fixtures/building-topology-one-floor.json"],
+    ["building.schema.json", read("fixtures/building-topology-two-floors.json"), "two-floor topology", "fixtures/building-topology-two-floors.json"],
     ["connectivity.schema.json", read("fixtures/connected-desk.json"), "connected desk", "fixtures/connected-desk.json"],
     ["connectivity.schema.json", read("fixtures/proof-workstation-connectivity-v2.json")?.definition, "proof workstation", "fixtures/proof-workstation-connectivity-v2.json"],
     ["entity-definition.schema.json", read("fixtures/placement-rotation-clearance.json")?.definition, "placement definition", "fixtures/placement-rotation-clearance.json"],
@@ -22,6 +25,19 @@ export function runSchemaEvidence(context, ajv) {
   for (const definition of structures) checks.push(["surface-structure.schema.json", definition, `structure ${definition.definitionId}`, "fixtures/room-structure-cutaway.json"]);
   const snapshots = read("fixtures/operations-states.json")?.snapshots ?? [];
   for (const snapshot of snapshots) checks.push(["operations-snapshot.schema.json", snapshot, `operations ${snapshot.snapshotId}`, "fixtures/operations-states.json"]);
+  for (const fixturePath of [
+    "fixtures/invalid/building-topology-direction-mismatch.json",
+    "fixtures/invalid/building-topology-duplicate-floor.json",
+    "fixtures/invalid/building-topology-duplicate-portal.json",
+    "fixtures/invalid/building-topology-elevation-floor.json",
+    "fixtures/invalid/building-topology-exterior-overlap.json",
+    "fixtures/invalid/building-topology-incomplete-migration.json",
+    "fixtures/invalid/building-topology-missing-endpoint.json",
+    "fixtures/invalid/building-topology-missing-landing.json",
+  ]) {
+    const evaluation = evaluateBuildingTopologyFixture({ knowledgeRoot: context.knowledgeRoot, fixturePath });
+    checks.push(["building.schema.json", evaluation.document, `${fixturePath} topology shape`, fixturePath]);
+  }
   for (const [schema, document, label, fixturePath] of checks) {
     if (document) validateSchema(context, ajv, schema, document, label, true, fixturePath);
   }

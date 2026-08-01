@@ -74,6 +74,29 @@ The world linter reports one primary code with stable JSON pointers and typed
 reference context. It does not downgrade a missing target to a presentation
 warning or recode an ownership failure as a contract schema error.
 
+W1.3 topology diagnostics extend the same `world.*` and `contract.*` ownership
+boundary:
+
+| Code | Originating rule |
+| --- | --- |
+| `world.floor-duplicate` | A building repeats a floor or floor-local world identity. |
+| `world.portal-duplicate` | A building repeats a portal identity. |
+| `world.portal-endpoint-duplicate` | Endpoint identity is repeated across portals. |
+| `world.portal-endpoint-missing` | A portal has no owner-side endpoint. |
+| `world.portal-landing-missing` | A portal has no opposite-side landing. |
+| `world.portal-direction-mismatch` | Portal kind, direction, or endpoint ownership disagrees. |
+| `world.portal-floor-missing` | A floor endpoint does not resolve to a declared floor. |
+| `world.portal-floor-mismatch` | An endpoint coordinate or owner floor disagrees. |
+| `world.portal-endpoint-out-of-bounds` | A floor endpoint is outside floor-local bounds. |
+| `world.portal-site-mismatch` | A site endpoint does not resolve to the building site. |
+| `world.exterior-interior-overlap` | Presentation-only context overlaps an interior envelope. |
+| `world.elevation-floor-inference` | Elevation is used as floor identity. |
+
+`contract.migration-context-missing` and
+`contract.migration-reference-conflict` remain contract-owned because they
+reject incomplete or contradictory V1 migration context before a V2 topology
+record is materialized.
+
 ## Debug evidence
 
 A bug report can include the validated world definition, initial snapshot,

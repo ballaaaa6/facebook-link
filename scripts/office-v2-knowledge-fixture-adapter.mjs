@@ -19,6 +19,7 @@ import {
 } from "./office-v2-knowledge-probes.mjs";
 import { evaluateCommonV2Case } from "./office-v2-common-v2-evidence.mjs";
 import { evaluateDefinitionBundleMutation } from "./office-v2-knowledge-world-adapter.mjs";
+import { evaluateBuildingTopologyFixture } from "./office-v2-building-topology-adapter.mjs";
 import {
   caseKind,
   compareExpectedDiagnostic,
@@ -161,5 +162,18 @@ export function runNegativeDiagnostics(context) {
   if (bundleFixture) {
     const evaluation = evaluateDefinitionBundleMutation(context, bundleFixture);
     compareExpectedDiagnostic(context, bundlePath, bundleFixture.expectedFailure, evaluation?.diagnostics[0] ?? null);
+  }
+  for (const path of [
+    "fixtures/invalid/building-topology-direction-mismatch.json",
+    "fixtures/invalid/building-topology-duplicate-floor.json",
+    "fixtures/invalid/building-topology-duplicate-portal.json",
+    "fixtures/invalid/building-topology-elevation-floor.json",
+    "fixtures/invalid/building-topology-exterior-overlap.json",
+    "fixtures/invalid/building-topology-incomplete-migration.json",
+    "fixtures/invalid/building-topology-missing-endpoint.json",
+    "fixtures/invalid/building-topology-missing-landing.json",
+  ]) {
+    const evaluation = evaluateBuildingTopologyFixture({ knowledgeRoot: context.knowledgeRoot, fixturePath: path });
+    compareExpectedDiagnostic(context, path, evaluation.expectedFailure, evaluation.result.diagnostics[0] ?? null);
   }
 }

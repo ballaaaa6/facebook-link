@@ -28,6 +28,14 @@ snapshots identify building, selected floor, floor version, world revision, and
 stable portal endpoint IDs explicitly. Elevation cannot stand in for a floor,
 and a screen position cannot stand in for a portal endpoint.
 
+W1.3 topology envelopes use `office-building-topology-v1`. A selected floor is
+the exact `{ id, version }` floor reference from the building and its world is
+the exact `{ id, version }` floor-local world reference. Adding a future floor
+adds a new reference and does not rewrite the selected floor's coordinates,
+world identity, or entity identities. A portal crossing is represented by its
+stable versioned endpoint and landing IDs; it is never reconstructed from
+elevation or an array position.
+
 ## Migration policy
 
 Migrations are pure, ordered, and one-directional. A reader either validates the
@@ -42,6 +50,12 @@ A migration accepts them only with explicit building, floor, site, bounds, and
 portal context that passes reference closure. It rejects missing or conflicting
 context instead of deriving floor identity from `worldId`, elevation, array
 position, or the V1 structure kind named `floor`.
+
+For W1.3, complete context means explicit building reference, floor reference,
+site-envelope reference, floor bounds, and a `portalContext` marker proving
+that entrance and vertical endpoint facts were supplied. A partial context is
+`contract.migration-context-missing`; a context that disagrees with the
+topology envelope is `contract.migration-reference-conflict`.
 
 V1 entity, interaction, and asset records also remain frozen. Repeated geometry
 fields are migrated only when a complete version-pinned geometry reference and
