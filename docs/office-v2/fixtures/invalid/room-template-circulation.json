@@ -1,0 +1,21 @@
+{
+  "schema": "room-template.schema.json",
+  "baseFixture": "fixtures/room-template-ground-floor.json",
+  "cases": [
+    {
+      "name": "blocked-entrance",
+      "mutation": "block-entrance-cell",
+      "expectedFailure": "room.entrance-blocked"
+    },
+    {
+      "name": "required-facility-unreachable",
+      "mutation": "block-review-approach",
+      "expectedFailure": "room.required-facility-unreachable"
+    },
+    {
+      "name": "circulation-too-narrow",
+      "mutation": "narrow-entry-aisle",
+      "expectedFailure": "room.circulation-too-narrow"
+    }
+  ]
+}

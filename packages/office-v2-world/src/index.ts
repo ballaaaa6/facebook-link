@@ -32,3 +32,14 @@ export type {
   GeometryValidationResult,
   TransformedGeometry,
 } from "./geometry-validation.ts";
+export {
+  deriveRoomNavigation,
+  roomTemplateFingerprint,
+  validateRoomTemplate,
+} from "./room-template-validation.ts";
+export type {
+  RoomNavigationProjection,
+  RoomTemplateDiagnostic,
+  RoomTemplateDiagnosticCode,
+  RoomTemplateValidationResult,
+} from "./room-template-validation.ts";

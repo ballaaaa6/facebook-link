@@ -49,7 +49,8 @@ export function expectedFixtureCounts(root) {
       + (fixture.cases?.filter((entry) => typeof entry.expectedFailure === "string").length ?? 0)
   ), 0);
   return {
-    declaredCases: fixtures.reduce((total, fixture) => total + (fixture.cases?.length ?? 0), 0),
+    declaredCases: fixtures.reduce((total, fixture) => total + (fixture.cases?.length ?? 0), 0)
+      + fixtures.filter((fixture) => fixture.schemaVersion === "office-room-template-v1" && !Array.isArray(fixture.cases)).length,
     exactDiagnostics,
   };
 }

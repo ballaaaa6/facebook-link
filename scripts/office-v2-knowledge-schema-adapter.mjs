@@ -15,6 +15,7 @@ export function runSchemaEvidence(context, ajv) {
     ["simulation-trace.schema.json", read("fixtures/deterministic-replay.json"), "replay trace shape", "fixtures/deterministic-replay.json"],
     ["asset.schema.json", read("fixtures/asset-family-valid.json"), "valid asset family", "fixtures/asset-family-valid.json"],
     ["definition-bundle.schema.json", read("fixtures/definition-bundle-v2.json"), "valid definition bundle", "fixtures/definition-bundle-v2.json"],
+    ["room-template.schema.json", read("fixtures/room-template-ground-floor.json"), "valid ground-floor room template", "fixtures/room-template-ground-floor.json"],
     ["asset.schema.json", read("templates/asset-family-manifest.json"), "asset template"],
     ["interaction.schema.json", read("templates/interaction-definition.json"), "interaction template"],
   ];

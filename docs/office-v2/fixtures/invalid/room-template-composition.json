@@ -1,0 +1,21 @@
+{
+  "schema": "room-template.schema.json",
+  "baseFixture": "fixtures/room-template-ground-floor.json",
+  "cases": [
+    {
+      "name": "illegal-work-review-adjacency",
+      "mutation": "tighten-work-review-adjacency",
+      "expectedFailure": "room.adjacency-illegal"
+    },
+    {
+      "name": "overlapping-prop-slots",
+      "mutation": "overlap-prop-slots",
+      "expectedFailure": "room.prop-slot-overlap"
+    },
+    {
+      "name": "decoration-navigation-conflict",
+      "mutation": "make-decoration-blocking",
+      "expectedFailure": "room.decoration-navigation-conflict"
+    }
+  ]
+}
