@@ -24,7 +24,8 @@ versioned resolver.
 
 ## Variant requirements
 
-- Geometry and sockets remain aligned across variants.
+- Every variant references the same authoritative geometry version; it cannot
+  alter footprint, clearance, sockets, or use slots.
 - Hidden legs, joined tops, seams, and corners are authored states, not crops
   performed in UI components.
 - Missing required masks fail validation.
@@ -42,6 +43,6 @@ approved product slice.
 
 - Resolution is independent of entity insertion order.
 - Adding and removing one neighbor restores the original variant.
-- Rotation maps masks and sockets consistently.
+- Rotation maps masks consistently with the authoritative geometry transform.
 - The connected-desk fixture rejects an incomplete variant table.
 - Presentation changes never erase world entity identity.

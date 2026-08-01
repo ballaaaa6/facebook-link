@@ -26,10 +26,12 @@ stack through presentation offsets.
 
 ## Interaction definition
 
-Every interaction declares target type, approach cells, required facing, actor
-socket, optional prop socket, preconditions, duration, capacity, cancellation,
-and result event. The target definition owns these rules; character components
-do not contain facility-specific positioning.
+Every interaction references a geometry-owned use-slot ID. The versioned world
+geometry record owns its approach candidates, waiting cells, required world
+facing, actor socket, optional prop socket, and target-relative coordinates.
+The interaction owns target semantics, preconditions, duration, capacity
+policy, cancellation, and result event without copying those spatial facts.
+Character components do not contain facility-specific positioning.
 
 ## Interruptions
 
@@ -42,5 +44,6 @@ operational data cannot leave permanent reservations.
 - Every planned step is legal in the snapshot where it is executed.
 - Equivalent route choices resolve identically across runs.
 - Two actors cannot own an exclusive socket at the same tick.
+- A missing or conflicting use-slot/socket reference fails before interaction.
 - Cancel, timeout, and target removal release declared resources.
 - Interaction completion is unchanged when animation is disabled.

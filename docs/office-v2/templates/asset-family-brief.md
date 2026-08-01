@@ -9,12 +9,13 @@
 
 ## Geometry lock
 
-- Footprint and anchor:
-- Clearance:
+- Authoritative geometry ID and version:
+- Referenced footprint, anchor basis, clearance, orientations, and use slots:
 - Canvas and pixel density:
-- Sprite origin and ground contact:
+- Sprite origin and pixel ground/depth contacts:
 - Visual height and render band:
-- Interaction and attachment sockets:
+- Referenced world sockets and asset-owned pixel attachment contacts:
+- Geometry-agreement evidence:
 
 ## Visual lock
 

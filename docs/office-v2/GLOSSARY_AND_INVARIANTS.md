@@ -15,7 +15,10 @@
 - **Screen facing**: the diagonal-looking presentation direction produced by a
   versioned world-facing transform.
 - **Footprint**: ground cells reserved by an entity; it excludes visual height.
-- **Anchor**: world-space reference from which footprint and sockets are defined.
+- **Anchor basis**: geometry-owned origin from which footprint, clearance, and
+  world/sub-cell sockets are defined.
+- **Placed anchor**: an instance's floor-local placement of its geometry anchor
+  basis; it does not redefine geometry.
 - **Ground contact**: presentation point where a sprite touches the floor.
 - **Sprite origin**: pixel-space point aligned to the projected anchor.
 - **Socket**: named relative point for approach, actor, held item, or effect use.
@@ -24,6 +27,8 @@
   interleave them.
 - **Depth key**: deterministic fine ordering inside a render band.
 - **Approach cell**: legal actor destination for an interaction.
+- **Use slot**: geometry-owned set of approach candidates, waiting cells,
+  required facing, and socket references used by an interaction.
 - **Reservation**: temporary ownership of a cell, socket, or facility capacity.
 - **Neighbor mask**: encoded compatible neighbors used to select a visual variant.
 - **Snapshot**: complete serializable simulation state at one logical tick.
@@ -42,6 +47,7 @@
 - Cell, sub-cell, definition-local pixel, sprite-pixel, and screen-pixel values
   are not interchangeable.
 - World facing is not screen facing or mirror metadata.
+- World geometry is not asset pixel geometry or instance placement.
 
 ## Global invariants
 

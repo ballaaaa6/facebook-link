@@ -2,17 +2,20 @@
 
 ## Family before sprite
 
-A furniture family is a versioned contract containing semantic role, footprint,
-anchor, clearance, interactions, render parts, orientations, connectivity,
-asset provenance, and review evidence. A PNG without this definition is not a
-runtime asset.
+A furniture family is a versioned bundle that references one authoritative
+world geometry definition and separately declares semantic role, interactions,
+presentation parts, connectivity, asset provenance, and review evidence. The
+geometry definition alone owns footprint, anchor basis, clearance,
+orientations, sockets, and use slots. A PNG without the complete reference
+bundle is not a runtime asset.
 
 ## Required production board
 
-Every family board shows the world grid, footprint, anchor, ground contact,
-sprite bounds, visual height, approach cells, actor sockets, held-item sockets,
-lower and upper render parts, every required orientation, and every legal
-connectivity mask.
+Every family board shows the referenced world grid, footprint, anchor basis,
+approach cells, and sockets alongside the asset-owned sprite bounds, pixel
+contacts, visual height, render parts, every required orientation, and every
+legal connectivity mask. The board compares the two owners; it does not become
+a third geometry source.
 
 ## Connected furniture
 
@@ -21,8 +24,8 @@ connectivity mask.
   variants with identical contact geometry.
 - A family may declare only a reviewed subset of arrangements; placement rejects
   unsupported arrangements instead of selecting the nearest-looking sprite.
-- Rotation transforms footprint, sockets, and neighbor mask through the same
-  canonical function.
+- Rotation uses the authoritative geometry transform for footprint and sockets;
+  connectivity maps the neighbor mask without redefining that transform.
 
 ## Scale and readability
 

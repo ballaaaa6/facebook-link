@@ -2,9 +2,12 @@
 
 ## Character definition
 
-A character definition references an original asset family and declares identity,
-world scale, ground contact, facing set, semantic clip map, attachment sockets,
-and accessibility label. Character appearance never supplies operational identity.
+A character definition references an authoritative geometry profile and an
+original asset family, then declares identity, facing compatibility, semantic
+clip map, and accessibility label. Geometry owns the world scale and
+world/sub-cell sockets. The asset owns frame bounds and pixel contacts that are
+validated against those references. Character appearance never supplies
+operational identity.
 
 ## Minimum animation set
 
@@ -29,9 +32,10 @@ contract will distinguish world-facing inputs from screen-facing art keys.
 
 ## Held props
 
-Held items are separate entities attached through named character and object
-sockets. Attachment metadata declares ownership, front/behind ordering, transfer,
-and interruption behavior. Props are not permanently painted into a general
+Held items are separate entities attached through named geometry socket
+references and asset-owned pixel contacts. Attachment metadata declares
+ownership, front/behind ordering, transfer, and interruption behavior without
+redefining a world socket. Props are not permanently painted into a general
 character sheet.
 
 ## Readability

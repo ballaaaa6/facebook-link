@@ -30,7 +30,10 @@ Before creating a family, record:
 - canvas and transparent padding policy;
 - palette roles and maximum uncontrolled color variance;
 - outline, edge, material, lighting, and shadow rules;
-- anchor, ground contact, footprint, height, and sockets;
+- the authoritative geometry ID/version for footprint, anchor basis,
+  orientations, and world/sub-cell sockets;
+- asset-owned sprite origin, pixel contacts, frame bounds, visual height, and
+  presentation attachments;
 - required orientations, variants, clips, and review board;
 - target viewport and nearest-neighbor scaling behavior.
 
@@ -49,7 +52,8 @@ version rather than silent rework.
 
 Review silhouette and scale first, geometry and contacts second, palette and
 materials third, animation fourth, and populated composition last. A beautiful
-contact sheet cannot pass if footprint, anchor, or sockets are wrong.
+contact sheet cannot pass if its geometry reference or pixel-contact agreement
+is wrong.
 
 ## Acceptance
 

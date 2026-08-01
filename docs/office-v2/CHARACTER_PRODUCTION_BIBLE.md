@@ -8,9 +8,10 @@ agent identity or task state.
 
 ## Production board
 
-Record canvas size, world height range, ground contact, silhouette envelope,
-palette roles, outline, lighting direction, supported facings, mirror policy,
-clip tags, frame durations, attachment sockets, and reduced-motion states before
+Record the authoritative geometry ID/version and socket references, then record
+asset-owned canvas size, pixel contacts, silhouette envelope, palette roles,
+outline, lighting direction, supported screen facings, mirror policy, clip tags,
+frame durations, pixel attachment contacts, and reduced-motion states before
 drawing the final sheet.
 
 ## Minimum first character

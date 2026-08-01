@@ -28,16 +28,25 @@ without secrets. Third-party references never become runtime pixels by accident.
 
 ## Geometry metadata
 
-Every runtime sprite or clip declares canvas, frame bounds, footprint, anchor,
-sprite origin, ground contact, visual height, render band, sockets, orientations,
-and connectivity variants where applicable.
+Every runtime sprite or clip references one versioned authoritative world
+geometry definition. The asset record owns canvas and frame bounds, sprite
+origin, pixel ground/depth contacts, visual height, render band, pixel
+attachment contacts, trimming, render-part composition, and visual variants.
+It does not author footprint, clearance, orientation transforms, world/sub-cell
+sockets, or use-slot geometry.
+
+When an asset carries a generated pixel projection of a geometry socket, the
+geometry-agreement linter validates the reference and projection. Presentation
+parts and connectivity variants cannot change occupancy or interaction truth.
+The V1 asset schema and fixtures remain frozen; W1.2 introduces reference-only
+V2 evidence rather than reinterpreting duplicated V1 fields.
 
 ## Automated validation
 
 - required source, recipe, output files, and hashes;
 - filename and identifier uniqueness;
 - dimensions, frame bounds, alpha, and edge contamination;
-- geometry ranges and socket containment;
+- geometry reference closure, pixel ranges, contact containment, and agreement;
 - complete clip and connectivity tables;
 - duplicate-pixel and forbidden-source checks;
 - manifest-to-runtime registry agreement;

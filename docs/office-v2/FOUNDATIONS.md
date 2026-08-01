@@ -89,17 +89,15 @@ local steering are later concerns.
 
 ## 6. Interaction knowledge
 
-Every interactable object declares:
+Every interactable definition references one authoritative world geometry
+record. That geometry owns footprint, blocking and clearance cells, use slots,
+approach candidates, required facing, and actor or held-item sockets. The
+interaction record references those IDs and owns preconditions, duration,
+capacity policy, cancellation, and result events. Presentation separately owns
+the visual state and validated pixel contacts.
 
-- Footprint and blocking cells
-- One or more approach cells
-- Facing direction at each approach
-- Actor socket and optional held-item socket
-- Preconditions, duration, cancellation rule, and resulting event
-- Visual state name independent from the simulation state name
-
-Actors interact through these sockets. They are never positioned by an
-object-specific CSS transform.
+Actors interact through geometry-owned sockets. They are never positioned by
+an object-specific CSS transform or an asset-authored world coordinate.
 
 ## 7. Animation knowledge
 
@@ -115,7 +113,8 @@ Each original asset family requires:
 
 - Source identifier, author/tool, creation date, license status, and source hash
 - Canvas, pixel density, palette, viewpoint, and transparency rules
-- World footprint, sprite origin, contact point, sockets, and render band
+- A version-pinned world geometry reference plus asset-owned sprite origin,
+  pixel contacts, frame bounds, presentation attachments, and render parts
 - Extraction recipe with no destructive overwrite of the source
 - Dimension, alpha, edge, naming, duplicate, and provenance checks
 - A neutral geometry board before any populated scene review

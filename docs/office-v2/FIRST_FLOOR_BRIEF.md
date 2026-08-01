@@ -132,9 +132,10 @@ when an operational intent arrives.
 | Sit, drink, or rest | shared facility | decorative only; cancellation releases every reservation |
 | Enter or leave floor | entrance | initial spawn and despawn boundary; no unexplained street simulation |
 
-Every interaction is data with approach cells, facing, sockets, duration,
-capacity, cancellation, and result events. No interaction may require a
-component-specific pixel offset.
+Every interaction is data that references a geometry-owned use slot for
+approach cells, facing, and sockets, while its behavior owns duration, capacity,
+cancellation, and result events. No interaction may copy spatial facts or
+require a component-specific pixel offset.
 
 ## Minimum reusable asset catalog
 

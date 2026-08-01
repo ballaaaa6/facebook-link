@@ -38,7 +38,8 @@ const expectedKnowledge = {
     "decisions/0003-map-authoring.md", "decisions/0004-navigation-movement.md",
     "decisions/0005-simulation-state-machine.md", "decisions/0006-asset-authoring-export.md",
     "decisions/0007-package-ownership-and-import-boundaries.md",
-    "decisions/0008-coordinate-and-facing-semantics.md", "decisions/TEMPLATE.md",
+    "decisions/0008-coordinate-and-facing-semantics.md",
+    "decisions/0009-geometry-authority.md", "decisions/TEMPLATE.md",
   ],
   schemas: [
     "schemas/animation.schema.json", "schemas/asset.schema.json", "schemas/common.schema.json",
