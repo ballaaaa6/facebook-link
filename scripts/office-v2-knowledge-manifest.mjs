@@ -28,6 +28,8 @@ export const expectedKnowledge = {
   schemas: [
     "schemas/animation.schema.json", "schemas/asset.schema.json", "schemas/common-v2.schema.json", "schemas/common.schema.json",
     "schemas/connectivity.schema.json", "schemas/entity-definition.schema.json",
+    "schemas/definition-bundle.schema.json", "schemas/entity-definition-v2.schema.json",
+    "schemas/entity-instance.schema.json", "schemas/geometry.schema.json",
     "schemas/interaction.schema.json", "schemas/operations-snapshot.schema.json",
     "schemas/provenance.schema.json", "schemas/simulation-snapshot.schema.json",
     "schemas/simulation-trace.schema.json", "schemas/surface-structure.schema.json",
@@ -35,7 +37,7 @@ export const expectedKnowledge = {
   ],
   fixtures: [
     "fixtures/asset-family-valid.json", "fixtures/connected-desk.json",
-    "fixtures/common-v2-valid.json",
+    "fixtures/common-v2-valid.json", "fixtures/definition-bundle-v2.json",
     "fixtures/depth-occlusion.json", "fixtures/deterministic-replay.json",
     "fixtures/interaction-cancel-timeout.json", "fixtures/minimal-office.json",
     "fixtures/navigation-reservations.json", "fixtures/navigation-reservations-v2.json",
@@ -60,6 +62,7 @@ export const fixtureRegistry = [
   ["fixtures/asset-family-valid.json", null],
   ["fixtures/connected-desk.json", "connectivity"],
   ["fixtures/common-v2-valid.json", "common-v2"],
+  ["fixtures/definition-bundle-v2.json", null],
   ["fixtures/depth-occlusion.json", "depth"],
   ["fixtures/deterministic-replay.json", null],
   ["fixtures/interaction-cancel-timeout.json", "interaction"],

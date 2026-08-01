@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/entity-instance.schema.json",
+  "title": "Office V2 Entity Instance",
+  "$defs": {
+    "entityInstanceDocument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "instance", "definition", "anchor", "orientation", "tags"],
+      "properties": {
+        "schemaVersion": { "const": "office-entity-instance-v2" },
+        "instance": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/entityInstanceReference" },
+        "definition": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/entityDefinitionReference" },
+        "anchor": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/floorLocalCellPosition" },
+        "orientation": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/worldFacing" },
+        "tags": {
+          "type": "array",
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" }
+        }
+      }
+    }
+  },
+  "$ref": "#/$defs/entityInstanceDocument"
+}

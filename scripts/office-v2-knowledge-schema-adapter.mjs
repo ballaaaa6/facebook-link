@@ -14,6 +14,7 @@ export function runSchemaEvidence(context, ajv) {
     ["interaction.schema.json", read("fixtures/interaction-cancel-timeout.json")?.definition, "interaction definition", "fixtures/interaction-cancel-timeout.json"],
     ["simulation-trace.schema.json", read("fixtures/deterministic-replay.json"), "replay trace shape", "fixtures/deterministic-replay.json"],
     ["asset.schema.json", read("fixtures/asset-family-valid.json"), "valid asset family", "fixtures/asset-family-valid.json"],
+    ["definition-bundle.schema.json", read("fixtures/definition-bundle-v2.json"), "valid definition bundle", "fixtures/definition-bundle-v2.json"],
     ["asset.schema.json", read("templates/asset-family-manifest.json"), "asset template"],
     ["interaction.schema.json", read("templates/interaction-definition.json"), "interaction template"],
   ];

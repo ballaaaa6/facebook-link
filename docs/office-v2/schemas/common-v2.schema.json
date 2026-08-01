@@ -39,7 +39,18 @@
         "command",
         "event",
         "intent",
-        "tick"
+        "tick",
+        "geometry",
+        "definition-bundle",
+        "use-slot",
+        "interaction",
+        "asset-family",
+        "render-part",
+        "character-profile",
+        "animation-set",
+        "animation-clip",
+        "connectivity-family",
+        "connectivity-variant"
       ]
     },
     "buildingId": {
@@ -102,6 +113,105 @@
       "required": ["kind", "value"],
       "properties": {
         "kind": { "const": "socket" },
+        "value": { "$ref": "#/$defs/slug" }
+      }
+    },
+    "geometryId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "const": "geometry" },
+        "value": { "$ref": "#/$defs/slug" }
+      }
+    },
+    "definitionBundleId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "const": "definition-bundle" },
+        "value": { "$ref": "#/$defs/slug" }
+      }
+    },
+    "useSlotId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "const": "use-slot" },
+        "value": { "$ref": "#/$defs/slug" }
+      }
+    },
+    "interactionId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "const": "interaction" },
+        "value": { "$ref": "#/$defs/slug" }
+      }
+    },
+    "assetFamilyId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "const": "asset-family" },
+        "value": { "$ref": "#/$defs/slug" }
+      }
+    },
+    "renderPartId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "const": "render-part" },
+        "value": { "$ref": "#/$defs/slug" }
+      }
+    },
+    "characterProfileId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "const": "character-profile" },
+        "value": { "$ref": "#/$defs/slug" }
+      }
+    },
+    "animationSetId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "const": "animation-set" },
+        "value": { "$ref": "#/$defs/slug" }
+      }
+    },
+    "animationClipId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "const": "animation-clip" },
+        "value": { "$ref": "#/$defs/slug" }
+      }
+    },
+    "connectivityFamilyId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "const": "connectivity-family" },
+        "value": { "$ref": "#/$defs/slug" }
+      }
+    },
+    "connectivityVariantId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "const": "connectivity-variant" },
         "value": { "$ref": "#/$defs/slug" }
       }
     },
@@ -213,6 +323,105 @@
         "version": { "$ref": "#/$defs/positiveVersion" }
       }
     },
+    "geometryReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "$ref": "#/$defs/geometryId" },
+        "version": { "$ref": "#/$defs/positiveVersion" }
+      }
+    },
+    "definitionBundleReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "$ref": "#/$defs/definitionBundleId" },
+        "version": { "$ref": "#/$defs/positiveVersion" }
+      }
+    },
+    "useSlotReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "$ref": "#/$defs/useSlotId" },
+        "version": { "$ref": "#/$defs/positiveVersion" }
+      }
+    },
+    "interactionReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "$ref": "#/$defs/interactionId" },
+        "version": { "$ref": "#/$defs/positiveVersion" }
+      }
+    },
+    "assetFamilyReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "$ref": "#/$defs/assetFamilyId" },
+        "version": { "$ref": "#/$defs/positiveVersion" }
+      }
+    },
+    "renderPartReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "$ref": "#/$defs/renderPartId" },
+        "version": { "$ref": "#/$defs/positiveVersion" }
+      }
+    },
+    "characterProfileReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "$ref": "#/$defs/characterProfileId" },
+        "version": { "$ref": "#/$defs/positiveVersion" }
+      }
+    },
+    "animationSetReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "$ref": "#/$defs/animationSetId" },
+        "version": { "$ref": "#/$defs/positiveVersion" }
+      }
+    },
+    "animationClipReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "$ref": "#/$defs/animationClipId" },
+        "version": { "$ref": "#/$defs/positiveVersion" }
+      }
+    },
+    "connectivityFamilyReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "$ref": "#/$defs/connectivityFamilyId" },
+        "version": { "$ref": "#/$defs/positiveVersion" }
+      }
+    },
+    "connectivityVariantReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "$ref": "#/$defs/connectivityVariantId" },
+        "version": { "$ref": "#/$defs/positiveVersion" }
+      }
+    },
     "worldFacing": {
       "enum": ["north", "east", "south", "west"]
     },
@@ -272,6 +481,41 @@
         "elevation": { "$ref": "#/$defs/nonNegativeSafeInteger" }
       }
     },
+    "definitionLocalCellOffset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["space", "x", "y", "elevation"],
+      "properties": {
+        "space": { "const": "definition-local-cell" },
+        "x": { "$ref": "#/$defs/safeInteger" },
+        "y": { "$ref": "#/$defs/safeInteger" },
+        "elevation": { "$ref": "#/$defs/safeInteger" }
+      }
+    },
+    "definitionLocalSubCellOffset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["space", "x", "y", "elevation"],
+      "properties": {
+        "space": { "const": "definition-local-sub-cell" },
+        "x": { "$ref": "#/$defs/safeInteger" },
+        "y": { "$ref": "#/$defs/safeInteger" },
+        "elevation": { "$ref": "#/$defs/safeInteger" }
+      }
+    },
+    "orientationTransform": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["orientation", "quarterTurnsClockwise"],
+      "properties": {
+        "orientation": { "$ref": "#/$defs/worldFacing" },
+        "quarterTurnsClockwise": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 3
+        }
+      }
+    },
     "definitionLocalPixelPosition": {
       "type": "object",
       "additionalProperties": false,
@@ -309,6 +553,8 @@
         { "$ref": "#/$defs/floorLocalCellPosition" },
         { "$ref": "#/$defs/floorLocalSubCellPosition" },
         { "$ref": "#/$defs/definitionLocalGeometryPosition" },
+        { "$ref": "#/$defs/definitionLocalCellOffset" },
+        { "$ref": "#/$defs/definitionLocalSubCellOffset" },
         { "$ref": "#/$defs/definitionLocalPixelPosition" },
         { "$ref": "#/$defs/spritePixelPosition" },
         { "$ref": "#/$defs/screenPixelPosition" }

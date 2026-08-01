@@ -13,7 +13,29 @@ const commonDescriptor = Object.freeze({
   schemaId: "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json",
 });
 
-export const officeV2SchemaDescriptors = Object.freeze([commonDescriptor]);
+export const officeV2SchemaDescriptors = Object.freeze([
+  commonDescriptor,
+  Object.freeze({
+    schemaRelativePath: "docs/office-v2/schemas/geometry.schema.json",
+    generatedRelativePath: "packages/office-v2-contracts/src/generated/geometry.ts",
+    schemaId: "https://affiliate-operations.example/schemas/office-v2/geometry.schema.json",
+  }),
+  Object.freeze({
+    schemaRelativePath: "docs/office-v2/schemas/entity-definition-v2.schema.json",
+    generatedRelativePath: "packages/office-v2-contracts/src/generated/entity-definition-v2.ts",
+    schemaId: "https://affiliate-operations.example/schemas/office-v2/entity-definition-v2.schema.json",
+  }),
+  Object.freeze({
+    schemaRelativePath: "docs/office-v2/schemas/entity-instance.schema.json",
+    generatedRelativePath: "packages/office-v2-contracts/src/generated/entity-instance.ts",
+    schemaId: "https://affiliate-operations.example/schemas/office-v2/entity-instance.schema.json",
+  }),
+  Object.freeze({
+    schemaRelativePath: "docs/office-v2/schemas/definition-bundle.schema.json",
+    generatedRelativePath: "packages/office-v2-contracts/src/generated/definition-bundle.ts",
+    schemaId: "https://affiliate-operations.example/schemas/office-v2/definition-bundle.schema.json",
+  }),
+]);
 
 function typeNameFromDefinition(name) {
   return name

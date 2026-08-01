@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/geometry.schema.json",
+  "title": "Office V2 Geometry Authority",
+  "$defs": {
+    "anchorBasis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["origin", "groundContact"],
+      "properties": {
+        "origin": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/definitionLocalCellOffset" },
+        "groundContact": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/definitionLocalSubCellOffset" }
+      }
+    },
+    "blockingGeometry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cells", "mode"],
+      "properties": {
+        "cells": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/definitionLocalCellOffset" }
+        },
+        "mode": { "const": "solid" }
+      }
+    },
+    "socketDefinition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "position", "role"],
+      "properties": {
+        "id": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/socketId" },
+        "position": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/definitionLocalSubCellOffset" },
+        "role": { "enum": ["actor", "held-prop", "effect"] }
+      }
+    },
+    "useSlotDefinition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "approach", "waiting", "facing", "actorSocket"],
+      "properties": {
+        "id": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/useSlotId" },
+        "approach": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/definitionLocalCellOffset" }
+        },
+        "waiting": {
+          "type": "array",
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/definitionLocalCellOffset" }
+        },
+        "facing": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/worldFacing" },
+        "actorSocket": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/socketId" },
+        "heldPropSocket": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/socketId" }
+      }
+    },
+    "geometryDocument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "geometry",
+        "authority",
+        "anchorBasis",
+        "footprint",
+        "blocking",
+        "clearance",
+        "supportedOrientations",
+        "orientationTransforms",
+        "sockets",
+        "useSlots"
+      ],
+      "properties": {
+        "schemaVersion": { "const": "office-geometry-v2" },
+        "geometry": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/geometryReference" },
+        "authority": { "const": "office-geometry-authority-v1" },
+        "anchorBasis": { "$ref": "#/$defs/anchorBasis" },
+        "footprint": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/definitionLocalCellOffset" }
+        },
+        "blocking": { "$ref": "#/$defs/blockingGeometry" },
+        "clearance": {
+          "type": "array",
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/definitionLocalCellOffset" }
+        },
+        "supportedOrientations": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/worldFacing" }
+        },
+        "orientationTransforms": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/orientationTransform" }
+        },
+        "sockets": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/socketDefinition" }
+        },
+        "useSlots": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/useSlotDefinition" }
+        }
+      }
+    }
+  },
+  "$ref": "#/$defs/geometryDocument"
+}

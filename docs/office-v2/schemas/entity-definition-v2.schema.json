@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/entity-definition-v2.schema.json",
+  "title": "Office V2 Entity Definition",
+  "$defs": {
+    "entityDefinitionDocument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "definition",
+        "semanticKind",
+        "geometry",
+        "capabilities",
+        "interactionRefs",
+        "assetFamilyRefs",
+        "renderPartRefs",
+        "characterProfileRefs",
+        "animationSetRefs",
+        "connectivityFamilyRefs"
+      ],
+      "properties": {
+        "schemaVersion": { "const": "office-entity-definition-v2" },
+        "definition": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/entityDefinitionReference" },
+        "semanticKind": { "enum": ["furniture", "facility", "structure", "prop", "actor-anchor"] },
+        "geometry": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/geometryReference" },
+        "capabilities": {
+          "type": "array",
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" }
+        },
+        "interactionRefs": {
+          "type": "array",
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/interactionReference" }
+        },
+        "assetFamilyRefs": {
+          "type": "array",
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/assetFamilyReference" }
+        },
+        "renderPartRefs": {
+          "type": "array",
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/renderPartReference" }
+        },
+        "characterProfileRefs": {
+          "type": "array",
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/characterProfileReference" }
+        },
+        "animationSetRefs": {
+          "type": "array",
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/animationSetReference" }
+        },
+        "connectivityFamilyRefs": {
+          "type": "array",
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/connectivityFamilyReference" }
+        },
+        "tags": {
+          "type": "array",
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" }
+        }
+      }
+    }
+  },
+  "$ref": "#/$defs/entityDefinitionDocument"
+}

@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/definition-bundle.schema.json",
+  "title": "Office V2 Definition Bundle",
+  "$defs": {
+    "referenceSets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "socketRefs",
+        "useSlotRefs",
+        "interactionRefs",
+        "assetFamilyRefs",
+        "renderPartRefs",
+        "characterProfileRefs",
+        "animationSetRefs",
+        "animationClipRefs",
+        "connectivityFamilyRefs",
+        "connectivityVariantRefs"
+      ],
+      "properties": {
+        "socketRefs": {
+          "type": "array",
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/socketReference" }
+        },
+        "useSlotRefs": {
+          "type": "array",
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/useSlotReference" }
+        },
+        "interactionRefs": {
+          "type": "array",
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/interactionReference" }
+        },
+        "assetFamilyRefs": {
+          "type": "array",
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/assetFamilyReference" }
+        },
+        "renderPartRefs": {
+          "type": "array",
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/renderPartReference" }
+        },
+        "characterProfileRefs": {
+          "type": "array",
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/characterProfileReference" }
+        },
+        "animationSetRefs": {
+          "type": "array",
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/animationSetReference" }
+        },
+        "animationClipRefs": {
+          "type": "array",
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/animationClipReference" }
+        },
+        "connectivityFamilyRefs": {
+          "type": "array",
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/connectivityFamilyReference" }
+        },
+        "connectivityVariantRefs": {
+          "type": "array",
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/connectivityVariantReference" }
+        }
+      }
+    },
+    "definitionBundleDocument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "bundle",
+        "immutable",
+        "geometries",
+        "entityDefinitions",
+        "entityInstances",
+        "references"
+      ],
+      "properties": {
+        "schemaVersion": { "const": "office-definition-bundle-v1" },
+        "bundle": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/definitionBundleReference" },
+        "immutable": { "const": true },
+        "geometries": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/geometry.schema.json#/$defs/geometryDocument" }
+        },
+        "entityDefinitions": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/entity-definition-v2.schema.json#/$defs/entityDefinitionDocument" }
+        },
+        "entityInstances": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/entity-instance.schema.json#/$defs/entityInstanceDocument" }
+        },
+        "references": { "$ref": "#/$defs/referenceSets" }
+      }
+    }
+  },
+  "$ref": "#/$defs/definitionBundleDocument"
+}

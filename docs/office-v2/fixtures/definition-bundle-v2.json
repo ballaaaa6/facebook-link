@@ -1,0 +1,143 @@
+{
+  "schemaVersion": "office-definition-bundle-v1",
+  "bundle": {
+    "id": { "kind": "definition-bundle", "value": "demo-bundle" },
+    "version": 1
+  },
+  "immutable": true,
+  "geometries": [
+    {
+      "schemaVersion": "office-geometry-v2",
+      "geometry": {
+        "id": { "kind": "geometry", "value": "desk-geometry" },
+        "version": 1
+      },
+      "authority": "office-geometry-authority-v1",
+      "anchorBasis": {
+        "origin": { "space": "definition-local-cell", "x": 0, "y": 0, "elevation": 0 },
+        "groundContact": { "space": "definition-local-sub-cell", "x": 0, "y": 0, "elevation": 0 }
+      },
+      "footprint": [
+        { "space": "definition-local-cell", "x": 0, "y": 0, "elevation": 0 }
+      ],
+      "blocking": {
+        "cells": [
+          { "space": "definition-local-cell", "x": 0, "y": 0, "elevation": 0 }
+        ],
+        "mode": "solid"
+      },
+      "clearance": [],
+      "supportedOrientations": ["north", "east", "south", "west"],
+      "orientationTransforms": [
+        { "orientation": "north", "quarterTurnsClockwise": 0 },
+        { "orientation": "east", "quarterTurnsClockwise": 1 },
+        { "orientation": "south", "quarterTurnsClockwise": 2 },
+        { "orientation": "west", "quarterTurnsClockwise": 3 }
+      ],
+      "sockets": [
+        {
+          "id": { "kind": "socket", "value": "actor-socket" },
+          "position": { "space": "definition-local-sub-cell", "x": 0, "y": 0, "elevation": 0 },
+          "role": "actor"
+        }
+      ],
+      "useSlots": [
+        {
+          "id": { "kind": "use-slot", "value": "use-desk" },
+          "approach": [
+            { "space": "definition-local-cell", "x": 0, "y": -1, "elevation": 0 }
+          ],
+          "waiting": [],
+          "facing": "north",
+          "actorSocket": { "kind": "socket", "value": "actor-socket" }
+        }
+      ]
+    }
+  ],
+  "entityDefinitions": [
+    {
+      "schemaVersion": "office-entity-definition-v2",
+      "definition": {
+        "id": { "kind": "entity-definition", "value": "workstation-definition" },
+        "version": 1
+      },
+      "semanticKind": "furniture",
+      "geometry": {
+        "id": { "kind": "geometry", "value": "desk-geometry" },
+        "version": 1
+      },
+      "capabilities": ["work"],
+      "interactionRefs": [
+        { "id": { "kind": "interaction", "value": "use-desk-interaction" }, "version": 1 }
+      ],
+      "assetFamilyRefs": [
+        { "id": { "kind": "asset-family", "value": "desk-assets" }, "version": 1 }
+      ],
+      "renderPartRefs": [
+        { "id": { "kind": "render-part", "value": "desk-render" }, "version": 1 }
+      ],
+      "characterProfileRefs": [
+        { "id": { "kind": "character-profile", "value": "worker-profile" }, "version": 1 }
+      ],
+      "animationSetRefs": [
+        { "id": { "kind": "animation-set", "value": "worker-animation" }, "version": 1 }
+      ],
+      "connectivityFamilyRefs": [
+        { "id": { "kind": "connectivity-family", "value": "desk-connectivity" }, "version": 1 }
+      ],
+      "tags": ["starter"]
+    }
+  ],
+  "entityInstances": [
+    {
+      "schemaVersion": "office-entity-instance-v2",
+      "instance": {
+        "id": { "kind": "entity-instance", "value": "desk-instance" },
+        "version": 1
+      },
+      "definition": {
+        "id": { "kind": "entity-definition", "value": "workstation-definition" },
+        "version": 1
+      },
+      "anchor": {
+        "space": "floor-local-cell",
+        "floor": { "id": { "kind": "floor", "value": "ground-floor" }, "version": 1 },
+        "coordinate": { "space": "cell", "x": 1, "y": 1, "elevation": 0 }
+      },
+      "orientation": "north",
+      "tags": ["starter"]
+    }
+  ],
+  "references": {
+    "socketRefs": [
+      { "id": { "kind": "socket", "value": "actor-socket" }, "version": 1 }
+    ],
+    "useSlotRefs": [
+      { "id": { "kind": "use-slot", "value": "use-desk" }, "version": 1 }
+    ],
+    "interactionRefs": [
+      { "id": { "kind": "interaction", "value": "use-desk-interaction" }, "version": 1 }
+    ],
+    "assetFamilyRefs": [
+      { "id": { "kind": "asset-family", "value": "desk-assets" }, "version": 1 }
+    ],
+    "renderPartRefs": [
+      { "id": { "kind": "render-part", "value": "desk-render" }, "version": 1 }
+    ],
+    "characterProfileRefs": [
+      { "id": { "kind": "character-profile", "value": "worker-profile" }, "version": 1 }
+    ],
+    "animationSetRefs": [
+      { "id": { "kind": "animation-set", "value": "worker-animation" }, "version": 1 }
+    ],
+    "animationClipRefs": [
+      { "id": { "kind": "animation-clip", "value": "worker-loop" }, "version": 1 }
+    ],
+    "connectivityFamilyRefs": [
+      { "id": { "kind": "connectivity-family", "value": "desk-connectivity" }, "version": 1 }
+    ],
+    "connectivityVariantRefs": [
+      { "id": { "kind": "connectivity-variant", "value": "desk-isolated" }, "version": 1 }
+    ]
+  }
+}
