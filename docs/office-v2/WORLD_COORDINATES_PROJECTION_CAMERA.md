@@ -10,7 +10,7 @@ X moves screen right/down; increasing Y moves screen left/down.
 Screen position is derived. Components may not persist pixel offsets as world
 placement. Asset metadata may define a sprite origin only for presentation.
 
-Decision 0008 locks the coordinate spaces that W1.1 will encode:
+Decision 0008 locks the coordinate spaces encoded by W1.1:
 
 - `CellPosition` is an integral floor-local occupancy and placement value;
 - `SubCellPosition` is an integral floor-local movement value with exactly four

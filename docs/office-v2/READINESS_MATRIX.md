@@ -15,9 +15,9 @@ promote any target-floor, persistent-engine, renderer, crowd, or asset status.
 
 | Topic | Decision | Contract | Fixtures | Automated evidence | Status |
 | --- | --- | --- | --- | --- | --- |
-| Package ownership and import direction | `decisions/0007-package-ownership-and-import-boundaries.md` | four package manifests, generated-type boundary, and Web composition root | positive graph plus bare, manifest, relative, forbidden-import, generated-boundary, fake-root, and reverse-consumer negatives | `office:v2:boundaries:test` executes the negative matrix; boundary, architecture, and clean-room gates enforce the current tree | W0.1 and W0.3 complete; W1.1 is next; no persistent engine behavior authorized |
+| Package ownership and import direction | `decisions/0007-package-ownership-and-import-boundaries.md` | four package manifests, generated-type boundary, and Web composition root | positive graph plus bare, manifest, relative, forbidden-import, generated-boundary, fake-root, and reverse-consumer negatives | `office:v2:boundaries:test` executes the negative matrix; boundary, architecture, clean-room, and generated-contract gates enforce the current tree | W0.1, W0.3, and the W1.1 contract slice complete; no persistent engine behavior authorized |
 | Forward projection | `decisions/0001-projection-grid.md` | projection section and common types | five integer cases in `projection-roundtrip.json` | T0 gate executes 5/5 bounded cases | Ready for a bounded pure-function probe |
-| Sub-cell projection, inverse picking, and camera | `decisions/0008-coordinate-and-facing-semantics.md` | V2 branded coordinate types and camera contract pending | no edge, sub-cell, zoom, crop, or camera fixture | property and viewport tests missing | Semantics ratified; W1.1 contract work is next; implementation not ready |
+| Sub-cell projection, inverse picking, and camera | `decisions/0008-coordinate-and-facing-semantics.md` | V2 branded coordinate types plus named facing and cell/sub-cell transforms; full camera contract pending | common V2 valid/rejected cases plus negative/boundary sub-cell transform tests; no zoom, crop, or camera fixture | schema/diagnostic, generated-drift, compile-time, and pure transform tests pass; property and viewport tests remain missing | W1.1 bounded contract/probe complete; full projection, inverse picking, and camera implementation not ready |
 | Renderer boundary | `decisions/0002-renderer.md` | renderer port in Phase 4 | geometric benchmark scene | Phase 4 benchmark | Intentionally deferred |
 | Canonical JSON map shape | `decisions/0003-map-authoring.md` | current world and structure schemas | minimal hand-authored office and structures | schema-shape evidence reported separately | Ready for a bounded data probe |
 | Editor import and scene compilation | editor-neutral principle only | authoring profile, conversion report, room template, and scene-plan contracts missing | no reorder, unknown-class, offset, or compiler fixture | converter and semantic compiler missing | Not ready |
@@ -51,17 +51,18 @@ promote any target-floor, persistent-engine, renderer, crowd, or asset status.
 
 W0.1 package ownership and W0.3 contradiction resolution are complete. The P0
 register locks all twelve dispositions and preserves the original V1 JSON
-evidence by hash. W1.1 branded identity and coordinate vocabulary is the next
-authorized work package. Phase 1 then implements the target-specific contracts
-named by those accepted decisions. Existing narrow rows may be used for
-disposable or pure contract probes only. Persistent world/simulation code starts
-after Closure A and the applicable parts of Closure B are accepted. Bulk art,
-the large map, target crowds, and renderer integration remain blocked until the
-minimum safe-to-produce gate passes.
+evidence by hash. W1.1 now closes the common identity/coordinate contract slice
+and its bounded pure transforms. W1.2 is the next authorized work package:
+geometry authority and reference closure. Phase 1 then implements the
+target-specific contracts named by those accepted decisions. Existing narrow
+rows may be used for disposable or pure contract probes only. Persistent
+world/simulation code starts after Closure A and the applicable parts of
+Closure B are accepted. Bulk art, the large map, target crowds, and renderer
+integration remain blocked until the minimum safe-to-produce gate passes.
 
 The promotion target remains T1 — Semantic Foundation in
-`READINESS_REMEDIATION_PLAN.md`. T0, W0.1, and W0.3 are complete. T1 remains
-blocked until W1.1 and the remaining identity, coordinate, geometry, building,
+`READINESS_REMEDIATION_PLAN.md`. T0, W0.1, W0.3, and the bounded W1.1 slice are
+complete. T1 remains blocked until the remaining geometry, building,
 reference-closure, and deterministic scene-compilation evidence pass. Closure
 still reports reducer/replay `0`, property/model `0`, basic-only asset
 admission, no renderer, no runtime asset manifest, and no new dependency

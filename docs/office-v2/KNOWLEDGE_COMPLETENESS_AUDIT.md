@@ -1,7 +1,8 @@
 # Office Engine V2 Knowledge Completeness Audit
 
 Status: audited on 2026-07-31; T0 re-audited on 2026-08-01; W0.3
-contradiction closure re-audited on 2026-08-02.
+contradiction closure and the bounded W1.1 contract slice re-audited on
+2026-08-02.
 Re-audit after every Phase 1 closure wave.
 
 ## Purpose and authority
@@ -32,11 +33,13 @@ geometric probes. Three narrow areas are close enough for such probes:
 - a simple four-neighbor connectivity-mask resolver;
 - single-actor four-direction A*.
 
-T0 now passes, and W0.3 closes the twelve decision-level P0 contradictions.
-The gates report only the schema-shape, bounded semantic, exact-diagnostic, and
-resolution evidence they execute. This does not change the no-go decision for
-persistent engine work or production content. W1.1 is the next authorized work
-package; T1 remains blocked.
+T0 now passes, W0.3 closes the twelve decision-level P0 contradictions, and the
+bounded W1.1 identity/coordinate contract slice passes its schema, exact
+diagnostic, generated-drift, compile-time, and pure-transform gates. The gates
+report only the schema-shape, bounded semantic, exact-diagnostic, and resolution
+evidence they execute. This does not change the no-go decision for persistent
+engine work or production content. W1.2 is the next authorized work package;
+T1 remains blocked.
 
 The pack is a strong architectural foundation, but it is not yet the desired
 production system:
@@ -183,7 +186,8 @@ dispositions executable through `registers/p0-resolution-register.json` and
 - reducer/replay evidence remains `0`, property/model evidence remains `0`,
   asset admission remains `basic-only`, renderer admission remains `none`,
   runtime asset manifests remain `0`, and no dependency is admitted;
-- W1.1 is next, while T1 remains blocked.
+- W1.1 was the next package at the W0.3 handoff; its bounded contract slice is
+  now complete, while T1 remains blocked.
 
 This is resolution evidence, not world, simulation, renderer, or production-art
 evidence. The V1 files in the historical set remain frozen.
@@ -255,7 +259,8 @@ local sprite geometry, projected screen pixel, and floor-local position.
 W0.3 resolution: Decision 0008 separates cell, sub-cell, floor-local,
 definition-local geometry, definition-local pixel, sprite-pixel, and
 screen-pixel semantics. Ambiguous V1 positions stay frozen and fail migration
-without complete context. W1.1 implements the branded types.
+without complete context. W1.1 implements the branded types and named
+renderer-neutral cell/sub-cell operations.
 
 ### Simulation and art use different facing names
 
@@ -266,7 +271,8 @@ same facing differently.
 
 W0.3 resolution: Decision 0008 fixes world facings to north/east/south/west and
 the `office-projection-v1` presentation mapping to north-east, south-east,
-south-west, and north-west respectively. Mirroring remains presentation-only.
+south-west, and north-west respectively. W1.1 now proves the bijection in a
+pure world-package transform. Mirroring remains presentation-only.
 
 ### The first connected desk contract disagrees with its fixture
 

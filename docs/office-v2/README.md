@@ -59,8 +59,12 @@ packages and the presentation-only Web composition boundary; their empty
 scaffolds, manifest graph, exact clean-room roots, and negative import/dependency
 tests now pass. W0.3 completed on 2026-08-02: Decisions 0008–0013 and project
 ADR 0003 are accepted, all twelve P0 dispositions are registered and checked,
-and the historical V1 evidence set is hash-locked. W1.1 is the next authorized
-work package. No world or simulation behavior, renderer, runtime asset, or new
+and the historical V1 evidence set is hash-locked. W1.1 completed on
+2026-08-02 for the common identity/coordinate contract slice: the V2 schema,
+valid and rejected fixtures, exact diagnostics, deterministic generated types,
+compile-time namespace negatives, and renderer-neutral facing and cell/sub-cell
+transforms are now gated. W1.2 is the next authorized work package. No
+persistent world or simulation behavior, renderer, runtime asset, or new
 dependency was admitted; reducer/replay and property/model evidence remain
 zero, and T1 remains blocked.
 
@@ -118,6 +122,8 @@ must not restate the canonical documents.
 - `templates/*`: briefs and definitions that start from the accepted contracts
 - `apps/web/src/features/office-v2/foundation.ts`: executable layer vocabulary
 - `scripts/office-v2-knowledge-check.mjs`: schema and semantic fixture gate
+- `scripts/office-v2-contracts-generate.mjs`: deterministic V2 type generation
+  and generated-byte drift gate
 - `scripts/office-v2-contradictions-check.mjs`: P0 resolution and historical
   evidence gate
 - `scripts/office-v2-boundary-check.mjs`: package and reverse-consumer import gate

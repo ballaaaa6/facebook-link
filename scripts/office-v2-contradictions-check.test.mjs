@@ -26,7 +26,10 @@ test("the real W0.3 register closes all P0 contradictions without overstating ev
   assert.equal(report.ok, true, JSON.stringify(report.diagnostics, null, 2));
   assert.equal(report.evidence.resolutions, 12);
   assert.equal(report.evidence.historicalEvidence, 27);
-  assert.match(formatOfficeV2ContradictionReport(report), /W0\.3 complete; W1\.1 next; T1 remains blocked/);
+  assert.match(
+    formatOfficeV2ContradictionReport(report),
+    /W0\.3 handoff target W1\.1; current W1\.1 status is tracked by readiness gates; T1 remains blocked/,
+  );
 });
 
 for (const scenario of [

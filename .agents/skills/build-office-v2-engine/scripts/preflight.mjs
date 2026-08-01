@@ -12,14 +12,17 @@ for (const path of required) {
   }
 }
 
-for (const script of [
-  "scripts/office-v2-clean-room-check.mjs",
-  "scripts/office-v2-boundary-check.mjs",
-  "scripts/office-v2-contradictions-check.mjs",
-  "scripts/office-v2-knowledge-check.mjs",
-  "scripts/office-v2-asset-check.mjs",
+for (const command of [
+  ["scripts/office-v2-clean-room-check.mjs"],
+  ["scripts/office-v2-boundary-check.mjs"],
+  ["scripts/office-v2-contradictions-check.mjs"],
+  ["scripts/office-v2-contracts-generate.mjs", "--check"],
+  ["--test", "scripts/office-v2-contracts-generate.test.mjs"],
+  ["--test", "packages/office-v2-world/test/coordinate-semantics.test.ts"],
+  ["scripts/office-v2-knowledge-check.mjs"],
+  ["scripts/office-v2-asset-check.mjs"],
 ]) {
-  const result = spawnSync(process.execPath, [script], { cwd: root, encoding: "utf8" });
+  const result = spawnSync(process.execPath, command, { cwd: root, encoding: "utf8" });
   if (result.stdout) process.stdout.write(result.stdout);
   if (result.stderr) process.stderr.write(result.stderr);
   if (result.status !== 0) process.exit(result.status ?? 1);
