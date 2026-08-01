@@ -104,12 +104,11 @@ types owned by the named generator.
 ## Version history
 
 - `main`: current product and Office Engine V2.
-- `codex/office-v1-archive`: exact final Office V1 working tree.
-- `office-v1-final-2026-07-30`: immutable V1 recovery tag.
 
-Do not create an `office-v1/`, `old-office/`, or copied archive directory on
-`main`. Git already owns that history. Copying it into the current tree would
-break the clean-room boundary and make old and current files ambiguous.
+Do not create a parallel Office implementation or copied archive directory on
+`main`. Git history is not a runtime source boundary; copying superseded files
+into the current tree would break the clean-room boundary and make ownership
+ambiguous.
 
 ## Placement checklist
 

@@ -27,5 +27,5 @@
 - `generated/`: script-owned committed reports; do not edit by hand
 
 Documentation is current unless its directory explicitly says `legacy`,
-`references`, or `generated`. Office V1 documentation exists only in the archive
-branch and recovery tag, not on `main`.
+`references`, or `generated`. Office Engine V2 is the only Office implementation
+documented in the active repository.
