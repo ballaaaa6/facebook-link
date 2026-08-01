@@ -23,6 +23,7 @@ import {
   assertGroundFloorRoomEvidence,
   evaluateRoomTemplateCase,
   roomTemplateFixturePath,
+  roomTemplateFixturePaths,
 } from "./office-v2-room-template-evidence.mjs";
 import {
   caseKind,
@@ -111,8 +112,8 @@ export function runFixtureCases(context, ajv) {
     }
     const cases = Array.isArray(fixture.cases)
       ? fixture.cases
-      : registration.caseRunner === "room-template" && registration.path === roomTemplateFixturePath
-        ? [{ name: "ground-floor-contract", document: fixture, expectedValid: true }]
+      : registration.caseRunner === "room-template" && roomTemplateFixturePaths.has(registration.path)
+        ? [{ name: registration.path === roomTemplateFixturePath ? "ground-floor-contract" : "room-template-contract", document: fixture, expectedValid: true }]
         : [];
     context.coverage.declaredCases += cases.length;
     const names = new Set();

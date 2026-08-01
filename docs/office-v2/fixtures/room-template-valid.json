@@ -1,0 +1,316 @@
+{
+  "schemaVersion": "office-room-template-v1",
+  "room": {
+    "id": {
+      "kind": "room",
+      "value": "office-v2-room-template-valid"
+    },
+    "version": 1
+  },
+  "floor": {
+    "id": {
+      "kind": "floor",
+      "value": "hq-ground-floor"
+    },
+    "version": 1
+  },
+  "bounds": {
+    "origin": {
+      "space": "floor-local-cell",
+      "floor": {
+        "id": {
+          "kind": "floor",
+          "value": "hq-ground-floor"
+        },
+        "version": 1
+      },
+      "coordinate": {
+        "space": "cell",
+        "x": 0,
+        "y": 0,
+        "elevation": 0
+      }
+    },
+    "width": 8,
+    "depth": 8
+  },
+  "entrances": [
+    {
+      "id": "valid-entrance",
+      "kind": "main",
+      "legal": true,
+      "cell": {
+        "space": "floor-local-cell",
+        "floor": {
+          "id": {
+            "kind": "floor",
+            "value": "hq-ground-floor"
+          },
+          "version": 1
+        },
+        "coordinate": {
+          "space": "cell",
+          "x": 1,
+          "y": 1,
+          "elevation": 0
+        }
+      },
+      "approachCells": [
+        {
+          "space": "floor-local-cell",
+          "floor": {
+            "id": {
+              "kind": "floor",
+              "value": "hq-ground-floor"
+            },
+            "version": 1
+          },
+          "coordinate": {
+            "space": "cell",
+            "x": 2,
+            "y": 1,
+            "elevation": 0
+          }
+        }
+      ]
+    }
+  ],
+  "facilityGroups": [
+    {
+      "id": "valid-workstations",
+      "semantic": "work",
+      "requirement": "required",
+      "minCount": 1,
+      "maxCount": 1,
+      "facilities": [
+        {
+          "id": "valid-workstation",
+          "placementSlot": {
+            "id": "valid-workstation-slot",
+            "anchor": {
+              "space": "floor-local-cell",
+              "floor": {
+                "id": {
+                  "kind": "floor",
+                  "value": "hq-ground-floor"
+                },
+                "version": 1
+              },
+              "coordinate": {
+                "space": "cell",
+                "x": 4,
+                "y": 4,
+                "elevation": 0
+              }
+            },
+            "orientation": "north",
+            "occupiedCells": [
+              {
+                "space": "floor-local-cell",
+                "floor": {
+                  "id": {
+                    "kind": "floor",
+                    "value": "hq-ground-floor"
+                  },
+                  "version": 1
+                },
+                "coordinate": {
+                  "space": "cell",
+                  "x": 4,
+                  "y": 4,
+                  "elevation": 0
+                }
+              }
+            ],
+            "clearanceCells": [
+              {
+                "space": "floor-local-cell",
+                "floor": {
+                  "id": {
+                    "kind": "floor",
+                    "value": "hq-ground-floor"
+                  },
+                  "version": 1
+                },
+                "coordinate": {
+                  "space": "cell",
+                  "x": 4,
+                  "y": 3,
+                  "elevation": 0
+                }
+              }
+            ],
+            "approachCells": [
+              {
+                "space": "floor-local-cell",
+                "floor": {
+                  "id": {
+                    "kind": "floor",
+                    "value": "hq-ground-floor"
+                  },
+                  "version": 1
+                },
+                "coordinate": {
+                  "space": "cell",
+                  "x": 4,
+                  "y": 5,
+                  "elevation": 0
+                }
+              }
+            ],
+            "navigationImpact": "blocking"
+          }
+        }
+      ]
+    },
+    {
+      "id": "optional-lounge",
+      "semantic": "lounge",
+      "requirement": "optional",
+      "minCount": 0,
+      "maxCount": 1,
+      "facilities": []
+    }
+  ],
+  "capacity": {
+    "minActors": 1,
+    "maxActors": 1,
+    "assignedWorkstations": 1,
+    "reservedActorSlots": 0
+  },
+  "actorSlots": [
+    {
+      "id": "valid-actor-slot",
+      "assignment": "assigned",
+      "roleId": "valid-role",
+      "facilityId": "valid-workstation",
+      "placementSlotId": "valid-workstation-slot"
+    }
+  ],
+  "propSlots": [],
+  "circulation": {
+    "minimumWidthCells": 1,
+    "aisles": [
+      {
+        "id": "valid-aisle",
+        "cells": [
+          {
+            "space": "floor-local-cell",
+            "floor": {
+              "id": {
+                "kind": "floor",
+                "value": "hq-ground-floor"
+              },
+              "version": 1
+            },
+            "coordinate": {
+              "space": "cell",
+              "x": 1,
+              "y": 1,
+              "elevation": 0
+            }
+          },
+          {
+            "space": "floor-local-cell",
+            "floor": {
+              "id": {
+                "kind": "floor",
+                "value": "hq-ground-floor"
+              },
+              "version": 1
+            },
+            "coordinate": {
+              "space": "cell",
+              "x": 2,
+              "y": 1,
+              "elevation": 0
+            }
+          }
+        ],
+        "widthCells": 1
+      }
+    ],
+    "blockedCells": []
+  },
+  "adjacencyConstraints": [],
+  "focalPoints": [
+    {
+      "id": "valid-focal-point",
+      "position": {
+        "space": "floor-local-cell",
+        "floor": {
+          "id": {
+            "kind": "floor",
+            "value": "hq-ground-floor"
+          },
+          "version": 1
+        },
+        "coordinate": {
+          "space": "cell",
+          "x": 3,
+          "y": 3,
+          "elevation": 0
+        }
+      },
+      "kind": "primary",
+      "priority": 1
+    }
+  ],
+  "densityBands": [
+    {
+      "id": "valid-density-band",
+      "region": {
+        "origin": {
+          "space": "floor-local-cell",
+          "floor": {
+            "id": {
+              "kind": "floor",
+              "value": "hq-ground-floor"
+            },
+            "version": 1
+          },
+          "coordinate": {
+            "space": "cell",
+            "x": 0,
+            "y": 0,
+            "elevation": 0
+          }
+        },
+        "width": 8,
+        "depth": 8
+      },
+      "level": "sparse",
+      "maxDecorationSlots": 1
+    }
+  ],
+  "decorationSlots": [
+    {
+      "id": "valid-decoration",
+      "densityBandId": "valid-density-band",
+      "placementSlot": {
+        "id": "valid-decoration-slot",
+        "anchor": {
+          "space": "floor-local-cell",
+          "floor": {
+            "id": {
+              "kind": "floor",
+              "value": "hq-ground-floor"
+            },
+            "version": 1
+          },
+          "coordinate": {
+            "space": "cell",
+            "x": 6,
+            "y": 6,
+            "elevation": 0
+          }
+        },
+        "orientation": "north",
+        "occupiedCells": [],
+        "clearanceCells": [],
+        "approachCells": [],
+        "navigationImpact": "none"
+      }
+    }
+  ]
+}

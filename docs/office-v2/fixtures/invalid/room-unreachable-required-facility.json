@@ -1,0 +1,11 @@
+{
+  "schema": "room-template.schema.json",
+  "baseFixture": "fixtures/room-template-target-floor-envelope.json",
+  "cases": [
+    {
+      "name": "unreachable-required-facility",
+      "mutation": "block-review-approach",
+      "expectedFailure": "room.required-facility-unreachable"
+    }
+  ]
+}

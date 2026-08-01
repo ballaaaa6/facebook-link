@@ -1,0 +1,11 @@
+{
+  "schema": "room-template.schema.json",
+  "baseFixture": "fixtures/room-template-target-floor-envelope.json",
+  "cases": [
+    {
+      "name": "over-capacity",
+      "mutation": "declare-four-reserved-slots",
+      "expectedFailure": "room.capacity-overflow"
+    }
+  ]
+}

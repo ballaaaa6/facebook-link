@@ -100,11 +100,15 @@ The stable semantic diagnostics are:
 | `room.prop-slot-overlap` | Two prop placement envelopes share a cell |
 | `room.decoration-navigation-conflict` | Decoration declares navigation/occupancy impact or invalid density placement |
 
-The W1.4 valid ground-floor fixture proves ten assigned workstations, five
-reserved actor slots, work/review/reliability/pantry/lounge groups, legal
-entrance reachability, deterministic reorder behavior, and decoration
-invariance. Rejected room fixtures cover each diagnostic above. The contract
-version is `office-room-template-v1`; changing capacity, slot semantics,
-coordinate ownership, or diagnostic meaning requires a new version and an
-explicit migration rule.
-- Site-envelope context cannot become a room surface, route, or placement cell.
+The W1.4 valid fixtures `fixtures/room-template-valid.json` and
+`fixtures/room-template-target-floor-envelope.json` prove ten assigned
+workstations, five reserved actor slots, work/review/reliability/pantry/lounge
+groups, legal entrance reachability, deterministic reorder behavior, and
+decoration invariance. The rejected fixtures are split by contract failure:
+blocked entrance, unreachable required facility, insufficient capacity,
+over-capacity, narrow circulation, illegal adjacency, overlapping prop slots,
+and decoration/navigation conflict. The contract version is
+`office-room-template-v1`; changing capacity, slot semantics, coordinate
+ownership, or diagnostic meaning requires a new version and an explicit
+migration rule.
+Site-envelope context cannot become a room surface, route, or placement cell.

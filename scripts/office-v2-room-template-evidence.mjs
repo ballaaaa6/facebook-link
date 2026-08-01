@@ -6,6 +6,15 @@ import {
 } from "./office-v2-knowledge-evidence.mjs";
 
 export const roomTemplateFixturePath = "fixtures/room-template-ground-floor.json";
+export const roomTemplateFixturePaths = new Set([
+  roomTemplateFixturePath,
+  "fixtures/room-template-target-floor-envelope.json",
+  "fixtures/room-template-valid.json",
+]);
+export const targetRoomTemplateFixturePaths = new Set([
+  roomTemplateFixturePath,
+  "fixtures/room-template-target-floor-envelope.json",
+]);
 
 function clone(value) {
   return structuredClone(value);
@@ -71,7 +80,7 @@ export function evaluateRoomTemplateCase(context, ajv, fixturePath, fixture, ent
 }
 
 export function assertGroundFloorRoomEvidence(context, fixturePath, entry, result) {
-  if (fixturePath !== roomTemplateFixturePath || !result) return;
+  if (!targetRoomTemplateFixturePaths.has(fixturePath) || !result) return;
   context.evidence.semanticRules += 1;
   mismatch(context, fixturePath, entry, "assigned actor slots", result.counts.assignedActors, 10);
   mismatch(context, fixturePath, entry, "reserved actor slots", result.counts.reservedActorSlots, 5);
@@ -84,4 +93,6 @@ export function assertGroundFloorRoomEvidence(context, fixturePath, entry, resul
     .map(({ semantic }) => semantic)
     .sort();
   mismatch(context, fixturePath, entry, "required facility semantics", actual, requiredSemantics);
+  const verticalCore = document?.facilityGroups?.find(({ id }) => id === "reserved-vertical-core");
+  mismatch(context, fixturePath, entry, "reserved vertical core facilities", verticalCore?.facilities?.length ?? 0, 1);
 }

@@ -28,7 +28,7 @@ test("valid ground-floor room provides ten assigned and five reserved actor slot
     assignedActors: 10,
     reservedActorSlots: 5,
     totalActorSlots: 15,
-    facilities: 19,
+    facilities: 20,
   });
   assert.deepEqual(
     document.facilityGroups
@@ -37,6 +37,7 @@ test("valid ground-floor room provides ten assigned and five reserved actor slot
       .sort(),
     ["lounge", "pantry", "reliability", "review", "work"],
   );
+  assert.equal(document.facilityGroups.some(({ id }) => id === "reserved-vertical-core"), true);
 });
 
 test("blocked entrance and unreachable required facility fail with stable diagnostics", () => {

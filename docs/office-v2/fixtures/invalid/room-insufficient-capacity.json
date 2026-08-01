@@ -1,0 +1,11 @@
+{
+  "schema": "room-template.schema.json",
+  "baseFixture": "fixtures/room-template-target-floor-envelope.json",
+  "cases": [
+    {
+      "name": "insufficient-capacity",
+      "mutation": "require-eleven-assigned-workstations",
+      "expectedFailure": "room.capacity-insufficient"
+    }
+  ]
+}

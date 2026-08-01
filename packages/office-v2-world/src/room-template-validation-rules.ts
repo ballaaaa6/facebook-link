@@ -106,8 +106,8 @@ function validateEntrances(diagnostics: RoomTemplateDiagnostic[], document: Room
     const validCells = entryCells.filter((cell) => inBounds(document, cell));
     const blockedCells = validCells.filter((cell) => blocked.has(cellKey(cell)));
     const entranceCellBlocked = blocked.has(cellKey(entrance.cell));
-    const approachCells = validCells.slice(1);
-    const allApproachesBlocked = approachCells.length === 0 || approachCells.every((cell) => blocked.has(cellKey(cell)));
+    const validApproachCells = entrance.approachCells.filter((cell) => inBounds(document, cell));
+    const allApproachesBlocked = validApproachCells.length === 0 || validApproachCells.every((cell) => blocked.has(cellKey(cell)));
     if (!entrance.legal || validCells.length !== entryCells.length || entranceCellBlocked || allApproachesBlocked) diagnostics.push(diagnostic(
       "room.entrance-blocked",
       "A legal room entrance has no unblocked in-bounds entry cell.",

@@ -1,0 +1,11 @@
+{
+  "schema": "room-template.schema.json",
+  "baseFixture": "fixtures/room-template-target-floor-envelope.json",
+  "cases": [
+    {
+      "name": "blocked-entrance",
+      "mutation": "block-entrance-cell",
+      "expectedFailure": "room.entrance-blocked"
+    }
+  ]
+}

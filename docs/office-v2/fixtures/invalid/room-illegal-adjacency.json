@@ -1,0 +1,11 @@
+{
+  "schema": "room-template.schema.json",
+  "baseFixture": "fixtures/room-template-target-floor-envelope.json",
+  "cases": [
+    {
+      "name": "illegal-adjacency",
+      "mutation": "tighten-work-review-adjacency",
+      "expectedFailure": "room.adjacency-illegal"
+    }
+  ]
+}
