@@ -25,6 +25,9 @@
     "office:v2:boundaries:test": "node --test scripts/office-v2-boundary-check.test.mjs",
     "office:v2:contradictions:check": "node scripts/office-v2-contradictions-check.mjs",
     "office:v2:contradictions:test": "node --test scripts/office-v2-contradictions-check.test.mjs",
+    "office:v2:contracts:generate": "node scripts/office-v2-contracts-generate.mjs --write",
+    "office:v2:contracts:check": "node scripts/office-v2-contracts-generate.mjs --check",
+    "office:v2:contracts:test": "node --test scripts/office-v2-contracts-generate.test.mjs",
     "office:v2:knowledge:check": "node scripts/office-v2-knowledge-check.mjs",
     "office:v2:knowledge:test": "node --test scripts/office-v2-knowledge-check.test.mjs",
     "office:v2:assets:check": "node scripts/office-v2-asset-check.mjs",
@@ -35,7 +38,7 @@
     "pilot:simulate": "node services/automation-runner/src/simulation/cli.ts",
     "deploy:dry-run": "npm run build --workspace @affiliate-ops/web && npx --yes wrangler@4.113.0 deploy --dry-run --config wrangler.jsonc",
     "deploy:cloudflare": "npm run build --workspace @affiliate-ops/web && npx --yes wrangler@4.113.0 deploy --config wrangler.jsonc",
-    "check": "npm run repo:check && npm run office:v2:clean-room:check && npm run office:v2:boundaries:check && npm run office:v2:boundaries:test && npm run office:v2:contradictions:check && npm run office:v2:contradictions:test && npm run office:v2:knowledge:check && npm run office:v2:knowledge:test && npm run office:v2:assets:check && npm run architecture:check && npm run code:health && npm run duplicate:check && npm run code:map && npm run typecheck && npm run test && npm run build"
+    "check": "npm run repo:check && npm run office:v2:clean-room:check && npm run office:v2:boundaries:check && npm run office:v2:boundaries:test && npm run office:v2:contradictions:check && npm run office:v2:contradictions:test && npm run office:v2:contracts:check && npm run office:v2:contracts:test && npm run office:v2:knowledge:check && npm run office:v2:knowledge:test && npm run office:v2:assets:check && npm run architecture:check && npm run code:health && npm run duplicate:check && npm run code:map && npm run typecheck && npm run test && npm run build"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",
