@@ -26,7 +26,7 @@ export const expectedKnowledge = {
     "decisions/0013-render-parts-and-proof-workstation.md", "decisions/TEMPLATE.md",
   ],
   schemas: [
-    "schemas/animation.schema.json", "schemas/asset.schema.json", "schemas/common.schema.json",
+    "schemas/animation.schema.json", "schemas/asset.schema.json", "schemas/common-v2.schema.json", "schemas/common.schema.json",
     "schemas/connectivity.schema.json", "schemas/entity-definition.schema.json",
     "schemas/interaction.schema.json", "schemas/operations-snapshot.schema.json",
     "schemas/provenance.schema.json", "schemas/simulation-snapshot.schema.json",

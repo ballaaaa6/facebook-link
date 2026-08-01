@@ -1,0 +1,324 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json",
+  "title": "Office V2 Common Identity and Coordinate Types",
+  "$defs": {
+    "safeInteger": {
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "nonNegativeSafeInteger": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "positiveVersion": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "finiteNumber": {
+      "type": "number",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{1,63}$"
+    },
+    "identityKind": {
+      "enum": [
+        "building",
+        "floor",
+        "room",
+        "entity-definition",
+        "entity-instance",
+        "facility",
+        "socket",
+        "command",
+        "event",
+        "intent",
+        "tick"
+      ]
+    },
+    "buildingId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "const": "building" },
+        "value": { "$ref": "#/$defs/slug" }
+      }
+    },
+    "floorId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "const": "floor" },
+        "value": { "$ref": "#/$defs/slug" }
+      }
+    },
+    "roomId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "const": "room" },
+        "value": { "$ref": "#/$defs/slug" }
+      }
+    },
+    "entityDefinitionId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "const": "entity-definition" },
+        "value": { "$ref": "#/$defs/slug" }
+      }
+    },
+    "entityInstanceId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "const": "entity-instance" },
+        "value": { "$ref": "#/$defs/slug" }
+      }
+    },
+    "facilityId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "const": "facility" },
+        "value": { "$ref": "#/$defs/slug" }
+      }
+    },
+    "socketId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "const": "socket" },
+        "value": { "$ref": "#/$defs/slug" }
+      }
+    },
+    "commandId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "const": "command" },
+        "value": { "$ref": "#/$defs/slug" }
+      }
+    },
+    "eventId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "const": "event" },
+        "value": { "$ref": "#/$defs/slug" }
+      }
+    },
+    "intentId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "const": "intent" },
+        "value": { "$ref": "#/$defs/slug" }
+      }
+    },
+    "tickId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "const": "tick" },
+        "value": { "$ref": "#/$defs/nonNegativeSafeInteger" }
+      }
+    },
+    "typedIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "$ref": "#/$defs/identityKind" },
+        "value": { "$ref": "#/$defs/slug" }
+      }
+    },
+    "buildingReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "$ref": "#/$defs/buildingId" },
+        "version": { "$ref": "#/$defs/positiveVersion" }
+      }
+    },
+    "floorReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "$ref": "#/$defs/floorId" },
+        "version": { "$ref": "#/$defs/positiveVersion" }
+      }
+    },
+    "roomReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "$ref": "#/$defs/roomId" },
+        "version": { "$ref": "#/$defs/positiveVersion" }
+      }
+    },
+    "entityDefinitionReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "$ref": "#/$defs/entityDefinitionId" },
+        "version": { "$ref": "#/$defs/positiveVersion" }
+      }
+    },
+    "entityInstanceReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "$ref": "#/$defs/entityInstanceId" },
+        "version": { "$ref": "#/$defs/positiveVersion" }
+      }
+    },
+    "facilityReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "$ref": "#/$defs/facilityId" },
+        "version": { "$ref": "#/$defs/positiveVersion" }
+      }
+    },
+    "socketReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "$ref": "#/$defs/socketId" },
+        "version": { "$ref": "#/$defs/positiveVersion" }
+      }
+    },
+    "worldFacing": {
+      "enum": ["north", "east", "south", "west"]
+    },
+    "screenFacing": {
+      "enum": ["north-east", "south-east", "south-west", "north-west"]
+    },
+    "cellPosition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["space", "x", "y", "elevation"],
+      "properties": {
+        "space": { "const": "cell" },
+        "x": { "$ref": "#/$defs/safeInteger" },
+        "y": { "$ref": "#/$defs/safeInteger" },
+        "elevation": { "$ref": "#/$defs/nonNegativeSafeInteger" }
+      }
+    },
+    "subCellPosition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["space", "x", "y", "elevation"],
+      "properties": {
+        "space": { "const": "sub-cell" },
+        "x": { "$ref": "#/$defs/safeInteger" },
+        "y": { "$ref": "#/$defs/safeInteger" },
+        "elevation": { "$ref": "#/$defs/nonNegativeSafeInteger" }
+      }
+    },
+    "floorLocalCellPosition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["space", "floor", "coordinate"],
+      "properties": {
+        "space": { "const": "floor-local-cell" },
+        "floor": { "$ref": "#/$defs/floorReference" },
+        "coordinate": { "$ref": "#/$defs/cellPosition" }
+      }
+    },
+    "floorLocalSubCellPosition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["space", "floor", "coordinate"],
+      "properties": {
+        "space": { "const": "floor-local-sub-cell" },
+        "floor": { "$ref": "#/$defs/floorReference" },
+        "coordinate": { "$ref": "#/$defs/subCellPosition" }
+      }
+    },
+    "definitionLocalGeometryPosition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["space", "x", "y", "elevation"],
+      "properties": {
+        "space": { "const": "definition-local-geometry" },
+        "x": { "$ref": "#/$defs/safeInteger" },
+        "y": { "$ref": "#/$defs/safeInteger" },
+        "elevation": { "$ref": "#/$defs/nonNegativeSafeInteger" }
+      }
+    },
+    "definitionLocalPixelPosition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["space", "xPx", "yPx"],
+      "properties": {
+        "space": { "const": "definition-local-pixel" },
+        "xPx": { "$ref": "#/$defs/safeInteger" },
+        "yPx": { "$ref": "#/$defs/safeInteger" }
+      }
+    },
+    "spritePixelPosition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["space", "xPx", "yPx"],
+      "properties": {
+        "space": { "const": "sprite-pixel" },
+        "xPx": { "$ref": "#/$defs/safeInteger" },
+        "yPx": { "$ref": "#/$defs/safeInteger" }
+      }
+    },
+    "screenPixelPosition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["space", "xPx", "yPx"],
+      "properties": {
+        "space": { "const": "screen-pixel" },
+        "xPx": { "$ref": "#/$defs/finiteNumber" },
+        "yPx": { "$ref": "#/$defs/finiteNumber" }
+      }
+    },
+    "coordinate": {
+      "oneOf": [
+        { "$ref": "#/$defs/cellPosition" },
+        { "$ref": "#/$defs/subCellPosition" },
+        { "$ref": "#/$defs/floorLocalCellPosition" },
+        { "$ref": "#/$defs/floorLocalSubCellPosition" },
+        { "$ref": "#/$defs/definitionLocalGeometryPosition" },
+        { "$ref": "#/$defs/definitionLocalPixelPosition" },
+        { "$ref": "#/$defs/spritePixelPosition" },
+        { "$ref": "#/$defs/screenPixelPosition" }
+      ]
+    },
+    "coordinateSemanticsVersion": {
+      "const": "office-coordinate-semantics-v1"
+    },
+    "projectionId": {
+      "const": "office-projection-v1"
+    }
+  }
+}
