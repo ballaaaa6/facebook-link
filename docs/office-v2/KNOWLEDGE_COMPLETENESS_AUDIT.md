@@ -2,7 +2,7 @@
 
 Status: audited on 2026-07-31; T0 re-audited on 2026-08-01; W0.3
 contradiction closure and the bounded W1.1 contract slice re-audited on
-2026-08-02.
+2026-08-02; W1.2 contract boundary locked on 2026-08-02.
 Re-audit after every Phase 1 closure wave.
 
 ## Purpose and authority
@@ -35,11 +35,13 @@ geometric probes. Three narrow areas are close enough for such probes:
 
 T0 now passes, W0.3 closes the twelve decision-level P0 contradictions, and the
 bounded W1.1 identity/coordinate contract slice passes its schema, exact
-diagnostic, generated-drift, compile-time, and pure-transform gates. The gates
-report only the schema-shape, bounded semantic, exact-diagnostic, and resolution
+diagnostic, generated-drift, compile-time, and pure-transform gates. The W1.2
+canonical documents now lock one geometry authority, definition-local cell and
+sub-cell units, version-pinned reference keys, and fail-closed migration; its
+schemas and semantic evidence are still being implemented. The gates report
+only the schema-shape, bounded semantic, exact-diagnostic, and resolution
 evidence they execute. This does not change the no-go decision for persistent
-engine work or production content. W1.2 is the next authorized work package;
-T1 remains blocked.
+engine work or production content. T1 remains blocked.
 
 The pack is a strong architectural foundation, but it is not yet the desired
 production system:

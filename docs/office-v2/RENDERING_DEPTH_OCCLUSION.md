@@ -22,6 +22,14 @@ contacts and dependencies so an actor in front is not covered merely because a
 part is named upper. The dependency graph must be acyclic, and every part keeps
 one semantic entity and pick owner.
 
+W1.2 reserves the render-part reference shape without admitting a renderer.
+Each part points to one exact entity/asset family and geometry version, and its
+parent/dependency keys form a deterministic acyclic graph. Render parts own
+composition, band, depth-contact, and presentation attachment facts only. A
+part cannot repeat or override footprint, clearance, orientation, sockets,
+use-slots, navigation, or interaction geometry. Missing references, version
+disagreement, and attachment cycles fail before runtime import.
+
 ## Deterministic depth
 
 Depth is derived from projected ground contact, elevation layer, band, and a

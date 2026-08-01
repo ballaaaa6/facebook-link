@@ -41,6 +41,20 @@ parts and connectivity variants cannot change occupancy or interaction truth.
 The V1 asset schema and fixtures remain frozen; W1.2 introduces reference-only
 V2 evidence rather than reinterpreting duplicated V1 fields.
 
+The W1.2 asset-family reference is a positive-version typed reference to one
+geometry record. It may also reference render parts, animation sets/clips,
+character profiles, and connectivity variants, each at an exact version. The
+asset-family record may carry only canvas, frame, sprite-origin, pixel-contact,
+visual-height, render-band, trimming, and composition facts. It cannot carry a
+footprint, blocking/clearance cell, orientation transform, world socket, or
+use-slot. Any such field is `world.asset-occupancy-forbidden`, even when its
+numbers happen to agree with the geometry record.
+
+Derived pixel contact evidence stores the source geometry reference, the
+declared cardinal orientation, and a deterministic geometry digest. The
+agreement check compares the permitted projected contact after transformation;
+it never treats a pixel measurement as a replacement geometry authority.
+
 ## Automated validation
 
 - required source, recipe, output files, and hashes;

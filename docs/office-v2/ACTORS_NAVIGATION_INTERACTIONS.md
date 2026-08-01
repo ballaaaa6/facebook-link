@@ -49,6 +49,13 @@ The interaction owns target semantics, preconditions, duration, capacity
 policy, cancellation, and result event without copying those spatial facts.
 Character components do not contain facility-specific positioning.
 
+In W1.2 the interaction reference carries the exact geometry reference and
+use-slot ID it consumes. The use-slot ID is resolved inside that geometry
+version; it is not a global coordinate, array index, or socket surrogate. A
+missing socket, wrong kind, duplicate use-slot, or geometry-version mismatch
+fails before an interaction can be planned. An interaction may name a required
+actor or held-prop socket, but it never repeats the socket position or facing.
+
 ## Interruptions
 
 Cancellation states whether reservations are released, progress is retained,
@@ -61,6 +68,7 @@ operational data cannot leave permanent reservations.
 - Equivalent route choices resolve identically across runs.
 - Two actors cannot own an exclusive socket at the same tick.
 - A missing or conflicting use-slot/socket reference fails before interaction.
+- Reordering bundle records preserves the same use-slot and socket resolution.
 - Cancel, timeout, and target removal release declared resources.
 - Reversing request input preserves normalized acquisition and queue order.
 - Every deadlock fixture has a deterministic victim and either a legal yield

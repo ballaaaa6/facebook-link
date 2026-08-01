@@ -63,10 +63,13 @@ and the historical V1 evidence set is hash-locked. W1.1 completed on
 2026-08-02 for the common identity/coordinate contract slice: the V2 schema,
 valid and rejected fixtures, exact diagnostics, deterministic generated types,
 compile-time namespace negatives, and renderer-neutral facing and cell/sub-cell
-transforms are now gated. W1.2 is the next authorized work package. No
-persistent world or simulation behavior, renderer, runtime asset, or new
-dependency was admitted; reducer/replay and property/model evidence remain
-zero, and T1 remains blocked.
+transforms are now gated. No persistent world or simulation behavior, renderer,
+runtime asset, or new dependency was admitted; reducer/replay and property/model
+evidence remain zero, and T1 remains blocked. W1.2 is now in progress: its
+geometry authority, definition-local cell/sub-cell units, version-pinned
+reference key, and fail-closed migration boundary are locked in the canonical
+documents. Schema and semantic evidence are still required before W1.2 can
+close.
 
 ## Knowledge rule
 

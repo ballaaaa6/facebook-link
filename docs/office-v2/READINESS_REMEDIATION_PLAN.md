@@ -346,6 +346,13 @@ Evidence and exit:
 
 ### W1.2 One geometry authority and reference closure
 
+Status: in progress. The contract boundary is locked in
+`DEFINITION_INSTANCE_RUNTIME_STATE.md`, `GLOSSARY_AND_INVARIANTS.md`, and the
+world, actor, asset, connectivity, render, and save documents. Schema,
+deterministic generation, bundle closure, geometry agreement, and rejection
+evidence are being added in dependency order. This status does not authorize a
+world kernel, renderer, runtime asset, or simulation implementation.
+
 Machine contracts:
 
 - `geometry.schema.json` for footprint, clearance, anchor basis, sockets,
@@ -357,6 +364,21 @@ Machine contracts:
   partial definitions that later phases must mutate;
 - semantic reference rules for assets, interactions, animation, connectivity,
   and instances.
+
+Contract decisions for this wave:
+
+- cell offsets own footprint, blocking, clearance, approach, and waiting
+  candidates; sub-cell offsets own socket and attachment positions;
+- cardinal orientations are explicit quarter-turns from the north basis, and
+  unsupported orientations fail instead of being inferred;
+- every reference is `{ id: { kind, value }, version }` with a positive version;
+  the closure key is `${kind}:${value}@${version}`;
+- geometry is the only spatial authority; definitions, interactions, assets,
+  connectivity, animation, character profiles, and render parts reference it;
+- V1 repeated geometry fields remain frozen and migrate only with complete
+  context plus an agreement proof, otherwise the reader fails closed;
+- render-part dependencies are presentation-only and acyclic, and assets cannot
+  add occupancy, clearance, sockets, or use slots.
 
 Tooling:
 

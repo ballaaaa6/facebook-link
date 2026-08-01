@@ -52,8 +52,10 @@ promote any target-floor, persistent-engine, renderer, crowd, or asset status.
 W0.1 package ownership and W0.3 contradiction resolution are complete. The P0
 register locks all twelve dispositions and preserves the original V1 JSON
 evidence by hash. W1.1 now closes the common identity/coordinate contract slice
-and its bounded pure transforms. W1.2 is the next authorized work package:
-geometry authority and reference closure. Phase 1 then implements the
+and its bounded pure transforms. W1.2 is in progress on the next authorized
+package: geometry authority and reference closure. Its canonical documents now
+lock cell/sub-cell geometry units, version-pinned graph keys, and fail-closed
+migration; schemas, fixtures, and semantic gates are still pending. Phase 1 then implements the
 target-specific contracts named by those accepted decisions. Existing narrow
 rows may be used for disposable or pure contract probes only. Persistent
 world/simulation code starts after Closure A and the applicable parts of

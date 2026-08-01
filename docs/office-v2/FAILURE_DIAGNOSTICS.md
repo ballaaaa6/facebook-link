@@ -46,10 +46,33 @@ Renderer code cannot reinterpret a missing world or adapter fact as a
 presentation success.
 
 W1.1 contract diagnostics include coordinate-space, safe-range, typed-identity,
-versioned-reference, generic-position, and generated-drift failures. Their
-stable `contract.*` codes are defined in
-`DEFINITION_INSTANCE_RUNTIME_STATE.md`; schema adapters preserve JSON pointers
-and structured context but do not leak validator-specific wording.
+versioned-reference, generic-position, and generated-drift failures. W1.2 adds
+the fail-closed migration codes `contract.migration-context-missing` and
+`contract.migration-reference-conflict`. Their stable `contract.*` codes are
+defined in `DEFINITION_INSTANCE_RUNTIME_STATE.md`; schema adapters preserve
+JSON pointers and structured context but do not leak validator-specific
+wording.
+
+W1.2 world/reference diagnostics are intentionally narrow and stable:
+
+| Code | Originating rule |
+| --- | --- |
+| `world.reference-duplicate` | One `${kind}:${value}@${version}` graph key is declared twice |
+| `world.reference-missing` | A bundle edge has no target record |
+| `world.reference-kind-mismatch` | The target ID namespace does not match the edge family |
+| `world.reference-version-mismatch` | A consumer and target disagree on positive version |
+| `world.geometry-conflict` | A permitted derived projection disagrees after rotation |
+| `world.geometry-authority-violation` | A non-geometry record authors an owned spatial field |
+| `world.orientation-unsupported` | A requested orientation is not declared by geometry |
+| `world.geometry-rotation-invalid` | A cardinal transform is not an integral quarter-turn |
+| `world.socket-duplicate` | A geometry record repeats a socket key |
+| `world.use-slot-duplicate` | A geometry record repeats a use-slot key |
+| `world.render-attachment-cycle` | Render-part parent/dependency graph is cyclic |
+| `world.asset-occupancy-forbidden` | Asset/presentation data attempts to change occupancy |
+
+The world linter reports one primary code with stable JSON pointers and typed
+reference context. It does not downgrade a missing target to a presentation
+warning or recode an ownership failure as a contract schema error.
 
 ## Debug evidence
 

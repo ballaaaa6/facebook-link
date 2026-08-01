@@ -12,6 +12,13 @@ An entity declares a connectivity family, supported directions, orientation,
 and optional endpoint role. Only compatible family and version combinations can
 connect. A desk does not connect to every desk-shaped object.
 
+W1.2 makes the family and variant references version-pinned. A connectivity
+family resolves one authoritative geometry reference, and every variant points
+back to that same geometry version. The family/variant record owns mask and
+presentation selection only; it cannot add a footprint, clearance, socket,
+use-slot, or orientation that geometry did not declare. A family or variant
+whose geometry reference is missing or mismatched fails reference closure.
+
 For four orthogonal directions, a deterministic bit mask is assigned:
 
 ```text

@@ -8,9 +8,10 @@ simulation state, and derived presentation data before any persistent engine
 implementation begins.
 
 The machine-readable coordinate and identity shapes live in
-`schemas/common-v2.schema.json`. This document owns their meaning, ownership,
-versioning, migration, and rejection rules. A generated TypeScript type is a
-consumer of that schema and is never a second contract.
+`schemas/common-v2.schema.json`. W1.2 adds the geometry, definition, instance,
+and bundle shapes described below. This document owns their meaning,
+ownership, versioning, migration, and rejection rules. A generated TypeScript
+type is a consumer of those schemas and is never a second contract.
 
 ## Four independent layers
 
@@ -34,11 +35,14 @@ value supplied in the wrong namespace instead of relying on a TypeScript cast:
 { "kind": "floor", "value": "ground-floor" }
 ```
 
-The accepted `kind` values are `building`, `floor`, `room`,
+The accepted W1.1 `kind` values are `building`, `floor`, `room`,
 `entity-definition`, `entity-instance`, `facility`, `socket`, `command`,
-`event`, `intent`, and `tick`. String values use the lowercase Office slug
-grammar. A tick value is a non-negative safe integer; all other values are
-lowercase stable slugs.
+`event`, `intent`, and `tick`. W1.2 extends the vocabulary with `geometry`,
+`definition-bundle`, `use-slot`, `interaction`, `asset-family`, `render-part`,
+`character-profile`, `animation-set`, `animation-clip`,
+`connectivity-family`, and `connectivity-variant`. String values use the
+lowercase Office slug grammar. A tick value is a non-negative safe integer;
+all other values are lowercase stable slugs.
 
 The canonical namespace key is `${kind}:${value}`. Duplicate keys in one
 contract are rejected. The same slug in two different namespaces is not a
@@ -73,7 +77,8 @@ look identical.
 | `SubCellPosition` | `sub-cell` | Integral floor-local movement units; exactly four units per cell under `office-projection-v1` |
 | `FloorLocalCellPosition` | `floor-local-cell` | A versioned floor reference plus a `CellPosition` |
 | `FloorLocalSubCellPosition` | `floor-local-sub-cell` | A versioned floor reference plus a `SubCellPosition` |
-| `DefinitionLocalGeometryPosition` | `definition-local-geometry` | Definition-owned world/sub-cell geometry relative to its anchor basis |
+| `DefinitionLocalCellOffset` | `definition-local-cell` | Integral cell offset relative to a definition anchor; used by footprint, blocking, clearance, approaches, and waiting cells |
+| `DefinitionLocalSubCellOffset` | `definition-local-sub-cell` | Integral four-units-per-cell offset relative to a definition anchor; used by sockets and held-prop/actor attachment points |
 | `DefinitionLocalPixelPosition` | `definition-local-pixel` | Integer pixels in an authored source before export or atlas packing |
 | `SpritePixelPosition` | `sprite-pixel` | Integer pixels inside a sprite canvas or frame |
 | `ScreenPixelPosition` | `screen-pixel` | Finite derived logical pixels after projection and camera transformation |
@@ -118,12 +123,89 @@ placement remain Phase 2 behavior. A consumer must not replace these named
 operations with a cast, generic arithmetic helper, or component-specific
 offset.
 
-## Migration and diagnostics
+## W1.2 geometry and reference contract
 
-The V1 `position` shape remains frozen. A V1 value is rejected unless a future
-migration supplies form version, building/floor identity, coordinate-space kind,
-and projection context. It is never migrated by guessing from `worldId`,
-elevation, array position, or a field named `floor`.
+`geometry.schema.json` is the sole author of definition-local spatial truth. Its
+versioned record owns the anchor basis, cell footprint, blocking and clearance
+sets, supported world orientations, cardinal orientation transforms, named
+sub-cell sockets, and use-slot approach/waiting/facing/socket relations.
+Footprint, blocking, and clearance entries are `DefinitionLocalCellOffset`
+values. Socket positions are `DefinitionLocalSubCellOffset` values. A use slot
+uses cell offsets for actor approach and waiting candidates and typed socket
+IDs for actor or held-prop attachment. No geometry field is a pixel or a screen
+coordinate.
+
+W1.2 supports only the four cardinal transforms. `north`, `east`, `south`, and
+`west` mean respectively zero, one, two, and three clockwise quarter-turns
+from the definition's north basis. A geometry record must declare each
+supported orientation and its transform; an omitted orientation is not inferred
+and an arbitrary matrix is not accepted by this wave. The transform is applied
+around the anchor basis to every cell and sub-cell offset before world
+placement or agreement comparison.
+
+The versioned reference shape is `{ id: { kind, value }, version }` with a
+positive integer version. The stable graph key is
+`${kind}:${value}@${version}`. A bundle may contain a given key once only.
+Definitions, interactions, assets, animation sets/clips, connectivity
+families/variants, render parts, character profiles, and instances reference
+the exact version they consume. `latest`, omitted versions, kind substitutions,
+and silent version upgrades are rejected.
+
+`entity-definition-v2` owns semantic capabilities and references one geometry
+version. `entity-instance-v2` owns only identity, that definition reference,
+floor-local anchor, supported orientation, and semantic tags. Neither record
+may repeat footprint, clearance, socket, use-slot, render-pixel, or sprite
+facts. `definition-bundle-v1` is an immutable, explicitly enumerated set of
+these version-pinned records. W1.2 validates reference closure and ownership;
+floor/building topology, room capacity, canonical world bytes, and runtime
+simulation remain later waves.
+
+There is no hand-authored geometry duplicate. A permitted derived projection
+must carry its source geometry reference and a deterministic geometry digest;
+the agreement check compares it after the declared cardinal transform. A
+derived projection cannot add occupancy, clearance, sockets, or use slots.
+
+The V1 `position` shape and V1 repeated geometry fields remain frozen. A V1
+value is rejected unless a migration supplies the form version, a complete
+version-pinned geometry reference, coordinate-space/unit context,
+building/floor identity where required, and an agreement proof for every
+repeated field. Missing context uses `contract.migration-context-missing`;
+conflicting repeated values use `contract.migration-reference-conflict`.
+Migration never guesses from `worldId`, elevation, array position, or a field
+named `floor`, and it never silently promotes a V1 record to a V2 runtime
+record.
+
+The W1.2 world/reference graph owns these stable diagnostics:
+
+| Code | Meaning |
+| --- | --- |
+| `world.reference-duplicate` | A versioned graph key occurs more than once |
+| `world.reference-missing` | A declared reference has no matching bundle record |
+| `world.reference-kind-mismatch` | A reference ID kind does not match the declared family |
+| `world.reference-version-mismatch` | A consumer asks for a different version than the authoritative record |
+| `world.geometry-conflict` | A permitted derived geometry projection disagrees with authority |
+| `world.geometry-authority-violation` | A non-geometry record authors an owned spatial fact |
+| `world.orientation-unsupported` | An instance or projection requests an undeclared orientation |
+| `world.geometry-rotation-invalid` | A cardinal transform is not a valid integral rotation |
+| `world.socket-duplicate` | A geometry record repeats a socket ID |
+| `world.use-slot-duplicate` | A geometry record repeats a use-slot ID |
+| `world.render-attachment-cycle` | Render-part parent/dependency references contain a cycle |
+| `world.asset-occupancy-forbidden` | An asset or presentation record attempts to change simulation occupancy |
+
+Schema-shape and missing-version failures remain `contract.*`; the world
+package owns semantic graph, geometry, and presentation-ownership failures.
+Consumers preserve these codes and JSON pointers without recoding them.
+
+## W1.2 acceptance boundary
+
+The W1.2 acceptance record must show one valid immutable bundle, exact rejected
+evidence for every graph and ownership diagnostic above, reorder-invariant graph
+resolution, four cardinal transform round trips over asymmetric geometry, and
+fail-closed V1 migration examples. It does not claim a building/floor
+compiler, occupancy kernel, simulation reducer, renderer, pixel asset, or
+runtime manifest.
+
+## Migration and diagnostics
 
 W1.1 stable contract diagnostics are:
 

@@ -10,6 +10,11 @@
   reference; elevation never supplies the missing floor identity.
 - **Definition-local geometry**: world or sub-cell geometry relative to a
   definition's anchor basis; it is not a pixel coordinate.
+- **Definition-local cell offset**: an integral cell displacement from a
+  geometry anchor used for footprint, blocking, clearance, approach, or
+  waiting geometry.
+- **Definition-local sub-cell offset**: an integral four-units-per-cell
+  displacement from a geometry anchor used for sockets and attachment points.
 - **Definition-local pixel**: pixel coordinate in a versioned authored source
   before runtime export or atlas packing; it is not definition-local geometry,
   an exported sprite-frame pixel, or a projected coordinate.
@@ -61,6 +66,19 @@
 - **Adapter**: one-way translation from operational records into engine input.
 - **Definition**: immutable authored capability and geometry reference.
 - **Instance**: a version-pinned placed occurrence of a definition in one floor.
+- **Geometry reference**: a positive-version typed reference to the one record
+  that owns anchor, occupancy, clearance, orientation, socket, and use-slot
+  geometry.
+- **Definition bundle**: an immutable, explicitly enumerated set of
+  version-pinned definitions and their referenced contract records.
+- **Reference graph key**: `${kind}:${value}@${version}`, the uniqueness key
+  used during bundle closure; `latest` is never a key.
+- **Orientation transform**: one of the four cardinal quarter-turns applied
+  around a geometry anchor; W1.2 does not accept arbitrary matrices.
+- **Geometry digest**: deterministic evidence identifying the authoritative
+  geometry values used by an allowed derived projection.
+- **Render-part dependency**: a presentation-only parent or depth relation
+  between render parts; it is acyclic and cannot change world geometry.
 - **Runtime state**: mutable simulation state at one logical tick.
 - **Derived view**: disposable presentation data recomputed from runtime state.
 - **Typed identity**: an ID envelope whose namespace discriminator is part of
@@ -111,6 +129,16 @@
     mutation-sensitive reference carries an explicit positive version.
 18. Definition, instance, runtime state, and derived view are separate records;
     no presentation record can become an authority by being easier to render.
+19. Geometry is the sole owner of footprint, blocking, clearance, supported
+    orientation transforms, sockets, and use-slot geometry.
+20. Cell offsets and sub-cell offsets are distinct serialized spaces; a value
+    cannot change unit by field name or consumer convention.
+21. Every W1.2 graph reference is typed, positively versioned, and closed by
+    one immutable bundle record before runtime import.
+22. A derived geometry projection must identify its authority and digest; it
+    cannot add occupancy, clearance, sockets, or use slots.
+23. Render-part and connectivity references are presentation relations only;
+    they cannot mutate placement, occupancy, navigation, or interaction truth.
 
 ## Rule writing template
 

@@ -16,6 +16,13 @@ W1.1 identity and coordinate values use the discriminated shapes in
 coordinate carries an explicit versioned floor reference; an elevation or
 screen pixel cannot stand in for that reference.
 
+W1.2 definition and instance values carry exact version-pinned references. A
+definition bundle is immutable for its declared version and must close the
+geometry, interaction, socket, asset-family, animation, connectivity,
+character, render-part, and instance references it contains. A save or
+migration never upgrades a reference to `latest` or chooses a different
+geometry version because it is available.
+
 A building references independently versioned floor-local worlds. Saves and
 snapshots identify building, selected floor, floor version, world revision, and
 stable portal endpoint IDs explicitly. Elevation cannot stand in for a floor,
@@ -35,6 +42,13 @@ A migration accepts them only with explicit building, floor, site, bounds, and
 portal context that passes reference closure. It rejects missing or conflicting
 context instead of deriving floor identity from `worldId`, elevation, array
 position, or the V1 structure kind named `floor`.
+
+V1 entity, interaction, and asset records also remain frozen. Repeated geometry
+fields are migrated only when a complete version-pinned geometry reference and
+an agreement proof are supplied. Missing migration context emits
+`contract.migration-context-missing`; conflicting repeated geometry emits
+`contract.migration-reference-conflict`. The reader fails closed before
+materializing a V2 definition or instance.
 
 ## Snapshot rules
 
