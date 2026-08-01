@@ -1,6 +1,7 @@
 # Office Engine V2 Knowledge Completeness Audit
 
-Status: audited on 2026-07-31. Re-audit after every Phase 1 closure wave.
+Status: audited on 2026-07-31; T0 gate evidence re-audited on 2026-08-01.
+Re-audit after every Phase 1 closure wave.
 
 ## Purpose and authority
 
@@ -29,6 +30,10 @@ geometric probes. Three narrow areas are close enough for such probes:
 - the forward 2:1 projection;
 - a simple four-neighbor connectivity-mask resolver;
 - single-actor four-direction A*.
+
+T0 now passes: the foundation gate reports only the schema-shape, bounded
+semantic, and exact-diagnostic evidence that it executes. This correction does
+not change the no-go decision for persistent engine work or production content.
 
 The pack is a strong architectural foundation, but it is not yet the desired
 production system:
@@ -99,16 +104,16 @@ and performance. A schema alone is E3 at most.
 | Forward 2:1 projection | E4, narrow | Five integer-cell examples support a pure function only |
 | Sub-cell positions, inverse picking, and camera | E2 | Coordinate units, diamond-edge ambiguity, zoom, fit, crop, and negative bounds lack executable evidence |
 | Placement and occupancy | E4, narrow | A few rotation, clearance, and overlap cases do not cover the documented rules |
-| Surfaces, structures, zones, and cutaways | E3 | Fixtures are schema-shaped but most cases are not executed |
+| Surfaces, structures, zones, and cutaways | E3 overall with narrow E4 door traversal | Both definitions validate and all three structure-traversability cases execute, including collision independence from a cutaway visibility flag; cutaway rendering, zone semantics, structural normalization, and room integration remain absent |
 | Building, floors, exterior, and portals | E1 | No accepted decision, schema, migration, or two-floor contract fixture |
 | Room templates and scene composition | E1 | No capacity, adjacency, entrance, density, or deterministic compiler contract |
 | Connectivity | E4, narrow | Basic masks work; rotations, geometry, semantic state, and seam continuity are unproved |
 | Definition, instance, and runtime state | E1 | The layers are implied but not separately contracted or version-pinned |
 | Facilities and use slots | E1 | Capacity is named; slot allocation, capability, queue, and mutable state are absent |
-| Interaction lifecycle | E3, partial | Current check reduces only the last sample event; it does not simulate acquisition, use, cancellation, or cleanup |
+| Interaction lifecycle | E3-E4, narrow | All three sample cases execute through a shallow duration/cancel/timeout truth table; there is no reducer, acquisition, queue, or cleanup lifecycle proof |
 | Fixed ticks, commands, and phase order | E2 | Ten hertz is fixed; within-tick subsystem and same-tick command order are not |
 | Randomness and replay | E3, shape only | No reducer produces the sample hashes; canonical serialization and PRNG algorithm are open |
-| Single-actor navigation | E4, narrow | One path is executable, but its cost unit conflicts with the accepted decision |
+| Single-actor navigation | E4, narrow | The versioned path oracle executes six steps at 100 units per step and asserts final cost 600; movement, replanning, and crowds remain unproved |
 | Crowds, queues, fairness, and deadlocks | E1 | Current accepted navigation scope explicitly excludes the target crowd |
 | Jobs, intents, assignment, and preemption | E0-E1 | Operations status would otherwise become per-role animation special cases |
 | Save and migration | E2 | No migration registry, mid-action restore fixture, or executable round trip |
@@ -123,13 +128,38 @@ and performance. A schema alone is E3 at most.
 | Map authoring and import | E2 | No pinned profile, converter, canonical report, or invalid-input suite |
 | Depth and occlusion | E3-E4, narrow | Simple band sorting passes; tall and multipart objects can still occlude actors incorrectly |
 | Renderer | E2, intentionally deferred | No port, benchmark, lifecycle proof, or selection exists |
-| Diagnostics and debug tools | E2 | No diagnostic catalog/schema, replay diff, bug bundle, or trace viewer |
+| Diagnostics and debug tools | E2 plus narrow E4 checks | The three current rejected fixtures match exact stable codes; no diagnostic catalog/schema, replay diff, bug bundle, or trace viewer exists |
 | Accessibility and responsive behavior | E2 | No executable canvas-to-DOM semantic or 15-actor keyboard strategy |
 | Performance | E2 | No pinned pilot hardware and no measured numeric budget |
 | Complete runtime floor | E0 by design | The V2 mount is empty and no runtime assets are admitted |
 
 No whole domain is at production evidence. Existing `Ready for Phase` rows refer
 to bounded implementation authority, not readiness for the target floor.
+
+### T0 closure record — 2026-08-01
+
+The knowledge gate now computes and reports its evidence instead of relying on
+manual totals:
+
+- 68 inventoried knowledge files, 12 loaded schemas, and all 15 registered
+  fixture files producing explicit evidence;
+- all 26 declared semantic cases executed exactly once, including the three
+  previously skipped structure-traversability cases; the cutaway case proves
+  only that a presentation flag does not change collision;
+- the preserved navigation V1 fixture plus a new V2 oracle that asserts six
+  steps, cardinal and heuristic units of 100, and final cost 600;
+- exact matches for `asset.commercial-review`,
+  `connectivity.missing-variant`, and `world.occupied`;
+- adversarial evidence that a wrong expected diagnostic and an unhandled new
+  fixture case fail the harness;
+- per-invocation state isolation, proven by a failed temporary run followed by
+  a passing repository run in the same process;
+- schema-shaped replay evidence reported separately from reducer/replay
+  evidence, which remains zero; property/model evidence also remains zero until
+  its pinned dependency profile is admitted and executed.
+
+This is T0 only. It does not prove pointer picking, crowd behavior, real state
+hashes, a reproducible asset factory, or any target-floor behavior.
 
 ### Semantic schema smoke test
 
@@ -186,10 +216,12 @@ The furniture bible calls the first workstation east-west only, while the
 fixture includes north/south ends and a vertical middle. Art cannot be
 commissioned until the supported masks and rotations are one accepted set.
 
-### A* cost differs between decision and gate
+### A* cost correction — closed for the bounded T0 probe
 
-Decision 0004 fixes cardinal step cost at `100`; the current knowledge script
-adds `1`. The sample still selects the same route, hiding the disagreement.
+Decision 0004 fixes cardinal step cost at `100`. The preserved V1 path fixture
+is supplemented by `navigation-reservations-v2.json`, whose executable oracle
+uses the same unit for the Manhattan heuristic and asserts six steps and cost
+`600`. Later movement and crowd evidence remain separate gates.
 
 ### Replay hashes are placeholders
 
@@ -204,10 +236,11 @@ frame bounds, contact drift, socket alignment, connected seams, atlas overlap,
 clip completeness, review boards, or reproducible export. It also does not
 reject every orphan source, recipe, runtime, or registry file.
 
-### Rejected fixtures do not always prove the named diagnostic
+### Current rejected-fixture diagnostics — closed for T0 scope
 
-Some negative checks accept any schema failure rather than verifying the
-expected stable code. A failure for the wrong reason could therefore pass.
+All three current rejected fixtures now emit an independently derived stable
+diagnostic and compare it exactly with the expected code. Mutation tests prove
+that an invalid document with the wrong expected reason fails the harness.
 
 ### Operational stage ownership conflicts
 
@@ -531,7 +564,7 @@ Required tools before the target floor:
 
 ## Planned evidence volume
 
-The pack currently contains 67 inventoried knowledge files. Closing the target
+The pack currently contains 68 inventoried knowledge files. Closing the target
 does not require hundreds of pages, but it does require materially more
 machine-readable evidence. The current planning budget is:
 
@@ -549,17 +582,17 @@ validator is better than several overlapping documents.
 
 ## Required gate corrections
 
-The existing gates must become honest about what they prove:
+T0 completed the immediate gate-reporting corrections: every declared case is
+executed, rejected fixtures compare exact diagnostics, accepted A* cost units
+are asserted, and schema-shaped replay is reported separately from reducer
+evidence. The broader gates still require these corrections before their later
+promotions:
 
 - split forward projection from inverse picking and camera readiness;
 - split single-actor pathfinding from crowd readiness;
-- report schema-shaped traces separately from reducer replay evidence;
 - report basic manifest admission separately from a reproducible asset factory;
-- execute every declared fixture case instead of counting files;
-- verify the exact expected diagnostic code for rejected fixtures;
 - enforce collection uniqueness, bounds, reference closure, and cross-contract
   geometry agreement;
-- use the accepted A* cost units;
 - generate and independently verify real state hashes;
 - decode PNG pixels and implement every asset check promised by the canonical
   specification;

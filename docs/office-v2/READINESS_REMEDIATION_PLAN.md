@@ -205,6 +205,13 @@ Evidence and exit:
 
 ### W0.2 Correct test semantics before adding coverage
 
+Status: completed on 2026-08-01. The gate executes 26/26 declared semantic
+cases, matches all three current rejected diagnostics exactly, asserts the
+six-step A* cost of 600 under 100-unit step and heuristic costs, isolates every
+invocation, computes its report, and states that reducer/replay evidence is
+zero. The property/model profile is pinned but remains non-executable until its
+dependency admission is complete.
+
 Deliverables:
 
 - change the A* executable probe from cost `+1` to the accepted cost `+100`;

@@ -45,11 +45,14 @@ only the resulting state is rendered.
 
 The clean-room boundary, data-free development lab, repository guards,
 machine-readable readiness pack, accepted foundation decisions, and validation
-fixtures exist. The evidence audit is no-go for persistent engine work, the
-large floor, target crowds, renderer integration, and production art until the
-named Phase 1 closures pass. The production Office route remains an empty V2
-mount. Renderer selection is deliberately deferred behind the accepted
-benchmark decision; no production runtime art has been admitted.
+fixtures exist. T0 passed on 2026-08-01: every current fixture case executes,
+the three rejected fixtures match exact diagnostics, and the gate reports
+schema, semantic, and reducer/replay evidence separately. The evidence audit
+remains no-go for persistent engine work, the large floor, target crowds,
+renderer integration, and production art until the named Phase 1 closures
+pass. The production Office route remains an empty V2 mount. Renderer selection
+is deliberately deferred behind the accepted benchmark decision; no production
+runtime art has been admitted.
 
 ## Knowledge rule
 

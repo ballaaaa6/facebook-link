@@ -36,5 +36,8 @@ enabled as presentation tweaks.
 
 ## Evidence
 
-`fixtures/navigation-reservations.json`, Phase 3 path legality tests, and replay
-state hashes.
+`fixtures/navigation-reservations.json` preserves the V1 path and reservation
+examples. `fixtures/navigation-reservations-v2.json` asserts the accepted
+100-unit cardinal and Manhattan costs, six-step detour, and final cost 600.
+Phase 3 path legality tests and reducer-produced replay state hashes remain
+future evidence.
