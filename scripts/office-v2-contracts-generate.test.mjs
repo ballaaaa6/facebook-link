@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { cpSync, mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 import test from "node:test";
 import {
   checkGeneratedFiles,
@@ -12,7 +13,7 @@ import {
   writeGeneratedFiles,
 } from "./office-v2-contracts-generate.mjs";
 
-const repositoryRoot = new URL("..", import.meta.url).pathname.replace(/^\//u, "").replaceAll("%20", " ");
+const repositoryRoot = fileURLToPath(new URL("..", import.meta.url));
 
 test("common V2 generation is byte-identical across repeated renders", () => {
   assert.equal(generateCommonV2Source(repositoryRoot), generateCommonV2Source(repositoryRoot));
