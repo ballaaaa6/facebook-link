@@ -25,6 +25,7 @@ promote any target-floor, persistent-engine, renderer, crowd, or asset status.
 | Commands and state-machine lifecycle | `decisions/0005-simulation-state-machine.md` | snapshot and trace schemas are shape-only | placeholder hashes and shallow cancellation examples | T0 reports reducer/replay evidence as zero | Not ready |
 | Basic asset manifest admission | `decisions/0006-asset-authoring-export.md` | current asset and provenance schemas | valid and rejected manifest fixtures | path, hash, PNG header, dimensions, and uniqueness checks | Ready for gate development only |
 | Placement | world-model documents | entity and structure schemas | narrow placement fixture | T0 executes all four bounded rotation/clearance cases | Ready for a bounded algorithm probe only |
+| Geometry authority and reference closure | `decisions/0009-geometry-authority.md` | `geometry.schema.json`, `entity-definition-v2.schema.json`, `entity-instance.schema.json`, `definition-bundle.schema.json`, typed versioned refs | valid bundle plus dangling, wrong-kind, missing-version, version-mismatch, orientation, rotation, duplicate, agreement, asset-occupancy, and render-cycle rejections | schema/generator drift, public-world graph, pure transform/agreement, mutation, and preflight gates | W1.2 complete; no persistent world kernel, renderer, or runtime assets authorized |
 | Depth and occlusion | `decisions/0013-render-parts-and-proof-workstation.md` | render-part DAG contract remains W4.2 work | simple depth and structure fixtures | two band-sort cases; three separate door-traversability cases do not prove cutaway rendering or occlusion | Policy ratified; no multipart renderer or tall-object proof admitted |
 | Connectivity | `decisions/0013-render-parts-and-proof-workstation.md` | V1 connectivity plus bounded proof-workstation V2 definition | connected desk, proof workstation, and rejected mask fixtures | exact east-west mask set `0,2,8,10`; unsupported north-south and corner masks fail exactly | Ready for the bounded mask probe only; no runtime art admitted |
 | Operations adapter V1 boundary | operations document | operations snapshot schema | operations states fixture | explicitly schema-shape only | Ready for data-free lab only |
@@ -52,10 +53,10 @@ promote any target-floor, persistent-engine, renderer, crowd, or asset status.
 W0.1 package ownership and W0.3 contradiction resolution are complete. The P0
 register locks all twelve dispositions and preserves the original V1 JSON
 evidence by hash. W1.1 now closes the common identity/coordinate contract slice
-and its bounded pure transforms. W1.2 is in progress on the next authorized
-package: geometry authority and reference closure. Its canonical documents now
-lock cell/sub-cell geometry units, version-pinned graph keys, and fail-closed
-migration; schemas, fixtures, and semantic gates are still pending. Phase 1 then implements the
+and its bounded pure transforms. W1.2 closed geometry authority and reference
+closure on 2026-08-02: its cell/sub-cell units, version-pinned graph keys,
+schemas, fixtures, semantic linter, transforms, and mutation gates pass. W1.3
+is the next authorized package. Phase 1 then implements the
 target-specific contracts named by those accepted decisions. Existing narrow
 rows may be used for disposable or pure contract probes only. Persistent
 world/simulation code starts after Closure A and the applicable parts of
@@ -64,8 +65,8 @@ integration remain blocked until the minimum safe-to-produce gate passes.
 
 The promotion target remains T1 — Semantic Foundation in
 `READINESS_REMEDIATION_PLAN.md`. T0, W0.1, W0.3, and the bounded W1.1 slice are
-complete. T1 remains blocked until the remaining geometry, building,
-reference-closure, and deterministic scene-compilation evidence pass. Closure
-still reports reducer/replay `0`, property/model `0`, basic-only asset
+complete. T1 remains blocked until building/floor, room, and deterministic
+scene-compilation evidence pass. Closure still reports reducer/replay `0`,
+property/model `0`, basic-only asset
 admission, no renderer, no runtime asset manifest, and no new dependency
 admission.

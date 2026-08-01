@@ -42,11 +42,11 @@ probes named below.
 
 ## The next test, precisely
 
-W0.3 completed on 2026-08-02. At that handoff, the next authorized work package
-was **W1.1 — Branded identity and coordinate vocabulary**. W1.1 has now closed
-its common identity/coordinate contract slice; the next authorized package is
-W1.2. The next promotion target remains T1 and does not pass merely because a
-wave begins.
+W0.3 completed on 2026-08-02. W1.1 closed its common identity/coordinate
+contract slice, and W1.2 closed its geometry authority/reference-closure slice
+on 2026-08-02. The next authorized work package is **W1.3 — Building, floor,
+exterior, entrance, and portals**. The next promotion target remains T1 and
+does not pass merely because a wave begins.
 
 The next promotion target is **T1 — Semantic Foundation**. It is a headless
 contract/compiler test, not a visual prototype.
@@ -342,16 +342,17 @@ Evidence and exit:
   cross-space assignments;
 - `@affiliate-ops/office-v2-world` exposes only the named W1.1 pure operations
   `cellOriginToSubCell`, `splitSubCellPosition`, and the two facing transforms;
-- W1.2 owns the next geometry-authority and reference-closure contracts.
+- W1.2 owns the completed geometry-authority and reference-closure contracts;
+  W1.3 owns the next building/floor/exterior/portal contracts.
 
 ### W1.2 One geometry authority and reference closure
 
-Status: in progress. The contract boundary is locked in
+Status: completed on 2026-08-02. The contract boundary is locked in
 `DEFINITION_INSTANCE_RUNTIME_STATE.md`, `GLOSSARY_AND_INVARIANTS.md`, and the
 world, actor, asset, connectivity, render, and save documents. Schema,
 deterministic generation, bundle closure, geometry agreement, and rejection
-evidence are being added in dependency order. This status does not authorize a
-world kernel, renderer, runtime asset, or simulation implementation.
+evidence now pass in dependency order. This status does not authorize a world
+kernel, renderer, runtime asset, or simulation implementation.
 
 Machine contracts:
 
@@ -398,8 +399,25 @@ Rejected evidence:
 - invalid rotated clearance, duplicate socket, and render attachment cycle;
 - an asset attempting to change simulation occupancy.
 
-Exit: changing authoritative geometry either updates all derived evidence
-deterministically or fails before runtime import.
+Evidence and exit:
+
+- the knowledge gate inventories 89 files, loads 18 schemas, evidences 21/21
+  fixtures, executes 70/70 semantic cases, and compares 15 exact diagnostics;
+- the generated contract gate emits five deterministic modules and detects
+  external Office imports, cycles, descriptor collisions, and unexpected files;
+- the world package closes the canonical bundle as a 14-node/11-edge stable
+  graph, rejects unresolved or mismatched references, and keeps graph order
+  independent;
+- pure geometry tests cover all four cardinal round trips, asymmetric
+  footprint/clearance/socket/use-slot transforms, invalid rotations, duplicate
+  members, agreement conflicts, and asset occupancy rejection;
+- preflight and `npm run check` pass with historical hashes intact,
+  reducer/replay `0`, property/model `0`, basic-only asset admission, no
+  renderer, no runtime manifest, and no new dependency admission.
+
+Exit: changing authoritative geometry either updates all permitted derived
+evidence deterministically or fails before runtime import. W1.3 now owns
+building/floor/site/portal contracts; T1 remains blocked.
 
 ### W1.3 Building, floor, exterior, entrance, and portals
 
@@ -1159,8 +1177,9 @@ Each numbered unit remains independently green and reviewable. A unit may use
 several commits when generated evidence is large, but unrelated units are not
 combined merely to reduce commit count.
 
-Units 1–4 are complete through W0.3. Unit 5 is W1.1 and is the next authorized
-work package.
+Units 1–4 are complete through W0.3. Unit 5 (W1.1) and unit 6 (W1.2) are
+complete; unit 7 (W1.3 building/floor/exterior/portal contracts) is the next
+authorized work package.
 
 1. Register this remediation plan and repair knowledge inventory wording.
 2. Correct existing gate semantics and diagnostic assertions.
@@ -1169,9 +1188,9 @@ work package.
    winner-selection, and content-join ownership decisions; correct workflow and
    catalog sources.
 5. Add branded identities, coordinate contracts, generated types, and fixtures.
-6. Add scene canonicalization plus geometry/definition-bundle contracts and the
-   reference linter.
-7. Add building/floor/exterior/portal contracts and fixtures.
+6. Add geometry/definition-bundle contracts, the reference linter, cardinal
+   transforms, and geometry-agreement evidence.
+7. Add building/floor/exterior/entrance/portal contracts and migration fixtures.
 8. Add room-template/circulation contracts and validator; approve the geometric
    envelope, entrance, core, adjacency, and focal hierarchy.
 9. Add scene-plan compiler and the geometric target-floor fixture; pass T1.

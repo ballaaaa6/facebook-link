@@ -198,12 +198,12 @@ Consumers preserve these codes and JSON pointers without recoding them.
 
 ## W1.2 acceptance boundary
 
-The W1.2 acceptance record must show one valid immutable bundle, exact rejected
-evidence for every graph and ownership diagnostic above, reorder-invariant graph
+The W1.2 acceptance record now shows one valid immutable bundle, exact rejected
+evidence for the graph and ownership diagnostics above, reorder-invariant graph
 resolution, four cardinal transform round trips over asymmetric geometry, and
-fail-closed V1 migration examples. It does not claim a building/floor
+fail-closed migration/ownership mutations. It does not claim a building/floor
 compiler, occupancy kernel, simulation reducer, renderer, pixel asset, or
-runtime manifest.
+runtime manifest. W1.3 owns the next topology contracts.
 
 ## Migration and diagnostics
 

@@ -34,8 +34,10 @@ fixtures fail for their declared reason.
 
 ## Phase 1 — First-floor knowledge and contract closure
 
-Status: in progress. W1.1 is complete and W1.2 contract locking is underway;
-the target brief exists and the remaining contracts do not.
+Status: in progress. W1.1 and W1.2 are complete for their bounded
+identity/coordinate and geometry/reference slices; W1.3 is the next package.
+The target brief exists and the remaining building, room, compiler, simulation,
+renderer, and asset contracts do not.
 `KNOWLEDGE_COMPLETENESS_AUDIT.md` is the evidence inventory for this phase. Its
 P0 contradictions must close before persistent engine implementation, and its
 minimum safe-to-produce gate must pass before the large floor or any art batch.

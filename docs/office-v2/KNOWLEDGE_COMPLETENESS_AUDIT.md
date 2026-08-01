@@ -2,7 +2,7 @@
 
 Status: audited on 2026-07-31; T0 re-audited on 2026-08-01; W0.3
 contradiction closure and the bounded W1.1 contract slice re-audited on
-2026-08-02; W1.2 contract boundary locked on 2026-08-02.
+2026-08-02; W1.2 contract closure re-audited on 2026-08-02.
 Re-audit after every Phase 1 closure wave.
 
 ## Purpose and authority
@@ -35,13 +35,25 @@ geometric probes. Three narrow areas are close enough for such probes:
 
 T0 now passes, W0.3 closes the twelve decision-level P0 contradictions, and the
 bounded W1.1 identity/coordinate contract slice passes its schema, exact
-diagnostic, generated-drift, compile-time, and pure-transform gates. The W1.2
-canonical documents now lock one geometry authority, definition-local cell and
-sub-cell units, version-pinned reference keys, and fail-closed migration; its
-schemas and semantic evidence are still being implemented. The gates report
-only the schema-shape, bounded semantic, exact-diagnostic, and resolution
-evidence they execute. This does not change the no-go decision for persistent
-engine work or production content. T1 remains blocked.
+diagnostic, generated-drift, compile-time, and pure-transform gates. W1.2 now
+also passes its geometry/bundle schemas, public-world reference graph,
+cardinal transforms, geometry agreement, and exact rejection/drift gates. The
+current evidence is 89 files, 18 schemas, 21 fixtures, 70/70 semantic cases,
+and 15 exact diagnostics. The gates report only the schema-shape, bounded
+semantic, exact-diagnostic, and resolution evidence they execute. This does not
+change the no-go decision for persistent engine work or production content;
+W1.3 is next and T1 remains blocked.
+
+### W1.2 closure record
+
+W1.2 is complete for the bounded geometry/reference contract slice. The record
+contains one valid immutable definition bundle, a reference-only unresolved
+bundle mutation, typed geometry/entity/instance/bundle schemas, deterministic
+generated modules, a public-world reference graph, cardinal transform and
+agreement probes, exact ownership diagnostics, and a preflight mutation suite.
+The closure proves contract and pure-probe behavior only. It does not admit a
+building/floor envelope, persistent occupancy kernel, simulation reducer,
+renderer, runtime asset, or production dependency.
 
 The pack is a strong architectural foundation, but it is not yet the desired
 production system:
@@ -182,14 +194,14 @@ dispositions executable through `registers/p0-resolution-register.json` and
 - all accepted decision references exist and carry accepted status;
 - the exact 27 JSON schemas and fixtures that predate W0.3 are pinned by raw
   SHA-256, so changing either registered hashes or historical bytes fails;
-- the knowledge inventory now contains 79 files, including 13 schemas and 17
-  fixtures, while all 29 bounded semantic cases and four exact rejected
-  diagnostics continue to execute;
+- the knowledge inventory now contains 89 files, including 18 schemas and 21
+  fixtures; the knowledge gate executes all 70/70 declared semantic cases and
+  compares 15 exact rejected diagnostics;
 - reducer/replay evidence remains `0`, property/model evidence remains `0`,
   asset admission remains `basic-only`, renderer admission remains `none`,
   runtime asset manifests remain `0`, and no dependency is admitted;
-- W1.1 was the next package at the W0.3 handoff; its bounded contract slice is
-  now complete, while T1 remains blocked.
+- W1.1 and W1.2 are complete for their bounded contract slices; W1.3 is next,
+  while T1 remains blocked.
 
 This is resolution evidence, not world, simulation, renderer, or production-art
 evidence. The V1 files in the historical set remain frozen.

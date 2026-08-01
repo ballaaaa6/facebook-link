@@ -63,13 +63,15 @@ and the historical V1 evidence set is hash-locked. W1.1 completed on
 2026-08-02 for the common identity/coordinate contract slice: the V2 schema,
 valid and rejected fixtures, exact diagnostics, deterministic generated types,
 compile-time namespace negatives, and renderer-neutral facing and cell/sub-cell
-transforms are now gated. No persistent world or simulation behavior, renderer,
-runtime asset, or new dependency was admitted; reducer/replay and property/model
-evidence remain zero, and T1 remains blocked. W1.2 is now in progress: its
-geometry authority, definition-local cell/sub-cell units, version-pinned
-reference key, and fail-closed migration boundary are locked in the canonical
-documents. Schema and semantic evidence are still required before W1.2 can
-close.
+transforms are now gated. W1.2 completed on 2026-08-02: geometry,
+entity-definition, entity-instance, and definition-bundle schemas; deterministic
+multi-schema generation; public-package reference closure; cardinal geometry
+transforms and agreement; and exact rejection/drift evidence are now gated.
+The current evidence is 89 inventoried files, 18 schemas, 21 fixtures, 70/70
+semantic cases, and 15 exact diagnostics. No persistent world or simulation
+behavior, renderer, runtime asset, or new dependency was admitted;
+reducer/replay and property/model evidence remain zero, and T1 remains blocked.
+W1.3 is the next authorized package.
 
 ## Knowledge rule
 
@@ -131,5 +133,7 @@ must not restate the canonical documents.
   evidence gate
 - `scripts/office-v2-boundary-check.mjs`: package and reverse-consumer import gate
 - `scripts/office-v2-asset-check.mjs`: runtime asset admission gate
+- `scripts/office-v2-world-reference-evidence.mjs`: public world reference-closure adapter
+- `scripts/office-v2-world-w1-2-evidence.test.mjs`: W1.2 rejection and drift evidence
 - `scripts/office-v2-clean-room-check.mjs`: repository isolation guard
 - `.agents/skills/build-office-v2-engine`: repository-scoped workflow router
