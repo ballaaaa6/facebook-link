@@ -45,6 +45,11 @@ executable, or admitted through `DEPENDENCY_LEDGER.md`. Before its first
 executable use, the dependency record and lockfile must satisfy the complete
 admission checklist.
 
+Likewise, a schema-valid trace containing literal digest strings is not reducer
+or replay evidence. Accepted replay evidence starts only when the real reducer
+produces state through the Decision 0011 canonical pipeline and an independent
+verifier reproduces the bytes and SHA-256 envelope digest.
+
 ## Responsive acceptance
 
 The production shell is reviewed at 1440x900, 1024x768, and 390x844. There must

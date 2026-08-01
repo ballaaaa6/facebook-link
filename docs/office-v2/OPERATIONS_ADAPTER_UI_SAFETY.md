@@ -33,6 +33,11 @@ The adapter declares `live`, `stale`, `reconnecting`, or `unavailable` with an
 observed time. Stale and unavailable are visible states, not converted to idle.
 Reconnect input is idempotent and cannot replay an external action.
 
+When operations payloads require canonical digests, the operations adapter owns
+their semantic normalization and declares every ordered or unordered
+collection. It reuses the shared duplicate-aware canonical byte and SHA-256
+envelope primitive; the Office renderer cannot choose the digest projection.
+
 ## Workflow choreography
 
 A world handoff is emitted only after its durable transition has been observed.

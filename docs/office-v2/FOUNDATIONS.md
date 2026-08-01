@@ -54,6 +54,12 @@ not permission to hard-code placement offsets throughout components.
 - Give every command an identifier and make duplicate application harmless.
 - Serialize a complete small-scene snapshot for test fixtures and bug reports.
 
+Deterministic bytes use two explicit transforms: the owning domain first
+normalizes only collections declared unordered, then the shared contract
+utility produces RFC 8785-compatible UTF-8 and a domain/version-separated
+SHA-256 digest. A raw duplicate-key check occurs before JSON materialization;
+ordered arrays are never sorted by the serializer.
+
 The first actor state machine needs only `idle`, `planning`, `moving`,
 `interacting`, and `blocked`. More states are added only when a visible behavior
 requires them.

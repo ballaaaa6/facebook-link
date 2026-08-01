@@ -39,11 +39,22 @@ position, or the V1 structure kind named `floor`.
   state can cross a floor boundary.
 - Do not store renderer objects, DOM references, decoded textures, functions,
   wall-clock timers, or screen pixels.
-- Canonical serialization sorts maps and visible collections by declared keys.
-- Hashes use the canonical UTF-8 JSON representation.
+- A domain-owned semantic normalizer stable-sorts only collections explicitly
+  declared unordered and preserves all ordered arrays.
+- A shared duplicate-aware loader rejects duplicate keys before materializing
+  hashed JSON.
+- Canonical serialization uses RFC 8785-compatible UTF-8 bytes, UTF-16
+  code-unit property ordering, no Unicode normalization, and the accepted
+  negative-zero, surrogate, finite-number, and safe-integer rules.
+- Hashes use SHA-256 over an explicit domain/version envelope, not a naked
+  payload or an implementation's ordinary `JSON.stringify` result.
 
 ## Failure reporting
 
 Migration failures name the form, source version, target version, JSON pointer,
 and reason. Replay failures additionally name the first divergent tick and
 subsystem.
+
+A historical placeholder digest is not migrated into evidence. A new version
+must normalize and serialize through the accepted pipeline and reproduce its
+digest independently or fail closed.

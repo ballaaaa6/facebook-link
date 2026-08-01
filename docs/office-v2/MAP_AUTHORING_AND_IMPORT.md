@@ -27,6 +27,12 @@ The converter records source path, source hash, tool version, converter version,
 output hash, and diagnostics. Conversion is deterministic and never overwrites
 the source.
 
+Canonical world output uses Decision 0011's pipeline. The world compiler owns
+which collections are semantically unordered and their stable keys. The shared
+contract utility rejects duplicate raw keys, preserves ordered arrays, emits
+RFC 8785-compatible UTF-8 bytes, and hashes a world-domain/version envelope.
+Neither editor array order nor a blanket recursive array sort owns semantics.
+
 ## Tiled boundary
 
 Tiled may later author floors, structural edges, zones, entity instances, and
@@ -46,6 +52,8 @@ with no canonical schema owner.
 ## Required evidence
 
 - Reordering editor objects produces byte-identical canonical output.
+- Reordering a declared ordered collection changes semantic output rather than
+  being silently normalized away.
 - Source and output hashes appear in the conversion report.
 - Invalid editor input names the source object and rejected property.
 - Importing a map never registers or executes an external connector.

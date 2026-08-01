@@ -41,6 +41,12 @@
 - **Neighbor mask**: encoded compatible neighbors used to select a visual variant.
 - **Snapshot**: complete serializable simulation state at one logical tick.
 - **Trace**: ordered commands, inputs, and snapshots used for deterministic replay.
+- **Semantic normalizer**: domain-owned pure transform that stable-sorts only
+  collections explicitly declared unordered.
+- **Canonical bytes**: RFC 8785-compatible UTF-8 representation after semantic
+  normalization; object keys are ordered and arrays are preserved.
+- **State hash**: lowercase SHA-256 digest of a canonical domain/version
+  envelope and its approved hashable payload.
 - **Adapter**: one-way translation from operational records into engine input.
 
 ## Non-interchangeable concepts
@@ -76,6 +82,9 @@
     capacity, or simulation state.
 12. Portal relations use stable endpoint IDs and never derive identity from
     elevation or screen position.
+13. Duplicate raw keys, lone surrogates, non-finite numbers, and unsafe integers
+    fail before canonical hashing; negative zero normalizes to zero.
+14. Canonical serialization never invents collection order semantics.
 
 ## Rule writing template
 
