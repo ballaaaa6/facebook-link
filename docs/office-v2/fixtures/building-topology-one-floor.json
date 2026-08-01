@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "office-building-topology-v1",
+  "building": { "id": { "kind": "building", "value": "hq" }, "version": 1 },
+  "siteEnvelope": {
+    "id": "hq-site",
+    "version": 1,
+    "presentationOnly": true,
+    "contextKinds": ["backdrop", "curb", "planting", "road", "sidewalk", "street-furniture"],
+    "contextCells": [
+      { "kind": "backdrop", "coordinate": { "space": "site-cell", "x": 0, "y": 0 } },
+      { "kind": "street-furniture", "coordinate": { "space": "site-cell", "x": 2, "y": 1 } },
+      { "kind": "sidewalk", "coordinate": { "space": "site-cell", "x": 2, "y": 2 } },
+      { "kind": "sidewalk", "coordinate": { "space": "site-cell", "x": 2, "y": 3 } },
+      { "kind": "sidewalk", "coordinate": { "space": "site-cell", "x": 2, "y": 4 } },
+      { "kind": "sidewalk", "coordinate": { "space": "site-cell", "x": 2, "y": 5 } },
+      { "kind": "planting", "coordinate": { "space": "site-cell", "x": 9, "y": 2 } },
+      { "kind": "planting", "coordinate": { "space": "site-cell", "x": 9, "y": 3 } },
+      { "kind": "planting", "coordinate": { "space": "site-cell", "x": 9, "y": 4 } },
+      { "kind": "planting", "coordinate": { "space": "site-cell", "x": 9, "y": 5 } },
+      { "kind": "curb", "coordinate": { "space": "site-cell", "x": 1, "y": 6 } },
+      { "kind": "road", "coordinate": { "space": "site-cell", "x": 2, "y": 6 } },
+      { "kind": "road", "coordinate": { "space": "site-cell", "x": 3, "y": 6 } },
+      { "kind": "road", "coordinate": { "space": "site-cell", "x": 4, "y": 6 } },
+      { "kind": "road", "coordinate": { "space": "site-cell", "x": 5, "y": 6 } },
+      { "kind": "road", "coordinate": { "space": "site-cell", "x": 6, "y": 6 } },
+      { "kind": "road", "coordinate": { "space": "site-cell", "x": 7, "y": 6 } },
+      { "kind": "road", "coordinate": { "space": "site-cell", "x": 8, "y": 6 } }
+    ]
+  },
+  "floors": [
+    {
+      "floor": { "id": { "kind": "floor", "value": "ground-floor" }, "version": 1 },
+      "world": { "id": "hq-ground-floor", "version": 1 },
+      "coordinateSpace": "floor-local",
+      "bounds": { "width": 12, "depth": 8, "maxElevation": 2 },
+      "siteFootprint": [
+        { "space": "site-cell", "x": 3, "y": 2 },
+        { "space": "site-cell", "x": 4, "y": 2 },
+        { "space": "site-cell", "x": 5, "y": 2 },
+        { "space": "site-cell", "x": 6, "y": 2 },
+        { "space": "site-cell", "x": 7, "y": 2 },
+        { "space": "site-cell", "x": 8, "y": 2 },
+        { "space": "site-cell", "x": 3, "y": 3 },
+        { "space": "site-cell", "x": 4, "y": 3 },
+        { "space": "site-cell", "x": 5, "y": 3 },
+        { "space": "site-cell", "x": 6, "y": 3 },
+        { "space": "site-cell", "x": 7, "y": 3 },
+        { "space": "site-cell", "x": 8, "y": 3 },
+        { "space": "site-cell", "x": 3, "y": 4 },
+        { "space": "site-cell", "x": 4, "y": 4 },
+        { "space": "site-cell", "x": 5, "y": 4 },
+        { "space": "site-cell", "x": 6, "y": 4 },
+        { "space": "site-cell", "x": 7, "y": 4 },
+        { "space": "site-cell", "x": 8, "y": 4 },
+        { "space": "site-cell", "x": 3, "y": 5 },
+        { "space": "site-cell", "x": 4, "y": 5 },
+        { "space": "site-cell", "x": 5, "y": 5 },
+        { "space": "site-cell", "x": 6, "y": 5 },
+        { "space": "site-cell", "x": 7, "y": 5 },
+        { "space": "site-cell", "x": 8, "y": 5 }
+      ],
+      "identitySource": "declared"
+    }
+  ],
+  "portals": [
+    {
+      "id": "main-entrance",
+      "version": 1,
+      "kind": "entrance",
+      "ownerFloor": { "id": { "kind": "floor", "value": "ground-floor" }, "version": 1 },
+      "direction": "bidirectional",
+      "endpoint": {
+        "id": "ground-entrance",
+        "version": 1,
+        "ownerKind": "floor",
+        "floor": { "id": { "kind": "floor", "value": "ground-floor" }, "version": 1 },
+        "coordinate": {
+          "space": "floor-local-cell",
+          "floor": { "id": { "kind": "floor", "value": "ground-floor" }, "version": 1 },
+          "coordinate": { "space": "cell", "x": 0, "y": 3, "elevation": 0 }
+        }
+      },
+      "landing": {
+        "id": "site-entrance",
+        "version": 1,
+        "ownerKind": "site",
+        "site": { "id": "hq-site", "version": 1 },
+        "siteCoordinate": { "space": "site-cell", "x": 2, "y": 3 }
+      }
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "schema": "building.schema.json",
+  "baseFixture": "fixtures/building-topology-one-floor.json",
+  "mutation": "set-floors[0].identitySource=elevation",
+  "expectedFailure": "world.elevation-floor-inference"
+}

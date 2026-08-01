@@ -72,6 +72,13 @@ floor selects another independently versioned floor-local world; elevation and
 camera Y never select a floor. Presentation-only site bounds may inform framing
 but cannot expand world occupancy or picking into an indoor route.
 
+The W1.3 topology contract supplies the building reference, selected floor
+reference, floor-local bounds, site-envelope relation, and stable portal
+endpoints used by that selection. A future floor may reuse the same numeric
+cell coordinates because the versioned floor reference remains part of the
+identity. Site sidewalk, curb, road, planting, and backdrop cells may frame
+the camera but are never floor-local picking or occupancy cells.
+
 - Pan and zoom are bounded and deterministic for a given viewport.
 - Zoom limits preserve legibility and prevent texture over-scaling.
 - Fit-to-world adds documented safe margins.

@@ -1,0 +1,6 @@
+{
+  "schema": "building.schema.json",
+  "baseFixture": "fixtures/building-topology-one-floor.json",
+  "mutation": "set-incomplete-v1-migration-context",
+  "expectedFailure": "contract.migration-context-missing"
+}
