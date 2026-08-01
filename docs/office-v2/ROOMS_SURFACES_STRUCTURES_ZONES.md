@@ -48,4 +48,63 @@ projection, occupancy, or sprite depth.
 - Overlapping zones resolve through an explicit priority rule or are rejected.
 - Room fixtures cover edges, corners, door transitions, missing floors, and
   camera-facing cutaways.
+
+## W1.4 room-template contract
+
+`schemas/room-template.schema.json` owns the versioned composition contract for
+one room inside one explicit floor reference. The room template is an
+authoring and validation record only; it does not create a persistent world,
+simulation actor, queue, reservation, facility capability, renderer, or asset.
+
+The template contains:
+
+- room bounds, legal entrances, and floor-local cell coordinates;
+- required or optional facility groups with minimum and maximum counts;
+- declared minimum and maximum actor capacity, ten assigned workstation slots,
+  and five reserved actor slots in the ground-floor target;
+- facility, actor, and prop placement slots with anchor, orientation, occupied
+  cells, clearance cells, approach cells, and an explicit navigation impact;
+- circulation aisles and minimum width;
+- adjacency constraints between facility groups;
+- primary and secondary focal points;
+- density bands and deterministic decoration slots.
+
+Placement-slot envelopes describe room composition reservations. They do not
+replace the W1.2 versioned geometry authority for an entity definition. A
+future scene compiler must reconcile a slot with the referenced definition
+geometry before creating a world instance.
+
+The pure room validator derives blocking occupancy from circulation and slots
+whose navigation impact is `blocking`. `non-blocking` props are not navigation
+or occupancy truth. Decoration slots must have `none` navigation impact and
+empty occupied, clearance, and approach sets; moving or reordering them cannot
+change the derived navigation fingerprint.
+
+An entrance is valid only when its cell and at least one approach cell are
+inside the room and unblocked. Every facility in a required group must expose
+an approach cell reachable from a legal entrance. Aisles must meet the
+declared minimum width. Prop envelopes may not overlap. Adjacency constraints
+are checked over facility anchors, and density-band limits are checked over
+decoration slots.
+
+The stable semantic diagnostics are:
+
+| Code | Meaning |
+| --- | --- |
+| `room.entrance-blocked` | A legal entrance has no usable entry cell |
+| `room.required-facility-unreachable` | A required facility has no reachable approach |
+| `room.capacity-insufficient` | Declared capacity or required group count is not supplied |
+| `room.capacity-overflow` | Actor, workstation, facility, or exclusive ownership limits are exceeded |
+| `room.circulation-too-narrow` | An aisle is below the room minimum or blocked |
+| `room.adjacency-illegal` | A facility-group adjacency relation is not satisfied |
+| `room.prop-slot-overlap` | Two prop placement envelopes share a cell |
+| `room.decoration-navigation-conflict` | Decoration declares navigation/occupancy impact or invalid density placement |
+
+The W1.4 valid ground-floor fixture proves ten assigned workstations, five
+reserved actor slots, work/review/reliability/pantry/lounge groups, legal
+entrance reachability, deterministic reorder behavior, and decoration
+invariance. Rejected room fixtures cover each diagnostic above. The contract
+version is `office-room-template-v1`; changing capacity, slot semantics,
+coordinate ownership, or diagnostic meaning requires a new version and an
+explicit migration rule.
 - Site-envelope context cannot become a room surface, route, or placement cell.

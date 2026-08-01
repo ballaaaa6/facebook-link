@@ -47,3 +47,14 @@ export type {
   TopologyBounds,
   VersionedSlugReference,
 } from "./building-topology-validation.ts";
+export {
+  deriveRoomNavigation,
+  roomTemplateFingerprint,
+  validateRoomTemplate,
+} from "./room-template-validation.ts";
+export type {
+  RoomNavigationProjection,
+  RoomTemplateDiagnostic,
+  RoomTemplateDiagnosticCode,
+  RoomTemplateValidationResult,
+} from "./room-template-validation.ts";

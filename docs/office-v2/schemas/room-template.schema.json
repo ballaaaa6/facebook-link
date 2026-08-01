@@ -1,0 +1,292 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/room-template.schema.json",
+  "title": "Office V2 Room Template",
+  "$defs": {
+    "roomTemplateDocument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "room",
+        "floor",
+        "bounds",
+        "entrances",
+        "facilityGroups",
+        "capacity",
+        "actorSlots",
+        "propSlots",
+        "circulation",
+        "adjacencyConstraints",
+        "focalPoints",
+        "densityBands",
+        "decorationSlots"
+      ],
+      "properties": {
+    "schemaVersion": { "const": "office-room-template-v1" },
+    "room": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/roomReference" },
+    "floor": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/floorReference" },
+    "bounds": { "$ref": "#/$defs/roomBounds" },
+    "entrances": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/entrance" }
+    },
+    "facilityGroups": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/facilityGroup" }
+    },
+    "capacity": { "$ref": "#/$defs/capacity" },
+    "actorSlots": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/actorSlot" }
+    },
+    "propSlots": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/propSlot" }
+    },
+    "circulation": { "$ref": "#/$defs/circulation" },
+    "adjacencyConstraints": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/adjacencyConstraint" }
+    },
+    "focalPoints": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/focalPoint" }
+    },
+    "densityBands": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/densityBand" }
+    },
+    "decorationSlots": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/decorationSlot" }
+    }
+      }
+    },
+    "nonNegativeInteger": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "positiveInteger": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "slug": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+    "floorCell": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/floorLocalCellPosition" },
+    "worldFacing": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/worldFacing" },
+    "roomBounds": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["origin", "width", "depth"],
+      "properties": {
+        "origin": { "$ref": "#/$defs/floorCell" },
+        "width": { "$ref": "#/$defs/positiveInteger" },
+        "depth": { "$ref": "#/$defs/positiveInteger" }
+      }
+    },
+    "placementSlot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "anchor",
+        "orientation",
+        "occupiedCells",
+        "clearanceCells",
+        "approachCells",
+        "navigationImpact"
+      ],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "anchor": { "$ref": "#/$defs/floorCell" },
+        "orientation": { "$ref": "#/$defs/worldFacing" },
+        "occupiedCells": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/floorCell" }
+        },
+        "clearanceCells": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/floorCell" }
+        },
+        "approachCells": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/floorCell" }
+        },
+        "navigationImpact": {
+          "enum": ["blocking", "non-blocking", "none"]
+        }
+      }
+    },
+    "entrance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "cell", "approachCells", "legal"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "cell": { "$ref": "#/$defs/floorCell" },
+        "approachCells": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/floorCell" }
+        },
+        "kind": { "enum": ["main", "service", "emergency"] },
+        "legal": { "type": "boolean" }
+      }
+    },
+    "facilityGroup": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "semantic", "requirement", "minCount", "maxCount", "facilities"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "semantic": {
+          "enum": ["work", "review", "reliability", "pantry", "lounge", "other"]
+        },
+        "requirement": { "enum": ["required", "optional"] },
+        "minCount": { "$ref": "#/$defs/nonNegativeInteger" },
+        "maxCount": { "$ref": "#/$defs/nonNegativeInteger" },
+        "facilities": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/facilitySlot" }
+        }
+      }
+    },
+    "facilitySlot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "placementSlot"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "placementSlot": { "$ref": "#/$defs/placementSlot" }
+      }
+    },
+    "capacity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["minActors", "maxActors", "assignedWorkstations", "reservedActorSlots"],
+      "properties": {
+        "minActors": { "$ref": "#/$defs/nonNegativeInteger" },
+        "maxActors": { "$ref": "#/$defs/nonNegativeInteger" },
+        "assignedWorkstations": { "$ref": "#/$defs/nonNegativeInteger" },
+        "reservedActorSlots": { "$ref": "#/$defs/nonNegativeInteger" }
+      }
+    },
+    "actorSlot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "assignment", "placementSlotId"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "assignment": { "enum": ["assigned", "reserved"] },
+        "roleId": { "$ref": "#/$defs/slug" },
+        "facilityId": { "$ref": "#/$defs/slug" },
+        "placementSlotId": { "$ref": "#/$defs/slug" }
+      }
+    },
+    "propSlot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "placementSlot"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "kind": { "enum": ["operational", "decorative"] },
+        "densityBandId": { "$ref": "#/$defs/slug" },
+        "placementSlot": { "$ref": "#/$defs/placementSlot" }
+      }
+    },
+    "circulation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["minimumWidthCells", "aisles", "blockedCells"],
+      "properties": {
+        "minimumWidthCells": { "$ref": "#/$defs/positiveInteger" },
+        "aisles": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/aisle" }
+        },
+        "blockedCells": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/floorCell" }
+        }
+      }
+    },
+    "aisle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "cells", "widthCells"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "cells": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/floorCell" }
+        },
+        "widthCells": { "$ref": "#/$defs/positiveInteger" }
+      }
+    },
+    "adjacencyConstraint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "leftGroupId", "rightGroupId", "relation", "minDistanceCells"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "leftGroupId": { "$ref": "#/$defs/slug" },
+        "rightGroupId": { "$ref": "#/$defs/slug" },
+        "relation": { "enum": ["adjacent", "separated"] },
+        "minDistanceCells": { "$ref": "#/$defs/nonNegativeInteger" },
+        "maxDistanceCells": { "$ref": "#/$defs/nonNegativeInteger" }
+      }
+    },
+    "focalPoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "position", "kind", "priority"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "position": { "$ref": "#/$defs/floorCell" },
+        "kind": { "enum": ["primary", "secondary"] },
+        "priority": { "$ref": "#/$defs/positiveInteger" }
+      }
+    },
+    "densityBand": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "region", "level", "maxDecorationSlots"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "region": { "$ref": "#/$defs/region" },
+        "level": { "enum": ["sparse", "balanced", "dense"] },
+        "maxDecorationSlots": { "$ref": "#/$defs/nonNegativeInteger" }
+      }
+    },
+    "region": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["origin", "width", "depth"],
+      "properties": {
+        "origin": { "$ref": "#/$defs/floorCell" },
+        "width": { "$ref": "#/$defs/positiveInteger" },
+        "depth": { "$ref": "#/$defs/positiveInteger" }
+      }
+    },
+    "decorationSlot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "densityBandId", "placementSlot"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "densityBandId": { "$ref": "#/$defs/slug" },
+        "placementSlot": { "$ref": "#/$defs/placementSlot" }
+      }
+    }
+  },
+  "$ref": "#/$defs/roomTemplateDocument"
+}

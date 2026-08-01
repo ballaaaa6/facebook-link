@@ -1,0 +1,384 @@
+{
+  "schemaVersion": "office-room-template-v1",
+  "room": {
+    "id": { "kind": "room", "value": "hq-ground-floor-operations" },
+    "version": 1
+  },
+  "floor": {
+    "id": { "kind": "floor", "value": "hq-ground-floor" },
+    "version": 1
+  },
+  "bounds": {
+    "origin": {
+      "space": "floor-local-cell",
+      "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 },
+      "coordinate": { "space": "cell", "x": 0, "y": 0, "elevation": 0 }
+    },
+    "width": 32,
+    "depth": 24
+  },
+  "entrances": [
+    {
+      "id": "main-entrance",
+      "kind": "main",
+      "legal": true,
+      "cell": {
+        "space": "floor-local-cell",
+        "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 },
+        "coordinate": { "space": "cell", "x": 2, "y": 2, "elevation": 0 }
+      },
+      "approachCells": [
+        {
+          "space": "floor-local-cell",
+          "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 },
+          "coordinate": { "space": "cell", "x": 3, "y": 2, "elevation": 0 }
+        }
+      ]
+    }
+  ],
+  "facilityGroups": [
+    {
+      "id": "workstations",
+      "semantic": "work",
+      "requirement": "required",
+      "minCount": 10,
+      "maxCount": 10,
+      "facilities": [
+        {
+          "id": "market-scout-facility",
+          "placementSlot": {
+            "id": "market-scout-station-slot",
+            "anchor": { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 6, "y": 8, "elevation": 0 } },
+            "orientation": "north",
+            "occupiedCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 6, "y": 8, "elevation": 0 } }],
+            "clearanceCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 6, "y": 7, "elevation": 0 } }],
+            "approachCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 6, "y": 9, "elevation": 0 } }],
+            "navigationImpact": "blocking"
+          }
+        },
+        {
+          "id": "product-ranker-facility",
+          "placementSlot": {
+            "id": "product-ranker-station-slot",
+            "anchor": { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 8, "y": 8, "elevation": 0 } },
+            "orientation": "north",
+            "occupiedCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 8, "y": 8, "elevation": 0 } }],
+            "clearanceCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 8, "y": 7, "elevation": 0 } }],
+            "approachCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 8, "y": 9, "elevation": 0 } }],
+            "navigationImpact": "blocking"
+          }
+        },
+        {
+          "id": "growth-strategist-facility",
+          "placementSlot": {
+            "id": "growth-strategist-station-slot",
+            "anchor": { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 10, "y": 8, "elevation": 0 } },
+            "orientation": "north",
+            "occupiedCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 10, "y": 8, "elevation": 0 } }],
+            "clearanceCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 10, "y": 7, "elevation": 0 } }],
+            "approachCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 10, "y": 9, "elevation": 0 } }],
+            "navigationImpact": "blocking"
+          }
+        },
+        {
+          "id": "qa-editor-facility",
+          "placementSlot": {
+            "id": "qa-editor-station-slot",
+            "anchor": { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 12, "y": 8, "elevation": 0 } },
+            "orientation": "north",
+            "occupiedCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 12, "y": 8, "elevation": 0 } }],
+            "clearanceCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 12, "y": 7, "elevation": 0 } }],
+            "approachCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 12, "y": 9, "elevation": 0 } }],
+            "navigationImpact": "blocking"
+          }
+        },
+        {
+          "id": "performance-analyst-facility",
+          "placementSlot": {
+            "id": "performance-analyst-station-slot",
+            "anchor": { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 14, "y": 8, "elevation": 0 } },
+            "orientation": "north",
+            "occupiedCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 14, "y": 8, "elevation": 0 } }],
+            "clearanceCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 14, "y": 7, "elevation": 0 } }],
+            "approachCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 14, "y": 9, "elevation": 0 } }],
+            "navigationImpact": "blocking"
+          }
+        },
+        {
+          "id": "gemini-copywriter-facility",
+          "placementSlot": {
+            "id": "gemini-copywriter-station-slot",
+            "anchor": { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 16, "y": 8, "elevation": 0 } },
+            "orientation": "north",
+            "occupiedCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 16, "y": 8, "elevation": 0 } }],
+            "clearanceCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 16, "y": 7, "elevation": 0 } }],
+            "approachCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 16, "y": 9, "elevation": 0 } }],
+            "navigationImpact": "blocking"
+          }
+        },
+        {
+          "id": "flow-visual-producer-facility",
+          "placementSlot": {
+            "id": "flow-visual-producer-station-slot",
+            "anchor": { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 18, "y": 8, "elevation": 0 } },
+            "orientation": "north",
+            "occupiedCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 18, "y": 8, "elevation": 0 } }],
+            "clearanceCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 18, "y": 7, "elevation": 0 } }],
+            "approachCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 18, "y": 9, "elevation": 0 } }],
+            "navigationImpact": "blocking"
+          }
+        },
+        {
+          "id": "attribution-builder-facility",
+          "placementSlot": {
+            "id": "attribution-builder-station-slot",
+            "anchor": { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 20, "y": 8, "elevation": 0 } },
+            "orientation": "north",
+            "occupiedCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 20, "y": 8, "elevation": 0 } }],
+            "clearanceCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 20, "y": 7, "elevation": 0 } }],
+            "approachCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 20, "y": 9, "elevation": 0 } }],
+            "navigationImpact": "blocking"
+          }
+        },
+        {
+          "id": "publisher-facility",
+          "placementSlot": {
+            "id": "publisher-station-slot",
+            "anchor": { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 22, "y": 8, "elevation": 0 } },
+            "orientation": "north",
+            "occupiedCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 22, "y": 8, "elevation": 0 } }],
+            "clearanceCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 22, "y": 7, "elevation": 0 } }],
+            "approachCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 22, "y": 9, "elevation": 0 } }],
+            "navigationImpact": "blocking"
+          }
+        },
+        {
+          "id": "session-keeper-facility",
+          "placementSlot": {
+            "id": "session-keeper-station-slot",
+            "anchor": { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 24, "y": 8, "elevation": 0 } },
+            "orientation": "north",
+            "occupiedCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 24, "y": 8, "elevation": 0 } }],
+            "clearanceCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 24, "y": 7, "elevation": 0 } }],
+            "approachCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 24, "y": 9, "elevation": 0 } }],
+            "navigationImpact": "blocking"
+          }
+        }
+      ]
+    },
+    {
+      "id": "review-facilities",
+      "semantic": "review",
+      "requirement": "required",
+      "minCount": 1,
+      "maxCount": 1,
+      "facilities": [
+        {
+          "id": "review-table-facility",
+          "placementSlot": {
+            "id": "review-table-slot",
+            "anchor": { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 12, "y": 13, "elevation": 0 } },
+            "orientation": "north",
+            "occupiedCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 12, "y": 13, "elevation": 0 } }],
+            "clearanceCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 11, "y": 13, "elevation": 0 } }, { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 13, "y": 13, "elevation": 0 } }],
+            "approachCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 12, "y": 14, "elevation": 0 } }],
+            "navigationImpact": "blocking"
+          }
+        }
+      ]
+    },
+    {
+      "id": "reliability-facilities",
+      "semantic": "reliability",
+      "requirement": "required",
+      "minCount": 1,
+      "maxCount": 1,
+      "facilities": [
+        {
+          "id": "session-health-facility",
+          "placementSlot": {
+            "id": "session-health-slot",
+            "anchor": { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 26, "y": 13, "elevation": 0 } },
+            "orientation": "north",
+            "occupiedCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 26, "y": 13, "elevation": 0 } }],
+            "clearanceCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 26, "y": 12, "elevation": 0 } }],
+            "approachCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 26, "y": 14, "elevation": 0 } }],
+            "navigationImpact": "blocking"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pantry-facilities",
+      "semantic": "pantry",
+      "requirement": "required",
+      "minCount": 1,
+      "maxCount": 2,
+      "facilities": [
+        {
+          "id": "pantry-facility",
+          "placementSlot": {
+            "id": "pantry-slot",
+            "anchor": { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 6, "y": 18, "elevation": 0 } },
+            "orientation": "north",
+            "occupiedCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 6, "y": 18, "elevation": 0 } }],
+            "clearanceCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 6, "y": 17, "elevation": 0 } }],
+            "approachCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 6, "y": 19, "elevation": 0 } }],
+            "navigationImpact": "blocking"
+          }
+        }
+      ]
+    },
+    {
+      "id": "lounge-facilities",
+      "semantic": "lounge",
+      "requirement": "required",
+      "minCount": 1,
+      "maxCount": 2,
+      "facilities": [
+        {
+          "id": "lounge-facility",
+          "placementSlot": {
+            "id": "lounge-slot",
+            "anchor": { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 16, "y": 18, "elevation": 0 } },
+            "orientation": "north",
+            "occupiedCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 16, "y": 18, "elevation": 0 } }],
+            "clearanceCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 16, "y": 17, "elevation": 0 } }],
+            "approachCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 16, "y": 19, "elevation": 0 } }],
+            "navigationImpact": "blocking"
+          }
+        }
+      ]
+    },
+    {
+      "id": "expansion-capacity",
+      "semantic": "other",
+      "requirement": "optional",
+      "minCount": 0,
+      "maxCount": 5,
+      "facilities": [
+        {
+          "id": "reserve-facility-01",
+          "placementSlot": { "id": "reserve-slot-01", "anchor": { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 7, "y": 21, "elevation": 0 } }, "orientation": "north", "occupiedCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 7, "y": 21, "elevation": 0 } }], "clearanceCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 7, "y": 20, "elevation": 0 } }], "approachCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 7, "y": 22, "elevation": 0 } }], "navigationImpact": "blocking" }
+        },
+        {
+          "id": "reserve-facility-02",
+          "placementSlot": { "id": "reserve-slot-02", "anchor": { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 9, "y": 21, "elevation": 0 } }, "orientation": "north", "occupiedCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 9, "y": 21, "elevation": 0 } }], "clearanceCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 9, "y": 20, "elevation": 0 } }], "approachCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 9, "y": 22, "elevation": 0 } }], "navigationImpact": "blocking" }
+        },
+        {
+          "id": "reserve-facility-03",
+          "placementSlot": { "id": "reserve-slot-03", "anchor": { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 11, "y": 21, "elevation": 0 } }, "orientation": "north", "occupiedCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 11, "y": 21, "elevation": 0 } }], "clearanceCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 11, "y": 20, "elevation": 0 } }], "approachCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 11, "y": 22, "elevation": 0 } }], "navigationImpact": "blocking" }
+        },
+        {
+          "id": "reserve-facility-04",
+          "placementSlot": { "id": "reserve-slot-04", "anchor": { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 13, "y": 21, "elevation": 0 } }, "orientation": "north", "occupiedCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 13, "y": 21, "elevation": 0 } }], "clearanceCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 13, "y": 20, "elevation": 0 } }], "approachCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 13, "y": 22, "elevation": 0 } }], "navigationImpact": "blocking" }
+        },
+        {
+          "id": "reserve-facility-05",
+          "placementSlot": { "id": "reserve-slot-05", "anchor": { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 15, "y": 21, "elevation": 0 } }, "orientation": "north", "occupiedCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 15, "y": 21, "elevation": 0 } }], "clearanceCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 15, "y": 20, "elevation": 0 } }], "approachCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 15, "y": 22, "elevation": 0 } }], "navigationImpact": "blocking" }
+        }
+      ]
+    }
+  ],
+  "capacity": {
+    "minActors": 0,
+    "maxActors": 15,
+    "assignedWorkstations": 10,
+    "reservedActorSlots": 5
+  },
+  "actorSlots": [
+    { "id": "market-scout-slot", "assignment": "assigned", "roleId": "market-scout", "facilityId": "market-scout-facility", "placementSlotId": "market-scout-station-slot" },
+    { "id": "product-ranker-slot", "assignment": "assigned", "roleId": "product-ranker", "facilityId": "product-ranker-facility", "placementSlotId": "product-ranker-station-slot" },
+    { "id": "growth-strategist-slot", "assignment": "assigned", "roleId": "growth-strategist", "facilityId": "growth-strategist-facility", "placementSlotId": "growth-strategist-station-slot" },
+    { "id": "qa-editor-slot", "assignment": "assigned", "roleId": "qa-editor", "facilityId": "qa-editor-facility", "placementSlotId": "qa-editor-station-slot" },
+    { "id": "performance-analyst-slot", "assignment": "assigned", "roleId": "performance-analyst", "facilityId": "performance-analyst-facility", "placementSlotId": "performance-analyst-station-slot" },
+    { "id": "gemini-copywriter-slot", "assignment": "assigned", "roleId": "gemini-copywriter", "facilityId": "gemini-copywriter-facility", "placementSlotId": "gemini-copywriter-station-slot" },
+    { "id": "flow-visual-producer-slot", "assignment": "assigned", "roleId": "flow-visual-producer", "facilityId": "flow-visual-producer-facility", "placementSlotId": "flow-visual-producer-station-slot" },
+    { "id": "attribution-builder-slot", "assignment": "assigned", "roleId": "attribution-builder", "facilityId": "attribution-builder-facility", "placementSlotId": "attribution-builder-station-slot" },
+    { "id": "publisher-slot", "assignment": "assigned", "roleId": "publisher", "facilityId": "publisher-facility", "placementSlotId": "publisher-station-slot" },
+    { "id": "session-keeper-slot", "assignment": "assigned", "roleId": "session-keeper", "facilityId": "session-keeper-facility", "placementSlotId": "session-keeper-station-slot" },
+    { "id": "reserved-actor-slot-01", "assignment": "reserved", "placementSlotId": "reserve-slot-01" },
+    { "id": "reserved-actor-slot-02", "assignment": "reserved", "placementSlotId": "reserve-slot-02" },
+    { "id": "reserved-actor-slot-03", "assignment": "reserved", "placementSlotId": "reserve-slot-03" },
+    { "id": "reserved-actor-slot-04", "assignment": "reserved", "placementSlotId": "reserve-slot-04" },
+    { "id": "reserved-actor-slot-05", "assignment": "reserved", "placementSlotId": "reserve-slot-05" }
+  ],
+  "propSlots": [
+    {
+      "id": "review-card-prop",
+      "kind": "operational",
+      "densityBandId": "shared-zone",
+      "placementSlot": {
+        "id": "review-card-prop-slot",
+        "anchor": { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 13, "y": 14, "elevation": 0 } },
+        "orientation": "north",
+        "occupiedCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 13, "y": 14, "elevation": 0 } }],
+        "clearanceCells": [],
+        "approachCells": [],
+        "navigationImpact": "non-blocking"
+      }
+    },
+    {
+      "id": "pantry-mug-prop",
+      "kind": "operational",
+      "densityBandId": "shared-zone",
+      "placementSlot": {
+        "id": "pantry-mug-prop-slot",
+        "anchor": { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 8, "y": 19, "elevation": 0 } },
+        "orientation": "north",
+        "occupiedCells": [{ "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 8, "y": 19, "elevation": 0 } }],
+        "clearanceCells": [],
+        "approachCells": [],
+        "navigationImpact": "non-blocking"
+      }
+    }
+  ],
+  "circulation": {
+    "minimumWidthCells": 2,
+    "aisles": [
+      {
+        "id": "entry-spine",
+        "cells": [
+          { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 2, "y": 2, "elevation": 0 } },
+          { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 3, "y": 2, "elevation": 0 } },
+          { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 4, "y": 2, "elevation": 0 } },
+          { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 5, "y": 2, "elevation": 0 } }
+        ],
+        "widthCells": 2
+      },
+      {
+        "id": "workstation-aisle",
+        "cells": [
+          { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 6, "y": 9, "elevation": 0 } },
+          { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 7, "y": 9, "elevation": 0 } },
+          { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 8, "y": 9, "elevation": 0 } },
+          { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 9, "y": 9, "elevation": 0 } },
+          { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 10, "y": 9, "elevation": 0 } },
+          { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 11, "y": 9, "elevation": 0 } },
+          { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 12, "y": 9, "elevation": 0 } },
+          { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 13, "y": 9, "elevation": 0 } },
+          { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 14, "y": 9, "elevation": 0 } }
+        ],
+        "widthCells": 2
+      }
+    ],
+    "blockedCells": []
+  },
+  "adjacencyConstraints": [
+    { "id": "work-review-adjacency", "leftGroupId": "workstations", "rightGroupId": "review-facilities", "relation": "adjacent", "minDistanceCells": 0, "maxDistanceCells": 6 },
+    { "id": "pantry-lounge-adjacency", "leftGroupId": "pantry-facilities", "rightGroupId": "lounge-facilities", "relation": "adjacent", "minDistanceCells": 0, "maxDistanceCells": 12 },
+    { "id": "reliability-pantry-separation", "leftGroupId": "reliability-facilities", "rightGroupId": "pantry-facilities", "relation": "separated", "minDistanceCells": 10 }
+  ],
+  "focalPoints": [
+    { "id": "review-focal-point", "position": { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 12, "y": 14, "elevation": 0 } }, "kind": "primary", "priority": 1 },
+    { "id": "entry-focal-point", "position": { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 2, "y": 2, "elevation": 0 } }, "kind": "secondary", "priority": 2 }
+  ],
+  "densityBands": [
+    { "id": "work-zone", "region": { "origin": { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 4, "y": 4, "elevation": 0 } }, "width": 24, "depth": 8 }, "level": "balanced", "maxDecorationSlots": 2 },
+    { "id": "shared-zone", "region": { "origin": { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 3, "y": 15, "elevation": 0 } }, "width": 22, "depth": 8 }, "level": "dense", "maxDecorationSlots": 2 }
+  ],
+  "decorationSlots": [
+    { "id": "work-plant-slot", "densityBandId": "work-zone", "placementSlot": { "id": "work-plant-placement", "anchor": { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 27, "y": 6, "elevation": 0 } }, "orientation": "north", "occupiedCells": [], "clearanceCells": [], "approachCells": [], "navigationImpact": "none" } },
+    { "id": "shared-plant-slot", "densityBandId": "shared-zone", "placementSlot": { "id": "shared-plant-placement", "anchor": { "space": "floor-local-cell", "floor": { "id": { "kind": "floor", "value": "hq-ground-floor" }, "version": 1 }, "coordinate": { "space": "cell", "x": 23, "y": 20, "elevation": 0 } }, "orientation": "north", "occupiedCells": [], "clearanceCells": [], "approachCells": [], "navigationImpact": "none" } }
+  ]
+}
