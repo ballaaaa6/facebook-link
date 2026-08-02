@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "office-queue-runtime-fixture-v1",
+  "profiles": [
+    { "requestCount": 1, "maximumTick": 4 },
+    { "requestCount": 10, "maximumTick": 22 },
+    { "requestCount": 15, "maximumTick": 32 }
+  ],
+  "deadlock": {
+    "noProgressThreshold": 3,
+    "cycle": ["actor-a", "actor-b"],
+    "yieldCells": ["cell:yield-b", "cell:yield-a"]
+  }
+}
