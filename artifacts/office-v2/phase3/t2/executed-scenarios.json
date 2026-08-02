@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "office-t2-executed-scenarios-v1",
+  "runtimeVersion": "office-integrated-runtime-v1",
+  "scenarioCount": 9,
+  "scenarioIds": [
+    "t2-one-actor-success-mid-route",
+    "t2-one-actor-queue-mid-queue",
+    "t2-one-actor-interaction-mid-interaction",
+    "t2-one-actor-held-prop",
+    "t2-one-actor-cancel",
+    "t2-one-actor-timeout",
+    "t2-one-actor-unreachable",
+    "t2-one-actor-target-removed",
+    "t2-one-actor-target-unavailable"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "office-t2-integrated-scenarios-v1",
+  "scenarios": [
+    { "id": "t2-one-actor-success-mid-route", "intentId": "intent-success", "checkpointKind": "mid-route", "checkpointTick": 2, "terminalReason": "completed" },
+    { "id": "t2-one-actor-queue-mid-queue", "intentId": "intent-queue", "checkpointKind": "mid-queue", "checkpointTick": 3, "terminalReason": "completed" },
+    { "id": "t2-one-actor-interaction-mid-interaction", "intentId": "intent-interaction", "checkpointKind": "mid-interaction", "checkpointTick": 5, "terminalReason": "completed" },
+    { "id": "t2-one-actor-held-prop", "intentId": "intent-held-prop", "checkpointKind": "held-prop/resource", "checkpointTick": 5, "terminalReason": "completed" },
+    { "id": "t2-one-actor-cancel", "intentId": "intent-cancel", "checkpointKind": "mid-route", "checkpointTick": 2, "terminalReason": "canceled" },
+    { "id": "t2-one-actor-timeout", "intentId": "intent-timeout", "checkpointKind": "mid-route", "checkpointTick": 1, "terminalReason": "timeout" },
+    { "id": "t2-one-actor-unreachable", "intentId": "intent-unreachable", "checkpointKind": "terminal-cleanup", "checkpointTick": 1, "terminalReason": "unreachable" },
+    { "id": "t2-one-actor-target-removed", "intentId": "intent-removed", "checkpointKind": "mid-route", "checkpointTick": 1, "terminalReason": "target-removed" },
+    { "id": "t2-one-actor-target-unavailable", "intentId": "intent-unavailable", "checkpointKind": "terminal-cleanup", "checkpointTick": 1, "terminalReason": "target-unavailable" }
+  ]
+}

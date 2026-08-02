@@ -1,0 +1,1027 @@
+{
+  "schemaVersion": "office-t2-evidence-v1",
+  "scenarioCount": 9,
+  "scenarios": [
+    {
+      "scenarioId": "t2-one-actor-success-mid-route",
+      "checkpointKind": "mid-route",
+      "inputCommands": [
+        {
+          "schemaVersion": "office-simulation-command-v2",
+          "commandId": {
+            "kind": "command",
+            "value": "intent-success:assign"
+          },
+          "commandVersion": 1,
+          "ownerKind": "actor",
+          "actorId": {
+            "kind": "actor",
+            "value": "actor-one"
+          },
+          "issuedTick": 1,
+          "scheduledTick": 1,
+          "sourceRank": 0,
+          "sourceSequence": 1,
+          "kind": "assign-intent",
+          "correlation": {},
+          "payload": {
+            "intentId": {
+              "kind": "intent",
+              "value": "intent-success"
+            }
+          },
+          "payloadDigest": "ca973cf95d704e7e5d41cd2243ee2939522480919e93f7992d5d0e72bfd1e8cf",
+          "expectedWorldRevision": 7
+        }
+      ],
+      "eventSequence": [
+        {
+          "tick": 1,
+          "kind": "command-accepted",
+          "sourceCommandId": "intent-success:assign",
+          "intentId": "intent-success",
+          "sequence": 1
+        },
+        {
+          "tick": 1,
+          "kind": "actor-state-changed",
+          "actorId": "actor-one",
+          "intentId": "intent-success",
+          "state": "planning",
+          "sequence": 2
+        },
+        {
+          "tick": 1,
+          "kind": "actor-state-changed",
+          "actorId": "actor-one",
+          "state": "moving",
+          "intentId": "intent-success",
+          "sequence": 3
+        },
+        {
+          "tick": 2,
+          "kind": "activity-phase",
+          "actorId": "actor-one",
+          "intentId": "intent-success",
+          "phase": "en-route",
+          "sequence": 4
+        },
+        {
+          "tick": 3,
+          "kind": "activity-phase",
+          "actorId": "actor-one",
+          "intentId": "intent-success",
+          "phase": "acquired",
+          "sequence": 5
+        },
+        {
+          "tick": 3,
+          "kind": "actor-state-changed",
+          "actorId": "actor-one",
+          "state": "interacting",
+          "intentId": "intent-success",
+          "sequence": 6
+        },
+        {
+          "tick": 4,
+          "kind": "activity-phase",
+          "actorId": "actor-one",
+          "intentId": "intent-success",
+          "phase": "using",
+          "sequence": 7
+        },
+        {
+          "tick": 7,
+          "kind": "interaction-completed",
+          "actorId": "actor-one",
+          "intentId": "intent-success",
+          "phase": "released",
+          "reason": "completed",
+          "resourceKeys": [
+            "cell:2,0",
+            "facility:review-desk",
+            "socket:review-desk-use"
+          ],
+          "sequence": 8
+        }
+      ],
+      "checkpoint": {
+        "tick": 2,
+        "stateHash": "ba9d5efa587ce762a7b44907562d8d4b66a7580d91aff9517e559c619b1631a7",
+        "completeTick": true
+      },
+      "replayResult": {
+        "equal": true,
+        "restoredEventTailEqual": true
+      },
+      "cleanup": {
+        "uninterruptedLeaks": [],
+        "restoredLeaks": [],
+        "passed": true
+      },
+      "uninterruptedFinalHash": "b4405e657b1cd4dedd0107982b8d4942aca7e5b56c858067902a224b3d372d4a",
+      "restoredFinalHash": "b4405e657b1cd4dedd0107982b8d4942aca7e5b56c858067902a224b3d372d4a",
+      "equality": true
+    },
+    {
+      "scenarioId": "t2-one-actor-queue-mid-queue",
+      "checkpointKind": "mid-queue",
+      "inputCommands": [
+        {
+          "schemaVersion": "office-simulation-command-v2",
+          "commandId": {
+            "kind": "command",
+            "value": "intent-queue:assign"
+          },
+          "commandVersion": 1,
+          "ownerKind": "actor",
+          "actorId": {
+            "kind": "actor",
+            "value": "actor-one"
+          },
+          "issuedTick": 1,
+          "scheduledTick": 1,
+          "sourceRank": 0,
+          "sourceSequence": 1,
+          "kind": "assign-intent",
+          "correlation": {},
+          "payload": {
+            "intentId": {
+              "kind": "intent",
+              "value": "intent-queue"
+            }
+          },
+          "payloadDigest": "4f187bc89db4f09e71f52b534a92b3d13a4a7871a6aa68d97c968a3390a53e67",
+          "expectedWorldRevision": 7
+        }
+      ],
+      "eventSequence": [
+        {
+          "tick": 1,
+          "kind": "command-accepted",
+          "sourceCommandId": "intent-queue:assign",
+          "intentId": "intent-queue",
+          "sequence": 1
+        },
+        {
+          "tick": 1,
+          "kind": "actor-state-changed",
+          "actorId": "actor-one",
+          "intentId": "intent-queue",
+          "state": "planning",
+          "sequence": 2
+        },
+        {
+          "tick": 1,
+          "kind": "actor-state-changed",
+          "actorId": "actor-one",
+          "state": "moving",
+          "intentId": "intent-queue",
+          "sequence": 3
+        },
+        {
+          "tick": 2,
+          "kind": "activity-phase",
+          "actorId": "actor-one",
+          "intentId": "intent-queue",
+          "phase": "en-route",
+          "sequence": 4
+        },
+        {
+          "tick": 3,
+          "kind": "activity-phase",
+          "actorId": "actor-one",
+          "intentId": "intent-queue",
+          "phase": "waiting",
+          "sequence": 5
+        },
+        {
+          "tick": 3,
+          "kind": "actor-state-changed",
+          "actorId": "actor-one",
+          "state": "blocked",
+          "intentId": "intent-queue",
+          "sequence": 6
+        },
+        {
+          "tick": 6,
+          "kind": "activity-phase",
+          "actorId": "actor-one",
+          "intentId": "intent-queue",
+          "phase": "acquired",
+          "sequence": 7
+        },
+        {
+          "tick": 6,
+          "kind": "actor-state-changed",
+          "actorId": "actor-one",
+          "state": "interacting",
+          "intentId": "intent-queue",
+          "sequence": 8
+        },
+        {
+          "tick": 7,
+          "kind": "activity-phase",
+          "actorId": "actor-one",
+          "intentId": "intent-queue",
+          "phase": "using",
+          "sequence": 9
+        },
+        {
+          "tick": 9,
+          "kind": "interaction-completed",
+          "actorId": "actor-one",
+          "intentId": "intent-queue",
+          "phase": "released",
+          "reason": "completed",
+          "resourceKeys": [
+            "cell:2,0",
+            "facility:review-desk",
+            "socket:review-desk-use"
+          ],
+          "sequence": 10
+        }
+      ],
+      "checkpoint": {
+        "tick": 3,
+        "stateHash": "ef38ddc3248430d403c16b687cf52cf530dc733bf53322ead26a28b7c7e204ea",
+        "completeTick": true
+      },
+      "replayResult": {
+        "equal": true,
+        "restoredEventTailEqual": true
+      },
+      "cleanup": {
+        "uninterruptedLeaks": [],
+        "restoredLeaks": [],
+        "passed": true
+      },
+      "uninterruptedFinalHash": "82990fae8c94badee6e94020db3074797a4325ccf8f7d614f3a6906ac17e8b82",
+      "restoredFinalHash": "82990fae8c94badee6e94020db3074797a4325ccf8f7d614f3a6906ac17e8b82",
+      "equality": true
+    },
+    {
+      "scenarioId": "t2-one-actor-interaction-mid-interaction",
+      "checkpointKind": "mid-interaction",
+      "inputCommands": [
+        {
+          "schemaVersion": "office-simulation-command-v2",
+          "commandId": {
+            "kind": "command",
+            "value": "intent-interaction:assign"
+          },
+          "commandVersion": 1,
+          "ownerKind": "actor",
+          "actorId": {
+            "kind": "actor",
+            "value": "actor-one"
+          },
+          "issuedTick": 1,
+          "scheduledTick": 1,
+          "sourceRank": 0,
+          "sourceSequence": 1,
+          "kind": "assign-intent",
+          "correlation": {},
+          "payload": {
+            "intentId": {
+              "kind": "intent",
+              "value": "intent-interaction"
+            }
+          },
+          "payloadDigest": "2d8d52a896ca3849e5ce3499362c794a0b0d419169c48fd4b9ab8659e493ae28",
+          "expectedWorldRevision": 7
+        }
+      ],
+      "eventSequence": [
+        {
+          "tick": 1,
+          "kind": "command-accepted",
+          "sourceCommandId": "intent-interaction:assign",
+          "intentId": "intent-interaction",
+          "sequence": 1
+        },
+        {
+          "tick": 1,
+          "kind": "actor-state-changed",
+          "actorId": "actor-one",
+          "intentId": "intent-interaction",
+          "state": "planning",
+          "sequence": 2
+        },
+        {
+          "tick": 1,
+          "kind": "actor-state-changed",
+          "actorId": "actor-one",
+          "state": "moving",
+          "intentId": "intent-interaction",
+          "sequence": 3
+        },
+        {
+          "tick": 2,
+          "kind": "activity-phase",
+          "actorId": "actor-one",
+          "intentId": "intent-interaction",
+          "phase": "en-route",
+          "sequence": 4
+        },
+        {
+          "tick": 3,
+          "kind": "activity-phase",
+          "actorId": "actor-one",
+          "intentId": "intent-interaction",
+          "phase": "acquired",
+          "sequence": 5
+        },
+        {
+          "tick": 3,
+          "kind": "actor-state-changed",
+          "actorId": "actor-one",
+          "state": "interacting",
+          "intentId": "intent-interaction",
+          "sequence": 6
+        },
+        {
+          "tick": 4,
+          "kind": "activity-phase",
+          "actorId": "actor-one",
+          "intentId": "intent-interaction",
+          "phase": "using",
+          "sequence": 7
+        },
+        {
+          "tick": 9,
+          "kind": "interaction-completed",
+          "actorId": "actor-one",
+          "intentId": "intent-interaction",
+          "phase": "released",
+          "reason": "completed",
+          "resourceKeys": [
+            "cell:2,0",
+            "facility:review-desk",
+            "socket:review-desk-use"
+          ],
+          "sequence": 8
+        }
+      ],
+      "checkpoint": {
+        "tick": 5,
+        "stateHash": "b81435633322b84241954999b0e83fddbb0f2e4591d887299fd3558b7c48e5ae",
+        "completeTick": true
+      },
+      "replayResult": {
+        "equal": true,
+        "restoredEventTailEqual": true
+      },
+      "cleanup": {
+        "uninterruptedLeaks": [],
+        "restoredLeaks": [],
+        "passed": true
+      },
+      "uninterruptedFinalHash": "7b49d487ffc43af429223d23dbb2824542f0f3087e7e33189d064ce66199830f",
+      "restoredFinalHash": "7b49d487ffc43af429223d23dbb2824542f0f3087e7e33189d064ce66199830f",
+      "equality": true
+    },
+    {
+      "scenarioId": "t2-one-actor-held-prop",
+      "checkpointKind": "held-prop/resource",
+      "inputCommands": [
+        {
+          "schemaVersion": "office-simulation-command-v2",
+          "commandId": {
+            "kind": "command",
+            "value": "intent-held-prop:assign"
+          },
+          "commandVersion": 1,
+          "ownerKind": "actor",
+          "actorId": {
+            "kind": "actor",
+            "value": "actor-one"
+          },
+          "issuedTick": 1,
+          "scheduledTick": 1,
+          "sourceRank": 0,
+          "sourceSequence": 1,
+          "kind": "assign-intent",
+          "correlation": {},
+          "payload": {
+            "intentId": {
+              "kind": "intent",
+              "value": "intent-held-prop"
+            }
+          },
+          "payloadDigest": "e847b77ca3ca464bbddb79183b0c49a4c4eba4b980186e480ff92fb17fc61dc9",
+          "expectedWorldRevision": 7
+        }
+      ],
+      "eventSequence": [
+        {
+          "tick": 1,
+          "kind": "command-accepted",
+          "sourceCommandId": "intent-held-prop:assign",
+          "intentId": "intent-held-prop",
+          "sequence": 1
+        },
+        {
+          "tick": 1,
+          "kind": "actor-state-changed",
+          "actorId": "actor-one",
+          "intentId": "intent-held-prop",
+          "state": "planning",
+          "sequence": 2
+        },
+        {
+          "tick": 1,
+          "kind": "actor-state-changed",
+          "actorId": "actor-one",
+          "state": "moving",
+          "intentId": "intent-held-prop",
+          "sequence": 3
+        },
+        {
+          "tick": 2,
+          "kind": "activity-phase",
+          "actorId": "actor-one",
+          "intentId": "intent-held-prop",
+          "phase": "en-route",
+          "sequence": 4
+        },
+        {
+          "tick": 3,
+          "kind": "activity-phase",
+          "actorId": "actor-one",
+          "intentId": "intent-held-prop",
+          "phase": "acquired",
+          "sequence": 5
+        },
+        {
+          "tick": 3,
+          "kind": "actor-state-changed",
+          "actorId": "actor-one",
+          "state": "interacting",
+          "intentId": "intent-held-prop",
+          "sequence": 6
+        },
+        {
+          "tick": 4,
+          "kind": "activity-phase",
+          "actorId": "actor-one",
+          "intentId": "intent-held-prop",
+          "phase": "using",
+          "sequence": 7
+        },
+        {
+          "tick": 9,
+          "kind": "interaction-completed",
+          "actorId": "actor-one",
+          "intentId": "intent-held-prop",
+          "phase": "released",
+          "reason": "completed",
+          "resourceKeys": [
+            "cell:2,0",
+            "facility:review-desk",
+            "held-prop:review-card",
+            "socket:review-desk-use"
+          ],
+          "sequence": 8
+        }
+      ],
+      "checkpoint": {
+        "tick": 5,
+        "stateHash": "860d732b0e868bb1cd67327cd1521f59129fb0311ffee4ef705404ce090c3f09",
+        "completeTick": true
+      },
+      "replayResult": {
+        "equal": true,
+        "restoredEventTailEqual": true
+      },
+      "cleanup": {
+        "uninterruptedLeaks": [],
+        "restoredLeaks": [],
+        "passed": true
+      },
+      "uninterruptedFinalHash": "ae654ff62bf3c8052b9c7d1d54762d0c7616f5a10ebbfd901ce96b3dcdeeb928",
+      "restoredFinalHash": "ae654ff62bf3c8052b9c7d1d54762d0c7616f5a10ebbfd901ce96b3dcdeeb928",
+      "equality": true
+    },
+    {
+      "scenarioId": "t2-one-actor-cancel",
+      "checkpointKind": "mid-route",
+      "inputCommands": [
+        {
+          "schemaVersion": "office-simulation-command-v2",
+          "commandId": {
+            "kind": "command",
+            "value": "intent-cancel:assign"
+          },
+          "commandVersion": 1,
+          "ownerKind": "actor",
+          "actorId": {
+            "kind": "actor",
+            "value": "actor-one"
+          },
+          "issuedTick": 1,
+          "scheduledTick": 1,
+          "sourceRank": 0,
+          "sourceSequence": 1,
+          "kind": "assign-intent",
+          "correlation": {},
+          "payload": {
+            "intentId": {
+              "kind": "intent",
+              "value": "intent-cancel"
+            }
+          },
+          "payloadDigest": "94b342cfd2e461c6c84e657e3aa1d547af71caf1e144fae90b4beb39d11c1b1e",
+          "expectedWorldRevision": 7
+        },
+        {
+          "schemaVersion": "office-simulation-command-v2",
+          "commandId": {
+            "kind": "command",
+            "value": "intent-cancel:cancel"
+          },
+          "commandVersion": 1,
+          "ownerKind": "actor",
+          "actorId": {
+            "kind": "actor",
+            "value": "actor-one"
+          },
+          "issuedTick": 3,
+          "scheduledTick": 3,
+          "sourceRank": 0,
+          "sourceSequence": 3,
+          "kind": "cancel-intent",
+          "correlation": {},
+          "payload": {
+            "intentId": {
+              "kind": "intent",
+              "value": "intent-cancel"
+            }
+          },
+          "payloadDigest": "94b342cfd2e461c6c84e657e3aa1d547af71caf1e144fae90b4beb39d11c1b1e",
+          "expectedWorldRevision": 7
+        }
+      ],
+      "eventSequence": [
+        {
+          "tick": 1,
+          "kind": "command-accepted",
+          "sourceCommandId": "intent-cancel:assign",
+          "intentId": "intent-cancel",
+          "sequence": 1
+        },
+        {
+          "tick": 1,
+          "kind": "actor-state-changed",
+          "actorId": "actor-one",
+          "intentId": "intent-cancel",
+          "state": "planning",
+          "sequence": 2
+        },
+        {
+          "tick": 1,
+          "kind": "actor-state-changed",
+          "actorId": "actor-one",
+          "state": "moving",
+          "intentId": "intent-cancel",
+          "sequence": 3
+        },
+        {
+          "tick": 2,
+          "kind": "activity-phase",
+          "actorId": "actor-one",
+          "intentId": "intent-cancel",
+          "phase": "en-route",
+          "sequence": 4
+        },
+        {
+          "tick": 3,
+          "kind": "command-accepted",
+          "sourceCommandId": "intent-cancel:cancel",
+          "intentId": "intent-cancel",
+          "sequence": 5
+        },
+        {
+          "tick": 3,
+          "kind": "activity-phase",
+          "actorId": "actor-one",
+          "intentId": "intent-cancel",
+          "phase": "canceled",
+          "reason": "canceled",
+          "resourceKeys": [
+            "0,1"
+          ],
+          "sequence": 6
+        }
+      ],
+      "checkpoint": {
+        "tick": 2,
+        "stateHash": "a8c22f6e5df023675688c598e024df1cbb0cfb347701fe56d6f6ab99f1f43d16",
+        "completeTick": true
+      },
+      "replayResult": {
+        "equal": true,
+        "restoredEventTailEqual": true
+      },
+      "cleanup": {
+        "uninterruptedLeaks": [],
+        "restoredLeaks": [],
+        "passed": true
+      },
+      "uninterruptedFinalHash": "d4d54a0ddbd7fe742481677d2b260f5e3756e952b6a2b5ed146da4079bac7097",
+      "restoredFinalHash": "d4d54a0ddbd7fe742481677d2b260f5e3756e952b6a2b5ed146da4079bac7097",
+      "equality": true
+    },
+    {
+      "scenarioId": "t2-one-actor-timeout",
+      "checkpointKind": "mid-route",
+      "inputCommands": [
+        {
+          "schemaVersion": "office-simulation-command-v2",
+          "commandId": {
+            "kind": "command",
+            "value": "intent-timeout:assign"
+          },
+          "commandVersion": 1,
+          "ownerKind": "actor",
+          "actorId": {
+            "kind": "actor",
+            "value": "actor-one"
+          },
+          "issuedTick": 1,
+          "scheduledTick": 1,
+          "sourceRank": 0,
+          "sourceSequence": 1,
+          "kind": "assign-intent",
+          "correlation": {},
+          "payload": {
+            "intentId": {
+              "kind": "intent",
+              "value": "intent-timeout"
+            }
+          },
+          "payloadDigest": "1b563f18944cebb401e633c359c3cdb7ce330e646638eb6cb5bf92751ab09481",
+          "expectedWorldRevision": 7
+        }
+      ],
+      "eventSequence": [
+        {
+          "tick": 1,
+          "kind": "command-accepted",
+          "sourceCommandId": "intent-timeout:assign",
+          "intentId": "intent-timeout",
+          "sequence": 1
+        },
+        {
+          "tick": 1,
+          "kind": "actor-state-changed",
+          "actorId": "actor-one",
+          "intentId": "intent-timeout",
+          "state": "planning",
+          "sequence": 2
+        },
+        {
+          "tick": 1,
+          "kind": "actor-state-changed",
+          "actorId": "actor-one",
+          "state": "moving",
+          "intentId": "intent-timeout",
+          "sequence": 3
+        },
+        {
+          "tick": 2,
+          "kind": "activity-phase",
+          "actorId": "actor-one",
+          "intentId": "intent-timeout",
+          "phase": "en-route",
+          "sequence": 4
+        },
+        {
+          "tick": 3,
+          "kind": "activity-phase",
+          "actorId": "actor-one",
+          "intentId": "intent-timeout",
+          "phase": "acquired",
+          "sequence": 5
+        },
+        {
+          "tick": 3,
+          "kind": "actor-state-changed",
+          "actorId": "actor-one",
+          "state": "interacting",
+          "intentId": "intent-timeout",
+          "sequence": 6
+        },
+        {
+          "tick": 4,
+          "kind": "activity-phase",
+          "actorId": "actor-one",
+          "intentId": "intent-timeout",
+          "phase": "canceled",
+          "reason": "timeout",
+          "resourceKeys": [
+            "cell:2,0",
+            "facility:review-desk",
+            "socket:review-desk-use"
+          ],
+          "sequence": 7
+        }
+      ],
+      "checkpoint": {
+        "tick": 1,
+        "stateHash": "30170183670102a77e4dde9055b0fc6c491d59fe585ee755ba1e3e5738b00d92",
+        "completeTick": true
+      },
+      "replayResult": {
+        "equal": true,
+        "restoredEventTailEqual": true
+      },
+      "cleanup": {
+        "uninterruptedLeaks": [],
+        "restoredLeaks": [],
+        "passed": true
+      },
+      "uninterruptedFinalHash": "58305b5b2e2656dc19517fd7c36db27dda2c953c6cdd0fc9de98cb5c3926be59",
+      "restoredFinalHash": "58305b5b2e2656dc19517fd7c36db27dda2c953c6cdd0fc9de98cb5c3926be59",
+      "equality": true
+    },
+    {
+      "scenarioId": "t2-one-actor-unreachable",
+      "checkpointKind": "terminal-cleanup",
+      "inputCommands": [
+        {
+          "schemaVersion": "office-simulation-command-v2",
+          "commandId": {
+            "kind": "command",
+            "value": "intent-unreachable:assign"
+          },
+          "commandVersion": 1,
+          "ownerKind": "actor",
+          "actorId": {
+            "kind": "actor",
+            "value": "actor-one"
+          },
+          "issuedTick": 1,
+          "scheduledTick": 1,
+          "sourceRank": 0,
+          "sourceSequence": 1,
+          "kind": "assign-intent",
+          "correlation": {},
+          "payload": {
+            "intentId": {
+              "kind": "intent",
+              "value": "intent-unreachable"
+            }
+          },
+          "payloadDigest": "e167de81a25a92823030c29566e5bfa2915e0c6b08f3a593af29b9293b82f724",
+          "expectedWorldRevision": 7
+        }
+      ],
+      "eventSequence": [
+        {
+          "tick": 1,
+          "kind": "command-accepted",
+          "sourceCommandId": "intent-unreachable:assign",
+          "intentId": "intent-unreachable",
+          "sequence": 1
+        },
+        {
+          "tick": 1,
+          "kind": "actor-state-changed",
+          "actorId": "actor-one",
+          "intentId": "intent-unreachable",
+          "state": "planning",
+          "sequence": 2
+        },
+        {
+          "tick": 1,
+          "kind": "activity-phase",
+          "actorId": "actor-one",
+          "intentId": "intent-unreachable",
+          "phase": "canceled",
+          "reason": "unreachable",
+          "resourceKeys": [
+            "0,1"
+          ],
+          "sequence": 3
+        }
+      ],
+      "checkpoint": {
+        "tick": 1,
+        "stateHash": "d8ceea127e2732ea1c1ebc78932d914c994fbb7a5e7d84a709b88238853cd213",
+        "completeTick": true
+      },
+      "replayResult": {
+        "equal": true,
+        "restoredEventTailEqual": true
+      },
+      "cleanup": {
+        "uninterruptedLeaks": [],
+        "restoredLeaks": [],
+        "passed": true
+      },
+      "uninterruptedFinalHash": "5d61bfc92d9c5d287cf404e087fdf7f5a265e74a0ac51c7c66f040ac6bd482f8",
+      "restoredFinalHash": "5d61bfc92d9c5d287cf404e087fdf7f5a265e74a0ac51c7c66f040ac6bd482f8",
+      "equality": true
+    },
+    {
+      "scenarioId": "t2-one-actor-target-removed",
+      "checkpointKind": "mid-route",
+      "inputCommands": [
+        {
+          "schemaVersion": "office-simulation-command-v2",
+          "commandId": {
+            "kind": "command",
+            "value": "intent-removed:assign"
+          },
+          "commandVersion": 1,
+          "ownerKind": "actor",
+          "actorId": {
+            "kind": "actor",
+            "value": "actor-one"
+          },
+          "issuedTick": 1,
+          "scheduledTick": 1,
+          "sourceRank": 0,
+          "sourceSequence": 1,
+          "kind": "assign-intent",
+          "correlation": {},
+          "payload": {
+            "intentId": {
+              "kind": "intent",
+              "value": "intent-removed"
+            }
+          },
+          "payloadDigest": "10efa7f6669d2e6f798b84de83bd8a155bc5640fd9bd5e84f82bf9c226c50b08",
+          "expectedWorldRevision": 7
+        },
+        {
+          "schemaVersion": "office-simulation-command-v2",
+          "commandId": {
+            "kind": "command",
+            "value": "intent-removed:remove"
+          },
+          "commandVersion": 1,
+          "ownerKind": "actor",
+          "actorId": {
+            "kind": "actor",
+            "value": "actor-one"
+          },
+          "issuedTick": 2,
+          "scheduledTick": 2,
+          "sourceRank": 0,
+          "sourceSequence": 2,
+          "kind": "cancel-intent",
+          "correlation": {},
+          "payload": {
+            "intentId": {
+              "kind": "intent",
+              "value": "intent-removed"
+            },
+            "reason": "target-removed"
+          },
+          "payloadDigest": "e383a154624b76e0b772c53a32a63780b6abc3ab0a11cf99c202a7a1cb7a665a",
+          "expectedWorldRevision": 7
+        }
+      ],
+      "eventSequence": [
+        {
+          "tick": 1,
+          "kind": "command-accepted",
+          "sourceCommandId": "intent-removed:assign",
+          "intentId": "intent-removed",
+          "sequence": 1
+        },
+        {
+          "tick": 1,
+          "kind": "actor-state-changed",
+          "actorId": "actor-one",
+          "intentId": "intent-removed",
+          "state": "planning",
+          "sequence": 2
+        },
+        {
+          "tick": 1,
+          "kind": "actor-state-changed",
+          "actorId": "actor-one",
+          "state": "moving",
+          "intentId": "intent-removed",
+          "sequence": 3
+        },
+        {
+          "tick": 2,
+          "kind": "command-accepted",
+          "sourceCommandId": "intent-removed:remove",
+          "intentId": "intent-removed",
+          "sequence": 4
+        },
+        {
+          "tick": 2,
+          "kind": "activity-phase",
+          "actorId": "actor-one",
+          "intentId": "intent-removed",
+          "phase": "failed",
+          "reason": "target-removed",
+          "resourceKeys": [
+            "0,1"
+          ],
+          "sequence": 5
+        }
+      ],
+      "checkpoint": {
+        "tick": 1,
+        "stateHash": "ba03ae0e774d0de32fa7774b636e98f54783bab6a5e95cee2ed166f17538d2dc",
+        "completeTick": true
+      },
+      "replayResult": {
+        "equal": true,
+        "restoredEventTailEqual": true
+      },
+      "cleanup": {
+        "uninterruptedLeaks": [],
+        "restoredLeaks": [],
+        "passed": true
+      },
+      "uninterruptedFinalHash": "9f7d75333ae1da082f2b1110a266538fcd2968885b8a402287b74a976077f3af",
+      "restoredFinalHash": "9f7d75333ae1da082f2b1110a266538fcd2968885b8a402287b74a976077f3af",
+      "equality": true
+    },
+    {
+      "scenarioId": "t2-one-actor-target-unavailable",
+      "checkpointKind": "terminal-cleanup",
+      "inputCommands": [
+        {
+          "schemaVersion": "office-simulation-command-v2",
+          "commandId": {
+            "kind": "command",
+            "value": "intent-unavailable:assign"
+          },
+          "commandVersion": 1,
+          "ownerKind": "actor",
+          "actorId": {
+            "kind": "actor",
+            "value": "actor-one"
+          },
+          "issuedTick": 1,
+          "scheduledTick": 1,
+          "sourceRank": 0,
+          "sourceSequence": 1,
+          "kind": "assign-intent",
+          "correlation": {},
+          "payload": {
+            "intentId": {
+              "kind": "intent",
+              "value": "intent-unavailable"
+            }
+          },
+          "payloadDigest": "9b4a9139f57b0b121ec7743578adbf94223f5b6a77f065ffaaf51037ede380cb",
+          "expectedWorldRevision": 7
+        }
+      ],
+      "eventSequence": [
+        {
+          "tick": 1,
+          "kind": "command-accepted",
+          "sourceCommandId": "intent-unavailable:assign",
+          "intentId": "intent-unavailable",
+          "sequence": 1
+        },
+        {
+          "tick": 1,
+          "kind": "actor-state-changed",
+          "actorId": "actor-one",
+          "intentId": "intent-unavailable",
+          "state": "blocked",
+          "sequence": 2
+        },
+        {
+          "tick": 1,
+          "kind": "activity-phase",
+          "actorId": "actor-one",
+          "intentId": "intent-unavailable",
+          "phase": "failed",
+          "reason": "target-unavailable",
+          "resourceKeys": [],
+          "sequence": 3
+        }
+      ],
+      "checkpoint": {
+        "tick": 1,
+        "stateHash": "a7a42f94d63b30c7df1bfcbcd6ad180dd0402896578090f8c47b9c4cc6e81d72",
+        "completeTick": true
+      },
+      "replayResult": {
+        "equal": true,
+        "restoredEventTailEqual": true
+      },
+      "cleanup": {
+        "uninterruptedLeaks": [],
+        "restoredLeaks": [],
+        "passed": true
+      },
+      "uninterruptedFinalHash": "9c5be3cd359debfc463d7ff6e2e6eede98fd4c712e63ad432d6a48f36c22217a",
+      "restoredFinalHash": "9c5be3cd359debfc463d7ff6e2e6eede98fd4c712e63ad432d6a48f36c22217a",
+      "equality": true
+    }
+  ]
+}
