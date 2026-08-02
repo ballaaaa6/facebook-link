@@ -549,8 +549,10 @@ blocked; no later-Phase work is used to fill capacity.
 - Validation commands: preflight, operations package tests, `npm run check`.
 - Worker-sized scope assessment: one pure choreography module and focused tests.
 - Priority: P1.
-- Status: **IN_PROGRESS** — Worker Session 1 (`019fc379-0c13-7ad2-a8e4-
-  e809f22798bb`) is implementing the selected leaf.
+- Status: **ACCEPTED** — Worker Session 1 (`019fc379-0c13-7ad2-a8e4-
+  e809f22798bb`) completed and Main accepted the reviewed handoff commit
+  `a0ed5b01730e11db592dd86920263e19089dc939` with implementation commit
+  `a18e987007793298b69e100ede63780ce486e87e`.
 
 ### P3-W3.4 — Operations reconciliation and two-clock integration
 
