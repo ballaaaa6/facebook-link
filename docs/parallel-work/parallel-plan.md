@@ -92,9 +92,9 @@ depends on another selected task's unintegrated output.
 
 | Session | Task | Branch | Worktree | Status |
 | --- | --- | --- | --- | --- |
-| 1 | `P3-W2.4` | `task/session-1-p3-w2-queues` | `C:\Users\WINDOW XI\.codex\worktrees\phase3-p3-w2-03-queues` | planned |
-| 2 | `P3-W2.5` | `task/session-2-p3-w2-replay` | `C:\Users\WINDOW XI\.codex\worktrees\phase3-p3-w2-03-replay` | planned |
-| 3 | `P3-W3.1` | `task/session-3-p3-w3-ownership` | `C:\Users\WINDOW XI\.codex\worktrees\phase3-p3-w2-03-ownership` | planned |
+| 1 | `P3-W2.4` | `task/session-1-p3-w2-queues` | `C:\Users\WINDOW XI\.codex\worktrees\phase3-p3-w2-03-queues` | reallocated / in progress |
+| 2 | `P3-W2.5` | `task/session-2-p3-w2-replay` | `C:\Users\WINDOW XI\.codex\worktrees\phase3-p3-w2-03-replay` | reallocated / in progress |
+| 3 | `P3-W3.1` | `task/session-3-p3-w3-ownership` | `C:\Users\WINDOW XI\.codex\worktrees\phase3-p3-w2-03-ownership` | completed / handoff received |
 
 - Planning artifacts commit: `ca6d1b5e55c75ff75194fd60505fb5158b8cc1ae`.
 - Planning lock / worker starting commit: `7af908b2f01a77214f1d2660c17fbbcc956fc952`;
@@ -107,6 +107,12 @@ depends on another selected task's unintegrated output.
   `019fc308-07d0-7170-a23b-b08fd324386a` (Session 1 / Feynman),
   `019fc308-0857-7c33-8215-e90a8761480b` (Session 2 / Descartes), and
   `019fc308-08e2-7643-b0dc-9d5d224112bd` (Session 3 / Newton).
+- Feynman and Descartes were closed after repeated no-change/status-recovery
+  windows; their exact leaf scopes were reallocated to
+  `019fc30d-b5ba-7e61-8ccc-9e3ed003a7dc` (Session 1 / Hubble) and
+  `019fc30d-b63d-7b62-b7b2-2cc18ed41832` (Session 2 / Schrodinger).
+- Newton completed the evidence-only handoff as commits `1041045` and
+  `89d8aff`; Main has not yet integrated it.
 
 ## Validation strategy
 
