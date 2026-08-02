@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "office-operations-adapter-test-v1",
+  "cursorCases": [
+    { "name": "late-event", "cursorThroughSequence": 10, "snapshotEpoch": 1, "windowStartSequence": 9, "throughSequence": 9, "eventSequences": [9], "expectedStatus": "resync-required", "expectedFailure": "adapter.late-event" },
+    { "name": "sequence-gap", "cursorThroughSequence": 9, "snapshotEpoch": 1, "windowStartSequence": 10, "throughSequence": 12, "eventSequences": [10, 12], "expectedStatus": "resync-required", "expectedFailure": "adapter.sequence-gap" },
+    { "name": "epoch-change", "cursorThroughSequence": 9, "snapshotEpoch": 2, "windowStartSequence": 10, "throughSequence": 10, "eventSequences": [10], "expectedStatus": "resync-required", "expectedFailure": "adapter.stream-epoch-changed" },
+    { "name": "cursor-too-old", "cursorThroughSequence": 1, "retentionWindowStart": 5, "snapshotEpoch": 1, "windowStartSequence": 5, "throughSequence": 5, "eventSequences": [5], "expectedStatus": "resync-required", "expectedFailure": "adapter.cursor-too-old" }
+  ],
+  "rosterCases": [
+    { "name": "duplicate-role", "expectedFailure": "adapter.routing-role-duplicate" },
+    { "name": "teambrain-binding", "expectedFailure": "adapter.teambrain-not-agent" },
+    { "name": "unknown-snapshot-role", "expectedFailure": "adapter.role-unknown" }
+  ]
+}

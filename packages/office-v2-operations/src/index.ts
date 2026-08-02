@@ -86,6 +86,14 @@ const operationalStatuses = new Set([
 
 const reasonStatuses = new Set(["waiting", "review", "blocked", "failed"]);
 
+const resyncDiagnosticCodes = new Set<AdapterDiagnosticCode>([
+  "adapter.sequence-gap",
+  "adapter.stream-epoch-changed",
+  "adapter.cursor-too-old",
+  "adapter.stream-mismatch",
+  "adapter.late-event",
+]);
+
 function diagnostic(
   code: AdapterDiagnosticCode,
   message: string,
@@ -98,6 +106,11 @@ function valueOf(value: unknown): string {
   if (typeof value === "string") return value;
   if (value && typeof value === "object" && "value" in value) return String(value.value);
   return String(value);
+}
+
+function compareStableStrings(left: string, right: string): number {
+  if (left === right) return 0;
+  return left < right ? -1 : 1;
 }
 
 function pushUnique(diagnostics: AdapterDiagnostic[], value: AdapterDiagnostic): void {
@@ -130,13 +143,47 @@ function windowDiagnostics(snapshot: OperationsSnapshotDocument): AdapterDiagnos
     }
     expected += 1;
   }
-  if (events.at(-1)?.sequence !== snapshot.throughSequence) {
+  const finalEvent = events[events.length - 1];
+  if (finalEvent?.sequence !== snapshot.throughSequence) {
     diagnostics.push(diagnostic("adapter.sequence-gap", "The event window through sequence does not match its final event.", {
       throughSequence: snapshot.throughSequence,
-      finalSequence: events.at(-1)?.sequence ?? null,
+      finalSequence: finalEvent?.sequence ?? null,
     }));
   }
   return diagnostics;
+}
+
+function hasDiagnostic(diagnostics: readonly AdapterDiagnostic[], code: AdapterDiagnosticCode): boolean {
+  return diagnostics.some((entry) => entry.code === code);
+}
+
+function cloneCursor(cursor: OperationsCursor): OperationsCursor {
+  const seenEvents = cursor.seenEvents
+    .map((event) => ({
+      durableEventId: event.durableEventId,
+      payloadDigest: event.payloadDigest,
+    }))
+    .sort((left, right) => compareStableStrings(left.durableEventId, right.durableEventId));
+  return {
+    streamId: cursor.streamId,
+    streamEpoch: cursor.streamEpoch,
+    throughSequence: cursor.throughSequence,
+    retentionWindowStart: cursor.retentionWindowStart,
+    seenEvents,
+  };
+}
+
+function cursorWithSeenEvents(
+  cursor: OperationsCursor,
+  streamId: string,
+  streamEpoch: number,
+  throughSequence: number,
+  seen: ReadonlyMap<string, string>,
+): OperationsCursor {
+  const seenEvents = [...seen.entries()]
+    .sort(([left], [right]) => compareStableStrings(left, right))
+    .map(([durableEventId, payloadDigest]) => ({ durableEventId, payloadDigest }));
+  return { ...cursor, streamId, streamEpoch, throughSequence, seenEvents };
 }
 
 export function inspectOperationsSnapshot(snapshot: OperationsSnapshotDocument): readonly AdapterDiagnostic[] {
@@ -186,16 +233,28 @@ export function reconcileEventWindow(cursor: OperationsCursor, snapshot: Operati
     }));
   }
 
+  if (diagnostics.some((entry) => resyncDiagnosticCodes.has(entry.code))) {
+    return {
+      status: "resync-required",
+      acceptedEvents: [],
+      duplicateEventIds: [],
+      nextCursor: cloneCursor(cursor),
+      diagnostics,
+    };
+  }
+
   const seen = new Map(cursor.seenEvents.map((event) => [event.durableEventId, event.payloadDigest]));
   const acceptedEvents: OperationsEventRecord[] = [];
   const duplicateEventIds: string[] = [];
   let expectedSequence = cursor.throughSequence + 1;
+  let requiresResync = false;
   for (const event of snapshot.events) {
     const eventId = valueOf(event.durableEventId);
     const knownDigest = seen.get(eventId);
     if (knownDigest !== undefined) {
       if (knownDigest !== event.payloadDigest) {
         diagnostics.push(diagnostic("adapter.event-digest-conflict", "A durable event ID was reused with a different payload digest.", { subjectId: eventId }));
+        requiresResync = true;
       } else {
         duplicateEventIds.push(eventId);
       }
@@ -206,6 +265,7 @@ export function reconcileEventWindow(cursor: OperationsCursor, snapshot: Operati
         subjectId: eventId,
         actual: String(event.sequence),
       }));
+      requiresResync = true;
       continue;
     }
     if (event.sequence > expectedSequence) {
@@ -213,6 +273,7 @@ export function reconcileEventWindow(cursor: OperationsCursor, snapshot: Operati
         expectedSequence,
         actualSequence: event.sequence,
       }));
+      requiresResync = true;
       expectedSequence = event.sequence;
     }
     acceptedEvents.push(event);
@@ -220,19 +281,21 @@ export function reconcileEventWindow(cursor: OperationsCursor, snapshot: Operati
     expectedSequence = event.sequence + 1;
   }
 
-  const nextCursor: OperationsCursor = {
-    ...cursor,
-    streamId: snapshot.streamId,
-    streamEpoch: snapshot.streamEpoch,
-    throughSequence: Math.max(cursor.throughSequence, ...acceptedEvents.map((event) => event.sequence), cursor.throughSequence),
-    seenEvents: [...seen.entries()].map(([durableEventId, payloadDigest]) => ({ durableEventId, payloadDigest })),
-  };
-  const hasConflict = diagnostics.some((entry) => entry.code === "adapter.event-digest-conflict");
-  const requiresResync = diagnostics.some((entry) => ["adapter.sequence-gap", "adapter.stream-epoch-changed", "adapter.cursor-too-old", "adapter.stream-mismatch"].includes(entry.code));
+  const hasConflict = hasDiagnostic(diagnostics, "adapter.event-digest-conflict");
+  if (hasConflict) requiresResync = true;
+  const nextCursor = requiresResync
+    ? cloneCursor(cursor)
+    : cursorWithSeenEvents(
+      cursor,
+      snapshot.streamId,
+      snapshot.streamEpoch,
+      Math.max(cursor.throughSequence, ...acceptedEvents.map((event) => event.sequence), cursor.throughSequence),
+      seen,
+    );
   return {
     status: hasConflict ? "conflict" : requiresResync ? "resync-required" : acceptedEvents.length === 0 ? "duplicate" : "applied",
-    acceptedEvents,
-    duplicateEventIds,
+    acceptedEvents: requiresResync ? [] : acceptedEvents,
+    duplicateEventIds: requiresResync ? [] : duplicateEventIds,
     nextCursor,
     diagnostics,
   };
@@ -267,6 +330,14 @@ export function bindRoster(snapshot: OperationsSnapshotDocument, routing: Operat
   const diagnostics = [...inspectOperationsSnapshot(snapshot)];
   const bindings: OperationsAgentBinding[] = [];
   const seenAgentIds = new Set<string>();
+  const seenRoleIds = new Set<string>();
+  for (const route of routing.routes) {
+    const roleId = valueOf(route.roleId);
+    if (seenRoleIds.has(roleId)) {
+      pushUnique(diagnostics, diagnostic("adapter.routing-role-duplicate", "Activity routing declares one role more than once.", { subjectId: roleId }));
+    }
+    seenRoleIds.add(roleId);
+  }
   const facilityCapabilities = new Map(routing.facilityCapabilities.map((entry) => [valueOf(entry.capability), entry]));
 
   for (const binding of roster.bindings) {
@@ -279,6 +350,7 @@ export function bindRoster(snapshot: OperationsSnapshotDocument, routing: Operat
     seenAgentIds.add(agentId);
     if (roleId === "teambrain") {
       pushUnique(diagnostics, diagnostic("adapter.teambrain-not-agent", "TeamBrain is a command-console facility and cannot be an agent instance.", { subjectId: agentId }));
+      continue;
     }
     const route = routeByRole(routing, roleId);
     if (!route) {
@@ -298,6 +370,12 @@ export function bindRoster(snapshot: OperationsSnapshotDocument, routing: Operat
   }
 
   for (const agent of snapshot.agents) {
+    if (!routeByRole(routing, valueOf(agent.roleId))) {
+      pushUnique(diagnostics, diagnostic("adapter.role-unknown", "An operations snapshot references an unknown operational role.", {
+        subjectId: valueOf(agent.agentInstanceId),
+        actual: valueOf(agent.roleId),
+      }));
+    }
     if (!seenAgentIds.has(valueOf(agent.agentInstanceId)) && !["idle", "unavailable"].includes(valueOf(agent.status))) {
       diagnostics.push(diagnostic("adapter.roster-binding-missing", "An active agent instance has no roster binding.", { subjectId: valueOf(agent.agentInstanceId) }));
     }
@@ -312,9 +390,13 @@ export function canProposeInteraction(
   agentInstanceId: string,
   interactionId: string,
 ): ProposalResult {
-  const diagnostics: AdapterDiagnostic[] = [];
+  const diagnostics: AdapterDiagnostic[] = [...bindRoster(snapshot, routing, roster).diagnostics];
   const binding = roster.bindings.find((entry) => valueOf(entry.agentInstanceId) === agentInstanceId);
   if (!binding) return { allowed: false, diagnostics: [diagnostic("adapter.forbidden-proposal", "An interaction proposal requires a known roster binding.", { subjectId: agentInstanceId })] };
+  if (valueOf(binding.roleId) === "teambrain") {
+    pushUnique(diagnostics, diagnostic("adapter.teambrain-not-agent", "TeamBrain is a command-console facility and cannot be an agent instance.", { subjectId: agentInstanceId }));
+    return { allowed: false, diagnostics };
+  }
   const route = routeByRole(routing, valueOf(binding.roleId));
   if (!route) return { allowed: false, diagnostics: [diagnostic("adapter.role-unknown", "An interaction proposal references an unknown role.", { subjectId: agentInstanceId, actual: valueOf(binding.roleId) })] };
   if (!route.allowedInteractions.some((value) => valueOf(value) === interactionId)) {
