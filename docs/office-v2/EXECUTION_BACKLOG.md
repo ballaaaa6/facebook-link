@@ -19,10 +19,10 @@ executable leaf tasks and their current status.
   is now integrated. The W2 command, hash, one-actor interaction, lifecycle,
   queue, and replay slices are bounded implementations; reducer-integrated
   crowd and complete operations evidence remain future gates.
-- Phase status before current wave: **ACTIVE — P3-W2-02 integrated; P3-W0
-  bounded research closure accepted; T2/T3 exit criteria remain incomplete**.
-- Phase status after current wave: **ACTIVE — P3-W2-03 integrated; T2/T3 exit
+- Phase status before current wave: **ACTIVE — P3-W2-03 integrated; T2/T3 exit
   criteria remain incomplete**.
+- Phase status after current wave: **ACTIVE — P3-W3.2 is selected for the
+  current one-worker wave; T2/T3 exit criteria remain incomplete**.
 - Phase exit criteria: T2 one-actor reach/use/cancel/restore/replay evidence,
   T3 crowd/queue/deadlock evidence, and the complete operations choreography
   evidence pass without renderer or asset leakage.
@@ -251,35 +251,34 @@ Main owns the public barrel, shared documentation, backlog transitions,
 cross-task integration, complete validation, publication, and final reporting.
 Workers stop after their individual commit and handoff.
 
-## Current wave: P3-W2-03 — T2 queues/replay and W3 workflow ownership verification
+## Current wave: P3-W3-02 — Operations Snapshot V2 cursor and roster adapter
 
-The selected assignments are READY leaf tasks from the current active Phase. No
+The selected assignment is a READY leaf task from the current active Phase. No
 later-Phase work was selected to fill unused worker capacity.
 
-Exactly three compatible READY leaves existed at selection: `P3-W2.4`,
-`P3-W2.5`, and `P3-W3.1`. They form one coherent Phase 3 wave because the first
-two close the remaining T2 queue and replay boundaries, while `P3-W3.1` is a
-disjoint, dependency-satisfied verification slice for the already accepted
-operations ownership contract. No selected task depends on another selected
-task's unintegrated output.
+Exactly one compatible READY leaf exists at selection: `P3-W3.2`. It is the
+next dependency-unblocked operations adapter boundary after `P3-W2-03`.
+`P3-W3.3` and `P3-W3.4` remain blocked behind this work and later operations
+integration. The task has one owned module/test boundary and no selected-wave
+dependency.
 
-- Wave ID: `P3-W2-03`
-- Wave name: T2 queues/replay and W3 workflow ownership verification
-- Worker count: 3
+- Wave ID: `P3-W3-02`
+- Wave name: Operations Snapshot V2 cursor and roster adapter
+- Worker count: 1
 - Selection status before launch: READY
-- Dispatch transition: `READY → IN_PROGRESS` when each worker begins
-- Integration branch: `codex/integration/phase3-p3-w2-03`
+- Dispatch transition: `READY → IN_PROGRESS` when the worker begins
+- Integration branch: `codex/integration/phase3-p3-w3-02`
 - Planning and ownership record: `docs/parallel-work/parallel-plan.md`,
   `docs/parallel-work/ownership.md`, and `docs/parallel-work/interfaces.md`
 
 The Main Orchestration Session is the sole Final Integrator and Publisher.
 Workers stop after committing and handing off their individual tasks.
 
-## Phase 3 leaf-task inventory after P3-W2-02 integration and P3-W2-03 selection
+## Phase 3 leaf-task inventory after P3-W2-03 integration and P3-W3-02 selection
 
-This inventory records the leaf-task definitions and statuses. The three READY
-tasks above were the selected current wave and are now INTEGRATED. The next
-dependency-unblocked candidates are recorded as READY below; no next wave is
+This inventory records the leaf-task definitions and statuses. `P3-W3.2` is the
+selected current READY leaf and is not launched until the planning lock is
+committed; no later-Phase work is used to fill capacity and no next wave is
 launched in this invocation.
 
 ### P3-W2.1 — Fixed-tick command pipeline and reducer
@@ -476,12 +475,15 @@ launched in this invocation.
   workstream/work package: W3.2 snapshot/roster binding.
 - Objective: implement durable cursor reconciliation, role/agent-instance
   separation, feature availability, and data-owned roster binding.
-- Repository evidence: operations V2 contracts and V1 adapter exist; runtime V2 is absent.
+- Repository evidence: Operations Snapshot V2 contracts, Closure C fixtures,
+  and the initial adapter entry points exist; runtime cursor/roster hardening
+  and full focused failure-path coverage remain incomplete.
 - Dependencies: P3-W2.3 and P3-W2.5 integrated; P3-W3.1 integrated.
 - Dependency status: **SATISFIED** after `P3-W2.5` and `P3-W3.1` integration;
   this is the recommended next READY operations-adapter leaf.
 - Parallel group: future W3 operations group.
-- Owned implementation boundary: new V2 operations adapter module and focused tests.
+- Owned implementation boundary: the operations adapter module, its focused
+  package tests, and the package-local current-wave fixture.
 - Forbidden boundary: operations database migration, connector side effects, renderer, and simulation reducer.
 - Read-only references: operations docs, schemas, Closure C fixtures, and workflow sources.
 - Shared interfaces: operations snapshot V2, routing, roster, event-window contracts.
@@ -491,8 +493,8 @@ launched in this invocation.
 - Validation commands: preflight, operations package tests, `npm run check`.
 - Worker-sized scope assessment: one adapter module and focused tests.
 - Priority: P1.
-- Status: **READY** — dependency-unblocked after `P3-W2-03`; not launched in
-  this invocation.
+- Status: **READY** — selected for current wave `P3-W3-02`; dispatch changes it
+  to `IN_PROGRESS`.
 
 ### P3-W3.3 — Fan-out/join and failure choreography
 
@@ -536,12 +538,12 @@ launched in this invocation.
 - Priority: P1.
 - Status: BLOCKED.
 
-## Recommended next wave
+## Current-wave stop condition
 
-No next wave is launched in this invocation. The recommended next wave is
-`P3-W3-02`, beginning with READY leaf `P3-W3.2` (Operations Snapshot V2 cursor
-and roster adapter). `P3-W3.3` and `P3-W3.4` remain BLOCKED behind that work.
-Phase 3 remains active; no phase transition is authorized.
+No second wave is launched in this invocation. After `P3-W3.2` is integrated,
+Main will re-evaluate the Phase 3 inventory. `P3-W3.3` and `P3-W3.4` remain
+BLOCKED until their listed dependencies integrate. Phase 3 remains active unless
+all T2/T3 exit criteria pass; no phase transition is authorized automatically.
 
 ## Selection rule and status transitions
 

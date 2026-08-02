@@ -1,28 +1,15 @@
-# Worker Session 1 Status
+# Session 1 Status — `P3-W3.2`
 
-- Task ID: `P3-W2.4`
+- Task: Operations Snapshot V2 cursor and roster adapter
 - Phase: Phase 3 — Headless operational vertical slice
-- Wave: `P3-W2-03`
-- Branch: `task/session-1-p3-w2-queues`
-- Worktree: `C:\Users\WINDOW XI\.codex\worktrees\phase3-p3-w2-03-queues`
-- Status: **COMPLETED — Main fallback implementation after worker recovery**
-- Task branch commits: `6683b97` (implementation), `8a66a59` (handoff)
-- Main integration commits: `6601556` (implementation), `98b8fca` (handoff)
-- Changed files:
-  - `packages/office-v2-simulation/src/queues.ts`
-  - `packages/office-v2-simulation/test/queues.test.ts`
-  - `packages/office-v2-simulation/test/fixtures/p3-w2-4-queues.json`
-- Focused validation:
-  - `npm run --workspace @affiliate-ops/office-v2-simulation typecheck` — PASS
-  - `node --test packages/office-v2-simulation/test/queues.test.ts` — PASS (12/12)
-  - `node .agents/skills/build-office-v2-engine/scripts/preflight.mjs` — PASS
-  - `git diff --check` — PASS
-- Acceptance checklist:
-  - [x] Complete resource sets validate, normalize by UTF-16 order, and reject duplicates before mutation.
-  - [x] Atomic claims, durable/decorative fairness, enqueue/ticket ordering, and bounded 1/10/15 profiles are covered.
-  - [x] Cleanup is idempotent across completion, cancellation, target removal, and reservation release.
-  - [x] Wait-for cycles, no-progress threshold, deterministic victim selection, legal yield, and exact no-yield diagnostic are covered.
-  - [x] State transitions are immutable and renderer-free.
-- Known limitations: this task must not claim full T3 crowd/replay closure.
-- Handoff: accepted and integrated by Main after three worker reallocations
-  remained stalled. This task does not claim full T3 crowd/replay closure.
+- Wave: `P3-W3-02`
+- Status: **PLANNED — awaiting worker dispatch**
+- Worker branch: `task/session-1-p3-w3-02-operations-adapter`
+- Worker worktree: `C:\Users\WINDOW XI\.codex\worktrees\phase3-p3-w3-02-operations-adapter`
+- Planning-lock commit: to be recorded before dispatch
+- Implementation commit: pending
+
+The worker must update this file only after beginning implementation and must
+record the exact focused tests, validation commands, changed files, acceptance
+checklist, known limitations, commit hash, and final handoff state. Main owns
+all shared status, backlog, integration, publication, and final-report updates.
