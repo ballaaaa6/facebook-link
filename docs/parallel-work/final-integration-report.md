@@ -82,6 +82,14 @@ Passed on the integrated branch:
 - Combined focused wave suites — 22/22.
 - `npm run typecheck --workspace @affiliate-ops/office-v2-simulation` — passed.
 - `node .agents/skills/build-office-v2-engine/scripts/preflight.mjs` — passed.
+- Explicit final Office gates — all passed:
+  `npm run office:v2:contradictions:check`,
+  `npm run office:v2:contradictions:test`,
+  `npm run office:v2:knowledge:check`,
+  `npm run office:v2:boundaries:check`,
+  `npm run office:v2:boundaries:test`,
+  `npm run office:v2:assets:check`, and
+  `npm run office:v2:clean-room:check`.
 - `git diff --check` — passed.
 - `npm run check` — passed, including Office V2 clean-room, boundaries,
   contradictions, knowledge, assets, generated-contract drift, architecture,
