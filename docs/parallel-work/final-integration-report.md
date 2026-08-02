@@ -115,16 +115,19 @@ Worker-reported and Main-reproduced focused evidence:
 
 ## Publication and branch safety
 
-- Integration commit: pending the final Main-only shared-record commit and
-  final validation.
-- Pushed remote commit: pending final validation and publication.
+- Integration commit: `0d9ff0d85bfa48607799a5c79da28684f0ccb761` (Main-only
+  shared-record reconciliation atop the six worker handoff commits).
+- Pushed remote commit: pending the final report-close commit and publication;
+  the first pushed SHA will be recorded in the final report update after the
+  branch publication check.
 - Primary branch safety: `main` remains at
   `6136d4448750bb2b519bfb7d74b45bf917785625` locally and was not merged to or
   pushed by this wave. `origin/main` remains at
   `e4829b68619696651c73ba6b5dced73cc28beaa0`.
-- Pull request: not created yet; the final publication check will use an
-  available authenticated GitHub mechanism if present, otherwise the pushed
-  integration branch will be reported as PR-ready without claiming a PR.
+- Pull request: not created; no authenticated GitHub mechanism is available in
+  this environment (`gh` is unavailable and no GitHub connector is installed).
+  The pushed integration branch will be reported as PR-ready without claiming
+  a PR.
 - Local development server: none started; no process cleanup was required.
 
 The final report is Main-owned. Workers did not edit it.
