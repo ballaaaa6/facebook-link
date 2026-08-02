@@ -59,4 +59,4 @@ workflow reducer integration, T2/T3 readiness, crowd replay, renderer or asset
 acceptance, complete AutoPost closure, connector execution, or operational
 truth writes. Main owns public barrel export and integration decisions.
 
-Handoff commit: pending.
+Handoff commit: `4bf6c18d8f4ad3dbce4ab52e7b4bfa406d20091a`.
