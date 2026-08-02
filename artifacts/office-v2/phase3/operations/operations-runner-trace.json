@@ -1,0 +1,826 @@
+{
+  "schemaVersion": "phase3-operations-runner-trace-v1",
+  "scenarioCount": 10,
+  "roles": [
+    "market-scout",
+    "product-ranker",
+    "growth-strategist",
+    "performance-analyst",
+    "gemini-copywriter",
+    "flow-visual-producer",
+    "link-attribution",
+    "qa-editor",
+    "publisher",
+    "session-keeper"
+  ],
+  "workflow": {
+    "kind": "workflow-ownership",
+    "selectionOwner": "growth-strategist",
+    "contentJoinOwner": "workflow-coordinator",
+    "directJoinRejected": true,
+    "validTransitionCount": 8,
+    "joinEventId": "workflow.content-ready:27:phase3-operations-workspace|24:phase3-autopost-workflow|20:phase3-content-group",
+    "review": [
+      "rejected",
+      "approved"
+    ],
+    "blocked": "visual connector disabled before reconnect",
+    "terminalStage": "measured",
+    "retryTrace": [
+      {
+        "name": "failure",
+        "source": {
+          "schemaVersion": "office-operations-choreography-v1",
+          "kind": "branch-failed",
+          "branch": "visual",
+          "attempt": 1,
+          "artifactVersion": 1,
+          "jobId": "visual-job",
+          "occurredAt": "2026-08-02T00:00:04.000Z",
+          "durableEventId": "event-visual-failed",
+          "payloadDigest": "digest-visual-failed",
+          "sourceRevision": "operations-revision-1",
+          "workspaceId": "workspace-one",
+          "workflowId": "workflow-one",
+          "contentGroupId": "content-group-one",
+          "traceId": "trace-one",
+          "streamId": "operations-stream",
+          "reason": {
+            "kind": "failure",
+            "code": "browser.session-failed",
+            "message": "Flow session unavailable",
+            "owner": "adapter",
+            "recoverability": "reconnect"
+          }
+        }
+      },
+      {
+        "name": "recovery",
+        "source": {
+          "schemaVersion": "office-operations-choreography-v1",
+          "kind": "branch-recovered",
+          "branch": "visual",
+          "attempt": 1,
+          "artifactVersion": 1,
+          "jobId": "visual-job",
+          "occurredAt": "2026-08-02T00:00:05.000Z",
+          "durableEventId": "event-visual-recovered",
+          "payloadDigest": "digest-visual-recovered",
+          "sourceRevision": "operations-revision-1",
+          "workspaceId": "workspace-one",
+          "workflowId": "workflow-one",
+          "contentGroupId": "content-group-one",
+          "traceId": "trace-one",
+          "streamId": "operations-stream",
+          "recoveredFromEventId": "event-visual-failed"
+        }
+      },
+      {
+        "name": "copyRetry",
+        "source": {
+          "schemaVersion": "office-operations-choreography-v1",
+          "kind": "branch-started",
+          "branch": "copy",
+          "attempt": 2,
+          "artifactVersion": 2,
+          "jobId": "copy-job-2",
+          "occurredAt": "2026-08-02T00:00:03.000Z",
+          "durableEventId": "event-copy-2-start",
+          "payloadDigest": "digest-copy-2-start",
+          "sourceRevision": "operations-revision-1",
+          "workspaceId": "workspace-one",
+          "workflowId": "workflow-one",
+          "contentGroupId": "content-group-one",
+          "traceId": "trace-one",
+          "streamId": "operations-stream"
+        }
+      },
+      {
+        "name": "visual",
+        "source": {
+          "schemaVersion": "office-operations-choreography-v1",
+          "kind": "branch-completed",
+          "branch": "visual",
+          "attempt": 1,
+          "artifactVersion": 1,
+          "jobId": "visual-job",
+          "occurredAt": "2026-08-02T00:00:01.000Z",
+          "durableEventId": "event-visual-1",
+          "payloadDigest": "digest-visual-1",
+          "sourceRevision": "operations-revision-1",
+          "workspaceId": "workspace-one",
+          "workflowId": "workflow-one",
+          "contentGroupId": "content-group-one",
+          "traceId": "trace-one",
+          "streamId": "operations-stream"
+        }
+      }
+    ]
+  },
+  "jobs": [
+    {
+      "id": "phase3-autopost-workflow-job-market-scout-discovered-attempt-1",
+      "workspaceId": "phase3-operations-workspace",
+      "version": 1,
+      "workflowId": "phase3-autopost-workflow",
+      "stage": "discovered",
+      "connectorId": "simulation.market-scout",
+      "payload": {
+        "simulationOnly": true,
+        "roleId": "market-scout"
+      },
+      "idempotencyKey": "phase3-operations-workspace:phase3-autopost-workflow:discovered:market-scout",
+      "attempt": 1,
+      "createdAt": "2026-08-03T00:00:00.000Z",
+      "availableAt": "2026-08-03T00:00:00.000Z",
+      "traceId": "phase3-autopost-trace"
+    },
+    {
+      "id": "phase3-autopost-workflow-job-product-ranker-scored-attempt-1",
+      "workspaceId": "phase3-operations-workspace",
+      "version": 1,
+      "workflowId": "phase3-autopost-workflow",
+      "stage": "scored",
+      "connectorId": "simulation.product-ranker",
+      "payload": {
+        "simulationOnly": true,
+        "roleId": "product-ranker"
+      },
+      "idempotencyKey": "phase3-operations-workspace:phase3-autopost-workflow:scored:product-ranker",
+      "attempt": 1,
+      "createdAt": "2026-08-03T00:00:00.000Z",
+      "availableAt": "2026-08-03T00:00:00.000Z",
+      "traceId": "phase3-autopost-trace"
+    },
+    {
+      "id": "phase3-autopost-workflow-job-growth-strategist-selected-attempt-1",
+      "workspaceId": "phase3-operations-workspace",
+      "version": 1,
+      "workflowId": "phase3-autopost-workflow",
+      "stage": "selected",
+      "connectorId": "simulation.growth-strategist",
+      "payload": {
+        "simulationOnly": true,
+        "roleId": "growth-strategist"
+      },
+      "idempotencyKey": "phase3-operations-workspace:phase3-autopost-workflow:selected:growth-strategist",
+      "attempt": 1,
+      "createdAt": "2026-08-03T00:00:00.000Z",
+      "availableAt": "2026-08-03T00:00:00.000Z",
+      "traceId": "phase3-autopost-trace"
+    },
+    {
+      "id": "phase3-autopost-workflow-job-link-attribution-link_ready-attempt-1",
+      "workspaceId": "phase3-operations-workspace",
+      "version": 1,
+      "workflowId": "phase3-autopost-workflow",
+      "stage": "link_ready",
+      "connectorId": "simulation.link-attribution",
+      "payload": {
+        "simulationOnly": true,
+        "roleId": "link-attribution"
+      },
+      "idempotencyKey": "phase3-operations-workspace:phase3-autopost-workflow:link_ready:link-attribution",
+      "attempt": 1,
+      "createdAt": "2026-08-03T00:00:00.000Z",
+      "availableAt": "2026-08-03T00:00:00.000Z",
+      "traceId": "phase3-autopost-trace"
+    },
+    {
+      "id": "phase3-autopost-workflow-job-gemini-copywriter-copy-attempt-1",
+      "workspaceId": "phase3-operations-workspace",
+      "version": 1,
+      "workflowId": "phase3-autopost-workflow",
+      "stage": "content_queued",
+      "connectorId": "simulation.gemini-copywriter",
+      "payload": {
+        "simulationOnly": true,
+        "roleId": "gemini-copywriter",
+        "contentGroupId": "phase3-content-group",
+        "branch": "copy"
+      },
+      "idempotencyKey": "phase3-operations-workspace:phase3-autopost-workflow:content_queued:copy",
+      "attempt": 1,
+      "createdAt": "2026-08-03T00:00:00.000Z",
+      "availableAt": "2026-08-03T00:00:00.000Z",
+      "traceId": "phase3-autopost-trace"
+    },
+    {
+      "id": "phase3-autopost-workflow-job-flow-visual-producer-visual-attempt-2",
+      "workspaceId": "phase3-operations-workspace",
+      "version": 1,
+      "workflowId": "phase3-autopost-workflow",
+      "stage": "content_queued",
+      "connectorId": "simulation.flow-visual-producer",
+      "payload": {
+        "simulationOnly": true,
+        "roleId": "flow-visual-producer",
+        "contentGroupId": "phase3-content-group",
+        "branch": "visual"
+      },
+      "idempotencyKey": "phase3-operations-workspace:phase3-autopost-workflow:content_queued:visual",
+      "attempt": 2,
+      "createdAt": "2026-08-03T00:00:00.000Z",
+      "availableAt": "2026-08-03T00:00:00.000Z",
+      "traceId": "phase3-autopost-trace"
+    },
+    {
+      "id": "phase3-autopost-workflow-job-qa-editor-qa_approved-attempt-1",
+      "workspaceId": "phase3-operations-workspace",
+      "version": 1,
+      "workflowId": "phase3-autopost-workflow",
+      "stage": "qa_approved",
+      "connectorId": "simulation.qa-editor",
+      "payload": {
+        "simulationOnly": true,
+        "roleId": "qa-editor"
+      },
+      "idempotencyKey": "phase3-operations-workspace:phase3-autopost-workflow:qa_approved:qa-editor",
+      "attempt": 1,
+      "createdAt": "2026-08-03T00:00:00.000Z",
+      "availableAt": "2026-08-03T00:00:00.000Z",
+      "traceId": "phase3-autopost-trace"
+    },
+    {
+      "id": "phase3-autopost-workflow-job-publisher-scheduled-attempt-1",
+      "workspaceId": "phase3-operations-workspace",
+      "version": 1,
+      "workflowId": "phase3-autopost-workflow",
+      "stage": "scheduled",
+      "connectorId": "simulation.publisher",
+      "payload": {
+        "simulationOnly": true,
+        "roleId": "publisher"
+      },
+      "idempotencyKey": "phase3-operations-workspace:phase3-autopost-workflow:scheduled:publisher",
+      "attempt": 1,
+      "createdAt": "2026-08-03T00:00:00.000Z",
+      "availableAt": "2026-08-03T00:00:00.000Z",
+      "traceId": "phase3-autopost-trace"
+    },
+    {
+      "id": "phase3-autopost-workflow-job-session-keeper-content_queued-attempt-1",
+      "workspaceId": "phase3-operations-workspace",
+      "version": 1,
+      "workflowId": "phase3-autopost-workflow",
+      "stage": "content_queued",
+      "connectorId": "simulation.session-keeper",
+      "payload": {
+        "simulationOnly": true,
+        "roleId": "session-keeper"
+      },
+      "idempotencyKey": "phase3-operations-workspace:phase3-autopost-workflow:content_queued:session-keeper",
+      "attempt": 1,
+      "createdAt": "2026-08-03T00:00:00.000Z",
+      "availableAt": "2026-08-03T00:00:00.000Z",
+      "traceId": "phase3-autopost-trace"
+    },
+    {
+      "id": "phase3-autopost-workflow-job-performance-analyst-measured-attempt-1",
+      "workspaceId": "phase3-operations-workspace",
+      "version": 1,
+      "workflowId": "phase3-autopost-workflow",
+      "stage": "measured",
+      "connectorId": "simulation.performance-analyst",
+      "payload": {
+        "simulationOnly": true,
+        "roleId": "performance-analyst"
+      },
+      "idempotencyKey": "phase3-operations-workspace:phase3-autopost-workflow:measured:performance-analyst",
+      "attempt": 1,
+      "createdAt": "2026-08-03T00:00:00.000Z",
+      "availableAt": "2026-08-03T00:00:00.000Z",
+      "traceId": "phase3-autopost-trace"
+    }
+  ],
+  "results": [
+    {
+      "jobId": "phase3-autopost-workflow-job-market-scout-discovered-attempt-1",
+      "workspaceId": "phase3-operations-workspace",
+      "version": 1,
+      "workflowId": "phase3-autopost-workflow",
+      "connectorId": "simulation.market-scout",
+      "status": "succeeded",
+      "result": {
+        "simulationOnly": true,
+        "roleId": "market-scout",
+        "stage": "discovered"
+      },
+      "completedAt": "2026-08-03T00:00:00.000Z",
+      "traceId": "phase3-autopost-trace"
+    },
+    {
+      "jobId": "phase3-autopost-workflow-job-product-ranker-scored-attempt-1",
+      "workspaceId": "phase3-operations-workspace",
+      "version": 1,
+      "workflowId": "phase3-autopost-workflow",
+      "connectorId": "simulation.product-ranker",
+      "status": "succeeded",
+      "result": {
+        "simulationOnly": true,
+        "roleId": "product-ranker",
+        "stage": "scored"
+      },
+      "completedAt": "2026-08-03T00:00:00.000Z",
+      "traceId": "phase3-autopost-trace"
+    },
+    {
+      "jobId": "phase3-autopost-workflow-job-growth-strategist-selected-attempt-1",
+      "workspaceId": "phase3-operations-workspace",
+      "version": 1,
+      "workflowId": "phase3-autopost-workflow",
+      "connectorId": "simulation.growth-strategist",
+      "status": "succeeded",
+      "result": {
+        "simulationOnly": true,
+        "roleId": "growth-strategist",
+        "stage": "selected"
+      },
+      "completedAt": "2026-08-03T00:00:00.000Z",
+      "traceId": "phase3-autopost-trace"
+    },
+    {
+      "jobId": "phase3-autopost-workflow-job-link-attribution-link_ready-attempt-1",
+      "workspaceId": "phase3-operations-workspace",
+      "version": 1,
+      "workflowId": "phase3-autopost-workflow",
+      "connectorId": "simulation.link-attribution",
+      "status": "succeeded",
+      "result": {
+        "simulationOnly": true,
+        "roleId": "link-attribution",
+        "stage": "link_ready"
+      },
+      "completedAt": "2026-08-03T00:00:00.000Z",
+      "traceId": "phase3-autopost-trace"
+    },
+    {
+      "jobId": "phase3-autopost-workflow-job-gemini-copywriter-copy-attempt-1",
+      "workspaceId": "phase3-operations-workspace",
+      "version": 1,
+      "workflowId": "phase3-autopost-workflow",
+      "connectorId": "simulation.gemini-copywriter",
+      "status": "succeeded",
+      "result": {
+        "simulationOnly": true,
+        "roleId": "gemini-copywriter",
+        "stage": "content_queued",
+        "contentCompletion": {
+          "id": "phase3-autopost-workflow-job-gemini-copywriter-copy-attempt-1-completion",
+          "jobId": "phase3-autopost-workflow-job-gemini-copywriter-copy-attempt-1",
+          "workspaceId": "phase3-operations-workspace",
+          "workflowId": "phase3-autopost-workflow",
+          "contentGroupId": "phase3-content-group",
+          "branch": "copy",
+          "attempt": 1,
+          "artifactVersion": 1,
+          "completedAt": "2026-08-03T00:00:00.000Z",
+          "traceId": "phase3-autopost-trace"
+        }
+      },
+      "completedAt": "2026-08-03T00:00:00.000Z",
+      "traceId": "phase3-autopost-trace"
+    },
+    {
+      "jobId": "phase3-autopost-workflow-job-flow-visual-producer-visual-attempt-1",
+      "workspaceId": "phase3-operations-workspace",
+      "version": 1,
+      "workflowId": "phase3-autopost-workflow",
+      "connectorId": "simulation.flow-visual-producer",
+      "status": "failed",
+      "error": {
+        "category": "transient",
+        "code": "browser.session-failed",
+        "message": "Deterministic Flow session failure",
+        "retryable": true
+      },
+      "completedAt": "2026-08-03T00:00:00.000Z",
+      "traceId": "phase3-autopost-trace"
+    },
+    {
+      "jobId": "phase3-autopost-workflow-job-flow-visual-producer-visual-attempt-2",
+      "workspaceId": "phase3-operations-workspace",
+      "version": 1,
+      "workflowId": "phase3-autopost-workflow",
+      "connectorId": "simulation.flow-visual-producer",
+      "status": "succeeded",
+      "result": {
+        "simulationOnly": true,
+        "roleId": "flow-visual-producer",
+        "stage": "content_queued",
+        "contentCompletion": {
+          "id": "phase3-autopost-workflow-job-flow-visual-producer-visual-attempt-2-completion",
+          "jobId": "phase3-autopost-workflow-job-flow-visual-producer-visual-attempt-2",
+          "workspaceId": "phase3-operations-workspace",
+          "workflowId": "phase3-autopost-workflow",
+          "contentGroupId": "phase3-content-group",
+          "branch": "visual",
+          "attempt": 2,
+          "artifactVersion": 2,
+          "completedAt": "2026-08-03T00:00:00.000Z",
+          "traceId": "phase3-autopost-trace"
+        }
+      },
+      "completedAt": "2026-08-03T00:00:00.000Z",
+      "traceId": "phase3-autopost-trace"
+    },
+    {
+      "jobId": "phase3-autopost-workflow-job-qa-editor-qa_approved-attempt-1",
+      "workspaceId": "phase3-operations-workspace",
+      "version": 1,
+      "workflowId": "phase3-autopost-workflow",
+      "connectorId": "simulation.qa-editor",
+      "status": "succeeded",
+      "result": {
+        "simulationOnly": true,
+        "roleId": "qa-editor",
+        "stage": "qa_approved"
+      },
+      "completedAt": "2026-08-03T00:00:00.000Z",
+      "traceId": "phase3-autopost-trace"
+    },
+    {
+      "jobId": "phase3-autopost-workflow-job-publisher-scheduled-attempt-1",
+      "workspaceId": "phase3-operations-workspace",
+      "version": 1,
+      "workflowId": "phase3-autopost-workflow",
+      "connectorId": "simulation.publisher",
+      "status": "succeeded",
+      "result": {
+        "simulationOnly": true,
+        "roleId": "publisher",
+        "stage": "scheduled"
+      },
+      "completedAt": "2026-08-03T00:00:00.000Z",
+      "traceId": "phase3-autopost-trace"
+    },
+    {
+      "jobId": "phase3-autopost-workflow-job-session-keeper-content_queued-attempt-1",
+      "workspaceId": "phase3-operations-workspace",
+      "version": 1,
+      "workflowId": "phase3-autopost-workflow",
+      "connectorId": "simulation.session-keeper",
+      "status": "succeeded",
+      "result": {
+        "simulationOnly": true,
+        "roleId": "session-keeper",
+        "stage": "content_queued"
+      },
+      "completedAt": "2026-08-03T00:00:00.000Z",
+      "traceId": "phase3-autopost-trace"
+    },
+    {
+      "jobId": "phase3-autopost-workflow-job-performance-analyst-measured-attempt-1",
+      "workspaceId": "phase3-operations-workspace",
+      "version": 1,
+      "workflowId": "phase3-autopost-workflow",
+      "connectorId": "simulation.performance-analyst",
+      "status": "succeeded",
+      "result": {
+        "simulationOnly": true,
+        "roleId": "performance-analyst",
+        "stage": "measured"
+      },
+      "completedAt": "2026-08-03T00:00:00.000Z",
+      "traceId": "phase3-autopost-trace"
+    }
+  ],
+  "operationsWindow": {
+    "schemaVersion": "office-operations-v2",
+    "snapshotId": {
+      "kind": "snapshot",
+      "value": "phase3-final-snapshot"
+    },
+    "observedAt": "2026-08-03T00:00:00.000Z",
+    "sourceRevision": "phase3-operations-revision-1",
+    "streamId": "operations-stream",
+    "streamEpoch": 1,
+    "windowStartSequence": 1,
+    "throughSequence": 15,
+    "eventDigest": "phase3-event-window000000000000000000000000000000000000000000000",
+    "freshness": "live",
+    "events": [
+      {
+        "durableEventId": {
+          "kind": "event",
+          "value": "event-discovered"
+        },
+        "sequence": 1,
+        "payloadDigest": "phase3-event-discovered00000000000000000000000000000000000000000",
+        "occurredAt": "2026-08-03T00:00:00.000Z",
+        "workflowRunId": {
+          "kind": "workflow-run",
+          "value": "phase3-autopost-workflow"
+        },
+        "taskId": {
+          "kind": "task",
+          "value": "autopost-task"
+        },
+        "jobId": "phase3-autopost-workflow-job-market-scout-discovered-attempt-1",
+        "stage": "discovered",
+        "eventType": "stage-transition"
+      },
+      {
+        "durableEventId": {
+          "kind": "event",
+          "value": "event-scored"
+        },
+        "sequence": 2,
+        "payloadDigest": "phase3-event-scored000000000000000000000000000000000000000000000",
+        "occurredAt": "2026-08-03T00:00:00.000Z",
+        "workflowRunId": {
+          "kind": "workflow-run",
+          "value": "phase3-autopost-workflow"
+        },
+        "taskId": {
+          "kind": "task",
+          "value": "autopost-task"
+        },
+        "jobId": "phase3-autopost-workflow-job-product-ranker-scored-attempt-1",
+        "stage": "scored",
+        "eventType": "stage-transition"
+      },
+      {
+        "durableEventId": {
+          "kind": "event",
+          "value": "event-selected"
+        },
+        "sequence": 3,
+        "payloadDigest": "phase3-event-selected0000000000000000000000000000000000000000000",
+        "occurredAt": "2026-08-03T00:00:00.000Z",
+        "workflowRunId": {
+          "kind": "workflow-run",
+          "value": "phase3-autopost-workflow"
+        },
+        "taskId": {
+          "kind": "task",
+          "value": "autopost-task"
+        },
+        "jobId": "phase3-autopost-workflow-job-growth-strategist-selected-attempt-1",
+        "stage": "selected",
+        "eventType": "stage-transition"
+      },
+      {
+        "durableEventId": {
+          "kind": "event",
+          "value": "event-link-ready"
+        },
+        "sequence": 4,
+        "payloadDigest": "phase3-event-link-ready00000000000000000000000000000000000000000",
+        "occurredAt": "2026-08-03T00:00:00.000Z",
+        "workflowRunId": {
+          "kind": "workflow-run",
+          "value": "phase3-autopost-workflow"
+        },
+        "taskId": {
+          "kind": "task",
+          "value": "autopost-task"
+        },
+        "jobId": "phase3-autopost-workflow-job-link-attribution-link_ready-attempt-1",
+        "stage": "link_ready",
+        "eventType": "job-completed"
+      },
+      {
+        "durableEventId": {
+          "kind": "event",
+          "value": "event-copy-completed"
+        },
+        "sequence": 5,
+        "payloadDigest": "phase3-event-copy-completed0000000000000000000000000000000000000",
+        "occurredAt": "2026-08-03T00:00:00.000Z",
+        "workflowRunId": {
+          "kind": "workflow-run",
+          "value": "phase3-autopost-workflow"
+        },
+        "taskId": {
+          "kind": "task",
+          "value": "autopost-task"
+        },
+        "jobId": "phase3-autopost-workflow-job-gemini-copywriter-copy-attempt-1",
+        "stage": "content_queued",
+        "eventType": "branch-completed"
+      },
+      {
+        "durableEventId": {
+          "kind": "event",
+          "value": "event-visual-failed"
+        },
+        "sequence": 6,
+        "payloadDigest": "phase3-event-visual-failed00000000000000000000000000000000000000",
+        "occurredAt": "2026-08-03T00:00:00.000Z",
+        "workflowRunId": {
+          "kind": "workflow-run",
+          "value": "phase3-autopost-workflow"
+        },
+        "taskId": {
+          "kind": "task",
+          "value": "autopost-task"
+        },
+        "jobId": "phase3-autopost-workflow-job-flow-visual-producer-visual-attempt-1",
+        "stage": "content_queued",
+        "eventType": "task-update"
+      },
+      {
+        "durableEventId": {
+          "kind": "event",
+          "value": "event-visual-recovered"
+        },
+        "sequence": 7,
+        "payloadDigest": "phase3-event-visual-recovered00000000000000000000000000000000000",
+        "occurredAt": "2026-08-03T00:00:00.000Z",
+        "workflowRunId": {
+          "kind": "workflow-run",
+          "value": "phase3-autopost-workflow"
+        },
+        "taskId": {
+          "kind": "task",
+          "value": "autopost-task"
+        },
+        "jobId": "phase3-autopost-workflow-job-flow-visual-producer-visual-attempt-1",
+        "stage": "content_queued",
+        "eventType": "session-updated"
+      },
+      {
+        "durableEventId": {
+          "kind": "event",
+          "value": "event-visual-retry-started"
+        },
+        "sequence": 8,
+        "payloadDigest": "phase3-event-visual-retry-started0000000000000000000000000000000",
+        "occurredAt": "2026-08-03T00:00:00.000Z",
+        "workflowRunId": {
+          "kind": "workflow-run",
+          "value": "phase3-autopost-workflow"
+        },
+        "taskId": {
+          "kind": "task",
+          "value": "autopost-task"
+        },
+        "jobId": "phase3-autopost-workflow-job-flow-visual-producer-visual-attempt-2",
+        "stage": "content_queued",
+        "eventType": "task-update"
+      },
+      {
+        "durableEventId": {
+          "kind": "event",
+          "value": "event-visual-completed"
+        },
+        "sequence": 9,
+        "payloadDigest": "phase3-event-visual-completed00000000000000000000000000000000000",
+        "occurredAt": "2026-08-03T00:00:00.000Z",
+        "workflowRunId": {
+          "kind": "workflow-run",
+          "value": "phase3-autopost-workflow"
+        },
+        "taskId": {
+          "kind": "task",
+          "value": "autopost-task"
+        },
+        "jobId": "phase3-autopost-workflow-job-flow-visual-producer-visual-attempt-2",
+        "stage": "content_queued",
+        "eventType": "branch-completed"
+      },
+      {
+        "durableEventId": {
+          "kind": "event",
+          "value": "event-content-ready"
+        },
+        "sequence": 10,
+        "payloadDigest": "phase3-event-content-ready00000000000000000000000000000000000000",
+        "occurredAt": "2026-08-03T00:00:00.000Z",
+        "workflowRunId": {
+          "kind": "workflow-run",
+          "value": "phase3-autopost-workflow"
+        },
+        "taskId": {
+          "kind": "task",
+          "value": "autopost-task"
+        },
+        "jobId": "workflow-coordinator",
+        "stage": "content_ready",
+        "eventType": "join-emitted"
+      },
+      {
+        "durableEventId": {
+          "kind": "event",
+          "value": "event-qa-review-rejected"
+        },
+        "sequence": 11,
+        "payloadDigest": "phase3-event-qa-review-rejected000000000000000000000000000000000",
+        "occurredAt": "2026-08-03T00:00:00.000Z",
+        "workflowRunId": {
+          "kind": "workflow-run",
+          "value": "phase3-autopost-workflow"
+        },
+        "taskId": {
+          "kind": "task",
+          "value": "autopost-task"
+        },
+        "jobId": "phase3-autopost-workflow-job-qa-editor-qa_approved-attempt-1",
+        "stage": "content_ready",
+        "eventType": "task-update"
+      },
+      {
+        "durableEventId": {
+          "kind": "event",
+          "value": "event-qa-approved"
+        },
+        "sequence": 12,
+        "payloadDigest": "phase3-event-qa-approved0000000000000000000000000000000000000000",
+        "occurredAt": "2026-08-03T00:00:00.000Z",
+        "workflowRunId": {
+          "kind": "workflow-run",
+          "value": "phase3-autopost-workflow"
+        },
+        "taskId": {
+          "kind": "task",
+          "value": "autopost-task"
+        },
+        "jobId": "phase3-autopost-workflow-job-qa-editor-qa_approved-attempt-1",
+        "stage": "qa_approved",
+        "eventType": "job-completed"
+      },
+      {
+        "durableEventId": {
+          "kind": "event",
+          "value": "event-scheduled"
+        },
+        "sequence": 13,
+        "payloadDigest": "phase3-event-scheduled000000000000000000000000000000000000000000",
+        "occurredAt": "2026-08-03T00:00:00.000Z",
+        "workflowRunId": {
+          "kind": "workflow-run",
+          "value": "phase3-autopost-workflow"
+        },
+        "taskId": {
+          "kind": "task",
+          "value": "autopost-task"
+        },
+        "jobId": "phase3-autopost-workflow-job-publisher-scheduled-attempt-1",
+        "stage": "scheduled",
+        "eventType": "job-completed"
+      },
+      {
+        "durableEventId": {
+          "kind": "event",
+          "value": "event-published"
+        },
+        "sequence": 14,
+        "payloadDigest": "phase3-event-published000000000000000000000000000000000000000000",
+        "occurredAt": "2026-08-03T00:00:00.000Z",
+        "workflowRunId": {
+          "kind": "workflow-run",
+          "value": "phase3-autopost-workflow"
+        },
+        "taskId": {
+          "kind": "task",
+          "value": "autopost-task"
+        },
+        "jobId": "phase3-autopost-workflow-job-publisher-scheduled-attempt-1",
+        "stage": "published",
+        "eventType": "job-completed"
+      },
+      {
+        "durableEventId": {
+          "kind": "event",
+          "value": "event-measured"
+        },
+        "sequence": 15,
+        "payloadDigest": "phase3-event-measured0000000000000000000000000000000000000000000",
+        "occurredAt": "2026-08-03T00:00:00.000Z",
+        "workflowRunId": {
+          "kind": "workflow-run",
+          "value": "phase3-autopost-workflow"
+        },
+        "taskId": {
+          "kind": "task",
+          "value": "autopost-task"
+        },
+        "jobId": "phase3-autopost-workflow-job-performance-analyst-measured-attempt-1",
+        "stage": "measured",
+        "eventType": "job-completed"
+      }
+    ]
+  },
+  "persistence": {
+    "first": {
+      "workflowId": "workflow-2026-08-03",
+      "jobs": 8,
+      "agentRuns": 8,
+      "auditEvents": 9
+    },
+    "second": {
+      "workflowId": "workflow-2026-08-03",
+      "jobs": 8,
+      "agentRuns": 8,
+      "auditEvents": 9
+    },
+    "counts": {
+      "jobs": 8,
+      "agent_runs": 8,
+      "audit_events": 9,
+      "job_outbox": 8
+    },
+    "systemJoinAuditCount": 1
+  }
+}

@@ -4,6 +4,7 @@ import { nextStages } from "@affiliate-ops/workflows";
 export * from "./sheet-sync/index.ts";
 export * from "./simulation/persistence.ts";
 export * from "./simulation/pilot.ts";
+export * from "./simulation/phase3-operations.ts";
 
 export interface RunnerPlan {
   workflowId: string;
