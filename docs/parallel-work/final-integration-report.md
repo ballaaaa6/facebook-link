@@ -3,7 +3,7 @@
 Status: INTEGRATED
 Integrated at: 2026-08-02T10:39:13.0929813+07:00 (Asia/Bangkok)
 Integration branch: `codex/integration/phase2-world-kernel`
-Final integration commit: recorded by the commit containing this report
+Final integration commit: `cbf4f7bf48cb49912374dd2330311fdade29e44c`
 Original coordination base: `fb5cfc79436f3071cd77951fa9c08e489f5e73c7`
 Planning commit: `b9efe676208e8c7ab31c684305c3e373957202e0`
 Worker base: `249a104114abd135cd1a9a0855821c9722e78b60`

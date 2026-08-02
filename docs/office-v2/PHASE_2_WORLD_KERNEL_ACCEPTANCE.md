@@ -81,7 +81,8 @@ stable depth, reference closure, and canonical serialization reorder tests.
 
 ## Evidence record
 
-- Acceptance commit: final integration commit recorded in
+- Acceptance commit: `cbf4f7bf48cb49912374dd2330311fdade29e44c` (final
+  integration commit); details are recorded in
   `docs/parallel-work/final-integration-report.md`.
 - Accepted by: Session 3 Final Integrator, worker/session
   `019fc076-8582-7db3-ae9f-6425cd4b5068`.
