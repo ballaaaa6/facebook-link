@@ -14,8 +14,8 @@ Status: **COMPLETE — integrated, validated, and published**
 - No local development server or long-running project process was started.
 - The primary branch remained unchanged locally and remotely at the original
   base. The coordinator planning commits `175d0d3` and `5d728b5` are retained
-  only in the dedicated integration branch history; no implementation or
-  integration commit was merged or pushed to `main`.
+  in isolated non-primary histories; no implementation or integration commit
+  was merged or pushed to `main`.
 
 ## Active Phase and wave
 
