@@ -116,9 +116,12 @@ facility/queue/cleanup, RC-02 runtime/presentation/restore, and RC-03
 assignment/retry/target-revalidation now have bounded source records,
 clean-room dispositions, canonical receiving docs, test-only fixtures, and
 focused evidence (5/5, 4/4, and 1/1). This clears the bounded research
-prerequisite for selecting a later T2 implementation wave only. The simulation
-package still has no reducer or replay runner; placeholder hashes are not
-evidence, Phase 3 remains active, and T2/T3 have not passed.
+prerequisite for selecting a later T2 implementation wave. The `P3-W2.1`
+fixed-tick command pipeline is now integrated as a pure, renderer-free command
+result/event reducer boundary with focused 8/8 evidence. Facility/interaction
+runtime, queue/crowd behavior, lifecycle, replay, and reducer-produced state
+hashes remain future work; placeholder hashes are not evidence, Phase 3 remains
+active, and T2/T3 have not passed.
 
 The historical 186-file W1.6 number is closure evidence at the handoff commit.
 The Phase 1 exit handoff, Phase 2 acceptance record, visual style approval

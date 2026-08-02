@@ -78,20 +78,60 @@ reconciliation, cross-task checks, and all shared final records.
 - Initial worker session: `019fc0dc-cde8-77d3-9763-8e357dd521f5` / Darwin;
   shutdown after remaining non-terminal with no implementation commit.
 - Replacement worker session for the same unfinished leaf scope:
-  `019fc0e3-ef2e-78f2-ab7a-2869368556ef` / Carver.
+  `019fc0e3-ef2e-78f2-ab7a-2869368556ef` / Carver; it was also shut down
+  without an implementation commit.
+- Final same-scope recovery session: `019fc0e6-b8a5-7030-ae1e-773184540d66` /
+  Sagan; it was shut down without a handoff after the same non-terminal
+  worker-runtime behavior.
 
 The Main Orchestration Session is the sole Final Integrator and Publisher.
 Workers stop after committing and handing off their individual tasks.
 
+## Worker outcome and Main review
+
+All three real delegated sessions were launched against the pinned planning
+base and the isolated worker worktree. Each recorded or attempted the same
+`P3-W2.1` leaf scope; none produced a usable worker handoff. Main therefore
+recovered the exact selected leaf in the preserved worker worktree, without
+adding a task or expanding the ownership boundary.
+
+- Coordinator recovery implementation commit:
+  `758a33492f6532ee35430ed57e46917358fa6fb6`.
+- Main reviewed the recovery diff and accepted only the owned source, focused
+  test, and status handoff paths. The review found no schema, world, renderer,
+  asset, operations, or unrelated task changes.
+- Cherry-picking the recovery status record conflicted with the Main-side
+  in-progress status line; Main resolved that conflict by preserving the
+  recovery record and all three session IDs. The follow-up status commit was
+  empty after that resolution and was skipped.
+- Main-owned integration wiring exports `command-pipeline.ts` from the package
+  barrel and adds the package-level Node test script. Integrated implementation
+  commit: `15045a4554a53efdadf3b7ecc15fe39a627fb65c`.
+- Backlog and readiness records now mark `P3-W2.1` integrated, keep Phase 3
+  ACTIVE, and promote only `P3-W2.2`, `P3-W2.3`, and `P3-W2.6` to the next-wave
+  READY set. No next wave was launched by this invocation.
+
 ## Validation and Phase-closure strategy
 
-The worker runs its focused command-pipeline test, package typecheck, project
-preflight, `git diff --check`, and the repository gate when the isolated
-worktree is dependency-ready. Main reviews the exact commit and owned-file
-diff, adds only required shared exports/integration tests, runs every required
-Office V2 and repository gate on this integration branch, updates the backlog,
-and evaluates Phase 3. This wave cannot close Phase 3 by itself; T2/T3 exit
-criteria remain outstanding.
+The delegated worker contract required the focused command-pipeline test,
+package typecheck, project preflight, `git diff --check`, and the repository
+gate. Because the delegated sessions stalled before implementation, Main ran
+those validations against the coordinator recovery and the integrated branch.
+Main reviewed the exact owned-file diff, added only the required shared export
+and package test wiring, updated the backlog/readiness records, and evaluated
+Phase 3. This wave cannot close Phase 3 by itself; T2/T3 exit criteria remain
+outstanding.
+
+Required validation evidence for the integrated branch:
+
+- `node --test packages/office-v2-simulation/test/command-pipeline.test.ts` —
+  8/8 passed.
+- `npm run typecheck --workspace @affiliate-ops/office-v2-simulation` — passed.
+- `node .agents/skills/build-office-v2-engine/scripts/preflight.mjs` — passed.
+- `git diff --check` — passed.
+- `npm run check` — passed, including the Office V2 clean-room, boundary,
+  contradiction, knowledge, asset, architecture, health, duplication,
+  typecheck, test, and build gates.
 
 ## Publication strategy and known risks
 

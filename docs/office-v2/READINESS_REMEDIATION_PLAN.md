@@ -644,8 +644,11 @@ The focused research closure slices that feed later work are recorded in
 records and bounded fixture evidence. This clears the research prerequisite for
 selecting a later W2/T2 implementation unit that consumes their facility,
 interaction, assignment, or replay rules; it does not claim the runtime
-follow-on evidence. Real reducer-produced hashes, restore/replay equality, and
-the T2/T3 exit gates remain required in Waves 2–3. RC-04 must close before
+follow-on evidence. `P3-W2.1` now supplies the first pure fixed-tick
+command/result/event pipeline with 8/8 focused evidence; it does not claim
+facility/interaction runtime, lifecycle, queue/crowd, restore/replay, or real
+reducer-produced state-hash evidence. Those T2/T3 gates remain required in
+Waves 2–3. RC-04 must close before
 renderer accessibility and lifecycle acceptance. These slices are not Phase 2
 entry or exit requirements and do not authorize a broader Phase 2 scope.
 

@@ -168,6 +168,13 @@ proof remain deferred to their later gates.
 
 ## Phase 3 — Headless operational vertical slice
 
+The `P3-W2.1` fixed-tick command pipeline is integrated as the first pure
+simulation runtime unit. It proves deterministic command ordering, scheduled-
+past and stale-revision rejection, duplicate idempotency/conflict handling,
+owner validation, and schema-shaped result/event emission. Facility and
+interaction runtime, lifecycle, queue/crowd, restore/replay, and real state
+hash evidence remain required before the Phase 3 exit.
+
 - Build one geometric room with one actor, one workstation, one target, blocked
   cells, one waiting position, and one unreachable case.
 - Implement fixed ticks, idempotent commands, internal four-way A*, movement,

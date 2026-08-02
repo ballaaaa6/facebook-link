@@ -18,8 +18,8 @@ executable leaf tasks and their current status.
 - Phase entry blocker: the bounded RC-01, RC-02, and RC-03 research prerequisite
   is now integrated. Runtime implementation still requires the future W2
   command, reducer, hash, interaction, restore, and replay gates.
-- Phase status after current wave: **ACTIVE — P3-W2-01 in progress; P3-W0
-  bounded research closure accepted; no T2/T3 runtime gate has passed**.
+- Phase status after current wave: **ACTIVE — P3-W2-01 integrated; P3-W0
+  bounded research closure accepted; T2/T3 exit criteria remain incomplete**.
 - Phase exit criteria: T2 one-actor reach/use/cancel/restore/replay evidence,
   T3 crowd/queue/deadlock evidence, and the complete operations choreography
   evidence pass without renderer or asset leakage.
@@ -198,22 +198,25 @@ launched by this invocation.
 
 ## Current wave: P3-W2-01 — T2 fixed-tick command pipeline
 
-The selected assignment is a READY leaf task from the current active Phase. No
+The selected assignment was a READY leaf task from the current active Phase. No
 later-Phase work was selected to fill unused worker capacity. The one-worker
-count is correct because `P3-W2.1` is the only compatible READY task; W2.2 is
-blocked on its output and no other task may be promoted merely to use capacity.
+count was correct because `P3-W2.1` was the only compatible READY task at wave
+selection; W2.2, W2.3, and W2.6 were dependency-gated at that time.
 
 - Task: `P3-W2.1`
 - Initial worker session: `019fc0dc-cde8-77d3-9763-8e357dd521f5` / Darwin
   (shutdown before implementation); replacement session:
-  `019fc0e3-ef2e-78f2-ab7a-2869368556ef` / Carver
+  `019fc0e3-ef2e-78f2-ab7a-2869368556ef` / Carver; final recovery session:
+  `019fc0e6-b8a5-7030-ae1e-773184540d66` / Sagan (shutdown before handoff)
 - Branch: `task/session-1-p3-w2-command-pipeline`
 - Worktree: `C:\Users\WINDOW XI\.codex\worktrees\phase3-w2-command-pipeline`
 - Planning commit: `7233ebf40f63190ac166069aedf9c7b30a04707b`
 - Integration branch: `codex/integration/phase3-w2-command-pipeline`
-- Status: **IN_PROGRESS** — worker launched; Main review and integration pending.
+- Status: **INTEGRATED** — coordinator recovery accepted by Main; original
+  recovery implementation commit `758a33492f6532ee35430ed57e46917358fa6fb6`
+  and integrated commit `15045a4`.
 
-## Remaining Phase 3 leaf tasks after P3-W2-01 selection
+## Remaining Phase 3 leaf tasks after P3-W2-01 integration
 
 These tasks are intentionally not selected in this invocation. They remain
 candidate or blocked until the named dependencies are integrated.
@@ -223,11 +226,12 @@ candidate or blocked until the named dependencies are integrated.
 - Parent milestone: T2 headless vertical slice; Parent Phase: Phase 3; Parent
   workstream/work package: W2.1 command protocol.
 - Objective: implement the 10 Hz ingest/validate/deduplicate/order/apply/result/event pipeline.
-- Repository evidence: `packages/office-v2-simulation/src/index.ts` is empty;
-  W2.1 contracts and fixtures exist; reducer evidence is zero.
+- Repository evidence: the simulation package now exports the W2.1 pipeline
+  from `packages/office-v2-simulation/src/index.ts`; W2.1 contracts and
+  fixtures exist; the focused pipeline evidence is present, while full
+  reducer/replay evidence remains zero.
 - Dependencies: P3-RC-02 and P3-RC-03 integrated; Phase 2 acceptance.
-- Dependency status: SATISFIED for the named prerequisites; eligible for a
-  future Phase 3 wave but not selected in this invocation.
+- Dependency status: SATISFIED; integrated in the current wave.
 - Parallel group: future W2 implementation group.
 - Owned implementation boundary: `packages/office-v2-simulation/src/command-pipeline.ts` and its focused test.
 - Forbidden boundary: world package, operations adapter, renderer, assets, and shared generated contracts.
@@ -240,8 +244,8 @@ candidate or blocked until the named dependencies are integrated.
 - Validation commands: preflight, package typecheck/test, `npm run check`.
 - Worker-sized scope assessment: one reducer pipeline module and focused tests.
 - Priority: P0.
-- Status: **IN_PROGRESS** — selected for the current wave; worker handoff and
-  Main review are pending.
+- Status: **INTEGRATED** — Main accepted the coordinator recovery after focused
+  and complete validation; no delegated worker commit or handoff was produced.
 
 ### P3-W2.2 — Simulation normalization, PRNG, and real state hashes
 
@@ -252,7 +256,8 @@ candidate or blocked until the named dependencies are integrated.
 - Repository evidence: shared canonical JSON/hash utilities exist; current
   replay hashes are placeholders and reducer/replay evidence is zero.
 - Dependencies: P3-W2.1 integrated; P3-RC-02 and P3-RC-03 integrated.
-- Dependency status: BLOCKED until command pipeline and this wave close.
+- Dependency status: **SATISFIED** after `P3-W2.1` integration and Phase 3
+  readiness review.
 - Parallel group: future W2 implementation group.
 - Owned implementation boundary: `packages/office-v2-simulation/src/state-hash.ts` and focused tests.
 - Forbidden boundary: shared canonical utility implementation, renderer state, and operations records.
@@ -264,7 +269,8 @@ candidate or blocked until the named dependencies are integrated.
 - Validation commands: preflight, package typecheck/test, `npm run check`.
 - Worker-sized scope assessment: one normalization/hash module and focused tests.
 - Priority: P0.
-- Status: CANDIDATE.
+- Status: **READY** — recommended for the next Phase 3 wave; not launched in
+  this invocation.
 
 ### P3-W2.3 — One-actor intents, facilities, action queues, and interaction
 
@@ -274,7 +280,8 @@ candidate or blocked until the named dependencies are integrated.
   requested-to-using interaction lifecycle using existing world geometry.
 - Repository evidence: facility/action contracts exist, but package runtime is empty.
 - Dependencies: P3-RC-01 and P3-RC-03 integrated; P3-W2.1 integrated.
-- Dependency status: BLOCKED until named prerequisites integrate.
+- Dependency status: **SATISFIED** after RC-01, RC-03, and `P3-W2.1`
+  integration.
 - Parallel group: future W2 implementation group.
 - Owned implementation boundary: `packages/office-v2-simulation/src/activity-runtime.ts` and focused tests.
 - Forbidden boundary: queues/deadlocks beyond the one-actor contract, operations,
@@ -287,7 +294,8 @@ candidate or blocked until the named dependencies are integrated.
 - Validation commands: preflight, package typecheck/test, `npm run check`.
 - Worker-sized scope assessment: one one-actor runtime module and focused tests.
 - Priority: P0.
-- Status: CANDIDATE.
+- Status: **READY** — recommended for the next Phase 3 wave; not launched in
+  this invocation.
 
 ### P3-W2.4 — Queue, reservation, fairness, and deadlock runtime
 
@@ -297,7 +305,7 @@ candidate or blocked until the named dependencies are integrated.
   bounded wait, cycle detection, and deterministic yield/block behavior.
 - Repository evidence: policy and numeric profiles exist; runtime queue evidence is absent.
 - Dependencies: P3-W2.3 integrated; RC-01 integrated.
-- Dependency status: BLOCKED.
+- Dependency status: BLOCKED until `P3-W2.3` integrates.
 - Parallel group: future T3 implementation group.
 - Owned implementation boundary: `packages/office-v2-simulation/src/queues.ts` and focused tests.
 - Forbidden boundary: operations adapter, renderer, assets, and workflow sources.
@@ -320,7 +328,8 @@ candidate or blocked until the named dependencies are integrated.
 - Repository evidence: snapshot/trace contracts and migration rules exist;
   runtime registry and replay evidence are absent.
 - Dependencies: P3-W2.1, P3-W2.2, and P3-W2.3 integrated; RC-02/03 integrated.
-- Dependency status: BLOCKED.
+- Dependency status: BLOCKED until `P3-W2.1`, `P3-W2.2`, and `P3-W2.3`
+  integrate.
 - Parallel group: future T2 replay group.
 - Owned implementation boundary: `packages/office-v2-simulation/src/replay.ts` and focused tests.
 - Forbidden boundary: external connector payloads, credentials, renderer state, and operations truth.
@@ -342,7 +351,7 @@ candidate or blocked until the named dependencies are integrated.
   lifecycle with capped catch-up and idempotent subscriptions.
 - Repository evidence: lifecycle policy and fixture shape exist; no runtime port exists.
 - Dependencies: P3-W2.1 integrated; RC-02 integrated.
-- Dependency status: BLOCKED.
+- Dependency status: **SATISFIED** after RC-02 and `P3-W2.1` integration.
 - Parallel group: future T2 lifecycle group.
 - Owned implementation boundary: `packages/office-v2-simulation/src/lifecycle.ts` and focused tests.
 - Forbidden boundary: browser renderer implementation and operations event production.
@@ -353,7 +362,8 @@ candidate or blocked until the named dependencies are integrated.
 - Validation commands: preflight, package typecheck/test, `npm run check`.
 - Worker-sized scope assessment: one lifecycle port and focused tests.
 - Priority: P1.
-- Status: BLOCKED.
+- Status: **READY** — recommended for the next Phase 3 wave; not launched in
+  this invocation.
 
 ### P3-W3.1 — Workflow ownership and operations adapter verification
 
@@ -439,6 +449,15 @@ candidate or blocked until the named dependencies are integrated.
 - Worker-sized scope assessment: one cross-package integration module and tests.
 - Priority: P1.
 - Status: BLOCKED.
+
+## Recommended next wave
+
+`P3-W2-02` should select the three compatible READY leaf tasks `P3-W2.2`
+(simulation normalization/PRNG/state hashes), `P3-W2.3` (one-actor
+intents/facilities/interaction), and `P3-W2.6` (fixed-tick lifecycle port).
+They have disjoint ownership and no dependency on one another's unintegrated
+output. The Main Orchestration Session must select and launch that wave only in
+a later invocation.
 
 ## Selection rule and status transitions
 

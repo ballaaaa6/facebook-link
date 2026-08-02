@@ -54,3 +54,12 @@ expanded. Focused validation and commit details are recorded below.
 - Recovery implementation commit: `758a33492f6532ee35430ed57e46917358fa6fb6`.
 
 The Main Orchestration Session must review and integrate this commit.
+
+## Main review and integration
+
+- Main review status: **ACCEPTED — coordinator recovery**.
+- Integrated implementation commit:
+  `15045a4554a53efdadf3b7ecc15fe39a627fb65c`.
+- Main-owned package barrel and package test-script wiring were applied only on
+  the integration branch. No worker-owned implementation path was changed
+  during integration.
