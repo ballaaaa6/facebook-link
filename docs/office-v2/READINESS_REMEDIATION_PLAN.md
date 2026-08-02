@@ -986,6 +986,13 @@ The owner visual sign-off is recorded separately in STYLE_PROFILE_APPROVAL.md,
 and visual-proof risks are tracked in VISUAL_PROOF_RISK_REGISTER.md. Neither
 record admits production pixels or runtime assets before its later gate passes.
 
+The focused visual-production research slice is recorded in `RESEARCH.md`
+under `VIS-01 — Original visual production before Phase 5/T5`. It supplies the
+craft study, original-material reference boundary, and authoring-method
+experiment for W4.1–W4.5. VIS-01 does not change the Phase 2 world-kernel
+scope; its production evidence executes after T4 and is consumed by the T5
+connected-workstation proof.
+
 ### W4.1 Lock the measurable style profile
 
 Extend `ART_DIRECTION_PIXEL_SPEC.md` and add `style-profile.schema.json`. Record

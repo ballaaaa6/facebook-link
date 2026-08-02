@@ -206,7 +206,7 @@ answer a named unresolved decision or evaluate a bounded tool candidate.
 | Room program, capacity, and circulation | CorsixTH room/object patterns; Tiled templates | room-template and scene-plan schemas, required/optional facility rules, clearance and adjacency grammar | invalid capacity, blocked entrance, narrow aisle, deterministic composition fixtures |
 | AutoPost-to-world choreography | repository workflow, agent catalog, feature flags, and operations adapter | operations snapshot V2, activity routing, roster/facility binding, fan-out/join contract | ten-role trace, duplicate-event rejection, disabled-role and unknown-role failures |
 | Ten-to-fifteen actor crowds | deterministic A*, reservations, queues, state-machine cancellation | queue priority, capacity, timeout, target removal, deadlock policy, real replay hash | shared-facility queue, narrow-door contention, cancel, target removal, 15-actor replay |
-| Measurable original visual language | Aseprite production metadata; target brief | style-profile schema with scale, palette roles, outlines, shadows, density, padding, and zoom | geometry board, palette board, character/furniture/door lineup, native-scale owner review |
+| Measurable original visual language | Aseprite production metadata and official tutorials for palette, color, animation, layers, tags, and slices; target brief; original office/material reference set; the bounded W4.3 3D-assisted candidate | style-profile schema with scale, palette roles, outlines, shadows, density, padding, and zoom; a recorded authoring-method decision | geometry board, palette board, character/furniture/door lineup, native-scale owner review, and original-material authoring experiment |
 | Repeatable asset factory | Aseprite CLI, Pixi asset and texture contracts | source recipe, family scaffold, atlas and catalog schemas, registry compiler, review-board generators | byte-identical rebuild, altered/missing file failure, alpha/socket/seam/clip/atlas checks |
 | Reusable character identities | shared rig and slice metadata principles | character definition, identity layers, four facings, semantic clip map, ground contact and sockets | turnaround, seated/standing contacts, held-prop ownership, ten-identity lineup |
 | Reusable furniture and structures | connectivity masks, room objects, interaction approaches | semantic variant key, render parts, interaction catalog, prop-slot ownership | workstation connectivity, door/window corners, occupied chair, monitor states, socket tests |
@@ -275,6 +275,71 @@ If a study produces no rule, it must be recorded as `observed-only` or
    narrowly scoped tool.
 6. Run the focused evidence and `npm run check` after each closed slice. Only
    then may the readiness record reference the result.
+
+## VIS-01 — Original visual production before Phase 5/T5
+
+Status: planned. The existing art direction, character, furniture, geometry,
+and asset-pipeline documents define the Office-owned contracts. VIS-01 adds the
+bounded craft and authoring study needed to turn those contracts into original
+production material. It does not replace `ART_DIRECTION_PIXEL_SPEC.md`, does
+not select a renderer, and does not admit runtime assets.
+
+### Sources and bounded questions
+
+| Source or material | What it informs | Office-owned question |
+| --- | --- | --- |
+| [Aseprite tutorials](https://www.aseprite.org/docs/tutorial/) and [color/palette guide](https://www.aseprite.org/docs/tutorial/color-bar-tutorial/) | Palette handling, color roles, indexed color, animation review, and repeatable drawing workflow | What palette roles, contrast steps, color variance, and animation review rules make the warm Office style readable at native scale and supported zoom stops? |
+| [Aseprite CLI](https://www.aseprite.org/docs/cli/), [sprite-sheet export](https://www.aseprite.org/docs/sprite-sheet/), and [slices](https://www.aseprite.org/docs/slices/) | Layer/tag/slice metadata, frame export, padding, JSON metadata, and scripted output | Which source layers, frame tags, slices, naming rules, and export arguments are required for deterministic character, furniture, and environment families? |
+| Original office, furniture, material, lighting, and human-pose references | Silhouette, material edges, believable proportions, contact poses, and visual density without copying a game | Which real-world observations can be reconstructed into an original modular family while preserving the locked geometry, scale, lighting, and palette contract? Every retained reference needs provenance and rights status. |
+| The existing W4.3 fixed-camera 3D-assisted/hybrid experiment, with an optional [Blender camera/render reference](https://docs.blender.org/manual/en/latest/render/cameras/index.html) | A bounded comparison between hand-pixel, fixed-camera 3D-assisted, and hybrid authoring | Which method minimizes revision cost and geometry/facing drift for this family? Do not select one method for every family by assumption; the experiment must use original test material and record the losing alternatives. |
+
+### Required VIS-01 outputs
+
+VIS-01 closes only when the following project-owned evidence exists:
+
+1. An approved or explicitly rejected numeric style profile covering native
+   pixel density, palette roles, outline, light/shadow, detail density,
+   transparent padding, and supported zoom stops.
+2. A style board, palette board, character scale/turnaround board, furniture
+   scale board, light/dark alpha board, and native-scale viewport review.
+3. A character animation board covering idle, move, interact, blocked feedback,
+   ground-contact stability, held-item attachment, and reduced-motion behavior.
+4. One connected-workstation proof family with original source, provenance,
+   export recipe, isolated/left-end/middle/right-end variants, geometry and
+   socket registration, seated composite, catalog/bundle references, and review
+   hashes.
+5. A decision recording the winning authoring profile for that family, exact
+   tool/version/dependencies, deterministic arguments, and the rejection or
+   non-adoption reason for the alternatives.
+6. One valid and one rejected evidence case for each applicable alpha, palette,
+   frame, contact, socket, facing, clip, seam, provenance, and export rule.
+7. Two clean builds with byte-identical outputs and a visual-owner review at
+   native scale before any family is admitted to runtime.
+
+### VIS-01 boundaries
+
+- Game screenshots and open-source projects may inform readability, density,
+  and production questions; they do not provide pixels, palettes, layouts,
+  characters, animation timings, or runtime data.
+- A generated or assisted whole-room image is a mood/composition reference,
+  not a runtime sheet or map. Assisted material must record its brief or prompt,
+  tool/model/version, selection, redraw or reconstruction, cleanup, source
+  hash, and commercial review.
+- Aseprite documentation informs a possible source profile; it does not admit
+  Aseprite as a runtime dependency. The selected profile must still be recorded
+  in `DEPENDENCY_LEDGER.md` with version, license, and removal path.
+- VIS-01 is a Phase 5/T5 production-readiness input. It is not a Phase 2 entry
+  or exit requirement, and it cannot be used to claim final pixels, renderer
+  readiness, or a populated office.
+
+### VIS-01 closure record
+
+The closure record must name the bounded question, source URLs or reference
+identifiers, observed revision/date, license and commercial status, neutral
+observations, adopt/adapt/reject disposition, canonical receiving documents,
+style/geometry boards, fixtures, exact diagnostics, clean-build hashes, and
+the visual reviewer. If a source produces no Office rule, record it as
+`observed-only` or `rejected` rather than leaving an unbounded recommendation.
 
 ## Clean-room acquisition method
 
