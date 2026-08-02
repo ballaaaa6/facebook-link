@@ -138,6 +138,15 @@ are bounded module/runtime/operations evidence, not the Phase 3 exit:
 reducer-integrated crowd traces, complete Operations V2 choreography, Phase 3,
 and T2/T3 remain incomplete.
 
+The final currently-ready Phase 3 leaf, `P3-W3.4`, is now integrated as a pure
+operations reconciliation adapter. It wraps Snapshot V2 with a generic
+external-input cursor, explicit external time, the unchanged 10 Hz simulation
+tick, deterministic queue/intent ledgers, and current-truth rebasing for gaps,
+epoch changes, and expired retention. Its focused suite passes 12/12 and the
+operations package passes 29/29. This is bounded two-clock/reconnect evidence;
+it does not close reducer-integrated crowd traces, complete Operations V2
+choreography, or the Phase 3 T2/T3 exit.
+
 The historical 186-file W1.6 number is closure evidence at the handoff commit.
 The Phase 1 exit handoff, Phase 2 acceptance record, visual style approval
 record, and visual proof risk register were added afterward as administrative

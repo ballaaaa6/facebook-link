@@ -27,6 +27,27 @@ contiguous. A sequence gap requests resynchronization, an epoch change forces
 reconciliation, and a cursor older than the retained window reconciles directly
 to current truth without inventing missed activity.
 
+W3.4 adds the adapter-owned reconciliation boundary without creating a second
+simulation clock. The checkpoint schema `office-operations-reconciliation-v1`
+wraps the completed-boundary Snapshot V2, the generic external-input cursor,
+the 10 Hz logical simulation tick, the injected external timestamp, the
+choreography state, and bounded queue/intent ledgers. A durable operations event
+that is eligible at `externalNow` becomes a typed external input scheduled for
+the next logical tick; elapsed wall time is never converted into a tick burst.
+Hidden-tab, reload, reconnect, resume, and bfcache paths therefore retain the
+last completed simulation tick and reconcile only the supplied event window.
+
+Event validity is explicit: expired events advance the durable cursor without
+execution, while future events remain unconsumed and are eligible on a later
+reconciliation. A known event ID with the same digest is a no-op; a changed
+digest, contradictory transition policy, cursor-ahead snapshot, invalid window,
+or backward clock fails closed. Stream mismatch, epoch reset, gaps, and retained
+window expiry rebase to current truth and emit no historical choreography. After
+reconciliation, pending operations preserve deterministic durable/enqueue order,
+terminal queue items cannot be resurrected, and stale decorative or handoff
+intents are coalesced by branch/group identity. The returned presentation intents
+remain transient and never advance workflow state.
+
 The V2 snapshot schema is owned by `@affiliate-ops/office-v2-contracts`; the
 pure validation, cursor reconciliation, roster binding, and proposal-safety
 functions are owned by `@affiliate-ops/office-v2-operations`. The schema is
@@ -130,3 +151,8 @@ continues through the control plane and all existing review and audit policy.
   unknown roles, incompatible facilities, unavailable sessions, and forbidden
   proposals. Each rejection uses one `adapter.*` diagnostic and preserves the
   source revision for later reconciliation.
+- The W3.4 reconciliation fixture and focused suite pin intact, expired, future,
+  duplicate, changed-digest, Snapshot V2-restored, cursor-ahead, epoch, gap,
+  stale-intent, queue-resurrection, serialization, and backward-clock cases.
+  This is bounded adapter evidence; it does not claim the reducer-integrated
+  1/10/15-actor T2/T3 exit.

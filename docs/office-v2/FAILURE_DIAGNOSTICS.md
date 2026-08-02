@@ -131,6 +131,23 @@ These codes are not recoded as `presentation.*`. A renderer may preserve and
 display them, but cannot turn a stale stream into working, infer a missing role,
 or execute a proposal after an adapter rejection.
 
+W3.4 reconciliation diagnostics remain adapter-owned:
+
+| Code | Originating rule |
+| --- | --- |
+| `adapter.clock-skew` | The injected external clock moves backward or the supplied operations snapshot is newer than that clock. |
+| `adapter.cursor-ahead-of-snapshot` | The restored high-water cursor is newer than the delivered durable operations truth. |
+| `adapter.external-input-expired`, `adapter.external-input-future` | An operations event is outside its explicit validity window; expired input is consumed without execution and future input remains pending. |
+| `adapter.intent-stale`, `adapter.operation-expired` | A decorative/handoff intent or queued operation expires while the client is reloading or disconnected. |
+| `adapter.queue-item-conflict`, `adapter.queue-item-resurrection` | A durable queue update changes payload identity or attempts to reopen terminal work. |
+| `adapter.reconciliation-invalid` | The two-clock checkpoint, event policy, cursor, or event window is contradictory or invalid. |
+
+These diagnostics preserve the existing `adapter.sequence-gap`,
+`adapter.stream-epoch-changed`, `adapter.cursor-too-old`,
+`adapter.stream-mismatch`, `adapter.event-digest-conflict`, and
+`adapter.late-event` ownership. Current-truth rebasing reports the durable
+reason and does not synthesize historical presentation or handoff intents.
+
 Session D asset diagnostics are stable and asset-pipeline-owned:
 
 | Code | Originating rule |

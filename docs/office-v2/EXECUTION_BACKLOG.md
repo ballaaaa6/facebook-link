@@ -21,7 +21,7 @@ executable leaf tasks and their current status.
   crowd and complete operations evidence remain future gates.
 - Phase status before current wave: **ACTIVE — P3-W3.2 integrated; T2/T3 exit
   criteria remain incomplete**.
-- Phase status after current wave: **ACTIVE — P3-W3.3 integrated; T2/T3 exit
+- Phase status after current wave: **ACTIVE — P3-W3.4 integrated; T2/T3 exit
   evidence remain incomplete**.
 - Phase exit criteria: T2 one-actor reach/use/cancel/restore/replay evidence,
   T3 crowd/queue/deadlock evidence, and the complete operations choreography
@@ -563,7 +563,8 @@ blocked; no later-Phase work is used to fill capacity.
   workstream/work package: W3.4 lifecycle/reconnect integration.
 - Objective: map operations event windows to generic external-input cursors and
   coalesce obsolete presentation intents across reload/reconnect/resume.
-- Repository evidence: policy and contracts exist; integration evidence is absent.
+- Repository evidence: `reconciliation.ts`, its versioned fixture, and the
+  focused reconnect/resume suite are integrated in the operations package.
 - Dependencies: P3-W2.4, P3-W2.5, P3-W2.6, P3-W3.2, and P3-W3.3 integrated.
 - Dependency status: **SATISFIED** — all listed dependencies are integrated and
   the readiness/granularity checks pass.
@@ -572,19 +573,24 @@ blocked; no later-Phase work is used to fill capacity.
 - Forbidden boundary: renderer selection, real connectors, and primary branch.
 - Read-only references: operations lifecycle and simulation lifecycle documents.
 - Shared interfaces: generic external-input cursor, operations V2, snapshot/trace V2.
-- Acceptance criteria: intact-window and expired-window reconciliation with no hidden catch-up burst.
-- Focused tests: reconnect/resume/reconciliation suite.
+- Acceptance criteria: intact, expired, and future-window reconciliation;
+  duplicate/conflict and current-truth handling; deterministic queue merge;
+  stale-intent coalescing; and no hidden catch-up burst.
+- Focused tests: reconnect/resume/reconciliation suite, 12/12; operations
+  package total, 29/29.
 - Validation commands: preflight, workspace tests, `npm run check`.
 - Worker-sized scope assessment: one cross-package integration module and tests.
 - Priority: P1.
-- Status: **READY** — promoted after `P3-W3.3` integration; this task was not
-  launched in the current invocation.
+- Status: **INTEGRATED** — the primary implementation added the bounded
+  two-clock reconciliation adapter, Snapshot V2 checkpoint wrapper, cursor
+  conversion, queue/intent reconciliation, and focused evidence. No renderer,
+  connector, workflow write, or simulation-truth implementation was added.
 
 ## Current-wave stop condition
 
-No second wave is launched in this invocation. The next candidate is
-`P3-W3-04`, beginning with READY task `P3-W3.4`. Phase 3 remains active; no
-phase transition is authorized automatically.
+No additional Phase 3 implementation wave is launched in this invocation.
+`P3-W3.4` is integrated, but Phase 3 remains active because its T2/T3 exit
+evidence is not complete; no phase transition is authorized automatically.
 
 ## Selection rule and status transitions
 

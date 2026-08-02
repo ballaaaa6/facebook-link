@@ -814,8 +814,9 @@ action queues, route/facility revisions, facility state, queue tickets, wait
 queues, reservations, held props, RNG state/draw counts, world revision,
 deterministic emitted-event sequence or pending simulation-event outbox,
 cleanup generation/idempotency state, and generic
-external-input cursors/digests. Operations V2 maps its durable event cursor to
-that generic contract later.
+external-input cursors/digests. W3.4 now maps the Operations V2 durable event
+cursor to that generic contract through a versioned reconciliation checkpoint;
+the simulation reducer still owns applying the returned next-tick inputs.
 
 Renderer/effect delivery and acknowledgement live in a separate runtime
 snapshot and cannot mutate the simulation hash. If an acknowledgement must
@@ -844,8 +845,10 @@ migrations, and incompatible definition versions also fail closed.
 Define the boundary between durable real timestamps and presentation ticks.
 Inject a lifecycle port with mounted, visible, hidden, restoring, and destroyed
 states. Background pause and bfcache restore discard accumulated wall time and
-never execute an unbounded catch-up burst. Operations reconciliation is deferred
-to W3.4 after its event-window contract exists.
+never execute an unbounded catch-up burst. Operations reconciliation is
+implemented at the adapter boundary by W3.4 after the event-window contract;
+the simulation lifecycle still receives injected logical ticks and does not
+catch up hidden wall time.
 
 The working visible-tab policy is an accumulator capped at five logical ticks
 per pump. Excess lag emits a diagnostic and is reconciled without silently
@@ -993,6 +996,17 @@ If the retained event window is intact, reload reproduces the same unconsumed
 intent suffix without duplicates. If the cursor is outside the window, it
 reproduces the same current semantic state plus a bounded reconciliation intent
 set—not historical handoffs.
+
+Bounded W3.4 integration evidence is now present in
+`packages/office-v2-operations/src/reconciliation.ts`, its versioned fixture,
+and the focused reconciliation suite (12/12; operations package 29/29). The
+evidence covers the two-clock checkpoint, next-tick external-input mapping,
+expired/future validity, duplicate and digest conflict, Snapshot V2-restored
+input deduplication, gap/epoch/current-truth rebase, deterministic queue merge,
+terminal-item protection, stale-intent removal, branch/handoff coalescing, and
+serialization stability. This closes the W3.4 leaf only. It does not supply
+reducer-integrated replay hashes, one/ten/fifteen-actor restore traces, full
+operations workflow evidence, or the T2/T3 exit.
 
 Exit and T3: the applicable intact-window or expired-window rule above passes,
 and 1/10/15-actor headless runs satisfy reachability, contention, queue,

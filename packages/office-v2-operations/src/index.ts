@@ -1,4 +1,5 @@
 export * from "./choreography.ts";
+export * from "./reconciliation.ts";
 
 import type {
   OperationsAgentBinding,
@@ -9,7 +10,6 @@ import type {
   OperationsRoutingDocument,
   OperationsSnapshotDocument,
 } from "@affiliate-ops/office-v2-contracts";
-
 export type AdapterDiagnosticCode =
   | "adapter.stale"
   | "adapter.reconnecting"
@@ -35,7 +35,16 @@ export type AdapterDiagnosticCode =
   | "adapter.forbidden-proposal"
   | "adapter.interaction-unknown"
   | "adapter.snapshot-visual-binding"
-  | "adapter.routing-role-duplicate";
+  | "adapter.routing-role-duplicate"
+  | "adapter.clock-skew"
+  | "adapter.cursor-ahead-of-snapshot"
+  | "adapter.external-input-expired"
+  | "adapter.external-input-future"
+  | "adapter.intent-stale"
+  | "adapter.operation-expired"
+  | "adapter.queue-item-conflict"
+  | "adapter.queue-item-resurrection"
+  | "adapter.reconciliation-invalid";
 
 export interface AdapterDiagnostic {
   readonly code: AdapterDiagnosticCode;

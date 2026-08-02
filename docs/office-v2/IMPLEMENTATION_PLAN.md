@@ -178,9 +178,15 @@ evidence. `P3-W3-02` adds fail-closed Snapshot V2 cursor reconciliation,
 deterministic roster/route binding, and feature/proposal safety. `P3-W3-03`
 adds a pure semantic Snapshot V2 projection and idempotent copy/visual
 fan-out/join, retry, failure, recovery, reconnect, and handoff choreography.
+`P3-W3.4` adds the bounded two-clock reconciliation adapter: it maps intact
+Operations V2 windows into next-tick generic external inputs, preserves future
+and expired validity semantics, rebases gaps/epochs/retention to current truth,
+and coalesces obsolete queue/intent presentation work without hidden-time
+simulation catch-up.
 Focused suites pass 8/8, 7/7, 7/7, 12/12, 8/8, 3/3, 9/9, and 8/8
-respectively; the operations package passes 17/17 and the complete repository
-gate passes. These are bounded simulation/adapter/operations modules;
+respectively; the W3.4 reconciliation suite passes 12/12, the operations
+package passes 29/29, and the complete repository gate remains required for
+promotion. These are bounded simulation/adapter/operations modules;
 reducer-integrated crowd traces, complete Operations V2 choreography, and the
 Phase 3 exit remain required.
 

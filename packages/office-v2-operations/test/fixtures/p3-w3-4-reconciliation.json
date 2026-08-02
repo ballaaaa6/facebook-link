@@ -1,0 +1,46 @@
+{
+  "externalClock": {
+    "beforeCopy": "2026-08-02T00:00:01.500Z",
+    "afterWindow": "2026-08-02T00:00:10.000Z",
+    "afterExpiry": "2026-08-02T00:00:20.000Z"
+  },
+  "validity": {
+    "expiredAt": "2026-08-02T00:00:02.500Z",
+    "futureFrom": "2026-08-02T00:00:12.000Z"
+  },
+  "queue": {
+    "pending": {
+      "operationId": "operation-pending",
+      "intentId": "intent-pending",
+      "payloadDigest": "digest-operation-pending",
+      "priorityClass": "durable",
+      "issuedTick": 4,
+      "enqueueTick": 5,
+      "status": "pending",
+      "expiresAt": null,
+      "sourceEventId": null
+    },
+    "completed": {
+      "operationId": "operation-completed",
+      "intentId": "intent-completed",
+      "payloadDigest": "digest-operation-completed",
+      "priorityClass": "durable",
+      "issuedTick": 2,
+      "enqueueTick": 3,
+      "status": "completed",
+      "expiresAt": null,
+      "sourceEventId": "event-completed"
+    },
+    "expired": {
+      "operationId": "operation-expired",
+      "intentId": "intent-expired",
+      "payloadDigest": "digest-operation-expired",
+      "priorityClass": "decorative",
+      "issuedTick": 2,
+      "enqueueTick": 3,
+      "status": "pending",
+      "expiresAt": "2026-08-02T00:00:02.000Z",
+      "sourceEventId": null
+    }
+  }
+}
