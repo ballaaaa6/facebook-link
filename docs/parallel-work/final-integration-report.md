@@ -147,6 +147,6 @@ changes remained after the gate.
 - `gh` is unavailable in the environment, so no pull request was created.
   GitHub exposed the branch URL:
   `https://github.com/ballaaaa6/facebook-link/pull/new/codex/integration/phase3-p3-w2-03`.
-- The final report revision will be pushed immediately after this documentation
-  update; its exact tip and final clean Git status are recorded in the handoff
-  response.
+- The final report publication update is committed and pushed after the
+  verification above; the current branch tip and clean Git status are recorded
+  in the Main handoff response.
