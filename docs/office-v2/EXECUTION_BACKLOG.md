@@ -16,12 +16,12 @@ executable leaf tasks and their current status.
   renderer-neutral and exports projection, placement, topology, depth, and
   canonical-world behavior.
 - Phase entry blocker: the bounded RC-01, RC-02, and RC-03 research prerequisite
-  is now integrated. The W2 command, hash, one-actor interaction, and lifecycle
-  slices are now bounded implementations; restore/replay, queue/crowd, and
-  operations evidence remain future gates.
+  is now integrated. The W2 command, hash, one-actor interaction, lifecycle,
+  queue, and replay slices are bounded implementations; reducer-integrated
+  crowd and complete operations evidence remain future gates.
 - Phase status before current wave: **ACTIVE — P3-W2-02 integrated; P3-W0
   bounded research closure accepted; T2/T3 exit criteria remain incomplete**.
-- Phase status after current wave: **ACTIVE — P3-W2-03 selected; T2/T3 exit
+- Phase status after current wave: **ACTIVE — P3-W2-03 integrated; T2/T3 exit
   criteria remain incomplete**.
 - Phase exit criteria: T2 one-actor reach/use/cancel/restore/replay evidence,
   T3 crowd/queue/deadlock evidence, and the complete operations choreography
@@ -369,7 +369,9 @@ launched in this invocation.
   workstream/work package: W2.4 queues and deadlocks.
 - Objective: implement normalized atomic resource acquisition, queue ordering,
   bounded wait, cycle detection, and deterministic yield/block behavior.
-- Repository evidence: policy and numeric profiles exist; runtime queue evidence is absent.
+- Repository evidence: `queues.ts` now provides a pure queue/reservation,
+  fairness, cleanup, wait-for, and deadlock boundary with focused 12/12
+  evidence; full crowd movement and reducer integration remain future gates.
 - Dependencies: P3-W2.3 integrated; RC-01 integrated.
 - Dependency status: SATISFIED after `P3-W2.3` integration; the multi-actor
   queue/deadlock scope is ready for a later wave.
@@ -384,7 +386,10 @@ launched in this invocation.
 - Validation commands: preflight, package typecheck/test, `npm run check`.
 - Worker-sized scope assessment: one queue runtime module and focused tests.
 - Priority: P1.
-- Status: **IN_PROGRESS** — selected for `P3-W2-03`; worker handoff pending.
+- Status: **INTEGRATED** — Main accepted the bounded implementation after
+  ownership review, focused 12/12 evidence, package typecheck, preflight, and
+  full repository check. Task commits `6683b97` and `8a66a59`; integration
+  commits `6601556` and `98b8fca`.
 
 ### P3-W2.5 — Snapshot migration, restore, replay, and divergence
 
@@ -392,8 +397,10 @@ launched in this invocation.
   workstream/work package: W2.5 replay and diagnostics.
 - Objective: implement versioned migration, mid-route/queue/interaction restore,
   replay runner, first divergence, and secret-safe bug bundle.
-- Repository evidence: snapshot/trace contracts and migration rules exist;
-  runtime registry and replay evidence are absent.
+- Repository evidence: `replay.ts` now provides injected fixed-tick replay,
+  completed-boundary restore, one-direction migrations, divergence reporting,
+  and a secret-safe bug-bundle projection with focused 8/8 evidence; complete
+  reducer-integrated replay remains a later gate.
 - Dependencies: P3-W2.1, P3-W2.2, and P3-W2.3 integrated; RC-02/03 integrated.
 - Dependency status: SATISFIED after `P3-W2.1`, `P3-W2.2`, and `P3-W2.3`
   integration; replay/restore remains a later implementation scope.
@@ -408,7 +415,10 @@ launched in this invocation.
 - Validation commands: preflight, package typecheck/test, `npm run check`.
 - Worker-sized scope assessment: one replay/migration module and focused tests.
 - Priority: P0.
-- Status: **IN_PROGRESS** — selected for `P3-W2-03`; worker handoff pending.
+- Status: **INTEGRATED** — Main accepted the bounded implementation after
+  ownership review, focused 8/8 evidence, package 50/50 simulation tests,
+  preflight, and full repository check. Task commits `8529a6a` and `7dedf25`;
+  integration commits `ba040f3` and `b46674c`.
 
 ### P3-W2.6 — Fixed-tick lifecycle port
 
@@ -441,7 +451,9 @@ launched in this invocation.
   workstream/work package: W3.1 workflow/role ownership.
 - Objective: execute the accepted Product Ranker/Growth Strategist ownership
   and system-owned content join checks against the current workflow sources.
-- Repository evidence: Closure C contract tests exist; W3 runtime verification is absent.
+- Repository evidence: the focused `P3-W3.1` evidence test now verifies
+  ownership, join order, disabled-feature safety, branch correlation, and
+  idempotent system audit persistence in 3/3 cases.
 - Dependencies: P3-RC-03 and P3-W2.3 integrated.
 - Dependency status: SATISFIED after `P3-RC-03` and `P3-W2.3` integration.
 - Parallel group: future W3 operations group.
@@ -454,7 +466,9 @@ launched in this invocation.
 - Validation commands: preflight, focused workspace tests, `npm run check`.
 - Worker-sized scope assessment: one evidence test with no producer changes.
 - Priority: P1.
-- Status: **IN_PROGRESS** — selected for `P3-W2-03`; worker handoff pending.
+- Status: **INTEGRATED** — Main accepted task commit `1041045` and handoff
+  `89d8aff`; integration commits `6936a62` and `792e734`. Focused 3/3
+  evidence, package checks, preflight, and full repository check pass.
 
 ### P3-W3.2 — Operations Snapshot V2 cursor and roster adapter
 
@@ -464,7 +478,8 @@ launched in this invocation.
   separation, feature availability, and data-owned roster binding.
 - Repository evidence: operations V2 contracts and V1 adapter exist; runtime V2 is absent.
 - Dependencies: P3-W2.3 and P3-W2.5 integrated; P3-W3.1 integrated.
-- Dependency status: BLOCKED.
+- Dependency status: **SATISFIED** after `P3-W2.5` and `P3-W3.1` integration;
+  this is the recommended next READY operations-adapter leaf.
 - Parallel group: future W3 operations group.
 - Owned implementation boundary: new V2 operations adapter module and focused tests.
 - Forbidden boundary: operations database migration, connector side effects, renderer, and simulation reducer.
@@ -476,7 +491,8 @@ launched in this invocation.
 - Validation commands: preflight, operations package tests, `npm run check`.
 - Worker-sized scope assessment: one adapter module and focused tests.
 - Priority: P1.
-- Status: BLOCKED.
+- Status: **READY** — dependency-unblocked after `P3-W2-03`; not launched in
+  this invocation.
 
 ### P3-W3.3 — Fan-out/join and failure choreography
 
@@ -522,9 +538,10 @@ launched in this invocation.
 
 ## Recommended next wave
 
-No next wave is launched in this invocation. After `P3-W2-03` is integrated,
-re-evaluate the remaining Phase 3 tasks and promote only dependency-satisfied
-leaves. Phase 3 remains active; no phase transition is authorized.
+No next wave is launched in this invocation. The recommended next wave is
+`P3-W3-02`, beginning with READY leaf `P3-W3.2` (Operations Snapshot V2 cursor
+and roster adapter). `P3-W3.3` and `P3-W3.4` remain BLOCKED behind that work.
+Phase 3 remains active; no phase transition is authorized.
 
 ## Selection rule and status transitions
 

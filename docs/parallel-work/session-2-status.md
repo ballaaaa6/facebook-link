@@ -6,7 +6,8 @@
 - Branch: `task/session-2-p3-w2-replay`
 - Worktree: `C:\Users\WINDOW XI\.codex\worktrees\phase3-p3-w2-03-replay`
 - Status: **COMPLETED — Main fallback implementation after worker recovery**
-- Commit: pending until this task branch commit is created
+- Task branch commits: `8529a6a` (implementation), `7dedf25` (handoff)
+- Main integration commits: `ba040f3` (implementation), `b46674c` (handoff)
 - Changed files:
   - `packages/office-v2-simulation/src/replay.ts`
   - `packages/office-v2-simulation/test/replay.test.ts`
@@ -26,7 +27,5 @@
   - [x] Bug bundles use an explicit allowlist, omit secret-bearing fields, and reject placeholder hashes.
 - Known limitations: this task must not promote placeholder hashes or claim
   complete T2/T3 evidence without Main integration.
-- Handoff: Main implemented this leaf in the already-isolated task worktree
-  after three worker reallocations remained stalled. Main must review this
-  branch, record the final commit, and cherry-pick it only after ownership and
-  focused-test review. This task does not claim complete Phase 3 replay closure.
+- Handoff: accepted and integrated by Main after three worker reallocations
+  remained stalled. This task does not claim complete Phase 3 replay closure.

@@ -58,6 +58,13 @@ diff. Its serializer must omit cookies, tokens, browser profiles, connector
 payloads, and unrelated operational records. Replay divergence names the first
 divergent tick, subsystem, JSON pointer, and owning diagnostic.
 
+The integrated P3-W2.5 runtime provides this boundary through injected
+fixed-tick steps, explicit completed snapshots, one-direction migration
+registries, real state hashes, first-divergence comparison, and an allowlisted
+bug-bundle projection. Its focused replay suite passes 8/8. This is bounded
+runtime evidence; it does not claim the complete reducer/crowd trace or Phase 3
+exit.
+
 ## RC-02 closure — explicit restore and disposable presentation
 
 Status: bounded research closure complete. This closure record is owned here for

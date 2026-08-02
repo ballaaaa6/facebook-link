@@ -6,7 +6,8 @@
 - Branch: `task/session-1-p3-w2-queues`
 - Worktree: `C:\Users\WINDOW XI\.codex\worktrees\phase3-p3-w2-03-queues`
 - Status: **COMPLETED — Main fallback implementation after worker recovery**
-- Commit: pending until this task branch commit is created
+- Task branch commits: `6683b97` (implementation), `8a66a59` (handoff)
+- Main integration commits: `6601556` (implementation), `98b8fca` (handoff)
 - Changed files:
   - `packages/office-v2-simulation/src/queues.ts`
   - `packages/office-v2-simulation/test/queues.test.ts`
@@ -23,7 +24,5 @@
   - [x] Wait-for cycles, no-progress threshold, deterministic victim selection, legal yield, and exact no-yield diagnostic are covered.
   - [x] State transitions are immutable and renderer-free.
 - Known limitations: this task must not claim full T3 crowd/replay closure.
-- Handoff: Main implemented this leaf in the already-isolated task worktree
-  after three worker reallocations remained stalled. Main must review this
-  branch, record the final commit, and cherry-pick it only after ownership and
-  focused-test review. This task does not claim full T3 crowd/replay closure.
+- Handoff: accepted and integrated by Main after three worker reallocations
+  remained stalled. This task does not claim full T3 crowd/replay closure.

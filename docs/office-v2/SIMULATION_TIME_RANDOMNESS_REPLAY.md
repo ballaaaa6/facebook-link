@@ -51,8 +51,10 @@ explicit tested path or reject the snapshot. Unknown fields are not silently
 interpreted and historical fixtures are never edited to match new behavior.
 
 `fixtures/deterministic-replay.json` remains a V1 schema-shape fixture with
-placeholder hashes. Until W2.2 runs the real reducer and independently verifies
-its hashable-state projection, reducer/replay evidence remains zero.
+placeholder hashes and is not promoted. The integrated P3-W2.5 runtime now
+computes real hashes for injected replay state, completed-boundary restore,
+first divergence, and secret-safe bug-bundle evidence; the full reducer-
+integrated end-to-end trace gate remains open.
 
 W1.6 adds the versioned contract shapes in `SIMULATION_PIPELINE_COMMANDS.md`,
 `JOBS_INTENTS_ASSIGNMENT.md`, `CROWD_QUEUES_AND_DEADLOCKS.md`, and

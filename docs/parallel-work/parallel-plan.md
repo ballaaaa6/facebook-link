@@ -92,9 +92,9 @@ depends on another selected task's unintegrated output.
 
 | Session | Task | Branch | Worktree | Status |
 | --- | --- | --- | --- | --- |
-| 1 | `P3-W2.4` | `task/session-1-p3-w2-queues` | `C:\Users\WINDOW XI\.codex\worktrees\phase3-p3-w2-03-queues` | reallocated / in progress |
-| 2 | `P3-W2.5` | `task/session-2-p3-w2-replay` | `C:\Users\WINDOW XI\.codex\worktrees\phase3-p3-w2-03-replay` | reallocated / in progress |
-| 3 | `P3-W3.1` | `task/session-3-p3-w3-ownership` | `C:\Users\WINDOW XI\.codex\worktrees\phase3-p3-w2-03-ownership` | completed / handoff received |
+| 1 | `P3-W2.4` | `task/session-1-p3-w2-queues` | `C:\Users\WINDOW XI\.codex\worktrees\phase3-p3-w2-03-queues` | integrated / accepted |
+| 2 | `P3-W2.5` | `task/session-2-p3-w2-replay` | `C:\Users\WINDOW XI\.codex\worktrees\phase3-p3-w2-03-replay` | integrated / accepted |
+| 3 | `P3-W3.1` | `task/session-3-p3-w3-ownership` | `C:\Users\WINDOW XI\.codex\worktrees\phase3-p3-w2-03-ownership` | integrated / accepted |
 
 - Planning artifacts commit: `ca6d1b5e55c75ff75194fd60505fb5158b8cc1ae`.
 - Planning lock / worker starting commit: `7af908b2f01a77214f1d2660c17fbbcc956fc952`;
@@ -112,7 +112,14 @@ depends on another selected task's unintegrated output.
   `019fc30d-b5ba-7e61-8ccc-9e3ed003a7dc` (Session 1 / Hubble) and
   `019fc30d-b63d-7b62-b7b2-2cc18ed41832` (Session 2 / Schrodinger).
 - Newton completed the evidence-only handoff as commits `1041045` and
-  `89d8aff`; Main has not yet integrated it.
+  `89d8aff`; Main later accepted and integrated it.
+- Main implemented the two same-scope fallback leaves in their isolated
+  worktrees after the replacement sessions remained stalled:
+  `6683b97`/`8a66a59` for `P3-W2.4` and `8529a6a`/`7dedf25` for `P3-W2.5`.
+- Main review accepted all three handoffs. The integration commits are
+  `6601556`/`98b8fca` (queues), `ba040f3`/`b46674c` (replay), and
+  `6936a62`/`792e734` (W3.1), followed by the Main-owned barrel export and
+  final documentation commits.
 
 ## Validation strategy
 

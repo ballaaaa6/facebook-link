@@ -172,10 +172,12 @@ The `P3-W2.1` fixed-tick command pipeline is integrated as the first pure
 simulation runtime unit. `P3-W2-02` adds the deterministic state-hash/PRNG
 boundary, a bounded one-actor facility/interaction runtime, and an injected
 fixed-tick lifecycle port with five-tick catch-up capping, hidden-time discard,
-and idempotent cleanup. Focused suites pass 8/8, 7/7, and 7/7 respectively, and
-the complete repository gate passes. These are bounded simulation modules;
-multi-actor queues/deadlocks, restore/replay, reducer-produced end-to-end hash
-traces, and Operations V2 choreography remain required before the Phase 3 exit.
+and idempotent cleanup. `P3-W2-03` adds the pure queue/reservation/deadlock
+boundary, injected replay/restore/migration/divergence, and W3.1 ownership
+evidence. Focused suites pass 8/8, 7/7, 7/7, 12/12, 8/8, and 3/3
+respectively, and the complete repository gate passes. These are bounded
+simulation modules; reducer-integrated crowd traces, complete Operations V2
+choreography, and the Phase 3 exit remain required.
 
 - Build one geometric room with one actor, one workstation, one target, blocked
   cells, one waiting position, and one unreachable case.

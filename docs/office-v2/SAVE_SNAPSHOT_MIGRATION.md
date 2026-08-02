@@ -170,4 +170,9 @@ identity, pending/terminal state, and idempotent cleanup without invoking a
 reducer or replay runner. Its `stateHash` values are visibly labeled
 placeholders and are not evidence. Real reducer-produced state hashes,
 uninterrupted-versus-restored replay equality, and migration registry
-execution remain later T2/W2.2 work.
+execution remain later full-reducer work. Separately, the integrated P3-W2.5
+runtime supplies a pure injected replay runner, completed-boundary restore
+validation, explicit one-direction snapshot migrations, real computed hashes,
+divergence reports, and an allowlisted secret-safe bug bundle. The RC-03
+fixture command above remains a historical research-closure probe and is not
+reclassified as runtime evidence.

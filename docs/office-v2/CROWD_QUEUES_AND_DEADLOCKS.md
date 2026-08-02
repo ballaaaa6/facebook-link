@@ -32,9 +32,9 @@ cancellation and records a deterministic resume or yield outcome.
 
 ## Wait-for cycles
 
-The future executable implementation records the declared resource and spatial
-edges in a wait-for graph. After the fixture-defined no-progress threshold, the
-victim is selected by:
+The integrated P3-W2.4 executable boundary records the declared resource and
+spatial edges in a wait-for graph. After the fixture-defined no-progress
+threshold, the victim is selected by:
 
 1. lowest priority class;
 2. latest-issued intent within that class;
@@ -55,9 +55,11 @@ multi-resource cycle. Each profile must name service duration, deadlock tick,
 maximum completion-or-block tick, legal yield cells, and participating
 resources.
 
-The W1.6 gate checks policy shape, numeric bounds, and exact failure contracts.
-It does not claim crowd execution, fairness measurements, bounded-wait replay,
-or target-floor performance. Those belong to T3.
+The W1.6 gate checks policy shape, numeric bounds, and exact failure contracts;
+the P3-W2.4 focused runtime now adds bounded pure queue profiles and deadlock
+evidence. It does not claim integrated crowd movement, fairness performance,
+bounded-wait replay through the full reducer, or target-floor performance.
+Those remain T3 gates.
 
 ## RC-01 research closure — queue, waiting, and cancellation boundary
 
