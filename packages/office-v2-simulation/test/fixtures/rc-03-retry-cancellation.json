@@ -1,0 +1,135 @@
+{
+  "fixtureVersion": "office-v2-rc-03-retry-cancellation-v1",
+  "testOnly": true,
+  "evidence": {
+    "kind": "bounded-local-probe",
+    "runtimeReducerExecuted": false,
+    "stateHashStatus": "placeholder-not-evidence"
+  },
+  "retry": {
+    "commandId": "command:rc03-retry",
+    "intentId": "intent:rc03-retry",
+    "targetEntityId": "facility:retry-desk",
+    "attempts": [
+      {
+        "attempt": 0,
+        "status": "pending",
+        "reason": "target-unavailable"
+      },
+      {
+        "attempt": 1,
+        "status": "pending",
+        "reason": "retry-scheduled"
+      },
+      {
+        "attempt": 2,
+        "status": "terminal",
+        "terminalOutcome": "failed",
+        "reason": "target-removed"
+      }
+    ],
+    "expected": {
+      "stableCommandId": "command:rc03-retry",
+      "stableIntentId": "intent:rc03-retry",
+      "pendingStatuses": ["pending", "pending"],
+      "terminalStatus": "terminal",
+      "terminalOutcome": "failed"
+    }
+  },
+  "cancellation": {
+    "commandId": "command:rc03-cancel",
+    "intentId": "intent:rc03-cancel",
+    "actionId": "action:rc03-cancel",
+    "states": [
+      {
+        "phase": "requested",
+        "status": "pending",
+        "cleanupGeneration": 4,
+        "releasedResources": []
+      },
+      {
+        "phase": "canceled",
+        "status": "terminal",
+        "terminalOutcome": "canceled",
+        "cleanupGeneration": 5,
+        "releasedResources": [
+          "facility-slot:retry-desk",
+          "queue-ticket:rc03-cancel",
+          "task-claim:rc03-cancel"
+        ]
+      }
+    ],
+    "expected": {
+      "stableCommandId": "command:rc03-cancel",
+      "stableIntentId": "intent:rc03-cancel",
+      "stableActionId": "action:rc03-cancel",
+      "terminalOutcome": "canceled",
+      "cleanupIdempotent": true
+    }
+  },
+  "restoreInputs": {
+    "snapshot": {
+      "schemaVersion": "office-simulation-snapshot-v2",
+      "snapshotId": "snapshot:rc03-restore",
+      "engineVersion": "office-simulation-engine-v2",
+      "world": {
+        "id": "world:office-floor",
+        "version": 1
+      },
+      "worldRevision": 12,
+      "tickRateHz": 10,
+      "tick": 8,
+      "pendingCommands": [
+        {
+          "commandId": "command:rc03-retry",
+          "intentId": "intent:rc03-retry",
+          "scheduledTick": 9,
+          "expectedWorldRevision": 12
+        }
+      ],
+      "externalInputs": [
+        {
+          "inputId": "input:rc03-retry",
+          "scheduledTick": 9,
+          "kind": "command",
+          "payloadDigest": "digest:rc03-retry-input"
+        }
+      ],
+      "queueTickets": [
+        {
+          "ticketId": "queue-ticket:rc03-retry",
+          "intentId": "intent:rc03-retry",
+          "priorityClass": "durable",
+          "enqueueTick": 8
+        }
+      ],
+      "actionQueues": [
+        {
+          "actorId": "actor:rc03-reviewer",
+          "actionId": "action:rc03-retry",
+          "intentId": "intent:rc03-retry",
+          "phase": "waiting"
+        }
+      ],
+      "stateHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "trace": {
+      "schemaVersion": "office-simulation-trace-v2",
+      "traceId": "trace:rc03-restore",
+      "initialSnapshotId": "snapshot:rc03-restore",
+      "inputs": ["input:rc03-retry"],
+      "stateHashes": [
+        {
+          "tick": 8,
+          "stateHash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        }
+      ],
+      "finalStateHash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    },
+    "hashEvidence": {
+      "status": "placeholder-only",
+      "reducerProduced": false,
+      "note": "RC-03 records restore inputs only; no reducer or replay runner produced these digests."
+    }
+  }
+}

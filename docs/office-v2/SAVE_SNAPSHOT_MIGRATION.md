@@ -105,3 +105,69 @@ digest independently or fail closed.
 
 A V1 in-progress action without the complete Decision 0012 resource and queue
 state is rejected rather than reconstructed from actor position or target ID.
+
+## RC-03 migration and restore closure
+
+RC-03 closes the persistence side of capability assignment, target
+revalidation, retry/cancellation identity, and restore inputs. The command
+ordering and full source/disposition record is in
+`SIMULATION_PIPELINE_COMMANDS.md`; this section owns the save and migration
+consequence.
+
+### Bounded source record
+
+The six named source files were observed at their `master` paths on 2026-08-02
+(Asia/Bangkok). The file revisions and dates were:
+
+| Source files | Revision and date | Rights boundary |
+| --- | --- | --- |
+| Widelands [`cmd_queue.h`](https://github.com/widelands/widelands/blob/master/src/commands/cmd_queue.h), [`worker.h`](https://github.com/widelands/widelands/blob/master/src/logic/map_objects/tribes/worker.h), [`request.h`](https://github.com/widelands/widelands/blob/master/src/economy/request.h) | [`c40599cdce8a0c735313076486554a5670058732`](https://github.com/widelands/widelands/commit/c40599cdce8a0c735313076486554a5670058732), 2026-01-01 | GPL-2.0-or-later source headers; no source code or data is copied. |
+| Unknown Horizons [`worldobject.py`](https://github.com/unknown-horizons/unknown-horizons/blob/master/horizons/util/worldobject.py) | [`1e3e6153764b05f6f5a4e2b7266751c95ee9d23b`](https://github.com/unknown-horizons/unknown-horizons/commit/1e3e6153764b05f6f5a4e2b7266751c95ee9d23b), 2017-09-16 | GPL-2.0 code; repository README separates artwork and other content licenses, all out of scope. |
+| Unknown Horizons [`scheduler.py`](https://github.com/unknown-horizons/unknown-horizons/blob/master/horizons/scheduler.py) | [`e4d81d2a0ec19981b9603de2d9d738312e1bb392`](https://github.com/unknown-horizons/unknown-horizons/commit/e4d81d2a0ec19981b9603de2d9d738312e1bb392), 2018-06-01 | GPL-2.0 code; repository README separates artwork and other content licenses, all out of scope. |
+| Unknown Horizons [`building.py`](https://github.com/unknown-horizons/unknown-horizons/blob/master/horizons/command/building.py) | [`056d5a570c7f8a7a8c807dffd5905fb1ae5b5bd2`](https://github.com/unknown-horizons/unknown-horizons/commit/056d5a570c7f8a7a8c807dffd5905fb1ae5b5bd2), 2017-09-19 | GPL-2.0 code; repository README separates artwork and other content licenses, all out of scope. |
+
+These are neutral architecture observations only: Widelands exposes pending
+command save/load and worker/request ownership or transfer state; Unknown
+Horizons exposes stable world IDs, tick-keyed scheduled work, and delayed
+command revalidation. The Office decision adapts explicit versioned snapshot
+and trace inputs, but rejects pointer registries, callbacks, automatic IDs,
+and game-specific persistence shapes. No external code, map, asset, value, or
+behavior table becomes an Office dependency.
+
+### Office migration decision and canonical owners
+
+An RC-03 restore input must carry, explicitly and together, the snapshot and
+trace versions, versioned world identity and world revision, pending command
+IDs and expected revision, external input IDs and digests, queue/action
+identity, target generation or facility revision, cancellation/cleanup
+generation, and the recorded input order. The reader may validate or migrate
+only through a tested, one-directional path. It cannot infer a missing value
+from an actor position, target array index, visual identity, or a replacement
+object.
+
+`JOBS_INTENTS_ASSIGNMENT.md` owns capability, facility-slot, target-generation,
+and action identity. `SIMULATION_PIPELINE_COMMANDS.md` owns command/result/event
+ordering and pre-apply revalidation. This document owns the snapshot/trace
+input boundary, fail-closed migration, and the explicit restore consequence.
+Decision 0011 remains the owner of canonical bytes and hash envelopes; RC-03
+does not create or promote a hash.
+
+When required RC-03 context is absent, the existing
+`contract.migration-context-missing` failure applies. When supplied versioned
+world, target, or resource references disagree, the existing
+`contract.migration-reference-conflict` failure applies. A V1 in-progress
+action without that complete context rejects before materialization; it is
+not converted into a pending or retried V2 action by guessing.
+
+### Focused restore evidence and limits
+
+`packages/office-v2-simulation/test/fixtures/rc-03-retry-cancellation.json`
+records explicit `office-simulation-snapshot-v2` and
+`office-simulation-trace-v2` input fields alongside stable retry and
+cancellation IDs. The local test command is
+`node --test scripts/office-v2-rc-03-evidence.test.mjs`; it checks presence,
+identity, pending/terminal state, and idempotent cleanup without invoking a
+reducer or replay runner. Its `stateHash` values are visibly labeled
+placeholders and are not evidence. Real reducer-produced state hashes,
+uninterrupted-versus-restored replay equality, and migration registry
+execution remain later T2/W2.2 work.

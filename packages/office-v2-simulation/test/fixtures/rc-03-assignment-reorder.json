@@ -1,0 +1,79 @@
+{
+  "fixtureVersion": "office-v2-rc-03-assignment-reorder-v1",
+  "testOnly": true,
+  "evidence": {
+    "kind": "bounded-local-probe",
+    "runtimeReducerExecuted": false,
+    "stateHashStatus": "placeholder-not-evidence"
+  },
+  "assignment": {
+    "intent": {
+      "intentId": "intent:rc03-assignment",
+      "capability": "content-review",
+      "priorityClass": "durable",
+      "issueTick": 4
+    },
+    "facilities": [
+      {
+        "facilityId": "facility:visual-amber",
+        "capabilities": ["content-review"],
+        "available": true,
+        "targetGeneration": 7,
+        "facilityRevision": 3,
+        "visualIdentity": "visual-family-amber"
+      },
+      {
+        "facilityId": "facility:copy-lime",
+        "capabilities": ["content-review"],
+        "available": true,
+        "targetGeneration": 4,
+        "facilityRevision": 3,
+        "visualIdentity": "visual-family-lime"
+      },
+      {
+        "facilityId": "facility:render-only",
+        "capabilities": ["render-preview"],
+        "available": true,
+        "targetGeneration": 2,
+        "facilityRevision": 1,
+        "visualIdentity": "visual-family-review"
+      },
+      {
+        "facilityId": "facility:offline",
+        "capabilities": ["content-review"],
+        "available": false,
+        "targetGeneration": 9,
+        "facilityRevision": 8,
+        "visualIdentity": "visual-family-offline"
+      }
+    ],
+    "equivalentInputs": [
+      {
+        "name": "source-order-a",
+        "facilityIds": [
+          "facility:visual-amber",
+          "facility:copy-lime",
+          "facility:render-only",
+          "facility:offline"
+        ]
+      },
+      {
+        "name": "source-order-b",
+        "facilityIds": [
+          "facility:offline",
+          "facility:copy-lime",
+          "facility:visual-amber",
+          "facility:render-only"
+        ]
+      }
+    ],
+    "expected": {
+      "eligibleFacilityIds": [
+        "facility:copy-lime",
+        "facility:visual-amber"
+      ],
+      "selectedFacilityId": "facility:copy-lime",
+      "ignoredFields": ["visualIdentity", "arrayPosition"]
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "fixtureVersion": "office-v2-rc-03-target-revalidation-v1",
+  "testOnly": true,
+  "evidence": {
+    "kind": "bounded-local-probe",
+    "runtimeReducerExecuted": false,
+    "stateHashStatus": "placeholder-not-evidence"
+  },
+  "command": {
+    "commandId": "command:rc03-target",
+    "intentId": "intent:rc03-target",
+    "targetEntityId": "facility:review-desk",
+    "expectedWorldRevision": 12,
+    "expectedTargetGeneration": 3,
+    "expectedFacilityRevision": 5
+  },
+  "target": {
+    "entityId": "facility:review-desk",
+    "capability": "content-review",
+    "targetGeneration": 3,
+    "facilityRevision": 5,
+    "visualIdentity": "visual-family-review-desk"
+  },
+  "replacementTarget": {
+    "entityId": "facility:replacement-desk",
+    "capability": "content-review",
+    "targetGeneration": 1,
+    "facilityRevision": 1,
+    "visualIdentity": "visual-family-review-desk"
+  },
+  "cases": [
+    {
+      "name": "available-baseline",
+      "currentWorldRevision": 12,
+      "targetExists": true,
+      "targetAvailable": true,
+      "targetGeneration": 3,
+      "facilityRevision": 5,
+      "expected": {
+        "status": "ready",
+        "reason": null
+      }
+    },
+    {
+      "name": "unavailable-before-apply",
+      "currentWorldRevision": 12,
+      "targetExists": true,
+      "targetAvailable": false,
+      "targetGeneration": 3,
+      "facilityRevision": 5,
+      "expected": {
+        "status": "blocked",
+        "reason": "target-unavailable"
+      }
+    },
+    {
+      "name": "removed-before-apply",
+      "currentWorldRevision": 12,
+      "targetExists": false,
+      "removedFromArray": true,
+      "replacementAtFormerArrayPosition": true,
+      "expected": {
+        "status": "terminal",
+        "reason": "target-removed"
+      }
+    },
+    {
+      "name": "world-revision-changed",
+      "currentWorldRevision": 13,
+      "targetExists": true,
+      "targetAvailable": true,
+      "targetGeneration": 3,
+      "facilityRevision": 5,
+      "expected": {
+        "status": "failed",
+        "reason": "world-revision-mismatch"
+      }
+    },
+    {
+      "name": "target-generation-changed",
+      "currentWorldRevision": 12,
+      "targetExists": true,
+      "targetAvailable": true,
+      "targetGeneration": 4,
+      "facilityRevision": 5,
+      "expected": {
+        "status": "failed",
+        "reason": "target-generation-mismatch"
+      }
+    }
+  ],
+  "expectedNoFallbacks": ["visual-identity", "array-position", "actor-position"]
+}
