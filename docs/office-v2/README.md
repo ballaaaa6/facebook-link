@@ -101,6 +101,11 @@ results only: reducer/replay remains 0, property/model evidence remains 0,
 asset admission remains basic-only, renderer admission remains none, and no
 runtime asset manifest is admitted.
 
+The historical 186-file W1.6 number is closure evidence at the handoff commit.
+The Phase 1 exit handoff, Phase 2 acceptance record, visual style approval
+record, and visual proof risk register were added afterward as administrative
+controls. They do not add semantic cases or claim runtime evidence.
+
 ## Knowledge rule
 
 Documentation is not accepted as a rule by itself. A production rule must have
@@ -116,6 +121,13 @@ Decision records are added under `decisions/` only when a choice is made. They
 must not restate the canonical documents.
 
 ## Source of truth
+
+The promotion-control records are:
+
+- PHASE_1_EXIT_HANDOFF.md: immutable Phase 1 closure and Phase 2 receiving boundary
+- PHASE_2_WORLD_KERNEL_ACCEPTANCE.md: executable Phase 2 entry and exit evidence
+- STYLE_PROFILE_APPROVAL.md: visual-owner approval before production asset work
+- VISUAL_PROOF_RISK_REGISTER.md: visual-proof risk routing and status
 
 - `FOUNDATIONS.md`: concepts and invariants the implementation must understand
 - `PRODUCT_AND_GAME_LOOP.md`: visible product behavior and non-goals

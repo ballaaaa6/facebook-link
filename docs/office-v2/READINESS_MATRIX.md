@@ -16,6 +16,13 @@ closure passed on 2026-08-02 and authorizes the pure Phase 2 world kernel. This
 does not promote persistent engine, renderer, crowd, or production-asset
 status.
 
+The immutable Phase 1 closure point is recorded in
+[PHASE_1_EXIT_HANDOFF.md](PHASE_1_EXIT_HANDOFF.md). Phase 2 implementation must
+use [PHASE_2_WORLD_KERNEL_ACCEPTANCE.md](PHASE_2_WORLD_KERNEL_ACCEPTANCE.md) for
+its entry and exit evidence. Visual production remains separately gated by
+[STYLE_PROFILE_APPROVAL.md](STYLE_PROFILE_APPROVAL.md), with pre-registered
+proof risks in [VISUAL_PROOF_RISK_REGISTER.md](VISUAL_PROOF_RISK_REGISTER.md).
+
 | Topic | Decision | Contract | Fixtures | Automated evidence | Status |
 | --- | --- | --- | --- | --- | --- |
 | Package ownership and import direction | `decisions/0007-package-ownership-and-import-boundaries.md` | four package manifests, generated-type boundary, and Web composition root | positive graph plus bare, manifest, relative, forbidden-import, generated-boundary, fake-root, and reverse-consumer negatives | `office:v2:boundaries:test` executes the negative matrix; boundary, architecture, clean-room, and generated-contract gates enforce the current tree | W0.1, W0.3, and the W1.1 contract slice complete; no persistent engine behavior authorized |
@@ -64,6 +71,12 @@ authorized. The P0 register is intentionally not rewritten by this wave; it
 remains the historical W0.3 promotion baseline. Persistent world/simulation
 code, bulk art, target crowds, and renderer integration remain blocked until
 later gates pass.
+
+The handoff record is the audit point for the completed Phase 1 contract
+closure; it does not promote later phases. Before Phase 2 can be marked passed,
+every row in the Phase 2 acceptance record must contain committed evidence.
+The style approval and visual risk records remain later controls for visual
+assets and integrated presentation.
 
 The bounded T1 — Semantic Foundation evidence in
 `READINESS_REMEDIATION_PLAN.md` passed on 2026-08-02. T0, W0.1, W0.3, and

@@ -623,6 +623,12 @@ normalization, stable depth inputs, input reorder, and byte-identical world
 serialization. Only after this world-kernel acceptance passes may Wave 2's
 persistent headless simulation reducer begin.
 
+The executable entry and exit evidence is recorded in
+PHASE_2_WORLD_KERNEL_ACCEPTANCE.md. This checklist does not change contract
+ownership: READINESS_MATRIX.md remains the status authority and this plan
+remains the sequence authority. Every required exit row must pass before the
+Wave 2 persistent reducer is promoted.
+
 ## Wave 2 — Commands, simulation, jobs, facilities, crowds, and replay
 
 ### W2.1 Fixed tick pipeline and command protocol
@@ -968,6 +974,10 @@ queue order, event sequence, applicable intent suffix, and final reducer hash.
 Phase 1 completes the contracts, fixtures, tool interfaces, and bounded board
 generators in this wave. Production export/catalog tooling and real runtime
 assets execute after T4 in Phase 5.
+
+The owner visual sign-off is recorded separately in STYLE_PROFILE_APPROVAL.md,
+and visual-proof risks are tracked in VISUAL_PROOF_RISK_REGISTER.md. Neither
+record admits production pixels or runtime assets before its later gate passes.
 
 ### W4.1 Lock the measurable style profile
 
@@ -1371,6 +1381,8 @@ Phase 1 may change from `in progress` to `complete` only when its record names:
 - bounded later-phase harness specifications without claiming their executable
   gates have passed;
 - full repository check commit.
+- the immutable Phase 1 exit handoff in PHASE_1_EXIT_HANDOFF.md, including the
+  closure commit, passed gates, and Phase 2 receiving contract versions.
 
 Phase 1 completion authorizes the Phase 2 world kernel. It does not authorize
 target crowds, production assets, renderer integration, or bulk content.

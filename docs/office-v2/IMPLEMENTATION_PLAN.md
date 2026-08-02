@@ -142,6 +142,13 @@ consumes those types to implement the pure world kernel; contract closure does
 not claim that runtime world behavior, placement, inverse picking, or
 persistence already exists.
 
+The explicit Phase 2 entry and exit record is
+PHASE_2_WORLD_KERNEL_ACCEPTANCE.md. Its projection round-trip, inverse-picking,
+rotated-placement, occupancy, depth, reference-closure, and canonical
+serialization rows must be accepted before the later headless simulation wave
+starts. Visual style approval and visual-proof risks remain later-phase
+controls.
+
 - Define branded identifier types for building, floor, room, entity, cell,
   facility, command, and tick.
 - Implement world bounds, floor-local coordinates, footprints, anchors,
