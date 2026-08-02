@@ -2,13 +2,13 @@
 
 Session: 2
 Task: P2-WORLD-02 — Geometry-aware placement and occupancy snapshots
-Worker or session ID: pending launch
-Status: NOT_STARTED
+Worker or session ID: 019fc076-8550-72b3-aa89-7a3b9232d0af
+Status: IN_PROGRESS
 Branch: task/session-2-placement-occupancy
-Worktree: pending Codex worktree allocation
-Base commit: b9efe676208e8c7ab31c684305c3e373957202e0
+Worktree: C:\Users\WINDOW XI\.codex\worktrees\7370\shopee link
+Base commit: 249a104114abd135cd1a9a0855821c9722e78b60
 Latest commit: pending
-Started at: pending
+Started at: 2026-08-02T10:15:19.9683022+07:00
 Completed at: pending
 Integrator lock owner: pending
 
@@ -31,39 +31,70 @@ generated contracts, other status files, and acceptance documentation.
 
 ## Files changed
 
-None yet.
+- `packages/office-v2-world/src/placement.ts`
+- `packages/office-v2-world/test/placement.test.ts`
+- this status file
 
 ## Deliverables
 
-Pending implementation.
+Pure placement and immutable occupancy snapshot implementation is complete in
+the owned files. The public barrel remains intentionally untouched for the
+Final Integrator.
 
 ## Tests run
 
-None yet.
+2026-08-02: `npm install` completed in the isolated worktree; no lockfile
+changes were reported. `node .agents/skills/build-office-v2-engine/scripts/preflight.mjs`
+passed all clean-room, boundary, contradiction, generated-contract, knowledge,
+asset-foundation, and project-skill checks.
+2026-08-02: `node --test packages/office-v2-world/test/placement.test.ts` passed
+7/7 focused placement cases. `npm test --workspace
+@affiliate-ops/office-v2-world` passed 51/51 package tests.
+`npm run typecheck --workspace @affiliate-ops/office-v2-world` passed.
+`npm run check` passed all repository gates, workspace typechecks/tests, and
+build.
 
 ## Test results
 
-Not started.
+All required focused and full validation commands passed. Code-health reports
+the 185-line placement module and 121-line focused test under the 420-line
+TypeScript budget.
 
 ## Acceptance criteria
 
-Pending; see plan P2-EXIT-03, P2-EXIT-04, and P2-EXIT-09 criteria.
+P2-EXIT-03: cardinal transforms preserve asymmetric footprint, clearance,
+approach/waiting candidates, socket positions, and use-slot facing.
+P2-EXIT-04: structural/furniture blockers own blocking cells; decoration has
+no occupancy, clearance, or navigation impact.
+P2-EXIT-09: all listed rejection paths return stable diagnostics and preserve
+the prior immutable snapshot on failure.
 
 ## Decisions made
 
-None yet.
+Keep the geometry authority separate from placed instances; use
+`transformGeometry` for all cardinal transforms; expose only local pure
+placement/snapshot types from this module; do not edit `src/index.ts`.
 
 ## Deviations from plan
 
-None.
+The initial preflight failed before dependency bootstrap because `ajv` was not
+installed. Coordinator authorized `npm install`; the rerun passed. No
+production implementation was attempted before the passing rerun.
 
 ## Integration notes
 
-Pending worker handoff.
+Placement API is local to `placement.ts`: `PlacementFloor`,
+`VersionedGeometryAuthority`, `PlacementRequest`, `PlacementSnapshot`,
+`createEmptyPlacementSnapshot`, `derivePlacementGeometry`, and `placeEntity`
+(with `applyPlacement`/`placeIntoSnapshot` aliases). The Final Integrator should
+add the desired exports through `packages/office-v2-world/src/index.ts` and
+adapt any shared/public contract types there. No renderer, simulation, or
+visual proof is claimed.
 
 ## Known issues
 
-None known.
+No known implementation issues. The public barrel is intentionally not
+updated in this worker branch.
 
 ## Handoff instructions
 
