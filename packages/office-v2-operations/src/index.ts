@@ -1,3 +1,5 @@
+export * from "./choreography.ts";
+
 import type {
   OperationsAgentBinding,
   OperationsEventRecord,
