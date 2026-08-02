@@ -1,7 +1,6 @@
 # Phase 3 Wave `P3-W2-03` Final Integration Report
 
-Status: **INTEGRATED AND VALIDATED — publication pending final documentation
-commit and push verification.**
+Status: **COMPLETE — integrated, validated, and published.**
 
 ## 1. Repository and branch control
 
@@ -13,6 +12,7 @@ commit and push verification.**
 - Dedicated integration branch: `codex/integration/phase3-p3-w2-03`.
 - No local development server or long-running project process was started.
 - Report preparation timestamp: `2026-08-02T22:41:41.3599410+07:00`.
+- Publication verification timestamp: `2026-08-02T22:43:43.4408131+07:00`.
 
 ## 2. Active Phase and wave selection
 
@@ -140,8 +140,13 @@ changes remained after the gate.
 - The knowledge gate's historical `reducer/replay: 0` metric remains unchanged;
   the new runtime suites are separate bounded evidence and do not reclassify
   placeholder fixtures.
-- No pull request has been created yet; publication will push the dedicated
-  branch and then check whether the local `gh` CLI can create a PR without
-  claiming success if it is unavailable.
-- Final Git status and pushed commit will be appended after the final docs
-  commit, remote reconciliation, and push verification.
+- Initial integration/documentation commit pushed: `a1abef02cc812bfd3c33f37d69fbe702bdddf928`.
+- The dedicated branch was pushed without force and verified at
+  `refs/heads/codex/integration/phase3-p3-w2-03` with that commit before this
+  final report revision.
+- `gh` is unavailable in the environment, so no pull request was created.
+  GitHub exposed the branch URL:
+  `https://github.com/ballaaaa6/facebook-link/pull/new/codex/integration/phase3-p3-w2-03`.
+- The final report revision will be pushed immediately after this documentation
+  update; its exact tip and final clean Git status are recorded in the handoff
+  response.
