@@ -1,0 +1,18 @@
+{
+  "kind": "duplicate-role",
+  "schema": "activity-routing.schema.json",
+  "document": {
+    "schemaVersion": "office-activity-routing-v1",
+    "routingRevision": 1,
+    "routes": [
+      { "roleId": "market-scout", "homeFacilityCapability": "market-desk", "allowedInteractions": ["inspect-task"], "requiredFeatures": ["shopee-feed"], "workflowStages": ["discovered"], "diagnosticOwner": "adapter" },
+      { "roleId": "market-scout", "homeFacilityCapability": "market-desk", "allowedInteractions": ["inspect-task"], "requiredFeatures": ["shopee-feed"], "workflowStages": ["discovered"], "diagnosticOwner": "adapter" }
+    ],
+    "facilityCapabilities": [
+      { "capability": "market-desk", "available": true, "compatibleRoles": ["market-scout"] }
+    ],
+    "consoleFacilities": []
+  },
+  "expectedSchemaValid": true,
+  "expectedFailure": "adapter.routing-role-duplicate"
+}

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "office-operations-adapter-rejections-v1",
+  "cases": [
+    { "name": "unknown-operational-state", "kind": "unknown-status", "status": "mystery", "expectedFailure": "adapter.unknown-operational-state" },
+    { "name": "reconnecting-is-not-idle", "kind": "freshness", "freshness": "reconnecting", "expectedFailure": "adapter.reconnecting" },
+    { "name": "unavailable-is-not-idle", "kind": "freshness", "freshness": "unavailable", "expectedFailure": "adapter.unavailable" },
+    { "name": "sequence-gap", "kind": "sequence-gap", "windowStartSequence": 10, "throughSequence": 12, "eventSequences": [10, 12], "expectedFailure": "adapter.sequence-gap" },
+    { "name": "stream-epoch-change", "kind": "epoch-change", "cursorEpoch": 1, "snapshotEpoch": 2, "expectedFailure": "adapter.stream-epoch-changed" },
+    { "name": "same-event-id-changed-digest", "kind": "digest-conflict", "expectedFailure": "adapter.event-digest-conflict" },
+    { "name": "cursor-predates-retention-window", "kind": "cursor-too-old", "cursorThroughSequence": 1, "retentionWindowStart": 5, "windowStartSequence": 5, "expectedFailure": "adapter.cursor-too-old" },
+    { "name": "late-event", "kind": "late-event", "expectedFailure": "adapter.late-event" },
+    { "name": "unknown-role", "kind": "roster-mutation", "mutation": "unknown-role", "expectedFailure": "adapter.role-unknown" },
+    { "name": "duplicate-agent-instance", "kind": "roster-mutation", "mutation": "duplicate-agent", "expectedFailure": "adapter.agent-instance-duplicate" },
+    { "name": "incompatible-home-facility", "kind": "roster-mutation", "mutation": "incompatible-facility", "expectedFailure": "adapter.role-facility-incompatible" },
+    { "name": "enabled-feature-with-unavailable-session", "kind": "roster-mutation", "mutation": "session-unavailable", "expectedFailure": "adapter.feature-session-unavailable" },
+    { "name": "disabled-role-cannot-stay-active", "kind": "roster-mutation", "mutation": "disable-active-role", "expectedFailure": "adapter.role-disabled-active" },
+    { "name": "forbidden-proposal", "kind": "proposal", "expectedFailure": "adapter.forbidden-proposal" }
+  ]
+}

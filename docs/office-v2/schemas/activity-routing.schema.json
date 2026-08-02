@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/activity-routing.schema.json",
+  "title": "Office V2 Activity Routing",
+  "$defs": {
+    "workflowStage": {
+      "enum": [
+        "discovered",
+        "scored",
+        "selected",
+        "link_ready",
+        "content_queued",
+        "content_ready",
+        "qa_approved",
+        "scheduled",
+        "published",
+        "measured",
+        "failed"
+      ]
+    },
+    "roleRoute": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["roleId", "homeFacilityCapability", "allowedInteractions", "requiredFeatures", "workflowStages", "diagnosticOwner"],
+      "properties": {
+        "roleId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+        "homeFacilityCapability": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+        "allowedInteractions": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" }
+        },
+        "requiredFeatures": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" }
+        },
+        "workflowStages": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/workflowStage" }
+        },
+        "diagnosticOwner": { "const": "adapter" }
+      }
+    },
+    "facilityCapability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["capability", "available", "compatibleRoles"],
+      "properties": {
+        "capability": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+        "available": { "type": "boolean" },
+        "compatibleRoles": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" }
+        }
+      }
+    },
+    "consoleFacility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["facilityId", "capability", "kind", "allowedInteractions", "requiredFeatures", "agentEligible"],
+      "properties": {
+        "facilityId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+        "capability": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+        "kind": { "const": "command-console" },
+        "allowedInteractions": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" }
+        },
+        "requiredFeatures": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" }
+        },
+        "agentEligible": { "const": false }
+      }
+    },
+    "routingDocument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "routingRevision", "routes", "facilityCapabilities", "consoleFacilities"],
+      "properties": {
+        "schemaVersion": { "const": "office-activity-routing-v1" },
+        "routingRevision": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/positiveVersion" },
+        "routes": { "type": "array", "items": { "$ref": "#/$defs/roleRoute" } },
+        "facilityCapabilities": { "type": "array", "items": { "$ref": "#/$defs/facilityCapability" } },
+        "consoleFacilities": { "type": "array", "items": { "$ref": "#/$defs/consoleFacility" } }
+      }
+    }
+  },
+  "$ref": "#/$defs/routingDocument"
+}

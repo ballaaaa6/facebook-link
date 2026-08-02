@@ -9,6 +9,31 @@ export * from "./generated/simulation-event.ts";
 export * from "./generated/simulation-result.ts";
 export * from "./generated/simulation-snapshot-v2.ts";
 export * from "./generated/simulation-trace-v2.ts";
+export type {
+  AdapterDiagnostic as OperationsAdapterDiagnostic,
+  AgentRecord as OperationsAgentRecord,
+  DiagnosticContext as OperationsDiagnosticContext,
+  DurableTransition as OperationsDurableTransition,
+  EventRecord as OperationsEventRecord,
+  FeatureAvailability as OperationsFeatureAvailability,
+  Recoverability as OperationsRecoverability,
+  SessionHealth as OperationsSessionHealth,
+  SnapshotDocument as OperationsSnapshotDocument,
+  StructuredReason as OperationsStructuredReason,
+  WorkflowStage as OperationsWorkflowStage,
+  WorkIdentity as OperationsWorkIdentity,
+} from "./generated/operations-snapshot-v2.ts";
+export type {
+  ConsoleFacility as OperationsConsoleFacility,
+  FacilityCapability as OperationsFacilityCapability,
+  RoleRoute as OperationsRoleRoute,
+  RoutingDocument as OperationsRoutingDocument,
+  WorkflowStage as OperationsRoutingWorkflowStage,
+} from "./generated/activity-routing.ts";
+export type {
+  AgentBinding as OperationsAgentBinding,
+  RosterDocument as OperationsRosterDocument,
+} from "./generated/roster-binding.ts";
 export * from "./generated/definition-bundle.ts";
 export * from "./generated/entity-definition-v2.ts";
 export * from "./generated/entity-instance.ts";

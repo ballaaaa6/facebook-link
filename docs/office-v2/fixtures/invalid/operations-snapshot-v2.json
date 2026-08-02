@@ -1,0 +1,23 @@
+{
+  "kind": "snapshot-visual-binding",
+  "schema": "operations-snapshot-v2.schema.json",
+  "document": {
+    "schemaVersion": "office-operations-v2",
+    "snapshotId": { "kind": "snapshot", "value": "snapshot-visual-leak" },
+    "observedAt": "2026-08-02T00:00:00.000Z",
+    "sourceRevision": "operations-revision-1",
+    "streamId": "operations-stream",
+    "streamEpoch": 1,
+    "windowStartSequence": 0,
+    "throughSequence": 0,
+    "eventDigest": "0000000000000000000000000000000000000000000000000000000000000000",
+    "freshness": "live",
+    "events": [],
+    "agents": [],
+    "features": [],
+    "diagnostics": [],
+    "characterDefinition": { "id": "must-live-in-roster" }
+  },
+  "expectedSchemaValid": false,
+  "expectedFailure": "adapter.snapshot-visual-binding"
+}
