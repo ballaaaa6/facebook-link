@@ -12,10 +12,10 @@ Status: **COMPLETE — integrated, validated, and published**
 - Dedicated integration branch: `codex/integration/phase3-p3-w3-02`.
 - Worker starting/planning commit: `175d0d384e64610225e93f21272fdb71bdcaf4ba`.
 - No local development server or long-running project process was started.
-- The remote primary branch remained unchanged. Local `main` contains only the
-  coordinator planning commits `175d0d3` and `5d728b5` created before the
-  integration branch; no implementation or integration commit was merged or
-  pushed to `main`.
+- The primary branch remained unchanged locally and remotely at the original
+  base. The coordinator planning commits `175d0d3` and `5d728b5` are retained
+  only in the dedicated integration branch history; no implementation or
+  integration commit was merged or pushed to `main`.
 
 ## Active Phase and wave
 
