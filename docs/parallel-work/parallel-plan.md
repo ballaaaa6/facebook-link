@@ -72,10 +72,10 @@ are Main Orchestration Session integration work only.
 
 ## Planning and integration commits
 
-- Planning artifact commit: **to be recorded immediately after committing this
-  plan and backlog**.
-- Worker branches will all start from one pinned planning-base commit after
-  the planning metadata is committed.
+- Planning artifact commit: `fb78bc31e27b30b6a1ba57259517c63f7c684724`.
+- Worker branches will all start from one metadata-pinned planning-base commit;
+  the Main Orchestration Session records that exact branch base in the final
+  report.
 - Integration branch: `codex/integration/phase3-t2-research-closure`
 - The Main Orchestration Session is the sole Final Integrator and Publisher.
   Workers stop after committing and handing off their individual tasks.

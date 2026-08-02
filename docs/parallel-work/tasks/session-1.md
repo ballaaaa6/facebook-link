@@ -8,7 +8,7 @@
 - Worker branch: `task/session-1-p3-rc-01-facility-queue`
 - Worker worktree: `C:\Users\WINDOW XI\.codex\worktrees\phase3-rc-01-facility-queue`
 - Original base commit: `e4829b68619696651c73ba6b5dced73cc28beaa0`
-- Planning commit: recorded by the Main Orchestration Session before launch
+- Planning commit: `fb78bc31e27b30b6a1ba57259517c63f7c684724`
 - Status file: `docs/parallel-work/session-1-status.md`
 
 ## Objective
