@@ -7,7 +7,7 @@ Status: COMPLETED
 Branch: task/session-1-projection-ground-picking
 Worktree: C:\Users\WINDOW XI\.codex\worktrees\f8f1\shopee link
 Base commit: 249a104114abd135cd1a9a0855821c9722e78b60
-Latest commit: pending implementation commit
+Latest commit: dfa651385741b64d4481df82a2c1c2def229750f
 Started at: 2026-08-02T10:14:32.7523048+07:00
 Completed at: 2026-08-02T10:24:00.2656601+07:00
 Integrator lock owner: pending
@@ -114,8 +114,7 @@ lockfile change was made.
 
 ## Handoff instructions
 
-Implementation commit and status are being committed from the actual worktree
-recorded above. The implementation commit hash will be filled after commit;
-the final status update will record it and the status-update commit separately.
-The worker will inspect the three committed statuses after handoff and will not
-claim Final Integration unless the lock protocol permits it.
+Implementation commit: dfa651385741b64d4481df82a2c1c2def229750f. This status
+hash update is a follow-up handoff commit. The worker will inspect the three
+committed statuses after handoff and will not claim Final Integration unless
+the lock protocol permits it.
