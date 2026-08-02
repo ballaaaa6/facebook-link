@@ -131,6 +131,26 @@ These codes are not recoded as `presentation.*`. A renderer may preserve and
 display them, but cannot turn a stale stream into working, infer a missing role,
 or execute a proposal after an adapter rejection.
 
+Session D asset diagnostics are stable and asset-pipeline-owned:
+
+| Code | Originating rule |
+| --- | --- |
+| `asset.style-scale-invalid` | Native density or a world/furniture/character scale is outside the profile contract |
+| `asset.style-palette-invalid` | Palette roles or bounded color variance are invalid |
+| `asset.style-padding-invalid` | Canvas padding is negative, asymmetric beyond the profile, or inconsistent |
+| `asset.style-light-invalid` | Light/shadow vectors or policy are invalid |
+| `asset.style-shadow-invalid` | Shadow opacity, vector, or separation policy is invalid |
+| `asset.style-zoom-invalid` | Zoom stops are non-positive, duplicated, or not strictly ordered |
+| `asset.source-hash-mismatch` | A source or recipe digest does not match the declared immutable input |
+| `asset.provenance-missing` | Source, recipe, license, commercial review, or reviewer evidence is missing |
+| `asset.export-recipe-missing` | A family has no exact deterministic export recipe |
+| `asset.orphan-reference` | A source, recipe, runtime, atlas, catalog, review, or bundle record has no owner |
+| `asset.render-part-sibling-order` | Siblings do not have a unique stable order under one parent |
+| `asset.atlas-reference-missing` | A catalog frame or atlas entry is not closed at the exact version |
+| `asset.bundle-reference-missing` | A scene bundle names a catalog asset that is not admitted by that catalog |
+| `asset.migration-failed` | A version migration lacks context, mapping, or compatible geometry |
+| `asset.semantic-variant-unsupported` | A character/facility composite has no compatible variant or approved fallback |
+
 ## Debug evidence
 
 A bug report can include the validated world definition, initial snapshot,

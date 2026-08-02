@@ -9,7 +9,9 @@ brief -> source -> extraction -> geometry -> review -> validated runtime import
 ```
 
 Files cannot skip a stage. Source material stays immutable. Derived outputs are
-rebuilt by a deterministic recipe into a versioned destination.
+rebuilt by a deterministic recipe into a versioned destination. The Phase 1
+source, recipe, review, atlas, catalog, and bundle contracts can be validated
+without admitting a runtime manifest or PNG.
 
 Store immutable sources under `assets/office-v2/sources/`, deterministic recipes
 under `assets/office-v2/recipes/`, admitted manifests under
@@ -26,6 +28,13 @@ hash, recipe version, output hashes, and reviewer decision.
 Generated or assisted art also records the applicable prompt or creation brief
 without secrets. Third-party references never become runtime pixels by accident.
 
+`source-set.schema.json` groups immutable source layers and their exact hashes.
+`export-recipe.schema.json` pins the source profile, executable/version,
+structured arguments, dependencies, locale, color profile, clean output
+directory, output set, and two-clean-build byte-equality requirement. The
+authoring profile remains source-neutral until the original-material experiment
+required by Decision 0006 selects a later default.
+
 ## Geometry metadata
 
 Every runtime sprite or clip references one versioned authoritative world
@@ -41,11 +50,12 @@ parts and connectivity variants cannot change occupancy or interaction truth.
 The V1 asset schema and fixtures remain frozen; W1.2 introduces reference-only
 V2 evidence rather than reinterpreting duplicated V1 fields.
 
-The W1.2 asset-family reference is a positive-version typed reference to one
-geometry record. It may also reference render parts, animation sets/clips,
-character profiles, and connectivity variants, each at an exact version. The
-asset-family record may carry only canvas, frame, sprite-origin, pixel-contact,
-visual-height, render-band, trimming, and composition facts. It cannot carry a
+The V2 `asset-family-v2` reference is a positive-version typed reference to one
+geometry and one style profile. It may also reference render parts, sprite
+frames, character profiles, semantic variants, and connectivity variants, each
+at an exact version. The asset-family record owns references and presentation
+composition only. Sprite frames own canvas, frame, sprite-origin,
+pixel-contact, visual-height, and trimming facts. Neither record may carry a
 footprint, blocking/clearance cell, orientation transform, world socket, or
 use-slot. Any such field is `world.asset-occupancy-forbidden`, even when its
 numbers happen to agree with the geometry record.
@@ -65,6 +75,10 @@ it never treats a pixel measurement as a replacement geometry authority.
 - duplicate-pixel and forbidden-source checks;
 - manifest-to-runtime registry agreement;
 - explicit license and commercial status.
+- deterministic atlas/catalog/scene-bundle reference closure and orphan
+  detection;
+- render-part cycle and sibling-order validation;
+- semantic variant completeness and supported connectivity-mask validation.
 
 ## Failure policy
 
@@ -77,3 +91,7 @@ fallback to V1, Git history, rejected candidates, or unrelated asset families.
 Produce one family end to end before expanding. A batch is approved only when
 every member passes independently and the contact sheet is generated from the
 same validated outputs used by runtime.
+
+During W1.6 the batch policy is specification-only: valid/rejected fixtures and
+semantic probes are admitted, but production PNGs, runtime manifests, and
+catalog/runtime imports remain closed.
