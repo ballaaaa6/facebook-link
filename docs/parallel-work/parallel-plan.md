@@ -99,9 +99,14 @@ depends on another selected task's unintegrated output.
 - Planning artifacts commit: `ca6d1b5e55c75ff75194fd60505fb5158b8cc1ae`.
 - Planning lock / worker starting commit: `7af908b2f01a77214f1d2660c17fbbcc956fc952`;
   all three worker branches point to that exact commit.
-- Worker session IDs: `019fc301-f359-7733-979b-f04cd6953bc3` (Session 1 / Anscombe),
+- Initial worker sessions stalled without file changes and were closed:
+  `019fc301-f359-7733-979b-f04cd6953bc3` (Session 1 / Anscombe),
   `019fc301-f3d5-7c81-8ef7-2fac68995f71` (Session 2 / Pauli), and
   `019fc301-f45f-7b83-9601-d3602b12ef99` (Session 3 / Ramanujan).
+- Same-scope replacement worker sessions:
+  `019fc308-07d0-7170-a23b-b08fd324386a` (Session 1 / Feynman),
+  `019fc308-0857-7c33-8215-e90a8761480b` (Session 2 / Descartes), and
+  `019fc308-08e2-7643-b0dc-9d5d224112bd` (Session 3 / Newton).
 
 ## Validation strategy
 
