@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/accessibility-fixture.schema.json",
+  "title": "Office V2 Accessibility Fixture",
+  "$defs": {
+    "case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["caseId", "kind", "expected"],
+      "properties": {
+        "caseId": { "type": "string", "pattern": "^[a-z][a-z0-9.-]{2,127}$" },
+        "kind": { "enum": ["semantic-tree", "keyboard-order", "pointer-keyboard-parity", "focus-refresh", "focus-removal", "non-color", "reduced-motion", "forced-colors", "stale-disabled-removed", "long-label"] },
+        "expected": { "enum": ["pass", "focus-next-stable", "focus-root-fallback", "same-inspector", "state-readable-without-color"] }
+      }
+    },
+    "migration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fromVersion", "effect"],
+      "properties": { "fromVersion": { "const": "office-accessibility-fixture-v0" }, "effect": { "const": "block-uncovered-acceptance-case" } }
+    },
+    "fixtureDocument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "fixtureId", "actorProfiles", "operationalStates", "requirements", "cases", "migration"],
+      "properties": {
+        "schemaVersion": { "const": "office-accessibility-fixture-v1" },
+        "fixtureId": { "const": "office-accessibility-fixture-v1" },
+        "actorProfiles": { "type": "array", "minItems": 3, "uniqueItems": true, "items": { "enum": [1, 10, 15] } },
+        "operationalStates": { "type": "array", "minItems": 6, "uniqueItems": true, "items": { "enum": ["working", "waiting", "review", "blocked", "unavailable", "idle"] } },
+        "requirements": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["semanticDom", "focusSynchronization", "keyboardTraversal", "inspectorParity", "nonColorCues", "reducedMotion", "forcedColors", "viewportParity"],
+          "properties": { "semanticDom": { "const": true }, "focusSynchronization": { "const": true }, "keyboardTraversal": { "const": true }, "inspectorParity": { "const": true }, "nonColorCues": { "const": true }, "reducedMotion": { "const": true }, "forcedColors": { "const": true }, "viewportParity": { "const": true } }
+        },
+        "cases": { "type": "array", "minItems": 10, "items": { "$ref": "#/$defs/case" } },
+        "migration": { "$ref": "#/$defs/migration" }
+      }
+    }
+  },
+  "$ref": "#/$defs/fixtureDocument"
+}

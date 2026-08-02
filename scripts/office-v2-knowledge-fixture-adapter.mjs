@@ -40,6 +40,11 @@ import {
   schemaDiagnostic,
 } from "./office-v2-closure-d-evidence.mjs";
 import {
+  evaluateRendererQaCase,
+  evaluateRendererQaNegativeDiagnostic,
+  rendererQaRejectionFixturePath,
+} from "./office-v2-renderer-qa-evidence.mjs";
+import {
   caseKind,
   compareExpectedDiagnostic,
   mismatch,
@@ -61,6 +66,9 @@ function executeCase(context, registration, fixture, entry, ajv) {
     || (caseRunner === "simulation-v2" && typeof entry.kind === "string")
     || (caseRunner === "operations-v2" && typeof entry.kind === "string")
     || (caseRunner === "asset-v2" && ["schema", "semantic"].includes(entry.kind))
+    || (caseRunner === "renderer-qa" && typeof entry.kind === "string")
+    || (caseRunner === "renderer-bundle" && entry.kind === "synthetic-bundle")
+    || (caseRunner === "renderer-qa-negative" && typeof entry.kind === "string")
     || (caseRunner === "navigation" && ["path", "reservation"].includes(caseKind(entry)))
   );
   if (!handled) {
@@ -120,6 +128,10 @@ function executeCase(context, registration, fixture, entry, ajv) {
         if (entry.expectedValid === true) mismatch(context, path, entry, "asset semantic diagnostic", actual?.code ?? null, null);
         else compareExpectedDiagnostic(context, path, entry.expectedFailure, actual);
       }
+    } else if (caseRunner === "renderer-qa" || caseRunner === "renderer-bundle") {
+      evaluateRendererQaCase(context, fixture, entry);
+    } else if (caseRunner === "renderer-qa-negative") {
+      compareExpectedDiagnostic(context, rendererQaRejectionFixturePath, entry.expectedFailure, evaluateRendererQaNegativeDiagnostic(entry));
     } else if (caseKind(entry) === "path") {
       const result = findPath(fixture, entry);
       mismatch(context, path, entry, "navigation path", result.path, entry.expectedPath);

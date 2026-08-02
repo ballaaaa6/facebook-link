@@ -4,6 +4,7 @@ import {
   validateSchema,
 } from "./office-v2-knowledge-evidence.mjs";
 import { evaluateBuildingTopologyFixture } from "./office-v2-building-topology-adapter.mjs";
+import { rendererQaSchemaChecks } from "./office-v2-renderer-qa-evidence.mjs";
 
 export function runSchemaEvidence(context, ajv) {
   const read = (path) => context.readJson(path);
@@ -118,5 +119,22 @@ export function runSchemaEvidence(context, ajv) {
   const unsupported = read(unsupportedPath);
   if (unsupported) {
     validateSchema(context, ajv, unsupported.schema, unsupported.document, "unsupported proof workstation mask shape", true, unsupportedPath);
+  }
+
+  const rendererQa = read("fixtures/renderer-qa-contracts-v1.json");
+  if (rendererQa) {
+    for (const [schema, document, label] of rendererQaSchemaChecks(rendererQa)) {
+      validateSchema(context, ajv, schema, document, label, true, "fixtures/renderer-qa-contracts-v1.json");
+    }
+  }
+  const rendererBundle = read("fixtures/lab/renderer-benchmark-bundle-v1.json");
+  if (rendererBundle) {
+    validateSchema(context, ajv, "renderer-benchmark-bundle.schema.json", rendererBundle.document, "synthetic renderer benchmark bundle", true, "fixtures/lab/renderer-benchmark-bundle-v1.json");
+  }
+  const rendererRejections = read("fixtures/invalid/renderer-qa-rejections.json");
+  if (rendererRejections) {
+    for (const entry of rendererRejections.cases ?? []) {
+      validateSchema(context, ajv, entry.schema, entry.document, `${entry.name} renderer/QA rejection shape`, entry.expectedSchemaValid === true, "fixtures/invalid/renderer-qa-rejections.json");
+    }
   }
 }

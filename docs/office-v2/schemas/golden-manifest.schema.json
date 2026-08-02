@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/golden-manifest.schema.json",
+  "title": "Office V2 Golden Manifest",
+  "$defs": {
+    "migration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fromVersion", "effect"],
+      "properties": { "fromVersion": { "const": "office-golden-manifest-v0" }, "effect": { "const": "new-reviewed-golden-set" } }
+    },
+    "goldenDocument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "manifestId", "browser", "fontSet", "viewport", "camera", "tick", "seed", "animationTime", "worldHash", "snapshotHash", "projectionProfile", "styleProfile", "testFamily", "testAtlas", "testCatalog", "testBundle", "rendererRevision", "osImage", "locale", "dpr", "fontHashes", "forcedColor", "reducedMotion", "threshold", "reviewer", "updatePolicy", "geometryIndependent", "migration"],
+      "properties": {
+        "schemaVersion": { "const": "office-golden-manifest-v1" },
+        "manifestId": { "const": "office-golden-manifest-v1" },
+        "browser": { "type": "string", "minLength": 1 },
+        "fontSet": { "type": "string", "minLength": 1 },
+        "viewport": { "type": "object", "additionalProperties": false, "required": ["width", "height"], "properties": { "width": { "enum": [1440, 1024, 390] }, "height": { "enum": [900, 768, 844] } } },
+        "camera": { "type": "string", "minLength": 1 },
+        "tick": { "type": "integer", "minimum": 0 },
+        "seed": { "type": "integer", "minimum": 0 },
+        "animationTime": { "type": "number", "minimum": 0 },
+        "worldHash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "snapshotHash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "projectionProfile": { "const": "office-projection-v1" },
+        "styleProfile": { "type": "string", "minLength": 1 },
+        "testFamily": { "type": "string", "minLength": 1 },
+        "testAtlas": { "type": "string", "minLength": 1 },
+        "testCatalog": { "type": "string", "minLength": 1 },
+        "testBundle": { "type": "string", "minLength": 1 },
+        "rendererRevision": { "type": "string", "minLength": 1 },
+        "osImage": { "type": "string", "minLength": 1 },
+        "locale": { "type": "string", "minLength": 2 },
+        "dpr": { "type": "number", "minimum": 0.5 },
+        "fontHashes": { "type": "array", "minItems": 1, "items": { "type": "string", "pattern": "^[a-f0-9]{64}$" } },
+        "forcedColor": { "enum": ["none", "active"] },
+        "reducedMotion": { "enum": ["no-preference", "reduce"] },
+        "threshold": { "type": "object", "additionalProperties": false, "required": ["pixelDifference", "reviewRequired"], "properties": { "pixelDifference": { "type": "number", "minimum": 0 }, "reviewRequired": { "const": true } } },
+        "reviewer": { "type": "string", "minLength": 1 },
+        "updatePolicy": { "const": "normal-checks-never-rewrite" },
+        "geometryIndependent": { "const": true },
+        "migration": { "$ref": "#/$defs/migration" }
+      }
+    }
+  },
+  "$ref": "#/$defs/goldenDocument"
+}

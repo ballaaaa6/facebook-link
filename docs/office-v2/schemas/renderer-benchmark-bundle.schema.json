@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/renderer-benchmark-bundle.schema.json",
+  "title": "Office V2 Test-Only Renderer Benchmark Bundle",
+  "$defs": {
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["actorCount", "sceneHash", "snapshotHash"],
+      "properties": { "actorCount": { "enum": [1, 10, 15, 25, 50] }, "sceneHash": { "type": "string", "pattern": "^[a-f0-9]{64}$" }, "snapshotHash": { "type": "string", "pattern": "^[a-f0-9]{64}$" } }
+    },
+    "migration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fromVersion", "effect"],
+      "properties": { "fromVersion": { "const": "office-renderer-benchmark-bundle-v0" }, "effect": { "const": "reject-outside-fixture-lab" } }
+    },
+    "bundleDocument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "bundleId", "root", "testOnly", "admission", "geometry", "textures", "profiles", "bundleHash", "forbiddenRoots", "migration"],
+      "properties": {
+        "schemaVersion": { "const": "office-renderer-benchmark-bundle-v1" },
+        "bundleId": { "const": "office-renderer-benchmark-bundle-v1" },
+        "root": { "const": "docs/office-v2/fixtures/lab" },
+        "testOnly": { "const": true },
+        "admission": { "const": "fixture-only" },
+        "geometry": { "const": "synthetic-geometric-only" },
+        "textures": { "type": "array", "minItems": 1, "items": { "type": "object", "additionalProperties": false, "required": ["textureId", "kind", "dimensions"], "properties": { "textureId": { "type": "string", "pattern": "^[a-z][a-z0-9.-]{2,127}$" }, "kind": { "const": "fixed-synthetic" }, "dimensions": { "type": "object", "additionalProperties": false, "required": ["width", "height"], "properties": { "width": { "const": 8 }, "height": { "const": 8 } } } } } },
+        "profiles": { "type": "array", "minItems": 5, "uniqueItems": true, "items": { "$ref": "#/$defs/profile" } },
+        "bundleHash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "forbiddenRoots": { "type": "array", "minItems": 2, "uniqueItems": true, "items": { "enum": ["assets/office-v2/manifests", "assets/office-v2/runtime", "production-catalog", "runtime-admission"] } },
+        "migration": { "$ref": "#/$defs/migration" }
+      }
+    }
+  },
+  "$ref": "#/$defs/bundleDocument"
+}
