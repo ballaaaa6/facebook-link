@@ -8,10 +8,28 @@
 - Worktree: `C:\Users\WINDOW XI\.codex\worktrees\phase3-w2-activity-runtime`
 - Original base commit: `925439a5f6f29580d82767e2177433a35195bc71`
 - Planning commit: `2635abb87d014240fe4992b8120f99fde0431e7e`
-- Worker session IDs: initial `019fc106-e28f-7c73-988c-e12bd78f65b2` / Kepler
-  (closed without changes); replacement `019fc10c-a514-7083-beae-acc7bb6a3267`
-  / Socrates
-- Status: **IN_PROGRESS — replacement worker running**
+- Worker sessions: initial `019fc106-e28f-7c73-988c-e12bd78f65b2` / Kepler
+  and replacement `019fc10c-a514-7083-beae-acc7bb6a3267` / Socrates were
+  closed after repeated non-terminal execution; Main performed coordinator
+  recovery in this preserved worktree.
+- Status: **COMPLETED — COORDINATOR RECOVERY**
+
+## Handoff
+
+- Changed files: `packages/office-v2-simulation/src/activity-runtime.ts`,
+  `packages/office-v2-simulation/test/activity-runtime.test.ts`, and this
+  status file only.
+- Implementation commit: pending until the implementation and handoff commits are created.
+- Focused test: `node --test packages/office-v2-simulation/test/activity-runtime.test.ts` — passed, 7/7 tests.
+- Package typecheck: `npm run typecheck --workspace @affiliate-ops/office-v2-simulation` — passed.
+- Office preflight: re-run after implementation — passed.
+- Repository gate: `npm run check` — passed.
+- `git diff --check` — passed.
+- Limitations: this leaf implements a deterministic one-actor runtime only;
+  multi-actor queue fairness/deadlocks, replay/migration, operations, and
+  renderer integration remain later work.
+
+The Main Orchestration Session must review and integrate this commit.
 
 The worker will update only this file after implementation. It must record the
 implementation commit, exact changed files, focused tests, typecheck,
