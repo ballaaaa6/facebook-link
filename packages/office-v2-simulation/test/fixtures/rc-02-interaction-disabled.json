@@ -1,0 +1,75 @@
+{
+  "fixtureVersion": "office-v2-rc-02-fixture-v1",
+  "case": "presentation-disabled-interaction",
+  "contractVersions": {
+    "interaction": "office-interaction-v1",
+    "snapshot": "office-simulation-snapshot-v2",
+    "trace": "office-simulation-trace-v2"
+  },
+  "definition": {
+    "definitionId": "workstation",
+    "definitionVersion": 1,
+    "instanceId": "workstation-one",
+    "geometryReference": { "id": "workstation-geometry", "version": 1 }
+  },
+  "interaction": {
+    "interactionId": "work-at-desk",
+    "interactionVersion": 1,
+    "targetInstanceId": "workstation-one",
+    "phase": "interacting",
+    "actionId": "action-one",
+    "progressTicks": 3,
+    "durationTicks": 10,
+    "preconditions": ["task-assigned", "slot-available"],
+    "resourceKeys": ["socket:desk-one-seat@1", "facility:work-area@1"],
+    "correlation": {
+      "workflowRunId": "run-one",
+      "taskId": "task-one",
+      "sourceEventId": "event-one"
+    },
+    "resultEvent": "interaction-completed"
+  },
+  "presentation": {
+    "enabled": false,
+    "derivedView": null,
+    "acknowledgement": null
+  },
+  "durableStateDescription": {
+    "tick": 13,
+    "actor": {
+      "actorId": "actor-one",
+      "state": "interacting",
+      "targetInstanceId": "workstation-one",
+      "progressTicks": 3,
+      "actionId": "action-one",
+      "resourceKeys": ["socket:desk-one-seat@1", "facility:work-area@1"],
+      "correlation": {
+        "workflowRunId": "run-one",
+        "taskId": "task-one",
+        "sourceEventId": "event-one"
+      }
+    },
+    "events": [
+      { "sequence": 1, "tick": 10, "kind": "interaction-started", "actionId": "action-one" },
+      { "sequence": 2, "tick": 13, "kind": "interaction-progressed", "actionId": "action-one", "progressTicks": 3 }
+    ]
+  },
+  "expected": {
+    "presentationMayCommitSimulation": false,
+    "interactionRemainsDescribedWhenPresentationDisabled": true,
+    "durableStateFields": [
+      "actorId",
+      "state",
+      "targetInstanceId",
+      "progressTicks",
+      "actionId",
+      "resourceKeys",
+      "correlation"
+    ]
+  },
+  "placeholderHash": {
+    "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "isReducerReplayEvidence": false,
+    "reason": "Fixture placeholder only; no reducer or replay runner exists."
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "fixtureVersion": "office-v2-rc-02-fixture-v1",
+  "case": "invalid-incomplete-action-state",
+  "contractVersions": {
+    "interaction": "office-interaction-v1",
+    "snapshot": "office-simulation-snapshot-v2",
+    "trace": "office-simulation-trace-v2"
+  },
+  "invalidState": {
+    "snapshotBoundary": "completed-tick",
+    "tick": 24,
+    "actor": {
+      "actorId": "actor-one",
+      "state": "interacting",
+      "position": {
+        "space": "floor-local-sub-cell",
+        "floor": { "id": "floor-one", "version": 1 },
+        "coordinate": { "space": "sub-cell", "x": 8, "y": 12, "elevation": 0 }
+      },
+      "targetInstanceId": "workstation-one"
+    },
+    "action": {
+      "actionId": "action-one",
+      "phase": "using",
+      "progressTicks": 6,
+      "durationTicks": 20,
+      "resourceKeys": [],
+      "correlation": null
+    },
+    "presentation": {
+      "enabled": true,
+      "screenPosition": { "x": 128, "y": 64 },
+      "animationFrame": 5
+    }
+  },
+  "missingRequiredState": ["resourceKeys", "correlation"],
+  "reconstructionForbidden": ["actor.position", "invalidState.presentation"],
+  "expectedRejection": {
+    "assertionLabel": "rc-02.invalid-state",
+    "reason": "An in-progress interaction requires explicit resource ownership and workflow/task/event correlation."
+  },
+  "placeholderHash": {
+    "value": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "isReducerReplayEvidence": false,
+    "reason": "Rejected fixture label only; no state hash is computed or promoted."
+  }
+}

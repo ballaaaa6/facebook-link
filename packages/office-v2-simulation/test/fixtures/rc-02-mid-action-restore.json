@@ -1,0 +1,94 @@
+{
+  "fixtureVersion": "office-v2-rc-02-fixture-v1",
+  "case": "mid-action-restore",
+  "contractVersions": {
+    "interaction": "office-interaction-v1",
+    "snapshot": "office-simulation-snapshot-v2",
+    "trace": "office-simulation-trace-v2",
+    "hashDomain": "office-v2:world-kernel"
+  },
+  "restorePoint": {
+    "snapshotBoundary": "completed-tick",
+    "tickRateHz": 10,
+    "tick": 24,
+    "worldRevision": 7,
+    "actor": {
+      "actorId": "actor-one",
+      "state": "interacting",
+      "position": {
+        "space": "floor-local-sub-cell",
+        "floor": { "id": "floor-one", "version": 1 },
+        "coordinate": { "space": "sub-cell", "x": 8, "y": 12, "elevation": 0 }
+      },
+      "targetInstanceId": "workstation-one"
+    },
+    "action": {
+      "actionId": "action-one",
+      "phase": "using",
+      "progressTicks": 6,
+      "durationTicks": 20,
+      "resourceKeys": ["socket:desk-one-seat@1", "facility:work-area@1"],
+      "reservations": [
+        { "resourceKey": "socket:desk-one-seat@1", "ownerActorId": "actor-one", "state": "held" },
+        { "resourceKey": "facility:work-area@1", "ownerActorId": "actor-one", "state": "held" }
+      ],
+      "correlation": {
+        "workflowRunId": "run-one",
+        "taskId": "task-one",
+        "sourceEventId": "event-one"
+      },
+      "targetGeneration": 3,
+      "heldProp": { "state": "held", "propId": "notebook-one", "socketId": "desk-hand" }
+    },
+    "queueTicket": { "ticketId": "ticket-one", "state": "acquired", "enqueueTick": 19 },
+    "pendingCommands": [
+      { "commandId": "command-complete", "issuedTick": 24, "scheduledTick": 25 }
+    ],
+    "eventSequence": 9,
+    "cleanupGeneration": 2,
+    "randomStreams": [
+      { "streamId": "gameplay", "algorithm": "office-prng-v1", "state": 42, "drawCount": 1 }
+    ]
+  },
+  "uninterruptedContinuation": {
+    "events": [
+      { "sequence": 10, "tick": 25, "kind": "interaction-progressed", "actionId": "action-one", "progressTicks": 7 },
+      { "sequence": 11, "tick": 39, "kind": "interaction-completed", "actionId": "action-one" }
+    ],
+    "state": {
+      "tick": 39,
+      "actorState": "idle",
+      "targetInstanceId": "workstation-one",
+      "actionId": "action-one",
+      "progressTicks": 20,
+      "resourceKeys": ["facility:work-area@1", "socket:desk-one-seat@1"],
+      "correlation": { "workflowRunId": "run-one", "taskId": "task-one", "sourceEventId": "event-one" },
+      "heldProp": { "state": "returned", "propId": "notebook-one", "socketId": "desk-hand" }
+    }
+  },
+  "restoredContinuation": {
+    "events": [
+      { "sequence": 10, "tick": 25, "kind": "interaction-progressed", "actionId": "action-one", "progressTicks": 7 },
+      { "sequence": 11, "tick": 39, "kind": "interaction-completed", "actionId": "action-one" }
+    ],
+    "state": {
+      "correlation": { "sourceEventId": "event-one", "taskId": "task-one", "workflowRunId": "run-one" },
+      "heldProp": { "socketId": "desk-hand", "propId": "notebook-one", "state": "returned" },
+      "resourceKeys": ["socket:desk-one-seat@1", "facility:work-area@1"],
+      "progressTicks": 20,
+      "actionId": "action-one",
+      "targetInstanceId": "workstation-one",
+      "actorState": "idle",
+      "tick": 39
+    }
+  },
+  "comparison": {
+    "unorderedArrayKeys": ["resourceKeys"],
+    "orderedArrayKeys": ["events"]
+  },
+  "placeholderHash": {
+    "value": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "isReducerReplayEvidence": false,
+    "reason": "Fixture placeholder only; a reducer must produce and verify future replay hashes."
+  }
+}

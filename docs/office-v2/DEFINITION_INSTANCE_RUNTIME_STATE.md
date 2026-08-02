@@ -235,3 +235,90 @@ rejected case, compile-time rejection for cross-space and cross-namespace
 assignments, a deterministic generator output, and unchanged historical V1
 hashes. This record does not claim a world kernel, reducer/replay evidence,
 renderer readiness, or runtime asset admission.
+
+## RC-02 closure — runtime and presentation separation
+
+Status: bounded research closure complete. This section records the source
+study and test-only evidence needed before the Phase 3/T2 interaction and
+replay implementation. It does not promote T2, add a reducer, or change a
+schema.
+
+### Engineering question and bounded source record
+
+RC-02 asks which facts belong to immutable definitions, placed instances,
+mutable runtime state, and derived presentation, and how interaction commands,
+progress, results, save, and restore can remain explicit when presentation is
+disabled.
+
+The only external source used for this slice is
+[FreeSO Project structure](https://github.com/riperiperi/FreeSO/wiki/Project-structure),
+read for the named project-structure page only. The observed page header says
+it was edited on 2020-06-12; its visible history lists latest revision `3a1510a`
+(committed 2020-06-12; prior revision `6591ab6`). The page was observed by this
+closure on 2026-08-02.
+
+The page does not display a license notice for the wiki text. Its rights
+boundary is therefore treated as unresolved for code, game data, maps, assets,
+and other content; the page itself notes that copyrighted content is not
+redistributed through its patching approach. Office uses only the neutral
+architecture observations below. No FreeSO code, names as runtime identifiers,
+maps, values, behavior tables, assets, or content are copied, and FreeSO is not
+added as a dependency.
+
+### Neutral observations, separated from Office decisions
+
+The page describes a simulation group in which a virtual machine drives object
+and avatar behavior. It separately names entity representations, primitive
+instructions, a serializable network command path, complete VM state supplied to
+clients, and tick-by-tick synchronization. It also describes marshalled VM
+structures used for disk save and for sending current state during join or
+resynchronization. Its model grouping includes room-map, routing, and terrain
+data.
+
+The page separately describes a lot-rendering world state divided into
+architectural, dynamic-entity, and static presentation groupings. It describes
+entity-facing render components that receive graphic, position, rotation, and
+container updates, with static content allowed to update less frequently.
+These are observations about the named project structure, not an Office design
+or an implementation recipe.
+
+| Bounded observation | Office disposition and reason | Canonical owner | Migration consequence |
+| --- | --- | --- | --- |
+| Simulation execution, entity data, and serializable commands are described as distinct project groupings. | **Adapt** the separation: Office commands are versioned inputs and runtime state is reducer-owned; **reject** the VM, instruction set, and network protocol as dependencies or behavior sources. | `decisions/0005-simulation-state-machine.md`, `SIMULATION_TIME_RANDOMNESS_REPLAY.md`, and the versioned command/result/event contracts | A saved command or action must carry its version and correlation explicitly. A migration never infers progress from a UI callback or command arrival time. |
+| Marshalled VM state is described as the representation used for save and join/resynchronization. | **Adapt** the idea of a complete explicit snapshot and trace; **reject** a marshalled-type format or implicit network state as an Office contract. | `SAVE_SNAPSHOT_MIGRATION.md` and `REPLAY_DEBUGGING_PLAYBOOK.md`; `office-simulation-snapshot-v2` and `office-simulation-trace-v2` remain frozen | Readers validate the declared version or traverse every tested migration. Missing in-progress resource, progress, world-revision, or correlation facts fail closed. |
+| Room-map, routing, and terrain data are listed with simulation model data. | **Adapt** the ownership boundary: versioned world definitions and instances provide immutable spatial inputs, while route and action progress are runtime facts. **Reject** any inference from screen coordinates or presentation offsets. | This document, `ACTORS_NAVIGATION_INTERACTIONS.md`, and the `office-v2:world-kernel` world-owner boundary | V1 state without explicit floor/world and action context is rejected; no migration guesses from position, elevation, array order, or a rendered location. |
+| The lot renderer is described as separate architectural, dynamic-entity, and static groupings, with entity-facing components receiving visual updates. | **Adapt** only the disposable derived-view boundary; **reject** renderer component state as simulation truth and reject a static-buffer or component update protocol as a runtime contract. | This four-layer document and `REPLAY_DEBUGGING_PLAYBOOK.md`; presentation contracts remain downstream consumers | Derived view data may be discarded and rebuilt from a valid snapshot. Renderer state, frame time, screen pixels, and acknowledgements are never migration inputs. |
+
+### RC-02 executable evidence and acceptance
+
+The test-only fixtures under
+`packages/office-v2-simulation/test/fixtures/` are deliberately outside the
+knowledge-manifest fixture root. They describe, without executing, the
+following facts:
+
+- `rc-02-interaction-disabled.json` keeps an interaction in explicit runtime
+  state while presentation is disabled; no animation frame or view
+  acknowledgement can commit progress.
+- `rc-02-mid-action-restore.json` carries tick, world revision, action phase and
+  progress, resources/reservations, held-prop state, pending command, event
+  sequence, random-stream state, cleanup generation, and workflow/task/event
+  correlation at a completed-tick restore boundary.
+- `rc-02-invalid-state.json` is rejected because an in-progress interaction is
+  missing explicit resource and correlation facts. Its position and
+  presentation data are present only to prove that reconstruction from either
+  source is forbidden.
+
+`node --test scripts/office-v2-rc-02-evidence.test.mjs` performs the focused
+acceptance. Its `rc-02.invalid-state` assertion label is local to this test and
+is not a runtime diagnostic catalog. The test compares normalized event/state
+descriptions, preserving ordered event arrays and sorting only the fixture's
+declared unordered resource-key collection. Any `placeholderHash` field is
+asserted to be explicitly non-evidence: no reducer-produced state hash or
+replay trace is claimed by RC-02.
+
+The migration and clean-room consequence is unchanged: preserve
+`office-interaction-v1`, `office-simulation-snapshot-v2`,
+`office-simulation-trace-v2`, the four-layer ownership model, and the
+`office-v2:world-kernel` hash-domain conventions. Reducer-produced replay
+hashes, a migration registry, and uninterrupted-versus-restored execution
+remain later T2 implementation evidence.
