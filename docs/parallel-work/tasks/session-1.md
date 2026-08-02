@@ -8,8 +8,9 @@
 - Worker branch: `task/session-1-p3-w2-queues`
 - Worker worktree: `C:\Users\WINDOW XI\.codex\worktrees\phase3-p3-w2-03-queues`
 - Original base commit: `65499e200c672440d92b3405723056064fa0a88c`
-- Planning commit: recorded by Main before launch; the worker starts from the
-  planning-lock commit named in `parallel-plan.md`.
+- Planning artifacts commit: `ca6d1b5e55c75ff75194fd60505fb5158b8cc1ae`.
+- Worker starting commit: the planning-lock commit recorded in
+  `parallel-plan.md` before launch.
 - Status file: `docs/parallel-work/session-1-status.md`
 
 ## Objective

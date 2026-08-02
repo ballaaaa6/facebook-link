@@ -96,10 +96,10 @@ depends on another selected task's unintegrated output.
 | 2 | `P3-W2.5` | `task/session-2-p3-w2-replay` | `C:\Users\WINDOW XI\.codex\worktrees\phase3-p3-w2-03-replay` | planned |
 | 3 | `P3-W3.1` | `task/session-3-p3-w3-ownership` | `C:\Users\WINDOW XI\.codex\worktrees\phase3-p3-w2-03-ownership` | planned |
 
-- Planning artifacts commit: recorded by Main immediately after this planning
-  set is committed.
-- Worker starting commit: the planning-lock commit recorded before launch;
-  all three worker branches will point to that exact commit.
+- Planning artifacts commit: `ca6d1b5e55c75ff75194fd60505fb5158b8cc1ae`.
+- Planning lock / worker starting commit: this metadata-lock commit, recorded
+  by Main before launch; all three worker branches will point to that exact
+  commit.
 - Worker session IDs: recorded after the real sub-agent sessions are spawned.
 
 ## Validation strategy
