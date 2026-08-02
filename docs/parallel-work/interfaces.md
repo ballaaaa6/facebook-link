@@ -1,84 +1,71 @@
-# Phase 3 Wave `P3-W2-02` Frozen Interfaces
+# Phase 3 Wave `P3-W2-03` Frozen Interfaces
 
 This is a coordination reference. It does not create a new contract owner.
 
-## Existing versions and package boundaries
+## Existing contract boundary
 
-- `office-simulation-command-v2`
-- `office-simulation-result-v2`
-- `office-simulation-event-v2`
-- `office-simulation-snapshot-v2`
-- `office-simulation-trace-v2`
-- `office-activity-intent-v1`
-- `office-facility-slot-v1`
-- `office-action-queue-v1`
-- `office-reservation-v1`
-- `office-queue-ticket-v1`
-- `office-interaction-v1` fixture/policy
-- `office-v2:world-kernel` canonical hash conventions
-- Decision 0005 pure reducer at 10 logical ticks per second
-- Decision 0011 semantic normalization followed by canonical hash envelope
+- Queue work uses the frozen `office-queue-policy-v1`,
+  `office-queue-ticket-v1`, `office-reservation-v1`,
+  `office-action-queue-v1`, `office-facility-slot-v1`, and
+  `office-activity-intent-v1` shapes.
+- Replay work uses the frozen `office-simulation-snapshot-v2`,
+  `office-simulation-trace-v2`, command/result/event shapes, and the existing
+  canonical JSON/hash and simulation state-hash exports.
+- Operations verification uses the existing workflow constants, content-join
+  reducer, ten-role catalog/configuration, Operations Snapshot V2,
+  activity-routing, roster-binding, and Closure C fixtures.
 
-No schema version, generated type, package dependency, diagnostic catalogue,
-or accepted decision may change in this wave.
+## Queue semantics
 
-## Simulation ownership
+1. Resource keys are stable typed strings and are validated before mutation.
+2. Duplicate keys fail with the simulation-owned duplicate-resource diagnostic.
+3. A complete request is normalized by the accepted UTF-16 comparator and
+   acquired all-or-none.
+4. Queue service order is priority class (`durable` before `decorative`),
+   enqueue tick ascending, then ticket ID ascending.
+5. Cleanup is idempotent and releases every claim owned by the ticket.
+6. Wait-for cycles select the lowest-priority, latest-issued intent and then
+   greatest actor ID; only declared legal yield cells are allowed. No-yield is
+   `simulation.deadlock-no-yield-cell`.
 
-`packages/office-v2-simulation` owns serializable simulation facts, reducer
-state, command ledgers, activity runtime state, lifecycle tick pumping, and
-simulation hashes. World geometry remains owned by
-`@affiliate-ops/office-v2-world`; presentation and operations are consumers and
-must not be imported by the simulation package.
+The queue module may expose a pure, package-local API for these semantics. No
+other selected task imports it in this wave, so Main owns any public-barrel
+export decision after review.
 
-The existing `command-pipeline.ts` is read-only to workers. Main may re-export
-new worker modules from `src/index.ts` after review. Worker modules must remain
-usable through direct imports before Main wiring.
+## Replay semantics
 
-## W2.2 state hash contract
+1. Restore is legal only at a completed tick/hash boundary.
+2. Ordered events and inputs retain order; only declared unordered collections
+   may normalize.
+3. Replay runs are deterministic and compare results, events, per-tick hashes,
+   and final hash.
+4. Unknown future versions, missing migration paths, incompatible definitions,
+   incomplete in-progress resource context, and secret-bearing bug-bundle data
+   fail closed.
+5. Divergence reports the first differing tick and a stable subsystem/path
+   context.
 
-The worker must reuse `normalizeDeclaredCollections` and `canonicalHashHex`
-from `@affiliate-ops/office-v2-contracts`. It must declare ordered versus
-unordered simulation collections explicitly, preserve ordered arrays, use
-UTF-16 key ordering supplied by the shared canonical utility, and exclude
-presentation-only state. The module must expose a pure serializable projection
-and a deterministic hash boundary with named PRNG streams. A hash is reducer
-evidence only when produced from the supplied state; fixture literals remain
-non-evidence.
+The replay module may use a generic injected step/hash boundary to avoid
+duplicating the command reducer or activity runtime. It must not alter the
+existing hash projection or promote placeholder hashes.
 
-The wave freezes the new module's domain as `office-v2:simulation` and its
-projection version as `office-simulation-state-v2`. The worker may choose
-internal type names, but the exported result must include the normalized
-projection and the resulting 64-character SHA-256 digest.
+## Workflow ownership semantics
 
-## W2.3 activity runtime contract
+- Product Ranker: ordered ranking evidence only.
+- Growth Strategist: sole winner-selection owner and strategy-version reference.
+- Gemini Copywriter and Flow Visual Producer: independent copy/visual branch
+  owners.
+- `workflow-coordinator` with `actorType: system`: sole `content_ready` join
+  owner; it is absent from the agent catalog/configuration.
+- Session Keeper: session health and recovery only.
+- TeamBrain: command-console facility, never an agent instance.
+- A disabled role/connector/session cannot execute or present as working.
 
-The worker consumes existing intent, facility-slot, action-queue, reservation,
-queue-ticket, and command facts. It must provide a deterministic one-actor
-runtime that can request an intent, select a capability-matching available
-facility/use slot, reserve the complete resource set atomically, progress
-through reach/wait/acquire/use, and execute exactly-once cleanup on completion,
-cancellation, timeout, target removal, or unreachable approach. It must not
-implement multi-actor fairness/deadlock resolution, persistence, operations,
-or route geometry outside the supplied test model.
+## Cross-task non-dependency
 
-All resource decisions are simulation facts. Queue/resource ordering is stable
-and based on declared identities, never input array position, sprite identity,
-wall-clock time, or presentation offsets.
-
-## W2.6 lifecycle contract
-
-The worker provides an injected, renderer-free lifecycle port with states
-`mounted`, `visible`, `hidden`, `restoring`, and `destroyed`. Logical progress
-uses explicit tick advancement; visible pumping may accumulate wall-time-like
-tick units but applies at most five logical ticks per pump. Excess lag emits
-`simulation.lifecycle-catch-up-capped` data and never causes an unbounded burst.
-Hidden and destroyed states do not advance simulation ticks. Repeated mount,
-teardown, restore, and subscription operations are idempotent and leave no
-listeners, pollers, loops, subscriptions, pending loads, or resource handles
-after destroy.
-
-## Integration rules
-
-Workers must not edit this file or any shared contract. Main may add only
-barrel exports and cross-task wiring after all worker reviews pass. No worker
-may integrate another worker's commit or publish any branch.
+Session 1 and Session 2 each own independent simulation modules and tests.
+Session 2 consumes only already-integrated command/activity/hash contracts and
+does not depend on Session 1. Session 3 is read-only verification of existing
+workflow and operations sources and does not depend on either simulation task.
+Main will add exports, cross-task tests, and any shared documentation after all
+worker reviews pass.

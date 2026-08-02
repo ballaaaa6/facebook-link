@@ -1,87 +1,122 @@
 # Worker Session 3 Task Specification
 
 - Session: 3
-- Task ID: `P3-W2.6`
-- Task name: Fixed-tick lifecycle port
+- Task ID: `P3-W3.1`
+- Task name: Workflow ownership and operations adapter verification
 - Parent Phase: Phase 3 — Headless operational vertical slice
-- Wave ID: `P3-W2-02`
-- Worker branch: `task/session-3-p3-w2-lifecycle`
-- Worker worktree: `C:\Users\WINDOW XI\.codex\worktrees\phase3-w2-lifecycle`
-- Original base commit: `925439a5f6f29580d82767e2177433a35195bc71`
-- Planning commit: `2635abb87d014240fe4992b8120f99fde0431e7e`
+- Wave ID: `P3-W2-03`
+- Worker branch: `task/session-3-p3-w3-ownership`
+- Worker worktree: `C:\Users\WINDOW XI\.codex\worktrees\phase3-p3-w2-03-ownership`
+- Original base commit: `65499e200c672440d92b3405723056064fa0a88c`
+- Planning commit: recorded by Main before launch; the worker starts from the
+  planning-lock commit named in `parallel-plan.md`.
 - Status file: `docs/parallel-work/session-3-status.md`
 
 ## Objective
 
-Implement an injected, renderer-free lifecycle port that controls explicit
-logical tick pumping across mounted/visible/hidden/restoring/destroyed states,
-caps catch-up, and cleans up subscriptions idempotently. This is one leaf
-inside Phase 3; it is not the renderer lifecycle implementation or T4.
+Add one evidence-only test that re-verifies the accepted workflow/role
+ownership and content fan-out/join boundary against the current workflow,
+agent-catalog, runtime configuration, Operations Snapshot V2, and pilot
+producer. Do not add an Office-specific workflow or alter any producer.
 
-## Repository evidence and current behavior
+## Repository evidence and dependencies
 
-- Decision 0005 fixes simulation time at ten logical ticks per second and keeps
-  display frames outside simulation truth.
-- The W2.6 policy caps visible catch-up at five logical ticks per pump and
-  emits `simulation.lifecycle-catch-up-capped` for excess lag.
-- The lifecycle fixture defines the five states, browser-style transitions,
-  and zero-resource invariant after destroy.
-- `packages/office-v2-simulation` has no lifecycle port; no browser globals or
-  renderer implementation is admitted in this phase.
+W0.3 and Closure C already corrected winner ownership, branch ownership, system
+join ownership, feature-flag behavior, and TeamBrain identity. Existing tests
+cover parts of this boundary, but the Phase 3 W3.1 leaf is not yet recorded as
+an integrated focused evidence suite.
+
+Dependency status: **SATISFIED**. No selected-wave dependency.
+
+Read-only references:
+
+- `packages/workflows/src/index.ts`
+- `packages/workflows/test/workflow.test.ts`
+- `packages/workflows/test/content-join.test.ts`
+- `packages/agent-catalog/src/index.ts`
+- `packages/agent-catalog/test/agent-catalog.test.ts`
+- `config/agents.json`
+- `docs/WORKFLOWS.md`
+- `docs/office-v2/OPERATIONS_ADAPTER_UI_SAFETY.md`
+- `docs/office-v2/fixtures/operations-closure-c.json`
+- `docs/office-v2/fixtures/operations-states.json`
+- `services/automation-runner/src/simulation/pilot.ts`
+- `services/automation-runner/src/simulation/persistence.ts`
+- `services/automation-runner/test/simulation.test.ts`
 
 ## Required final behavior
 
-1. Provide a serializable/injected API in `src/lifecycle.ts` with states
-   `mounted`, `visible`, `hidden`, `restoring`, and `destroyed`.
-2. Provide idempotent mount/show/hide/pagehide/pageshow/bfcache/context and
-   teardown/remount transitions matching the accepted lifecycle fixture.
-3. Advance logical ticks only through an injected pump/advance callback while
-   visible; hidden, restoring, and destroyed states must not silently advance
-   simulation time.
-4. Apply at most five accumulated logical ticks per visible pump. Return a
-   deterministic `simulation.lifecycle-catch-up-capped` diagnostic/data record
-   when more are pending, with no unbounded burst.
-5. Support injected subscriptions/listeners/pollers/loads/resources and make
-   teardown/destroy release every handle exactly once. Repeated mount/unmount
-   and restore must not duplicate callbacks or loops.
-6. Prove that different display-frame schedules reaching the same logical tick
-   produce identical callback/tick results.
-7. Add focused tests for every lifecycle state, pagehide/pageshow and bfcache
-   restore, capped catch-up, repeated mount/unmount, idempotent teardown, and
-   zero-resource cleanup after destroy.
+- Proves Product Ranker owns ranking evidence and Growth Strategist alone owns
+  winner selection and strategy-version reference.
+- Proves copy and visual branches have their declared agent owners and the
+  system coordinator alone owns `content_ready`.
+- Proves the coordinator is absent from the agent catalog and runtime config,
+  and TeamBrain is not a roster agent.
+- Proves the ten catalog roles and runtime configuration are unique and aligned,
+  including the enabled/disabled configuration state.
+- Proves the pilot producer/persistence path preserves branch correlation,
+  idempotent joins, and system-owned audit behavior.
+- Proves disabled external features cannot be represented as a successful
+  external action by the evidence boundary.
 
 ## In scope
 
-- `packages/office-v2-simulation/src/lifecycle.ts`
-- `packages/office-v2-simulation/test/lifecycle.test.ts`
-- A small injected port/resource model needed by the focused tests.
+- `scripts/office-v2-w3-01-evidence.test.mjs` only.
+- Read-only fixture/source loading and focused assertions.
 
 ## Out of scope
 
-Browser DOM APIs, React, renderer candidates, asset loading, operations
-reconciliation, command-pipeline edits, public exports, package manifests,
-schemas, generated contracts, external actions, and new dependencies.
+- Any change to workflows, diagnostics, agent catalog, `config/agents.json`,
+  runner production/persistence code, operations adapter, schemas, fixtures,
+  package manifests, lockfiles, or shared documentation.
+- Any connector execution, browser action, database mutation, or external
+  publication.
+- Any simulation, renderer, asset, or next-Phase work.
 
-## Read-only references and frozen interfaces
+## Ordered implementation requirements
 
-Read `interfaces.md`, `SIMULATION_TIME_RANDOMNESS_REPLAY.md`,
-`SIMULATION_PIPELINE_COMMANDS.md`, `SAVE_SNAPSHOT_MIGRATION.md`, Decision 0005,
-the lifecycle fixture/schema, the simulation contract fixture, and the
-renderer lifecycle policy only as a contract reference. Keep this module
-headless and presentation-neutral.
+1. Load current source constants and runtime configuration without duplicating
+   ownership tables as production code.
+2. Assert the winner, branch, system-join, Session Keeper, TeamBrain, and
+   feature-disabled rules with stable test messages.
+3. Exercise both copy-first and visual-first join order and verify identical
+   join event/state.
+4. Exercise the pilot simulation/persistence verification or equivalent
+   read-only producer evidence without writing to a real database or invoking
+   connectors.
+5. Keep the test deterministic, secret-free, and outside the knowledge fixture
+   registry unless Main explicitly adds a registry entry later.
 
-## Validation and acceptance
+## Required tests and validation
 
 Run:
 
-- `node --test packages/office-v2-simulation/test/lifecycle.test.ts`
-- `npm run typecheck --workspace @affiliate-ops/office-v2-simulation`
-- `node .agents/skills/build-office-v2-engine/scripts/preflight.mjs`
-- `git diff --check`
-- `npm run check` when the worktree is dependency-ready
+```text
+node .agents/skills/build-office-v2-engine/scripts/preflight.mjs
+node --test scripts/office-v2-w3-01-evidence.test.mjs
+git diff --check
+```
 
-The worker changed only the two implementation/test files and its own status
-file. The status file must record the implementation commit, exact files,
-commands/results, known limitations, and this handoff statement: “The Main
-Orchestration Session must review and integrate this commit.” Commit the task
-and stop immediately after handoff; do not integrate or publish.
+Also run the focused workflow, agent-catalog, and automation-runner test
+commands when the worktree is dependency-ready, but do not modify them.
+
+## Acceptance criteria
+
+- The new focused evidence test passes against the current sources and fixture.
+- It fails if winner ownership, system join ownership, branch ownership,
+  catalog/config alignment, or disabled-feature behavior regresses.
+- It does not edit or reimplement any producer, consumer, schema, or workflow.
+- It contains no credentials, connector payloads, or external side effects.
+- The worker status file records the commit, files, tests, and limitations.
+
+## Expected deliverables and handoff
+
+- One focused test commit on the assigned branch.
+- Updated Session 3 status file with `COMPLETED`, commit hash, changed files,
+  validation output, acceptance checklist, and known limitations.
+- Final handoff message to Main naming the commit and stopping immediately.
+
+You are implementing one leaf task inside the current active Phase. You are
+not responsible for completing the entire Phase or starting the next Phase.
+Do not integrate, cherry-pick, merge, push the integration branch, modify the
+primary branch, or create a pull request.

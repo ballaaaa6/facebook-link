@@ -1,88 +1,128 @@
 # Worker Session 1 Task Specification
 
 - Session: 1
-- Task ID: `P3-W2.2`
-- Task name: Simulation normalization, PRNG, and real state hashes
+- Task ID: `P3-W2.4`
+- Task name: Queue, reservation, fairness, and deadlock runtime
 - Parent Phase: Phase 3 — Headless operational vertical slice
-- Wave ID: `P3-W2-02`
-- Worker branch: `task/session-1-p3-w2-normalization-hash`
-- Worker worktree: `C:\Users\WINDOW XI\.codex\worktrees\phase3-w2-normalization-hash`
-- Original base commit: `925439a5f6f29580d82767e2177433a35195bc71`
-- Planning commit: `2635abb87d014240fe4992b8120f99fde0431e7e`
+- Wave ID: `P3-W2-03`
+- Worker branch: `task/session-1-p3-w2-queues`
+- Worker worktree: `C:\Users\WINDOW XI\.codex\worktrees\phase3-p3-w2-03-queues`
+- Original base commit: `65499e200c672440d92b3405723056064fa0a88c`
+- Planning commit: recorded by Main before launch; the worker starts from the
+  planning-lock commit named in `parallel-plan.md`.
 - Status file: `docs/parallel-work/session-1-status.md`
 
 ## Objective
 
-Implement the simulation-owned normalization, named PRNG stream, hashable-state
-projection, and reducer-ready real state-hash boundary. This is one leaf task
-inside Phase 3; it is not the replay runner, migration registry, or entire T2.
+Implement one pure, renderer-free queue/resource runtime for the accepted
+`office-queue-policy-v1` semantics. It must normalize complete resource sets,
+serve stable queue tickets, acquire all-or-none, perform idempotent cleanup,
+and resolve bounded wait-for cycles without inventing movement.
 
-## Repository evidence and current behavior
+## Repository evidence and dependencies
 
-- `packages/office-v2-contracts/src/canonical-json.ts` already rejects duplicate
-  keys, malformed UTF-8, lone surrogates, unsafe numbers, and non-JSON values,
-  and provides `normalizeDeclaredCollections`.
-- `packages/office-v2-contracts/src/canonical-hash.ts` already provides the
-  accepted SHA-256 envelope and `canonicalHashHex`.
-- `packages/office-v2-simulation/src/command-pipeline.ts` provides the first
-  pure fixed-tick command ledger and accepted intent facts.
-- Snapshot/trace fixtures still contain placeholder hashes and reducer/replay
-  evidence remains zero; no simulation state-hash module exists.
+`P3-W2.1`, `P3-W2.3`, RC-01, Phase 2, the queue schemas, and Decision 0012 are
+integrated. `activity-runtime.ts` already proves one-actor resource cleanup;
+this task adds the multi-request queue and wait-for boundary. T3 crowd and
+replay promotion remain later acceptance gates.
+
+Dependency status: **SATISFIED**. No selected-wave dependency.
+
+Read-only references:
+
+- `docs/office-v2/ACTORS_NAVIGATION_INTERACTIONS.md`
+- `docs/office-v2/CROWD_QUEUES_AND_DEADLOCKS.md`
+- `docs/office-v2/JOBS_INTENTS_ASSIGNMENT.md`
+- `docs/office-v2/decisions/0012-queue-reservation-and-deadlock-policy.md`
+- queue, reservation, action-queue, facility-slot, and activity-intent schemas
+- `docs/office-v2/fixtures/simulation-contracts-v2.json`
+- `packages/office-v2-simulation/src/activity-runtime.ts`
+- `docs/parallel-work/interfaces.md`
 
 ## Required final behavior
 
-1. Provide a pure serializable API in `src/state-hash.ts` that accepts a
-   hashable simulation state and returns a normalized projection, canonical
-   bytes or equivalent canonical input, and a 64-character SHA-256 digest.
-2. Reuse the shared canonical utilities. Do not duplicate canonical JSON,
-   UTF-16 ordering, or SHA-256 implementation.
-3. Declare and test the exact unordered collections (for example ledger-like
-   records keyed by stable IDs) while preserving every declared ordered array.
-4. Include a named deterministic PRNG implementation/stream state with a
-   versioned algorithm and independent stream derivation. Gameplay draws must
-   not consume presentation draws.
-5. Use domain `office-v2:simulation` and projection version
-   `office-simulation-state-v2`; changing either changes the hash.
-6. Exclude presentation-only fields from the hash projection and reject or
-   fail closed on invalid hashable JSON input.
-7. Add focused tests for shuffled unordered input, preserved ordered arrays,
-   Unicode spelling, negative-zero normalization, domain/version changes,
-   stream independence, deterministic repeated hashes, and first-field
-   divergence.
+- Validates non-empty stable resource keys and rejects duplicates before any
+  state mutation.
+- Normalizes a requested resource set by the frozen UTF-16 comparator.
+- Commits a complete claim or no newly requested claim at all.
+- Orders waiting tickets by durable/decorative priority, enqueue tick, and
+  ticket ID, independent of input or render order.
+- Releases claims and tickets exactly once on cancellation, completion,
+  timeout, target removal, or explicit cleanup.
+- Tracks a declared no-progress threshold and wait-for edges.
+- Selects a deterministic deadlock victim using the accepted priority, latest
+  intent, and greatest actor-ID tie-breakers.
+- Routes a victim only to a declared legal yield cell, or returns
+  `simulation.deadlock-no-yield-cell` with stable context.
+- Produces bounded results for the one-, ten-, and fifteen-request fixture
+  profiles without claiming full navigation or T3 replay evidence.
 
 ## In scope
 
-- `packages/office-v2-simulation/src/state-hash.ts`
-- `packages/office-v2-simulation/test/state-hash.test.ts`
-- A small serializable state/hash/PRNG API in those owned files.
+- `queues.ts`, its focused tests, and its package-local fixture.
+- Pure data structures and functions needed for queue order, atomic claims,
+  cleanup, wait-for edges, cycle detection, victim selection, and yield choice.
+- Stable diagnostics and immutable state transitions.
 
 ## Out of scope
 
-Replay runner, snapshot migration, command-pipeline edits, public exports,
-package manifests, generated contracts, schemas, fixtures, renderer state,
-operations state, external actions, new dependencies, and changes to the
-shared canonical utility.
+- Navigation/pathfinding or world occupancy changes.
+- Changes to `activity-runtime.ts`, command pipeline, hash utility, lifecycle,
+  schemas, generated contracts, operations adapter, renderer, assets, or
+  workflow sources.
+- Public barrel exports; Main will decide and perform any required export.
+- Phase 3/T3 closure claims.
 
-## Read-only references and frozen interfaces
+## Owned files and forbidden files
 
-Read `interfaces.md`, `SIMULATION_TIME_RANDOMNESS_REPLAY.md`,
-`SAVE_SNAPSHOT_MIGRATION.md`, Decision 0011, Decision 0005, the snapshot and
-trace generated contracts, canonical JSON/hash utilities, and the W2.1
-command-pipeline module. Preserve `office-v2:world-kernel` conventions and all
-existing schema versions.
+Owned files are exactly those listed in `docs/parallel-work/ownership.md` for
+Session 1. Do not edit any other implementation or shared documentation file.
 
-## Validation and acceptance
+## Ordered implementation requirements
+
+1. Define a versioned pure queue state/input/result boundary and validate all
+   numeric/identity inputs.
+2. Implement the stable resource comparator and all-or-none claim logic.
+3. Implement queue ticket ordering and idempotent release/cleanup.
+4. Implement wait-for cycle detection after the configured no-progress tick
+   threshold, deterministic victim selection, and legal-yield/no-yield output.
+5. Add focused fixtures and tests for success and failure paths.
+6. Keep all state immutable from the caller's perspective.
+
+## Required tests and validation
+
+`packages/office-v2-simulation/test/queues.test.ts` must cover reverse-input
+normalization, duplicate resources, atomic contention, durable-before-
+decorative ordering, enqueue/ticket tie-breaks, idempotent cleanup, target or
+reservation removal, bounded wait, deterministic victim selection, legal yield,
+missing-yield failure, and bounded 1/10/15 request profiles.
 
 Run:
 
-- `node --test packages/office-v2-simulation/test/state-hash.test.ts`
-- `npm run typecheck --workspace @affiliate-ops/office-v2-simulation`
-- `node .agents/skills/build-office-v2-engine/scripts/preflight.mjs`
-- `git diff --check`
-- `npm run check` when the worktree is dependency-ready
+```text
+node .agents/skills/build-office-v2-engine/scripts/preflight.mjs
+npm run --workspace @affiliate-ops/office-v2-simulation typecheck
+node --test packages/office-v2-simulation/test/queues.test.ts
+git diff --check
+```
 
-The worker changed only the two implementation/test files and its own status
-file. The status file must record the implementation commit, exact files,
-commands/results, known limitations, and this handoff statement: “The Main
-Orchestration Session must review and integrate this commit.” Commit the task
-and stop immediately after handoff; do not integrate or publish.
+## Acceptance criteria
+
+- The focused suite is green and demonstrates every required policy rule.
+- No existing package contract or worker-owned boundary is modified.
+- No queue result depends on array order, wall-clock time, display name, or
+  presentation state.
+- The no-yield diagnostic is exact and does not teleport or stack an actor.
+- The worker status file records the commit, files, tests, and limitations.
+
+## Expected deliverables and handoff
+
+- One focused implementation commit on the assigned branch.
+- Updated Session 1 status file with `COMPLETED`, commit hash, changed files,
+  validation output, acceptance checklist, and known limitations.
+- Final handoff message to Main naming the commit and stopping immediately.
+
+You are implementing one leaf task inside the current active Phase. You are
+not responsible for completing the entire Phase or starting the next Phase.
+Do not integrate, cherry-pick, merge, push the integration branch, modify the
+primary branch, or create a pull request.

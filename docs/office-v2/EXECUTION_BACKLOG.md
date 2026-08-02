@@ -19,9 +19,9 @@ executable leaf tasks and their current status.
   is now integrated. The W2 command, hash, one-actor interaction, and lifecycle
   slices are now bounded implementations; restore/replay, queue/crowd, and
   operations evidence remain future gates.
-- Phase status before current wave: **ACTIVE — P3-W2-01 integrated; P3-W0
+- Phase status before current wave: **ACTIVE — P3-W2-02 integrated; P3-W0
   bounded research closure accepted; T2/T3 exit criteria remain incomplete**.
-- Phase status after current wave: **ACTIVE — P3-W2-02 integrated; T2/T3 exit
+- Phase status after current wave: **ACTIVE — P3-W2-03 selected; T2/T3 exit
   criteria remain incomplete**.
 - Phase exit criteria: T2 one-actor reach/use/cancel/restore/replay evidence,
   T3 crowd/queue/deadlock evidence, and the complete operations choreography
@@ -219,7 +219,7 @@ selection; W2.2, W2.3, and W2.6 were dependency-gated at that time.
   recovery implementation commit `758a33492f6532ee35430ed57e46917358fa6fb6`
   and integrated commit `15045a4`.
 
-## Current wave: P3-W2-02 — T2 normalization, one-actor interaction, and lifecycle
+## Historical completed wave: P3-W2-02 — T2 normalization, one-actor interaction, and lifecycle
 
 The selected assignments were READY leaf tasks from the current active Phase.
 No later-Phase work was selected to fill unused worker capacity. Exactly three
@@ -251,7 +251,31 @@ Main owns the public barrel, shared documentation, backlog transitions,
 cross-task integration, complete validation, publication, and final reporting.
 Workers stop after their individual commit and handoff.
 
-## Phase 3 leaf-task inventory after P3-W2-01 integration
+## Current wave: P3-W2-03 — T2 queues/replay and W3 workflow ownership verification
+
+The selected assignments are READY leaf tasks from the current active Phase. No
+later-Phase work was selected to fill unused worker capacity.
+
+Exactly three compatible READY leaves existed at selection: `P3-W2.4`,
+`P3-W2.5`, and `P3-W3.1`. They form one coherent Phase 3 wave because the first
+two close the remaining T2 queue and replay boundaries, while `P3-W3.1` is a
+disjoint, dependency-satisfied verification slice for the already accepted
+operations ownership contract. No selected task depends on another selected
+task's unintegrated output.
+
+- Wave ID: `P3-W2-03`
+- Wave name: T2 queues/replay and W3 workflow ownership verification
+- Worker count: 3
+- Selection status before launch: READY
+- Dispatch transition: `READY → IN_PROGRESS` when each worker begins
+- Integration branch: `codex/integration/phase3-p3-w2-03`
+- Planning and ownership record: `docs/parallel-work/parallel-plan.md`,
+  `docs/parallel-work/ownership.md`, and `docs/parallel-work/interfaces.md`
+
+The Main Orchestration Session is the sole Final Integrator and Publisher.
+Workers stop after committing and handing off their individual tasks.
+
+## Phase 3 leaf-task inventory after P3-W2-02 integration and P3-W2-03 selection
 
 This inventory records the leaf-task definitions and statuses. The three READY
 tasks above were the selected current wave and are now INTEGRATED. The next
@@ -360,7 +384,7 @@ launched in this invocation.
 - Validation commands: preflight, package typecheck/test, `npm run check`.
 - Worker-sized scope assessment: one queue runtime module and focused tests.
 - Priority: P1.
-- Status: **READY** — next-wave candidate; not launched in this invocation.
+- Status: **IN_PROGRESS** — selected for `P3-W2-03`; worker handoff pending.
 
 ### P3-W2.5 — Snapshot migration, restore, replay, and divergence
 
@@ -384,7 +408,7 @@ launched in this invocation.
 - Validation commands: preflight, package typecheck/test, `npm run check`.
 - Worker-sized scope assessment: one replay/migration module and focused tests.
 - Priority: P0.
-- Status: **READY** — next-wave candidate; not launched in this invocation.
+- Status: **IN_PROGRESS** — selected for `P3-W2-03`; worker handoff pending.
 
 ### P3-W2.6 — Fixed-tick lifecycle port
 
@@ -430,7 +454,7 @@ launched in this invocation.
 - Validation commands: preflight, focused workspace tests, `npm run check`.
 - Worker-sized scope assessment: one evidence test with no producer changes.
 - Priority: P1.
-- Status: **READY** — next-wave candidate; not launched in this invocation.
+- Status: **IN_PROGRESS** — selected for `P3-W2-03`; worker handoff pending.
 
 ### P3-W3.2 — Operations Snapshot V2 cursor and roster adapter
 
@@ -498,9 +522,9 @@ launched in this invocation.
 
 ## Recommended next wave
 
-No next wave is launched in this invocation. Re-evaluate Phase 3 in a later
-invocation with the three compatible READY candidates `P3-W2.4`, `P3-W2.5`,
-and `P3-W3.1`. Phase 3 remains active; no phase transition is authorized.
+No next wave is launched in this invocation. After `P3-W2-03` is integrated,
+re-evaluate the remaining Phase 3 tasks and promote only dependency-satisfied
+leaves. Phase 3 remains active; no phase transition is authorized.
 
 ## Selection rule and status transitions
 

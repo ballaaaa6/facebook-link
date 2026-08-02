@@ -1,65 +1,80 @@
-# Phase 3 Wave `P3-W2-02` Ownership
+# Phase 3 Wave `P3-W2-03` Ownership
 
-## Worker Session 1 — `P3-W2.2`
+## Worker Session 1 — `P3-W2.4`
 
 Owned implementation files:
 
-- `packages/office-v2-simulation/src/state-hash.ts`
-- `packages/office-v2-simulation/test/state-hash.test.ts`
+- `packages/office-v2-simulation/src/queues.ts`
+- `packages/office-v2-simulation/test/queues.test.ts`
+- `packages/office-v2-simulation/test/fixtures/p3-w2-4-queues.json`
 - `docs/parallel-work/session-1-status.md`
 
-## Worker Session 2 — `P3-W2.3`
+Forbidden files:
+
+- all schemas and generated contracts;
+- `packages/office-v2-simulation/src/index.ts`, existing command/activity/hash/
+  lifecycle modules, and other workers' tests;
+- world, operations, workflow, runner, Web, renderer, asset, migration, and
+  package-manifest files;
+- shared backlog, plan, ownership, interfaces, or final-report files.
+
+## Worker Session 2 — `P3-W2.5`
 
 Owned implementation files:
 
-- `packages/office-v2-simulation/src/activity-runtime.ts`
-- `packages/office-v2-simulation/test/activity-runtime.test.ts`
+- `packages/office-v2-simulation/src/replay.ts`
+- `packages/office-v2-simulation/test/replay.test.ts`
+- `packages/office-v2-simulation/test/fixtures/p3-w2-5-replay.json`
 - `docs/parallel-work/session-2-status.md`
 
-## Worker Session 3 — `P3-W2.6`
+Forbidden files:
+
+- all schemas and generated contracts;
+- `packages/office-v2-simulation/src/index.ts`, existing command/activity/hash/
+  lifecycle modules, and other workers' tests;
+- queue implementation, world, operations, workflow, runner, Web, renderer,
+  asset, migration-history, and package-manifest files;
+- shared backlog, plan, ownership, interfaces, or final-report files.
+
+## Worker Session 3 — `P3-W3.1`
 
 Owned implementation files:
 
-- `packages/office-v2-simulation/src/lifecycle.ts`
-- `packages/office-v2-simulation/test/lifecycle.test.ts`
+- `scripts/office-v2-w3-01-evidence.test.mjs`
 - `docs/parallel-work/session-3-status.md`
 
-## Main Orchestration Session — integration only
+Forbidden files:
 
-Main owns:
+- `packages/workflows/**`, `packages/agent-catalog/**`, `config/agents.json`,
+  `docs/WORKFLOWS.md`, runner production code, and operations production code;
+- schemas, generated contracts, migrations, package manifests, lockfiles,
+  Office simulation/world source, Web/renderer/asset code;
+- shared backlog, plan, ownership, interfaces, or final-report files.
 
-- `packages/office-v2-simulation/src/index.ts`
-- `packages/office-v2-simulation/package.json` and root workspace wiring, only
-  when required for exports or test discovery
-- `docs/office-v2/EXECUTION_BACKLOG.md`
-- `docs/office-v2/README.md`, `IMPLEMENTATION_PLAN.md`, `READINESS_MATRIX.md`,
-  and `READINESS_REMEDIATION_PLAN.md` status reconciliation
-- all files under `docs/parallel-work/` other than the three worker status
-  files while workers are running
-- cross-task integration tests, final report, conflict resolution, and the
-  dedicated integration branch
+## Main Orchestration Session integration-only
 
-Main must not change a worker's implementation files before review except to
-resolve an explicitly documented integration conflict after acceptance.
+- `packages/office-v2-simulation/src/index.ts` and any package export/barrel
+  changes;
+- cross-task integration tests and package metadata;
+- `docs/office-v2/EXECUTION_BACKLOG.md`;
+- `docs/parallel-work/**` shared planning, status reconciliation, and report;
+- relevant public status/readiness documentation;
+- branch reconciliation, conflict resolution, validation, commits, push, and
+  pull-request handling.
 
 ## Read-only shared references
 
-All workers may read, but must not modify, `AGENTS.md`, nested `AGENTS.md`
-files, the Office V2 skill, Office V2 README/foundations/readiness documents,
-accepted decisions, schemas, generated contracts, fixtures, the Phase 2 world
-package, `packages/office-v2-simulation/src/command-pipeline.ts`, and the
-existing RC closure records.
+Workers may read, but not edit, the Office V2 knowledge pack, accepted
+decisions, schemas, fixtures, existing package sources/tests, workflow and
+agent sources, runner pilot sources, AGENTS.md, and the repository package
+configuration. The exact references for each task are listed in its task
+specification.
 
-## Generated files — do not edit manually
+## Generated files
 
-`packages/office-v2-contracts/src/generated/**`, package lockfiles, generated
-reports, and generated code-map or build outputs are generated boundaries.
-Workers must not edit them. Schema or dependency changes are not authorized
-by this wave.
+Files under `packages/office-v2-contracts/src/generated/`, generated reports,
+lockfiles, and any asset reports are generated or historical evidence. Do not
+edit them manually. A worker must stop and hand off if its task appears to
+require a generated or shared-file change.
 
-## Forbidden cross-boundaries
-
-Workers must not modify another worker's source, test, status file, package
-barrel, package manifest, backlog, shared readiness docs, schemas, generated
-contracts, world package, operations adapter, renderer/presentation code,
-assets, connectors, workflows, database, or primary branch.
+No implementation file is owned by more than one worker.
