@@ -7,7 +7,8 @@
 - Branch: `task/session-1-p3-w2-command-pipeline`
 - Worktree: `C:\Users\WINDOW XI\.codex\worktrees\phase3-w2-command-pipeline`
 - Original base commit: `3358c318c18eebfd586cd413cee6e026f41dc48d`
-- Planning commit: to be recorded by Main before launch
+- Planning commit: `7233ebf40f63190ac166069aedf9c7b30a04707b` pending final
+  coordination pin before launch
 - Worker session ID: to be recorded after launch
 - Status: **PLANNED — NOT STARTED**
 

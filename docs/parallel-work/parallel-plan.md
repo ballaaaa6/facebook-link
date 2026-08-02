@@ -70,7 +70,9 @@ reconciliation, cross-task checks, and all shared final records.
 
 ## Planning and launch records
 
-- Planning commit: **to be recorded immediately before worker launch**.
+- Planning artifacts commit: `7233ebf40f63190ac166069aedf9c7b30a04707b`.
+- Planning commit for worker bases: **this coordination record will be pinned
+  in the next commit before worker launch**.
 - Integration branch: `codex/integration/phase3-w2-command-pipeline`
 - Worker branch: `task/session-1-p3-w2-command-pipeline`
 - Worker worktree: `C:\Users\WINDOW XI\.codex\worktrees\phase3-w2-command-pipeline`
