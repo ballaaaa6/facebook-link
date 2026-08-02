@@ -30,6 +30,7 @@
     "office:v2:contracts:test": "node --test scripts/office-v2-contracts-generate.test.mjs",
     "office:v2:knowledge:check": "node scripts/office-v2-knowledge-check.mjs",
     "office:v2:knowledge:test": "node --test scripts/office-v2-knowledge-check.test.mjs",
+    "office:v2:closure-d:test": "node --test scripts/office-v2-closure-d-evidence.test.mjs",
     "office:v2:world:evidence": "node --test scripts/office-v2-world-reference-evidence.test.mjs",
     "office:v2:w1-2:evidence": "node --test scripts/office-v2-world-w1-2-evidence.test.mjs",
     "office:v2:assets:check": "node scripts/office-v2-asset-check.mjs",

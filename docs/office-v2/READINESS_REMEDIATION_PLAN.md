@@ -46,10 +46,10 @@ W0.3 completed on 2026-08-02. W1.1 closed its common identity/coordinate
 contract slice, W1.2 closed geometry authority/reference closure, and W1.3–W1.5
 closed topology, room composition, and deterministic scene compilation on
 2026-08-02. The bounded T1 semantic-foundation evidence now passes. **W1.6 —
-Cross-track Phase 1 specification closure is in progress**: Closure B has
-closed the bounded simulation contract slice; Closures C–E remain. The
-historical W0.3 closure register remains unchanged as a pre-T1 promotion
-baseline.
+Cross-track Phase 1 specification closure completed on 2026-08-02**: Closure B
+and the integrated Operations Snapshot V2, visual/asset, and renderer/QA
+closures pass their bounded contract evidence. The historical W0.3 closure
+register remains unchanged as a pre-T1 promotion baseline.
 
 The completed promotion target is **T1 — Semantic Foundation**. It is a
 headless contract/compiler test, not a visual prototype. The evidence is
@@ -86,6 +86,40 @@ normalization, tick-boundary expiry, cleanup-set completeness, and capped
 presentation catch-up. The current run reports 147 files, 34 schemas, 56
 fixtures, 103/103 semantic cases, and 51 exact diagnostics. This is bounded
 contract evidence only; reducer/replay and crowd execution remain zero.
+
+### W1.6 Integrated Closure C–E record — 2026-08-02
+
+The Integrator merged Closure C, Closure D, and Closure E into
+`codex/office-v2-w1-6-integration` from `origin/main`, preserving the separate
+session merge commits and resolving shared registries deterministically. The E
+ready tag peels to the same commit as its branch tip and required no scope
+change.
+
+Closure C owns the Operations Snapshot V2, activity routing, roster binding,
+event-window/reconnect semantics, diagnostic ownership, and copy/visual
+fan-out/join. Closure D owns the measurable style profile, asset geometry and
+render parts, provenance/export, atlas/catalog/bundle lifecycle, and semantic
+variants. Closure E owns the renderer port, immutable presentation snapshot,
+benchmark protocol, accessibility, lifecycle, golden, property/model, and
+fixture-only benchmark bundle contracts.
+
+The integrated evidence is:
+
+- 186 inventoried knowledge files;
+- 58 loaded schemas;
+- 66/66 fixture files evidenced;
+- 184/184 declared semantic cases executed;
+- 101 exact diagnostics matched;
+- Closure C, D, and E focused tests passing;
+- generated contracts drift-free;
+- `npm run check` and project preflight passing.
+
+This record closes Phase 1 specification work only. Reducer/replay and
+property/model evidence remain `0`; asset admission remains `basic-only`;
+renderer admission remains `none`; runtime asset manifests remain `0`; no
+production PNG, runtime renderer, connector, or new dependency is admitted.
+The pure Phase 2 world kernel is authorized; T2–T6 implementation gates remain
+future work.
 
 ## Working decisions to ratify
 
@@ -554,7 +588,7 @@ Exit and T1:
 
 ### W1.6 Cross-track Phase 1 specification closure
 
-Complete the specification pass defined above for every Wave 2–6 capability
+The specification pass defined above is complete for every Wave 2–6 capability
 before implementing the world kernel. This includes commands/results/events,
 simulation normalization/PRNG/state projection, intents/facilities/actions,
 crowds/queues/deadlocks, Snapshot/Trace V2, Operations Snapshot V2/event windows,
@@ -563,16 +597,16 @@ geometry/render parts, source-neutral export, atlas/catalog/bundles, semantic
 variants, renderer port, benchmark protocol, accessibility, goldens, and
 property/model profiles.
 
-Each capability must have its canonical owner, accepted decision where needed,
+Each capability has its canonical owner, accepted decision where needed,
 versioned schema or stable reference shape, valid/rejected fixtures, exact
 diagnostic catalog, migration/rejection effect, admitted dependency plan, and
 harness/tool interface. Executable implementation gates remain T2–T5.
 
-Phase 1 may be marked complete when its accepted decisions, contracts, schemas,
-valid/rejected fixtures, exact diagnostics, tool interfaces, bounded probes,
-T1 record, W1.6 cross-track record, and migration effects all pass. Phase 1
-completion then authorizes—rather than claims—the executable Phase 2 world
-kernel.
+Phase 1 is complete for contract closure because its accepted decisions,
+contracts, schemas, valid/rejected fixtures, exact diagnostics, tool
+interfaces, bounded probes, T1 record, W1.6 cross-track record, migration
+effects, generated drift gate, and full repository check all pass. This
+completion authorizes—rather than claims—the executable Phase 2 world kernel.
 
 ### Post-T1 Phase 2 — Executable world kernel
 
@@ -1211,9 +1245,10 @@ Each numbered unit remains independently green and reviewable. A unit may use
 several commits when generated evidence is large, but unrelated units are not
 combined merely to reduce commit count.
 
-Units 1–4 are complete through W0.3. Units 5–9 (W1.1 through W1.5) are
-complete, including the bounded T1 record; unit 10 (W1.6 cross-track Phase 1
-specification closure) is the next authorized work package.
+Units 1–4 are complete through W0.3. Units 5–9 (W1.1 through W1.5) and units
+10–14 (W1.6 cross-track Phase 1 specification closure and Phase 2
+authorization) are complete on 2026-08-02, including the bounded T1 and
+integrated W1.6 records.
 
 1. Register this remediation plan and repair knowledge inventory wording.
 2. Correct existing gate semantics and diagnostic assertions.

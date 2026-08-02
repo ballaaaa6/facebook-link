@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/character-definition.schema.json",
+  "title": "Office V2 Character Definition",
+  "$defs": {
+    "characterDefinitionDocument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "characterId", "characterVersion", "identityId", "geometryRef", "assetFamilyRef", "worldFacings", "screenFacings", "mirrorPolicy", "renderPartRefs", "semanticVariantRefs", "heldPropSocketRefs", "reducedMotionFallbackRef"],
+      "properties": {
+        "schemaVersion": { "const": "office-character-definition-v1" },
+        "characterId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/characterProfileId" },
+        "characterVersion": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/positiveVersion" },
+        "identityId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+        "roleCompatibility": { "type": "array", "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" } },
+        "geometryRef": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/geometryReference" },
+        "assetFamilyRef": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/assetFamilyReference" },
+        "worldFacings": { "const": ["north", "east", "south", "west"] },
+        "screenFacings": { "const": ["north-east", "south-east", "south-west", "north-west"] },
+        "mirrorPolicy": { "enum": ["review-each-frame", "forbidden", "safe-only"] },
+        "renderPartRefs": { "type": "array", "minItems": 1, "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/renderPartReference" } },
+        "semanticVariantRefs": { "type": "array", "minItems": 1, "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" } },
+        "heldPropSocketRefs": { "type": "array", "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/socketReference" } },
+        "reducedMotionFallbackRef": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+        "accessibilityLabel": { "type": "string", "minLength": 1 }
+      }
+    }
+  },
+  "$ref": "#/$defs/characterDefinitionDocument"
+}

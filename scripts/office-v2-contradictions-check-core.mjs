@@ -360,6 +360,6 @@ export function formatOfficeV2ContradictionReport(report) {
     `Office V2 contradictions OK: ${report.evidence.resolutions}/${report.evidence.expectedResolutions} P0 resolutions`,
     `${report.evidence.historicalEvidence}/${report.evidence.expectedHistoricalEvidence} historical files hash-locked`,
     "reducer/replay 0, property/model 0, asset admission basic-only, renderer admission none",
-    "W0.3 historical handoff target W1.1 remains hash-locked; current bounded T1 semantic foundation passes; W1.6 Closure B is in progress and Closures C-E remain.",
+    "W0.3 historical handoff target W1.1 remains hash-locked; current bounded T1 semantic foundation passes; W1.6 cross-track Phase 1 specification closure is integrated; executable T2-T6 gates remain deferred.",
   ].join("; ");
 }

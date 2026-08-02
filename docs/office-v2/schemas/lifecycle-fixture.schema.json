@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/lifecycle-fixture.schema.json",
+  "title": "Office V2 Renderer Lifecycle Fixture",
+  "$defs": {
+    "transition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["from", "event", "to"],
+      "properties": {
+        "from": { "enum": ["mounted", "visible", "hidden", "restoring", "destroyed"] },
+        "event": { "enum": ["mount", "show", "hide", "pagehide", "pageshow", "bfcache-restore", "unmount-during-load", "teardown", "remount", "context-lost", "context-restored"] },
+        "to": { "enum": ["mounted", "visible", "hidden", "restoring", "destroyed"] }
+      }
+    },
+    "migration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fromVersion", "effect"],
+      "properties": { "fromVersion": { "const": "office-renderer-lifecycle-v0" }, "effect": { "const": "reject-and-rerun-cleanup-fixture" } }
+    },
+    "fixtureDocument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "fixtureId", "states", "events", "transitions", "resourceInvariant", "migration"],
+      "properties": {
+        "schemaVersion": { "const": "office-renderer-lifecycle-v1" },
+        "fixtureId": { "const": "office-renderer-lifecycle-v1" },
+        "states": { "type": "array", "minItems": 5, "uniqueItems": true, "items": { "enum": ["mounted", "visible", "hidden", "restoring", "destroyed"] } },
+        "events": { "type": "array", "minItems": 10, "uniqueItems": true, "items": { "enum": ["mount", "show", "hide", "pagehide", "pageshow", "bfcache-restore", "unmount-during-load", "teardown", "remount", "context-lost", "context-restored"] } },
+        "transitions": { "type": "array", "minItems": 8, "items": { "$ref": "#/$defs/transition" } },
+        "resourceInvariant": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["afterDestroy", "pendingLoads", "animationFrames", "listeners", "pollers", "subscriptions", "intents", "resourceHandles"],
+          "properties": { "afterDestroy": { "const": "zero" }, "pendingLoads": { "const": 0 }, "animationFrames": { "const": 0 }, "listeners": { "const": 0 }, "pollers": { "const": 0 }, "subscriptions": { "const": 0 }, "intents": { "const": 0 }, "resourceHandles": { "const": 0 } }
+        },
+        "migration": { "$ref": "#/$defs/migration" }
+      }
+    }
+  },
+  "$ref": "#/$defs/fixtureDocument"
+}

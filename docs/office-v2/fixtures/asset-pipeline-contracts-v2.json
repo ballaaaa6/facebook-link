@@ -1,0 +1,350 @@
+{
+  "schemaVersion": "office-asset-pipeline-fixture-v1",
+  "documents": [
+    {
+      "name": "styleProfile",
+      "schema": "style-profile.schema.json",
+      "document": {
+        "schemaVersion": "office-style-profile-v1",
+        "profileId": "warm-pixel-v1",
+        "profileVersion": 1,
+        "projectionId": "office-projection-v1",
+        "nativePixelDensity": 1,
+        "worldScale": { "cellWidthPx": 64, "cellHeightPx": 32, "elevationHeightPx": 16 },
+        "characterEnvelope": { "standing": { "widthPx": 16, "heightPx": 32 }, "seated": { "widthPx": 16, "heightPx": 24 } },
+        "surfaceScale": {
+          "desk": { "widthPx": 64, "depthPx": 32, "heightPx": 16 },
+          "chair": { "widthPx": 16, "depthPx": 16, "heightPx": 12 },
+          "door": { "widthPx": 32, "depthPx": 8, "heightPx": 48 },
+          "wall": { "widthPx": 64, "depthPx": 8, "heightPx": 48 },
+          "window": { "widthPx": 32, "depthPx": 4, "heightPx": 24 },
+          "floor": { "widthPx": 64, "depthPx": 32, "heightPx": 1 }
+        },
+        "wallCutaway": { "wallHeightPx": 48, "cutawayHeightPx": 32, "cutawayPolicy": "fade-declared-parts" },
+        "canvasClasses": [
+          { "id": "character-canvas", "size": { "widthPx": 32, "heightPx": 48 }, "padding": { "leftPx": 2, "rightPx": 2, "topPx": 8, "bottomPx": 4 }, "use": "character" },
+          { "id": "furniture-canvas", "size": { "widthPx": 96, "heightPx": 64 }, "padding": { "leftPx": 4, "rightPx": 4, "topPx": 8, "bottomPx": 4 }, "use": "furniture" },
+          { "id": "structure-canvas", "size": { "widthPx": 128, "heightPx": 80 }, "padding": { "leftPx": 4, "rightPx": 4, "topPx": 8, "bottomPx": 4 }, "use": "structure" }
+        ],
+        "palette": {
+          "roles": [
+            { "role": "outline", "colors": ["#242331"], "maximumVarianceSteps": 0 },
+            { "role": "wall-light", "colors": ["#f4d7a1", "#eabf83"], "maximumVarianceSteps": 2 },
+            { "role": "wood", "colors": ["#9b5f3d", "#75412e"], "maximumVarianceSteps": 2 },
+            { "role": "metal", "colors": ["#78909c", "#546e7a"], "maximumVarianceSteps": 2 },
+            { "role": "accent", "colors": ["#70c1b3", "#f28f3b"], "maximumVarianceSteps": 2 }
+          ],
+          "uncontrolledVarianceMax": 2
+        },
+        "outline": { "widthPx": 1, "colorRole": "outline" },
+        "lighting": { "vectorX": -1, "vectorY": -1, "vectorZ": 1, "policy": "single-key-with-local-occlusion" },
+        "shadow": { "enabled": true, "vectorX": 1, "vectorY": 1, "opacitySteps": 8, "separatePart": true },
+        "materialEdges": [
+          { "material": "wall", "rule": "hard-pixel-edge" },
+          { "material": "wood", "rule": "single-pixel-bevel" },
+          { "material": "glass", "rule": "alpha-separated" }
+        ],
+        "detailDensityBands": [
+          { "id": "small", "minPx": 1, "maxPx": 16, "density": "sparse" },
+          { "id": "medium", "minPx": 17, "maxPx": 48, "density": "medium" },
+          { "id": "large", "minPx": 49, "maxPx": 128, "density": "dense" }
+        ],
+        "signage": { "fontPolicy": "project-owned-bitmap", "fallbackRequired": true, "maximumGlyphWidthPx": 8 },
+        "contactTolerance": { "groundPx": 1, "depthPx": 1, "socketPx": 2 },
+        "zoomStops": [
+          { "id": "overview", "scale": 0.5, "pixelSnap": "tested-fraction" },
+          { "id": "native", "scale": 1, "pixelSnap": "integer" },
+          { "id": "double", "scale": 2, "pixelSnap": "integer" }
+        ],
+        "filtering": "nearest",
+        "reviewState": "pending-owner-review"
+      }
+    },
+    {
+      "name": "assetFamily",
+      "schema": "asset-family-v2.schema.json",
+      "document": {
+        "schemaVersion": "office-asset-family-v2",
+        "familyId": "proof-workstation",
+        "familyVersion": 1,
+        "projectionId": "office-projection-v1",
+        "styleProfileRef": { "id": "warm-pixel-v1", "version": 1 },
+        "geometryRef": { "id": { "kind": "geometry", "value": "proof-workstation-geometry" }, "version": 1 },
+        "sourceSetRef": { "id": "proof-workstation-sources", "version": 1 },
+        "exportRecipeRef": { "id": "proof-workstation-export", "version": 1 },
+        "reviewRef": { "id": "proof-workstation-review", "version": 1 },
+        "spriteFrameRefs": [{ "id": "proof-workstation-frame-north", "version": 1 }],
+        "renderPartRefs": [{ "id": { "kind": "render-part", "value": "proof-workstation-base" }, "version": 1 }],
+        "semanticVariantRefs": [{ "id": "character-working-seated", "version": 1 }],
+        "connectivityFamilyRef": { "id": { "kind": "connectivity-family", "value": "proof-workstation" }, "version": 1 },
+        "admission": "spec-only",
+        "trimmingPolicy": "forbidden-v1"
+      }
+    },
+    {
+      "name": "spriteFrame",
+      "schema": "sprite-frame.schema.json",
+      "document": {
+        "schemaVersion": "office-sprite-frame-v1",
+        "frameId": "proof-workstation-frame-north",
+        "frameVersion": 1,
+        "assetFamilyRef": { "id": { "kind": "asset-family", "value": "proof-workstation" }, "version": 1 },
+        "geometryRef": { "id": { "kind": "geometry", "value": "proof-workstation-geometry" }, "version": 1 },
+        "orientation": "north",
+        "canvas": { "xPx": 0, "yPx": 0, "widthPx": 64, "heightPx": 64 },
+        "frameBounds": { "xPx": 4, "yPx": 8, "widthPx": 56, "heightPx": 48 },
+        "spriteOrigin": { "space": "sprite-pixel", "xPx": 32, "yPx": 48 },
+        "groundContact": { "space": "sprite-pixel", "xPx": 32, "yPx": 48 },
+        "depthContact": { "space": "sprite-pixel", "xPx": 32, "yPx": 48 },
+        "visualHeightPx": 48,
+        "trimmingPolicy": "forbidden-v1",
+        "alphaPolicy": "validated-semitransparent",
+        "renderPartRefs": [{ "id": { "kind": "render-part", "value": "proof-workstation-base" }, "version": 1 }],
+        "semanticPickOwner": "proof-workstation"
+      }
+    },
+    {
+      "name": "renderPart",
+      "schema": "render-part.schema.json",
+      "document": {
+        "schemaVersion": "office-render-part-v1",
+        "renderPartId": { "kind": "render-part", "value": "proof-workstation-base" },
+        "renderPartVersion": 1,
+        "assetFamilyRef": { "id": { "kind": "asset-family", "value": "proof-workstation" }, "version": 1 },
+        "coordinateSpace": "sprite-pixel",
+        "depthContactMode": "ground-contact",
+        "depthBand": "world",
+        "depthContact": { "space": "sprite-pixel", "xPx": 32, "yPx": 48 },
+        "dependencies": [],
+        "siblingOrder": 0,
+        "semanticPickOwner": "proof-workstation",
+        "hitPolicy": "entity",
+        "alphaPolicy": "opaque",
+        "visibleWhen": ["facility-visible"],
+        "frameRef": { "id": "proof-workstation-frame-north", "version": 1 }
+      }
+    },
+    {
+      "name": "sourceSet",
+      "schema": "source-set.schema.json",
+      "document": {
+        "schemaVersion": "office-source-set-v1",
+        "sourceSetId": "proof-workstation-sources",
+        "sourceSetVersion": 1,
+        "familyRef": { "id": { "kind": "asset-family", "value": "proof-workstation" }, "version": 1 },
+        "sources": [{
+          "sourceId": "proof-workstation-source-layer",
+          "file": "office-v2/sources/proof-workstation/v1/source.json",
+          "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+          "immutable": true,
+          "kind": "source-project",
+          "authoringMethod": "hand-drawn",
+          "authorOrTool": "project-owned-source-neutral-brief",
+          "createdAt": "2026-08-02T00:00:00Z",
+          "licenseStatus": "project-owned",
+          "commercialStatus": "pending-review",
+          "creationBrief": "Original connected workstation geometry and material study; no reference pixels."
+        }],
+        "recipeRef": { "id": "proof-workstation-export", "version": 1 },
+        "sourceOrder": ["proof-workstation-source-layer"]
+      }
+    },
+    {
+      "name": "exportRecipe",
+      "schema": "export-recipe.schema.json",
+      "document": {
+        "schemaVersion": "office-export-recipe-v1",
+        "recipeId": "proof-workstation-export",
+        "recipeVersion": 1,
+        "sourceSetRef": { "id": "proof-workstation-sources", "version": 1 },
+        "authoringProfile": "native-2d",
+        "tool": { "name": "source-neutral-export-runner", "version": "0.1.0", "executableSha256": "2222222222222222222222222222222222222222222222222222222222222222" },
+        "arguments": ["--profile", "proof-workstation", "--clean-output"],
+        "dependencies": [],
+        "locale": "en-US",
+        "colorProfile": "srgb",
+        "cleanOutputDirectory": "office-v2/runtime/proof-workstation/v1",
+        "outputs": [
+          { "path": "office-v2/runtime/proof-workstation/v1/isolated.png", "kind": "png", "sha256": "3333333333333333333333333333333333333333333333333333333333333333" },
+          { "path": "office-v2/metadata/proof-workstation/v1/frames.json", "kind": "metadata", "sha256": "4444444444444444444444444444444444444444444444444444444444444444" }
+        ],
+        "overwritePolicy": "fail",
+        "determinism": { "twoCleanBuilds": "required", "byteEquality": "required", "stableInputOrder": "declared" }
+      }
+    },
+    {
+      "name": "assetReview",
+      "schema": "asset-review.schema.json",
+      "document": {
+        "schemaVersion": "office-asset-review-v1",
+        "reviewId": "proof-workstation-review",
+        "reviewVersion": 1,
+        "familyRef": { "id": { "kind": "asset-family", "value": "proof-workstation" }, "version": 1 },
+        "boards": [
+          { "boardId": "proof-workstation-neutral", "kind": "neutral-geometry", "path": "office-v2/reviews/proof-workstation/v1/neutral.json", "sha256": "5555555555555555555555555555555555555555555555555555555555555555", "generatedFrom": "6666666666666666666666666666666666666666666666666666666666666666", "reviewed": false },
+          { "boardId": "proof-workstation-contact", "kind": "contact-sheet", "path": "office-v2/reviews/proof-workstation/v1/contact.md", "sha256": "7777777777777777777777777777777777777777777777777777777777777777", "generatedFrom": "8888888888888888888888888888888888888888888888888888888888888888", "reviewed": false }
+        ],
+        "approvals": { "geometry": "pending", "visual": "pending", "commercial": "pending" },
+        "reviewer": "asset-pipeline-owner",
+        "outcome": "pending-owner-review"
+      }
+    },
+    {
+      "name": "assetMigration",
+      "schema": "asset-migration.schema.json",
+      "document": {
+        "schemaVersion": "office-asset-migration-v1",
+        "migrationId": "proof-workstation-migration",
+        "migrationVersion": 1,
+        "fromFamilyRef": { "id": { "kind": "asset-family", "value": "proof-workstation" }, "version": 1 },
+        "toFamilyRef": { "id": { "kind": "asset-family", "value": "proof-workstation" }, "version": 2 },
+        "requiredContext": ["source-set", "export-recipe", "style-profile", "geometry", "review", "catalog", "scene-bundle"],
+        "mapping": [{ "fromId": "isolated", "toId": "isolated-v2", "operation": "re-export" }],
+        "geometryEffect": "revalidated",
+        "failurePolicy": "fail-closed",
+        "rejectionCodes": ["asset.migration-failed", "world.geometry-conflict"]
+      }
+    },
+    {
+      "name": "atlas",
+      "schema": "atlas.schema.json",
+      "document": {
+        "schemaVersion": "office-atlas-v1",
+        "atlasId": "proof-workstation-atlas",
+        "atlasVersion": 1,
+        "path": "office-v2/atlases/proof-workstation/v1/atlas.png",
+        "sha256": "9999999999999999999999999999999999999999999999999999999999999999",
+        "paddingPx": 2,
+        "extrusionPx": 0,
+        "rotation": "forbidden-v1",
+        "trimming": "forbidden-v1",
+        "entries": [{
+          "entryId": "proof-workstation-isolated",
+          "familyRef": { "id": { "kind": "asset-family", "value": "proof-workstation" }, "version": 1 },
+          "variantId": "isolated",
+          "frameRef": { "id": "proof-workstation-frame-north", "version": 1 },
+          "geometryRef": { "id": { "kind": "geometry", "value": "proof-workstation-geometry" }, "version": 1 },
+          "orientation": "north",
+          "rect": { "xPx": 0, "yPx": 0, "widthPx": 64, "heightPx": 64 },
+          "order": 0
+        }]
+      }
+    },
+    {
+      "name": "assetCatalog",
+      "schema": "asset-catalog.schema.json",
+      "document": {
+        "schemaVersion": "office-asset-catalog-v1",
+        "catalogId": "proof-workstation-catalog",
+        "catalogVersion": 1,
+        "atlasRefs": [{ "id": "proof-workstation-atlas", "version": 1 }],
+        "entries": [{
+          "entryId": "proof-workstation-isolated",
+          "familyRef": { "id": { "kind": "asset-family", "value": "proof-workstation" }, "version": 1 },
+          "variantId": "isolated",
+          "frameRef": { "id": "proof-workstation-frame-north", "version": 1 },
+          "atlasRef": { "id": "proof-workstation-atlas", "version": 1 },
+          "geometryRef": { "id": { "kind": "geometry", "value": "proof-workstation-geometry" }, "version": 1 },
+          "runtimePath": "office-v2/runtime/proof-workstation/v1/isolated.png",
+          "sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+          "lifecycleGroup": "ground-floor-static",
+          "admission": "spec-only"
+        }],
+        "missingAssetPolicy": "fail-closed",
+        "admission": "spec-only"
+      }
+    },
+    {
+      "name": "sceneBundle",
+      "schema": "scene-bundle.schema.json",
+      "document": {
+        "schemaVersion": "office-scene-bundle-v1",
+        "bundleId": "ground-floor-proof-bundle",
+        "bundleVersion": 1,
+        "catalogRef": { "id": "proof-workstation-catalog", "version": 1 },
+        "floorRef": { "id": { "kind": "floor", "value": "ground-floor" }, "version": 1 },
+        "assetRefs": [{
+          "catalogEntryId": "proof-workstation-isolated",
+          "familyRef": { "id": { "kind": "asset-family", "value": "proof-workstation" }, "version": 1 },
+          "variantId": "isolated",
+          "frameRef": { "id": "proof-workstation-frame-north", "version": 1 },
+          "lifecycleGroup": "ground-floor-static"
+        }],
+        "lifecycle": {
+          "preloadOrder": ["ground-floor-static"],
+          "uploadOrder": ["ground-floor-static"],
+          "unloadOrder": ["ground-floor-static"],
+          "abortableLoad": true,
+          "idempotentUnload": true,
+          "referenceCounted": true
+        },
+        "floorSwitch": { "preloadBeforeSwitch": true, "releaseAfterSwitch": true, "preserveWorldHash": true },
+        "contextRecovery": { "rebuildResources": true, "renderLatestSnapshot": true, "preserveSimulationHash": true, "failClosedOnError": true },
+        "missingAssetPolicy": "fail-closed",
+        "migrationRef": { "id": "proof-workstation-migration", "version": 1 },
+        "admission": "spec-only"
+      }
+    },
+    {
+      "name": "characterDefinition",
+      "schema": "character-definition.schema.json",
+      "document": {
+        "schemaVersion": "office-character-definition-v1",
+        "characterId": { "kind": "character-profile", "value": "operator-character" },
+        "characterVersion": 1,
+        "identityId": "operator-blue",
+        "roleCompatibility": ["content-creator"],
+        "geometryRef": { "id": { "kind": "geometry", "value": "operator-geometry" }, "version": 1 },
+        "assetFamilyRef": { "id": { "kind": "asset-family", "value": "operator-character" }, "version": 1 },
+        "worldFacings": ["north", "east", "south", "west"],
+        "screenFacings": ["north-east", "south-east", "south-west", "north-west"],
+        "mirrorPolicy": "review-each-frame",
+        "renderPartRefs": [{ "id": { "kind": "render-part", "value": "operator-body" }, "version": 1 }],
+        "semanticVariantRefs": ["character-working-seated", "character-idle-static"],
+        "heldPropSocketRefs": [{ "id": { "kind": "socket", "value": "operator-held-prop" }, "version": 1 }],
+        "reducedMotionFallbackRef": "character-idle-static",
+        "accessibilityLabel": "Office operator"
+      }
+    },
+    {
+      "name": "semanticVariant",
+      "schema": "semantic-variant.schema.json",
+      "document": {
+        "schemaVersion": "office-semantic-variant-v1",
+        "variantId": "character-working-seated",
+        "variantVersion": 1,
+        "characterProfileRef": { "id": { "kind": "character-profile", "value": "operator-character" }, "version": 1 },
+        "identityId": "operator-blue",
+        "roleId": "content-creator",
+        "operationalState": "working",
+        "semanticAnimationState": "typing",
+        "heldProp": { "kind": "none" },
+        "facilityState": "occupied",
+        "connectivityMask": 0,
+        "interactionSocketRef": { "id": { "kind": "socket", "value": "operator-workstation" }, "version": 1 },
+        "assetVariantRef": { "id": "operator-working-seated", "version": 1 },
+        "fallback": "none"
+      }
+    }
+  ],
+  "cases": [
+    { "name": "style-profile-schema", "kind": "schema", "schema": "style-profile.schema.json", "documentName": "styleProfile", "expectedValid": true },
+    { "name": "asset-family-schema", "kind": "schema", "schema": "asset-family-v2.schema.json", "documentName": "assetFamily", "expectedValid": true },
+    { "name": "sprite-frame-schema", "kind": "schema", "schema": "sprite-frame.schema.json", "documentName": "spriteFrame", "expectedValid": true },
+    { "name": "render-part-schema", "kind": "schema", "schema": "render-part.schema.json", "documentName": "renderPart", "expectedValid": true },
+    { "name": "source-set-schema", "kind": "schema", "schema": "source-set.schema.json", "documentName": "sourceSet", "expectedValid": true },
+    { "name": "export-recipe-schema", "kind": "schema", "schema": "export-recipe.schema.json", "documentName": "exportRecipe", "expectedValid": true },
+    { "name": "asset-review-schema", "kind": "schema", "schema": "asset-review.schema.json", "documentName": "assetReview", "expectedValid": true },
+    { "name": "asset-migration-schema", "kind": "schema", "schema": "asset-migration.schema.json", "documentName": "assetMigration", "expectedValid": true },
+    { "name": "atlas-schema", "kind": "schema", "schema": "atlas.schema.json", "documentName": "atlas", "expectedValid": true },
+    { "name": "asset-catalog-schema", "kind": "schema", "schema": "asset-catalog.schema.json", "documentName": "assetCatalog", "expectedValid": true },
+    { "name": "scene-bundle-schema", "kind": "schema", "schema": "scene-bundle.schema.json", "documentName": "sceneBundle", "expectedValid": true },
+    { "name": "character-definition-schema", "kind": "schema", "schema": "character-definition.schema.json", "documentName": "characterDefinition", "expectedValid": true },
+    { "name": "semantic-variant-schema", "kind": "schema", "schema": "semantic-variant.schema.json", "documentName": "semanticVariant", "expectedValid": true },
+    { "name": "style-profile-rules", "kind": "semantic", "check": "style-profile", "documentName": "styleProfile", "expectedValid": true },
+    { "name": "render-part-graph", "kind": "semantic", "check": "render-part-graph", "documentName": "renderPart", "expectedValid": true },
+    { "name": "atlas-catalog-bundle-closure", "kind": "semantic", "check": "reference-closure", "expectedValid": true },
+    { "name": "semantic-variant-separation", "kind": "semantic", "check": "semantic-variant", "documentName": "semanticVariant", "expectedValid": true },
+    { "name": "two-clean-build-rule", "kind": "semantic", "check": "export-recipe", "documentName": "exportRecipe", "expectedValid": true }
+  ]
+}

@@ -9,6 +9,10 @@ geometry definition alone owns footprint, anchor basis, clearance,
 orientations, sockets, and use slots. A PNG without the complete reference
 bundle is not a runtime asset.
 
+The V2 family bundle references an exact style profile, geometry, source set,
+export recipe, review, sprite frames, render parts, connectivity family, and
+catalog/bundle records. The asset family never repeats world occupancy facts.
+
 ## Required production board
 
 Every family board shows the referenced world grid, footprint, anchor basis,
@@ -46,6 +50,11 @@ Its local supported masks are exactly `0` (isolated), `2` (east neighbor), `8`
 corner, tee, or cross arrangements fail as `connectivity.unsupported-mask`.
 They cannot select a nearest-looking sprite or silently rotate an east-west
 variant. A later family version and full evidence are required to add a mask.
+
+The semantic variant record keeps connectivity mask, facility visual state,
+held prop, animation state, and interaction socket separate from character
+identity, role, and operational state. Unsupported composite keys fail closed;
+an approved static fallback must be declared inside the same family version.
 
 Multipart workstation visuals use an acyclic render-part dependency graph.
 Ordinary upper parts cannot jump every actor through the global `upper` band,

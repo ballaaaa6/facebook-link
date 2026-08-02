@@ -41,6 +41,13 @@ Session Keeper owns session-health monitoring and verified recovery. It does
 not become the owner of product, content, attribution, QA, publishing, or other
 stage failures merely because a failed action used a browser session.
 
+The Operations adapter projects these durable stages into Snapshot V2 without
+changing ownership: Product Ranker owns ranking evidence, Growth Strategist
+owns winner selection, `workflow-coordinator` owns the system join, and Session
+Keeper owns session health only. `roleId` and `agentInstanceId` remain separate;
+the Office cannot infer a role, character, facility, or workflow owner from a
+display label.
+
 ## Content fan-out and join
 
 Copy and visual production are sibling jobs under one stable `contentGroupId`:
@@ -75,6 +82,11 @@ than a workflow actor.
   current branch completions are no-ops; all unseen completions fail closed.
 - Returning from `content_ready` to `content_queued` creates a new
   `contentGroupId`; a joined group is never reopened or mutated.
+
+The adapter retains durable event ID and payload-digest pairs across reload and
+reconnect. An exact redelivery is a no-op; the same event ID with a different
+digest fails closed. Sequence gaps and stream-epoch changes reconcile the
+current operational snapshot before any presentation intent is emitted.
 
 ## Human gates
 

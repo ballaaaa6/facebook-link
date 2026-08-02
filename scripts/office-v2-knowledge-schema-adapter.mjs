@@ -4,6 +4,7 @@ import {
   validateSchema,
 } from "./office-v2-knowledge-evidence.mjs";
 import { evaluateBuildingTopologyFixture } from "./office-v2-building-topology-adapter.mjs";
+import { rendererQaSchemaChecks } from "./office-v2-renderer-qa-evidence.mjs";
 
 export function runSchemaEvidence(context, ajv) {
   const read = (path) => context.readJson(path);
@@ -28,6 +29,12 @@ export function runSchemaEvidence(context, ajv) {
   for (const definition of structures) checks.push(["surface-structure.schema.json", definition, `structure ${definition.definitionId}`, "fixtures/room-structure-cutaway.json"]);
   const snapshots = read("fixtures/operations-states.json")?.snapshots ?? [];
   for (const snapshot of snapshots) checks.push(["operations-snapshot.schema.json", snapshot, `operations ${snapshot.snapshotId}`, "fixtures/operations-states.json"]);
+  const operationsClosure = read("fixtures/operations-closure-c.json");
+  if (operationsClosure) {
+    for (const snapshot of operationsClosure.snapshots ?? []) checks.push(["operations-snapshot-v2.schema.json", snapshot, `operations V2 ${snapshot.snapshotId?.value ?? "snapshot"}`, "fixtures/operations-closure-c.json"]);
+    checks.push(["activity-routing.schema.json", operationsClosure.routing, "operations activity routing", "fixtures/operations-closure-c.json"]);
+    checks.push(["roster-binding.schema.json", operationsClosure.roster, "operations roster binding", "fixtures/operations-closure-c.json"]);
+  }
   const simulation = read("fixtures/simulation-contracts-v2.json");
   if (simulation) {
     for (const [index, command] of (simulation.commands ?? []).entries()) {
@@ -90,9 +97,44 @@ export function runSchemaEvidence(context, ajv) {
       );
     }
   }
+  for (const path of [
+    "fixtures/invalid/operations-snapshot-v2.json",
+    "fixtures/invalid/activity-routing.json",
+    "fixtures/invalid/roster-binding.json",
+  ]) {
+    const rejected = read(path);
+    if (rejected) {
+      validateSchema(
+        context,
+        ajv,
+        rejected.schema,
+        rejected.document,
+        `${path} shape`,
+        rejected.expectedSchemaValid === true,
+        path,
+      );
+    }
+  }
   const unsupportedPath = "fixtures/invalid/proof-workstation-unsupported-mask.json";
   const unsupported = read(unsupportedPath);
   if (unsupported) {
     validateSchema(context, ajv, unsupported.schema, unsupported.document, "unsupported proof workstation mask shape", true, unsupportedPath);
+  }
+
+  const rendererQa = read("fixtures/renderer-qa-contracts-v1.json");
+  if (rendererQa) {
+    for (const [schema, document, label] of rendererQaSchemaChecks(rendererQa)) {
+      validateSchema(context, ajv, schema, document, label, true, "fixtures/renderer-qa-contracts-v1.json");
+    }
+  }
+  const rendererBundle = read("fixtures/lab/renderer-benchmark-bundle-v1.json");
+  if (rendererBundle) {
+    validateSchema(context, ajv, "renderer-benchmark-bundle.schema.json", rendererBundle.document, "synthetic renderer benchmark bundle", true, "fixtures/lab/renderer-benchmark-bundle-v1.json");
+  }
+  const rendererRejections = read("fixtures/invalid/renderer-qa-rejections.json");
+  if (rendererRejections) {
+    for (const entry of rendererRejections.cases ?? []) {
+      validateSchema(context, ajv, entry.schema, entry.document, `${entry.name} renderer/QA rejection shape`, entry.expectedSchemaValid === true, "fixtures/invalid/renderer-qa-rejections.json");
+    }
   }
 }

@@ -28,7 +28,7 @@ test("the real W0.3 register closes all P0 contradictions without overstating ev
   assert.equal(report.evidence.historicalEvidence, 27);
   assert.match(
     formatOfficeV2ContradictionReport(report),
-    /W0\.3 historical handoff target W1\.1 remains hash-locked; current bounded T1 semantic foundation passes; W1\.6 Closure B is in progress and Closures C-E remain/,
+    /W0\.3 historical handoff target W1\.1 remains hash-locked; current bounded T1 semantic foundation passes; W1\.6 cross-track Phase 1 specification closure is integrated; executable T2-T6 gates remain deferred/,
   );
 });
 

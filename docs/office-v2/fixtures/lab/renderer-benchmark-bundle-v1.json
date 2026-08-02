@@ -1,0 +1,27 @@
+{
+  "document": {
+    "schemaVersion": "office-renderer-benchmark-bundle-v1",
+    "bundleId": "office-renderer-benchmark-bundle-v1",
+    "root": "docs/office-v2/fixtures/lab",
+    "testOnly": true,
+    "admission": "fixture-only",
+    "geometry": "synthetic-geometric-only",
+    "textures": [
+      { "textureId": "synthetic-solid-a", "kind": "fixed-synthetic", "dimensions": { "width": 8, "height": 8 } },
+      { "textureId": "synthetic-solid-b", "kind": "fixed-synthetic", "dimensions": { "width": 8, "height": 8 } }
+    ],
+    "profiles": [
+      { "actorCount": 1, "sceneHash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "snapshotHash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" },
+      { "actorCount": 10, "sceneHash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "snapshotHash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" },
+      { "actorCount": 15, "sceneHash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "snapshotHash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" },
+      { "actorCount": 25, "sceneHash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "snapshotHash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" },
+      { "actorCount": 50, "sceneHash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "snapshotHash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" }
+    ],
+    "bundleHash": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+    "forbiddenRoots": ["assets/office-v2/manifests", "assets/office-v2/runtime", "production-catalog", "runtime-admission"],
+    "migration": { "fromVersion": "office-renderer-benchmark-bundle-v0", "effect": "reject-outside-fixture-lab" }
+  },
+  "cases": [
+    { "name": "synthetic-bundle-is-fixture-only", "kind": "synthetic-bundle", "expected": "fixture-only" }
+  ]
+}

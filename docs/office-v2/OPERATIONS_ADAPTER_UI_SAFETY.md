@@ -11,11 +11,28 @@ Operational records remain authoritative. Engine simulation may smooth movement
 and stage presentation, but it cannot claim a task state absent from the adapter.
 
 The existing V1 snapshot is sufficient for a data-free status lab, not for the
-ten-role first floor. The next contract version must separate `roleId` from
-`agentInstanceId` and carry stable workflow-run, task, stage, durable-transition,
-feature-availability, freshness, session-health, and diagnostic-owner identity.
-Waiting, review, blocked, and failure reasons are structured values rather than
-text parsed by the renderer.
+ten-role first floor. Operations Snapshot V2 (`office-operations-v2`) separates
+`roleId` from `agentInstanceId` and carries stable workflow-run, task, job,
+stage, durable-transition, feature-availability, freshness, session-health,
+diagnostic-owner, recoverability, and source-revision identity. Waiting, review,
+blocked, and failure reasons are structured values rather than text parsed by
+the renderer.
+
+Snapshot V2 also owns the reconnect window: `streamId`, positive
+`streamEpoch`, inclusive `windowStartSequence` and `throughSequence`, an
+aggregate `eventDigest`, and ordered durable event records. Each event pins a
+durable event ID and payload digest. An empty window is represented by
+`windowStartSequence = throughSequence + 1`; a non-empty window must be
+contiguous. A sequence gap requests resynchronization, an epoch change forces
+reconciliation, and a cursor older than the retained window reconciles directly
+to current truth without inventing missed activity.
+
+The V2 snapshot schema is owned by `@affiliate-ops/office-v2-contracts`; the
+pure validation, cursor reconciliation, roster binding, and proposal-safety
+functions are owned by `@affiliate-ops/office-v2-operations`. The schema is
+additive to V1. A V1 read may be promoted only with an explicit source revision
+and complete event-window/feature/session context; otherwise the adapter
+rejects it with `contract.migration-context-missing` before presentation.
 
 The roster-to-world binding is data owned:
 
@@ -26,6 +43,23 @@ agent instance -> role -> character definition -> home facility
 
 No React component, sprite filename, display name, or CSS offset owns this
 mapping. Unknown roles or interactions become unavailable with a diagnostic.
+
+The machine contracts are split into three documents:
+
+- `operations-snapshot-v2.schema.json` owns operational truth and event windows;
+- `activity-routing.schema.json` owns role-to-capability, interaction, required-feature, and command-console routing;
+- `roster-binding.schema.json` owns agent-instance-to-role and optional character-definition binding.
+
+The snapshot deliberately has no character definition, sprite, home facility,
+or visual interaction fields. Those facts are rejected as an adapter-owned
+snapshot binding leak. TeamBrain is represented only by a `command-console`
+facility with `agentEligible: false` and never by a roster binding.
+
+Routing and roster contracts are versioned revisions, not aliases to mutable
+latest data. A migration must provide the revision, role identity, and binding
+kind explicitly; an unversioned role-only record, duplicate instance, unknown
+role, or incompatible facility is rejected with its adapter/contract diagnostic
+and never downgraded to an empty or visual-only actor.
 
 ## Freshness states
 
@@ -50,6 +84,12 @@ the Office cannot infer the join because two characters appear finished.
 
 A disabled role is unavailable or absent. It is never rewritten as idle and
 cannot be offered an interaction that would execute an external action.
+
+Feature availability remains a product of three visible facts: role enablement,
+connector enablement, and session availability. An enabled role with a disabled
+connector or unavailable session cannot be presented as working and cannot
+produce an allowed proposal. A disabled configured role may retain a static
+facility route, but it does not create a live actor.
 
 ## UI shell
 
@@ -84,3 +124,9 @@ continues through the control plane and all existing review and audit policy.
   handoff effects.
 - The ten-role fixture covers fan-out, join, failure recovery, and an unknown
   mapping that fails safely.
+- Valid and rejected Closure C fixtures pin unknown status, stale/reconnecting/
+  unavailable freshness, duplicate agent/event identities, sequence gaps, epoch
+  changes, digest conflicts, late events, old cursors, disabled features,
+  unknown roles, incompatible facilities, unavailable sessions, and forbidden
+  proposals. Each rejection uses one `adapter.*` diagnostic and preserves the
+  source revision for later reconciliation.
