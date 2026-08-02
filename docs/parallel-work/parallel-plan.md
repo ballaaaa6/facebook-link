@@ -1,363 +1,475 @@
-# Parallel Implementation Plan — M1 Pilot and Read Models
+# Parallel Phase 2 World-Kernel Plan
 
-Status: PLANNED  
-Planning base commit: `84525d9c946a2f12a520b9fd58c11f1e33ce52f2`  
-Planning branch: `main`  
-Planning date: 2026-08-02  
-Integration target: `codex/integration/m1-pilot-read-models`
-Session branches: `codex/task/session-1-sqlite-pilot`,
-`codex/task/session-2-shopee-discovery`, and
-`codex/task/session-3-dashboard-read-models`
+Status: PLANNING_COMPLETE
+Created: 2026-08-02 (Asia/Bangkok)
+Coordinator: lead planner / integration manager
+Repository: `D:\antigravity\shopee link`
+
+## Capability check
+
+The Codex desktop environment provides real isolated execution sessions through
+`codex_app__create_thread` with project worktrees, plus `wait_threads` for
+progress monitoring. The coordinator will create three sessions from the
+planning commit and start them concurrently. Each worker receives the full
+task specification in its session prompt; no manual prompt relay is required.
 
 ## Repository assessment
 
-The worktree is clean and `main` is aligned with `origin/main`. The required
-baseline gate passes with `npm run check`. The latest commits close Office
-Engine V2 Phase 1 contract and research controls, but the Office V2 Phase 2
-world kernel is a separate authorized workstream and is intentionally not part
-of this three-session wave.
+- Current branch: `main`, aligned with `origin/main`.
+- Base commit before coordination artifacts: `fb5cfc79436f3071cd77951fa9c08e489f5e73c7`.
+- Base worktree was clean; no user changes were overwritten.
+- Baseline `npm run check` passed before planning.
+- Office V2 preflight passed: clean-room, package boundaries, contradictions,
+  generated contracts, knowledge, and asset foundation gates are green.
+- Phase 1 is closed by `PHASE_1_EXIT_HANDOFF.md`; Phase 2 pure world-kernel
+  implementation is explicitly authorized by `READINESS_MATRIX.md` and
+  `PHASE_2_WORLD_KERNEL_ACCEPTANCE.md`.
+- `packages/office-v2-world` currently contains coordinate semantics, geometry
+  validation, topology validation, reference closure, room validation, and a
+  deterministic scene compiler. It has no executable projection/unprojection,
+  immutable geometry-aware placement/occupancy snapshot, or reusable depth and
+  canonical world-kernel API.
+- The knowledge gate currently reports projection, placement, depth, and
+  structure expectations as bounded fixture evidence only; it explicitly does
+  not claim inverse picking, occupancy, or persistent world behavior.
+- `PHASE_2_WORLD_KERNEL_ACCEPTANCE.md` is still `not-started`, with P2-EXIT-01
+  through P2-EXIT-09 awaiting executable implementation evidence.
+- The existing `docs/parallel-work` files described an older affiliate
+  persistence/connector/API wave from base `84525d9`; that wave is stale and is
+  superseded here because the current source-of-truth documents authorize the
+  Phase 2 world kernel as the next implementation package.
+- No local development server was started. No runtime assets, renderer, React,
+  simulation reducer, connector, database, or new dependency is in scope.
 
-The product roadmap and README identify the next product milestone as:
+## Selected tasks
 
-1. persist the simulated affiliate workflow through SQLite;
-2. connect the first read-only Shopee discovery worker; and
-3. expose API read models and remove dashboard mock values.
+The three tasks are the highest-priority executable slices of the authorized
+Phase 2 gate. They are independent at the worker level: workers may add only
+new package-local source and test files, while `src/index.ts`, shared docs,
+schemas, fixtures used by other tasks, and acceptance records remain reserved
+for the Final Integrator.
 
-The repository evidence supports those priorities:
+| Session | Task ID | Task | Primary evidence | Branch | Planned worktree label |
+| --- | --- | --- | --- | --- | --- |
+| 1 | P2-WORLD-01 | Deterministic projection and inverse ground picking | P2-EXIT-01, P2-EXIT-02 | `task/session-1-projection-ground-picking` | `.worktrees/session-1` |
+| 2 | P2-WORLD-02 | Geometry-aware placement and occupancy snapshots | P2-EXIT-03, P2-EXIT-04, P2-EXIT-09 | `task/session-2-placement-occupancy` | `.worktrees/session-2` |
+| 3 | P2-WORLD-03 | Topology normalization, depth ordering, and canonical world evidence | P2-EXIT-05, P2-EXIT-06, P2-EXIT-07, P2-EXIT-08 | `task/session-3-topology-depth-canonical` | `.worktrees/session-3` |
 
-- `services/automation-runner/src/simulation/persistence.ts` already persists
-  pilot jobs, agent runs, audit events, and outbox rows idempotently, but the
-  pilot does not persist its product/evidence records into `products` and
-  `product_snapshots`.
-- `services/automation-runner/src/connectors/index.ts` and
-  `src/connectors/registry.ts` define a disabled `shopee-discovery` contract,
-  but no connector implementation or browser port exists.
-- `apps/api/src/index.ts` exposes health, manifest, and TeamBrain routes only;
-  there is no database binding or read-model endpoint.
-- `apps/web/src/features/dashboard/DashboardPage.tsx` and
-  `metrics.ts` contain hard-coded funnel, health, performance, and metric data.
-- The SQLite schema already contains the product, snapshot, workflow, job,
-  profile, audit, and outbox tables needed for this slice. No edit to the
-  applied `0001_initial.sql` migration is authorized.
+The three planned worktree labels are coordination names. If Codex allocates
+an implementation-specific absolute worktree path, the worker must record that
+actual path in its status file. The branches must retain the exact names above.
 
-## Three-task overview
+## Task 1 — P2-WORLD-01: deterministic projection and inverse ground picking
 
-| Session | Task | Primary boundary | Independent output |
-| --- | --- | --- | --- |
-| 1 | Complete SQLite pilot persistence | `services/automation-runner/src/simulation/` | A deterministic pilot writes product/evidence plus workflow records atomically and idempotently. |
-| 2 | Implement read-only Shopee discovery | `services/automation-runner/src/connectors/shopee-discovery/` | An injected browser port normalizes safe product cards while the feature remains disabled by default. |
-| 3 | Add API read models and wire Dashboard | `apps/api/` and `apps/web/src/features/dashboard/` | A D1-compatible read-only dashboard endpoint drives loading, error, empty, and populated UI states. |
+### Current problem and rationale
 
-The three sessions start from the same base commit and must not depend on an
-unpublished sibling commit. They share the endpoint and data-shape assumptions
-written below; the Final Integrator verifies the assumptions against the actual
-merged schema and connector output.
+`coordinate-semantics.ts` only implements cell/sub-cell conversion and facing
+mapping. The accepted `office-projection-v1` equation and the half-open picking
+policy currently exist in documentation and a knowledge fixture, not in the
+world package. Projection is the first executable dependency for every later
+world and presentation consumer, and it can be implemented without touching
+placement or topology code.
 
-## Task 1 — Complete SQLite pilot persistence
+### Expected outcome
 
-### Problem and outcome
+A pure, renderer-neutral projection module converts validated floor-local cell
+and sub-cell positions to logical screen pixels and deterministically inverts a
+ground screen point to a floor-local cell. Bounds, safe-number behavior, edge
+ties, and the accepted version are executable and tested.
 
-The pilot simulation currently proves workflow-job idempotency but leaves the
-canonical product and evidence tables empty. Extend the existing simulation
-fixture and persistence transaction so one complete, schema-valid simulated
-workflow has a product candidate, a product snapshot, job history, agent runs,
-the system `content_ready` audit event, and outbox records.
+### Exact scope
+
+- Add `packages/office-v2-world/src/projection.ts`.
+- Add `packages/office-v2-world/test/projection.test.ts`.
+- Reuse the existing generated coordinate types and
+  `coordinate-semantics.ts`; do not duplicate the projection equation in a
+  component or fixture helper.
+- Pin constants for `office-projection-v1`: 64x32 logical pixels per cell,
+  half tile 32x16, 16 pixels per elevation unit, and no camera rotation.
+- Expose a small pure API for forward projection of cell/sub-cell coordinates,
+  ground-contact projection, and inverse ground picking with explicit bounds.
+- Enforce coordinate-space discriminators, integral/safe inputs, non-negative
+  elevation, finite derived pixels, and translation/multiplication overflow
+  checks.
+- Implement the documented half-open edge policy. An exact shared edge must
+  resolve by lowest `y`, then lowest `x`; outside and degenerate inputs must
+  fail closed with stable `projection.*` diagnostics or a documented null
+  result rather than guessing.
+- Test all existing projection fixture cases, interior/boundary/outside and
+  degenerate points, negative sub-cell floor semantics where applicable,
+  repeated-byte determinism, and wrong-space/unsafe-range rejection.
+
+### Explicit out of scope
+
+Camera fitting, pan/zoom, viewport UI, pixel snapping policy, renderer ports,
+React, picking of entities/overhangs, sprites/assets, simulation, navigation,
+placement, topology changes, schema changes, generated files, and runtime art.
 
 ### Owned files
 
-- `services/automation-runner/src/simulation/pilot.ts`
-- `services/automation-runner/src/simulation/persistence.ts`
-- `services/automation-runner/test/simulation.test.ts`
-- an additive test or helper under `services/automation-runner/test/` only when
-  it is needed for this task
+- `packages/office-v2-world/src/projection.ts`
+- `packages/office-v2-world/test/projection.test.ts`
 - `docs/parallel-work/session-1-status.md`
 
-### In scope
+### Forbidden files
 
-- Add a deterministic pilot product candidate and evidence payload to the
-  existing `PilotSimulation` shape without introducing a new external API.
-- Persist `products` and `product_snapshots` in the same transaction as the
-  existing workflow, job, agent-run, audit, and outbox rows.
-- Derive stable IDs and timestamps from the simulation input; do not use
-  database row order or wall-clock values for business ordering.
-- Preserve reverse-result-order behavior, exact duplicate no-op behavior, and
-  changed-payload conflict detection.
-- Prove rollback leaves every affected table empty when validation fails before
-  commit, and prove a second identical persistence has no extra rows.
-- Use the existing migration shape. Add a numbered migration only if a
-  concrete schema defect blocks the acceptance criteria; never edit
-  `0001_initial.sql`.
+All files outside the owned list, especially `packages/office-v2-world/src/index.ts`,
+`coordinate-semantics.ts`, existing topology/geometry/compiler files,
+`packages/office-v2-contracts/**`, `docs/office-v2/**`, other session status
+files, acceptance records, app code, and root configuration.
 
-### Out of scope
+### Dependencies and interface assumptions
 
-Live Shopee discovery, ranking, affiliate-link creation, API endpoints, Web
-components, Office V2, D1 deployment IDs, and real credentials.
+Only the existing `@affiliate-ops/office-v2-contracts` package and local
+coordinate semantics may be imported. The forward result must expose finite
+`xPx`, `yPx`, the accepted projection ID, and the projected ground contact
+needed by the depth task. The inverse API must not depend on a camera object.
 
-### Acceptance and evidence
+### Required tests and acceptance criteria
 
-- A fresh in-memory database contains one product and at least one linked
-  product snapshot plus the existing 8 jobs, 8 agent runs, 9 audit events, and
-  8 outbox rows.
-- Reversed results and an identical second call produce byte-equivalent
-  payloads and unchanged row counts.
-- A changed product/evidence or job payload fails with an explicit idempotency
-  conflict and does not partially mutate the database.
-- `npm run test --workspace @affiliate-ops/automation-runner`, the workspace
-  typecheck, and `npm run check` pass.
-- The session status file records the exact test commands, changed files, and
-  commit hash.
+- Existing `projection-roundtrip.json` values pass through the new module.
+- Interior and boundary cells round-trip; exact edge ties use `(y, x)` order.
+- Outside/degenerate/wrong-space/unsafe inputs fail closed deterministically.
+- Projection of the same input is byte-identical across repeated calls and
+  does not mutate input.
+- Focused package test and typecheck pass; the worker also runs `npm run check`.
+- No visual testing is claimed; the status file says so explicitly.
 
-## Task 2 — Read-only Shopee discovery connector
+### Handoff
 
-### Problem and outcome
+Record the actual API, diagnostics, focused/full commands, commit hash, and a
+short note for the integrator describing any type adaptation needed for the
+public export. Do not edit the public barrel; the Final Integrator owns that.
 
-The runner has a `ProductDiscoveryConnector` interface and a registry entry,
-but no implementation. Add a browser-connector boundary that can be tested
-without a browser or credentials and that cannot call the browser while the
-`shopeeDiscovery` feature flag is disabled.
+## Task 2 — P2-WORLD-02: geometry-aware placement and occupancy snapshots
+
+### Current problem and rationale
+
+Geometry rotation and room-template validation exist, but no executable world
+placement operation derives transformed footprint, blocking, clearance,
+approach, waiting, or interaction use-slot positions into an immutable world
+snapshot. Without this boundary, occupancy and rejection behavior cannot be
+used by a later simulation slice.
+
+### Expected outcome
+
+A pure placement module accepts an explicit floor bounds/surface model and
+versioned geometry authority, returns a new immutable snapshot on success, and
+returns stable diagnostics without mutating the previous snapshot on failure.
+It distinguishes blocking structural/furniture occupancy from non-blocking
+decoration and resolves transformed interaction slots without copying geometry
+facts into entity records.
+
+### Exact scope
+
+- Add `packages/office-v2-world/src/placement.ts`.
+- Add `packages/office-v2-world/test/placement.test.ts`.
+- Build on `transformGeometry` and existing version/reference types; do not
+  rewrite geometry validation.
+- Define local pure interfaces for a minimal world bounds/surface policy,
+  placed entity identity, placement request, occupancy index, and immutable
+  snapshot. The model must keep geometry definitions separate from instances.
+- Support cardinal orientation, world anchor translation, transformed footprint,
+  blocking cells, clearance cells, approach/waiting candidates, and use-slot
+  facing/socket resolution.
+- Validate missing geometry, unsupported orientation, floor mismatch,
+  out-of-bounds cells, blocking/clearance overlap, unsupported surface,
+  blocking overlap, and unreachable required approach cells using deterministic
+  four-direction reachability.
+- Provide deterministic ownership lookup for every occupied/blocking cell and
+  stable results independent of entity insertion order where semantics are
+  equivalent.
+- Treat non-blocking decoration as presentation-only: it cannot add occupancy,
+  clearance, navigation impact, or hidden collision.
+- Prove rejection leaves the prior snapshot byte-equivalent and success does
+  not mutate caller-owned inputs.
+
+### Explicit out of scope
+
+Mutable simulation, A* route planning as a standalone subsystem, reservations,
+queues, actor movement, renderer/depth/picking, camera, asset/React imports,
+database, operations, connectors, schemas, generated files, and runtime art.
 
 ### Owned files
 
-- new files under `services/automation-runner/src/connectors/shopee-discovery/`
-- `services/automation-runner/test/shopee-discovery.test.ts`
+- `packages/office-v2-world/src/placement.ts`
+- `packages/office-v2-world/test/placement.test.ts`
 - `docs/parallel-work/session-2-status.md`
 
-`services/automation-runner/src/index.ts`,
-`services/automation-runner/src/connectors/index.ts`,
-`services/automation-runner/src/connectors/registry.ts`, and all shared package
-contract indexes are Final Integrator files for this wave. The session may
-consume the existing connector interface and registry but must not change them.
+### Forbidden files
 
-### In scope
+All files outside the owned list, especially `packages/office-v2-world/src/index.ts`,
+existing geometry/topology/compiler/room files, contracts and schemas, other
+session files, acceptance records, apps, simulation, and configuration.
 
-- Define a narrow injected browser port that returns already-extracted product
-  cards; the connector must not contain Playwright selectors or credentials.
-- Normalize cards into existing `ProductCandidate` values and an additive,
-  connector-local evidence/batch result that the Final Integrator can persist.
-- Validate workspace/run context, positive bounded limits, HTTPS product URLs,
-  required external IDs, supported currency, non-negative money/count fields,
-  and duplicate external IDs.
-- Generate stable candidate IDs from the provider and external ID, preserve
-  explicit source order unless the contract says otherwise, and make repeated
-  normalization deterministic.
-- Require an explicit enabled flag before invoking the injected browser. A
-  disabled call must fail with a stable connector diagnostic and zero browser
-  calls.
-- Keep the connector read-only and mark no real external side effect as
-  enabled. Add deterministic fake-browser tests for valid cards, limit
-  enforcement, malformed cards, duplicate IDs, disabled mode, and repeatability.
+### Dependencies and interface assumptions
 
-### Out of scope
+The module may import only the existing world package modules and
+`@affiliate-ops/office-v2-contracts`. It must not import Task 1 or Task 3 by
+path. The Final Integrator will connect the public barrel and any cross-task
+projection/depth adapters after all commits are present.
 
-Login/session recovery, real browser automation, selector discovery, affiliate
-link creation, product ranking or winner selection, database writes, API/Web
-changes, feature-flag activation, and any secret or screenshot capture.
+### Required tests and acceptance criteria
 
-### Acceptance and evidence
+- Asymmetric geometry passes all cardinal transforms, including footprint,
+  clearance, approach, waiting, and socket agreement.
+- Edge/corner placement, structural blocker, furniture overlap, clearance
+  conflict, unsupported surface, unreachable approach, missing geometry, and
+  unsupported orientation cases fail with stable diagnostics.
+- Non-blocking decoration never changes navigation occupancy.
+- Every accepted blocking cell reports one owning entity; duplicate ownership
+  fails closed.
+- Failed placement returns the exact prior snapshot; equivalent insertion order
+  produces deterministic occupancy/output.
+- Focused package test and typecheck pass; the worker also runs `npm run check`.
+- No renderer, simulation, or visual test is claimed.
 
-- The fake browser is never invoked when the feature is disabled.
-- Valid cards become schema-compatible candidates with deterministic IDs and
-  evidence; invalid or duplicate cards fail closed before a partial batch is
-  returned.
-- The connector never imports database, storage, React, Office packages, or a
-  browser library.
-- Focused connector tests, workspace typecheck, and `npm run check` pass.
-- The status file records that no live browser or external account was tested.
+### Handoff
 
-## Task 3 — API read models and Dashboard integration
+Record the snapshot and diagnostic API, fixture/input assumptions, tests,
+commit hash, and any integration concern. Do not export through `src/index.ts`.
 
-### Problem and outcome
+## Task 3 — P2-WORLD-03: topology normalization, depth ordering, and canonical world evidence
 
-The API has no read-model route and the Dashboard displays literal demo values.
-Add a read-only D1-compatible query boundary and make the Dashboard render only
-validated API data, with explicit loading, unavailable, empty, and populated
-states.
+### Current problem and rationale
+
+Topology validation and scene compilation already prove contract closure, but
+the executable Phase 2 kernel still lacks a reusable normalized topology/depth
+ordering boundary. The depth fixture remains a bounded evidence probe, and
+canonical scene output is not exposed as a small world-kernel utility that can
+reject stale/wrong-version references and prove stable ordering independently
+of compiler input order.
+
+### Expected outcome
+
+Pure world-kernel utilities normalize floor/site/portal and structural-edge
+identities, sort depth inputs by documented ground contact/elevation/band/ID
+rules, validate closed world references, and produce canonical bytes plus a
+domain-separated hash for an accepted world-shaped value. They fail closed on
+duplicate, missing, stale, wrong-kind/version, and cyclic attachment references
+without importing a renderer.
+
+### Exact scope
+
+- Add `packages/office-v2-world/src/topology-kernel.ts`.
+- Add `packages/office-v2-world/src/depth-ordering.ts`.
+- Add `packages/office-v2-world/test/topology-kernel.test.ts`.
+- Add `packages/office-v2-world/test/depth-ordering.test.ts`.
+- Reuse existing `validateBuildingTopology`, `validateDefinitionBundle`,
+  `validateRenderPartDependencies`, `canonicalJson`, and `canonicalHashHex`
+  rather than forking their logic.
+- Normalize equivalent topology collections and structural edge identities
+  using the owner-cell plus north/west edge rule; preserve explicitly ordered
+  arrays.
+- Provide a stable depth key/order for projected ground contacts, elevation,
+  render band, and entity/part ID. Equal inputs must be insertion-order
+  independent. Multipart dependencies must be acyclic and retain one semantic
+  owner.
+- Validate a versioned world-kernel envelope against explicit building/floor/
+  world references, bounds, entities, portals, and reserved cores. Missing,
+  stale, wrong-kind/version, and duplicate references must fail before canonical
+  output is returned; site context must remain outside floor occupancy.
+- Return canonical bytes and a domain/version-separated hash. Reordered
+  unordered inputs yield identical bytes/hash; semantic mutation changes hash;
+  ordered sequences remain order-sensitive.
+- Test the existing topology fixtures and `depth-occlusion.json`, plus stable
+  tie, adjacent, rotated/overlapping, site-leak, version, duplicate, missing,
+  and dependency-cycle cases.
+
+### Explicit out of scope
+
+Projection math implementation, camera or entity picking, placement mutation,
+occupancy route planning, simulation/replay, renderer adapters, React, assets,
+database, operations, connectors, schema/generated updates, and visual golden
+captures.
 
 ### Owned files
 
-- `apps/api/src/read-models.ts` (new)
-- `apps/api/src/index.ts`
-- `apps/api/test/read-models.test.ts` (new)
-- `apps/api/package.json` only to add its focused test script if required
-- `apps/web/src/features/dashboard/DashboardPage.tsx`
-- `apps/web/src/features/dashboard/metrics.ts`
-- `apps/web/src/features/dashboard/model.ts`
-- `apps/web/src/shared/components/MetricStrip.tsx`
-- `apps/web/src/shared/services/dashboard.ts` (new)
-- `apps/web/test/dashboard-model.test.ts` (new)
+- `packages/office-v2-world/src/topology-kernel.ts`
+- `packages/office-v2-world/src/depth-ordering.ts`
+- `packages/office-v2-world/test/topology-kernel.test.ts`
+- `packages/office-v2-world/test/depth-ordering.test.ts`
 - `docs/parallel-work/session-3-status.md`
 
-`apps/api/wrangler.jsonc`, the root `wrangler.jsonc`, deployment resource IDs,
-and shared package contract indexes are Final Integrator files. Do not invent a
-D1 database ID.
+### Forbidden files
 
-### In scope
+All files outside the owned list, especially `packages/office-v2-world/src/index.ts`,
+existing topology/compiler/reference files, contracts/schemas/generated output,
+other session files, acceptance records, apps, simulation, renderer, assets,
+and configuration.
 
-- Define and validate one endpoint:
-  `GET /v1/read-models/dashboard?workspaceId=<id>`.
-- Use parameterized D1-compatible queries over the existing schema for product
-  counts, workflow/job funnel counts, scheduled work, best-content metrics,
-  latest workflow activity, and browser-profile health.
-- Return a stable JSON shape with `schemaVersion`, `workspaceId`,
-  `generatedAt`, `summary`, `funnel`, `health`, `bestContent`, and `latestRun`.
-- Require a bounded non-empty workspace ID and return stable JSON error codes
-  for invalid input, missing database binding, and query failure. Never expose
-  SQL, filesystem paths, credentials, or provider payloads.
-- Keep `/health`, `/v1/system/manifest`, and `/v1/brain/respond` behavior
-  compatible.
-- Add a Web service that fetches and runtime-validates the response. Replace
-  all dashboard literals with data-driven values and explicit UI states; do
-  not silently revert to the old demo numbers when the API is unavailable.
-- Preserve the existing desktop and 320 px mobile layout and keep UI network
-  access behind `apps/web/src/shared/services/`.
+### Dependencies and interface assumptions
 
-### Out of scope
+The depth API consumes a renderer-neutral structural record containing projected
+ground contact pixels, non-negative elevation, a declared band, and stable ID;
+it must not import Task 1. The topology API consumes explicit versioned
+references and may delegate to existing validators. The Final Integrator owns
+the public barrel and any adapter between Task 1 projection results and this
+depth input.
 
-Authentication/authorization, mutating commands, live D1 resource creation,
-runner-to-API transport, Office V2, external platform calls, and production
-deployment IDs.
+### Required tests and acceptance criteria
 
-### Acceptance and evidence
+- Topology and structural edge normalization is deterministic and floor/site
+  identity never comes from elevation.
+- Depth order matches the documented fixture and is stable under every input
+  permutation, including equal ground-contact ties.
+- Missing/stale/wrong-version/duplicate references and render dependency cycles
+  fail closed with stable diagnostics and no partial canonical result.
+- Reordered equivalent world inputs have identical canonical bytes and hash;
+  semantic changes alter the hash; ordered arrays stay ordered.
+- Focused package tests and typecheck pass; the worker also runs `npm run check`.
+- No renderer, asset, or visual proof is claimed.
 
-- API tests cover valid rows, empty workspace, invalid workspace, missing DB,
-  query failure, and response shape validation using a fake D1 boundary.
-- Web tests cover response validation and metric/funnel mapping; the build
-  contains no old hard-coded product/funnel/health values in the Dashboard.
-- `npm run typecheck --workspace @affiliate-ops/api`, API tests, Web tests,
-  `npm run build --workspace @affiliate-ops/web`, and `npm run check` pass.
-- No API or UI test depends on a live Cloudflare resource.
+### Handoff
 
-## Shared assumptions and conflict prevention
+Record API names, canonical/hash domain versions, diagnostics, focused/full
+commands, commit hash, and any public-export or cross-task adaptation needed.
 
-The endpoint payload is the only cross-session interface introduced by this
-plan. Its required top-level fields are:
+## Shared contracts and boundary rules
 
-```text
-schemaVersion: 1
-workspaceId: string
-generatedAt: ISO-8601 string
-summary: { productsScanned: number, winnersFound: number,
-           postsScheduled: number, sessionHealthPercent: number | null }
-funnel: [{ stage: string, label: string, count: number }]
-health: [{ id: string, label: string,
-           status: "healthy" | "degraded" | "unavailable", detail: string }]
-bestContent: [{ productId: string, productTitle: string, destination: string,
-                clicks: number, orders: number, revenueMinor: number,
-                conversionRatePercent: number | null }]
-latestRun: { id: string, stage: string, status: string,
-             timeline: [{ stage: string, status: string, detail: string }] } | null
+The workers must not create a new schema or modify generated contracts in this
+wave. Shared assumptions are:
+
+1. Projection version is `office-projection-v1`, with 64x32 cells, 16 pixels
+   per elevation unit, four sub-cell units, and no camera rotation.
+2. World identity is explicit and versioned. Elevation is height within a
+   floor, never a floor identity.
+3. World package code remains pure/headless and imports only the approved
+   Office V2 contracts package or same-package modules.
+4. Geometry authority remains `office-geometry-authority-v1`; instances do not
+   copy footprint, clearance, sockets, or use-slot facts.
+5. Canonical bytes use `office-canonical-json-v1`; hashes use the existing
+   `office-sha256-envelope-v1` utility with an explicit domain/version.
+6. Stable diagnostics are owned by the world package and must preserve exact
+   `world.*`/`projection.*` meaning; no Ajv wording or ad-hoc numeric error is
+   exposed as a new contract.
+7. No worker edits the public barrel, shared contract files, docs outside its
+   status file, generated reports, or another session’s status.
+
+### File ownership matrix
+
+| File area | Session 1 | Session 2 | Session 3 | Final Integrator |
+| --- | --- | --- | --- | --- |
+| `packages/office-v2-world/src/projection.ts` | owns | forbidden | forbidden | review/export |
+| `packages/office-v2-world/src/placement.ts` | forbidden | owns | forbidden | review/export |
+| `packages/office-v2-world/src/topology-kernel.ts` | forbidden | forbidden | owns | review/export |
+| `packages/office-v2-world/src/depth-ordering.ts` | forbidden | forbidden | owns | review/export |
+| new task tests | owns assigned test | owns assigned test | owns assigned tests | review/augment |
+| existing `packages/office-v2-world/src/**` | read-only | read-only | read-only | owns integration edits |
+| `packages/office-v2-world/src/index.ts` | forbidden | forbidden | forbidden | owns |
+| `packages/office-v2-contracts/**` and `docs/office-v2/schemas/**` | forbidden | forbidden | forbidden | forbidden unless an accepted contract defect is proven |
+| `docs/office-v2/PHASE_2_WORLD_KERNEL_ACCEPTANCE.md` | forbidden | forbidden | forbidden | owns |
+| `docs/office-v2/READINESS_MATRIX.md`, roadmap, changelog, architecture | forbidden | forbidden | forbidden | owns |
+| `docs/parallel-work/parallel-plan.md` | read-only | read-only | read-only | owns after launch |
+| own status file | owns | owns | owns | marks integrated |
+| other status/lock/report files | forbidden | forbidden | forbidden until elected | owns |
+
+## Dependencies and integration order
+
+Worker code may run concurrently because no worker requires an unpublished
+sibling commit. Logical integration is:
+
+1. Verify all three status files and task commits against base
+   `fb5cfc79436f3071cd77951fa9c08e489f5e73c7` and the planning commit.
+2. The elected Final Integrator creates or checks out
+   `codex/integration/phase2-world-kernel` from the planning commit.
+3. Cherry-pick/merge all three task commits without resetting or discarding
+   valid work; review ownership before resolving any conflict.
+4. Wire the new APIs through `packages/office-v2-world/src/index.ts`; add
+   cross-task tests that connect projection to depth and geometry to topology
+   without moving ownership between layers.
+5. Run the relevant Phase 2 evidence and full `npm run check` gates.
+6. Update the Phase 2 acceptance record, readiness matrix, Office V2 README,
+   roadmap/status, and any generated code map only through repository scripts.
+   Do not claim P2 is passed unless every required row has committed evidence;
+   this wave may close only the rows actually proven.
+7. Mark statuses `INTEGRATED`, write the final report, commit the integrated
+   branch, remove the temporary lock after the report is committed, verify a
+   clean tree, and push the integration branch to `origin`.
+
+## Worker protocol
+
+Each worker must:
+
+1. Confirm its actual worktree and branch; record both in its status file.
+2. Verify `HEAD` is the planning commit before changing code.
+3. Read this plan and its status file; set `Status: IN_PROGRESS`.
+4. Work only in its owned files and update its own status at meaningful
+   milestones. Status edits must be committed with the implementation.
+5. Run focused tests, package typecheck, full `npm run check`, and clean-tree
+   checks. Record exact commands and results; never overstate visual evidence.
+6. Commit the implementation and status as one or more normal commits, record
+   the final hash, and leave the task worktree clean.
+7. Set its status to `COMPLETED`, refresh the other branch heads/status files,
+   and determine whether all three workers are complete. A worker that is not
+   the last eligible finisher stops with a handoff.
+
+## Final Integrator election protocol
+
+The last worker to observe all three committed statuses as `COMPLETED` or
+`INTEGRATED` attempts to claim `docs/parallel-work/final-integration.lock` on
+the integration branch. It must use the exact lock contents below, commit it
+immediately, refresh all branch heads, and verify ownership before merging:
+
+```md
+# Final Integration Lock
+
+Owner session:
+Worker or session ID:
+Branch:
+Task commit:
+Claimed at:
+Base commit:
 ```
 
-Session 1 must persist only existing schema columns and deterministic pilot
-values. Session 2 must return candidates/evidence without writing storage.
-Session 3 must query the schema by column name and must treat missing records as
-empty or unavailable, never as the old mock data. The Final Integrator owns any
-shared type extraction or naming adjustment.
+If the lock already exists, the worker must not integrate. It records a clean
+handoff and stops. The lock owner switches to/creates the integration branch,
+reviews all task commits and statuses, integrates, validates, updates docs,
+marks statuses integrated, writes the final report, commits, and pushes. The
+temporary lock is removed only after the final report is committed and the
+branch remains auditable through the commit history.
 
-## File ownership matrix
+## Validation requirements
 
-| File or directory | Session 1 | Session 2 | Session 3 | Final Integrator |
-| --- | --- | --- | --- | --- |
-| `services/automation-runner/src/simulation/**` | Owns | Forbidden | Forbidden | Reviews/integrates |
-| `services/automation-runner/test/simulation.test.ts` | Owns | Forbidden | Forbidden | Reviews |
-| `services/automation-runner/src/connectors/shopee-discovery/**` | Forbidden | Owns | Forbidden | Reviews/integrates |
-| `services/automation-runner/test/shopee-discovery.test.ts` | Forbidden | Owns | Forbidden | Reviews |
-| `services/automation-runner/src/index.ts` | Forbidden | Forbidden | Forbidden | Owns |
-| `services/automation-runner/src/connectors/index.ts` and `registry.ts` | Forbidden | Read-only | Forbidden | Owns |
-| `apps/api/src/read-models.ts`, `src/index.ts`, `test/**` | Forbidden | Forbidden | Owns | Reviews/integrates |
-| `apps/web/src/features/dashboard/**` | Forbidden | Forbidden | Owns | Reviews/integrates |
-| `apps/web/src/shared/components/MetricStrip.tsx` and `shared/services/dashboard.ts` | Forbidden | Forbidden | Owns | Reviews/integrates |
-| `packages/contracts/**` | Forbidden | Forbidden | Forbidden | Owns only if a shared type is needed |
-| `packages/database/migrations/0001_initial.sql` | Forbidden | Forbidden | Forbidden | Forbidden |
-| New numbered database migration | Only with evidence | Forbidden | Forbidden | Reviews |
-| `apps/api/wrangler.jsonc`, root `wrangler.jsonc` | Forbidden | Forbidden | Forbidden | Owns, without inventing IDs |
-| `README.md`, roadmap, architecture, data model, deployment, changelog | Forbidden | Forbidden | Forbidden | Owns after verification |
-| `docs/parallel-work/parallel-plan.md` | Read-only | Read-only | Read-only | Owns after plan approval |
-| Own session status file | Owns | Owns | Owns | Marks integrated |
-| `docs/parallel-work/final-integration.lock` and final report | Forbidden | Forbidden | Forbidden until elected | Owns |
+Required worker and integrator commands, as applicable:
 
-Normal sessions may create only their owned files and their own status file.
-They must not edit generated files by hand, runtime data, secrets, `.env`
-files, browser profiles, or screenshots. No new runtime dependency is expected;
-any dependency request is an integration blocker, not an automatic install.
+```text
+npm run office:v2:contradictions:check
+npm run office:v2:contradictions:test
+npm run office:v2:knowledge:check
+npm run office:v2:boundaries:check
+npm run office:v2:boundaries:test
+npm run office:v2:assets:check
+npm run office:v2:clean-room:check
+npm run check
+```
 
-## Dependency and integration order
+The final report must also record focused world tests, package typecheck,
+`git diff --check`, merge/conflict results, and final `git status --short
+--branch`. No dev server is needed for this headless wave.
 
-The code tracks can execute concurrently because Session 1 writes local SQLite,
-Session 2 is an injected connector with no persistence, and Session 3 uses a
-fake D1 boundary and existing column names. Logical integration is ordered:
+## Known risks and mitigations
 
-1. verify all three status files and commits against the common base;
-2. integrate Session 1's persisted product/evidence shape;
-3. integrate Session 2's connector and expose it through the runner registry;
-4. integrate Session 3's API queries and Web consumer against the merged rows;
-5. add or extract shared contracts only if the merged interfaces prove that
-   local types are insufficient;
-6. update deployment binding documentation without inventing resource IDs;
-7. run the full gate, update status/report documents, commit, and push.
+- The public barrel and Phase 2 acceptance docs are shared; they are reserved
+  for integration to prevent three workers from editing them concurrently.
+- Projection and depth must agree on ground-contact fields; the integrator adds
+  an adapter test rather than allowing a direct cross-branch import.
+- Placement and existing room/compiler geometry use different authoring layers;
+  the integrator must prove geometry authority is not duplicated.
+- Existing knowledge fixtures are bounded probes, not proof of the new runtime;
+  acceptance records must separate new unit evidence from historical claims.
+- No renderer, asset, simulation, or property/model readiness is unlocked by
+  this wave. Any worker proposing those changes is blocked and must hand off.
+- If a worker fails, preserve its branch/status and use a replacement session
+  against the same branch/worktree only for the remaining owned scope.
 
-If Session 3's query assumptions differ from Session 1's stored values, the
-Final Integrator changes the query or producer at the owning boundary and adds
-an integration test. Do not silently discard either implementation.
+## Final report requirements
 
-## Shared coordination protocol
-
-Use separate worktrees. The primary checkout's absolute path is the shared
-`COORDINATION_ROOT`; every task session receives it explicitly and writes only
-its own status file there. Status files are coordination metadata, not a place
-to edit another task's code. Each session:
-
-1. records `IN_PROGRESS`, worktree, branch, base commit, and start time before
-   changing code;
-2. works only in its task worktree and commits its implementation;
-3. runs focused tests, `npm run check`, and a clean-tree check;
-4. records the commit, tests, deviations, known issues, and handoff notes in
-   its own shared status file, then sets `COMPLETED`;
-5. inspects all three status files and remote task branches before stopping.
-
-The status files must be treated as authoritative even if a branch copy is
-stale. If a task is still `NOT_STARTED`, `IN_PROGRESS`, or `BLOCKED`, the
-finishing session stops normally and does not integrate.
-
-## Final Integrator election and duties
-
-After setting its own status to `COMPLETED`, a session checks whether the other
-two statuses are `COMPLETED` or `INTEGRATED`. If not, it stops. If yes, it
-atomically creates `docs/parallel-work/final-integration.lock` in the shared
-coordination root with its session number, branch, commit, and UTC timestamp.
-If the lock already exists, it is not the Final Integrator.
-
-The lock owner re-reads all three status files after acquiring the lock. It
-continues only when all three tasks are complete, creates
-`codex/integration/m1-pilot-read-models` from its completed task branch, and merges
-or cherry-picks the other two task commits without resetting or overwriting
-work. It then:
-
-- reviews every changed file and acceptance criterion;
-- verifies Task 1's SQLite rows match Task 3's read-model queries;
-- exposes Task 2 through the runner connector boundary while leaving the
-  feature flag disabled;
-- resolves API/Web payload and error-code differences;
-- updates shared documentation and deployment binding notes;
-- adds cross-task tests where the interfaces meet;
-- runs `npm run check`, focused task tests, and any relevant dry-run build;
-- writes `docs/parallel-work/final-integration-report.md` with base commit,
-  session commits, files, conflicts, resolutions, checks, acceptance results,
-  docs, limitations, final commit, and final Git status;
-- marks all session statuses `INTEGRATED`, removes the temporary lock only
-  after the report is committed, commits the integrated result, and pushes the
-  integration branch.
-
-## Known risks
-
-- The README milestone is broader than the currently implemented pilot slice;
-  the persistence task is completion/hardening, not a greenfield database.
-- No D1 resource ID is committed. API tests must use a fake binding, and live
-  deployment remains pending infrastructure configuration.
-- The connector cannot be live-tested without an authenticated browser profile;
-  the injected port and deterministic fake are the safe evidence available in
-  this wave.
-- Session 1 and Session 3 share database column assumptions. The integration
-  test is mandatory before either task can be declared fully integrated.
-- Office V2 Phase 2 work remains separately gated by its own acceptance record;
-  these tasks must not import or activate it.
+The Final Integrator creates `docs/parallel-work/final-integration-report.md`
+with date/time, original base, planning commit, integration branch, session and
+worker IDs, task branches/commits, lock owner, integrated commits, task results,
+files, conflicts/resolutions, cross-task adjustments, exact validation commands
+and results, acceptance rows proven/not proven, documentation changes,
+limitations/risks/follow-up, final commit hash, push result, and final Git
+status. The coordinator returns one consolidated report after this artifact
+and the integrated commit are complete.
