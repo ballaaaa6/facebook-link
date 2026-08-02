@@ -149,9 +149,9 @@ runtime assets or a renderer.
 - Local substantive integration commit: `9c81a492df7cde5f8a9e5e161498b5d2aa7e8352`.
 - Pushed remote integration commit verified before this report-only update:
   `9c81a492df7cde5f8a9e5e161498b5d2aa7e8352`.
-- Final report-only publication commit: `832c340b76f2cfdc4d32eb1562112ee5b0726980`.
-- The report-only publication commit is a descendant of that validated tip and
-  was pushed without force.
+- Report-only publication updates are descendants of that validated tip and
+  were pushed without force; the final branch tip is verified in the
+  orchestration handoff.
 - Remote primary alignment was rechecked at `d5e04992839dc4f09bc0e66de2dd7cbf02282ad2`;
   `main` did not advance.
 - Pull request: not created; `gh` is unavailable in the environment. The
