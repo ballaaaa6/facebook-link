@@ -8,8 +8,8 @@
 - Worker branch: `task/session-1-p3-w2-command-pipeline`
 - Worker worktree: `C:\Users\WINDOW XI\.codex\worktrees\phase3-w2-command-pipeline`
 - Original base commit: `3358c318c18eebfd586cd413cee6e026f41dc48d`
-- Planning commit: `7233ebf40f63190ac166069aedf9c7b30a04707b` pending final
-  coordination pin before launch
+- Planning commit: `7233ebf40f63190ac166069aedf9c7b30a04707b`
+- Worker session ID: `019fc0dc-cde8-77d3-9763-8e357dd521f5` / Darwin
 - Status file: `docs/parallel-work/session-1-status.md`
 
 ## Objective

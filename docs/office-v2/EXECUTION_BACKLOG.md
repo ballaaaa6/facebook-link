@@ -18,8 +18,8 @@ executable leaf tasks and their current status.
 - Phase entry blocker: the bounded RC-01, RC-02, and RC-03 research prerequisite
   is now integrated. Runtime implementation still requires the future W2
   command, reducer, hash, interaction, restore, and replay gates.
-- Phase status after current wave: **ACTIVE — P3-W0 bounded research closure
-  accepted; no T2/T3 runtime gate has passed**.
+- Phase status after current wave: **ACTIVE — P3-W2-01 in progress; P3-W0
+  bounded research closure accepted; no T2/T3 runtime gate has passed**.
 - Phase exit criteria: T2 one-actor reach/use/cancel/restore/replay evidence,
   T3 crowd/queue/deadlock evidence, and the complete operations choreography
   evidence pass without renderer or asset leakage.
@@ -196,7 +196,22 @@ launched by this invocation.
   `21dc3fc363d2cbb1c3cf9bb459eaaf7619bdcd7a`, handoff commit
   `7ff19c44f8ddd669b5797016f46a0b6931f988a4`
 
-## Remaining Phase 3 leaf tasks after P3-W0
+## Current wave: P3-W2-01 — T2 fixed-tick command pipeline
+
+The selected assignment is a READY leaf task from the current active Phase. No
+later-Phase work was selected to fill unused worker capacity. The one-worker
+count is correct because `P3-W2.1` is the only compatible READY task; W2.2 is
+blocked on its output and no other task may be promoted merely to use capacity.
+
+- Task: `P3-W2.1`
+- Worker session: `019fc0dc-cde8-77d3-9763-8e357dd521f5` / Darwin
+- Branch: `task/session-1-p3-w2-command-pipeline`
+- Worktree: `C:\Users\WINDOW XI\.codex\worktrees\phase3-w2-command-pipeline`
+- Planning commit: `7233ebf40f63190ac166069aedf9c7b30a04707b`
+- Integration branch: `codex/integration/phase3-w2-command-pipeline`
+- Status: **IN_PROGRESS** — worker launched; Main review and integration pending.
+
+## Remaining Phase 3 leaf tasks after P3-W2-01 selection
 
 These tasks are intentionally not selected in this invocation. They remain
 candidate or blocked until the named dependencies are integrated.
@@ -223,7 +238,8 @@ candidate or blocked until the named dependencies are integrated.
 - Validation commands: preflight, package typecheck/test, `npm run check`.
 - Worker-sized scope assessment: one reducer pipeline module and focused tests.
 - Priority: P0.
-- Status: **READY** — recommended next Phase 3 leaf; not launched automatically.
+- Status: **IN_PROGRESS** — selected for the current wave; worker handoff and
+  Main review are pending.
 
 ### P3-W2.2 — Simulation normalization, PRNG, and real state hashes
 
