@@ -115,7 +115,10 @@ No local development server was started, so no server cleanup was required.
 
 - Local integration commit: `7c7fbc4` (final ancestry-preserving merge commit;
   its tree is the fully validated content from `bd5ab4d`).
-- Pushed remote integration commit: pending final branch publication.
+- Pushed remote integration commit: `1b6a4dbd7f3d93353a765f0afb6293e74677f36f`
+  (verified on `origin/codex/integration/phase3-p3-w2-normalization-interaction-lifecycle`).
+- A final metadata-only report commit follows this publication to record the
+  verified push; it does not change implementation or validation content.
 - Remote alignment before publication: `origin/main` and local `main` both at
   `925439a5f6f29580d82767e2177433a35195bc71`; primary did not advance.
 - Pull request: unavailable; `gh` is not installed and no supported GitHub
@@ -123,4 +126,5 @@ No local development server was started, so no server cleanup was required.
   pushed and ready for review/merge.
 - No next wave or next Phase was automatically started.
 - Primary branch remained unchanged.
-- Final Git status: to be recorded after the report commit and branch push.
+- Final Git status: clean after the final metadata-only report commit and its
+  push; exact final remote HEAD is included in the Main handoff.
