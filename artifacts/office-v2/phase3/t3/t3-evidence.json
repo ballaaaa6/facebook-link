@@ -1,0 +1,3147 @@
+{
+  "schemaVersion": "office-t3-integrated-crowd-evidence-v1",
+  "scenarioCount": 3,
+  "scenarios": [
+    {
+      "scenarioId": "p3-t3-one-actor-baseline",
+      "actorCount": 1,
+      "syntheticCapacityActors": false,
+      "adapterBoundary": "The accepted integrated reducer advances activity phase independently of its queue ticket; the crowd adapter therefore drives the existing queues.ts contention ledger after every advanceIntegratedTick and hashes/replays that ledger with reducer state.",
+      "contentionSetup": {
+        "sharedFacility": "shared-review",
+        "narrowDoor": "transit:narrow-door",
+        "limitedResource": "held-prop:review-card",
+        "timeoutActor": "none",
+        "deadlockPolicy": "office-queue-policy-v1",
+        "maxTick": 30
+      },
+      "checkpoints": [
+        {
+          "id": "approaching-narrow-door",
+          "kind": "approaching-narrow-door",
+          "tick": 2,
+          "stateHash": "cd6b58b9de4a72d32d7a960da54e46043f7865b86eeee514ea30aa19b34d8420",
+          "eventSuffixEqual": true,
+          "finalHashEqual": true
+        },
+        {
+          "id": "mid-interaction",
+          "kind": "mid-interaction",
+          "tick": 5,
+          "stateHash": "96b74d6ec3c4976a87d772888958ee85d7ef30a9228d849aa7fdeaa6c83614a3",
+          "eventSuffixEqual": true,
+          "finalHashEqual": true
+        }
+      ],
+      "eventSequence": {
+        "reducer": [
+          {
+            "tick": 1,
+            "kind": "command-accepted",
+            "sourceCommandId": "p3-t3-one-actor-baseline:actor-01:intent:assign-intent:1",
+            "intentId": "p3-t3-one-actor-baseline:actor-01:intent",
+            "sequence": 1
+          },
+          {
+            "tick": 1,
+            "kind": "actor-state-changed",
+            "actorId": "actor-01",
+            "intentId": "p3-t3-one-actor-baseline:actor-01:intent",
+            "state": "planning",
+            "sequence": 2
+          },
+          {
+            "tick": 1,
+            "kind": "actor-state-changed",
+            "actorId": "actor-01",
+            "state": "moving",
+            "intentId": "p3-t3-one-actor-baseline:actor-01:intent",
+            "sequence": 3
+          },
+          {
+            "tick": 2,
+            "kind": "activity-phase",
+            "actorId": "actor-01",
+            "intentId": "p3-t3-one-actor-baseline:actor-01:intent",
+            "phase": "en-route",
+            "sequence": 4
+          },
+          {
+            "tick": 3,
+            "kind": "activity-phase",
+            "actorId": "actor-01",
+            "intentId": "p3-t3-one-actor-baseline:actor-01:intent",
+            "phase": "acquired",
+            "sequence": 5
+          },
+          {
+            "tick": 3,
+            "kind": "actor-state-changed",
+            "actorId": "actor-01",
+            "state": "interacting",
+            "intentId": "p3-t3-one-actor-baseline:actor-01:intent",
+            "sequence": 6
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-01",
+            "state": "moving",
+            "intentId": "p3-t3-one-actor-baseline:actor-01:intent",
+            "sequence": 7
+          },
+          {
+            "tick": 4,
+            "kind": "activity-phase",
+            "actorId": "actor-01",
+            "intentId": "p3-t3-one-actor-baseline:actor-01:intent",
+            "phase": "using",
+            "sequence": 8
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-01",
+            "state": "interacting",
+            "intentId": "p3-t3-one-actor-baseline:actor-01:intent",
+            "sequence": 9
+          },
+          {
+            "tick": 7,
+            "kind": "interaction-completed",
+            "actorId": "actor-01",
+            "intentId": "p3-t3-one-actor-baseline:actor-01:intent",
+            "phase": "released",
+            "reason": "completed",
+            "resourceKeys": [
+              "cell:4,4",
+              "facility:shared-review",
+              "socket:shared-review-use",
+              "transit:narrow-door"
+            ],
+            "sequence": 10
+          }
+        ],
+        "crowd": [
+          {
+            "tick": 4,
+            "kind": "queue-acquired",
+            "actorId": "actor-01",
+            "ticketId": "p3-t3-one-actor-baseline:actor-01:intent:contention-ticket",
+            "sequence": 1
+          },
+          {
+            "tick": 7,
+            "kind": "actor-terminal",
+            "actorId": "actor-01",
+            "reason": "completed",
+            "sequence": 2
+          }
+        ]
+      },
+      "cleanup": {
+        "uninterruptedLeaks": [],
+        "restoredLeaks": [],
+        "passed": true
+      },
+      "uninterruptedFinalHash": "e7d209d3a78e16f59ed9e01be1bdbbe373da5d636bfde3e24deb9018b74a6767",
+      "restoredFinalHash": "e7d209d3a78e16f59ed9e01be1bdbbe373da5d636bfde3e24deb9018b74a6767",
+      "equality": true
+    },
+    {
+      "scenarioId": "p3-t3-ten-actor-contention",
+      "actorCount": 10,
+      "syntheticCapacityActors": false,
+      "adapterBoundary": "The accepted integrated reducer advances activity phase independently of its queue ticket; the crowd adapter therefore drives the existing queues.ts contention ledger after every advanceIntegratedTick and hashes/replays that ledger with reducer state.",
+      "contentionSetup": {
+        "sharedFacility": "shared-review",
+        "narrowDoor": "transit:narrow-door",
+        "limitedResource": "held-prop:review-card",
+        "timeoutActor": "actor-06@tick-12",
+        "deadlockPolicy": "office-queue-policy-v1",
+        "maxTick": 60
+      },
+      "checkpoints": [
+        {
+          "id": "approaching-narrow-door",
+          "kind": "approaching-narrow-door",
+          "tick": 2,
+          "stateHash": "a9296297ac40633e5cb862ac60f4fc3a2ea0a7efe6573ba7833b47ec2abaa7cc",
+          "eventSuffixEqual": true,
+          "finalHashEqual": true
+        },
+        {
+          "id": "shared-queue",
+          "kind": "shared-queue",
+          "tick": 6,
+          "stateHash": "562c5f287b223345ebd4f0420119f028a4040e8855764aa83703689fa1182851",
+          "eventSuffixEqual": true,
+          "finalHashEqual": true
+        },
+        {
+          "id": "deadlock-recovery",
+          "kind": "deadlock-recovery",
+          "tick": 6,
+          "stateHash": "562c5f287b223345ebd4f0420119f028a4040e8855764aa83703689fa1182851",
+          "eventSuffixEqual": true,
+          "finalHashEqual": true
+        },
+        {
+          "id": "mid-interaction",
+          "kind": "mid-interaction",
+          "tick": 9,
+          "stateHash": "82600626d416d1a24d87468ac0fd5b9415a59015343151e4d863e6fda96a3a9e",
+          "eventSuffixEqual": true,
+          "finalHashEqual": true
+        },
+        {
+          "id": "target-removal",
+          "kind": "target-removal",
+          "tick": 10,
+          "stateHash": "7f8894d3b7ea201b29de8136727c24cce3b66ecbd434bf7c0eb42f9fa2ba7fdb",
+          "eventSuffixEqual": true,
+          "finalHashEqual": true
+        }
+      ],
+      "eventSequence": {
+        "reducer": [
+          {
+            "tick": 1,
+            "kind": "command-accepted",
+            "sourceCommandId": "p3-t3-ten-actor-contention:actor-01:intent:assign-intent:1",
+            "intentId": "p3-t3-ten-actor-contention:actor-01:intent",
+            "sequence": 1
+          },
+          {
+            "tick": 1,
+            "kind": "actor-state-changed",
+            "actorId": "actor-01",
+            "intentId": "p3-t3-ten-actor-contention:actor-01:intent",
+            "state": "planning",
+            "sequence": 2
+          },
+          {
+            "tick": 1,
+            "kind": "actor-state-changed",
+            "actorId": "actor-01",
+            "state": "moving",
+            "intentId": "p3-t3-ten-actor-contention:actor-01:intent",
+            "sequence": 3
+          },
+          {
+            "tick": 1,
+            "kind": "command-accepted",
+            "sourceCommandId": "p3-t3-ten-actor-contention:actor-02:intent:assign-intent:1",
+            "intentId": "p3-t3-ten-actor-contention:actor-02:intent",
+            "sequence": 4
+          },
+          {
+            "tick": 1,
+            "kind": "actor-state-changed",
+            "actorId": "actor-02",
+            "intentId": "p3-t3-ten-actor-contention:actor-02:intent",
+            "state": "planning",
+            "sequence": 5
+          },
+          {
+            "tick": 1,
+            "kind": "command-accepted",
+            "sourceCommandId": "p3-t3-ten-actor-contention:actor-03:intent:assign-intent:1",
+            "intentId": "p3-t3-ten-actor-contention:actor-03:intent",
+            "sequence": 6
+          },
+          {
+            "tick": 1,
+            "kind": "actor-state-changed",
+            "actorId": "actor-03",
+            "intentId": "p3-t3-ten-actor-contention:actor-03:intent",
+            "state": "planning",
+            "sequence": 7
+          },
+          {
+            "tick": 1,
+            "kind": "command-accepted",
+            "sourceCommandId": "p3-t3-ten-actor-contention:actor-04:intent:assign-intent:1",
+            "intentId": "p3-t3-ten-actor-contention:actor-04:intent",
+            "sequence": 8
+          },
+          {
+            "tick": 1,
+            "kind": "actor-state-changed",
+            "actorId": "actor-04",
+            "intentId": "p3-t3-ten-actor-contention:actor-04:intent",
+            "state": "planning",
+            "sequence": 9
+          },
+          {
+            "tick": 1,
+            "kind": "command-accepted",
+            "sourceCommandId": "p3-t3-ten-actor-contention:actor-05:intent:assign-intent:1",
+            "intentId": "p3-t3-ten-actor-contention:actor-05:intent",
+            "sequence": 10
+          },
+          {
+            "tick": 1,
+            "kind": "actor-state-changed",
+            "actorId": "actor-05",
+            "intentId": "p3-t3-ten-actor-contention:actor-05:intent",
+            "state": "planning",
+            "sequence": 11
+          },
+          {
+            "tick": 1,
+            "kind": "command-accepted",
+            "sourceCommandId": "p3-t3-ten-actor-contention:actor-06:intent:assign-intent:1",
+            "intentId": "p3-t3-ten-actor-contention:actor-06:intent",
+            "sequence": 12
+          },
+          {
+            "tick": 1,
+            "kind": "actor-state-changed",
+            "actorId": "actor-06",
+            "intentId": "p3-t3-ten-actor-contention:actor-06:intent",
+            "state": "planning",
+            "sequence": 13
+          },
+          {
+            "tick": 1,
+            "kind": "command-accepted",
+            "sourceCommandId": "p3-t3-ten-actor-contention:actor-07:intent:assign-intent:1",
+            "intentId": "p3-t3-ten-actor-contention:actor-07:intent",
+            "sequence": 14
+          },
+          {
+            "tick": 1,
+            "kind": "actor-state-changed",
+            "actorId": "actor-07",
+            "intentId": "p3-t3-ten-actor-contention:actor-07:intent",
+            "state": "planning",
+            "sequence": 15
+          },
+          {
+            "tick": 1,
+            "kind": "command-accepted",
+            "sourceCommandId": "p3-t3-ten-actor-contention:actor-08:intent:assign-intent:1",
+            "intentId": "p3-t3-ten-actor-contention:actor-08:intent",
+            "sequence": 16
+          },
+          {
+            "tick": 1,
+            "kind": "actor-state-changed",
+            "actorId": "actor-08",
+            "intentId": "p3-t3-ten-actor-contention:actor-08:intent",
+            "state": "planning",
+            "sequence": 17
+          },
+          {
+            "tick": 1,
+            "kind": "command-accepted",
+            "sourceCommandId": "p3-t3-ten-actor-contention:actor-09:intent:assign-intent:1",
+            "intentId": "p3-t3-ten-actor-contention:actor-09:intent",
+            "sequence": 18
+          },
+          {
+            "tick": 1,
+            "kind": "actor-state-changed",
+            "actorId": "actor-09",
+            "intentId": "p3-t3-ten-actor-contention:actor-09:intent",
+            "state": "planning",
+            "sequence": 19
+          },
+          {
+            "tick": 1,
+            "kind": "command-accepted",
+            "sourceCommandId": "p3-t3-ten-actor-contention:actor-10:intent:assign-intent:1",
+            "intentId": "p3-t3-ten-actor-contention:actor-10:intent",
+            "sequence": 20
+          },
+          {
+            "tick": 1,
+            "kind": "actor-state-changed",
+            "actorId": "actor-10",
+            "intentId": "p3-t3-ten-actor-contention:actor-10:intent",
+            "state": "planning",
+            "sequence": 21
+          },
+          {
+            "tick": 2,
+            "kind": "command-accepted",
+            "sourceCommandId": "p3-t3-ten-actor-contention:actor-01:intent:cancel-intent:2",
+            "intentId": "p3-t3-ten-actor-contention:actor-01:intent",
+            "sequence": 22
+          },
+          {
+            "tick": 2,
+            "kind": "activity-phase",
+            "actorId": "actor-01",
+            "intentId": "p3-t3-ten-actor-contention:actor-01:intent",
+            "phase": "failed",
+            "reason": "target-removed",
+            "resourceKeys": [
+              "1,4"
+            ],
+            "sequence": 23
+          },
+          {
+            "tick": 2,
+            "kind": "actor-state-changed",
+            "actorId": "actor-02",
+            "state": "moving",
+            "intentId": "p3-t3-ten-actor-contention:actor-02:intent",
+            "sequence": 24
+          },
+          {
+            "tick": 2,
+            "kind": "activity-phase",
+            "actorId": "actor-02",
+            "intentId": "p3-t3-ten-actor-contention:actor-02:intent",
+            "phase": "en-route",
+            "sequence": 25
+          },
+          {
+            "tick": 2,
+            "kind": "actor-state-changed",
+            "actorId": "actor-03",
+            "state": "moving",
+            "intentId": "p3-t3-ten-actor-contention:actor-03:intent",
+            "sequence": 26
+          },
+          {
+            "tick": 2,
+            "kind": "activity-phase",
+            "actorId": "actor-03",
+            "intentId": "p3-t3-ten-actor-contention:actor-03:intent",
+            "phase": "en-route",
+            "sequence": 27
+          },
+          {
+            "tick": 2,
+            "kind": "actor-state-changed",
+            "actorId": "actor-04",
+            "state": "moving",
+            "intentId": "p3-t3-ten-actor-contention:actor-04:intent",
+            "sequence": 28
+          },
+          {
+            "tick": 2,
+            "kind": "activity-phase",
+            "actorId": "actor-04",
+            "intentId": "p3-t3-ten-actor-contention:actor-04:intent",
+            "phase": "en-route",
+            "sequence": 29
+          },
+          {
+            "tick": 2,
+            "kind": "actor-state-changed",
+            "actorId": "actor-05",
+            "state": "moving",
+            "intentId": "p3-t3-ten-actor-contention:actor-05:intent",
+            "sequence": 30
+          },
+          {
+            "tick": 2,
+            "kind": "activity-phase",
+            "actorId": "actor-05",
+            "intentId": "p3-t3-ten-actor-contention:actor-05:intent",
+            "phase": "en-route",
+            "sequence": 31
+          },
+          {
+            "tick": 2,
+            "kind": "actor-state-changed",
+            "actorId": "actor-06",
+            "state": "moving",
+            "intentId": "p3-t3-ten-actor-contention:actor-06:intent",
+            "sequence": 32
+          },
+          {
+            "tick": 2,
+            "kind": "activity-phase",
+            "actorId": "actor-06",
+            "intentId": "p3-t3-ten-actor-contention:actor-06:intent",
+            "phase": "en-route",
+            "sequence": 33
+          },
+          {
+            "tick": 2,
+            "kind": "actor-state-changed",
+            "actorId": "actor-07",
+            "state": "moving",
+            "intentId": "p3-t3-ten-actor-contention:actor-07:intent",
+            "sequence": 34
+          },
+          {
+            "tick": 2,
+            "kind": "activity-phase",
+            "actorId": "actor-07",
+            "intentId": "p3-t3-ten-actor-contention:actor-07:intent",
+            "phase": "en-route",
+            "sequence": 35
+          },
+          {
+            "tick": 2,
+            "kind": "actor-state-changed",
+            "actorId": "actor-08",
+            "state": "moving",
+            "intentId": "p3-t3-ten-actor-contention:actor-08:intent",
+            "sequence": 36
+          },
+          {
+            "tick": 2,
+            "kind": "activity-phase",
+            "actorId": "actor-08",
+            "intentId": "p3-t3-ten-actor-contention:actor-08:intent",
+            "phase": "en-route",
+            "sequence": 37
+          },
+          {
+            "tick": 2,
+            "kind": "actor-state-changed",
+            "actorId": "actor-09",
+            "state": "moving",
+            "intentId": "p3-t3-ten-actor-contention:actor-09:intent",
+            "sequence": 38
+          },
+          {
+            "tick": 2,
+            "kind": "activity-phase",
+            "actorId": "actor-09",
+            "intentId": "p3-t3-ten-actor-contention:actor-09:intent",
+            "phase": "en-route",
+            "sequence": 39
+          },
+          {
+            "tick": 2,
+            "kind": "actor-state-changed",
+            "actorId": "actor-10",
+            "state": "moving",
+            "intentId": "p3-t3-ten-actor-contention:actor-10:intent",
+            "sequence": 40
+          },
+          {
+            "tick": 2,
+            "kind": "activity-phase",
+            "actorId": "actor-10",
+            "intentId": "p3-t3-ten-actor-contention:actor-10:intent",
+            "phase": "en-route",
+            "sequence": 41
+          },
+          {
+            "tick": 3,
+            "kind": "activity-phase",
+            "actorId": "actor-02",
+            "intentId": "p3-t3-ten-actor-contention:actor-02:intent",
+            "phase": "acquired",
+            "sequence": 42
+          },
+          {
+            "tick": 3,
+            "kind": "actor-state-changed",
+            "actorId": "actor-02",
+            "state": "interacting",
+            "intentId": "p3-t3-ten-actor-contention:actor-02:intent",
+            "sequence": 43
+          },
+          {
+            "tick": 3,
+            "kind": "activity-phase",
+            "actorId": "actor-03",
+            "intentId": "p3-t3-ten-actor-contention:actor-03:intent",
+            "phase": "acquired",
+            "sequence": 44
+          },
+          {
+            "tick": 3,
+            "kind": "actor-state-changed",
+            "actorId": "actor-03",
+            "state": "interacting",
+            "intentId": "p3-t3-ten-actor-contention:actor-03:intent",
+            "sequence": 45
+          },
+          {
+            "tick": 3,
+            "kind": "activity-phase",
+            "actorId": "actor-04",
+            "intentId": "p3-t3-ten-actor-contention:actor-04:intent",
+            "phase": "acquired",
+            "sequence": 46
+          },
+          {
+            "tick": 3,
+            "kind": "actor-state-changed",
+            "actorId": "actor-04",
+            "state": "interacting",
+            "intentId": "p3-t3-ten-actor-contention:actor-04:intent",
+            "sequence": 47
+          },
+          {
+            "tick": 3,
+            "kind": "activity-phase",
+            "actorId": "actor-05",
+            "intentId": "p3-t3-ten-actor-contention:actor-05:intent",
+            "phase": "acquired",
+            "sequence": 48
+          },
+          {
+            "tick": 3,
+            "kind": "actor-state-changed",
+            "actorId": "actor-05",
+            "state": "interacting",
+            "intentId": "p3-t3-ten-actor-contention:actor-05:intent",
+            "sequence": 49
+          },
+          {
+            "tick": 3,
+            "kind": "activity-phase",
+            "actorId": "actor-06",
+            "intentId": "p3-t3-ten-actor-contention:actor-06:intent",
+            "phase": "acquired",
+            "sequence": 50
+          },
+          {
+            "tick": 3,
+            "kind": "actor-state-changed",
+            "actorId": "actor-06",
+            "state": "interacting",
+            "intentId": "p3-t3-ten-actor-contention:actor-06:intent",
+            "sequence": 51
+          },
+          {
+            "tick": 3,
+            "kind": "activity-phase",
+            "actorId": "actor-07",
+            "intentId": "p3-t3-ten-actor-contention:actor-07:intent",
+            "phase": "acquired",
+            "sequence": 52
+          },
+          {
+            "tick": 3,
+            "kind": "actor-state-changed",
+            "actorId": "actor-07",
+            "state": "interacting",
+            "intentId": "p3-t3-ten-actor-contention:actor-07:intent",
+            "sequence": 53
+          },
+          {
+            "tick": 3,
+            "kind": "activity-phase",
+            "actorId": "actor-08",
+            "intentId": "p3-t3-ten-actor-contention:actor-08:intent",
+            "phase": "acquired",
+            "sequence": 54
+          },
+          {
+            "tick": 3,
+            "kind": "actor-state-changed",
+            "actorId": "actor-08",
+            "state": "interacting",
+            "intentId": "p3-t3-ten-actor-contention:actor-08:intent",
+            "sequence": 55
+          },
+          {
+            "tick": 3,
+            "kind": "activity-phase",
+            "actorId": "actor-09",
+            "intentId": "p3-t3-ten-actor-contention:actor-09:intent",
+            "phase": "acquired",
+            "sequence": 56
+          },
+          {
+            "tick": 3,
+            "kind": "actor-state-changed",
+            "actorId": "actor-09",
+            "state": "interacting",
+            "intentId": "p3-t3-ten-actor-contention:actor-09:intent",
+            "sequence": 57
+          },
+          {
+            "tick": 3,
+            "kind": "activity-phase",
+            "actorId": "actor-10",
+            "intentId": "p3-t3-ten-actor-contention:actor-10:intent",
+            "phase": "acquired",
+            "sequence": 58
+          },
+          {
+            "tick": 3,
+            "kind": "actor-state-changed",
+            "actorId": "actor-10",
+            "state": "interacting",
+            "intentId": "p3-t3-ten-actor-contention:actor-10:intent",
+            "sequence": 59
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-02",
+            "state": "moving",
+            "intentId": "p3-t3-ten-actor-contention:actor-02:intent",
+            "sequence": 60
+          },
+          {
+            "tick": 4,
+            "kind": "activity-phase",
+            "actorId": "actor-02",
+            "intentId": "p3-t3-ten-actor-contention:actor-02:intent",
+            "phase": "using",
+            "sequence": 61
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-02",
+            "state": "interacting",
+            "intentId": "p3-t3-ten-actor-contention:actor-02:intent",
+            "sequence": 62
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-03",
+            "state": "moving",
+            "intentId": "p3-t3-ten-actor-contention:actor-03:intent",
+            "sequence": 63
+          },
+          {
+            "tick": 4,
+            "kind": "activity-phase",
+            "actorId": "actor-03",
+            "intentId": "p3-t3-ten-actor-contention:actor-03:intent",
+            "phase": "using",
+            "sequence": 64
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-03",
+            "state": "interacting",
+            "intentId": "p3-t3-ten-actor-contention:actor-03:intent",
+            "sequence": 65
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-04",
+            "state": "moving",
+            "intentId": "p3-t3-ten-actor-contention:actor-04:intent",
+            "sequence": 66
+          },
+          {
+            "tick": 4,
+            "kind": "activity-phase",
+            "actorId": "actor-04",
+            "intentId": "p3-t3-ten-actor-contention:actor-04:intent",
+            "phase": "using",
+            "sequence": 67
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-04",
+            "state": "interacting",
+            "intentId": "p3-t3-ten-actor-contention:actor-04:intent",
+            "sequence": 68
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-05",
+            "state": "moving",
+            "intentId": "p3-t3-ten-actor-contention:actor-05:intent",
+            "sequence": 69
+          },
+          {
+            "tick": 4,
+            "kind": "activity-phase",
+            "actorId": "actor-05",
+            "intentId": "p3-t3-ten-actor-contention:actor-05:intent",
+            "phase": "using",
+            "sequence": 70
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-05",
+            "state": "interacting",
+            "intentId": "p3-t3-ten-actor-contention:actor-05:intent",
+            "sequence": 71
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-06",
+            "state": "moving",
+            "intentId": "p3-t3-ten-actor-contention:actor-06:intent",
+            "sequence": 72
+          },
+          {
+            "tick": 4,
+            "kind": "activity-phase",
+            "actorId": "actor-06",
+            "intentId": "p3-t3-ten-actor-contention:actor-06:intent",
+            "phase": "using",
+            "sequence": 73
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-06",
+            "state": "interacting",
+            "intentId": "p3-t3-ten-actor-contention:actor-06:intent",
+            "sequence": 74
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-07",
+            "state": "moving",
+            "intentId": "p3-t3-ten-actor-contention:actor-07:intent",
+            "sequence": 75
+          },
+          {
+            "tick": 4,
+            "kind": "activity-phase",
+            "actorId": "actor-07",
+            "intentId": "p3-t3-ten-actor-contention:actor-07:intent",
+            "phase": "using",
+            "sequence": 76
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-07",
+            "state": "interacting",
+            "intentId": "p3-t3-ten-actor-contention:actor-07:intent",
+            "sequence": 77
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-08",
+            "state": "moving",
+            "intentId": "p3-t3-ten-actor-contention:actor-08:intent",
+            "sequence": 78
+          },
+          {
+            "tick": 4,
+            "kind": "activity-phase",
+            "actorId": "actor-08",
+            "intentId": "p3-t3-ten-actor-contention:actor-08:intent",
+            "phase": "using",
+            "sequence": 79
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-08",
+            "state": "interacting",
+            "intentId": "p3-t3-ten-actor-contention:actor-08:intent",
+            "sequence": 80
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-09",
+            "state": "moving",
+            "intentId": "p3-t3-ten-actor-contention:actor-09:intent",
+            "sequence": 81
+          },
+          {
+            "tick": 4,
+            "kind": "activity-phase",
+            "actorId": "actor-09",
+            "intentId": "p3-t3-ten-actor-contention:actor-09:intent",
+            "phase": "using",
+            "sequence": 82
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-09",
+            "state": "interacting",
+            "intentId": "p3-t3-ten-actor-contention:actor-09:intent",
+            "sequence": 83
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-10",
+            "state": "moving",
+            "intentId": "p3-t3-ten-actor-contention:actor-10:intent",
+            "sequence": 84
+          },
+          {
+            "tick": 4,
+            "kind": "activity-phase",
+            "actorId": "actor-10",
+            "intentId": "p3-t3-ten-actor-contention:actor-10:intent",
+            "phase": "using",
+            "sequence": 85
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-10",
+            "state": "interacting",
+            "intentId": "p3-t3-ten-actor-contention:actor-10:intent",
+            "sequence": 86
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-02",
+            "state": "moving",
+            "intentId": "p3-t3-ten-actor-contention:actor-02:intent",
+            "sequence": 87
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-02",
+            "state": "interacting",
+            "intentId": "p3-t3-ten-actor-contention:actor-02:intent",
+            "sequence": 88
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-03",
+            "state": "moving",
+            "intentId": "p3-t3-ten-actor-contention:actor-03:intent",
+            "sequence": 89
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-03",
+            "state": "interacting",
+            "intentId": "p3-t3-ten-actor-contention:actor-03:intent",
+            "sequence": 90
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-04",
+            "state": "moving",
+            "intentId": "p3-t3-ten-actor-contention:actor-04:intent",
+            "sequence": 91
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-04",
+            "state": "interacting",
+            "intentId": "p3-t3-ten-actor-contention:actor-04:intent",
+            "sequence": 92
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-05",
+            "state": "moving",
+            "intentId": "p3-t3-ten-actor-contention:actor-05:intent",
+            "sequence": 93
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-05",
+            "state": "interacting",
+            "intentId": "p3-t3-ten-actor-contention:actor-05:intent",
+            "sequence": 94
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-06",
+            "state": "moving",
+            "intentId": "p3-t3-ten-actor-contention:actor-06:intent",
+            "sequence": 95
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-06",
+            "state": "interacting",
+            "intentId": "p3-t3-ten-actor-contention:actor-06:intent",
+            "sequence": 96
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-07",
+            "state": "moving",
+            "intentId": "p3-t3-ten-actor-contention:actor-07:intent",
+            "sequence": 97
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-07",
+            "state": "interacting",
+            "intentId": "p3-t3-ten-actor-contention:actor-07:intent",
+            "sequence": 98
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-08",
+            "state": "moving",
+            "intentId": "p3-t3-ten-actor-contention:actor-08:intent",
+            "sequence": 99
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-08",
+            "state": "interacting",
+            "intentId": "p3-t3-ten-actor-contention:actor-08:intent",
+            "sequence": 100
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-09",
+            "state": "moving",
+            "intentId": "p3-t3-ten-actor-contention:actor-09:intent",
+            "sequence": 101
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-09",
+            "state": "interacting",
+            "intentId": "p3-t3-ten-actor-contention:actor-09:intent",
+            "sequence": 102
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-10",
+            "state": "moving",
+            "intentId": "p3-t3-ten-actor-contention:actor-10:intent",
+            "sequence": 103
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-10",
+            "state": "interacting",
+            "intentId": "p3-t3-ten-actor-contention:actor-10:intent",
+            "sequence": 104
+          },
+          {
+            "tick": 6,
+            "kind": "command-accepted",
+            "sourceCommandId": "p3-t3-ten-actor-contention:actor-02:intent:cancel-intent:6",
+            "intentId": "p3-t3-ten-actor-contention:actor-02:intent",
+            "sequence": 105
+          },
+          {
+            "tick": 6,
+            "kind": "activity-phase",
+            "actorId": "actor-02",
+            "intentId": "p3-t3-ten-actor-contention:actor-02:intent",
+            "phase": "failed",
+            "reason": "target-removed",
+            "resourceKeys": [
+              "cell:4,4",
+              "facility:shared-review",
+              "socket:shared-review-use",
+              "transit:narrow-door"
+            ],
+            "sequence": 106
+          },
+          {
+            "tick": 6,
+            "kind": "interaction-completed",
+            "actorId": "actor-03",
+            "intentId": "p3-t3-ten-actor-contention:actor-03:intent",
+            "phase": "released",
+            "reason": "completed",
+            "resourceKeys": [
+              "cell:4,4",
+              "facility:shared-review",
+              "socket:shared-review-use",
+              "transit:narrow-door"
+            ],
+            "sequence": 107
+          },
+          {
+            "tick": 6,
+            "kind": "interaction-completed",
+            "actorId": "actor-04",
+            "intentId": "p3-t3-ten-actor-contention:actor-04:intent",
+            "phase": "released",
+            "reason": "completed",
+            "resourceKeys": [
+              "cell:4,4",
+              "facility:shared-review",
+              "held-prop:review-card",
+              "socket:shared-review-use",
+              "transit:narrow-door"
+            ],
+            "sequence": 108
+          },
+          {
+            "tick": 6,
+            "kind": "interaction-completed",
+            "actorId": "actor-05",
+            "intentId": "p3-t3-ten-actor-contention:actor-05:intent",
+            "phase": "released",
+            "reason": "completed",
+            "resourceKeys": [
+              "cell:4,4",
+              "facility:shared-review",
+              "held-prop:review-card",
+              "socket:shared-review-use",
+              "transit:narrow-door"
+            ],
+            "sequence": 109
+          },
+          {
+            "tick": 6,
+            "kind": "interaction-completed",
+            "actorId": "actor-06",
+            "intentId": "p3-t3-ten-actor-contention:actor-06:intent",
+            "phase": "released",
+            "reason": "completed",
+            "resourceKeys": [
+              "cell:4,4",
+              "facility:shared-review",
+              "socket:shared-review-use",
+              "transit:narrow-door"
+            ],
+            "sequence": 110
+          },
+          {
+            "tick": 6,
+            "kind": "interaction-completed",
+            "actorId": "actor-07",
+            "intentId": "p3-t3-ten-actor-contention:actor-07:intent",
+            "phase": "released",
+            "reason": "completed",
+            "resourceKeys": [
+              "cell:4,4",
+              "facility:shared-review",
+              "socket:shared-review-use",
+              "transit:narrow-door"
+            ],
+            "sequence": 111
+          },
+          {
+            "tick": 6,
+            "kind": "interaction-completed",
+            "actorId": "actor-08",
+            "intentId": "p3-t3-ten-actor-contention:actor-08:intent",
+            "phase": "released",
+            "reason": "completed",
+            "resourceKeys": [
+              "cell:4,4",
+              "facility:shared-review",
+              "socket:shared-review-use",
+              "transit:narrow-door"
+            ],
+            "sequence": 112
+          },
+          {
+            "tick": 6,
+            "kind": "interaction-completed",
+            "actorId": "actor-09",
+            "intentId": "p3-t3-ten-actor-contention:actor-09:intent",
+            "phase": "released",
+            "reason": "completed",
+            "resourceKeys": [
+              "cell:4,4",
+              "facility:shared-review",
+              "socket:shared-review-use",
+              "transit:narrow-door"
+            ],
+            "sequence": 113
+          },
+          {
+            "tick": 6,
+            "kind": "interaction-completed",
+            "actorId": "actor-10",
+            "intentId": "p3-t3-ten-actor-contention:actor-10:intent",
+            "phase": "released",
+            "reason": "completed",
+            "resourceKeys": [
+              "cell:4,4",
+              "facility:shared-review",
+              "socket:shared-review-use",
+              "transit:narrow-door"
+            ],
+            "sequence": 114
+          },
+          {
+            "tick": 10,
+            "kind": "command-accepted",
+            "sourceCommandId": "p3-t3-ten-actor-contention:actor-03:intent:cancel-intent:10",
+            "intentId": "p3-t3-ten-actor-contention:actor-03:intent",
+            "sequence": 115
+          }
+        ],
+        "crowd": [
+          {
+            "tick": 2,
+            "kind": "target-removed",
+            "actorId": "actor-01",
+            "targetId": "remove-moving",
+            "phaseBeforeRemoval": "en-route",
+            "reason": "target-removed",
+            "sequence": 1
+          },
+          {
+            "tick": 2,
+            "kind": "actor-terminal",
+            "actorId": "actor-01",
+            "reason": "target-removed",
+            "sequence": 2
+          },
+          {
+            "tick": 5,
+            "kind": "deadlock-resolution",
+            "victimActorId": "probe-actor-b",
+            "outcome": "yield",
+            "ticketId": "probe-ticket-b",
+            "yieldCell": "probe:yield-b",
+            "sequence": 3
+          },
+          {
+            "tick": 6,
+            "kind": "target-removed",
+            "actorId": "actor-02",
+            "targetId": "shared-review",
+            "phaseBeforeRemoval": "waiting",
+            "reason": "target-removed",
+            "sequence": 4
+          },
+          {
+            "tick": 6,
+            "kind": "actor-terminal",
+            "actorId": "actor-02",
+            "reason": "target-removed",
+            "sequence": 5
+          },
+          {
+            "tick": 6,
+            "kind": "actor-terminal",
+            "actorId": "actor-03",
+            "reason": "completed",
+            "sequence": 6
+          },
+          {
+            "tick": 6,
+            "kind": "actor-terminal",
+            "actorId": "actor-04",
+            "reason": "completed",
+            "sequence": 7
+          },
+          {
+            "tick": 6,
+            "kind": "actor-terminal",
+            "actorId": "actor-05",
+            "reason": "completed",
+            "sequence": 8
+          },
+          {
+            "tick": 6,
+            "kind": "actor-terminal",
+            "actorId": "actor-06",
+            "reason": "completed",
+            "sequence": 9
+          },
+          {
+            "tick": 6,
+            "kind": "actor-terminal",
+            "actorId": "actor-07",
+            "reason": "completed",
+            "sequence": 10
+          },
+          {
+            "tick": 6,
+            "kind": "actor-terminal",
+            "actorId": "actor-08",
+            "reason": "completed",
+            "sequence": 11
+          },
+          {
+            "tick": 6,
+            "kind": "actor-terminal",
+            "actorId": "actor-09",
+            "reason": "completed",
+            "sequence": 12
+          },
+          {
+            "tick": 6,
+            "kind": "actor-terminal",
+            "actorId": "actor-10",
+            "reason": "completed",
+            "sequence": 13
+          },
+          {
+            "tick": 8,
+            "kind": "queue-acquired",
+            "actorId": "actor-03",
+            "ticketId": "p3-t3-ten-actor-contention:actor-03:intent:contention-ticket",
+            "sequence": 14
+          },
+          {
+            "tick": 10,
+            "kind": "target-removed",
+            "actorId": "actor-03",
+            "targetId": "shared-review",
+            "phaseBeforeRemoval": "using",
+            "reason": "target-removed",
+            "sequence": 15
+          },
+          {
+            "tick": 10,
+            "kind": "queue-acquired",
+            "actorId": "actor-05",
+            "ticketId": "p3-t3-ten-actor-contention:actor-05:intent:contention-ticket",
+            "sequence": 16
+          },
+          {
+            "tick": 12,
+            "kind": "actor-terminal",
+            "actorId": "actor-06",
+            "reason": "timeout",
+            "sequence": 17
+          },
+          {
+            "tick": 15,
+            "kind": "queue-acquired",
+            "actorId": "actor-07",
+            "ticketId": "p3-t3-ten-actor-contention:actor-07:intent:contention-ticket",
+            "sequence": 18
+          },
+          {
+            "tick": 20,
+            "kind": "queue-acquired",
+            "actorId": "actor-09",
+            "ticketId": "p3-t3-ten-actor-contention:actor-09:intent:contention-ticket",
+            "sequence": 19
+          },
+          {
+            "tick": 25,
+            "kind": "queue-acquired",
+            "actorId": "actor-10",
+            "ticketId": "p3-t3-ten-actor-contention:actor-10:intent:contention-ticket",
+            "sequence": 20
+          },
+          {
+            "tick": 30,
+            "kind": "queue-acquired",
+            "actorId": "actor-04",
+            "ticketId": "p3-t3-ten-actor-contention:actor-04:intent:contention-ticket",
+            "sequence": 21
+          },
+          {
+            "tick": 35,
+            "kind": "queue-acquired",
+            "actorId": "actor-08",
+            "ticketId": "p3-t3-ten-actor-contention:actor-08:intent:contention-ticket",
+            "sequence": 22
+          }
+        ]
+      },
+      "cleanup": {
+        "uninterruptedLeaks": [],
+        "restoredLeaks": [],
+        "passed": true
+      },
+      "uninterruptedFinalHash": "3d63edeac433ea013f5ae6b9c925fcb7fd9f9e403a69e8741d6ba8ba0ae67f58",
+      "restoredFinalHash": "3d63edeac433ea013f5ae6b9c925fcb7fd9f9e403a69e8741d6ba8ba0ae67f58",
+      "equality": true
+    },
+    {
+      "scenarioId": "p3-t3-fifteen-actor-geometric-capacity",
+      "actorCount": 15,
+      "syntheticCapacityActors": true,
+      "adapterBoundary": "The accepted integrated reducer advances activity phase independently of its queue ticket; the crowd adapter therefore drives the existing queues.ts contention ledger after every advanceIntegratedTick and hashes/replays that ledger with reducer state.",
+      "contentionSetup": {
+        "sharedFacility": "shared-review",
+        "narrowDoor": "transit:narrow-door",
+        "limitedResource": "held-prop:review-card",
+        "timeoutActor": "actor-06@tick-12",
+        "deadlockPolicy": "office-queue-policy-v1",
+        "maxTick": 75
+      },
+      "checkpoints": [
+        {
+          "id": "approaching-narrow-door",
+          "kind": "approaching-narrow-door",
+          "tick": 2,
+          "stateHash": "673139926c5a66ba0267cdbc3656701eb7435357eb720c83e81f6d897e2af7a3",
+          "eventSuffixEqual": true,
+          "finalHashEqual": true
+        },
+        {
+          "id": "shared-queue",
+          "kind": "shared-queue",
+          "tick": 6,
+          "stateHash": "f90ddb1f4d1d32f327a0a43f730830f418431cc76cb9a7f3402689ab0029bef4",
+          "eventSuffixEqual": true,
+          "finalHashEqual": true
+        },
+        {
+          "id": "deadlock-recovery",
+          "kind": "deadlock-recovery",
+          "tick": 6,
+          "stateHash": "f90ddb1f4d1d32f327a0a43f730830f418431cc76cb9a7f3402689ab0029bef4",
+          "eventSuffixEqual": true,
+          "finalHashEqual": true
+        },
+        {
+          "id": "mid-interaction",
+          "kind": "mid-interaction",
+          "tick": 9,
+          "stateHash": "06710e207d2639d1b7381747fe81bb8ea39d245b7cae3f00bcca75f9c61ab8ea",
+          "eventSuffixEqual": true,
+          "finalHashEqual": true
+        },
+        {
+          "id": "target-removal",
+          "kind": "target-removal",
+          "tick": 10,
+          "stateHash": "8456e3df50a303a40beef2e23e9d11a67b22ef57ad6afa5f04ba463869c86079",
+          "eventSuffixEqual": true,
+          "finalHashEqual": true
+        }
+      ],
+      "eventSequence": {
+        "reducer": [
+          {
+            "tick": 1,
+            "kind": "command-accepted",
+            "sourceCommandId": "p3-t3-fifteen-actor-geometric-capacity:actor-01:intent:assign-intent:1",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-01:intent",
+            "sequence": 1
+          },
+          {
+            "tick": 1,
+            "kind": "actor-state-changed",
+            "actorId": "actor-01",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-01:intent",
+            "state": "planning",
+            "sequence": 2
+          },
+          {
+            "tick": 1,
+            "kind": "actor-state-changed",
+            "actorId": "actor-01",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-01:intent",
+            "sequence": 3
+          },
+          {
+            "tick": 1,
+            "kind": "command-accepted",
+            "sourceCommandId": "p3-t3-fifteen-actor-geometric-capacity:actor-02:intent:assign-intent:1",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-02:intent",
+            "sequence": 4
+          },
+          {
+            "tick": 1,
+            "kind": "actor-state-changed",
+            "actorId": "actor-02",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-02:intent",
+            "state": "planning",
+            "sequence": 5
+          },
+          {
+            "tick": 1,
+            "kind": "command-accepted",
+            "sourceCommandId": "p3-t3-fifteen-actor-geometric-capacity:actor-03:intent:assign-intent:1",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-03:intent",
+            "sequence": 6
+          },
+          {
+            "tick": 1,
+            "kind": "actor-state-changed",
+            "actorId": "actor-03",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-03:intent",
+            "state": "planning",
+            "sequence": 7
+          },
+          {
+            "tick": 1,
+            "kind": "command-accepted",
+            "sourceCommandId": "p3-t3-fifteen-actor-geometric-capacity:actor-04:intent:assign-intent:1",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-04:intent",
+            "sequence": 8
+          },
+          {
+            "tick": 1,
+            "kind": "actor-state-changed",
+            "actorId": "actor-04",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-04:intent",
+            "state": "planning",
+            "sequence": 9
+          },
+          {
+            "tick": 1,
+            "kind": "command-accepted",
+            "sourceCommandId": "p3-t3-fifteen-actor-geometric-capacity:actor-05:intent:assign-intent:1",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-05:intent",
+            "sequence": 10
+          },
+          {
+            "tick": 1,
+            "kind": "actor-state-changed",
+            "actorId": "actor-05",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-05:intent",
+            "state": "planning",
+            "sequence": 11
+          },
+          {
+            "tick": 1,
+            "kind": "command-accepted",
+            "sourceCommandId": "p3-t3-fifteen-actor-geometric-capacity:actor-06:intent:assign-intent:1",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-06:intent",
+            "sequence": 12
+          },
+          {
+            "tick": 1,
+            "kind": "actor-state-changed",
+            "actorId": "actor-06",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-06:intent",
+            "state": "planning",
+            "sequence": 13
+          },
+          {
+            "tick": 1,
+            "kind": "command-accepted",
+            "sourceCommandId": "p3-t3-fifteen-actor-geometric-capacity:actor-07:intent:assign-intent:1",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-07:intent",
+            "sequence": 14
+          },
+          {
+            "tick": 1,
+            "kind": "actor-state-changed",
+            "actorId": "actor-07",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-07:intent",
+            "state": "planning",
+            "sequence": 15
+          },
+          {
+            "tick": 1,
+            "kind": "command-accepted",
+            "sourceCommandId": "p3-t3-fifteen-actor-geometric-capacity:actor-08:intent:assign-intent:1",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-08:intent",
+            "sequence": 16
+          },
+          {
+            "tick": 1,
+            "kind": "actor-state-changed",
+            "actorId": "actor-08",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-08:intent",
+            "state": "planning",
+            "sequence": 17
+          },
+          {
+            "tick": 1,
+            "kind": "command-accepted",
+            "sourceCommandId": "p3-t3-fifteen-actor-geometric-capacity:actor-09:intent:assign-intent:1",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-09:intent",
+            "sequence": 18
+          },
+          {
+            "tick": 1,
+            "kind": "actor-state-changed",
+            "actorId": "actor-09",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-09:intent",
+            "state": "planning",
+            "sequence": 19
+          },
+          {
+            "tick": 1,
+            "kind": "command-accepted",
+            "sourceCommandId": "p3-t3-fifteen-actor-geometric-capacity:actor-10:intent:assign-intent:1",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-10:intent",
+            "sequence": 20
+          },
+          {
+            "tick": 1,
+            "kind": "actor-state-changed",
+            "actorId": "actor-10",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-10:intent",
+            "state": "planning",
+            "sequence": 21
+          },
+          {
+            "tick": 1,
+            "kind": "command-accepted",
+            "sourceCommandId": "p3-t3-fifteen-actor-geometric-capacity:actor-11:intent:assign-intent:1",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-11:intent",
+            "sequence": 22
+          },
+          {
+            "tick": 1,
+            "kind": "actor-state-changed",
+            "actorId": "actor-11",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-11:intent",
+            "state": "planning",
+            "sequence": 23
+          },
+          {
+            "tick": 1,
+            "kind": "command-accepted",
+            "sourceCommandId": "p3-t3-fifteen-actor-geometric-capacity:actor-12:intent:assign-intent:1",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-12:intent",
+            "sequence": 24
+          },
+          {
+            "tick": 1,
+            "kind": "actor-state-changed",
+            "actorId": "actor-12",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-12:intent",
+            "state": "planning",
+            "sequence": 25
+          },
+          {
+            "tick": 1,
+            "kind": "command-accepted",
+            "sourceCommandId": "p3-t3-fifteen-actor-geometric-capacity:actor-13:intent:assign-intent:1",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-13:intent",
+            "sequence": 26
+          },
+          {
+            "tick": 1,
+            "kind": "actor-state-changed",
+            "actorId": "actor-13",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-13:intent",
+            "state": "planning",
+            "sequence": 27
+          },
+          {
+            "tick": 1,
+            "kind": "command-accepted",
+            "sourceCommandId": "p3-t3-fifteen-actor-geometric-capacity:actor-14:intent:assign-intent:1",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-14:intent",
+            "sequence": 28
+          },
+          {
+            "tick": 1,
+            "kind": "actor-state-changed",
+            "actorId": "actor-14",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-14:intent",
+            "state": "planning",
+            "sequence": 29
+          },
+          {
+            "tick": 1,
+            "kind": "command-accepted",
+            "sourceCommandId": "p3-t3-fifteen-actor-geometric-capacity:actor-15:intent:assign-intent:1",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-15:intent",
+            "sequence": 30
+          },
+          {
+            "tick": 1,
+            "kind": "actor-state-changed",
+            "actorId": "actor-15",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-15:intent",
+            "state": "planning",
+            "sequence": 31
+          },
+          {
+            "tick": 2,
+            "kind": "command-accepted",
+            "sourceCommandId": "p3-t3-fifteen-actor-geometric-capacity:actor-01:intent:cancel-intent:2",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-01:intent",
+            "sequence": 32
+          },
+          {
+            "tick": 2,
+            "kind": "activity-phase",
+            "actorId": "actor-01",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-01:intent",
+            "phase": "failed",
+            "reason": "target-removed",
+            "resourceKeys": [
+              "1,4"
+            ],
+            "sequence": 33
+          },
+          {
+            "tick": 2,
+            "kind": "actor-state-changed",
+            "actorId": "actor-02",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-02:intent",
+            "sequence": 34
+          },
+          {
+            "tick": 2,
+            "kind": "activity-phase",
+            "actorId": "actor-02",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-02:intent",
+            "phase": "en-route",
+            "sequence": 35
+          },
+          {
+            "tick": 2,
+            "kind": "actor-state-changed",
+            "actorId": "actor-03",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-03:intent",
+            "sequence": 36
+          },
+          {
+            "tick": 2,
+            "kind": "activity-phase",
+            "actorId": "actor-03",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-03:intent",
+            "phase": "en-route",
+            "sequence": 37
+          },
+          {
+            "tick": 2,
+            "kind": "actor-state-changed",
+            "actorId": "actor-04",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-04:intent",
+            "sequence": 38
+          },
+          {
+            "tick": 2,
+            "kind": "activity-phase",
+            "actorId": "actor-04",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-04:intent",
+            "phase": "en-route",
+            "sequence": 39
+          },
+          {
+            "tick": 2,
+            "kind": "actor-state-changed",
+            "actorId": "actor-05",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-05:intent",
+            "sequence": 40
+          },
+          {
+            "tick": 2,
+            "kind": "activity-phase",
+            "actorId": "actor-05",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-05:intent",
+            "phase": "en-route",
+            "sequence": 41
+          },
+          {
+            "tick": 2,
+            "kind": "actor-state-changed",
+            "actorId": "actor-06",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-06:intent",
+            "sequence": 42
+          },
+          {
+            "tick": 2,
+            "kind": "activity-phase",
+            "actorId": "actor-06",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-06:intent",
+            "phase": "en-route",
+            "sequence": 43
+          },
+          {
+            "tick": 2,
+            "kind": "actor-state-changed",
+            "actorId": "actor-07",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-07:intent",
+            "sequence": 44
+          },
+          {
+            "tick": 2,
+            "kind": "activity-phase",
+            "actorId": "actor-07",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-07:intent",
+            "phase": "en-route",
+            "sequence": 45
+          },
+          {
+            "tick": 2,
+            "kind": "actor-state-changed",
+            "actorId": "actor-08",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-08:intent",
+            "sequence": 46
+          },
+          {
+            "tick": 2,
+            "kind": "activity-phase",
+            "actorId": "actor-08",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-08:intent",
+            "phase": "en-route",
+            "sequence": 47
+          },
+          {
+            "tick": 2,
+            "kind": "actor-state-changed",
+            "actorId": "actor-09",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-09:intent",
+            "sequence": 48
+          },
+          {
+            "tick": 2,
+            "kind": "activity-phase",
+            "actorId": "actor-09",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-09:intent",
+            "phase": "en-route",
+            "sequence": 49
+          },
+          {
+            "tick": 2,
+            "kind": "actor-state-changed",
+            "actorId": "actor-10",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-10:intent",
+            "sequence": 50
+          },
+          {
+            "tick": 2,
+            "kind": "activity-phase",
+            "actorId": "actor-10",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-10:intent",
+            "phase": "en-route",
+            "sequence": 51
+          },
+          {
+            "tick": 2,
+            "kind": "actor-state-changed",
+            "actorId": "actor-11",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-11:intent",
+            "sequence": 52
+          },
+          {
+            "tick": 2,
+            "kind": "activity-phase",
+            "actorId": "actor-11",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-11:intent",
+            "phase": "en-route",
+            "sequence": 53
+          },
+          {
+            "tick": 2,
+            "kind": "actor-state-changed",
+            "actorId": "actor-12",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-12:intent",
+            "sequence": 54
+          },
+          {
+            "tick": 2,
+            "kind": "activity-phase",
+            "actorId": "actor-12",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-12:intent",
+            "phase": "en-route",
+            "sequence": 55
+          },
+          {
+            "tick": 2,
+            "kind": "actor-state-changed",
+            "actorId": "actor-13",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-13:intent",
+            "sequence": 56
+          },
+          {
+            "tick": 2,
+            "kind": "activity-phase",
+            "actorId": "actor-13",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-13:intent",
+            "phase": "en-route",
+            "sequence": 57
+          },
+          {
+            "tick": 2,
+            "kind": "actor-state-changed",
+            "actorId": "actor-14",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-14:intent",
+            "sequence": 58
+          },
+          {
+            "tick": 2,
+            "kind": "activity-phase",
+            "actorId": "actor-14",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-14:intent",
+            "phase": "en-route",
+            "sequence": 59
+          },
+          {
+            "tick": 2,
+            "kind": "actor-state-changed",
+            "actorId": "actor-15",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-15:intent",
+            "sequence": 60
+          },
+          {
+            "tick": 2,
+            "kind": "activity-phase",
+            "actorId": "actor-15",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-15:intent",
+            "phase": "en-route",
+            "sequence": 61
+          },
+          {
+            "tick": 3,
+            "kind": "activity-phase",
+            "actorId": "actor-02",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-02:intent",
+            "phase": "acquired",
+            "sequence": 62
+          },
+          {
+            "tick": 3,
+            "kind": "actor-state-changed",
+            "actorId": "actor-02",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-02:intent",
+            "sequence": 63
+          },
+          {
+            "tick": 3,
+            "kind": "activity-phase",
+            "actorId": "actor-03",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-03:intent",
+            "phase": "acquired",
+            "sequence": 64
+          },
+          {
+            "tick": 3,
+            "kind": "actor-state-changed",
+            "actorId": "actor-03",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-03:intent",
+            "sequence": 65
+          },
+          {
+            "tick": 3,
+            "kind": "activity-phase",
+            "actorId": "actor-04",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-04:intent",
+            "phase": "acquired",
+            "sequence": 66
+          },
+          {
+            "tick": 3,
+            "kind": "actor-state-changed",
+            "actorId": "actor-04",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-04:intent",
+            "sequence": 67
+          },
+          {
+            "tick": 3,
+            "kind": "activity-phase",
+            "actorId": "actor-05",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-05:intent",
+            "phase": "acquired",
+            "sequence": 68
+          },
+          {
+            "tick": 3,
+            "kind": "actor-state-changed",
+            "actorId": "actor-05",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-05:intent",
+            "sequence": 69
+          },
+          {
+            "tick": 3,
+            "kind": "activity-phase",
+            "actorId": "actor-06",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-06:intent",
+            "phase": "acquired",
+            "sequence": 70
+          },
+          {
+            "tick": 3,
+            "kind": "actor-state-changed",
+            "actorId": "actor-06",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-06:intent",
+            "sequence": 71
+          },
+          {
+            "tick": 3,
+            "kind": "activity-phase",
+            "actorId": "actor-07",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-07:intent",
+            "phase": "acquired",
+            "sequence": 72
+          },
+          {
+            "tick": 3,
+            "kind": "actor-state-changed",
+            "actorId": "actor-07",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-07:intent",
+            "sequence": 73
+          },
+          {
+            "tick": 3,
+            "kind": "activity-phase",
+            "actorId": "actor-08",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-08:intent",
+            "phase": "acquired",
+            "sequence": 74
+          },
+          {
+            "tick": 3,
+            "kind": "actor-state-changed",
+            "actorId": "actor-08",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-08:intent",
+            "sequence": 75
+          },
+          {
+            "tick": 3,
+            "kind": "activity-phase",
+            "actorId": "actor-09",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-09:intent",
+            "phase": "acquired",
+            "sequence": 76
+          },
+          {
+            "tick": 3,
+            "kind": "actor-state-changed",
+            "actorId": "actor-09",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-09:intent",
+            "sequence": 77
+          },
+          {
+            "tick": 3,
+            "kind": "activity-phase",
+            "actorId": "actor-10",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-10:intent",
+            "phase": "acquired",
+            "sequence": 78
+          },
+          {
+            "tick": 3,
+            "kind": "actor-state-changed",
+            "actorId": "actor-10",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-10:intent",
+            "sequence": 79
+          },
+          {
+            "tick": 3,
+            "kind": "activity-phase",
+            "actorId": "actor-11",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-11:intent",
+            "phase": "acquired",
+            "sequence": 80
+          },
+          {
+            "tick": 3,
+            "kind": "actor-state-changed",
+            "actorId": "actor-11",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-11:intent",
+            "sequence": 81
+          },
+          {
+            "tick": 3,
+            "kind": "activity-phase",
+            "actorId": "actor-12",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-12:intent",
+            "phase": "acquired",
+            "sequence": 82
+          },
+          {
+            "tick": 3,
+            "kind": "actor-state-changed",
+            "actorId": "actor-12",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-12:intent",
+            "sequence": 83
+          },
+          {
+            "tick": 3,
+            "kind": "activity-phase",
+            "actorId": "actor-13",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-13:intent",
+            "phase": "acquired",
+            "sequence": 84
+          },
+          {
+            "tick": 3,
+            "kind": "actor-state-changed",
+            "actorId": "actor-13",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-13:intent",
+            "sequence": 85
+          },
+          {
+            "tick": 3,
+            "kind": "activity-phase",
+            "actorId": "actor-14",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-14:intent",
+            "phase": "acquired",
+            "sequence": 86
+          },
+          {
+            "tick": 3,
+            "kind": "actor-state-changed",
+            "actorId": "actor-14",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-14:intent",
+            "sequence": 87
+          },
+          {
+            "tick": 3,
+            "kind": "activity-phase",
+            "actorId": "actor-15",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-15:intent",
+            "phase": "acquired",
+            "sequence": 88
+          },
+          {
+            "tick": 3,
+            "kind": "actor-state-changed",
+            "actorId": "actor-15",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-15:intent",
+            "sequence": 89
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-02",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-02:intent",
+            "sequence": 90
+          },
+          {
+            "tick": 4,
+            "kind": "activity-phase",
+            "actorId": "actor-02",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-02:intent",
+            "phase": "using",
+            "sequence": 91
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-02",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-02:intent",
+            "sequence": 92
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-03",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-03:intent",
+            "sequence": 93
+          },
+          {
+            "tick": 4,
+            "kind": "activity-phase",
+            "actorId": "actor-03",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-03:intent",
+            "phase": "using",
+            "sequence": 94
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-03",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-03:intent",
+            "sequence": 95
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-04",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-04:intent",
+            "sequence": 96
+          },
+          {
+            "tick": 4,
+            "kind": "activity-phase",
+            "actorId": "actor-04",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-04:intent",
+            "phase": "using",
+            "sequence": 97
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-04",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-04:intent",
+            "sequence": 98
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-05",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-05:intent",
+            "sequence": 99
+          },
+          {
+            "tick": 4,
+            "kind": "activity-phase",
+            "actorId": "actor-05",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-05:intent",
+            "phase": "using",
+            "sequence": 100
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-05",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-05:intent",
+            "sequence": 101
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-06",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-06:intent",
+            "sequence": 102
+          },
+          {
+            "tick": 4,
+            "kind": "activity-phase",
+            "actorId": "actor-06",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-06:intent",
+            "phase": "using",
+            "sequence": 103
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-06",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-06:intent",
+            "sequence": 104
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-07",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-07:intent",
+            "sequence": 105
+          },
+          {
+            "tick": 4,
+            "kind": "activity-phase",
+            "actorId": "actor-07",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-07:intent",
+            "phase": "using",
+            "sequence": 106
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-07",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-07:intent",
+            "sequence": 107
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-08",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-08:intent",
+            "sequence": 108
+          },
+          {
+            "tick": 4,
+            "kind": "activity-phase",
+            "actorId": "actor-08",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-08:intent",
+            "phase": "using",
+            "sequence": 109
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-08",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-08:intent",
+            "sequence": 110
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-09",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-09:intent",
+            "sequence": 111
+          },
+          {
+            "tick": 4,
+            "kind": "activity-phase",
+            "actorId": "actor-09",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-09:intent",
+            "phase": "using",
+            "sequence": 112
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-09",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-09:intent",
+            "sequence": 113
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-10",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-10:intent",
+            "sequence": 114
+          },
+          {
+            "tick": 4,
+            "kind": "activity-phase",
+            "actorId": "actor-10",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-10:intent",
+            "phase": "using",
+            "sequence": 115
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-10",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-10:intent",
+            "sequence": 116
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-11",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-11:intent",
+            "sequence": 117
+          },
+          {
+            "tick": 4,
+            "kind": "activity-phase",
+            "actorId": "actor-11",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-11:intent",
+            "phase": "using",
+            "sequence": 118
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-11",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-11:intent",
+            "sequence": 119
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-12",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-12:intent",
+            "sequence": 120
+          },
+          {
+            "tick": 4,
+            "kind": "activity-phase",
+            "actorId": "actor-12",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-12:intent",
+            "phase": "using",
+            "sequence": 121
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-12",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-12:intent",
+            "sequence": 122
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-13",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-13:intent",
+            "sequence": 123
+          },
+          {
+            "tick": 4,
+            "kind": "activity-phase",
+            "actorId": "actor-13",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-13:intent",
+            "phase": "using",
+            "sequence": 124
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-13",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-13:intent",
+            "sequence": 125
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-14",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-14:intent",
+            "sequence": 126
+          },
+          {
+            "tick": 4,
+            "kind": "activity-phase",
+            "actorId": "actor-14",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-14:intent",
+            "phase": "using",
+            "sequence": 127
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-14",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-14:intent",
+            "sequence": 128
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-15",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-15:intent",
+            "sequence": 129
+          },
+          {
+            "tick": 4,
+            "kind": "activity-phase",
+            "actorId": "actor-15",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-15:intent",
+            "phase": "using",
+            "sequence": 130
+          },
+          {
+            "tick": 4,
+            "kind": "actor-state-changed",
+            "actorId": "actor-15",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-15:intent",
+            "sequence": 131
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-02",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-02:intent",
+            "sequence": 132
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-02",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-02:intent",
+            "sequence": 133
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-03",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-03:intent",
+            "sequence": 134
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-03",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-03:intent",
+            "sequence": 135
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-04",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-04:intent",
+            "sequence": 136
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-04",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-04:intent",
+            "sequence": 137
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-05",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-05:intent",
+            "sequence": 138
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-05",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-05:intent",
+            "sequence": 139
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-06",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-06:intent",
+            "sequence": 140
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-06",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-06:intent",
+            "sequence": 141
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-07",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-07:intent",
+            "sequence": 142
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-07",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-07:intent",
+            "sequence": 143
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-08",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-08:intent",
+            "sequence": 144
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-08",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-08:intent",
+            "sequence": 145
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-09",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-09:intent",
+            "sequence": 146
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-09",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-09:intent",
+            "sequence": 147
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-10",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-10:intent",
+            "sequence": 148
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-10",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-10:intent",
+            "sequence": 149
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-11",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-11:intent",
+            "sequence": 150
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-11",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-11:intent",
+            "sequence": 151
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-12",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-12:intent",
+            "sequence": 152
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-12",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-12:intent",
+            "sequence": 153
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-13",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-13:intent",
+            "sequence": 154
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-13",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-13:intent",
+            "sequence": 155
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-14",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-14:intent",
+            "sequence": 156
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-14",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-14:intent",
+            "sequence": 157
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-15",
+            "state": "moving",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-15:intent",
+            "sequence": 158
+          },
+          {
+            "tick": 5,
+            "kind": "actor-state-changed",
+            "actorId": "actor-15",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-15:intent",
+            "sequence": 159
+          },
+          {
+            "tick": 6,
+            "kind": "command-accepted",
+            "sourceCommandId": "p3-t3-fifteen-actor-geometric-capacity:actor-02:intent:cancel-intent:6",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-02:intent",
+            "sequence": 160
+          },
+          {
+            "tick": 6,
+            "kind": "activity-phase",
+            "actorId": "actor-02",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-02:intent",
+            "phase": "failed",
+            "reason": "target-removed",
+            "resourceKeys": [
+              "cell:4,4",
+              "facility:shared-review",
+              "socket:shared-review-use",
+              "transit:narrow-door"
+            ],
+            "sequence": 161
+          },
+          {
+            "tick": 6,
+            "kind": "interaction-completed",
+            "actorId": "actor-03",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-03:intent",
+            "phase": "released",
+            "reason": "completed",
+            "resourceKeys": [
+              "cell:4,4",
+              "facility:shared-review",
+              "socket:shared-review-use",
+              "transit:narrow-door"
+            ],
+            "sequence": 162
+          },
+          {
+            "tick": 6,
+            "kind": "interaction-completed",
+            "actorId": "actor-04",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-04:intent",
+            "phase": "released",
+            "reason": "completed",
+            "resourceKeys": [
+              "cell:4,4",
+              "facility:shared-review",
+              "held-prop:review-card",
+              "socket:shared-review-use",
+              "transit:narrow-door"
+            ],
+            "sequence": 163
+          },
+          {
+            "tick": 6,
+            "kind": "interaction-completed",
+            "actorId": "actor-05",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-05:intent",
+            "phase": "released",
+            "reason": "completed",
+            "resourceKeys": [
+              "cell:4,4",
+              "facility:shared-review",
+              "held-prop:review-card",
+              "socket:shared-review-use",
+              "transit:narrow-door"
+            ],
+            "sequence": 164
+          },
+          {
+            "tick": 6,
+            "kind": "interaction-completed",
+            "actorId": "actor-06",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-06:intent",
+            "phase": "released",
+            "reason": "completed",
+            "resourceKeys": [
+              "cell:4,4",
+              "facility:shared-review",
+              "socket:shared-review-use",
+              "transit:narrow-door"
+            ],
+            "sequence": 165
+          },
+          {
+            "tick": 6,
+            "kind": "interaction-completed",
+            "actorId": "actor-07",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-07:intent",
+            "phase": "released",
+            "reason": "completed",
+            "resourceKeys": [
+              "cell:4,4",
+              "facility:shared-review",
+              "socket:shared-review-use",
+              "transit:narrow-door"
+            ],
+            "sequence": 166
+          },
+          {
+            "tick": 6,
+            "kind": "interaction-completed",
+            "actorId": "actor-08",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-08:intent",
+            "phase": "released",
+            "reason": "completed",
+            "resourceKeys": [
+              "cell:4,4",
+              "facility:shared-review",
+              "socket:shared-review-use",
+              "transit:narrow-door"
+            ],
+            "sequence": 167
+          },
+          {
+            "tick": 6,
+            "kind": "interaction-completed",
+            "actorId": "actor-09",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-09:intent",
+            "phase": "released",
+            "reason": "completed",
+            "resourceKeys": [
+              "cell:4,4",
+              "facility:shared-review",
+              "socket:shared-review-use",
+              "transit:narrow-door"
+            ],
+            "sequence": 168
+          },
+          {
+            "tick": 6,
+            "kind": "interaction-completed",
+            "actorId": "actor-10",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-10:intent",
+            "phase": "released",
+            "reason": "completed",
+            "resourceKeys": [
+              "cell:4,4",
+              "facility:shared-review",
+              "socket:shared-review-use",
+              "transit:narrow-door"
+            ],
+            "sequence": 169
+          },
+          {
+            "tick": 6,
+            "kind": "interaction-completed",
+            "actorId": "actor-11",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-11:intent",
+            "phase": "released",
+            "reason": "completed",
+            "resourceKeys": [
+              "cell:4,4",
+              "facility:shared-review",
+              "socket:shared-review-use",
+              "transit:narrow-door"
+            ],
+            "sequence": 170
+          },
+          {
+            "tick": 6,
+            "kind": "interaction-completed",
+            "actorId": "actor-12",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-12:intent",
+            "phase": "released",
+            "reason": "completed",
+            "resourceKeys": [
+              "cell:4,4",
+              "facility:shared-review",
+              "socket:shared-review-use",
+              "transit:narrow-door"
+            ],
+            "sequence": 171
+          },
+          {
+            "tick": 6,
+            "kind": "interaction-completed",
+            "actorId": "actor-13",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-13:intent",
+            "phase": "released",
+            "reason": "completed",
+            "resourceKeys": [
+              "cell:4,4",
+              "facility:shared-review",
+              "socket:shared-review-use",
+              "transit:narrow-door"
+            ],
+            "sequence": 172
+          },
+          {
+            "tick": 6,
+            "kind": "interaction-completed",
+            "actorId": "actor-14",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-14:intent",
+            "phase": "released",
+            "reason": "completed",
+            "resourceKeys": [
+              "cell:4,4",
+              "facility:shared-review",
+              "socket:shared-review-use",
+              "transit:narrow-door"
+            ],
+            "sequence": 173
+          },
+          {
+            "tick": 6,
+            "kind": "interaction-completed",
+            "actorId": "actor-15",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-15:intent",
+            "phase": "released",
+            "reason": "completed",
+            "resourceKeys": [
+              "cell:4,4",
+              "facility:shared-review",
+              "socket:shared-review-use",
+              "transit:narrow-door"
+            ],
+            "sequence": 174
+          },
+          {
+            "tick": 10,
+            "kind": "command-accepted",
+            "sourceCommandId": "p3-t3-fifteen-actor-geometric-capacity:actor-03:intent:cancel-intent:10",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-03:intent",
+            "sequence": 175
+          }
+        ],
+        "crowd": [
+          {
+            "tick": 2,
+            "kind": "target-removed",
+            "actorId": "actor-01",
+            "targetId": "remove-moving",
+            "phaseBeforeRemoval": "en-route",
+            "reason": "target-removed",
+            "sequence": 1
+          },
+          {
+            "tick": 2,
+            "kind": "actor-terminal",
+            "actorId": "actor-01",
+            "reason": "target-removed",
+            "sequence": 2
+          },
+          {
+            "tick": 5,
+            "kind": "deadlock-resolution",
+            "victimActorId": "probe-actor-b",
+            "outcome": "blocked",
+            "ticketId": "probe-ticket-b",
+            "sequence": 3
+          },
+          {
+            "tick": 6,
+            "kind": "target-removed",
+            "actorId": "actor-02",
+            "targetId": "shared-review",
+            "phaseBeforeRemoval": "waiting",
+            "reason": "target-removed",
+            "sequence": 4
+          },
+          {
+            "tick": 6,
+            "kind": "actor-terminal",
+            "actorId": "actor-02",
+            "reason": "target-removed",
+            "sequence": 5
+          },
+          {
+            "tick": 6,
+            "kind": "actor-terminal",
+            "actorId": "actor-03",
+            "reason": "completed",
+            "sequence": 6
+          },
+          {
+            "tick": 6,
+            "kind": "actor-terminal",
+            "actorId": "actor-04",
+            "reason": "completed",
+            "sequence": 7
+          },
+          {
+            "tick": 6,
+            "kind": "actor-terminal",
+            "actorId": "actor-05",
+            "reason": "completed",
+            "sequence": 8
+          },
+          {
+            "tick": 6,
+            "kind": "actor-terminal",
+            "actorId": "actor-06",
+            "reason": "completed",
+            "sequence": 9
+          },
+          {
+            "tick": 6,
+            "kind": "actor-terminal",
+            "actorId": "actor-07",
+            "reason": "completed",
+            "sequence": 10
+          },
+          {
+            "tick": 6,
+            "kind": "actor-terminal",
+            "actorId": "actor-08",
+            "reason": "completed",
+            "sequence": 11
+          },
+          {
+            "tick": 6,
+            "kind": "actor-terminal",
+            "actorId": "actor-09",
+            "reason": "completed",
+            "sequence": 12
+          },
+          {
+            "tick": 6,
+            "kind": "actor-terminal",
+            "actorId": "actor-10",
+            "reason": "completed",
+            "sequence": 13
+          },
+          {
+            "tick": 6,
+            "kind": "actor-terminal",
+            "actorId": "actor-11",
+            "reason": "completed",
+            "sequence": 14
+          },
+          {
+            "tick": 6,
+            "kind": "actor-terminal",
+            "actorId": "actor-12",
+            "reason": "completed",
+            "sequence": 15
+          },
+          {
+            "tick": 6,
+            "kind": "actor-terminal",
+            "actorId": "actor-13",
+            "reason": "completed",
+            "sequence": 16
+          },
+          {
+            "tick": 6,
+            "kind": "actor-terminal",
+            "actorId": "actor-14",
+            "reason": "completed",
+            "sequence": 17
+          },
+          {
+            "tick": 6,
+            "kind": "actor-terminal",
+            "actorId": "actor-15",
+            "reason": "completed",
+            "sequence": 18
+          },
+          {
+            "tick": 8,
+            "kind": "queue-acquired",
+            "actorId": "actor-03",
+            "ticketId": "p3-t3-fifteen-actor-geometric-capacity:actor-03:intent:contention-ticket",
+            "sequence": 19
+          },
+          {
+            "tick": 10,
+            "kind": "target-removed",
+            "actorId": "actor-03",
+            "targetId": "shared-review",
+            "phaseBeforeRemoval": "using",
+            "reason": "target-removed",
+            "sequence": 20
+          },
+          {
+            "tick": 10,
+            "kind": "queue-acquired",
+            "actorId": "actor-05",
+            "ticketId": "p3-t3-fifteen-actor-geometric-capacity:actor-05:intent:contention-ticket",
+            "sequence": 21
+          },
+          {
+            "tick": 12,
+            "kind": "actor-terminal",
+            "actorId": "actor-06",
+            "reason": "timeout",
+            "sequence": 22
+          },
+          {
+            "tick": 15,
+            "kind": "queue-acquired",
+            "actorId": "actor-07",
+            "ticketId": "p3-t3-fifteen-actor-geometric-capacity:actor-07:intent:contention-ticket",
+            "sequence": 23
+          },
+          {
+            "tick": 20,
+            "kind": "queue-acquired",
+            "actorId": "actor-09",
+            "ticketId": "p3-t3-fifteen-actor-geometric-capacity:actor-09:intent:contention-ticket",
+            "sequence": 24
+          },
+          {
+            "tick": 25,
+            "kind": "queue-acquired",
+            "actorId": "actor-10",
+            "ticketId": "p3-t3-fifteen-actor-geometric-capacity:actor-10:intent:contention-ticket",
+            "sequence": 25
+          },
+          {
+            "tick": 30,
+            "kind": "queue-acquired",
+            "actorId": "actor-11",
+            "ticketId": "p3-t3-fifteen-actor-geometric-capacity:actor-11:intent:contention-ticket",
+            "sequence": 26
+          },
+          {
+            "tick": 35,
+            "kind": "queue-acquired",
+            "actorId": "actor-13",
+            "ticketId": "p3-t3-fifteen-actor-geometric-capacity:actor-13:intent:contention-ticket",
+            "sequence": 27
+          },
+          {
+            "tick": 40,
+            "kind": "queue-acquired",
+            "actorId": "actor-14",
+            "ticketId": "p3-t3-fifteen-actor-geometric-capacity:actor-14:intent:contention-ticket",
+            "sequence": 28
+          },
+          {
+            "tick": 45,
+            "kind": "queue-acquired",
+            "actorId": "actor-15",
+            "ticketId": "p3-t3-fifteen-actor-geometric-capacity:actor-15:intent:contention-ticket",
+            "sequence": 29
+          },
+          {
+            "tick": 50,
+            "kind": "queue-acquired",
+            "actorId": "actor-04",
+            "ticketId": "p3-t3-fifteen-actor-geometric-capacity:actor-04:intent:contention-ticket",
+            "sequence": 30
+          },
+          {
+            "tick": 55,
+            "kind": "queue-acquired",
+            "actorId": "actor-08",
+            "ticketId": "p3-t3-fifteen-actor-geometric-capacity:actor-08:intent:contention-ticket",
+            "sequence": 31
+          },
+          {
+            "tick": 60,
+            "kind": "queue-acquired",
+            "actorId": "actor-12",
+            "ticketId": "p3-t3-fifteen-actor-geometric-capacity:actor-12:intent:contention-ticket",
+            "sequence": 32
+          }
+        ]
+      },
+      "cleanup": {
+        "uninterruptedLeaks": [],
+        "restoredLeaks": [],
+        "passed": true
+      },
+      "uninterruptedFinalHash": "f21580e0c256579ffb9a0dcd1d5e04615d28e6acc0fe313e013164bdc349ebf5",
+      "restoredFinalHash": "f21580e0c256579ffb9a0dcd1d5e04615d28e6acc0fe313e013164bdc349ebf5",
+      "equality": true
+    }
+  ]
+}

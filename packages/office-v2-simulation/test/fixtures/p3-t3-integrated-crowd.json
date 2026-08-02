@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "office-t3-integrated-crowd-scenarios-v1",
+  "scenarios": [
+    {
+      "id": "p3-t3-one-actor-baseline",
+      "actorCount": 1,
+      "syntheticCapacityActors": false,
+      "sharedQueueReleaseTick": 0,
+      "deadlockTick": 5,
+      "deadlockMode": "yield",
+      "maxTick": 30,
+      "checkpoints": [
+        { "id": "approaching-narrow-door", "kind": "approaching-narrow-door", "tick": 2 },
+        { "id": "mid-interaction", "kind": "mid-interaction", "tick": 5 }
+      ]
+    },
+    {
+      "id": "p3-t3-ten-actor-contention",
+      "actorCount": 10,
+      "syntheticCapacityActors": false,
+      "sharedQueueReleaseTick": 8,
+      "deadlockTick": 5,
+      "deadlockMode": "yield",
+      "maxTick": 60,
+      "checkpoints": [
+        { "id": "approaching-narrow-door", "kind": "approaching-narrow-door", "tick": 2 },
+        { "id": "shared-queue", "kind": "shared-queue", "tick": 6 },
+        { "id": "deadlock-recovery", "kind": "deadlock-recovery", "tick": 6 },
+        { "id": "mid-interaction", "kind": "mid-interaction", "tick": 9 },
+        { "id": "target-removal", "kind": "target-removal", "tick": 10 }
+      ]
+    },
+    {
+      "id": "p3-t3-fifteen-actor-geometric-capacity",
+      "actorCount": 15,
+      "syntheticCapacityActors": true,
+      "sharedQueueReleaseTick": 8,
+      "deadlockTick": 5,
+      "deadlockMode": "block",
+      "maxTick": 75,
+      "checkpoints": [
+        { "id": "approaching-narrow-door", "kind": "approaching-narrow-door", "tick": 2 },
+        { "id": "shared-queue", "kind": "shared-queue", "tick": 6 },
+        { "id": "deadlock-recovery", "kind": "deadlock-recovery", "tick": 6 },
+        { "id": "mid-interaction", "kind": "mid-interaction", "tick": 9 },
+        { "id": "target-removal", "kind": "target-removal", "tick": 10 }
+      ]
+    }
+  ]
+}

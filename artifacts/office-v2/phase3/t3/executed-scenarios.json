@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "office-t3-executed-scenarios-v1",
+  "runtimeVersion": "office-integrated-crowd-v1",
+  "scenarioCount": 3,
+  "actorCounts": [
+    1,
+    10,
+    15
+  ],
+  "scenarioIds": [
+    "p3-t3-one-actor-baseline",
+    "p3-t3-ten-actor-contention",
+    "p3-t3-fifteen-actor-geometric-capacity"
+  ]
+}
