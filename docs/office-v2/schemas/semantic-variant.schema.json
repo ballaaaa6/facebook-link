@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/semantic-variant.schema.json",
+  "title": "Office V2 Character and Facility Semantic Variant",
+  "$defs": {
+    "versionedSlugReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+        "version": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/positiveVersion" }
+      }
+    },
+    "heldProp": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind"],
+      "properties": {
+        "kind": { "enum": ["none", "prop"] },
+        "propId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" }
+      }
+    },
+    "semanticVariantDocument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "variantId", "variantVersion", "characterProfileRef", "identityId", "roleId", "operationalState", "semanticAnimationState", "heldProp", "facilityState", "connectivityMask", "interactionSocketRef", "assetVariantRef", "fallback"],
+      "properties": {
+        "schemaVersion": { "const": "office-semantic-variant-v1" },
+        "variantId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+        "variantVersion": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/positiveVersion" },
+        "characterProfileRef": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/characterProfileReference" },
+        "identityId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+        "roleId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+        "operationalState": { "enum": ["idle", "working", "waiting", "review", "blocked", "unavailable"] },
+        "semanticAnimationState": { "enum": ["standing", "seated", "typing", "drinking", "meeting", "static"] },
+        "heldProp": { "$ref": "#/$defs/heldProp" },
+        "facilityState": { "enum": ["unoccupied", "occupied", "disabled", "offline"] },
+        "connectivityMask": { "type": "integer", "minimum": 0, "maximum": 15 },
+        "interactionSocketRef": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/socketReference" },
+        "assetVariantRef": { "$ref": "#/$defs/versionedSlugReference" },
+        "fallback": { "enum": ["none", "approved-static-same-family"] }
+      }
+    }
+  },
+  "$ref": "#/$defs/semanticVariantDocument"
+}

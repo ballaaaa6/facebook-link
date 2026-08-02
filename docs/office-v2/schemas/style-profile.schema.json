@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/style-profile.schema.json",
+  "title": "Office V2 Measurable Style Profile",
+  "$defs": {
+    "pixelSize": {
+      "type": "object", "additionalProperties": false,
+      "required": ["widthPx", "heightPx"],
+      "properties": { "widthPx": { "type": "integer", "minimum": 1 }, "heightPx": { "type": "integer", "minimum": 1 } }
+    },
+    "padding": {
+      "type": "object", "additionalProperties": false,
+      "required": ["leftPx", "rightPx", "topPx", "bottomPx"],
+      "properties": {
+        "leftPx": { "type": "integer", "minimum": 0 }, "rightPx": { "type": "integer", "minimum": 0 },
+        "topPx": { "type": "integer", "minimum": 0 }, "bottomPx": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "scale": {
+      "type": "object", "additionalProperties": false,
+      "required": ["widthPx", "depthPx", "heightPx"],
+      "properties": {
+        "widthPx": { "type": "integer", "minimum": 1 }, "depthPx": { "type": "integer", "minimum": 1 },
+        "heightPx": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "worldScale": {
+      "type": "object", "additionalProperties": false,
+      "required": ["cellWidthPx", "cellHeightPx", "elevationHeightPx"],
+      "properties": { "cellWidthPx": { "const": 64 }, "cellHeightPx": { "const": 32 }, "elevationHeightPx": { "const": 16 } }
+    },
+    "characterEnvelope": {
+      "type": "object", "additionalProperties": false,
+      "required": ["standing", "seated"],
+      "properties": { "standing": { "$ref": "#/$defs/pixelSize" }, "seated": { "$ref": "#/$defs/pixelSize" } }
+    },
+    "surfaceScale": {
+      "type": "object", "additionalProperties": false,
+      "required": ["desk", "chair", "door", "wall", "window", "floor"],
+      "properties": {
+        "desk": { "$ref": "#/$defs/scale" }, "chair": { "$ref": "#/$defs/scale" },
+        "door": { "$ref": "#/$defs/scale" }, "wall": { "$ref": "#/$defs/scale" },
+        "window": { "$ref": "#/$defs/scale" }, "floor": { "$ref": "#/$defs/scale" }
+      }
+    },
+    "wallCutaway": {
+      "type": "object", "additionalProperties": false,
+      "required": ["wallHeightPx", "cutawayHeightPx", "cutawayPolicy"],
+      "properties": {
+        "wallHeightPx": { "type": "integer", "minimum": 1 },
+        "cutawayHeightPx": { "type": "integer", "minimum": 1 },
+        "cutawayPolicy": { "enum": ["hide-declared-parts", "fade-declared-parts"] }
+      }
+    },
+    "canvasClass": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "size", "padding", "use"],
+      "properties": {
+        "id": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+        "size": { "$ref": "#/$defs/pixelSize" }, "padding": { "$ref": "#/$defs/padding" },
+        "use": { "enum": ["character", "furniture", "structure", "effect"] }
+      }
+    },
+    "paletteRole": {
+      "type": "object", "additionalProperties": false,
+      "required": ["role", "colors", "maximumVarianceSteps"],
+      "properties": {
+        "role": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+        "colors": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "pattern": "^#[0-9a-f]{6}$" } },
+        "maximumVarianceSteps": { "type": "integer", "minimum": 0, "maximum": 32 }
+      }
+    },
+    "palette": {
+      "type": "object", "additionalProperties": false,
+      "required": ["roles", "uncontrolledVarianceMax"],
+      "properties": {
+        "roles": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/paletteRole" } },
+        "uncontrolledVarianceMax": { "type": "integer", "minimum": 0, "maximum": 32 }
+      }
+    },
+    "outline": {
+      "type": "object", "additionalProperties": false,
+      "required": ["widthPx", "colorRole"],
+      "properties": {
+        "widthPx": { "type": "integer", "minimum": 1, "maximum": 3 },
+        "colorRole": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" }
+      }
+    },
+    "lighting": {
+      "type": "object", "additionalProperties": false,
+      "required": ["vectorX", "vectorY", "vectorZ", "policy"],
+      "properties": {
+        "vectorX": { "type": "integer", "minimum": -1, "maximum": 1 }, "vectorY": { "type": "integer", "minimum": -1, "maximum": 1 },
+        "vectorZ": { "type": "integer", "minimum": 0, "maximum": 1 },
+        "policy": { "enum": ["single-key", "single-key-with-local-occlusion"] }
+      }
+    },
+    "shadow": {
+      "type": "object", "additionalProperties": false,
+      "required": ["enabled", "vectorX", "vectorY", "opacitySteps", "separatePart"],
+      "properties": {
+        "enabled": { "type": "boolean" }, "vectorX": { "type": "integer", "minimum": -4, "maximum": 4 },
+        "vectorY": { "type": "integer", "minimum": -4, "maximum": 4 }, "opacitySteps": { "type": "integer", "minimum": 0, "maximum": 16 },
+        "separatePart": { "type": "boolean" }
+      }
+    },
+    "materialEdge": {
+      "type": "object", "additionalProperties": false,
+      "required": ["material", "rule"],
+      "properties": {
+        "material": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+        "rule": { "enum": ["hard-pixel-edge", "single-pixel-bevel", "alpha-separated"] }
+      }
+    },
+    "detailBand": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "minPx", "maxPx", "density"],
+      "properties": {
+        "id": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+        "minPx": { "type": "integer", "minimum": 0 }, "maxPx": { "type": "integer", "minimum": 1 },
+        "density": { "enum": ["sparse", "medium", "dense"] }
+      }
+    },
+    "signage": {
+      "type": "object", "additionalProperties": false,
+      "required": ["fontPolicy", "fallbackRequired", "maximumGlyphWidthPx"],
+      "properties": {
+        "fontPolicy": { "enum": ["project-owned-bitmap", "system-font-for-ui-only"] },
+        "fallbackRequired": { "type": "boolean" }, "maximumGlyphWidthPx": { "type": "integer", "minimum": 1, "maximum": 32 }
+      }
+    },
+    "contactTolerance": {
+      "type": "object", "additionalProperties": false,
+      "required": ["groundPx", "depthPx", "socketPx"],
+      "properties": {
+        "groundPx": { "type": "integer", "minimum": 0, "maximum": 4 }, "depthPx": { "type": "integer", "minimum": 0, "maximum": 4 },
+        "socketPx": { "type": "integer", "minimum": 0, "maximum": 4 }
+      }
+    },
+    "zoomStop": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "scale", "pixelSnap"],
+      "properties": {
+        "id": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+        "scale": { "type": "number", "minimum": 0.25, "maximum": 8 }, "pixelSnap": { "enum": ["integer", "tested-fraction"] }
+      }
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion", "profileId", "profileVersion", "projectionId", "nativePixelDensity", "worldScale",
+    "characterEnvelope", "surfaceScale", "wallCutaway", "canvasClasses", "palette", "outline", "lighting",
+    "shadow", "materialEdges", "detailDensityBands", "signage", "contactTolerance", "zoomStops", "filtering", "reviewState"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "office-style-profile-v1" },
+    "profileId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+    "profileVersion": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/positiveVersion" },
+    "projectionId": { "const": "office-projection-v1" }, "nativePixelDensity": { "type": "integer", "minimum": 1, "maximum": 4 },
+    "worldScale": { "$ref": "#/$defs/worldScale" }, "characterEnvelope": { "$ref": "#/$defs/characterEnvelope" },
+    "surfaceScale": { "$ref": "#/$defs/surfaceScale" }, "wallCutaway": { "$ref": "#/$defs/wallCutaway" },
+    "canvasClasses": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/canvasClass" } },
+    "palette": { "$ref": "#/$defs/palette" }, "outline": { "$ref": "#/$defs/outline" },
+    "lighting": { "$ref": "#/$defs/lighting" }, "shadow": { "$ref": "#/$defs/shadow" },
+    "materialEdges": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/materialEdge" } },
+    "detailDensityBands": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/detailBand" } },
+    "signage": { "$ref": "#/$defs/signage" }, "contactTolerance": { "$ref": "#/$defs/contactTolerance" },
+    "zoomStops": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/zoomStop" } },
+    "filtering": { "const": "nearest" }, "reviewState": { "enum": ["specification", "pending-owner-review", "approved"] }
+  }
+}

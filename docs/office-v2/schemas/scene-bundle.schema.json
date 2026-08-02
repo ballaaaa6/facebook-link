@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/scene-bundle.schema.json",
+  "title": "Office V2 Scene Bundle",
+  "$defs": {
+    "versionedSlugReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+        "version": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/positiveVersion" }
+      }
+    },
+    "assetRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["catalogEntryId", "familyRef", "variantId", "frameRef", "lifecycleGroup"],
+      "properties": {
+        "catalogEntryId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+        "familyRef": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/assetFamilyReference" },
+        "variantId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+        "frameRef": { "$ref": "#/$defs/versionedSlugReference" },
+        "lifecycleGroup": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" }
+      }
+    },
+    "sceneBundleDocument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "bundleId", "bundleVersion", "catalogRef", "floorRef", "assetRefs", "lifecycle", "floorSwitch", "contextRecovery", "missingAssetPolicy", "admission"],
+      "properties": {
+        "schemaVersion": { "const": "office-scene-bundle-v1" },
+        "bundleId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+        "bundleVersion": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/positiveVersion" },
+        "catalogRef": { "$ref": "#/$defs/versionedSlugReference" },
+        "floorRef": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/floorReference" },
+        "assetRefs": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/assetRef" } },
+        "lifecycle": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["preloadOrder", "uploadOrder", "unloadOrder", "abortableLoad", "idempotentUnload", "referenceCounted"],
+          "properties": {
+            "preloadOrder": { "type": "array", "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" } },
+            "uploadOrder": { "type": "array", "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" } },
+            "unloadOrder": { "type": "array", "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" } },
+            "abortableLoad": { "const": true },
+            "idempotentUnload": { "const": true },
+            "referenceCounted": { "const": true }
+          }
+        },
+        "floorSwitch": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["preloadBeforeSwitch", "releaseAfterSwitch", "preserveWorldHash"],
+          "properties": {
+            "preloadBeforeSwitch": { "const": true },
+            "releaseAfterSwitch": { "const": true },
+            "preserveWorldHash": { "const": true }
+          }
+        },
+        "contextRecovery": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["rebuildResources", "renderLatestSnapshot", "preserveSimulationHash", "failClosedOnError"],
+          "properties": {
+            "rebuildResources": { "const": true },
+            "renderLatestSnapshot": { "const": true },
+            "preserveSimulationHash": { "const": true },
+            "failClosedOnError": { "const": true }
+          }
+        },
+        "missingAssetPolicy": { "const": "fail-closed" },
+        "migrationRef": { "$ref": "#/$defs/versionedSlugReference" },
+        "admission": { "enum": ["spec-only", "runtime-approved"] }
+      }
+    }
+  },
+  "$ref": "#/$defs/sceneBundleDocument"
+}

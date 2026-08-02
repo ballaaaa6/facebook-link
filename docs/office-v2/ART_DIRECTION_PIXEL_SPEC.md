@@ -13,13 +13,22 @@ top-down art and it is not an attempt to reproduce a named studio's visual
 identity. `FIRST_FLOOR_BRIEF.md` owns the target scene; this document owns the
 measurable family rules.
 
-## Pending numeric style profile
+## Versioned numeric style profile
 
-Bulk art remains blocked until Phase 1 records a versioned style profile with
-character height, furniture and doorway scale, wall height, native canvas
-classes, palette roles, outline width, light and shadow vector, transparent
-padding, detail-density bands, and supported zoom stops. A reference image or
-adjective is not a measurable style contract.
+`style-profile.schema.json` owns the measurable `office-style-profile-v1`
+contract. It records character standing and seated envelopes, furniture and
+structure scale, wall/cutaway height, native canvas classes, transparent
+padding, palette roles and bounded variance, outline width, light and shadow
+vectors, material-edge rules, detail-density bands, signage/font policy,
+contact/socket tolerance, native scale, zoom stops, and nearest-neighbor
+filtering. The profile is versioned and referenced by exact ID/version from
+asset families and sprite frames.
+
+The Phase 1 fixture is an engineering specification and is not a visual-owner
+approval. A product-owner review must approve generated scale, palette,
+light/shadow, density, and alpha boards before final pixels or a production
+family are admitted. A reference image or adjective is never a measurable
+style contract.
 
 ## Locked family brief
 
@@ -47,6 +56,10 @@ version rather than silent rework.
 - Semi-transparent edge pixels are validated against light and dark boards.
 - Shadows and effects are separate when they need independent depth or state.
 - Decorative overhang never changes geometry metadata.
+- A frame owns only sprite-pixel facts; footprint, clearance, world sockets,
+  use slots, and orientation transforms remain in the referenced geometry.
+- Atlas trimming and rotation are forbidden by the first versioned atlas
+  contract until a later version proves their invariance.
 
 ## Review order
 

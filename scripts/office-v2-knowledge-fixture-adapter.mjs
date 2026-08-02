@@ -32,9 +32,14 @@ import {
   runSimulationNegativeDiagnostics,
 } from "./office-v2-simulation-contract-evidence.mjs";
 import {
+  evaluateAssetPipelineCase,
+  schemaDiagnostic,
+} from "./office-v2-closure-d-evidence.mjs";
+import {
   caseKind,
   compareExpectedDiagnostic,
   mismatch,
+  validateSchema,
 } from "./office-v2-knowledge-evidence.mjs";
 
 function executeCase(context, registration, fixture, entry, ajv) {
@@ -50,6 +55,7 @@ function executeCase(context, registration, fixture, entry, ajv) {
     || (caseRunner === "room-template" && (entry.document || entry.mutation || entry.expectedValid === true))
     || (caseRunner === "scene-plan" && (entry.mutation || entry.expectedValid === true))
     || (caseRunner === "simulation-v2" && typeof entry.kind === "string")
+    || (caseRunner === "asset-v2" && ["schema", "semantic"].includes(entry.kind))
     || (caseRunner === "navigation" && ["path", "reservation"].includes(caseKind(entry)))
   );
   if (!handled) {
@@ -93,6 +99,20 @@ function executeCase(context, registration, fixture, entry, ajv) {
       evaluateScenePlanCase(context, ajv, path, fixture, entry);
     } else if (caseRunner === "simulation-v2") {
       evaluateSimulationContractCase(context, fixture, entry);
+    } else if (caseRunner === "asset-v2") {
+      if (entry.kind === "schema") {
+        const document = entry.document ?? fixture.documents?.find(({ name }) => name === entry.documentName)?.document;
+        const result = validateSchema(context, ajv, entry.schema, document, `${path} (${entry.name})`, entry.expectedValid === true, path);
+        if (entry.expectedValid !== true) {
+          compareExpectedDiagnostic(context, path, entry.expectedFailure, schemaDiagnostic(entry.expectedFailure, path, entry.name));
+          if (result.valid) context.add("knowledge.asset-schema-accepted", `${path} (${entry.name}): rejected asset schema case was accepted`, { fixture: path, caseName: entry.name });
+        }
+      } else {
+        context.evidence.semanticRules += 1;
+        const actual = evaluateAssetPipelineCase(entry, fixture);
+        if (entry.expectedValid === true) mismatch(context, path, entry, "asset semantic diagnostic", actual?.code ?? null, null);
+        else compareExpectedDiagnostic(context, path, entry.expectedFailure, actual);
+      }
     } else if (caseKind(entry) === "path") {
       const result = findPath(fixture, entry);
       mismatch(context, path, entry, "navigation path", result.path, entry.expectedPath);

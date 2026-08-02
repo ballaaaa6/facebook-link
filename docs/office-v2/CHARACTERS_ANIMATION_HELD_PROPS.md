@@ -9,6 +9,14 @@ world/sub-cell sockets. The asset owns frame bounds and pixel contacts that are
 validated against those references. Character appearance never supplies
 operational identity.
 
+`character-definition.schema.json` owns reusable identity and compatibility
+references. `semantic-variant.schema.json` maps an identity/role combination
+to an operational state, semantic animation state, held-prop state, facility
+state, connectivity mask, and interaction socket. These axes are separate so a
+role change does not silently create a new identity or a new durable task.
+Every composite key resolves to an exact versioned asset variant or to an
+explicit static fallback.
+
 ## Minimum animation set
 
 The first character needs only the facings required by the first slice and clips
@@ -51,3 +59,5 @@ understandable without relying only on animation or color.
 - Socket attachment passes all required facings and mirrored cases.
 - Interrupted handoffs leave one declared owner for every held item.
 - Missing clips and assets fail with an identifiable definition and version.
+- Unsupported semantic variants and workstation masks fail with stable
+  diagnostics rather than nearest-looking pixels.

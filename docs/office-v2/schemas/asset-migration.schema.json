@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/asset-migration.schema.json",
+  "title": "Office V2 Asset Migration",
+  "$defs": {
+    "versionedSlugReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+        "version": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/positiveVersion" }
+      }
+    },
+    "mapping": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fromId", "toId", "operation"],
+      "properties": {
+        "fromId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+        "toId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+        "operation": { "enum": ["copy", "rename", "re-export", "remove"] }
+      }
+    },
+    "assetMigrationDocument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "migrationId", "migrationVersion", "fromFamilyRef", "toFamilyRef", "requiredContext", "mapping", "geometryEffect", "failurePolicy"],
+      "properties": {
+        "schemaVersion": { "const": "office-asset-migration-v1" },
+        "migrationId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+        "migrationVersion": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/positiveVersion" },
+        "fromFamilyRef": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/assetFamilyReference" },
+        "toFamilyRef": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/assetFamilyReference" },
+        "requiredContext": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["source-set", "export-recipe", "style-profile", "geometry", "review", "catalog", "scene-bundle"] } },
+        "mapping": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/mapping" } },
+        "geometryEffect": { "enum": ["preserved", "revalidated", "changed-requires-review"] },
+        "failurePolicy": { "enum": ["fail-closed", "requires-explicit-migration"] },
+        "rejectionCodes": { "type": "array", "items": { "type": "string", "pattern": "^[a-z]+(?:\\.[a-z0-9-]+)+$" } }
+      }
+    }
+  },
+  "$ref": "#/$defs/assetMigrationDocument"
+}

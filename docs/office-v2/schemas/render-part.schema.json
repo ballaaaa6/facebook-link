@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/render-part.schema.json",
+  "title": "Office V2 Render Part",
+  "$defs": {
+    "point": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["space", "xPx", "yPx"],
+      "properties": {
+        "space": { "const": "sprite-pixel" },
+        "xPx": { "type": "integer", "minimum": 0 },
+        "yPx": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "renderPartDocument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion", "renderPartId", "renderPartVersion", "assetFamilyRef",
+        "coordinateSpace", "depthContactMode", "siblingOrder", "semanticPickOwner",
+        "hitPolicy", "alphaPolicy", "frameRef"
+      ],
+      "properties": {
+        "schemaVersion": { "const": "office-render-part-v1" },
+        "renderPartId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/renderPartId" },
+        "renderPartVersion": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/positiveVersion" },
+        "assetFamilyRef": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/assetFamilyReference" },
+        "coordinateSpace": { "enum": ["sprite-pixel", "definition-local-pixel"] },
+        "depthContactMode": { "enum": ["ground-contact", "parent-contact", "fixed-band", "effect-contact"] },
+        "depthBand": { "enum": ["world", "upper", "effect", "ui"] },
+        "depthContact": { "$ref": "#/$defs/point" },
+        "parentPartRef": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/renderPartReference" },
+        "attachmentSocketRef": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/socketReference" },
+        "dependencies": { "type": "array", "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/renderPartReference" } },
+        "siblingOrder": { "type": "integer", "minimum": 0 },
+        "semanticPickOwner": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+        "hitPolicy": { "enum": ["entity", "part", "none"] },
+        "alphaPolicy": { "enum": ["opaque", "validated-alpha", "translucent"] },
+        "visibleWhen": { "type": "array", "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" } },
+        "frameRef": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["id", "version"],
+          "properties": {
+            "id": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+            "version": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/positiveVersion" }
+          }
+        }
+      }
+    }
+  },
+  "$ref": "#/$defs/renderPartDocument"
+}
