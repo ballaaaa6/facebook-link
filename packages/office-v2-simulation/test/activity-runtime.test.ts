@@ -68,7 +68,11 @@ test("waits without a partial resource claim, then acquires the complete set", (
 });
 
 test("completes use and releases every resource exactly once", () => {
-  let state = reachedUsing();
+  let state = createActivityRuntime(intent({ heldPropKey: "review-card" }), [facility()], { worldRevision: 12 });
+  state = advanceActivityRuntime(state, 1).state;
+  state = advanceActivityRuntime(state, 2).state;
+  state = advanceActivityRuntime(state, 3).state;
+  assert.equal(state.phase, "using");
   state = advanceActivityRuntime(state, 5).state;
   assert.equal(state.phase, "released");
   assert.equal(state.terminalReason, "completed");
@@ -77,6 +81,7 @@ test("completes use and releases every resource exactly once", () => {
   assert.deepEqual(state.releasedResourceKeys, [
     "cell:floor-one-05-04",
     "facility:review-console",
+    "held-prop:review-card",
     "socket:review-console-use",
   ]);
   const again = cancelActivity(state, 6);

@@ -343,7 +343,16 @@ export function createActivityRuntime(
   const approachCell = selected.approachCells.slice().sort(compare)[0];
   if (approachCell === undefined) return cleanup(base, currentTick, "failed", "unreachable");
   const approachResourceKey = approachCell.startsWith("cell:") ? approachCell : `cell:${approachCell}`;
-  const fullResources = stableUnique([...requestedResourceKeys, `facility:${selected.facilityId}`, `socket:${selected.slotId}`, approachResourceKey]);
+  const heldPropResourceKey = intent.heldPropKey === undefined
+    ? []
+    : [intent.heldPropKey.startsWith("held-prop:") ? intent.heldPropKey : `held-prop:${intent.heldPropKey}`];
+  const fullResources = stableUnique([
+    ...requestedResourceKeys,
+    `facility:${selected.facilityId}`,
+    `socket:${selected.slotId}`,
+    approachResourceKey,
+    ...heldPropResourceKey,
+  ]);
   return { ...base, requestedResourceKeys: fullResources };
 }
 
