@@ -161,6 +161,11 @@ Exit: projection round-trips, invalid-world rejection, rotated placement,
 structural normalization, stable depth, and byte-identical serialization pass
 without React or a renderer library.
 
+Phase 2 executable world-kernel acceptance passed on 2026-08-02 at the
+integration branch. The accepted slice remains pure and headless; persistent
+simulation, renderer, production assets, property/model evidence, and visual
+proof remain deferred to their later gates.
+
 ## Phase 3 — Headless operational vertical slice
 
 - Build one geometric room with one actor, one workstation, one target, blocked

@@ -3,14 +3,14 @@
 Session: 2
 Task: P2-WORLD-02 — Geometry-aware placement and occupancy snapshots
 Worker or session ID: 019fc076-8550-72b3-aa89-7a3b9232d0af
-Status: COMPLETED
+Status: INTEGRATED
 Branch: task/session-2-placement-occupancy
 Worktree: C:\Users\WINDOW XI\.codex\worktrees\7370\shopee link
 Base commit: 249a104114abd135cd1a9a0855821c9722e78b60
 Latest commit: 48f7d170e1b817aa8e071b3d0fdb3ccf3f31b6e4
 Started at: 2026-08-02T10:15:19.9683022+07:00
 Completed at: 2026-08-02T10:28:29.6039974+07:00
-Integrator lock owner: pending
+Integrator lock owner: Session 3 / 019fc076-8582-7db3-ae9f-6425cd4b5068
 
 ## Assigned scope
 
@@ -100,6 +100,8 @@ updated in this worker branch.
 
 ## Handoff instructions
 
-Commit implementation and status together, record the final commit hash and
-actual worktree, then inspect all three statuses before deciding whether to
-claim Final Integrator.
+Implementation commit: 48f7d170e1b817aa8e071b3d0fdb3ccf3f31b6e4. Integrated on
+`codex/integration/phase2-world-kernel` under lock commit
+`738edcc09f9b64c6682ce6a70e6f9be8ab82cab3`; see
+`docs/parallel-work/final-integration-report.md` for the final validation and
+acceptance record.

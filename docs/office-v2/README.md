@@ -101,6 +101,16 @@ results only: reducer/replay remains 0, property/model evidence remains 0,
 asset admission remains basic-only, renderer admission remains none, and no
 runtime asset manifest is admitted.
 
+The pure Phase 2 world-kernel wave integrated on 2026-08-02. Its public
+headless package now exposes deterministic projection and inverse ground
+picking, geometry-aware placement and immutable occupancy snapshots, topology
+and structural-edge normalization, depth ordering with multipart cycle
+rejection, and a versioned canonical world envelope. The integrated acceptance
+record and final report cover 70 Office world tests, the full repository check,
+and canonical target-floor hash evidence. This does not claim a renderer,
+visual proof, runtime asset, persistent simulation, property/model, or crowd
+gate; those remain later controls.
+
 The historical 186-file W1.6 number is closure evidence at the handoff commit.
 The Phase 1 exit handoff, Phase 2 acceptance record, visual style approval
 record, and visual proof risk register were added afterward as administrative

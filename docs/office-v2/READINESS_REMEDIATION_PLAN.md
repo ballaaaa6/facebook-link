@@ -629,6 +629,13 @@ ownership: READINESS_MATRIX.md remains the status authority and this plan
 remains the sequence authority. Every required exit row must pass before the
 Wave 2 persistent reducer is promoted.
 
+The Phase 2 executable world-kernel acceptance passed on 2026-08-02 after
+integrating the three pure worker slices. Projection/inverse picking,
+placement/occupancy, topology and structural-edge normalization, depth
+ordering, reference rejection, and canonical-world hashing are now committed
+evidence. This promotion does not authorize the Wave 2 persistent reducer,
+renderer, production assets, property/model gate, or visual proof.
+
 The focused research closure slices that feed later work are recorded in
 `RESEARCH.md` under "Research closure slices before Phase 3/T2". RC-01 through
 RC-03 must close before the first W2/T2 implementation unit that consumes their

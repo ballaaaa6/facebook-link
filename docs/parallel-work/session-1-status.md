@@ -3,14 +3,14 @@
 Session: 1
 Task: P2-WORLD-01 — Deterministic projection and inverse ground picking
 Worker or session ID: 019fc076-263b-7bc2-9cd1-58f9df4e2bd2
-Status: COMPLETED
+Status: INTEGRATED
 Branch: task/session-1-projection-ground-picking
 Worktree: C:\Users\WINDOW XI\.codex\worktrees\f8f1\shopee link
 Base commit: 249a104114abd135cd1a9a0855821c9722e78b60
 Latest commit: dfa651385741b64d4481df82a2c1c2def229750f
 Started at: 2026-08-02T10:14:32.7523048+07:00
 Completed at: 2026-08-02T10:24:00.2656601+07:00
-Integrator lock owner: pending
+Integrator lock owner: Session 3 / 019fc076-8582-7db3-ae9f-6425cd4b5068
 
 ## Assigned scope
 
@@ -115,6 +115,8 @@ lockfile change was made.
 ## Handoff instructions
 
 Implementation commit: dfa651385741b64d4481df82a2c1c2def229750f. This status
-hash update is a follow-up handoff commit. The worker will inspect the three
-committed statuses after handoff and will not claim Final Integration unless
-the lock protocol permits it.
+hash update is a follow-up handoff commit. Integrated on
+`codex/integration/phase2-world-kernel` under lock commit
+`738edcc09f9b64c6682ce6a70e6f9be8ab82cab3`; see
+`docs/parallel-work/final-integration-report.md` for the final validation and
+acceptance record.

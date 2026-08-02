@@ -28,6 +28,12 @@
   fixture without creating fake staff or fake workflow state.
 - Keep the engine an optional read-only visualization of operational state.
 
+The pure Phase 2 world-kernel wave is integrated and accepted as a headless
+boundary: projection/inverse picking, placement/occupancy, topology, depth,
+reference rejection, and canonical-world evidence are executable and
+deterministic. Persistent simulation, renderer selection, visual proof, and
+runtime asset work remain behind their later gates.
+
 The target is defined in `docs/office-v2/FIRST_FLOOR_BRIEF.md`; detailed gates
 are in `docs/office-v2/IMPLEMENTATION_PLAN.md`. Full first-floor visual expansion
 may continue alongside M3 and M4, but it cannot display a connector or role as
