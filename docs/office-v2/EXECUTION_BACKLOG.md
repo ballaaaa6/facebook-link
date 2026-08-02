@@ -19,10 +19,10 @@ executable leaf tasks and their current status.
   is now integrated. The W2 command, hash, one-actor interaction, lifecycle,
   queue, and replay slices are bounded implementations; reducer-integrated
   crowd and complete operations evidence remain future gates.
-- Phase status before current wave: **ACTIVE — P3-W2-03 integrated; T2/T3 exit
+- Phase status before current wave: **ACTIVE — P3-W3.2 integrated; T2/T3 exit
   criteria remain incomplete**.
-- Phase status after current wave: **ACTIVE — P3-W3.2 integrated; T2/T3 exit
-  criteria remain incomplete**.
+- Phase status after current wave: **ACTIVE — P3-W3.3 selected; integration and
+  T2/T3 exit evidence remain incomplete**.
 - Phase exit criteria: T2 one-actor reach/use/cancel/restore/replay evidence,
   T3 crowd/queue/deadlock evidence, and the complete operations choreography
   evidence pass without renderer or asset leakage.
@@ -251,9 +251,9 @@ Main owns the public barrel, shared documentation, backlog transitions,
 cross-task integration, complete validation, publication, and final reporting.
 Workers stop after their individual commit and handoff.
 
-## Current wave: P3-W3-02 — Operations Snapshot V2 cursor and roster adapter
+## Historical completed wave: P3-W3-02 — Operations Snapshot V2 cursor and roster adapter
 
-The selected assignment is a READY leaf task from the current active Phase. No
+The selected assignment was a READY leaf task from the active Phase. No
 later-Phase work was selected to fill unused worker capacity.
 
 Exactly one compatible READY leaf exists at selection: `P3-W3.2`. It is the
@@ -278,14 +278,39 @@ Wave result: `P3-W3.2` was implemented by Main coordinator recovery after the
 initial worker and same-scope replacement both stalled before changing files.
 The recovered implementation passed review, focused 9/9 tests, the full Office
 V2 gates, and `npm run check`; it is integrated on
-`codex/integration/phase3-p3-w3-02`. No second wave is launched here.
+`codex/integration/phase3-p3-w3-02`.
+
+## Current wave: P3-W3-03 — Fan-out/join and failure choreography
+
+The selected assignment is a READY leaf task from the current active Phase. No
+later-Phase work was selected to fill unused worker capacity.
+
+Exactly one compatible READY leaf exists at selection: `P3-W3.3`. It is the
+dependency-unblocked pure operations choreography boundary after `P3-W3.2` and
+`P3-W2.5`. `P3-W3.4` remains blocked behind this choreography and its other
+listed dependencies. The task has one owned module/test/fixture boundary and
+no selected-wave dependency.
+
+- Wave ID: `P3-W3-03`
+- Wave name: Fan-out/join and failure choreography
+- Worker count: 1
+- Selection status before launch: READY
+- Dispatch transition: `READY → IN_PROGRESS` when the worker begins
+- Integration branch: `codex/integration/phase3-p3-w3-03`
+- Planning and ownership record: `docs/parallel-work/parallel-plan.md`,
+  `docs/parallel-work/ownership.md`, and `docs/parallel-work/interfaces.md`
+
+The selected assignment is a READY leaf task from the current active Phase. No
+later-Phase work was selected to fill unused worker capacity.
+
+The Main Orchestration Session is the sole Final Integrator and Publisher.
+Workers stop after committing and handing off their individual tasks.
 
 ## Phase 3 leaf-task inventory after P3-W2-03 integration and P3-W3-02 selection
 
 This inventory records the leaf-task definitions and statuses. `P3-W3.2` is
-integrated, and only its dependency-unblocked successor is promoted to READY;
-no later-Phase work is used to fill capacity and no next wave is launched in
-this invocation.
+integrated, `P3-W3.3` is selected for the current wave, and `P3-W3.4` remains
+blocked; no later-Phase work is used to fill capacity.
 
 ### P3-W2.1 — Fixed-tick command pipeline and reducer
 
@@ -549,11 +574,10 @@ this invocation.
 
 ## Current-wave stop condition
 
-No second wave is launched in this invocation. The recommended next wave is
-`P3-W3-03`, beginning with READY leaf `P3-W3.3` (fan-out/join and failure
-choreography). `P3-W3.4` remains BLOCKED behind `P3-W3.3` and its other listed
-dependencies. Phase 3 remains active; no phase transition is authorized
-automatically.
+No second wave is launched in this invocation. After `P3-W3.3` is integrated,
+the next candidate is `P3-W3-04`, beginning with `P3-W3.4` only if all of its
+listed dependencies and Phase 3 readiness checks pass. Phase 3 remains active;
+no phase transition is authorized automatically.
 
 ## Selection rule and status transitions
 
