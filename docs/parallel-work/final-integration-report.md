@@ -65,7 +65,11 @@ integration; no shared contract or worker boundary was expanded.
 - Integration conflicts: three expected conflicts occurred only in the worker
   status files while cherry-picking. Main preserved the recovery handoffs and
   session IDs. No implementation conflict remained.
-- Pre-report validated integration commit: `bd5ab4d3d153f12990abef4e93e2d00eaee442aa`.
+- Pre-report validated content commit: `bd5ab4d3d153f12990abef4e93e2d00eaee442aa`.
+- To preserve exact source-worker ancestry as well as the cherry-picked
+  integration equivalents, Main merged the three clean worker branches with
+  no tree changes: `bf603e7` (P3-W2.2), `2cff564` (P3-W2.3), and `7c7fbc4`
+  (P3-W2.6).
 
 ## Validation
 
@@ -109,7 +113,8 @@ No local development server was started, so no server cleanup was required.
 
 ## Publication and final state
 
-- Local integration commit: `bd5ab4d3d153f12990abef4e93e2d00eaee442aa`.
+- Local integration commit: `7c7fbc4` (final ancestry-preserving merge commit;
+  its tree is the fully validated content from `bd5ab4d`).
 - Pushed remote integration commit: pending final branch publication.
 - Remote alignment before publication: `origin/main` and local `main` both at
   `925439a5f6f29580d82767e2177433a35195bc71`; primary did not advance.
