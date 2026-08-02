@@ -15,6 +15,7 @@ export const expectedKnowledge = {
     "SIMULATION_TIME_RANDOMNESS_REPLAY.md", "SIMULATION_PIPELINE_COMMANDS.md",
     "JOBS_INTENTS_ASSIGNMENT.md", "CROWD_QUEUES_AND_DEADLOCKS.md",
     "REPLAY_DEBUGGING_PLAYBOOK.md", "TESTING_ACCEPTANCE_BUDGETS.md",
+    "RENDERER_QA_SPECIFICATION.md",
     "WORLD_COORDINATES_PROJECTION_CAMERA.md", "WORLD_MODEL_OCCUPANCY_PLACEMENT.md",
   ],
   decisions: [
@@ -43,6 +44,10 @@ export const expectedKnowledge = {
     "schemas/simulation-snapshot.schema.json", "schemas/simulation-snapshot-v2.schema.json",
     "schemas/simulation-trace.schema.json", "schemas/simulation-trace-v2.schema.json", "schemas/surface-structure.schema.json",
     "schemas/scene-plan.schema.json", "schemas/world-v2.schema.json", "schemas/world.schema.json", "schemas/p0-resolution-register.schema.json",
+    "schemas/renderer-port.schema.json", "schemas/presentation-snapshot.schema.json",
+    "schemas/renderer-benchmark.schema.json", "schemas/accessibility-fixture.schema.json",
+    "schemas/lifecycle-fixture.schema.json", "schemas/golden-manifest.schema.json",
+    "schemas/property-model-profile.schema.json", "schemas/renderer-benchmark-bundle.schema.json",
   ],
   fixtures: [
     "fixtures/asset-family-valid.json", "fixtures/connected-desk.json", "fixtures/simulation-contracts-v2.json",
@@ -58,6 +63,7 @@ export const expectedKnowledge = {
     "fixtures/room-template-valid.json",
     "fixtures/scene-plan-target-floor.json", "fixtures/invalid/scene-plan-compiler.json",
     "fixtures/room-structure-cutaway.json",
+    "fixtures/renderer-qa-contracts-v1.json", "fixtures/lab/renderer-benchmark-bundle-v1.json",
     "fixtures/invalid/asset-admission.json", "fixtures/invalid/connectivity-missing-mask.json",
     "fixtures/invalid/building-topology-direction-mismatch.json",
     "fixtures/invalid/building-topology-duplicate-floor.json",
@@ -81,6 +87,7 @@ export const expectedKnowledge = {
     "fixtures/invalid/simulation-command-scheduled-past.json",
     "fixtures/invalid/simulation-presentation-state.json", "fixtures/invalid/simulation-catch-up-overflow.json",
     "fixtures/invalid/simulation-missing-yield-cell.json", "fixtures/invalid/simulation-incomplete-migration.json",
+    "fixtures/invalid/renderer-qa-rejections.json",
     "fixtures/invalid/world-overlap.json",
   ],
   templates: [
@@ -115,6 +122,8 @@ export const fixtureRegistry = [
   ["fixtures/room-template-target-floor-envelope.json", "room-template"],
   ["fixtures/room-template-valid.json", "room-template"],
   ["fixtures/scene-plan-target-floor.json", "scene-plan"],
+  ["fixtures/renderer-qa-contracts-v1.json", "renderer-qa"],
+  ["fixtures/lab/renderer-benchmark-bundle-v1.json", "renderer-bundle"],
   ["fixtures/room-structure-cutaway.json", "structure"],
   ["fixtures/invalid/asset-admission.json", null],
   ["fixtures/invalid/building-topology-direction-mismatch.json", null],
@@ -148,5 +157,6 @@ export const fixtureRegistry = [
   ["fixtures/invalid/simulation-catch-up-overflow.json", null],
   ["fixtures/invalid/simulation-missing-yield-cell.json", null],
   ["fixtures/invalid/simulation-incomplete-migration.json", null],
+  ["fixtures/invalid/renderer-qa-rejections.json", "renderer-qa-negative"],
   ["fixtures/invalid/world-overlap.json", null],
 ].map(([path, caseRunner]) => ({ path, caseRunner }));

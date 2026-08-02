@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/renderer-benchmark.schema.json",
+  "title": "Office V2 Renderer Benchmark Protocol",
+  "$defs": {
+    "viewport": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["width", "height"],
+      "properties": { "width": { "enum": [1440, 1024, 390] }, "height": { "enum": [900, 768, 844] } }
+    },
+    "samplePlan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["warmupFrames", "samples", "repetitions", "runKinds", "variancePolicy", "winnerRule"],
+      "properties": {
+        "warmupFrames": { "const": 120 },
+        "samples": { "const": 300 },
+        "repetitions": { "const": 5 },
+        "runKinds": { "type": "array", "minItems": 2, "uniqueItems": true, "items": { "enum": ["cold", "warm"] } },
+        "variancePolicy": { "const": "report-and-exclude-invalid-runs" },
+        "winnerRule": { "const": "deferred-until-valid-numeric-lifecycle-and-semantic-evidence" }
+      }
+    },
+    "migration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fromVersion", "effect"],
+      "properties": { "fromVersion": { "const": "office-renderer-benchmark-v0" }, "effect": { "const": "new-protocol-and-report" } }
+    },
+    "benchmarkDocument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "benchmarkId", "candidateRenderers", "actorProfiles", "viewports", "metrics", "samplePlan", "sceneHash", "snapshotHash", "bundleHash", "status", "winner", "migration"],
+      "properties": {
+        "schemaVersion": { "const": "office-renderer-benchmark-v1" },
+        "benchmarkId": { "const": "office-renderer-benchmark-v1" },
+        "candidateRenderers": { "type": "array", "minItems": 2, "maxItems": 2, "uniqueItems": true, "items": { "enum": ["canvas-2d", "pixijs-8.19.0"] } },
+        "actorProfiles": { "type": "array", "minItems": 5, "uniqueItems": true, "items": { "enum": [1, 10, 15, 25, 50] } },
+        "viewports": { "type": "array", "minItems": 3, "uniqueItems": true, "items": { "$ref": "#/$defs/viewport" } },
+        "metrics": { "type": "array", "minItems": 13, "uniqueItems": true, "items": { "enum": ["tick-p50", "tick-p95", "render-p50", "render-p95", "draw-calls", "visible-sprites", "decoded-memory-estimate", "gpu-memory-estimate", "bundle-contribution", "load-time", "first-interactive", "pick-latency", "inspector-latency", "resize-hidden-resume", "remount-cleanup", "context-recovery"] } },
+        "samplePlan": { "$ref": "#/$defs/samplePlan" },
+        "sceneHash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "snapshotHash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "bundleHash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "status": { "const": "protocol-only" },
+        "winner": { "const": null },
+        "migration": { "$ref": "#/$defs/migration" }
+      }
+    }
+  },
+  "$ref": "#/$defs/benchmarkDocument"
+}

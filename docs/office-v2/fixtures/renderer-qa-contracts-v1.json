@@ -1,0 +1,168 @@
+{
+  "schemaVersion": "office-renderer-qa-fixture-v1",
+  "contracts": {
+    "rendererPort": {
+      "schemaVersion": "office-renderer-port-v1",
+      "contractId": "office-renderer-port-v1",
+      "owner": "presentation",
+      "operations": [
+        { "name": "mount", "effect": "presentation-only", "idempotent": true },
+        { "name": "renderSnapshot", "effect": "presentation-only", "idempotent": true },
+        { "name": "setCamera", "effect": "presentation-only", "idempotent": true },
+        { "name": "pickSemantic", "effect": "presentation-only", "idempotent": true },
+        { "name": "resize", "effect": "presentation-only", "idempotent": true },
+        { "name": "loadBundle", "effect": "presentation-only", "idempotent": true },
+        { "name": "unloadBundle", "effect": "presentation-only", "idempotent": true },
+        { "name": "swapBundle", "effect": "presentation-only", "idempotent": true },
+        { "name": "showMissingAsset", "effect": "presentation-only", "idempotent": true },
+        { "name": "captureDeterministic", "effect": "presentation-only", "idempotent": true },
+        { "name": "handleContextLoss", "effect": "presentation-only", "idempotent": true },
+        { "name": "teardown", "effect": "presentation-only", "idempotent": true },
+        { "name": "remount", "effect": "presentation-only", "idempotent": true }
+      ],
+      "loadPolicy": { "abortable": true, "handlePolicy": "idempotent-reference-counted", "teardownSettlesPendingLoads": true },
+      "missingAssetPolicy": "visible-fail-closed-inspector-independent",
+      "diagnostics": [
+        { "code": "presentation.renderer-port-contract-invalid", "owner": "presentation" },
+        { "code": "presentation.snapshot-owned-state-forbidden", "owner": "presentation" }
+      ],
+      "migration": { "fromVersion": "office-renderer-port-v0", "effect": "reject-with-new-contract" }
+    },
+    "presentationSnapshot": {
+      "schemaVersion": "office-presentation-snapshot-v1",
+      "snapshotId": { "kind": "snapshot", "value": "snapshot-renderer-qa" },
+      "world": { "id": "hq-ground-floor-v1", "version": 1 },
+      "tick": 42,
+      "worldHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "entities": [
+        {
+          "entityId": { "kind": "entity-instance", "value": "market-scout" },
+          "transform": {
+            "floor": { "id": { "kind": "floor", "value": "ground-floor" }, "version": 1 },
+            "position": { "space": "floor-local-sub-cell", "floor": { "id": { "kind": "floor", "value": "ground-floor" }, "version": 1 }, "coordinate": { "space": "sub-cell", "x": 4, "y": 8, "elevation": 0 } }
+          },
+          "semanticState": "working",
+          "renderParts": ["actor-body-v1", "actor-feedback-v1"],
+          "label": "Market Scout",
+          "selection": { "selected": true, "focused": true },
+          "freshness": "live"
+        }
+      ],
+      "migration": { "fromVersion": "office-presentation-snapshot-v0", "effect": "reject-and-rehash" }
+    },
+    "benchmark": {
+      "schemaVersion": "office-renderer-benchmark-v1",
+      "benchmarkId": "office-renderer-benchmark-v1",
+      "candidateRenderers": ["canvas-2d", "pixijs-8.19.0"],
+      "actorProfiles": [1, 10, 15, 25, 50],
+      "viewports": [{ "width": 1440, "height": 900 }, { "width": 1024, "height": 768 }, { "width": 390, "height": 844 }],
+      "metrics": ["tick-p50", "tick-p95", "render-p50", "render-p95", "draw-calls", "visible-sprites", "decoded-memory-estimate", "gpu-memory-estimate", "bundle-contribution", "load-time", "first-interactive", "pick-latency", "inspector-latency", "resize-hidden-resume", "remount-cleanup", "context-recovery"],
+      "samplePlan": { "warmupFrames": 120, "samples": 300, "repetitions": 5, "runKinds": ["cold", "warm"], "variancePolicy": "report-and-exclude-invalid-runs", "winnerRule": "deferred-until-valid-numeric-lifecycle-and-semantic-evidence" },
+      "sceneHash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "snapshotHash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "bundleHash": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "status": "protocol-only",
+      "winner": null,
+      "migration": { "fromVersion": "office-renderer-benchmark-v0", "effect": "new-protocol-and-report" }
+    },
+    "accessibility": {
+      "schemaVersion": "office-accessibility-fixture-v1",
+      "fixtureId": "office-accessibility-fixture-v1",
+      "actorProfiles": [1, 10, 15],
+      "operationalStates": ["working", "waiting", "review", "blocked", "unavailable", "idle"],
+      "requirements": { "semanticDom": true, "focusSynchronization": true, "keyboardTraversal": true, "inspectorParity": true, "nonColorCues": true, "reducedMotion": true, "forcedColors": true, "viewportParity": true },
+      "cases": [
+        { "caseId": "semantic-tree", "kind": "semantic-tree", "expected": "pass" },
+        { "caseId": "keyboard-order", "kind": "keyboard-order", "expected": "pass" },
+        { "caseId": "pointer-keyboard", "kind": "pointer-keyboard-parity", "expected": "same-inspector" },
+        { "caseId": "focus-refresh", "kind": "focus-refresh", "expected": "pass" },
+        { "caseId": "focus-removal", "kind": "focus-removal", "expected": "focus-next-stable" },
+        { "caseId": "non-color", "kind": "non-color", "expected": "state-readable-without-color" },
+        { "caseId": "reduced-motion", "kind": "reduced-motion", "expected": "pass" },
+        { "caseId": "forced-colors", "kind": "forced-colors", "expected": "pass" },
+        { "caseId": "stale-disabled-removed", "kind": "stale-disabled-removed", "expected": "pass" },
+        { "caseId": "long-label", "kind": "long-label", "expected": "pass" }
+      ],
+      "migration": { "fromVersion": "office-accessibility-fixture-v0", "effect": "block-uncovered-acceptance-case" }
+    },
+    "lifecycle": {
+      "schemaVersion": "office-renderer-lifecycle-v1",
+      "fixtureId": "office-renderer-lifecycle-v1",
+      "states": ["mounted", "visible", "hidden", "restoring", "destroyed"],
+      "events": ["mount", "show", "hide", "pagehide", "pageshow", "bfcache-restore", "unmount-during-load", "teardown", "remount", "context-lost", "context-restored"],
+      "transitions": [
+        { "from": "mounted", "event": "show", "to": "visible" },
+        { "from": "visible", "event": "hide", "to": "hidden" },
+        { "from": "hidden", "event": "pageshow", "to": "restoring" },
+        { "from": "restoring", "event": "bfcache-restore", "to": "visible" },
+        { "from": "visible", "event": "pagehide", "to": "hidden" },
+        { "from": "mounted", "event": "unmount-during-load", "to": "destroyed" },
+        { "from": "visible", "event": "teardown", "to": "destroyed" },
+        { "from": "destroyed", "event": "remount", "to": "mounted" },
+        { "from": "visible", "event": "context-lost", "to": "restoring" },
+        { "from": "restoring", "event": "context-restored", "to": "visible" }
+      ],
+      "resourceInvariant": { "afterDestroy": "zero", "pendingLoads": 0, "animationFrames": 0, "listeners": 0, "pollers": 0, "subscriptions": 0, "intents": 0, "resourceHandles": 0 },
+      "migration": { "fromVersion": "office-renderer-lifecycle-v0", "effect": "reject-and-rerun-cleanup-fixture" }
+    },
+    "golden": {
+      "schemaVersion": "office-golden-manifest-v1",
+      "manifestId": "office-golden-manifest-v1",
+      "browser": "chromium-locked-lab",
+      "fontSet": "office-fonts-v1",
+      "viewport": { "width": 1440, "height": 900 },
+      "camera": "camera-fixture-v1",
+      "tick": 42,
+      "seed": 20260801,
+      "animationTime": 4.2,
+      "worldHash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "snapshotHash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "projectionProfile": "office-projection-v1",
+      "styleProfile": "style-profile-pending-v1",
+      "testFamily": "synthetic-geometric-family-v1",
+      "testAtlas": "synthetic-test-atlas-v1",
+      "testCatalog": "synthetic-test-catalog-v1",
+      "testBundle": "office-renderer-benchmark-bundle-v1",
+      "rendererRevision": "renderer-revision-pending",
+      "osImage": "windows-pilot-image-pending",
+      "locale": "en-US",
+      "dpr": 1,
+      "fontHashes": ["1111111111111111111111111111111111111111111111111111111111111111"],
+      "forcedColor": "none",
+      "reducedMotion": "no-preference",
+      "threshold": { "pixelDifference": 0.01, "reviewRequired": true },
+      "reviewer": "qa-owner-pending",
+      "updatePolicy": "normal-checks-never-rewrite",
+      "geometryIndependent": true,
+      "migration": { "fromVersion": "office-golden-manifest-v0", "effect": "new-reviewed-golden-set" }
+    },
+    "propertyModel": {
+      "schemaVersion": "office-property-model-profile-v1",
+      "profileId": "office-property-model-profile-v1",
+      "library": { "name": "fast-check", "version": "4.9.0", "license": "MIT", "installed": false, "admitted": false },
+      "randomType": "xorshift128plus",
+      "ciSeed": 20260801,
+      "ciRuns": 100,
+      "explorationRuns": 1000,
+      "shrinkPath": "retain-in-failure-artifact",
+      "counterexamplePromotion": "minimized-failure-becomes-versioned-fixture",
+      "models": [
+        { "kind": "depth", "reference": "independent-depth-sort-model-v1", "independent": true },
+        { "kind": "picking", "reference": "independent-semantic-picking-model-v1", "independent": true },
+        { "kind": "lifecycle", "reference": "independent-resource-lifecycle-model-v1", "independent": true }
+      ],
+      "status": "profile-only",
+      "evidenceClaimed": false,
+      "migration": { "fromVersion": "office-property-model-profile-v0", "effect": "new-seeded-profile-and-report" }
+    }
+  },
+  "cases": [
+    { "name": "renderer-port-contract", "kind": "renderer-port", "documentKey": "rendererPort", "expected": "presentation-only" },
+    { "name": "immutable-presentation-snapshot", "kind": "presentation-snapshot", "documentKey": "presentationSnapshot", "expected": "derived-fields-only" },
+    { "name": "benchmark-protocol-frozen", "kind": "benchmark", "documentKey": "benchmark", "expected": "protocol-only" },
+    { "name": "accessibility-coverage", "kind": "accessibility", "documentKey": "accessibility", "expected": "all-required-cases" },
+    { "name": "lifecycle-cleanup-invariant", "kind": "lifecycle", "documentKey": "lifecycle", "expected": "zero-after-destroy" },
+    { "name": "golden-manifest-pinned", "kind": "golden", "documentKey": "golden", "expected": "normal-checks-never-rewrite" },
+    { "name": "property-model-profile-pinned", "kind": "property-model", "documentKey": "propertyModel", "expected": "profile-only" }
+  ]
+}

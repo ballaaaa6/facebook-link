@@ -32,6 +32,11 @@ import {
   runSimulationNegativeDiagnostics,
 } from "./office-v2-simulation-contract-evidence.mjs";
 import {
+  evaluateRendererQaCase,
+  evaluateRendererQaNegativeDiagnostic,
+  rendererQaRejectionFixturePath,
+} from "./office-v2-renderer-qa-evidence.mjs";
+import {
   caseKind,
   compareExpectedDiagnostic,
   mismatch,
@@ -50,6 +55,9 @@ function executeCase(context, registration, fixture, entry, ajv) {
     || (caseRunner === "room-template" && (entry.document || entry.mutation || entry.expectedValid === true))
     || (caseRunner === "scene-plan" && (entry.mutation || entry.expectedValid === true))
     || (caseRunner === "simulation-v2" && typeof entry.kind === "string")
+    || (caseRunner === "renderer-qa" && typeof entry.kind === "string")
+    || (caseRunner === "renderer-bundle" && entry.kind === "synthetic-bundle")
+    || (caseRunner === "renderer-qa-negative" && typeof entry.kind === "string")
     || (caseRunner === "navigation" && ["path", "reservation"].includes(caseKind(entry)))
   );
   if (!handled) {
@@ -93,6 +101,10 @@ function executeCase(context, registration, fixture, entry, ajv) {
       evaluateScenePlanCase(context, ajv, path, fixture, entry);
     } else if (caseRunner === "simulation-v2") {
       evaluateSimulationContractCase(context, fixture, entry);
+    } else if (caseRunner === "renderer-qa" || caseRunner === "renderer-bundle") {
+      evaluateRendererQaCase(context, fixture, entry);
+    } else if (caseRunner === "renderer-qa-negative") {
+      compareExpectedDiagnostic(context, rendererQaRejectionFixturePath, entry.expectedFailure, evaluateRendererQaNegativeDiagnostic(entry));
     } else if (caseKind(entry) === "path") {
       const result = findPath(fixture, entry);
       mismatch(context, path, entry, "navigation path", result.path, entry.expectedPath);

@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/renderer-port.schema.json",
+  "title": "Office V2 Renderer Port Contract",
+  "$defs": {
+    "operation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "effect", "idempotent"],
+      "properties": {
+        "name": { "enum": ["mount", "renderSnapshot", "setCamera", "pickSemantic", "resize", "loadBundle", "unloadBundle", "swapBundle", "showMissingAsset", "captureDeterministic", "handleContextLoss", "teardown", "remount"] },
+        "effect": { "const": "presentation-only" },
+        "idempotent": { "type": "boolean" }
+      }
+    },
+    "diagnostic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "owner"],
+      "properties": {
+        "code": { "type": "string", "pattern": "^presentation\\.[a-z0-9.-]+$" },
+        "owner": { "const": "presentation" }
+      }
+    },
+    "migration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fromVersion", "effect"],
+      "properties": {
+        "fromVersion": { "const": "office-renderer-port-v0" },
+        "effect": { "const": "reject-with-new-contract" }
+      }
+    },
+    "portDocument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "contractId", "owner", "operations", "loadPolicy", "missingAssetPolicy", "diagnostics", "migration"],
+      "properties": {
+        "schemaVersion": { "const": "office-renderer-port-v1" },
+        "contractId": { "const": "office-renderer-port-v1" },
+        "owner": { "const": "presentation" },
+        "operations": { "type": "array", "minItems": 13, "uniqueItems": true, "items": { "$ref": "#/$defs/operation" } },
+        "loadPolicy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["abortable", "handlePolicy", "teardownSettlesPendingLoads"],
+          "properties": {
+            "abortable": { "const": true },
+            "handlePolicy": { "const": "idempotent-reference-counted" },
+            "teardownSettlesPendingLoads": { "const": true }
+          }
+        },
+        "missingAssetPolicy": { "const": "visible-fail-closed-inspector-independent" },
+        "diagnostics": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/diagnostic" } },
+        "migration": { "$ref": "#/$defs/migration" }
+      }
+    }
+  },
+  "$ref": "#/$defs/portDocument"
+}

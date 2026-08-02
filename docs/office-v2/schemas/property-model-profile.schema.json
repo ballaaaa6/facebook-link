@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/property-model-profile.schema.json",
+  "title": "Office V2 Property and Model Test Profile",
+  "$defs": {
+    "model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "reference", "independent"],
+      "properties": { "kind": { "enum": ["depth", "picking", "lifecycle"] }, "reference": { "type": "string", "minLength": 1 }, "independent": { "const": true } }
+    },
+    "migration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fromVersion", "effect"],
+      "properties": { "fromVersion": { "const": "office-property-model-profile-v0" }, "effect": { "const": "new-seeded-profile-and-report" } }
+    },
+    "profileDocument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "profileId", "library", "randomType", "ciSeed", "ciRuns", "explorationRuns", "shrinkPath", "counterexamplePromotion", "models", "status", "evidenceClaimed", "migration"],
+      "properties": {
+        "schemaVersion": { "const": "office-property-model-profile-v1" },
+        "profileId": { "const": "office-property-model-profile-v1" },
+        "library": { "type": "object", "additionalProperties": false, "required": ["name", "version", "license", "installed", "admitted"], "properties": { "name": { "const": "fast-check" }, "version": { "const": "4.9.0" }, "license": { "const": "MIT" }, "installed": { "const": false }, "admitted": { "const": false } } },
+        "randomType": { "const": "xorshift128plus" },
+        "ciSeed": { "const": 20260801 },
+        "ciRuns": { "const": 100 },
+        "explorationRuns": { "const": 1000 },
+        "shrinkPath": { "const": "retain-in-failure-artifact" },
+        "counterexamplePromotion": { "const": "minimized-failure-becomes-versioned-fixture" },
+        "models": { "type": "array", "minItems": 3, "uniqueItems": true, "items": { "$ref": "#/$defs/model" } },
+        "status": { "const": "profile-only" },
+        "evidenceClaimed": { "const": false },
+        "migration": { "$ref": "#/$defs/migration" }
+      }
+    }
+  },
+  "$ref": "#/$defs/profileDocument"
+}

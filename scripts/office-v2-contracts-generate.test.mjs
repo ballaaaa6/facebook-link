@@ -41,6 +41,7 @@ test("the descriptor registry is explicit and deterministically sorted", () => {
   assert.deepEqual(
     officeV2SchemaDescriptors.map(({ schemaRelativePath }) => schemaRelativePath).toSorted(),
     [
+      "docs/office-v2/schemas/accessibility-fixture.schema.json",
       "docs/office-v2/schemas/action-queue.schema.json",
       "docs/office-v2/schemas/activity-intent.schema.json",
       "docs/office-v2/schemas/building.schema.json",
@@ -52,7 +53,14 @@ test("the descriptor registry is explicit and deterministically sorted", () => {
       "docs/office-v2/schemas/entity-instance.schema.json",
       "docs/office-v2/schemas/facility-slot.schema.json",
       "docs/office-v2/schemas/geometry.schema.json",
+      "docs/office-v2/schemas/golden-manifest.schema.json",
+      "docs/office-v2/schemas/lifecycle-fixture.schema.json",
+      "docs/office-v2/schemas/presentation-snapshot.schema.json",
+      "docs/office-v2/schemas/property-model-profile.schema.json",
       "docs/office-v2/schemas/queue-ticket.schema.json",
+      "docs/office-v2/schemas/renderer-benchmark-bundle.schema.json",
+      "docs/office-v2/schemas/renderer-benchmark.schema.json",
+      "docs/office-v2/schemas/renderer-port.schema.json",
       "docs/office-v2/schemas/reservation.schema.json",
       "docs/office-v2/schemas/room-template.schema.json",
       "docs/office-v2/schemas/scene-plan.schema.json",
