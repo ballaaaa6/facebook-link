@@ -19,7 +19,7 @@
 - Changed files: `packages/office-v2-simulation/src/state-hash.ts`,
   `packages/office-v2-simulation/test/state-hash.test.ts`, and this status
   file only.
-- Implementation commit: pending until commit.
+- Implementation commit: `782cb408814061863bb32bd3c1f672d7b5cd5e9d`.
 - Focused test: `node --test packages/office-v2-simulation/test/state-hash.test.ts` — 8/8 passed.
 - Package typecheck: `npm run typecheck --workspace @affiliate-ops/office-v2-simulation` — passed.
 - Office preflight: `node .agents/skills/build-office-v2-engine/scripts/preflight.mjs` — passed.
