@@ -97,10 +97,11 @@ depends on another selected task's unintegrated output.
 | 3 | `P3-W3.1` | `task/session-3-p3-w3-ownership` | `C:\Users\WINDOW XI\.codex\worktrees\phase3-p3-w2-03-ownership` | planned |
 
 - Planning artifacts commit: `ca6d1b5e55c75ff75194fd60505fb5158b8cc1ae`.
-- Planning lock / worker starting commit: this metadata-lock commit, recorded
-  by Main before launch; all three worker branches will point to that exact
-  commit.
-- Worker session IDs: recorded after the real sub-agent sessions are spawned.
+- Planning lock / worker starting commit: `7af908b2f01a77214f1d2660c17fbbcc956fc952`;
+  all three worker branches point to that exact commit.
+- Worker session IDs: `019fc301-f359-7733-979b-f04cd6953bc3` (Session 1 / Anscombe),
+  `019fc301-f3d5-7c81-8ef7-2fac68995f71` (Session 2 / Pauli), and
+  `019fc301-f45f-7b83-9601-d3602b12ef99` (Session 3 / Ramanujan).
 
 ## Validation strategy
 
