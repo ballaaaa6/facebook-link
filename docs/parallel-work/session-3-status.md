@@ -24,8 +24,7 @@ the Main Orchestration Session must review and integrate the commit.
 - Changed files: `packages/office-v2-simulation/src/lifecycle.ts`,
   `packages/office-v2-simulation/test/lifecycle.test.ts`, and this status file
   only.
-- Implementation commit: pending until the implementation and handoff commits
-  are created.
+- Implementation commit: `dfe6a6b4f04feab9cdfcc7db46be8068750d4b8b`.
 - Focused test: `node --test packages/office-v2-simulation/test/lifecycle.test.ts`
   — passed, 7/7 tests.
 - Package typecheck: `npm run typecheck --workspace @affiliate-ops/office-v2-simulation`
