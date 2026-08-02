@@ -204,7 +204,9 @@ count is correct because `P3-W2.1` is the only compatible READY task; W2.2 is
 blocked on its output and no other task may be promoted merely to use capacity.
 
 - Task: `P3-W2.1`
-- Worker session: `019fc0dc-cde8-77d3-9763-8e357dd521f5` / Darwin
+- Initial worker session: `019fc0dc-cde8-77d3-9763-8e357dd521f5` / Darwin
+  (shutdown before implementation); replacement session:
+  `019fc0e3-ef2e-78f2-ab7a-2869368556ef` / Carver
 - Branch: `task/session-1-p3-w2-command-pipeline`
 - Worktree: `C:\Users\WINDOW XI\.codex\worktrees\phase3-w2-command-pipeline`
 - Planning commit: `7233ebf40f63190ac166069aedf9c7b30a04707b`

@@ -9,7 +9,9 @@
 - Worker worktree: `C:\Users\WINDOW XI\.codex\worktrees\phase3-w2-command-pipeline`
 - Original base commit: `3358c318c18eebfd586cd413cee6e026f41dc48d`
 - Planning commit: `7233ebf40f63190ac166069aedf9c7b30a04707b`
-- Worker session ID: `019fc0dc-cde8-77d3-9763-8e357dd521f5` / Darwin
+- Initial worker session: `019fc0dc-cde8-77d3-9763-8e357dd521f5` / Darwin
+  (shutdown before implementation); replacement worker session:
+  `019fc0e3-ef2e-78f2-ab7a-2869368556ef` / Carver
 - Status file: `docs/parallel-work/session-1-status.md`
 
 ## Objective

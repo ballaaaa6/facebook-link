@@ -75,7 +75,10 @@ reconciliation, cross-task checks, and all shared final records.
 - Integration branch: `codex/integration/phase3-w2-command-pipeline`
 - Worker branch: `task/session-1-p3-w2-command-pipeline`
 - Worker worktree: `C:\Users\WINDOW XI\.codex\worktrees\phase3-w2-command-pipeline`
-- Worker session ID: `019fc0dc-cde8-77d3-9763-8e357dd521f5` / Darwin.
+- Initial worker session: `019fc0dc-cde8-77d3-9763-8e357dd521f5` / Darwin;
+  shutdown after remaining non-terminal with no implementation commit.
+- Replacement worker session for the same unfinished leaf scope:
+  `019fc0e3-ef2e-78f2-ab7a-2869368556ef` / Carver.
 
 The Main Orchestration Session is the sole Final Integrator and Publisher.
 Workers stop after committing and handing off their individual tasks.
