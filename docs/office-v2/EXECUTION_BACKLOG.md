@@ -266,7 +266,8 @@ dependency.
 - Wave name: Operations Snapshot V2 cursor and roster adapter
 - Worker count: 1
 - Selection status before launch: READY
-- Dispatch transition: `READY → IN_PROGRESS` when the worker begins
+- Dispatch transition: `READY → IN_PROGRESS` when Worker Session 1
+  (`019fc379-0c13-7ad2-a8e4-e809f22798bb`) began
 - Integration branch: `codex/integration/phase3-p3-w3-02`
 - Planning and ownership record: `docs/parallel-work/parallel-plan.md`,
   `docs/parallel-work/ownership.md`, and `docs/parallel-work/interfaces.md`
@@ -548,8 +549,8 @@ blocked; no later-Phase work is used to fill capacity.
 - Validation commands: preflight, operations package tests, `npm run check`.
 - Worker-sized scope assessment: one pure choreography module and focused tests.
 - Priority: P1.
-- Status: **READY** — dependency-unblocked after current-wave integration;
-  not launched in this invocation.
+- Status: **IN_PROGRESS** — Worker Session 1 (`019fc379-0c13-7ad2-a8e4-
+  e809f22798bb`) is implementing the selected leaf.
 
 ### P3-W3.4 — Operations reconciliation and two-clock integration
 
