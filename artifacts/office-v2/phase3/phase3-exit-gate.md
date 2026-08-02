@@ -1,7 +1,7 @@
 # Office V2 Phase 3 exit gate
 
 - Status: PASSED
-- Git HEAD: 4925edf33f8312e84eb0f69e335256da095d421c
+- Git HEAD: b3115669ce0eb45f4440f228560d4ac7a0bcf26c
 - Generated-at policy: omitted; deterministic for a checked-out git HEAD and deterministic evidence
 
 ## Evidence

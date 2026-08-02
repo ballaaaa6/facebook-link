@@ -2,7 +2,7 @@
   "schemaVersion": "office-v2-phase3-exit-gate-v1",
   "status": "passed",
   "generatedAtPolicy": "omitted; deterministic for a checked-out git HEAD and deterministic evidence",
-  "gitHead": "4925edf33f8312e84eb0f69e335256da095d421c",
+  "gitHead": "b3115669ce0eb45f4440f228560d4ac7a0bcf26c",
   "evidence": {
     "t2": [
       {

@@ -658,10 +658,39 @@ and copy/visual fan-out, join, retry, failure, recovery, reconnect, and
 handoff intents with focused 8/8 choreography evidence and 17/17 package
 coverage. It still does not promote complete operations choreography or the
 T2/T3 gates, which remain required in Waves 2–3. `P3-W3.4` is READY as the
-next reconciliation integration task. RC-04
-must close before
-renderer accessibility and lifecycle acceptance. These slices are not Phase 2
-entry or exit requirements and do not authorize a broader Phase 2 scope.
+next reconciliation integration task. RC-04 must close before renderer
+accessibility and lifecycle acceptance. The preceding paragraph is the
+pre-exit inventory; the Phase 3 exit closure below supersedes its T2/T3
+readiness statement. These bounded records do not authorize a broader Phase 2
+scope.
+
+## Phase 3 exit closure — 2026-08-03
+
+Phase 3 is **COMPLETE** after the reducer-integrated T2/T3 evidence and the
+complete ten-role operations trace passed the unified gate on
+`codex/phase3-exit-integration` at gate-evaluation HEAD
+`b3115669ce0eb45f4440f228560d4ac7a0bcf26c`.
+
+- T2 records nine one-actor scenarios through command acceptance,
+  navigation/movement, activity, queues/resources, cancellation, timeout,
+  unreachable/target removal, cleanup, hashing, replay, and restore.
+- T3 records exactly 1, 10, and 15 actors. The 15-actor case is explicitly
+  synthetic geometric capacity evidence and does not represent live adapter
+  employees. Twelve restore checkpoints preserve event suffixes, final state,
+  and SHA-256 equality; contention and cleanup invariants pass.
+- Operations records all ten catalog roles through workflow ownership, join,
+  review, failure/retry/recovery, reconnect, duplicate/late/out-of-order
+  handling, disabled connector safety, persistence idempotency, reconciliation,
+  and authoritative/projected truth equality.
+- Gate command: `npm run office:v2:phase3:acceptance`. It passed 15/15 checks
+  twice; validator tests passed 4/4; repeated JSON/Markdown reports were
+  byte-identical. Full `npm run check` passed within the gate.
+- Machine and human evidence are under
+  `artifacts/office-v2/phase3/t2/`, `t3/`, `operations/`, and the unified
+  `phase3-exit-gate.json`/`.md` reports.
+
+This closure is headless and renderer-neutral. Phase 4 renderer selection,
+visual UX proof, production assets, and later T4–T6 acceptance remain deferred.
 
 ## Wave 2 — Commands, simulation, jobs, facilities, crowds, and replay
 

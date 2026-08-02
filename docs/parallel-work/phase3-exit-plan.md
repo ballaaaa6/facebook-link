@@ -110,3 +110,23 @@ hashes, equality, and generation metadata. The gate rejects missing artifacts,
 unknown scenario IDs, skipped cases, and content that is not reproducible from
 the current checkout.
 
+## Execution result
+
+The plan completed on 2026-08-03. Main integrated the accepted worker commits
+in dependency order on `codex/phase3-exit-integration`: T2 `3c4d73d`,
+operations `4bdfbc0`, T3 `e9f280f`, and the unified gate `009ff74e`; the final
+branch also contains coordinator integration commits `0aefab8`, `e8c04e9`,
+`78f09cb`, `4925edf`, and `b311566`. The gate was rerun twice from the final
+pre-publication checkout with 15/15 commands passing each time, validator tests
+passing 4/4, and byte-identical gate reports.
+
+Coordinator recovery was required for the clean-room allowlist conflict when
+the operations commit was cherry-picked: Main retained the narrower
+`artifacts/office-v2/phase3/` admission. Main also exported the T3 crowd
+adapter through the simulation barrel after review. The T3 worker corrected an
+initial target-removal schedule assertion so the accepted phases are exactly
+`en-route`, `waiting`, and `using`; the failed draft was not accepted.
+
+P3-EXIT-05 status publication and the final integration report are Main-owned
+and occur only after the unified gate. Renderer selection, production assets,
+and Phase 4 remain explicitly deferred.

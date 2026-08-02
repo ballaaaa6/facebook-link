@@ -48,8 +48,9 @@ machine-readable readiness pack, accepted foundation decisions, and validation
 fixtures exist. T0 passed on 2026-08-01: every declared fixture case executes,
 and the gate reports schema, semantic, and reducer/replay evidence separately.
 The current rejected fixtures match exact diagnostics. The evidence audit
-remains no-go for persistent engine work, the large floor, target crowds,
-renderer integration, and production art until their later T2–T6 gates pass.
+remains no-go for renderer integration, production art, and the later T4–T6
+gates. The headless Phase 3 T2/T3/operations exit is recorded separately
+below; it does not admit a renderer or runtime assets.
 The production Office route remains an empty V2 mount. Renderer selection is
 deliberately deferred behind the accepted benchmark decision; no production
 runtime art has been admitted.
@@ -111,7 +112,7 @@ and canonical target-floor hash evidence. This does not claim a renderer,
 visual proof, runtime asset, persistent simulation, property/model, or crowd
 gate; those remain later controls.
 
-The Phase 3 `P3-W0` research-closure wave integrated on 2026-08-02. RC-01
+The historical Phase 3 `P3-W0` research-closure wave integrated on 2026-08-02. RC-01
 facility/queue/cleanup, RC-02 runtime/presentation/restore, and RC-03
 assignment/retry/target-revalidation now have bounded source records,
 clean-room dispositions, canonical receiving docs, test-only fixtures, and
@@ -134,18 +135,26 @@ evidence (9/9). The `P3-W3-03` wave adds a pure, renderer-free semantic
 Snapshot V2 presentation projection plus idempotent copy/visual fan-out, join,
 retry, failure, recovery, reconnect, and handoff choreography. Its focused
 choreography coverage passes 8/8 and the operations package passes 17/17. These
-are bounded module/runtime/operations evidence, not the Phase 3 exit:
-reducer-integrated crowd traces, complete Operations V2 choreography, Phase 3,
-and T2/T3 remain incomplete.
+were bounded module/runtime/operations evidence before the Phase 3 exit wave.
 
-The final currently-ready Phase 3 leaf, `P3-W3.4`, is now integrated as a pure
-operations reconciliation adapter. It wraps Snapshot V2 with a generic
+Before the exit wave, the final currently-ready Phase 3 leaf, `P3-W3.4`, was
+integrated as a pure operations reconciliation adapter. It wraps Snapshot V2
+with a generic
 external-input cursor, explicit external time, the unchanged 10 Hz simulation
 tick, deterministic queue/intent ledgers, and current-truth rebasing for gaps,
 epoch changes, and expired retention. Its focused suite passes 12/12 and the
 operations package passes 29/29. This is bounded two-clock/reconnect evidence;
-it does not close reducer-integrated crowd traces, complete Operations V2
-choreography, or the Phase 3 T2/T3 exit.
+the exit gate below is the later closure record.
+
+The Phase 3 exit gate passed on 2026-08-03 at gate-evaluation HEAD
+`b3115669ce0eb45f4440f228560d4ac7a0bcf26c`. It records Phase 3 as **COMPLETE**:
+T2 has nine reducer-backed one-actor scenarios, T3 has exactly 1/10/15 actors
+with synthetic-capacity disclosure for the 15-actor case and 12 equal restore
+checkpoints, and Operations has the complete ten-role trace. The command
+`npm run office:v2:phase3:acceptance` passed 15/15 checks twice, its validator
+tests passed 4/4, and repeated reports were byte-identical. Evidence is under
+`artifacts/office-v2/phase3/`; this is headless and renderer-neutral, and does
+not start Phase 4.
 
 The historical 186-file W1.6 number is closure evidence at the handoff commit.
 The Phase 1 exit handoff, Phase 2 acceptance record, visual style approval

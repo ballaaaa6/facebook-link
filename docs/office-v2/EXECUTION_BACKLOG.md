@@ -7,7 +7,7 @@ executable leaf tasks and their current status.
 
 ## Current execution state
 
-- Active Phase: **Phase 3 — Headless operational vertical slice**
+- Active Phase: **Phase 3 — Headless operational vertical slice (closed)**
 - Phase objective: produce the first deterministic, headless actor slice with
   fixed ticks, commands, facilities, interaction cleanup, restore/replay, and
   later AutoPost operations choreography.
@@ -15,17 +15,37 @@ executable leaf tasks and their current status.
   `e4829b68619696651c73ba6b5dced73cc28beaa0`; the pure world package is
   renderer-neutral and exports projection, placement, topology, depth, and
   canonical-world behavior.
-- Phase entry blocker: the bounded RC-01, RC-02, and RC-03 research prerequisite
-  is now integrated. The W2 command, hash, one-actor interaction, lifecycle,
-  queue, and replay slices are bounded implementations; reducer-integrated
-  crowd and complete operations evidence remain future gates.
-- Phase status before current wave: **ACTIVE — P3-W3.2 integrated; T2/T3 exit
-  criteria remain incomplete**.
-- Phase status after current wave: **ACTIVE — P3-W3.4 integrated; T2/T3 exit
-  evidence remain incomplete**.
+- Pre-exit state: the bounded RC-01, RC-02, and RC-03 research prerequisite was
+  integrated. The W2 command, hash, one-actor interaction, lifecycle, queue,
+  and replay slices were bounded implementations before the exit wave.
+- Historical pre-exit status: **ACTIVE — P3-W3.4 integrated; T2/T3 exit
+  evidence remained incomplete**.
+- Current Phase status: **COMPLETE — the P3-EXIT-04 unified gate passed on
+  2026-08-03 at `b3115669ce0eb45f4440f228560d4ac7a0bcf26c`**.
 - Phase exit criteria: T2 one-actor reach/use/cancel/restore/replay evidence,
   T3 crowd/queue/deadlock evidence, and the complete operations choreography
   evidence pass without renderer or asset leakage.
+
+## Phase 3 exit closure — P3-EXIT-01 through P3-EXIT-05
+
+- Closure status: **COMPLETE** on 2026-08-03 on
+  `codex/phase3-exit-integration`.
+- Unified gate: `npm run office:v2:phase3:acceptance`; 15/15 checks passed
+  twice, validator tests passed 4/4, and the deterministic JSON/Markdown gate
+  reports were byte-identical on the same checkout.
+- T2 evidence: nine reducer-backed one-actor scenarios with real final and
+  restored SHA-256 equality and zero uninterrupted/restored leaks under
+  `artifacts/office-v2/phase3/t2/`.
+- T3 evidence: exactly the 1/10/15 matrix, with the 15-actor case explicitly
+  synthetic geometric capacity evidence, 12 restore checkpoints, equal event
+  suffixes/final hashes, and zero leaks under
+  `artifacts/office-v2/phase3/t3/`.
+- Operations evidence: exactly the ten catalog roles through workflow,
+  runner, persistence, reconciliation, retry/recovery, reconnect, disabled
+  connector, and authoritative/projected truth checks under
+  `artifacts/office-v2/phase3/operations/`.
+- Phase 4 renderer work, production assets, and later visual/asset gates remain
+  deferred; this closure authorizes no external connector actions.
 
 ## Historical wave: P3-W0 — T2 research-closure prerequisites
 
@@ -588,9 +608,10 @@ blocked; no later-Phase work is used to fill capacity.
 
 ## Current-wave stop condition
 
-No additional Phase 3 implementation wave is launched in this invocation.
-`P3-W3.4` is integrated, but Phase 3 remains active because its T2/T3 exit
-evidence is not complete; no phase transition is authorized automatically.
+No additional Phase 3 implementation wave is launched after the exit closure.
+`P3-W3.4` remains recorded as the historical bounded leaf; P3-EXIT-01 through
+P3-EXIT-04 are integrated and P3-EXIT-05 has published the closure. Phase 4 is
+not started by this task.
 
 ## Selection rule and status transitions
 
