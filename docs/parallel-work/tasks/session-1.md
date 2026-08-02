@@ -8,8 +8,8 @@
 - Worker branch: `task/session-1-p3-w3-02-operations-adapter`
 - Worker worktree: `C:\Users\WINDOW XI\.codex\worktrees\phase3-p3-w3-02-operations-adapter`
 - Original base commit: `d5e04992839dc4f09bc0e66de2dd7cbf02282ad2`
-- Planning artifacts commit: to be recorded in `parallel-plan.md`.
-- Planning-lock commit: to be recorded in `parallel-plan.md`.
+- Planning artifacts / worker starting commit:
+  `175d0d384e64610225e93f21272fdb71bdcaf4ba`.
 - Status file: `docs/parallel-work/session-1-status.md`
 
 ## Objective

@@ -6,7 +6,7 @@
 - Status: **PLANNED — awaiting worker dispatch**
 - Worker branch: `task/session-1-p3-w3-02-operations-adapter`
 - Worker worktree: `C:\Users\WINDOW XI\.codex\worktrees\phase3-p3-w3-02-operations-adapter`
-- Planning-lock commit: to be recorded before dispatch
+- Planning / worker starting commit: `175d0d384e64610225e93f21272fdb71bdcaf4ba`
 - Implementation commit: pending
 
 The worker must update this file only after beginning implementation and must

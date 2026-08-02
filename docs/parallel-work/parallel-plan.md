@@ -88,9 +88,11 @@ Workers stop after committing and handing off their individual tasks.
 | --- | --- | --- | --- | --- |
 | 1 | `P3-W3.2` | `task/session-1-p3-w3-02-operations-adapter` | `C:\Users\WINDOW XI\.codex\worktrees\phase3-p3-w3-02-operations-adapter` | planned |
 
-- Planning artifacts commit: **to be recorded after the initial planning
-  commit**.
-- Planning-lock commit: **to be recorded after the plan metadata is locked**.
+- Planning artifacts / worker starting commit:
+  `175d0d384e64610225e93f21272fdb71bdcaf4ba`.
+- The worker branch will begin from this exact planning commit. The Main
+  session may add coordinator-only dispatch metadata afterward; that does not
+  change the worker's planning base.
 - Worker session ID: **pending dispatch**.
 - Integration branch: `codex/integration/phase3-p3-w3-02`.
 
