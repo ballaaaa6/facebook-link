@@ -21,8 +21,9 @@
 - Entry evidence: Phase 2 world-kernel acceptance passed; projection,
   placement/occupancy, topology/depth, reference closure, and canonical world
   behavior are integrated and renderer-neutral.
-- Phase status before wave: **ACTIVE**. RC-01/02/03 research closure is still
-  marked planned and blocks the first T2 behavior that consumes those rules.
+- Phase status before wave: **ACTIVE**. RC-01/02/03 research closure was the
+  bounded prerequisite selected for this wave; the integrated records clear
+  that research prerequisite without promoting T2 runtime evidence.
 - Phase exit criteria: T2 and T3 gates in `READINESS_REMEDIATION_PLAN.md` pass;
   the phase is not closed by this prerequisite wave.
 
@@ -81,6 +82,25 @@ are Main Orchestration Session integration work only.
 - Integration branch: `codex/integration/phase3-t2-research-closure`
 - The Main Orchestration Session is the sole Final Integrator and Publisher.
   Workers stop after committing and handing off their individual tasks.
+
+## Handoff review and integration result
+
+All three workers completed their selected leaf task, returned a committed
+handoff, and passed Main review. The ownership review found no overlap, no
+forbidden-path changes, no schema or package-version changes, and no external
+code, map, asset, behavior-table, reducer, replay, or runtime-diagnostic
+admission.
+
+| Session | Task | Worker implementation | Worker handoff | Main decision | Focused evidence |
+| --- | --- | --- | --- | --- | --- |
+| 1 / Dewey | P3-RC-01 | `fc3b18d248ffcb1f1a15ffbf2c66a2410802012a` | `3c7472d31aa0e53ebcd47edc15f9de5a01cfda03` | ACCEPTED | RC-01 5/5 |
+| 2 / Ampere | P3-RC-02 | `b1252a0fe5b89f1514d8bc9411e37d87bdd4ac3f` | `427ea87b96a9432979aa728536cc2b280b7ebd94` | ACCEPTED | RC-02 4/4 |
+| 3 / Zeno | P3-RC-03 | `21dc3fc363d2cbb1c3cf9bb459eaaf7619bdcd7a` | `7ff19c44f8ddd669b5797016f46a0b6931f988a4` | ACCEPTED | RC-03 1/1 |
+
+The worker commits were cherry-picked onto the dedicated integration branch.
+Shared readiness, backlog, research, and final-report updates remain Main-only.
+The selected tasks transition `READY → IN_PROGRESS → COMPLETED → ACCEPTED →
+INTEGRATED`; the Phase 3 status remains ACTIVE and no next wave is launched.
 
 ## Worker branches/worktrees
 

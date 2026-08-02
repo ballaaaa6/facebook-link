@@ -15,12 +15,11 @@ executable leaf tasks and their current status.
   `e4829b68619696651c73ba6b5dced73cc28beaa0`; the pure world package is
   renderer-neutral and exports projection, placement, topology, depth, and
   canonical-world behavior.
-- Phase entry blocker: `RESEARCH.md` still marks RC-01, RC-02, and RC-03 as
-  planned. The remediation plan requires those independent closure slices to
-  close before the first T2 implementation unit consumes facilities,
-  interactions, assignment, or replay rules.
-- Phase status before current wave: **ACTIVE — entry evidence passed; T2
-  implementation is waiting on RC-01/02/03 closure evidence**.
+- Phase entry blocker: the bounded RC-01, RC-02, and RC-03 research prerequisite
+  is now integrated. Runtime implementation still requires the future W2
+  command, reducer, hash, interaction, restore, and replay gates.
+- Phase status after current wave: **ACTIVE — P3-W0 bounded research closure
+  accepted; no T2/T3 runtime gate has passed**.
 - Phase exit criteria: T2 one-actor reach/use/cancel/restore/replay evidence,
   T3 crowd/queue/deadlock evidence, and the complete operations choreography
   evidence pass without renderer or asset leakage.
@@ -34,6 +33,12 @@ The three tasks are independent because each has one research question, one
 canonical-document ownership group, a disjoint test fixture/script set, and no
 dependency on another selected task's unintegrated output. The Main
 Orchestration Session owns the shared readiness/status update after review.
+
+Wave result: all three selected tasks completed, passed Main review, and were
+integrated on the dedicated branch. Each followed
+`READY → IN_PROGRESS → COMPLETED → ACCEPTED → INTEGRATED`. The wave closes only
+the bounded RC prerequisite; Phase 3 remains active and no next wave is
+launched by this invocation.
 
 ### P3-RC-01 — Facility, queue, and terminal-cleanup evidence
 
@@ -81,7 +86,9 @@ Orchestration Session owns the shared readiness/status update after review.
 - Worker-sized scope assessment: one bounded research-closure objective with
   one canonical ownership group and no runtime implementation.
 - Priority: P0 prerequisite for T2 facility/interaction work.
-- Status: **IN_PROGRESS** — Worker Session 1 / Dewey
+- Status: **INTEGRATED** — accepted by Main after review; implementation commit
+  `fc3b18d248ffcb1f1a15ffbf2c66a2410802012a`, handoff commit
+  `3c7472d31aa0e53ebcd47edc15f9de5a01cfda03`
 
 ### P3-RC-02 — Runtime/presentation separation and restore evidence
 
@@ -130,7 +137,9 @@ Orchestration Session owns the shared readiness/status update after review.
 - Worker-sized scope assessment: one bounded research-closure objective with
   one runtime/presentation ownership group and no reducer implementation.
 - Priority: P0 prerequisite for T2 interaction/replay work.
-- Status: **IN_PROGRESS** — Worker Session 2 / Ampere
+- Status: **INTEGRATED** — accepted by Main after review; implementation commit
+  `b1252a0fe5b89f1514d8bc9411e37d87bdd4ac3f`, handoff commit
+  `427ea87b96a9432979aa728536cc2b280b7ebd94`
 
 ### P3-RC-03 — Capability assignment, retries, and target revalidation
 
@@ -183,7 +192,9 @@ Orchestration Session owns the shared readiness/status update after review.
 - Worker-sized scope assessment: one bounded research-closure objective with
   one command/migration ownership group and no reducer implementation.
 - Priority: P0 prerequisite for T2 command/assignment work.
-- Status: **IN_PROGRESS** — Worker Session 3 / Zeno
+- Status: **INTEGRATED** — accepted by Main after review; implementation commit
+  `21dc3fc363d2cbb1c3cf9bb459eaaf7619bdcd7a`, handoff commit
+  `7ff19c44f8ddd669b5797016f46a0b6931f988a4`
 
 ## Remaining Phase 3 leaf tasks after P3-W0
 
@@ -198,7 +209,8 @@ candidate or blocked until the named dependencies are integrated.
 - Repository evidence: `packages/office-v2-simulation/src/index.ts` is empty;
   W2.1 contracts and fixtures exist; reducer evidence is zero.
 - Dependencies: P3-RC-02 and P3-RC-03 integrated; Phase 2 acceptance.
-- Dependency status: BLOCKED until this wave closes.
+- Dependency status: SATISFIED for the named prerequisites; eligible for a
+  future Phase 3 wave but not selected in this invocation.
 - Parallel group: future W2 implementation group.
 - Owned implementation boundary: `packages/office-v2-simulation/src/command-pipeline.ts` and its focused test.
 - Forbidden boundary: world package, operations adapter, renderer, assets, and shared generated contracts.
@@ -211,7 +223,7 @@ candidate or blocked until the named dependencies are integrated.
 - Validation commands: preflight, package typecheck/test, `npm run check`.
 - Worker-sized scope assessment: one reducer pipeline module and focused tests.
 - Priority: P0.
-- Status: CANDIDATE.
+- Status: **READY** — recommended next Phase 3 leaf; not launched automatically.
 
 ### P3-W2.2 — Simulation normalization, PRNG, and real state hashes
 

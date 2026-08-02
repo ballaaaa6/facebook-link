@@ -111,6 +111,15 @@ and canonical target-floor hash evidence. This does not claim a renderer,
 visual proof, runtime asset, persistent simulation, property/model, or crowd
 gate; those remain later controls.
 
+The Phase 3 `P3-W0` research-closure wave integrated on 2026-08-02. RC-01
+facility/queue/cleanup, RC-02 runtime/presentation/restore, and RC-03
+assignment/retry/target-revalidation now have bounded source records,
+clean-room dispositions, canonical receiving docs, test-only fixtures, and
+focused evidence (5/5, 4/4, and 1/1). This clears the bounded research
+prerequisite for selecting a later T2 implementation wave only. The simulation
+package still has no reducer or replay runner; placeholder hashes are not
+evidence, Phase 3 remains active, and T2/T3 have not passed.
+
 The historical 186-file W1.6 number is closure evidence at the handoff commit.
 The Phase 1 exit handoff, Phase 2 acceptance record, visual style approval
 record, and visual proof risk register were added afterward as administrative

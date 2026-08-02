@@ -218,11 +218,13 @@ knowledge.
 
 ## Research closure slices before Phase 3/T2
 
-Status: planned. These slices make the next research work persistent and
-auditable without expanding the Phase 2 boundary. Phase 2 remains authorized
-to proceed with the accepted world contracts and is not blocked by these
-studies. A slice becomes a prerequisite only for the later implementation unit
-that consumes its result.
+Status: RC-01, RC-02, and RC-03 bounded research closure accepted on 2026-08-02
+through Phase 3 wave `P3-W0`. Each slice now has a bounded source record,
+rights boundary, neutral observations, Office disposition, canonical owners,
+test-only fixtures, and a focused acceptance command. This closure does not
+expand the Phase 2 boundary or claim T2/T3 runtime evidence: reducer-produced
+hashes and uninterrupted-versus-restored execution remain explicit later T2
+gates. RC-04 remains planned for Phase 4/T4 accessibility and lifecycle work.
 
 The source list below is a focused execution plan, not a request to browse
 without a named question. Each slice must close into an existing canonical
@@ -234,8 +236,8 @@ renderer, or accessibility rules.
 | ID | Source focus | Bounded questions | Office receiving owners | Required closure evidence | Gate |
 | --- | --- | --- | --- | --- | --- |
 | RC-01 | [CorsixTH room/object model](https://github.com/CorsixTH/CorsixTH), limited to room prerequisites, capacity, approach/waiting positions, queueing, use, and cancellation | How are facility capacity, approach cells, waiting positions, queue order, target removal, and terminal cleanup represented? Which observations are useful for an Office facility without copying game-specific rules? | `ROOMS_SURFACES_STRUCTURES_ZONES.md`, `JOBS_INTENTS_ASSIGNMENT.md`, `CROWD_QUEUES_AND_DEADLOCKS.md`; `facility-slot`, `queue-ticket`, `reservation`, and `action-queue` schemas | One valid and one rejected facility/queue fixture; one deterministic one-actor trace; one contention or cancellation trace; exact cleanup assertions | Before Phase 3/T2 facility and interaction implementation; expanded crowd evidence remains T3 |
-| RC-02 | [FreeSO project structure](https://github.com/riperiperi/FreeSO/wiki/Project-structure), limited to simulation/presentation separation, object interaction, static/dynamic world data, commands, and snapshots | Which facts belong to immutable definitions, placed instances, mutable runtime state, and derived presentation? How does an interaction expose preconditions, progress, result, save, and restore without letting presentation commit simulation truth? | `DEFINITION_INSTANCE_RUNTIME_STATE.md`, `JOBS_INTENTS_ASSIGNMENT.md`, `SIMULATION_PIPELINE_COMMANDS.md`, `REPLAY_DEBUGGING_PLAYBOOK.md`; definition, instance, action, snapshot, and trace schemas | One interaction fixture with presentation disabled; one mid-action restore fixture; one rejected invalid-state fixture; identical reducer-produced trace/hash evidence | Before Phase 3/T2 interaction and replay implementation |
-| RC-03 | [Widelands command/task/request model](https://github.com/widelands/widelands), [Unknown Horizons world objects/scheduler/build command](https://github.com/unknown-horizons/unknown-horizons), limited to deterministic assignment, capability requests, ownership/home, target revalidation, pending work, and cancellation | How are jobs assigned by capability rather than visual identity? How are stable IDs, priorities, target changes, pending commands, and ownership preserved across retries and restore? Which rules are useful for the AutoPost office and which are rejected as out of scope? | `JOBS_INTENTS_ASSIGNMENT.md`, `SIMULATION_PIPELINE_COMMANDS.md`, `SAVE_SNAPSHOT_MIGRATION.md`, `REPLAY_DEBUGGING_PLAYBOOK.md`; intent, command, queue, snapshot, and migration contracts | Reordered-equivalent assignment fixture; unavailable/removed-target fixture; retry and cancellation fixture; restore/replay equality with real hashes | Before the W2/T2 assignment implementation; multi-actor queue and deadlock promotion remains T3 |
+| RC-02 | [FreeSO project structure](https://github.com/riperiperi/FreeSO/wiki/Project-structure), limited to simulation/presentation separation, object interaction, static/dynamic world data, commands, and snapshots | Which facts belong to immutable definitions, placed instances, mutable runtime state, and derived presentation? How does an interaction expose preconditions, progress, result, save, and restore without letting presentation commit simulation truth? | `DEFINITION_INSTANCE_RUNTIME_STATE.md`, `JOBS_INTENTS_ASSIGNMENT.md`, `SIMULATION_PIPELINE_COMMANDS.md`, `REPLAY_DEBUGGING_PLAYBOOK.md`; definition, instance, action, snapshot, and trace schemas | One presentation-disabled interaction fixture; one mid-action restore fixture; one rejected invalid-state fixture; deterministic event/state comparison that explicitly rejects placeholder hashes. Real reducer-produced trace/hash equality is a T2 carry-forward gate. | Bounded research closure accepted; before Phase 3/T2 interaction and replay implementation |
+| RC-03 | [Widelands command/task/request model](https://github.com/widelands/widelands), [Unknown Horizons world objects/scheduler/build command](https://github.com/unknown-horizons/unknown-horizons), limited to deterministic assignment, capability requests, ownership/home, target revalidation, pending work, and cancellation | How are jobs assigned by capability rather than visual identity? How are stable IDs, priorities, target changes, pending commands, and ownership preserved across retries and restore? Which rules are useful for the AutoPost office and which are rejected as out of scope? | `JOBS_INTENTS_ASSIGNMENT.md`, `SIMULATION_PIPELINE_COMMANDS.md`, `SAVE_SNAPSHOT_MIGRATION.md`, `REPLAY_DEBUGGING_PLAYBOOK.md`; intent, command, queue, snapshot, and migration contracts | Reordered-equivalent assignment fixture; unavailable/removed-target fixture; retry and cancellation fixture; explicit restore inputs and deterministic retry/cancellation assertions. Real restore/replay equality with real hashes is a T2 carry-forward gate. | Bounded research closure accepted; before the W2/T2 assignment implementation; multi-actor queue and deadlock promotion remains T3 |
 | RC-04 | [WAI-ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/), limited to semantic entity lists/inspectors, keyboard traversal, focus retention/fallback, and pointer/keyboard parity | Which semantic UI patterns make spatial entities inspectable without requiring a pointer? How should focus behave when a snapshot refreshes, an entity becomes stale, or the selected entity is removed? | `INPUT_PICKING_AND_DEBUG_OVERLAYS.md`, `OPERATIONS_ADAPTER_UI_SAFETY.md`, `RENDERER_QA_SPECIFICATION.md`; accessibility and lifecycle fixture schemas | Keyboard/pointer parity fixture; stale/removed entity focus fixture; long-label and reduced-motion cases; reviewed accessibility/lifecycle evidence | Before renderer accessibility and lifecycle acceptance in Phase 4/T4 |
 
 ### Required closure record
@@ -255,15 +257,36 @@ change from planned:
 If a study produces no rule, it must be recorded as `observed-only` or
 `rejected`; a link or prose summary alone is not knowledge closure.
 
+### P3-W0 closure evidence
+
+The integrated P3-W0 records close the bounded research prerequisite without
+promoting runtime behavior:
+
+- RC-01: `JOBS_INTENTS_ASSIGNMENT.md`,
+  `ROOMS_SURFACES_STRUCTURES_ZONES.md`, and `CROWD_QUEUES_AND_DEADLOCKS.md`,
+  with `node --test scripts/office-v2-rc-01-evidence.test.mjs` passing 5/5.
+- RC-02: `DEFINITION_INSTANCE_RUNTIME_STATE.md` and
+  `REPLAY_DEBUGGING_PLAYBOOK.md`, with
+  `node --test scripts/office-v2-rc-02-evidence.test.mjs` passing 4/4.
+- RC-03: `SIMULATION_PIPELINE_COMMANDS.md` and
+  `SAVE_SNAPSHOT_MIGRATION.md`, with
+  `node --test scripts/office-v2-rc-03-evidence.test.mjs` passing 1/1.
+
+All three harnesses are test-only bounded probes. They intentionally do not
+execute a reducer or replay runner and do not promote placeholder hashes to
+`office-v2:world-kernel` or simulation replay evidence. The full project gate
+must still pass on the integration branch before publication.
+
 ### Execution order and boundaries
 
 1. Finish the Phase 2 world-kernel acceptance using the already accepted
    projection, geometry, topology, serialization, and hash contracts. RC-01
    through RC-04 are not Phase 2 entry or exit requirements.
-2. Close RC-01, RC-02, and RC-03 before implementing the Phase 3/T2 behavior
-   that depends on facilities, interactions, assignment, or replay. The slices
-   may be studied in parallel, but each closes independently with its own
-   evidence.
+2. Close the bounded RC-01, RC-02, and RC-03 research records before
+  implementing the Phase 3/T2 behavior that depends on facilities,
+  interactions, assignment, or replay. The slices may be studied in parallel,
+  but each closes independently with its own evidence. Their runtime follow-on
+  gates still require a real reducer, replay runner, and reducer-produced hashes.
 3. Close RC-04 before renderer accessibility and lifecycle implementation. It
    does not change the world or simulation contracts.
 4. Update the receiving canonical document first, then its schema, fixtures,

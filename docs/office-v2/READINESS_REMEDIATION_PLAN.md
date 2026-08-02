@@ -118,8 +118,10 @@ This record closes Phase 1 specification work only. Reducer/replay and
 property/model evidence remain `0`; asset admission remains `basic-only`;
 renderer admission remains `none`; runtime asset manifests remain `0`; no
 production PNG, runtime renderer, connector, or new dependency is admitted.
-The pure Phase 2 world kernel is authorized; T2–T6 implementation gates remain
-future work.
+The pure Phase 2 world kernel is authorized. The Phase 3 `P3-W0` wave has now
+accepted bounded RC-01/02/03 research closure records, but T2–T6 implementation
+gates remain future work; no reducer, replay runner, or reducer-produced hash
+is promoted by that prerequisite wave.
 
 ## Working decisions to ratify
 
@@ -637,9 +639,13 @@ evidence. This promotion does not authorize the Wave 2 persistent reducer,
 renderer, production assets, property/model gate, or visual proof.
 
 The focused research closure slices that feed later work are recorded in
-`RESEARCH.md` under "Research closure slices before Phase 3/T2". RC-01 through
-RC-03 must close before the first W2/T2 implementation unit that consumes their
-facility, interaction, assignment, or replay rules; RC-04 must close before
+`RESEARCH.md` under "Research closure slices before Phase 3/T2". The Phase 3
+`P3-W0` wave accepted RC-01 through RC-03 with canonical source/disposition
+records and bounded fixture evidence. This clears the research prerequisite for
+selecting a later W2/T2 implementation unit that consumes their facility,
+interaction, assignment, or replay rules; it does not claim the runtime
+follow-on evidence. Real reducer-produced hashes, restore/replay equality, and
+the T2/T3 exit gates remain required in Waves 2–3. RC-04 must close before
 renderer accessibility and lifecycle acceptance. These slices are not Phase 2
 entry or exit requirements and do not authorize a broader Phase 2 scope.
 
