@@ -629,6 +629,13 @@ ownership: READINESS_MATRIX.md remains the status authority and this plan
 remains the sequence authority. Every required exit row must pass before the
 Wave 2 persistent reducer is promoted.
 
+The focused research closure slices that feed later work are recorded in
+`RESEARCH.md` under "Research closure slices before Phase 3/T2". RC-01 through
+RC-03 must close before the first W2/T2 implementation unit that consumes their
+facility, interaction, assignment, or replay rules; RC-04 must close before
+renderer accessibility and lifecycle acceptance. These slices are not Phase 2
+entry or exit requirements and do not authorize a broader Phase 2 scope.
+
 ## Wave 2 — Commands, simulation, jobs, facilities, crowds, and replay
 
 ### W2.1 Fixed tick pipeline and command protocol

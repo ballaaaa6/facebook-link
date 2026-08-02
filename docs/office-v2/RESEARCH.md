@@ -216,6 +216,66 @@ The roadmap owns sequencing. This table owns where each missing piece is learned
 and what concrete repository evidence converts the research into usable
 knowledge.
 
+## Research closure slices before Phase 3/T2
+
+Status: planned. These slices make the next research work persistent and
+auditable without expanding the Phase 2 boundary. Phase 2 remains authorized
+to proceed with the accepted world contracts and is not blocked by these
+studies. A slice becomes a prerequisite only for the later implementation unit
+that consumes its result.
+
+The source list below is a focused execution plan, not a request to browse
+without a named question. Each slice must close into an existing canonical
+owner; this section does not become a second owner for simulation, operations,
+renderer, or accessibility rules.
+
+### Closure matrix
+
+| ID | Source focus | Bounded questions | Office receiving owners | Required closure evidence | Gate |
+| --- | --- | --- | --- | --- | --- |
+| RC-01 | [CorsixTH room/object model](https://github.com/CorsixTH/CorsixTH), limited to room prerequisites, capacity, approach/waiting positions, queueing, use, and cancellation | How are facility capacity, approach cells, waiting positions, queue order, target removal, and terminal cleanup represented? Which observations are useful for an Office facility without copying game-specific rules? | `ROOMS_SURFACES_STRUCTURES_ZONES.md`, `JOBS_INTENTS_ASSIGNMENT.md`, `CROWD_QUEUES_AND_DEADLOCKS.md`; `facility-slot`, `queue-ticket`, `reservation`, and `action-queue` schemas | One valid and one rejected facility/queue fixture; one deterministic one-actor trace; one contention or cancellation trace; exact cleanup assertions | Before Phase 3/T2 facility and interaction implementation; expanded crowd evidence remains T3 |
+| RC-02 | [FreeSO project structure](https://github.com/riperiperi/FreeSO/wiki/Project-structure), limited to simulation/presentation separation, object interaction, static/dynamic world data, commands, and snapshots | Which facts belong to immutable definitions, placed instances, mutable runtime state, and derived presentation? How does an interaction expose preconditions, progress, result, save, and restore without letting presentation commit simulation truth? | `DEFINITION_INSTANCE_RUNTIME_STATE.md`, `JOBS_INTENTS_ASSIGNMENT.md`, `SIMULATION_PIPELINE_COMMANDS.md`, `REPLAY_DEBUGGING_PLAYBOOK.md`; definition, instance, action, snapshot, and trace schemas | One interaction fixture with presentation disabled; one mid-action restore fixture; one rejected invalid-state fixture; identical reducer-produced trace/hash evidence | Before Phase 3/T2 interaction and replay implementation |
+| RC-03 | [Widelands command/task/request model](https://github.com/widelands/widelands), [Unknown Horizons world objects/scheduler/build command](https://github.com/unknown-horizons/unknown-horizons), limited to deterministic assignment, capability requests, ownership/home, target revalidation, pending work, and cancellation | How are jobs assigned by capability rather than visual identity? How are stable IDs, priorities, target changes, pending commands, and ownership preserved across retries and restore? Which rules are useful for the AutoPost office and which are rejected as out of scope? | `JOBS_INTENTS_ASSIGNMENT.md`, `SIMULATION_PIPELINE_COMMANDS.md`, `SAVE_SNAPSHOT_MIGRATION.md`, `REPLAY_DEBUGGING_PLAYBOOK.md`; intent, command, queue, snapshot, and migration contracts | Reordered-equivalent assignment fixture; unavailable/removed-target fixture; retry and cancellation fixture; restore/replay equality with real hashes | Before the W2/T2 assignment implementation; multi-actor queue and deadlock promotion remains T3 |
+| RC-04 | [WAI-ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/), limited to semantic entity lists/inspectors, keyboard traversal, focus retention/fallback, and pointer/keyboard parity | Which semantic UI patterns make spatial entities inspectable without requiring a pointer? How should focus behave when a snapshot refreshes, an entity becomes stale, or the selected entity is removed? | `INPUT_PICKING_AND_DEBUG_OVERLAYS.md`, `OPERATIONS_ADAPTER_UI_SAFETY.md`, `RENDERER_QA_SPECIFICATION.md`; accessibility and lifecycle fixture schemas | Keyboard/pointer parity fixture; stale/removed entity focus fixture; long-label and reduced-motion cases; reviewed accessibility/lifecycle evidence | Before renderer accessibility and lifecycle acceptance in Phase 4/T4 |
+
+### Required closure record
+
+Every research slice must record all of the following before its status can
+change from planned:
+
+1. The engineering question and the bounded source scope.
+2. Source URL, revision or observed date, license, and rights boundary.
+3. Neutral observations, separated from Office decisions.
+4. An explicit disposition: adopt, adapt, or reject, with the reason.
+5. The existing canonical document and schema that own the adopted rule.
+6. One valid fixture and one rejected fixture, including stable diagnostics.
+7. The original implementation test and the acceptance command that proves it.
+8. Any migration, dependency, or clean-room consequence.
+
+If a study produces no rule, it must be recorded as `observed-only` or
+`rejected`; a link or prose summary alone is not knowledge closure.
+
+### Execution order and boundaries
+
+1. Finish the Phase 2 world-kernel acceptance using the already accepted
+   projection, geometry, topology, serialization, and hash contracts. RC-01
+   through RC-04 are not Phase 2 entry or exit requirements.
+2. Close RC-01, RC-02, and RC-03 before implementing the Phase 3/T2 behavior
+   that depends on facilities, interactions, assignment, or replay. The slices
+   may be studied in parallel, but each closes independently with its own
+   evidence.
+3. Close RC-04 before renderer accessibility and lifecycle implementation. It
+   does not change the world or simulation contracts.
+4. Update the receiving canonical document first, then its schema, fixtures,
+   diagnostics, and implementation tests. Do not create a second summary file
+   that owns the same rule.
+5. Do not import external game code, maps, assets, behavior tables, branding,
+   or scene values. Open-source game repositories remain architecture studies
+   unless a separate dependency and license decision explicitly admits a
+   narrowly scoped tool.
+6. Run the focused evidence and `npm run check` after each closed slice. Only
+   then may the readiness record reference the result.
+
 ## Clean-room acquisition method
 
 Apply the same process to every external technique:
