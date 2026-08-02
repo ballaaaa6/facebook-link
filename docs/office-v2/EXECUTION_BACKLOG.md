@@ -21,8 +21,8 @@ executable leaf tasks and their current status.
   crowd and complete operations evidence remain future gates.
 - Phase status before current wave: **ACTIVE — P3-W2-03 integrated; T2/T3 exit
   criteria remain incomplete**.
-- Phase status after current wave: **ACTIVE — P3-W3.2 is selected for the
-  current one-worker wave; T2/T3 exit criteria remain incomplete**.
+- Phase status after current wave: **ACTIVE — P3-W3.2 integrated; T2/T3 exit
+  criteria remain incomplete**.
 - Phase exit criteria: T2 one-actor reach/use/cancel/restore/replay evidence,
   T3 crowd/queue/deadlock evidence, and the complete operations choreography
   evidence pass without renderer or asset leakage.
@@ -274,12 +274,18 @@ dependency.
 The Main Orchestration Session is the sole Final Integrator and Publisher.
 Workers stop after committing and handing off their individual tasks.
 
+Wave result: `P3-W3.2` was implemented by Main coordinator recovery after the
+initial worker and same-scope replacement both stalled before changing files.
+The recovered implementation passed review, focused 9/9 tests, the full Office
+V2 gates, and `npm run check`; it is integrated on
+`codex/integration/phase3-p3-w3-02`. No second wave is launched here.
+
 ## Phase 3 leaf-task inventory after P3-W2-03 integration and P3-W3-02 selection
 
-This inventory records the leaf-task definitions and statuses. `P3-W3.2` is the
-selected current READY leaf and is not launched until the planning lock is
-committed; no later-Phase work is used to fill capacity and no next wave is
-launched in this invocation.
+This inventory records the leaf-task definitions and statuses. `P3-W3.2` is
+integrated, and only its dependency-unblocked successor is promoted to READY;
+no later-Phase work is used to fill capacity and no next wave is launched in
+this invocation.
 
 ### P3-W2.1 — Fixed-tick command pipeline and reducer
 
@@ -493,8 +499,9 @@ launched in this invocation.
 - Validation commands: preflight, operations package tests, `npm run check`.
 - Worker-sized scope assessment: one adapter module and focused tests.
 - Priority: P1.
-- Status: **READY** — selected for current wave `P3-W3-02`; dispatch changes it
-  to `IN_PROGRESS`.
+- Status: **INTEGRATED** — Main accepted coordinator recovery after review;
+  implementation commit `e2689e1e48c7f63478ef84c182c179d6a35411f2`, test
+  follow-up `b71d4587e36b6d4a7cfecd1f56c59a9895d4b5ff`.
 
 ### P3-W3.3 — Fan-out/join and failure choreography
 
@@ -504,7 +511,8 @@ launched in this invocation.
   choreography intents for copy/visual branches and content-ready joins.
 - Repository evidence: Closure C schemas/fixtures exist; runtime choreography is absent.
 - Dependencies: P3-W3.2 integrated and P3-W2.5 integrated.
-- Dependency status: BLOCKED.
+- Dependency status: **SATISFIED** after `P3-W3.2` and `P3-W2.5` integration;
+  all readiness conditions are now met for the next wave.
 - Parallel group: future W3 operations group.
 - Owned implementation boundary: operations choreography module and focused tests.
 - Forbidden boundary: external publishing, workflow state writes, renderer, and simulation truth.
@@ -515,7 +523,8 @@ launched in this invocation.
 - Validation commands: preflight, operations package tests, `npm run check`.
 - Worker-sized scope assessment: one pure choreography module and focused tests.
 - Priority: P1.
-- Status: BLOCKED.
+- Status: **READY** — dependency-unblocked after current-wave integration;
+  not launched in this invocation.
 
 ### P3-W3.4 — Operations reconciliation and two-clock integration
 
@@ -540,10 +549,11 @@ launched in this invocation.
 
 ## Current-wave stop condition
 
-No second wave is launched in this invocation. After `P3-W3.2` is integrated,
-Main will re-evaluate the Phase 3 inventory. `P3-W3.3` and `P3-W3.4` remain
-BLOCKED until their listed dependencies integrate. Phase 3 remains active unless
-all T2/T3 exit criteria pass; no phase transition is authorized automatically.
+No second wave is launched in this invocation. The recommended next wave is
+`P3-W3-03`, beginning with READY leaf `P3-W3.3` (fan-out/join and failure
+choreography). `P3-W3.4` remains BLOCKED behind `P3-W3.3` and its other listed
+dependencies. Phase 3 remains active; no phase transition is authorized
+automatically.
 
 ## Selection rule and status transitions
 

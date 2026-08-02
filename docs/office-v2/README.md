@@ -128,9 +128,11 @@ catch-up and cleanup (7/7). The `P3-W2-03` wave is now integrated as well:
 (12/12), `replay.ts` supplies injected replay, completed-boundary restore,
 migration, divergence, and secret-safe bundle evidence (8/8), and the W3.1
 ownership evidence verifies role/join/disabled-feature boundaries (3/3).
-These are bounded module/runtime evidence, not the Phase 3 exit: complete
-reducer-integrated crowd traces, Operations V2 choreography, Phase 3, and T2/T3
-remain incomplete.
+The `P3-W3-02` recovery adds fail-closed Snapshot V2 cursor reconciliation,
+deterministic roster/route checks, feature/proposal safety, and focused adapter
+evidence (9/9). These are bounded module/runtime evidence, not the Phase 3 exit:
+complete reducer-integrated crowd traces, Operations V2 choreography, Phase 3,
+and T2/T3 remain incomplete.
 
 The historical 186-file W1.6 number is closure evidence at the handoff commit.
 The Phase 1 exit handoff, Phase 2 acceptance record, visual style approval

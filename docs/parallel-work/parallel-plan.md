@@ -28,6 +28,8 @@
 - Phase status before wave: **ACTIVE**. `P3-W2-03` is integrated, but the
   operations cursor/roster runtime slice and the T2/T3 exit evidence remain
   incomplete.
+- Phase status after wave: **ACTIVE**. `P3-W3.2` is integrated with bounded
+  Snapshot V2 adapter evidence; T2/T3 exit criteria remain incomplete.
 
 ## Wave selection
 
@@ -93,8 +95,17 @@ Workers stop after committing and handing off their individual tasks.
 - The worker branch will begin from this exact planning commit. The Main
   session may add coordinator-only dispatch metadata afterward; that does not
   change the worker's planning base.
-- Worker session ID: **pending dispatch**.
+- Worker sessions: `019fc345-3e04-7d10-806c-65011ff031b8` / Kant (stalled and
+  shut down before changes), then same-scope replacement
+  `019fc349-d52d-72a2-af8d-5b157a542782` / Planck (stalled and shut down before
+  changes).
 - Integration branch: `codex/integration/phase3-p3-w3-02`.
+
+No worker implementation commit or handoff was produced. Main performed
+coordinator recovery for the exact selected leaf on the integration branch:
+`e2689e1e48c7f63478ef84c182c179d6a35411f2`, followed by the fixture-driven
+test refinement `b71d4587e36b6d4a7cfecd1f56c59a9895d4b5ff`. The recovery passed
+the same ownership and validation review required of a worker handoff.
 
 ## Validation strategy
 

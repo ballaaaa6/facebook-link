@@ -3,7 +3,7 @@
 - Task: Operations Snapshot V2 cursor and roster adapter
 - Phase: Phase 3 — Headless operational vertical slice
 - Wave: `P3-W3-02`
-- Status: **COMPLETED — coordinator recovery after two worker-runtime stalls; handoff recorded by Main**
+- Status: **ACCEPTED — coordinator recovery reviewed and integrated by Main**
 - Worker branch: `task/session-1-p3-w3-02-operations-adapter`
 - Worker worktree: `C:\Users\WINDOW XI\.codex\worktrees\phase3-p3-w3-02-operations-adapter`
 - Planning / worker starting commit: `175d0d384e64610225e93f21272fdb71bdcaf4ba`
@@ -50,9 +50,8 @@ No visual test was run; this is a headless operations boundary.
 ## Known limitations
 
 This is bounded adapter evidence, not complete T2/T3 reducer-integrated replay,
-crowd, operations choreography, renderer, or asset acceptance. Main must review
-the recovery commit and integrate the result before treating the task as
-accepted.
+crowd, operations choreography, renderer, or asset acceptance. The recovery
+commit is reviewed and integrated by Main; the Phase remains active.
 
 Main owns final review, backlog transitions, shared documentation, integration,
 publication, and the final report. This status file records the coordinator

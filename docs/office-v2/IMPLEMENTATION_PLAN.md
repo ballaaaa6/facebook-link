@@ -174,10 +174,12 @@ boundary, a bounded one-actor facility/interaction runtime, and an injected
 fixed-tick lifecycle port with five-tick catch-up capping, hidden-time discard,
 and idempotent cleanup. `P3-W2-03` adds the pure queue/reservation/deadlock
 boundary, injected replay/restore/migration/divergence, and W3.1 ownership
-evidence. Focused suites pass 8/8, 7/7, 7/7, 12/12, 8/8, and 3/3
-respectively, and the complete repository gate passes. These are bounded
-simulation modules; reducer-integrated crowd traces, complete Operations V2
-choreography, and the Phase 3 exit remain required.
+evidence. `P3-W3-02` adds fail-closed Snapshot V2 cursor reconciliation,
+deterministic roster/route binding, and feature/proposal safety. Focused suites
+pass 8/8, 7/7, 7/7, 12/12, 8/8, 3/3, and 9/9 respectively, and the complete
+repository gate passes. These are bounded simulation/adapter modules;
+reducer-integrated crowd traces, complete Operations V2 choreography, and the
+Phase 3 exit remain required.
 
 - Build one geometric room with one actor, one workstation, one target, blocked
   cells, one waiting position, and one unreachable case.

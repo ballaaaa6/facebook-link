@@ -651,7 +651,9 @@ normalization/hash boundary and named PRNG streams with 8/8 evidence;
 evidence; and `P3-W2.6` adds an injected lifecycle port with capped catch-up,
 hidden-time discard, and cleanup with 7/7 evidence. These bounded slices do
 not claim queue/crowd, restore/replay, reducer-produced end-to-end hashes, or
-Operations V2 evidence. Those T2/T3 gates remain required in Waves 2–3. RC-04
+complete Operations V2 choreography. `P3-W3.2` adds bounded Snapshot V2
+cursor/roster adapter evidence, but it does not promote complete operations
+choreography. Those T2/T3 gates remain required in Waves 2–3. RC-04
 must close before
 renderer accessibility and lifecycle acceptance. These slices are not Phase 2
 entry or exit requirements and do not authorize a broader Phase 2 scope.
