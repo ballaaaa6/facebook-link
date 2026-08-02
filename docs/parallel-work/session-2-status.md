@@ -19,7 +19,7 @@
 - Changed files: `packages/office-v2-simulation/src/activity-runtime.ts`,
   `packages/office-v2-simulation/test/activity-runtime.test.ts`, and this
   status file only.
-- Implementation commit: pending until the implementation and handoff commits are created.
+- Implementation commit: `bfb06feee8a5cf720ac7eb3f40070662602cc209`.
 - Focused test: `node --test packages/office-v2-simulation/test/activity-runtime.test.ts` — passed, 7/7 tests.
 - Package typecheck: `npm run typecheck --workspace @affiliate-ops/office-v2-simulation` — passed.
 - Office preflight: re-run after implementation — passed.
