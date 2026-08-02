@@ -1,58 +1,65 @@
-# Phase 3 Wave `P3-W2-01` Ownership
+# Phase 3 Wave `P3-W2-02` Ownership
 
-No implementation file may be owned by more than one worker. Workers may read
-shared references but may modify only the paths listed in their own section and
-their own status file.
+## Worker Session 1 — `P3-W2.2`
 
-## Worker Session 1 — `P3-W2.1`
+Owned implementation files:
 
-Owned:
-
-- `packages/office-v2-simulation/src/command-pipeline.ts`
-- `packages/office-v2-simulation/test/command-pipeline.test.ts`
+- `packages/office-v2-simulation/src/state-hash.ts`
+- `packages/office-v2-simulation/test/state-hash.test.ts`
 - `docs/parallel-work/session-1-status.md`
 
-Forbidden:
+## Worker Session 2 — `P3-W2.3`
 
-- `packages/office-v2-simulation/src/index.ts`
-- `packages/office-v2-simulation/package.json`
-- all schemas and generated contract files
-- `packages/office-v2-world/**`
-- `docs/office-v2/EXECUTION_BACKLOG.md`
-- `docs/office-v2/README.md`
-- `docs/office-v2/READINESS_MATRIX.md`
-- `docs/office-v2/READINESS_REMEDIATION_PLAN.md`
-- `docs/office-v2/RESEARCH.md`
-- any other `docs/parallel-work` file
-- operations, renderer, asset, workflow, database, connector, or primary-branch files
+Owned implementation files:
+
+- `packages/office-v2-simulation/src/activity-runtime.ts`
+- `packages/office-v2-simulation/test/activity-runtime.test.ts`
+- `docs/parallel-work/session-2-status.md`
+
+## Worker Session 3 — `P3-W2.6`
+
+Owned implementation files:
+
+- `packages/office-v2-simulation/src/lifecycle.ts`
+- `packages/office-v2-simulation/test/lifecycle.test.ts`
+- `docs/parallel-work/session-3-status.md`
 
 ## Main Orchestration Session — integration only
 
+Main owns:
+
 - `packages/office-v2-simulation/src/index.ts`
-- `packages/office-v2-simulation/package.json` if a package-level focused test
-  script is required for repository integration
+- `packages/office-v2-simulation/package.json` and root workspace wiring, only
+  when required for exports or test discovery
 - `docs/office-v2/EXECUTION_BACKLOG.md`
-- `docs/office-v2/README.md`
-- `docs/office-v2/READINESS_MATRIX.md`
-- `docs/office-v2/READINESS_REMEDIATION_PLAN.md`
-- `docs/office-v2/RESEARCH.md`
-- `docs/parallel-work/parallel-plan.md`
-- `docs/parallel-work/ownership.md`
-- `docs/parallel-work/interfaces.md`
-- `docs/parallel-work/final-integration-report.md`
-- all worker status files after handoff review
-- cross-task tests, package exports, generated manifests, and conflict-resolution changes
+- `docs/office-v2/README.md`, `IMPLEMENTATION_PLAN.md`, `READINESS_MATRIX.md`,
+  and `READINESS_REMEDIATION_PLAN.md` status reconciliation
+- all files under `docs/parallel-work/` other than the three worker status
+  files while workers are running
+- cross-task integration tests, final report, conflict resolution, and the
+  dedicated integration branch
+
+Main must not change a worker's implementation files before review except to
+resolve an explicitly documented integration conflict after acceptance.
 
 ## Read-only shared references
 
-`AGENTS.md`, the `build-office-v2-engine` skill, the Office V2 README,
-foundations, readiness and remediation records, accepted Decisions 0005 and
-0011, the command/result/event schemas and generated types, the canonical JSON
-and hash utilities, the Phase 2 acceptance evidence, and existing RC closure
-records are read-only for the worker.
+All workers may read, but must not modify, `AGENTS.md`, nested `AGENTS.md`
+files, the Office V2 skill, Office V2 README/foundations/readiness documents,
+accepted decisions, schemas, generated contracts, fixtures, the Phase 2 world
+package, `packages/office-v2-simulation/src/command-pipeline.ts`, and the
+existing RC closure records.
 
-## Generated files
+## Generated files — do not edit manually
 
-`packages/office-v2-contracts/src/generated/**`, lockfiles, reports, and other
-generated outputs are generated-file boundaries. They must not be edited
-manually.
+`packages/office-v2-contracts/src/generated/**`, package lockfiles, generated
+reports, and generated code-map or build outputs are generated boundaries.
+Workers must not edit them. Schema or dependency changes are not authorized
+by this wave.
+
+## Forbidden cross-boundaries
+
+Workers must not modify another worker's source, test, status file, package
+barrel, package manifest, backlog, shared readiness docs, schemas, generated
+contracts, world package, operations adapter, renderer/presentation code,
+assets, connectors, workflows, database, or primary branch.

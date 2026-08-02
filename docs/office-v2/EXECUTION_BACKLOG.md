@@ -18,13 +18,16 @@ executable leaf tasks and their current status.
 - Phase entry blocker: the bounded RC-01, RC-02, and RC-03 research prerequisite
   is now integrated. Runtime implementation still requires the future W2
   command, reducer, hash, interaction, restore, and replay gates.
-- Phase status after current wave: **ACTIVE — P3-W2-01 integrated; P3-W0
+- Phase status before current wave: **ACTIVE — P3-W2-01 integrated; P3-W0
   bounded research closure accepted; T2/T3 exit criteria remain incomplete**.
+- Phase status during current wave: **ACTIVE — P3-W2-02 selected; workers are
+  launched from the pinned planning base; T2/T3 exit criteria remain
+  incomplete**.
 - Phase exit criteria: T2 one-actor reach/use/cancel/restore/replay evidence,
   T3 crowd/queue/deadlock evidence, and the complete operations choreography
   evidence pass without renderer or asset leakage.
 
-## Current wave: P3-W0 — T2 research-closure prerequisites
+## Historical wave: P3-W0 — T2 research-closure prerequisites
 
 The selected assignments are READY leaf tasks from the current active Phase. No
 later-Phase work was selected to fill unused worker capacity.
@@ -196,7 +199,7 @@ launched by this invocation.
   `21dc3fc363d2cbb1c3cf9bb459eaaf7619bdcd7a`, handoff commit
   `7ff19c44f8ddd669b5797016f46a0b6931f988a4`
 
-## Current wave: P3-W2-01 — T2 fixed-tick command pipeline
+## Historical completed wave: P3-W2-01 — T2 fixed-tick command pipeline
 
 The selected assignment was a READY leaf task from the current active Phase. No
 later-Phase work was selected to fill unused worker capacity. The one-worker
@@ -216,10 +219,34 @@ selection; W2.2, W2.3, and W2.6 were dependency-gated at that time.
   recovery implementation commit `758a33492f6532ee35430ed57e46917358fa6fb6`
   and integrated commit `15045a4`.
 
-## Remaining Phase 3 leaf tasks after P3-W2-01 integration
+## Current wave: P3-W2-02 — T2 normalization, one-actor interaction, and lifecycle
 
-These tasks are intentionally not selected in this invocation. They remain
-candidate or blocked until the named dependencies are integrated.
+The selected assignments are READY leaf tasks from the current active Phase.
+No later-Phase work was selected to fill unused worker capacity. Exactly three
+workers are selected because exactly three compatible READY leaves exist after
+`P3-W2.1`: `P3-W2.2`, `P3-W2.3`, and `P3-W2.6`. They have disjoint ownership
+and no dependency on one another's unintegrated output.
+
+- Planning base: `925439a5f6f29580d82767e2177433a35195bc71` before the planning
+  commit; the exact planning commit is recorded in
+  `docs/parallel-work/parallel-plan.md` before launch.
+- Integration branch: `codex/integration/phase3-p3-w2-normalization-interaction-lifecycle`
+- `P3-W2.2` — simulation normalization, PRNG, and real state hashes — **READY
+  → IN_PROGRESS at worker launch**.
+- `P3-W2.3` — one-actor intents, facilities, action queues, and interaction —
+  **READY → IN_PROGRESS at worker launch**.
+- `P3-W2.6` — fixed-tick lifecycle port — **READY → IN_PROGRESS at worker
+  launch**.
+
+Main owns the public barrel, shared documentation, backlog transitions,
+cross-task integration, complete validation, publication, and final reporting.
+Workers stop after their individual commit and handoff.
+
+## Phase 3 leaf-task inventory after P3-W2-01 integration
+
+This inventory records the leaf-task definitions and statuses. The three READY
+tasks above are the selected current wave; their statuses transition to
+IN_PROGRESS when their workers are launched.
 
 ### P3-W2.1 — Fixed-tick command pipeline and reducer
 
@@ -452,12 +479,9 @@ candidate or blocked until the named dependencies are integrated.
 
 ## Recommended next wave
 
-`P3-W2-02` should select the three compatible READY leaf tasks `P3-W2.2`
-(simulation normalization/PRNG/state hashes), `P3-W2.3` (one-actor
-intents/facilities/interaction), and `P3-W2.6` (fixed-tick lifecycle port).
-They have disjoint ownership and no dependency on one another's unintegrated
-output. The Main Orchestration Session must select and launch that wave only in
-a later invocation.
+`P3-W2-02` is the current selected wave. After it is integrated, Main must
+re-evaluate Phase 3 readiness and choose the next compatible READY leaves in a
+later invocation; no second wave is launched automatically here.
 
 ## Selection rule and status transitions
 
