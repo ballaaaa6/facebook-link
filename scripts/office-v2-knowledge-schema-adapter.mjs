@@ -28,6 +28,21 @@ export function runSchemaEvidence(context, ajv) {
   for (const definition of structures) checks.push(["surface-structure.schema.json", definition, `structure ${definition.definitionId}`, "fixtures/room-structure-cutaway.json"]);
   const snapshots = read("fixtures/operations-states.json")?.snapshots ?? [];
   for (const snapshot of snapshots) checks.push(["operations-snapshot.schema.json", snapshot, `operations ${snapshot.snapshotId}`, "fixtures/operations-states.json"]);
+  const simulation = read("fixtures/simulation-contracts-v2.json");
+  if (simulation) {
+    for (const [index, command] of (simulation.commands ?? []).entries()) {
+      checks.push(["simulation-command.schema.json", command, `simulation command ${index}`, "fixtures/simulation-contracts-v2.json"]);
+    }
+    checks.push(["simulation-result.schema.json", simulation.result, "simulation result", "fixtures/simulation-contracts-v2.json"]);
+    checks.push(["simulation-event.schema.json", simulation.event, "simulation event", "fixtures/simulation-contracts-v2.json"]);
+    checks.push(["activity-intent.schema.json", simulation.intent, "activity intent", "fixtures/simulation-contracts-v2.json"]);
+    checks.push(["facility-slot.schema.json", simulation.facilitySlot, "facility slot", "fixtures/simulation-contracts-v2.json"]);
+    checks.push(["queue-ticket.schema.json", simulation.queueTicket, "queue ticket", "fixtures/simulation-contracts-v2.json"]);
+    checks.push(["reservation.schema.json", simulation.reservation, "reservation", "fixtures/simulation-contracts-v2.json"]);
+    checks.push(["action-queue.schema.json", simulation.actionQueue, "action queue", "fixtures/simulation-contracts-v2.json"]);
+    checks.push(["simulation-snapshot-v2.schema.json", simulation.snapshot, "simulation snapshot v2", "fixtures/simulation-contracts-v2.json"]);
+    checks.push(["simulation-trace-v2.schema.json", simulation.trace, "simulation trace v2", "fixtures/simulation-contracts-v2.json"]);
+  }
   for (const fixturePath of [
     "fixtures/invalid/building-topology-direction-mismatch.json",
     "fixtures/invalid/building-topology-duplicate-floor.json",
@@ -54,6 +69,26 @@ export function runSchemaEvidence(context, ajv) {
   for (const path of ["fixtures/invalid/connectivity-missing-mask.json", "fixtures/invalid/world-overlap.json"]) {
     const rejected = read(path);
     if (rejected) validateSchema(context, ajv, rejected.schema, rejected.document, `${path} shape`, true, path);
+  }
+  for (const path of [
+    "fixtures/invalid/simulation-command-id-conflict.json",
+    "fixtures/invalid/simulation-command-scheduled-past.json",
+    "fixtures/invalid/simulation-duplicate-resource.json",
+    "fixtures/invalid/simulation-presentation-state.json",
+    "fixtures/invalid/simulation-incomplete-migration.json",
+  ]) {
+    const rejected = read(path);
+    if (rejected) {
+      validateSchema(
+        context,
+        ajv,
+        rejected.schema,
+        rejected.document,
+        `${path} shape`,
+        rejected.expectedSchemaValid === true,
+        path,
+      );
+    }
   }
   const unsupportedPath = "fixtures/invalid/proof-workstation-unsupported-mask.json";
   const unsupported = read(unsupportedPath);

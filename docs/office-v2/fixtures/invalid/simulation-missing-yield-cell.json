@@ -1,0 +1,8 @@
+{
+  "kind": "missing-yield-cell",
+  "expectedFailure": "simulation.deadlock-no-yield-cell",
+  "actorId": "actor-victim",
+  "intentId": "intent-cycle",
+  "worldRevision": 3,
+  "yieldCells": []
+}

@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/simulation-snapshot-v2.schema.json",
+  "title": "Office V2 Simulation Snapshot V2",
+  "$defs": {
+    "worldReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+        "version": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/positiveVersion" }
+      }
+    },
+    "randomStream": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["streamId", "algorithm", "state", "drawCount"],
+      "properties": {
+        "streamId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+        "algorithm": { "const": "office-prng-v1" },
+        "state": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/nonNegativeSafeInteger" },
+        "drawCount": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/nonNegativeSafeInteger" }
+      }
+    },
+    "commandLedgerEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["commandId", "payloadDigest", "resultId", "appliedTick"],
+      "properties": {
+        "commandId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/commandId" },
+        "payloadDigest": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/sha256" },
+        "resultId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/resultId" },
+        "appliedTick": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/nonNegativeSafeInteger" }
+      }
+    },
+    "externalInput": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["inputId", "scheduledTick", "kind", "payloadDigest"],
+      "properties": {
+        "inputId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/externalInputId" },
+        "scheduledTick": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/nonNegativeSafeInteger" },
+        "kind": { "enum": ["command", "operations-event", "random-seed"] },
+        "payloadDigest": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/sha256" }
+      }
+    },
+    "actorState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["actorId", "state", "position", "facing", "route", "progressTicks"],
+      "properties": {
+        "actorId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/actorId" },
+        "state": { "enum": ["idle", "planning", "moving", "interacting", "blocked"] },
+        "position": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/floorLocalSubCellPosition" },
+        "facing": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/worldFacing" },
+        "route": {
+          "type": "array",
+          "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/floorLocalCellPosition" }
+        },
+        "targetEntityId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/entityInstanceId" },
+        "progressTicks": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/nonNegativeSafeInteger" },
+        "blockedReason": { "type": "string", "pattern": "^[a-z][a-z0-9.-]{2,127}$" }
+      }
+    },
+    "snapshotDocument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "snapshotId",
+        "engineVersion",
+        "world",
+        "worldRevision",
+        "tickRateHz",
+        "tick",
+        "randomStreams",
+        "acceptedCommands",
+        "pendingCommands",
+        "externalInputs",
+        "actors",
+        "facilitySlots",
+        "queueTickets",
+        "reservations",
+        "actionQueues",
+        "cleanupGeneration",
+        "eventSequence",
+        "stateHash"
+      ],
+      "properties": {
+        "schemaVersion": { "const": "office-simulation-snapshot-v2" },
+        "snapshotId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/snapshotId" },
+        "engineVersion": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+        "world": { "$ref": "#/$defs/worldReference" },
+        "worldRevision": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/nonNegativeSafeInteger" },
+        "tickRateHz": { "const": 10 },
+        "tick": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/nonNegativeSafeInteger" },
+        "randomStreams": { "type": "array", "items": { "$ref": "#/$defs/randomStream" } },
+        "acceptedCommands": { "type": "array", "items": { "$ref": "#/$defs/commandLedgerEntry" } },
+        "pendingCommands": { "type": "array", "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/simulation-command.schema.json#/$defs/commandDocument" } },
+        "externalInputs": { "type": "array", "items": { "$ref": "#/$defs/externalInput" } },
+        "actors": { "type": "array", "items": { "$ref": "#/$defs/actorState" } },
+        "facilitySlots": { "type": "array", "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/facility-slot.schema.json#/$defs/facilitySlotDocument" } },
+        "queueTickets": { "type": "array", "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/queue-ticket.schema.json#/$defs/queueTicketDocument" } },
+        "reservations": { "type": "array", "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/reservation.schema.json#/$defs/reservationDocument" } },
+        "actionQueues": { "type": "array", "items": { "$ref": "https://affiliate-operations.example/schemas/office-v2/action-queue.schema.json#/$defs/actionQueueDocument" } },
+        "cleanupGeneration": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/nonNegativeSafeInteger" },
+        "eventSequence": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/nonNegativeSafeInteger" },
+        "stateHash": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/sha256" }
+      }
+    }
+  },
+  "$ref": "#/$defs/snapshotDocument"
+}

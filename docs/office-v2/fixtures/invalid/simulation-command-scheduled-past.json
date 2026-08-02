@@ -1,0 +1,23 @@
+{
+  "kind": "scheduled-in-past",
+  "schema": "simulation-command.schema.json",
+  "expectedSchemaValid": true,
+  "expectedFailure": "simulation.command-scheduled-in-past",
+  "currentTick": 5,
+  "document": {
+    "schemaVersion": "office-simulation-command-v2",
+    "commandId": { "kind": "command", "value": "command-late" },
+    "commandVersion": 1,
+    "ownerKind": "system",
+    "systemOwner": "workflow-coordinator",
+    "issuedTick": 4,
+    "scheduledTick": 4,
+    "sourceRank": 1,
+    "sourceSequence": 1,
+    "kind": "assign-intent",
+    "correlation": {},
+    "payload": { "intentId": { "kind": "intent", "value": "intent-late" } },
+    "payloadDigest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "expectedWorldRevision": 1
+  }
+}

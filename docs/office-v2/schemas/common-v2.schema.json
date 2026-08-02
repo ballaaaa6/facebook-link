@@ -27,6 +27,10 @@
       "type": "string",
       "pattern": "^[a-z][a-z0-9-]{1,63}$"
     },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
     "identityKind": {
       "enum": [
         "building",
@@ -35,11 +39,22 @@
         "entity-definition",
         "entity-instance",
         "facility",
+        "actor",
+        "task",
+        "workflow-run",
         "socket",
         "command",
+        "result",
         "event",
         "intent",
         "tick",
+        "action",
+        "queue-ticket",
+        "reservation",
+        "snapshot",
+        "trace",
+        "external-input",
+        "world-revision",
         "geometry",
         "definition-bundle",
         "use-slot",
@@ -104,6 +119,33 @@
       "required": ["kind", "value"],
       "properties": {
         "kind": { "const": "facility" },
+        "value": { "$ref": "#/$defs/slug" }
+      }
+    },
+    "actorId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "const": "actor" },
+        "value": { "$ref": "#/$defs/slug" }
+      }
+    },
+    "taskId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "const": "task" },
+        "value": { "$ref": "#/$defs/slug" }
+      }
+    },
+    "workflowRunId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "const": "workflow-run" },
         "value": { "$ref": "#/$defs/slug" }
       }
     },
@@ -224,6 +266,15 @@
         "value": { "$ref": "#/$defs/slug" }
       }
     },
+    "resultId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "const": "result" },
+        "value": { "$ref": "#/$defs/slug" }
+      }
+    },
     "eventId": {
       "type": "object",
       "additionalProperties": false,
@@ -239,6 +290,69 @@
       "required": ["kind", "value"],
       "properties": {
         "kind": { "const": "intent" },
+        "value": { "$ref": "#/$defs/slug" }
+      }
+    },
+    "actionId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "const": "action" },
+        "value": { "$ref": "#/$defs/slug" }
+      }
+    },
+    "queueTicketId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "const": "queue-ticket" },
+        "value": { "$ref": "#/$defs/slug" }
+      }
+    },
+    "reservationId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "const": "reservation" },
+        "value": { "$ref": "#/$defs/slug" }
+      }
+    },
+    "snapshotId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "const": "snapshot" },
+        "value": { "$ref": "#/$defs/slug" }
+      }
+    },
+    "traceId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "const": "trace" },
+        "value": { "$ref": "#/$defs/slug" }
+      }
+    },
+    "externalInputId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "const": "external-input" },
+        "value": { "$ref": "#/$defs/slug" }
+      }
+    },
+    "worldRevisionId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "const": "world-revision" },
         "value": { "$ref": "#/$defs/slug" }
       }
     },

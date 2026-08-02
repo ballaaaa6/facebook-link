@@ -45,9 +45,10 @@ probes named below.
 W0.3 completed on 2026-08-02. W1.1 closed its common identity/coordinate
 contract slice, W1.2 closed geometry authority/reference closure, and W1.3–W1.5
 closed topology, room composition, and deterministic scene compilation on
-2026-08-02. The bounded T1 semantic-foundation evidence now passes. The next
-authorized work package is **W1.6 — Cross-track Phase 1 specification closure**;
-the historical W0.3 closure register remains unchanged as a pre-T1 promotion
+2026-08-02. The bounded T1 semantic-foundation evidence now passes. **W1.6 —
+Cross-track Phase 1 specification closure is in progress**: Closure B has
+closed the bounded simulation contract slice; Closures C–E remain. The
+historical W0.3 closure register remains unchanged as a pre-T1 promotion
 baseline.
 
 The completed promotion target is **T1 — Semantic Foundation**. It is a
@@ -74,6 +75,17 @@ contracts. It passes because:
 Passing T1 proves the semantic foundation. Phase 2 starts only after the full
 Phase 1 cross-track specification record also passes. Neither result authorizes
 art, a populated room, a renderer, or claims about crowd readiness.
+
+### W1.6 Closure B record — simulation contract slice
+
+The simulation contract slice adds versioned command, result, event, activity
+intent, facility-slot, queue-ticket, reservation, action-queue, snapshot-v2,
+and trace-v2 schemas. The knowledge gate executes valid and rejected fixtures,
+same-tick ordering, command idempotency/conflict, atomic resource-key
+normalization, tick-boundary expiry, cleanup-set completeness, and capped
+presentation catch-up. The current run reports 147 files, 34 schemas, 56
+fixtures, 103/103 semantic cases, and 51 exact diagnostics. This is bounded
+contract evidence only; reducer/replay and crowd execution remain zero.
 
 ## Working decisions to ratify
 

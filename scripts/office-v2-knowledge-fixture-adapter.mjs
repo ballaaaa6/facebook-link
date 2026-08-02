@@ -28,6 +28,10 @@ import {
   roomTemplateFixturePaths,
 } from "./office-v2-room-template-evidence.mjs";
 import {
+  evaluateSimulationContractCase,
+  runSimulationNegativeDiagnostics,
+} from "./office-v2-simulation-contract-evidence.mjs";
+import {
   caseKind,
   compareExpectedDiagnostic,
   mismatch,
@@ -45,6 +49,7 @@ function executeCase(context, registration, fixture, entry, ajv) {
     || (caseRunner === "common-v2" && (typeof entry.definition === "string" || typeof entry.semantic === "string"))
     || (caseRunner === "room-template" && (entry.document || entry.mutation || entry.expectedValid === true))
     || (caseRunner === "scene-plan" && (entry.mutation || entry.expectedValid === true))
+    || (caseRunner === "simulation-v2" && typeof entry.kind === "string")
     || (caseRunner === "navigation" && ["path", "reservation"].includes(caseKind(entry)))
   );
   if (!handled) {
@@ -86,6 +91,8 @@ function executeCase(context, registration, fixture, entry, ajv) {
       if (result) assertGroundFloorRoomEvidence(context, path, entry, result);
     } else if (caseRunner === "scene-plan") {
       evaluateScenePlanCase(context, ajv, path, fixture, entry);
+    } else if (caseRunner === "simulation-v2") {
+      evaluateSimulationContractCase(context, fixture, entry);
     } else if (caseKind(entry) === "path") {
       const result = findPath(fixture, entry);
       mismatch(context, path, entry, "navigation path", result.path, entry.expectedPath);
@@ -194,4 +201,5 @@ export function runNegativeDiagnostics(context) {
     const evaluation = evaluateBuildingTopologyFixture({ knowledgeRoot: context.knowledgeRoot, fixturePath: path });
     compareExpectedDiagnostic(context, path, evaluation.expectedFailure, evaluation.result.diagnostics[0] ?? null);
   }
+  runSimulationNegativeDiagnostics(context, (path) => context.readJson(path));
 }

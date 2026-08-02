@@ -1,0 +1,10 @@
+{
+  "kind": "presentation-state",
+  "schema": "simulation-snapshot-v2.schema.json",
+  "expectedSchemaValid": false,
+  "expectedFailure": "simulation.snapshot-presentation-state",
+  "document": {
+    "schemaVersion": "office-simulation-snapshot-v2",
+    "rendererState": { "animationFrame": 3 }
+  }
+}

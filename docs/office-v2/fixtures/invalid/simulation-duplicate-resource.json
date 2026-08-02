@@ -1,0 +1,17 @@
+{
+  "kind": "duplicate-resource",
+  "schema": "queue-ticket.schema.json",
+  "expectedSchemaValid": false,
+  "expectedFailure": "simulation.resource-duplicate",
+  "document": {
+    "schemaVersion": "office-queue-ticket-v1",
+    "ticketId": { "kind": "queue-ticket", "value": "ticket-duplicate" },
+    "intentId": { "kind": "intent", "value": "intent-duplicate" },
+    "actorId": { "kind": "actor", "value": "actor-one" },
+    "priorityClass": "durable",
+    "enqueueTick": 2,
+    "state": "waiting",
+    "resourceKeys": ["socket:desk-one-seat", "socket:desk-one-seat"],
+    "queuePolicyVersion": "office-queue-policy-v1"
+  }
+}

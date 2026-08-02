@@ -1,0 +1,310 @@
+{
+  "schemaVersion": "office-simulation-contract-fixture-v1",
+  "commands": [
+    {
+      "schemaVersion": "office-simulation-command-v2",
+      "commandId": { "kind": "command", "value": "command-beta" },
+      "commandVersion": 1,
+      "ownerKind": "actor",
+      "actorId": { "kind": "actor", "value": "actor-one" },
+      "issuedTick": 4,
+      "scheduledTick": 5,
+      "sourceRank": 2,
+      "sourceSequence": 1,
+      "kind": "assign-intent",
+      "correlation": {
+        "workflowRunId": { "kind": "workflow-run", "value": "run-one" },
+        "taskId": { "kind": "task", "value": "task-one" }
+      },
+      "payload": {
+        "intentId": { "kind": "intent", "value": "intent-one" },
+        "targetEntityId": { "kind": "entity-instance", "value": "desk-one" }
+      },
+      "payloadDigest": "1111111111111111111111111111111111111111111111111111111111111111",
+      "expectedWorldRevision": 3
+    },
+    {
+      "schemaVersion": "office-simulation-command-v2",
+      "commandId": { "kind": "command", "value": "command-alpha" },
+      "commandVersion": 1,
+      "ownerKind": "actor",
+      "actorId": { "kind": "actor", "value": "actor-two" },
+      "issuedTick": 4,
+      "scheduledTick": 5,
+      "sourceRank": 1,
+      "sourceSequence": 2,
+      "kind": "assign-intent",
+      "correlation": {
+        "workflowRunId": { "kind": "workflow-run", "value": "run-one" },
+        "taskId": { "kind": "task", "value": "task-two" }
+      },
+      "payload": {
+        "intentId": { "kind": "intent", "value": "intent-two" },
+        "targetEntityId": { "kind": "entity-instance", "value": "desk-two" }
+      },
+      "payloadDigest": "2222222222222222222222222222222222222222222222222222222222222222",
+      "expectedWorldRevision": 3
+    },
+    {
+      "schemaVersion": "office-simulation-command-v2",
+      "commandId": { "kind": "command", "value": "command-gamma" },
+      "commandVersion": 1,
+      "ownerKind": "system",
+      "systemOwner": "workflow-coordinator",
+      "issuedTick": 4,
+      "scheduledTick": 5,
+      "sourceRank": 1,
+      "sourceSequence": 1,
+      "kind": "assign-intent",
+      "correlation": {
+        "workflowRunId": { "kind": "workflow-run", "value": "run-one" },
+        "taskId": { "kind": "task", "value": "task-three" }
+      },
+      "payload": {
+        "intentId": { "kind": "intent", "value": "intent-three" },
+        "targetEntityId": { "kind": "entity-instance", "value": "printer-one" }
+      },
+      "payloadDigest": "3333333333333333333333333333333333333333333333333333333333333333",
+      "expectedWorldRevision": 3
+    }
+  ],
+  "result": {
+    "schemaVersion": "office-simulation-result-v2",
+    "resultId": { "kind": "result", "value": "result-one" },
+    "commandId": { "kind": "command", "value": "command-gamma" },
+    "tick": 5,
+    "status": "accepted",
+    "stateChanged": true,
+    "payloadDigest": "3333333333333333333333333333333333333333333333333333333333333333"
+  },
+  "event": {
+    "schemaVersion": "office-simulation-event-v2",
+    "eventId": { "kind": "event", "value": "event-one" },
+    "eventVersion": 1,
+    "emittedTick": 5,
+    "sequence": 1,
+    "sourceCommandId": { "kind": "command", "value": "command-gamma" },
+    "kind": "actor-state-changed",
+    "payload": {
+      "actorId": { "kind": "actor", "value": "actor-one" },
+      "state": "planning"
+    }
+  },
+  "intent": {
+    "schemaVersion": "office-activity-intent-v1",
+    "intentId": { "kind": "intent", "value": "intent-one" },
+    "intentVersion": 1,
+    "sourceKind": "durable-operational",
+    "workflowRunId": { "kind": "workflow-run", "value": "run-one" },
+    "taskId": { "kind": "task", "value": "task-one" },
+    "sourceEventId": { "kind": "event", "value": "event-one" },
+    "capability": "work-at-desk",
+    "priorityClass": "durable",
+    "issueTick": 4,
+    "notBeforeTick": 5,
+    "expiresTick": 100,
+    "cancellationPolicy": "cancelable",
+    "preemptionPolicy": "never",
+    "coalesceKey": "task-one-work",
+    "targetSelectorVersion": 1,
+    "presentationOnly": true
+  },
+  "facilitySlot": {
+    "schemaVersion": "office-facility-slot-v1",
+    "facility": { "id": { "kind": "facility", "value": "work-area" }, "version": 1 },
+    "slot": { "id": { "kind": "use-slot", "value": "desk-one-seat" }, "version": 1 },
+    "capability": "work-at-desk",
+    "capacity": 1,
+    "targetGeneration": 2,
+    "availability": "available",
+    "revision": 3,
+    "queuePolicyVersion": "office-queue-policy-v1"
+  },
+  "queueTicket": {
+    "schemaVersion": "office-queue-ticket-v1",
+    "ticketId": { "kind": "queue-ticket", "value": "ticket-one" },
+    "intentId": { "kind": "intent", "value": "intent-one" },
+    "actorId": { "kind": "actor", "value": "actor-one" },
+    "priorityClass": "durable",
+    "enqueueTick": 5,
+    "state": "waiting",
+    "resourceKeys": ["cell:floor-one-04-04", "socket:desk-one-seat"],
+    "queuePolicyVersion": "office-queue-policy-v1"
+  },
+  "reservation": {
+    "schemaVersion": "office-reservation-v1",
+    "reservationId": { "kind": "reservation", "value": "reservation-one" },
+    "intentId": { "kind": "intent", "value": "intent-one" },
+    "actorId": { "kind": "actor", "value": "actor-one" },
+    "resourceKind": "socket",
+    "resourceKey": "socket:desk-one-seat",
+    "resourceVersion": 1,
+    "acquiredTick": 6,
+    "expiresTick": 80,
+    "state": "held",
+    "cleanupGeneration": 0
+  },
+  "actionQueue": {
+    "schemaVersion": "office-action-queue-v1",
+    "queueId": { "kind": "action", "value": "queue-one" },
+    "actorId": { "kind": "actor", "value": "actor-one" },
+    "revision": 1,
+    "actions": [
+      {
+        "actionId": { "kind": "action", "value": "action-one" },
+        "intentId": { "kind": "intent", "value": "intent-one" },
+        "phase": "waiting",
+        "progressTicks": 2,
+        "resourceKeys": ["socket:desk-one-seat"],
+        "targetEntityId": { "kind": "entity-instance", "value": "desk-one" }
+      }
+    ]
+  },
+  "snapshot": {
+    "schemaVersion": "office-simulation-snapshot-v2",
+    "snapshotId": { "kind": "snapshot", "value": "snapshot-one" },
+    "engineVersion": "office-engine-v2",
+    "world": { "id": "world-one", "version": 1 },
+    "worldRevision": 3,
+    "tickRateHz": 10,
+    "tick": 6,
+    "randomStreams": [
+      { "streamId": "gameplay", "algorithm": "office-prng-v1", "state": 1201, "drawCount": 0 },
+      { "streamId": "presentation", "algorithm": "office-prng-v1", "state": 9917, "drawCount": 0 }
+    ],
+    "acceptedCommands": [
+      {
+        "commandId": { "kind": "command", "value": "command-gamma" },
+        "payloadDigest": "3333333333333333333333333333333333333333333333333333333333333333",
+        "resultId": { "kind": "result", "value": "result-one" },
+        "appliedTick": 5
+      }
+    ],
+    "pendingCommands": [],
+    "externalInputs": [
+      {
+        "inputId": { "kind": "external-input", "value": "input-one" },
+        "scheduledTick": 5,
+        "kind": "command",
+        "payloadDigest": "3333333333333333333333333333333333333333333333333333333333333333"
+      }
+    ],
+    "actors": [
+      {
+        "actorId": { "kind": "actor", "value": "actor-one" },
+        "state": "planning",
+        "position": {
+          "space": "floor-local-sub-cell",
+          "floor": { "id": { "kind": "floor", "value": "floor-one" }, "version": 1 },
+          "coordinate": { "space": "sub-cell", "x": 4, "y": 12, "elevation": 0 }
+        },
+        "facing": "north",
+        "route": [
+          {
+            "space": "floor-local-cell",
+            "floor": { "id": { "kind": "floor", "value": "floor-one" }, "version": 1 },
+            "coordinate": { "space": "cell", "x": 1, "y": 3, "elevation": 0 }
+          }
+        ],
+        "targetEntityId": { "kind": "entity-instance", "value": "desk-one" },
+        "progressTicks": 2
+      }
+    ],
+    "facilitySlots": [],
+    "queueTickets": [],
+    "reservations": [],
+    "actionQueues": [
+      {
+        "schemaVersion": "office-action-queue-v1",
+        "queueId": { "kind": "action", "value": "queue-one" },
+        "actorId": { "kind": "actor", "value": "actor-one" },
+        "revision": 1,
+        "actions": []
+      }
+    ],
+    "cleanupGeneration": 1,
+    "eventSequence": 1,
+    "stateHash": "4444444444444444444444444444444444444444444444444444444444444444"
+  },
+  "trace": {
+    "schemaVersion": "office-simulation-trace-v2",
+    "traceId": { "kind": "trace", "value": "trace-one" },
+    "engineVersion": "office-engine-v2",
+    "initialSnapshot": {
+      "schemaVersion": "office-simulation-snapshot-v2",
+      "snapshotId": { "kind": "snapshot", "value": "snapshot-one" },
+      "engineVersion": "office-engine-v2",
+      "world": { "id": "world-one", "version": 1 },
+      "worldRevision": 3,
+      "tickRateHz": 10,
+      "tick": 0,
+      "randomStreams": [
+        { "streamId": "gameplay", "algorithm": "office-prng-v1", "state": 1201, "drawCount": 0 }
+      ],
+      "acceptedCommands": [],
+      "pendingCommands": [],
+      "externalInputs": [],
+      "actors": [],
+      "facilitySlots": [],
+      "queueTickets": [],
+      "reservations": [],
+      "actionQueues": [],
+      "cleanupGeneration": 0,
+      "eventSequence": 0,
+      "stateHash": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "inputs": [],
+    "results": [],
+    "events": [],
+    "stateHashes": [
+      { "tick": 0, "stateHash": "0000000000000000000000000000000000000000000000000000000000000000" }
+    ],
+    "finalStateHash": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "cases": [
+    {
+      "name": "same-tick-total-order",
+      "kind": "command-order",
+      "commandIds": ["command-beta", "command-alpha", "command-gamma"],
+      "expectedOrder": ["command-gamma", "command-alpha", "command-beta"]
+    },
+    {
+      "name": "duplicate-command-is-idempotent",
+      "kind": "command-idempotency",
+      "existing": { "commandId": "command-alpha", "commandVersion": 1, "payloadDigest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" },
+      "duplicate": { "commandId": "command-alpha", "commandVersion": 1, "payloadDigest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" },
+      "conflict": { "commandId": "command-alpha", "commandVersion": 1, "payloadDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" },
+      "expectedDuplicateStatus": "idempotent-duplicate",
+      "expectedConflict": "simulation.command-id-conflict"
+    },
+    {
+      "name": "resource-set-normalizes-before-acquire",
+      "kind": "resource-normalization",
+      "resourceKeys": ["socket:desk-one-seat", "cell:floor-one-04-04"],
+      "expectedOrder": ["cell:floor-one-04-04", "socket:desk-one-seat"]
+    },
+    {
+      "name": "expiry-wins-at-boundary",
+      "kind": "tick-boundary",
+      "currentTick": 12,
+      "notBeforeTick": 12,
+      "expiresTick": 12,
+      "expected": "expired-before-apply"
+    },
+    {
+      "name": "cleanup-releases-complete-set",
+      "kind": "cleanup",
+      "resources": ["cell:floor-one-04-04", "socket:desk-one-seat", "facility:work-area"],
+      "released": ["cell:floor-one-04-04", "socket:desk-one-seat", "facility:work-area"],
+      "expectedIdempotent": true
+    },
+    {
+      "name": "presentation-catch-up-is-capped",
+      "kind": "lifecycle-catch-up",
+      "accumulatedTicks": 9,
+      "maximumTicksPerPump": 5,
+      "expectedAppliedTicks": 5,
+      "expectedDiagnostic": "simulation.lifecycle-catch-up-capped"
+    }
+  ]
+}

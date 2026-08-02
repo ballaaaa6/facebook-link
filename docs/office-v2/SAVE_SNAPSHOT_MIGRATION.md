@@ -11,6 +11,13 @@
 Each form declares its schema version. Engine build identifiers are diagnostic;
 schema versions own compatibility.
 
+The Phase 1 contract slice defines `office-simulation-snapshot-v2` and
+`office-simulation-trace-v2`. Their schemas require versioned world identity,
+tick state, command ledgers, external-input digests, queue/reservation state,
+action queues, cleanup generation, and state-hash fields. They are contract
+fixtures only until the Phase 2/3 reducer and migration registry produce and
+verify real state hashes.
+
 W1.1 identity and coordinate values use the discriminated shapes in
 `DEFINITION_INSTANCE_RUNTIME_STATE.md` and `common-v2.schema.json`. A floor-local
 coordinate carries an explicit versioned floor reference; an elevation or

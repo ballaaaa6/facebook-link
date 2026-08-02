@@ -41,6 +41,8 @@ test("the descriptor registry is explicit and deterministically sorted", () => {
   assert.deepEqual(
     officeV2SchemaDescriptors.map(({ schemaRelativePath }) => schemaRelativePath).toSorted(),
     [
+      "docs/office-v2/schemas/action-queue.schema.json",
+      "docs/office-v2/schemas/activity-intent.schema.json",
       "docs/office-v2/schemas/building.schema.json",
       "docs/office-v2/schemas/common-v2.schema.json",
       "docs/office-v2/schemas/compilation-report.schema.json",
@@ -48,9 +50,17 @@ test("the descriptor registry is explicit and deterministically sorted", () => {
       "docs/office-v2/schemas/definition-bundle.schema.json",
       "docs/office-v2/schemas/entity-definition-v2.schema.json",
       "docs/office-v2/schemas/entity-instance.schema.json",
+      "docs/office-v2/schemas/facility-slot.schema.json",
       "docs/office-v2/schemas/geometry.schema.json",
+      "docs/office-v2/schemas/queue-ticket.schema.json",
+      "docs/office-v2/schemas/reservation.schema.json",
       "docs/office-v2/schemas/room-template.schema.json",
       "docs/office-v2/schemas/scene-plan.schema.json",
+      "docs/office-v2/schemas/simulation-command.schema.json",
+      "docs/office-v2/schemas/simulation-event.schema.json",
+      "docs/office-v2/schemas/simulation-result.schema.json",
+      "docs/office-v2/schemas/simulation-snapshot-v2.schema.json",
+      "docs/office-v2/schemas/simulation-trace-v2.schema.json",
       "docs/office-v2/schemas/world-v2.schema.json",
     ],
   );

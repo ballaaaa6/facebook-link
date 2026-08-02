@@ -2,3 +2,4 @@ import "./office-v2-knowledge-check-inventory.test.mjs";
 import "./office-v2-knowledge-check-connectivity.test.mjs";
 import "./office-v2-knowledge-check-probes.test.mjs";
 import "./office-v2-room-template-evidence.test.mjs";
+import "./office-v2-knowledge-check-simulation.test.mjs";

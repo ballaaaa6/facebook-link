@@ -1,0 +1,35 @@
+export const commonDescriptor = Object.freeze({
+  schemaRelativePath: "docs/office-v2/schemas/common-v2.schema.json",
+  generatedRelativePath: "packages/office-v2-contracts/src/generated/common-v2.ts",
+  schemaId: "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json",
+});
+
+export const officeV2SchemaDescriptors = Object.freeze([
+  commonDescriptor,
+  ...[
+    ["action-queue", "action-queue"],
+    ["activity-intent", "activity-intent"],
+    ["facility-slot", "facility-slot"],
+    ["queue-ticket", "queue-ticket"],
+    ["reservation", "reservation"],
+    ["simulation-command", "simulation-command"],
+    ["simulation-event", "simulation-event"],
+    ["simulation-result", "simulation-result"],
+    ["simulation-snapshot-v2", "simulation-snapshot-v2"],
+    ["simulation-trace-v2", "simulation-trace-v2"],
+    ["geometry", "geometry"],
+    ["entity-definition-v2", "entity-definition-v2"],
+    ["entity-instance", "entity-instance"],
+    ["definition-bundle", "definition-bundle"],
+    ["room-template", "room-template"],
+    ["building", "building"],
+    ["scene-plan", "scene-plan"],
+    ["world-v2", "world-v2"],
+    ["compiled-building", "compiled-building"],
+    ["compilation-report", "compilation-report"],
+  ].map(([name, output]) => Object.freeze({
+    schemaRelativePath: `docs/office-v2/schemas/${name}.schema.json`,
+    generatedRelativePath: `packages/office-v2-contracts/src/generated/${output}.ts`,
+    schemaId: `https://affiliate-operations.example/schemas/office-v2/${name}.schema.json`,
+  })),
+]);

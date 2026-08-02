@@ -1,0 +1,27 @@
+{
+  "kind": "command-id-conflict",
+  "schema": "simulation-command.schema.json",
+  "expectedSchemaValid": true,
+  "expectedFailure": "simulation.command-id-conflict",
+  "existing": {
+    "commandId": { "kind": "command", "value": "command-reused" },
+    "commandVersion": 1,
+    "payloadDigest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "document": {
+    "schemaVersion": "office-simulation-command-v2",
+    "commandId": { "kind": "command", "value": "command-reused" },
+    "commandVersion": 1,
+    "ownerKind": "system",
+    "systemOwner": "workflow-coordinator",
+    "issuedTick": 4,
+    "scheduledTick": 5,
+    "sourceRank": 1,
+    "sourceSequence": 1,
+    "kind": "assign-intent",
+    "correlation": {},
+    "payload": { "intentId": { "kind": "intent", "value": "intent-reused" } },
+    "payloadDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "expectedWorldRevision": 1
+  }
+}

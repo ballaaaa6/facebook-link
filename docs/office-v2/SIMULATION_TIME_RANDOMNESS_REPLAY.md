@@ -54,6 +54,12 @@ interpreted and historical fixtures are never edited to match new behavior.
 placeholder hashes. Until W2.2 runs the real reducer and independently verifies
 its hashable-state projection, reducer/replay evidence remains zero.
 
+W1.6 adds the versioned contract shapes in `SIMULATION_PIPELINE_COMMANDS.md`,
+`JOBS_INTENTS_ASSIGNMENT.md`, `CROWD_QUEUES_AND_DEADLOCKS.md`, and
+`REPLAY_DEBUGGING_PLAYBOOK.md`. The V2 schemas and bounded fixtures establish
+ordering, idempotency, resource, lifecycle, snapshot, and trace boundaries;
+they do not promote the placeholder V1 hashes or claim reducer execution.
+
 ## Required evidence
 
 - Two runs of the same trace produce identical state hashes.

@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/simulation-command.schema.json",
+  "title": "Office V2 Simulation Command",
+  "$defs": {
+    "correlation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "workflowRunId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/workflowRunId" },
+        "taskId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/taskId" },
+        "sourceEventId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/eventId" }
+      }
+    },
+    "commandPayload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["intentId"],
+      "properties": {
+        "intentId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/intentId" },
+        "targetEntityId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/entityInstanceId" },
+        "interactionId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/interactionId" },
+        "reason": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" }
+      }
+    },
+    "commandDocument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "commandId",
+        "commandVersion",
+        "ownerKind",
+        "issuedTick",
+        "scheduledTick",
+        "sourceRank",
+        "sourceSequence",
+        "kind",
+        "correlation",
+        "payload",
+        "payloadDigest",
+        "expectedWorldRevision"
+      ],
+      "properties": {
+        "schemaVersion": { "const": "office-simulation-command-v2" },
+        "commandId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/commandId" },
+        "commandVersion": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/positiveVersion" },
+        "ownerKind": { "enum": ["actor", "system"] },
+        "actorId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/actorId" },
+        "systemOwner": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+        "issuedTick": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/nonNegativeSafeInteger" },
+        "scheduledTick": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/nonNegativeSafeInteger" },
+        "sourceRank": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/nonNegativeSafeInteger" },
+        "sourceSequence": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/nonNegativeSafeInteger" },
+        "kind": { "enum": ["assign-intent", "cancel-intent", "request-interaction", "release-reservation"] },
+        "correlation": { "$ref": "#/$defs/correlation" },
+        "payload": { "$ref": "#/$defs/commandPayload" },
+        "payloadDigest": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/sha256" },
+        "expectedWorldRevision": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/nonNegativeSafeInteger" }
+      }
+    }
+  },
+  "$ref": "#/$defs/commandDocument"
+}

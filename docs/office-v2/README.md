@@ -80,6 +80,14 @@ dependency was admitted; reducer/replay and property/model evidence remain
 zero. W1.6 cross-track specification closure is the next authorized package.
 The historical W0.3 closure register remains unchanged as its pre-T1 baseline.
 
+The current W1.6 Closure B slice is recorded separately: simulation command,
+result, event, intent, facility-slot, queue-ticket, reservation, action-queue,
+snapshot-v2, and trace-v2 contracts now have valid/rejected fixtures and
+bounded semantic probes. The current knowledge run reports 147 inventoried
+files, 34 schemas, 56 fixtures, 103/103 executed semantic cases, and 51 exact
+diagnostics. Reducer/replay, property/model, renderer, and runtime-asset
+evidence remain zero or none; Closure C–E are still pending.
+
 ## Knowledge rule
 
 Documentation is not accepted as a rule by itself. A production rule must have

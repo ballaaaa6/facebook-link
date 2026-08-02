@@ -36,12 +36,13 @@ geometric probes. Three narrow areas are close enough for such probes:
 T0 now passes, W0.3 closes the twelve decision-level P0 contradictions, and the
 bounded W1.1–W1.5 contract slices pass their schema, exact-diagnostic,
 generated-drift, pure-validator, compiler, reorder/hash, and reference-graph
-gates. The current evidence is 114 files, 24 schemas, 37 fixtures, 87/87
-semantic cases, and 35 exact diagnostics. The bounded T1 semantic-foundation
-evidence passes; the gates report only the schema-shape, bounded semantic,
-exact-diagnostic, and resolution evidence they execute. This does not change
-the no-go decision for persistent engine work or production content; W1.6
-cross-track specification closure is next.
+gates. The historical W1.5 record contains 114 files, 24 schemas, 37
+fixtures, 87/87 semantic cases, and 35 exact diagnostics. W1.6 Closure B now
+adds the bounded simulation contract slice; the current evidence is 147 files,
+34 schemas, 56 fixtures, 103/103 semantic cases, and 51 exact diagnostics. The
+gates report only the schema-shape, bounded semantic, exact-diagnostic, and
+resolution evidence they execute. This does not change the no-go decision for
+persistent engine work or production content; W1.6 Closures C–E remain.
 
 ### W1.5 closure record
 
@@ -145,12 +146,12 @@ and performance. A schema alone is E3 at most.
 | Definition, instance, and runtime state | E1 | The layers are implied but not separately contracted or version-pinned |
 | Facilities and use slots | E1 | Capacity is named; slot allocation, capability, queue, and mutable state are absent |
 | Interaction lifecycle | E3-E4, narrow | All three sample cases execute through a shallow duration/cancel/timeout truth table; there is no reducer, acquisition, queue, or cleanup lifecycle proof |
-| Fixed ticks, commands, and phase order | E2 | Ten hertz is fixed; within-tick subsystem and same-tick command order are not |
-| Randomness and replay | E3, shape only | Decision 0011 owns canonical bytes and the hash envelope; no reducer produces the sample hashes and the PRNG remains open |
+| Fixed ticks, commands, and phase order | E3-E4, bounded contract | Versioned command/result/event envelopes, same-tick order, tick boundary, idempotency, and lifecycle cap have schema and pure fixture evidence; no reducer exists |
+| Randomness and replay | E3, shape only | V2 snapshot/trace and PRNG stream shapes are versioned; no reducer produces hashes and replay evidence remains zero |
 | Single-actor navigation | E4, narrow | The versioned path oracle executes six steps at 100 units per step and asserts final cost 600; movement, replanning, and crowds remain unproved |
 | Crowds, queues, fairness, and deadlocks | E2 | Decision 0012 ratifies acquisition, queue, cleanup, and victim policy; no queue engine or target-crowd evidence exists |
-| Jobs, intents, assignment, and preemption | E0-E1 | Operations status would otherwise become per-role animation special cases |
-| Save and migration | E2 | No migration registry, mid-action restore fixture, or executable round trip |
+| Jobs, intents, assignment, and preemption | E3, contract only | Intent, facility-slot, queue-ticket, reservation, and action-queue shapes exist; assignment, preemption, and cleanup execution remain later |
+| Save and migration | E3, shape only | Snapshot/trace V2 carries versioned state and migration rejection shape; no migration registry, mid-action restore, or executable round trip |
 | Operations adapter V1 | E3-E4, lab only | Suitable for the data-free status lab, not authoritative choreography |
 | Operations adapter V2 and roster binding | E2 plus project workflow tests | Winner ownership and copy/visual join are enforced centrally; no durable cursor, Office roster binding, capability binding, or ten-role trace exists |
 | Character animation | E3, shape only | No character-definition schema, seated contract, per-frame contacts, or complete clip fixture |
@@ -219,6 +220,21 @@ dispositions executable through `registers/p0-resolution-register.json` and
 
 This is resolution evidence, not world, simulation, renderer, or production-art
 evidence. The V1 files in the historical set remain frozen.
+
+### W1.6 Closure B record — 2026-08-02
+
+The bounded simulation specification slice is complete. Versioned command,
+result, event, activity-intent, facility-slot, queue-ticket, reservation,
+action-queue, snapshot-v2, and trace-v2 schemas are generated and drift-checked.
+Valid and rejected fixtures cover same-tick total order, command idempotency and
+payload conflict, atomic resource-key normalization, expiry-before-apply,
+complete cleanup sets, capped presentation catch-up, missing-yield diagnostics,
+presentation-state rejection, and incomplete migration context. The knowledge
+gate currently executes 103/103 declared semantic cases and compares 51 exact
+diagnostics across 147 files, 34 schemas, and 56 fixtures. This closes contract
+and bounded-probe evidence only; no reducer, crowd engine, replay hash,
+renderer, or runtime asset is admitted. Operations, visual/asset, and
+renderer/QA specification closures remain W1.6 work.
 
 ### Semantic schema smoke test
 

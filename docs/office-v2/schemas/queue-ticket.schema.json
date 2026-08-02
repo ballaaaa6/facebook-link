@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/queue-ticket.schema.json",
+  "title": "Office V2 Queue Ticket",
+  "$defs": {
+    "queueTicketDocument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "ticketId", "intentId", "actorId", "priorityClass", "enqueueTick", "state", "resourceKeys", "queuePolicyVersion"],
+      "properties": {
+        "schemaVersion": { "const": "office-queue-ticket-v1" },
+        "ticketId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/queueTicketId" },
+        "intentId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/intentId" },
+        "actorId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/actorId" },
+        "priorityClass": { "enum": ["durable", "decorative"] },
+        "enqueueTick": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/nonNegativeSafeInteger" },
+        "state": { "enum": ["waiting", "acquired", "canceled", "yielding"] },
+        "resourceKeys": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^[a-z][a-z0-9-]{1,31}:[a-z][a-z0-9-]{1,63}$" }
+        },
+        "queuePolicyVersion": { "const": "office-queue-policy-v1" }
+      }
+    }
+  },
+  "$ref": "#/$defs/queueTicketDocument"
+}

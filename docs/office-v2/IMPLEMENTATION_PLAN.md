@@ -36,9 +36,11 @@ fixtures fail for their declared reason.
 
 Status: in progress. W1.1 through W1.5 are complete for their bounded
 identity/coordinate, geometry/reference, topology, room, and scene-compiler
-slices. W1.6 cross-track specification closure is next. The target brief and
-contract/compiler evidence exist; simulation, renderer, and asset-factory
-implementation remain later work.
+slices. W1.6 is in progress: Closure B has closed the bounded simulation
+contract slice, while Operations Snapshot V2, visual/asset, and renderer/QA
+specification closures remain. The target brief and contract/compiler evidence
+exist; simulation reducer, renderer, and asset-factory implementation remain
+later work.
 `KNOWLEDGE_COMPLETENESS_AUDIT.md` is the evidence inventory for this phase. Its
 P0 contradictions must close before persistent engine implementation, and its
 minimum safe-to-produce gate must pass before the large floor or any art batch.

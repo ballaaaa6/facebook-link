@@ -1,0 +1,6 @@
+{
+  "kind": "catch-up-overflow",
+  "expectedFailure": "simulation.lifecycle-catch-up-capped",
+  "accumulatedTicks": 9,
+  "maximumTicksPerPump": 5
+}

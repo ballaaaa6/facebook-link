@@ -1,0 +1,12 @@
+{
+  "kind": "incomplete-migration",
+  "schema": "simulation-snapshot-v2.schema.json",
+  "expectedSchemaValid": false,
+  "expectedFailure": "contract.migration-context-missing",
+  "sourceVersion": "office-snapshot-v1",
+  "hasCompleteResourceContext": false,
+  "document": {
+    "schemaVersion": "office-simulation-snapshot-v2",
+    "snapshotId": { "kind": "snapshot", "value": "snapshot-incomplete" }
+  }
+}

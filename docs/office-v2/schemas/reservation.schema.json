@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/reservation.schema.json",
+  "title": "Office V2 Resource Reservation",
+  "$defs": {
+    "reservationDocument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "reservationId", "intentId", "actorId", "resourceKind", "resourceKey", "resourceVersion", "acquiredTick", "expiresTick", "state", "cleanupGeneration"],
+      "properties": {
+        "schemaVersion": { "const": "office-reservation-v1" },
+        "reservationId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/reservationId" },
+        "intentId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/intentId" },
+        "actorId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/actorId" },
+        "resourceKind": { "enum": ["cell", "socket", "facility-capacity", "held-prop"] },
+        "resourceKey": { "type": "string", "pattern": "^[a-z][a-z0-9-]{1,31}:[a-z][a-z0-9-]{1,63}$" },
+        "resourceVersion": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/positiveVersion" },
+        "acquiredTick": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/nonNegativeSafeInteger" },
+        "expiresTick": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/nonNegativeSafeInteger" },
+        "state": { "enum": ["held", "released"] },
+        "cleanupGeneration": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/nonNegativeSafeInteger" }
+      }
+    }
+  },
+  "$ref": "#/$defs/reservationDocument"
+}

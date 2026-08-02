@@ -24,7 +24,7 @@ closure remains before Phase 2 authorization.
 | Canonical JSON map shape | `decisions/0003-map-authoring.md` | current world and structure schemas | minimal hand-authored office and structures | schema-shape evidence reported separately | Ready for a bounded data probe |
 | Editor import and scene compilation | `decisions/0014-v2-runtime-world-format.md` | `scene-plan.schema.json`, `world-v2.schema.json`, `compiled-building.schema.json`, and `compilation-report.schema.json` | target-floor, reorder/hash, and five fail-closed compiler cases | canonical bytes/hashes, reference graph, schema, compiler, and exact-diagnostic gates | W1.5/T1 bounded evidence complete; no persistent world or renderer |
 | Single-actor four-way navigation | `decisions/0004-navigation-movement.md` | current snapshot contract | preserved V1 path plus V2 six-step/cost-600 oracle | T0 gate uses cardinal and heuristic units of 100 | Ready for a bounded algorithm probe only |
-| Commands and state-machine lifecycle | `decisions/0005-simulation-state-machine.md` | snapshot and trace schemas are shape-only | placeholder hashes and shallow cancellation examples | T0 reports reducer/replay evidence as zero | Not ready |
+| Commands and state-machine lifecycle | `decisions/0005-simulation-state-machine.md` plus `SIMULATION_PIPELINE_COMMANDS.md` | versioned command/result/event, intent, facility-slot, queue-ticket, reservation, action-queue, snapshot-v2, and trace-v2 schemas | valid/rejected simulation contract fixtures plus bounded ordering, idempotency, cleanup, tick-boundary, and lifecycle cases | knowledge gate reports 103/103 semantic cases and 51 exact diagnostics; reducer/replay remains zero | W1.6 Closure B contract slice complete; reducer/runtime lifecycle not ready |
 | Basic asset manifest admission | `decisions/0006-asset-authoring-export.md` | current asset and provenance schemas | valid and rejected manifest fixtures | path, hash, PNG header, dimensions, and uniqueness checks | Ready for gate development only |
 | Placement | world-model documents | entity and structure schemas | narrow placement fixture | T0 executes all four bounded rotation/clearance cases | Ready for a bounded algorithm probe only |
 | Geometry authority and reference closure | `decisions/0009-geometry-authority.md` | `geometry.schema.json`, `entity-definition-v2.schema.json`, `entity-instance.schema.json`, `definition-bundle.schema.json`, typed versioned refs | valid bundle plus dangling, wrong-kind, missing-version, version-mismatch, orientation, rotation, duplicate, agreement, asset-occupancy, and render-cycle rejections | schema/generator drift, public-world graph, pure transform/agreement, mutation, and preflight gates | W1.2 complete; no persistent world kernel, renderer, or runtime assets authorized |
@@ -66,6 +66,8 @@ crowds, and renderer integration remain blocked until later gates pass.
 The bounded T1 — Semantic Foundation evidence in
 `READINESS_REMEDIATION_PLAN.md` passed on 2026-08-02. T0, W0.1, W0.3, and
 W1.1–W1.5 contract slices are complete; W1.6 remains before Phase 2
-authorization. Closure still reports reducer/replay `0`, property/model `0`,
+authorization. The current Closure B slice brings the knowledge run to 147
+files, 34 schemas, 56 fixtures, 103/103 semantic cases, and 51 exact
+diagnostics. Closure C–E remain; reducer/replay `0`, property/model `0`,
 basic-only asset admission, no renderer, no runtime asset manifest, and no new
-dependency admission.
+dependency admission remain unchanged.

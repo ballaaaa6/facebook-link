@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/facility-slot.schema.json",
+  "title": "Office V2 Facility Runtime Slot",
+  "$defs": {
+    "facilitySlotDocument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "facility", "slot", "capability", "capacity", "targetGeneration", "availability", "revision", "queuePolicyVersion"],
+      "properties": {
+        "schemaVersion": { "const": "office-facility-slot-v1" },
+        "facility": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/facilityReference" },
+        "slot": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/useSlotReference" },
+        "capability": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+        "capacity": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/positiveVersion" },
+        "targetGeneration": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/nonNegativeSafeInteger" },
+        "availability": { "enum": ["available", "disabled", "removed", "occupied"] },
+        "revision": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/positiveVersion" },
+        "queuePolicyVersion": { "const": "office-queue-policy-v1" }
+      }
+    }
+  },
+  "$ref": "#/$defs/facilitySlotDocument"
+}

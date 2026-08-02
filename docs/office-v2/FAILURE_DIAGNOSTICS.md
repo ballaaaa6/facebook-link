@@ -97,6 +97,21 @@ boundary:
 reject incomplete or contradictory V1 migration context before a V2 topology
 record is materialized.
 
+W1.6 simulation contract diagnostics are stable and simulation-owned:
+
+| Code | Originating rule |
+| --- | --- |
+| `simulation.command-id-conflict` | A duplicate command ID has a different version or payload digest. |
+| `simulation.command-scheduled-in-past` | A command arrives with a scheduled tick before the current tick. |
+| `simulation.resource-duplicate` | An atomic resource request repeats a stable resource key. |
+| `simulation.snapshot-presentation-state` | A simulation snapshot contains renderer or presentation state. |
+| `simulation.lifecycle-catch-up-capped` | Presentation lag exceeds the five-tick-per-pump catch-up cap. |
+| `simulation.deadlock-no-yield-cell` | A deterministic deadlock victim has no declared legal yield cell. |
+
+The W1.6 gate checks these codes through bounded contract fixtures. It does not
+claim that a reducer, queue engine, browser lifecycle, or replay runner has
+emitted them in production execution; those remain T2/T3 evidence.
+
 ## Debug evidence
 
 A bug report can include the validated world definition, initial snapshot,
