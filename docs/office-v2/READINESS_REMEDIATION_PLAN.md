@@ -645,10 +645,14 @@ records and bounded fixture evidence. This clears the research prerequisite for
 selecting a later W2/T2 implementation unit that consumes their facility,
 interaction, assignment, or replay rules; it does not claim the runtime
 follow-on evidence. `P3-W2.1` now supplies the first pure fixed-tick
-command/result/event pipeline with 8/8 focused evidence; it does not claim
-facility/interaction runtime, lifecycle, queue/crowd, restore/replay, or real
-reducer-produced state-hash evidence. Those T2/T3 gates remain required in
-Waves 2–3. RC-04 must close before
+command/result/event pipeline with 8/8 focused evidence. `P3-W2.2` adds a real
+normalization/hash boundary and named PRNG streams with 8/8 evidence;
+`P3-W2.3` adds a bounded one-actor facility/interaction runtime with 7/7
+evidence; and `P3-W2.6` adds an injected lifecycle port with capped catch-up,
+hidden-time discard, and cleanup with 7/7 evidence. These bounded slices do
+not claim queue/crowd, restore/replay, reducer-produced end-to-end hashes, or
+Operations V2 evidence. Those T2/T3 gates remain required in Waves 2–3. RC-04
+must close before
 renderer accessibility and lifecycle acceptance. These slices are not Phase 2
 entry or exit requirements and do not authorize a broader Phase 2 scope.
 

@@ -96,14 +96,36 @@ documentation remain Main-owned.
   — `P3-W2.6`.
 - All three worker worktrees passed `npm ci --ignore-scripts`, Office V2
   preflight, and `git diff --check` at the planning base.
+- The initial and replacement sessions for all three leaves stalled without
+  implementation changes and were closed. Main completed coordinator recovery
+  in the preserved worktrees; no delegated implementation was falsely claimed.
+
+## Review and integration result
+
+- `P3-W2.2`: accepted after review. Recovery implementation commits were
+  `782cb40` and handoff `1cbb27d`; focused suite passed 8/8, package typecheck,
+  preflight, `git diff --check`, and `npm run check` passed.
+- `P3-W2.3`: accepted after review. Recovery implementation commits were
+  `bfb06fe` and the held-prop cleanup fix `c54d64c`, with handoff commits
+  `2006fc9` and `9511921`; focused suite passed 7/7, package typecheck,
+  preflight, `git diff --check`, and `npm run check` passed.
+- `P3-W2.6`: accepted after review. Recovery implementation commit was
+  `dfe6a6b` with handoff `c68e00e`; focused suite passed 7/7, package
+  typecheck, preflight, `git diff --check`, and `npm run check` passed.
+- Main cherry-picked the accepted worker commits onto the dedicated branch,
+  resolved only the expected worker-status conflicts, and added the public
+  barrel exports in `packages/office-v2-simulation/src/index.ts`.
+- Integrated cherry-pick commits currently include `02315b0`, `2ea8816`,
+  `0ba26e6`, `3bf35c3`, `55ee62c`, `8921068`, `2f8b98f`, and `c5fe220`.
 
 ## Validation strategy
 
-Each worker runs its focused Node test, package typecheck, Office V2 preflight,
-and `git diff --check`; each worker attempts `npm run check` in its dependency-
-ready worktree. Main re-runs focused tests after review, then runs the complete
-Office V2 gate and `npm run check` after public export/integration wiring and
-documentation updates. No local development server is needed for this wave.
+Each worker ran its focused Node test, package typecheck, Office V2 preflight,
+and `git diff --check`; each recovery worktree passed `npm run check` after its
+implementation. Main re-ran all three focused suites after review and will run
+the complete Office V2 gate and `npm run check` after public export,
+integration, and documentation updates. No local development server is needed
+for this wave.
 
 ## Phase-closure strategy
 

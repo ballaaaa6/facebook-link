@@ -169,11 +169,13 @@ proof remain deferred to their later gates.
 ## Phase 3 — Headless operational vertical slice
 
 The `P3-W2.1` fixed-tick command pipeline is integrated as the first pure
-simulation runtime unit. It proves deterministic command ordering, scheduled-
-past and stale-revision rejection, duplicate idempotency/conflict handling,
-owner validation, and schema-shaped result/event emission. Facility and
-interaction runtime, lifecycle, queue/crowd, restore/replay, and real state
-hash evidence remain required before the Phase 3 exit.
+simulation runtime unit. `P3-W2-02` adds the deterministic state-hash/PRNG
+boundary, a bounded one-actor facility/interaction runtime, and an injected
+fixed-tick lifecycle port with five-tick catch-up capping, hidden-time discard,
+and idempotent cleanup. Focused suites pass 8/8, 7/7, and 7/7 respectively, and
+the complete repository gate passes. These are bounded simulation modules;
+multi-actor queues/deadlocks, restore/replay, reducer-produced end-to-end hash
+traces, and Operations V2 choreography remain required before the Phase 3 exit.
 
 - Build one geometric room with one actor, one workstation, one target, blocked
   cells, one waiting position, and one unreachable case.

@@ -118,10 +118,15 @@ clean-room dispositions, canonical receiving docs, test-only fixtures, and
 focused evidence (5/5, 4/4, and 1/1). This clears the bounded research
 prerequisite for selecting a later T2 implementation wave. The `P3-W2.1`
 fixed-tick command pipeline is now integrated as a pure, renderer-free command
-result/event reducer boundary with focused 8/8 evidence. Facility/interaction
-runtime, queue/crowd behavior, lifecycle, replay, and reducer-produced state
-hashes remain future work; placeholder hashes are not evidence, Phase 3 remains
-active, and T2/T3 have not passed.
+result/event boundary with focused 8/8 evidence. The current `P3-W2-02` wave is
+also integrated: `state-hash.ts` supplies the real deterministic
+normalization/hash boundary with named PRNG streams (8/8), `activity-runtime.ts`
+supplies the bounded one-actor facility/interaction lifecycle (7/7), and
+`lifecycle.ts` supplies the injected fixed-tick lifecycle port with capped
+catch-up and cleanup (7/7). These are bounded module/runtime evidence, not the
+Phase 3 exit: multi-actor queue/deadlock behavior, restore/replay,
+reducer-produced end-to-end hashes, Operations V2 choreography, Phase 3, and
+T2/T3 remain incomplete.
 
 The historical 186-file W1.6 number is closure evidence at the handoff commit.
 The Phase 1 exit handoff, Phase 2 acceptance record, visual style approval
