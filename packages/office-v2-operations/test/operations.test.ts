@@ -69,6 +69,12 @@ function eventAt(snapshot: SnapshotDocument, sequence: number): SnapshotDocument
   };
 }
 
+function expectedRosterFailure(name: string): string {
+  const entry = adapterFixture.rosterCases.find((candidate) => candidate.name === name);
+  assert.ok(entry);
+  return entry.expectedFailure;
+}
+
 test("reconnect applies a contiguous window and duplicate delivery is a no-op", () => {
   const snapshot = fixture.snapshots[0];
   const first = reconcileEventWindow({
@@ -158,7 +164,7 @@ test("roster binding rejects duplicate routes, TeamBrain agents, and unknown sna
   const routing = structuredClone(fixture.routing);
   routing.routes = [...routing.routes, routing.routes[0]];
   const duplicateRoute = bindRoster(fixture.snapshots[0], routing, fixture.roster);
-  assert.ok(duplicateRoute.diagnostics.some((entry) => entry.code === "adapter.routing-role-duplicate"));
+  assert.ok(duplicateRoute.diagnostics.some((entry) => entry.code === expectedRosterFailure("duplicate-role")));
 
   const teambrainRoster = structuredClone(fixture.roster);
   teambrainRoster.bindings = [
@@ -166,12 +172,12 @@ test("roster binding rejects duplicate routes, TeamBrain agents, and unknown sna
     { ...teambrainRoster.bindings[0], agentInstanceId: { ...teambrainRoster.bindings[0].agentInstanceId, value: "teambrain" }, roleId: "teambrain" },
   ];
   const teambrain = bindRoster(fixture.snapshots[0], fixture.routing, teambrainRoster);
-  assert.ok(teambrain.diagnostics.some((entry) => entry.code === "adapter.teambrain-not-agent"));
+  assert.ok(teambrain.diagnostics.some((entry) => entry.code === expectedRosterFailure("teambrain-binding")));
 
   const unknownRoleSnapshot = structuredClone(fixture.snapshots[0]) as MutableSnapshot;
   unknownRoleSnapshot.agents = [{ ...unknownRoleSnapshot.agents[0], roleId: "unknown-role" }, ...unknownRoleSnapshot.agents.slice(1)];
   const unknownRole = bindRoster(unknownRoleSnapshot, fixture.routing, fixture.roster);
-  assert.ok(unknownRole.diagnostics.some((entry) => entry.code === "adapter.role-unknown"));
+  assert.ok(unknownRole.diagnostics.some((entry) => entry.code === expectedRosterFailure("unknown-snapshot-role")));
 });
 
 test("proposal safety preserves adapter ownership for forbidden interactions", () => {
