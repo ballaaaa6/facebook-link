@@ -1,63 +1,65 @@
-# Phase 3 Wave P3-W0 Frozen Interfaces
+# Phase 3 Wave `P3-W2-01` Frozen Interfaces
 
-This file freezes the interfaces used by the three RC closure workers. It is a
-read-only coordination reference for workers; it is not a new contract owner.
+This file freezes the shared contracts used by the command-pipeline worker. It
+is a coordination reference, not a new contract owner.
 
 ## Existing contract versions
 
-- `office-queue-policy-v1`
-- `office-interaction-v1`
-- `office-facility-slot-v1`
-- `office-queue-ticket-v1`
-- `office-reservation-v1`
-- `office-action-queue-v1`
-- `office-activity-intent-v1`
 - `office-simulation-command-v2`
 - `office-simulation-result-v2`
 - `office-simulation-event-v2`
 - `office-simulation-snapshot-v2`
 - `office-simulation-trace-v2`
-- `office-world-v2-v1`
-- canonical hash domain `office-v2:world-kernel`
+- `office-v2:world-kernel` hash-domain conventions
+- Decision 0005 pure reducer at 10 logical ticks per second
 
-Workers must preserve these versions and their existing schema shapes. A
-research closure may clarify a rule in its canonical document and add a
-test-only fixture, but it may not silently widen a schema or change a
-diagnostic's meaning.
+Workers must preserve the existing schemas, generated types, and diagnostic
+ownership. No schema version, generated file, or package manifest change is
+authorized by this wave.
 
-## Ownership boundaries
+## Command ordering
 
-- World geometry owns footprint, blocking, clearance, approaches, waiting
-  cells, sockets, and use-slot geometry.
-- Simulation owns ticks, command validation/apply, intents, queues,
-  reservations, action progress, cleanup, snapshots, and hashes.
-- Presentation is derived state and cannot mutate simulation or operational
-  truth.
-- Operations data remains an adapter input; it does not become world or
-  simulation state by being displayed.
-- Research fixtures are evidence for later implementation and must not claim
-  reducer, replay, crowd, renderer, or asset readiness.
+Eligible commands are ordered by the frozen total key:
 
-## Canonical decisions
+```text
+scheduledTick -> sourceRank -> sourceSequence -> commandId
+```
 
-- Decision 0005: pure reducer at 10 Hz, with `idle`, `planning`, `moving`,
-  `interacting`, and `blocked` as the initial actor states.
-- Decision 0011: semantic normalization precedes canonical bytes and a
-  domain/version-separated SHA-256 envelope; ordered arrays are preserved.
-- Decision 0012: full resource-set validation/acquisition, durable-before-
-  decorative queue order, and deterministic deadlock victim policy.
-- Phase 2 world package is pure/headless and cannot import simulation,
-  operations, React, renderers, or runtime assets.
+The final `commandId` comparison is UTF-16 code-unit order, not locale order.
+Commands scheduled before the current tick reject with
+`simulation.command-scheduled-in-past`.
 
-## Evidence rules for this wave
+## Required pipeline behavior
 
-- External project sources are architecture studies only. Workers record URLs,
-  observed revision/date, license/rights boundary, neutral observations, and
-  an explicit adapt/reject disposition.
-- No code, assets, maps, scene values, behavior tables, or branding are copied
-  from external projects.
-- Test-local assertion labels are not runtime diagnostic promotion. Any new
-  runtime diagnostic requires a later canonical decision/schema review.
-- Placeholder hashes in historical fixtures remain placeholders. RC evidence
-  may compare deterministic serialized event/state descriptions but cannot
-  report reducer-produced replay evidence before the T2 implementation wave.
+The worker-owned module must expose a pure, serializable pipeline boundary that
+can ingest commands and advance logical ticks. It must:
+
+1. validate command envelope ownership and required identifiers;
+2. reject scheduled-past commands before mutation;
+3. order same-tick commands deterministically;
+4. return an idempotent duplicate for an already accepted command whose command
+   version and payload digest match;
+5. reject a duplicate command ID with a different version or digest using
+   `simulation.command-id-conflict`;
+6. reject a stale `expectedWorldRevision` without partial mutation;
+7. apply only the command facts in scope for W2.1, leaving facility selection,
+   routing, queues, interactions, and replay hashing to later tasks;
+8. emit schema-shaped result/event facts with deterministic IDs and sequence;
+9. advance only through explicit logical ticks, never wall-clock or display
+   frames.
+
+The worker may choose internal type names, but the state and return values must
+remain plain serializable data and be suitable for Main to re-export from the
+simulation package. A command result is not replay evidence; this wave does
+not generate or verify state hashes.
+
+## Boundary rules
+
+- World geometry and placement remain owned by `@affiliate-ops/office-v2-world`.
+- Simulation owns command validation/apply, command ledgers, results, events,
+  and logical tick state.
+- Presentation and operations are never imported or mutated.
+- External command payload digests are accepted as contract inputs; implementing
+  the W2.2 normalization/PRNG/hash projection is out of scope.
+- Main may add the package barrel export and repository-level test wiring only
+  after the worker commit passes review.

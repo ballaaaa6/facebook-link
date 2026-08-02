@@ -1,152 +1,144 @@
 # Worker Session 1 Task Specification
 
 - Session: 1
-- Task ID: `P3-RC-01`
-- Task name: Facility, queue, and terminal-cleanup research closure
+- Task ID: `P3-W2.1`
+- Task name: Fixed-tick command pipeline and reducer
 - Parent Phase: Phase 3 — Headless operational vertical slice
-- Wave ID: `P3-W0`
-- Worker branch: `task/session-1-p3-rc-01-facility-queue`
-- Worker worktree: `C:\Users\WINDOW XI\.codex\worktrees\phase3-rc-01-facility-queue`
-- Original base commit: `e4829b68619696651c73ba6b5dced73cc28beaa0`
-- Planning commit: `fb78bc31e27b30b6a1ba57259517c63f7c684724`
+- Wave ID: `P3-W2-01`
+- Worker branch: `task/session-1-p3-w2-command-pipeline`
+- Worker worktree: `C:\Users\WINDOW XI\.codex\worktrees\phase3-w2-command-pipeline`
+- Original base commit: `3358c318c18eebfd586cd413cee6e026f41dc48d`
+- Planning commit: to be recorded by Main before launch
 - Status file: `docs/parallel-work/session-1-status.md`
 
 ## Objective
 
-Close research slice RC-01 from `docs/office-v2/RESEARCH.md` before T2 facility
-and interaction implementation. Study the bounded CorsixTH room/object model
-only for neutral observations about room prerequisites, facility capacity,
-approach and waiting positions, queueing, use, target removal, cancellation,
-and terminal cleanup. Adapt or reject each observation for Office V2 using the
-already accepted contracts. Do not implement the reducer or runtime queues.
+Implement the first Phase 3 runtime unit: a pure, renderer-free fixed-tick
+command pipeline for the accepted `office-simulation-command-v2`,
+`office-simulation-result-v2`, and `office-simulation-event-v2` contracts. The
+pipeline must ingest commands, validate them, order eligible same-tick inputs,
+deduplicate command IDs, apply only the command facts in this leaf's scope, and
+emit deterministic results/events without claiming replay hashes.
 
 You are implementing one leaf task inside the current active Phase. You are not
 responsible for completing the entire Phase or starting the next Phase.
 
 ## Repository evidence and current behavior
 
-- RC-01 is listed as `planned` in the research closure matrix.
-- `JOBS_INTENTS_ASSIGNMENT.md`, `ROOMS_SURFACES_STRUCTURES_ZONES.md`, and
-  `CROWD_QUEUES_AND_DEADLOCKS.md` define policy but do not contain a bounded
-  source record or RC-01 executable evidence.
-- Existing V1/V2 facility, queue, reservation, action-queue, interaction, and
-  geometry schemas are the frozen contracts.
-- `packages/office-v2-simulation/src/index.ts` is an empty scaffold. No
-  persistent queue or reducer behavior may be added by this task.
+- `packages/office-v2-simulation/src/index.ts` is an empty scaffold.
+- The V2 command/result/event schemas and generated TypeScript contracts exist
+  and are drift-checked.
+- `SIMULATION_PIPELINE_COMMANDS.md` freezes the pipeline order, command
+  ownership, scheduled-tick rule, duplicate semantics, and event boundary.
+- Phase 2 world-kernel exports are pure and renderer-neutral.
+- RC-02 and RC-03 prerequisite closures are integrated; reducer/replay evidence
+  is still zero.
 
 ## Required final behavior
 
-The owned canonical documents must contain an RC-01 closure section that
-clearly separates source observations from Office decisions and records the
-source URL, observed revision/date, license/rights boundary, adapt/reject
-disposition, canonical owner, migration consequence, and focused acceptance
-command. The focused evidence must prove:
+The module and focused tests must prove:
 
-1. a valid facility/queue description with capacity, approach/waiting, and
-   terminal cleanup facts;
-2. a rejected case for a missing/invalid approach, partial resource claim, or
-   otherwise declared RC-01 failure;
-3. one deterministic one-actor cleanup trace;
-4. one contention/cancellation trace; and
-5. exact cleanup of task claim, facility/use slot, approach/waiting cell,
-   every reservation, queue ticket, and held prop, with repeated cleanup a
-   no-op.
-
-These are research-closure fixtures and test evidence. They must not be
-reported as reducer-produced replay, crowd, or T3 evidence.
+1. same-tick commands sort by `scheduledTick`, `sourceRank`,
+   `sourceSequence`, then UTF-16 `commandId` code units;
+2. a command scheduled before the current tick rejects with
+   `simulation.command-scheduled-in-past` and leaves state unchanged;
+3. a duplicate command ID with the same command version and payload digest
+   returns `idempotent-duplicate` without a second mutation or event;
+4. a duplicate command ID with a different version or payload digest rejects
+   with `simulation.command-id-conflict` and leaves the accepted ledger intact;
+5. a stale `expectedWorldRevision` rejects without partial mutation;
+6. malformed owner identity (actor without `actorId`, or system without a
+   `systemOwner`) rejects before apply;
+7. accepted command facts produce schema-shaped results and deterministic event
+   IDs/sequences at the applying tick;
+8. explicit tick advancement is deterministic and independent of wall-clock or
+   presentation state.
 
 ## In scope
 
-- Read the CorsixTH source pages listed in `RESEARCH.md` and record only
-  neutral, bounded observations.
-- Update only the RC-01 sections of the three owned canonical documents.
-- Add the four test fixtures and the focused Node test listed in ownership.
-- Keep fixture assertion labels local to the RC-01 test; do not introduce a
-  runtime diagnostic catalog or change a schema.
-- Update `session-1-status.md` with exact files, commands, results, commit, and
-  handoff.
+- `packages/office-v2-simulation/src/command-pipeline.ts`
+- `packages/office-v2-simulation/test/command-pipeline.test.ts`
+- A small serializable state/pipeline API in the owned module that Main can
+  re-export after review.
+- Focused unit/invariant tests for the behavior above.
 
 ## Out of scope
 
-- Any reducer, queue engine, A*, movement, snapshot, replay, operations,
-  renderer, asset, workflow, database, connector, or browser implementation.
-- `RESEARCH.md`, readiness records, execution backlog, parallel plan,
-  knowledge manifests/adapters, schemas, generated TypeScript, package barrels,
-  package manifests, or lockfiles.
-- Copying CorsixTH code, maps, data, behavior tables, timings, or content.
-- Claiming T2/T3 promotion or closing Phase 3.
+- `packages/office-v2-simulation/src/index.ts` or package manifests; Main owns
+  public exports and repository test wiring.
+- Facilities, capabilities, target selection, routes, movement, queues,
+  reservations, interaction progress, snapshot migration, replay runner,
+  PRNG/state hashes, Operations V2, renderer, browser lifecycle, assets,
+  workflows, connectors, or database code.
+- Schema edits, generated contract edits, new dependencies, new runtime
+  diagnostics beyond the named command-pipeline outcomes, or external actions.
 
 ## Owned files
 
-- `docs/office-v2/JOBS_INTENTS_ASSIGNMENT.md`
-- `docs/office-v2/ROOMS_SURFACES_STRUCTURES_ZONES.md`
-- `docs/office-v2/CROWD_QUEUES_AND_DEADLOCKS.md`
-- `packages/office-v2-simulation/test/fixtures/rc-01-facility-queue-valid.json`
-- `packages/office-v2-simulation/test/fixtures/rc-01-facility-queue-rejected.json`
-- `packages/office-v2-simulation/test/fixtures/rc-01-one-actor-cleanup.json`
-- `packages/office-v2-simulation/test/fixtures/rc-01-contention-cleanup.json`
-- `scripts/office-v2-rc-01-evidence.mjs`
-- `scripts/office-v2-rc-01-evidence.test.mjs`
+- `packages/office-v2-simulation/src/command-pipeline.ts`
+- `packages/office-v2-simulation/test/command-pipeline.test.ts`
 - `docs/parallel-work/session-1-status.md`
 
 ## Forbidden files
 
-All paths listed as Main Orchestration Session integration-only or owned by
-Sessions 2 and 3 in `docs/parallel-work/ownership.md`, especially
-`RESEARCH.md`, `READINESS_MATRIX.md`, `READINESS_REMEDIATION_PLAN.md`, the
-execution backlog, other status files, schemas, generated contracts, and
-production source.
+All paths listed as Main integration-only in `docs/parallel-work/ownership.md`,
+especially the package barrel, package manifest, backlog, readiness records,
+parallel plan, interfaces, final report, schemas, generated contracts, world
+package, operations code, renderer/assets, and all other worker status files.
 
 ## Read-only references and frozen interfaces
 
-Read `AGENTS.md`, the build-office-v2-engine skill, `docs/office-v2/README.md`,
+Read `AGENTS.md`, the `build-office-v2-engine` skill, `docs/office-v2/README.md`,
 `FOUNDATIONS.md`, `KNOWLEDGE_COMPLETENESS_AUDIT.md`, `READINESS_MATRIX.md`,
-`READINESS_REMEDIATION_PLAN.md`, `RESEARCH.md`,
-`ACTORS_NAVIGATION_INTERACTIONS.md`, Decision 0012, the existing facility,
-queue, reservation, action-queue, interaction, and geometry schemas, and the
-Phase 2 world acceptance record. Preserve all existing versions, including
-`office-queue-policy-v1`, `office-facility-slot-v1`,
-`office-queue-ticket-v1`, `office-reservation-v1`,
-`office-action-queue-v1`, and `office-interaction-v1`.
+`READINESS_REMEDIATION_PLAN.md`, `EXECUTION_BACKLOG.md`,
+`SIMULATION_PIPELINE_COMMANDS.md`, `SIMULATION_TIME_RANDOMNESS_REPLAY.md`,
+`ACTORS_NAVIGATION_INTERACTIONS.md`, `SAVE_SNAPSHOT_MIGRATION.md`, Decision
+0005, Decision 0011, the command/result/event/snapshot/trace/interaction schemas
+and fixtures, the generated contracts, canonical JSON/hash utilities, and the
+Phase 2 acceptance record. Preserve all existing versions and clean-room
+boundaries.
 
 ## Ordered implementation requirements
 
-1. Run project preflight from the assigned worktree before changing behavior.
-2. Inspect the named CorsixTH source pages and record revision/date and rights
-   boundary; do not copy implementation or content.
-3. Add the source observation/disposition and canonical ownership sections.
-4. Add valid/rejected facility/queue and cleanup/contending fixtures under the
-   simulation test fixture boundary, not the knowledge-manifest fixture root.
-5. Implement the focused test using deterministic local data and exact
-   assertions. Keep it independent of browser time and external connectors.
-6. Run focused validation and the repository preflight/checks.
-7. Update only the owned status file, commit the complete task, and hand off.
+1. Confirm the assigned worktree and run Office V2 preflight before edits.
+2. Implement a pure serializable pipeline state and explicit tick transition
+   API. Use the generated command/result/event types where practical.
+3. Validate owner fields and tick/revision preconditions before mutation.
+4. Implement the frozen total ordering with a local UTF-16 comparator.
+5. Track accepted command version/digest/result identity for idempotency and
+   conflict detection.
+6. Apply only W2.1 command facts; do not invent facility or interaction state.
+7. Emit deterministic result/event records and assert no event for idempotent
+   duplicates or rejected commands unless the existing contract explicitly
+   requires a rejection fact.
+8. Add focused tests for every acceptance criterion, including unchanged-state
+   assertions on all failure paths.
+9. Run focused validation, typecheck, preflight, and the repository gate when
+   available. Update only the owned status file, commit the task, and hand off.
 
 ## Required tests and validation
 
-- `node --test scripts/office-v2-rc-01-evidence.test.mjs`
+- `node --test packages/office-v2-simulation/test/command-pipeline.test.ts`
+- `npm run typecheck --workspace @affiliate-ops/office-v2-simulation`
 - `node .agents/skills/build-office-v2-engine/scripts/preflight.mjs`
-- `npm run office:v2:knowledge:check`
-- `npm run office:v2:boundaries:test`
 - `git diff --check`
 - `npm run check` if the isolated worktree is dependency-ready; otherwise
   record the exact setup blocker and the focused results.
 
 ## Acceptance criteria
 
-- RC-01 source record is bounded, neutral, rights-safe, and linked to the
-  existing canonical owners.
-- Valid and rejected fixtures exist and are exercised by the focused test.
-- One-actor cleanup and contention/cancellation tests prove all resource
-  categories and idempotent repeated cleanup.
-- No schema, generated file, package manifest, lockfile, runtime source, or
-  forbidden path changed.
-- Status file records the final commit and a concise handoff.
+- The module is pure, serializable, deterministic, and renderer/operations
+  independent.
+- All eight required behaviors have focused tests and pass.
+- The worker changed only owned files; no schema, generated file, manifest,
+  lockfile, public export, or forbidden path changed.
+- The status file records the implementation commit, exact files, commands and
+  results, known limitations, and a concise handoff.
 
 ## Handoff requirements
 
-In the final status file and worker response, provide the implementation commit
-SHA, exact changed files, source URLs/revisions, tests and results, any
-deviations, known limitations, and the statement that the Main Orchestration
-Session must review and integrate the commit. Stop immediately after the
-handoff; do not integrate, publish, or launch another task.
+In the status file and worker response, provide the implementation commit SHA,
+exact changed files, test/validation results, any deviations or limitations,
+and the statement that the Main Orchestration Session must review and integrate
+the commit. Stop immediately after the handoff; do not integrate, publish,
+push the integration branch, or launch another task.
