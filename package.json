@@ -34,6 +34,7 @@
     "office:v2:world:evidence": "node --test scripts/office-v2-world-reference-evidence.test.mjs",
     "office:v2:w1-2:evidence": "node --test scripts/office-v2-world-w1-2-evidence.test.mjs",
     "office:v2:assets:check": "node scripts/office-v2-asset-check.mjs",
+    "office:v2:phase3:acceptance": "node scripts/office-v2-phase3-exit.mjs",
     "architecture:check": "node scripts/architecture-check.mjs",
     "code:health": "node scripts/code-health.mjs",
     "duplicate:check": "node scripts/duplicate-check.mjs",

@@ -1,0 +1,191 @@
+{
+  "schemaVersion": "office-v2-phase3-exit-gate-v1",
+  "status": "passed",
+  "generatedAtPolicy": "omitted; deterministic for a checked-out git HEAD and deterministic evidence",
+  "gitHead": "4925edf33f8312e84eb0f69e335256da095d421c",
+  "evidence": {
+    "t2": [
+      {
+        "path": "artifacts/office-v2/phase3/t2/executed-scenarios.json",
+        "present": true,
+        "sha256": "2a014947d2b06e3d4f5bba6b46a15dcb71571eb182c2719ae6a25c2c5eff805d"
+      },
+      {
+        "path": "artifacts/office-v2/phase3/t2/t2-evidence.json",
+        "present": true,
+        "sha256": "823031dc00d7ad32d12cf62ec0f6a64bacb2d1fd09c42da008591d524be53d2a"
+      },
+      {
+        "path": "artifacts/office-v2/phase3/t2/t2-evidence.md",
+        "present": true,
+        "sha256": "8b9d06dc853c4b8fce9a963419404172098de6a92fcb3f0835a416a946c53231"
+      }
+    ],
+    "t3": [
+      {
+        "path": "artifacts/office-v2/phase3/t3/executed-scenarios.json",
+        "present": true,
+        "sha256": "70e5e26763b840b94f9be7fbf83e78877d007b92cbc34778ddd6412cad8cfe00"
+      },
+      {
+        "path": "artifacts/office-v2/phase3/t3/t3-evidence.json",
+        "present": true,
+        "sha256": "7a40dc167e62fc08c8d72411cb8ae329d51c2bb13169026f57ed8726d984041f"
+      },
+      {
+        "path": "artifacts/office-v2/phase3/t3/t3-evidence.md",
+        "present": true,
+        "sha256": "4000472c47435f44465e78e3f270f0ea3a8998d5e78ea4cda0f7841a2d7b34ab"
+      }
+    ],
+    "operations": [
+      {
+        "path": "artifacts/office-v2/phase3/operations/operations-runner-trace.json",
+        "present": true,
+        "sha256": "6246f53d9edfd3e089f5e202f855724463c06f9e2e2d1fc9d7dfaa6dc82b81b9"
+      },
+      {
+        "path": "artifacts/office-v2/phase3/operations/operations-trace.json",
+        "present": true,
+        "sha256": "b4cff947d02007fe722a414455538b32bffafbe2c25843e1d904de67944c8d19"
+      },
+      {
+        "path": "artifacts/office-v2/phase3/operations/operations-trace.md",
+        "present": true,
+        "sha256": "3a621b7b94d2c09cf36dc6174aa23558503ffe4ba1fec6ac60fdb507364bc834"
+      }
+    ]
+  },
+  "validation": {
+    "before": {
+      "status": "passed",
+      "diagnostics": []
+    },
+    "after": {
+      "status": "passed",
+      "diagnostics": []
+    }
+  },
+  "commands": [
+    {
+      "id": "gate-unit-tests",
+      "command": "node --test scripts/office-v2-phase3-exit.test.mjs",
+      "status": "passed",
+      "exitCode": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "id": "t2-t3-simulation-tests",
+      "command": "npm.cmd run test --workspace @affiliate-ops/office-v2-simulation",
+      "status": "passed",
+      "exitCode": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "id": "operations-tests",
+      "command": "npm.cmd run test --workspace @affiliate-ops/office-v2-operations",
+      "status": "passed",
+      "exitCode": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "id": "runner-tests",
+      "command": "npm.cmd run test --workspace @affiliate-ops/automation-runner",
+      "status": "passed",
+      "exitCode": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "id": "simulation-typecheck",
+      "command": "npm.cmd run typecheck --workspace @affiliate-ops/office-v2-simulation",
+      "status": "passed",
+      "exitCode": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "id": "operations-typecheck",
+      "command": "npm.cmd run typecheck --workspace @affiliate-ops/office-v2-operations",
+      "status": "passed",
+      "exitCode": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "id": "runner-typecheck",
+      "command": "npm.cmd run typecheck --workspace @affiliate-ops/automation-runner",
+      "status": "passed",
+      "exitCode": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "id": "workflows-typecheck",
+      "command": "npm.cmd run typecheck --workspace @affiliate-ops/workflows",
+      "status": "passed",
+      "exitCode": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "id": "office-v2-clean-room",
+      "command": "npm.cmd run office:v2:clean-room:check",
+      "status": "passed",
+      "exitCode": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "id": "office-v2-boundaries",
+      "command": "npm.cmd run office:v2:boundaries:check",
+      "status": "passed",
+      "exitCode": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "id": "office-v2-contradictions",
+      "command": "npm.cmd run office:v2:contradictions:check",
+      "status": "passed",
+      "exitCode": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "id": "office-v2-knowledge",
+      "command": "npm.cmd run office:v2:knowledge:check",
+      "status": "passed",
+      "exitCode": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "id": "office-v2-assets",
+      "command": "npm.cmd run office:v2:assets:check",
+      "status": "passed",
+      "exitCode": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "id": "architecture",
+      "command": "npm.cmd run architecture:check",
+      "status": "passed",
+      "exitCode": 0,
+      "signal": null,
+      "error": null
+    },
+    {
+      "id": "full-repository-check",
+      "command": "npm.cmd run check",
+      "status": "passed",
+      "exitCode": 0,
+      "signal": null,
+      "error": null
+    }
+  ]
+}
