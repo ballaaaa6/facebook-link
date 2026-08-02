@@ -8,7 +8,7 @@
 - Worker branch: `task/session-1-p3-w2-normalization-hash`
 - Worker worktree: `C:\Users\WINDOW XI\.codex\worktrees\phase3-w2-normalization-hash`
 - Original base commit: `925439a5f6f29580d82767e2177433a35195bc71`
-- Planning commit: recorded by Main before launch and supplied in the worker bootstrap
+- Planning commit: `2635abb87d014240fe4992b8120f99fde0431e7e`
 - Status file: `docs/parallel-work/session-1-status.md`
 
 ## Objective

@@ -7,9 +7,9 @@
 - Branch: `task/session-3-p3-w2-lifecycle`
 - Worktree: `C:\Users\WINDOW XI\.codex\worktrees\phase3-w2-lifecycle`
 - Original base commit: `925439a5f6f29580d82767e2177433a35195bc71`
-- Planning commit: to be recorded by Main before launch
+- Planning commit: `2635abb87d014240fe4992b8120f99fde0431e7e`
 - Worker session ID: pending
-- Status: **READY — not started**
+- Status: **IN_PROGRESS — worker launch pending**
 
 The worker will update only this file after implementation. It must record the
 implementation commit, exact changed files, focused tests, typecheck,

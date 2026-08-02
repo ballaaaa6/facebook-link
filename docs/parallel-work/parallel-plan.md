@@ -78,10 +78,9 @@ documentation remain Main-owned.
 
 ## Planning and launch records
 
-- Planning artifacts commit: recorded by Main immediately after this planning
-  commit and before worker launch.
-- Planning commit for worker bases: the exact planning commit recorded by Main;
-  all three worker branches begin from it.
+- Planning artifacts commit: `2635abb87d014240fe4992b8120f99fde0431e7e`.
+- Planning commit for worker bases: `2635abb87d014240fe4992b8120f99fde0431e7e`;
+  all three worker branches begin from this exact commit.
 - Integration branch: `codex/integration/phase3-p3-w2-normalization-interaction-lifecycle`
 - Worker branches and worktrees are listed in the three task specifications.
 - Worker session IDs are recorded here and in the final report after launch.

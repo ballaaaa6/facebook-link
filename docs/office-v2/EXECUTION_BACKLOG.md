@@ -231,12 +231,12 @@ and no dependency on one another's unintegrated output.
   commit; the exact planning commit is recorded in
   `docs/parallel-work/parallel-plan.md` before launch.
 - Integration branch: `codex/integration/phase3-p3-w2-normalization-interaction-lifecycle`
-- `P3-W2.2` — simulation normalization, PRNG, and real state hashes — **READY
-  → IN_PROGRESS at worker launch**.
+- `P3-W2.2` — simulation normalization, PRNG, and real state hashes —
+  **IN_PROGRESS** on `task/session-1-p3-w2-normalization-hash`.
 - `P3-W2.3` — one-actor intents, facilities, action queues, and interaction —
-  **READY → IN_PROGRESS at worker launch**.
-- `P3-W2.6` — fixed-tick lifecycle port — **READY → IN_PROGRESS at worker
-  launch**.
+  **IN_PROGRESS** on `task/session-2-p3-w2-activity-runtime`.
+- `P3-W2.6` — fixed-tick lifecycle port — **IN_PROGRESS** on
+  `task/session-3-p3-w2-lifecycle`.
 
 Main owns the public barrel, shared documentation, backlog transitions,
 cross-task integration, complete validation, publication, and final reporting.
@@ -245,8 +245,8 @@ Workers stop after their individual commit and handoff.
 ## Phase 3 leaf-task inventory after P3-W2-01 integration
 
 This inventory records the leaf-task definitions and statuses. The three READY
-tasks above are the selected current wave; their statuses transition to
-IN_PROGRESS when their workers are launched.
+tasks above are the selected current wave and are now IN_PROGRESS on their
+isolated worker branches.
 
 ### P3-W2.1 — Fixed-tick command pipeline and reducer
 
@@ -296,8 +296,7 @@ IN_PROGRESS when their workers are launched.
 - Validation commands: preflight, package typecheck/test, `npm run check`.
 - Worker-sized scope assessment: one normalization/hash module and focused tests.
 - Priority: P0.
-- Status: **READY** — recommended for the next Phase 3 wave; not launched in
-  this invocation.
+- Status: **IN_PROGRESS** — selected in current wave `P3-W2-02`.
 
 ### P3-W2.3 — One-actor intents, facilities, action queues, and interaction
 
@@ -321,8 +320,7 @@ IN_PROGRESS when their workers are launched.
 - Validation commands: preflight, package typecheck/test, `npm run check`.
 - Worker-sized scope assessment: one one-actor runtime module and focused tests.
 - Priority: P0.
-- Status: **READY** — recommended for the next Phase 3 wave; not launched in
-  this invocation.
+- Status: **IN_PROGRESS** — selected in current wave `P3-W2-02`.
 
 ### P3-W2.4 — Queue, reservation, fairness, and deadlock runtime
 
@@ -389,8 +387,7 @@ IN_PROGRESS when their workers are launched.
 - Validation commands: preflight, package typecheck/test, `npm run check`.
 - Worker-sized scope assessment: one lifecycle port and focused tests.
 - Priority: P1.
-- Status: **READY** — recommended for the next Phase 3 wave; not launched in
-  this invocation.
+- Status: **IN_PROGRESS** — selected in current wave `P3-W2-02`.
 
 ### P3-W3.1 — Workflow ownership and operations adapter verification
 
