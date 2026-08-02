@@ -1,6 +1,6 @@
 # Phase 3 Wave `P3-W3-02` Final Integration Report
 
-Status: **INTEGRATED AND VALIDATED — publication pending**
+Status: **COMPLETE — integrated, validated, and published**
 
 ## Repository and branch control
 
@@ -12,8 +12,10 @@ Status: **INTEGRATED AND VALIDATED — publication pending**
 - Dedicated integration branch: `codex/integration/phase3-p3-w3-02`.
 - Worker starting/planning commit: `175d0d384e64610225e93f21272fdb71bdcaf4ba`.
 - No local development server or long-running project process was started.
-- The primary branch remained checked out only in its own worktree and was not
-  modified, merged, or pushed by this wave.
+- The remote primary branch remained unchanged. Local `main` contains only the
+  coordinator planning commits `175d0d3` and `5d728b5` created before the
+  integration branch; no implementation or integration commit was merged or
+  pushed to `main`.
 
 ## Active Phase and wave
 
@@ -144,14 +146,20 @@ runtime assets or a renderer.
 
 ## Publication state
 
-- Local integration commit: **pending final report commit**.
-- Pushed remote integration commit: **pending push**.
+- Local substantive integration commit: `9c81a492df7cde5f8a9e5e161498b5d2aa7e8352`.
+- Pushed remote integration commit verified before this report-only update:
+  `9c81a492df7cde5f8a9e5e161498b5d2aa7e8352`.
+- The final report-only publication commit is a descendant of that validated
+  tip and is pushed without force; the final branch tip is reported in the
+  orchestration handoff after verification.
 - Remote primary alignment was rechecked at `d5e04992839dc4f09bc0e66de2dd7cbf02282ad2`;
   `main` did not advance.
 - Pull request: not created; `gh` is unavailable in the environment. The
-  integration branch will be pushed and left ready for review without claiming
-  a PR exists.
-- Final Git status: to be recorded after the report commit and push.
+  integration branch is pushed and left ready for review without claiming a PR
+  exists.
+- Final Git status before this report-only update: clean and tracking the
+  pushed integration branch. The report-only update will be rechecked after
+  commit and push.
 
 ## Known limitations
 
