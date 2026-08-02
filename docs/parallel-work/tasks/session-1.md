@@ -8,8 +8,10 @@
 - Worker branch: `task/session-1-p3-w3-03-choreography`
 - Worker worktree: `C:\Users\WINDOW XI\.codex\worktrees\phase3-p3-w3-03-choreography`
 - Original base commit: `799248b6a7612ca5c45ae06f94a86b4203765ed8`
-- Planning artifacts commit: to be recorded in the planning-lock metadata
-  before worker launch.
+- Planning artifacts / worker starting commit:
+  `6072a118d5b051756c30b7b5f839d43fc1a3fa11`.
+- Planning-lock metadata is a coordinator-only descendant and is not part of
+  the worker branch starting state.
 - Status-file path: `docs/parallel-work/session-1-status.md`
 
 ## Objective

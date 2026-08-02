@@ -107,9 +107,10 @@ exists because this wave launches one worker.
 | --- | --- | --- | --- | --- |
 | 1 | `P3-W3.3` | `task/session-1-p3-w3-03-choreography` | `C:\Users\WINDOW XI\.codex\worktrees\phase3-p3-w3-03-choreography` | planned |
 
-- Initial planning artifacts commit: **to be recorded after this planning
-  commit is created**.
-- Planning-lock metadata commit: **to be recorded before worker launch**.
+- Initial planning artifacts / worker starting commit:
+  `6072a118d5b051756c30b7b5f839d43fc1a3fa11`.
+- Planning-lock metadata commit: this coordinator-only descendant of the
+  worker starting commit, recorded in the final integration report.
 - Worker branches begin from the same initial planning artifacts commit.
 - Integration branch: `codex/integration/phase3-p3-w3-03`.
 

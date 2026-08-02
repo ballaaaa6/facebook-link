@@ -7,7 +7,7 @@
 - Worker branch: `task/session-1-p3-w3-03-choreography`
 - Worker worktree: `C:\Users\WINDOW XI\.codex\worktrees\phase3-p3-w3-03-choreography`
 - Original base commit: `799248b6a7612ca5c45ae06f94a86b4203765ed8`
-- Planning/base commit: to be recorded by Main before launch
+- Planning/base commit: `6072a118d5b051756c30b7b5f839d43fc1a3fa11`
 - Worker session ID: to be recorded after dispatch
 - Implementation commit: pending
 
