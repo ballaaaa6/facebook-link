@@ -130,8 +130,12 @@ migration, divergence, and secret-safe bundle evidence (8/8), and the W3.1
 ownership evidence verifies role/join/disabled-feature boundaries (3/3).
 The `P3-W3-02` recovery adds fail-closed Snapshot V2 cursor reconciliation,
 deterministic roster/route checks, feature/proposal safety, and focused adapter
-evidence (9/9). These are bounded module/runtime evidence, not the Phase 3 exit:
-complete reducer-integrated crowd traces, Operations V2 choreography, Phase 3,
+evidence (9/9). The `P3-W3-03` wave adds a pure, renderer-free semantic
+Snapshot V2 presentation projection plus idempotent copy/visual fan-out, join,
+retry, failure, recovery, reconnect, and handoff choreography. Its focused
+choreography coverage passes 8/8 and the operations package passes 17/17. These
+are bounded module/runtime/operations evidence, not the Phase 3 exit:
+reducer-integrated crowd traces, complete Operations V2 choreography, Phase 3,
 and T2/T3 remain incomplete.
 
 The historical 186-file W1.6 number is closure evidence at the handoff commit.

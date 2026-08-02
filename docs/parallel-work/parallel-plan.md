@@ -27,8 +27,8 @@
   pass with deterministic hashes, cleanup, and no renderer or asset leakage.
 - Phase status before wave: **ACTIVE**. P3-W3.2 is integrated, but complete
   Operations V2 choreography and the T2/T3 exit evidence remain incomplete.
-- Phase status after wave: **to be evaluated after integration; expected
-  ACTIVE unless every Phase 3 exit criterion is evidenced**.
+- Phase status after wave: **ACTIVE — P3-W3.3 is integrated; T2/T3 exit
+  evidence remains incomplete**.
 
 ## Wave selection
 
@@ -105,7 +105,7 @@ exists because this wave launches one worker.
 
 | Session | Task | Branch | Worktree | Status |
 | --- | --- | --- | --- | --- |
-| 1 | `P3-W3.3` | `task/session-1-p3-w3-03-choreography` | `C:\Users\WINDOW XI\.codex\worktrees\phase3-p3-w3-03-choreography` | planned |
+| 1 | `P3-W3.3` | `task/session-1-p3-w3-03-choreography` | `C:\Users\WINDOW XI\.codex\worktrees\phase3-p3-w3-03-choreography` | integrated |
 
 - Initial planning artifacts / worker starting commit:
   `6072a118d5b051756c30b7b5f839d43fc1a3fa11`.
@@ -140,11 +140,11 @@ No visual test is expected because this wave is headless operations behavior.
 
 ## Phase-closure and publication strategy
 
-After integration, Main will update the execution backlog and evaluate Phase 3
-against every T2/T3 exit criterion. The phase remains **ACTIVE** unless all
-required leaf tasks are integrated or formally deferred/not required and the
-required evidence passes. No next wave or next Phase will be launched in this
-invocation.
+Main updated the execution backlog and evaluated Phase 3 against every T2/T3
+exit criterion. The phase remains **ACTIVE** because reducer-integrated crowd
+traces, complete operations evidence, and the remaining exit conditions are
+not all satisfied. `P3-W3.4` is now READY as the next candidate, but no next
+wave or next Phase will be launched in this invocation.
 
 The integration branch will be reconciled with the verified remote `main`,
 validated again if `main` advanced, pushed without force, and left ready for

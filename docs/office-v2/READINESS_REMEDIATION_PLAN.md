@@ -653,7 +653,12 @@ hidden-time discard, and cleanup with 7/7 evidence. These bounded slices do
 not claim queue/crowd, restore/replay, reducer-produced end-to-end hashes, or
 complete Operations V2 choreography. `P3-W3.2` adds bounded Snapshot V2
 cursor/roster adapter evidence, but it does not promote complete operations
-choreography. Those T2/T3 gates remain required in Waves 2–3. RC-04
+choreography. `P3-W3.3` now adds bounded pure semantic presentation projection
+and copy/visual fan-out, join, retry, failure, recovery, reconnect, and
+handoff intents with focused 8/8 choreography evidence and 17/17 package
+coverage. It still does not promote complete operations choreography or the
+T2/T3 gates, which remain required in Waves 2–3. `P3-W3.4` is READY as the
+next reconciliation integration task. RC-04
 must close before
 renderer accessibility and lifecycle acceptance. These slices are not Phase 2
 entry or exit requirements and do not authorize a broader Phase 2 scope.

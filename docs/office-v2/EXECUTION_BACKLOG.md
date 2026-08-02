@@ -21,8 +21,8 @@ executable leaf tasks and their current status.
   crowd and complete operations evidence remain future gates.
 - Phase status before current wave: **ACTIVE — P3-W3.2 integrated; T2/T3 exit
   criteria remain incomplete**.
-- Phase status after current wave: **ACTIVE — P3-W3.3 selected; integration and
-  T2/T3 exit evidence remain incomplete**.
+- Phase status after current wave: **ACTIVE — P3-W3.3 integrated; T2/T3 exit
+  evidence remain incomplete**.
 - Phase exit criteria: T2 one-actor reach/use/cancel/restore/replay evidence,
   T3 crowd/queue/deadlock evidence, and the complete operations choreography
   evidence pass without renderer or asset leakage.
@@ -535,7 +535,8 @@ blocked; no later-Phase work is used to fill capacity.
   workstream/work package: W3.3 copy/visual join.
 - Objective: implement pure semantic presentation projection and idempotent
   choreography intents for copy/visual branches and content-ready joins.
-- Repository evidence: Closure C schemas/fixtures exist; runtime choreography is absent.
+- Repository evidence: Closure C schemas/fixtures exist; the bounded runtime
+  choreography is integrated in the operations package.
 - Dependencies: P3-W3.2 integrated and P3-W2.5 integrated.
 - Dependency status: **SATISFIED** after `P3-W3.2` and `P3-W2.5` integration;
   all readiness conditions are now met for the next wave.
@@ -549,10 +550,12 @@ blocked; no later-Phase work is used to fill capacity.
 - Validation commands: preflight, operations package tests, `npm run check`.
 - Worker-sized scope assessment: one pure choreography module and focused tests.
 - Priority: P1.
-- Status: **ACCEPTED** — Worker Session 1 (`019fc379-0c13-7ad2-a8e4-
-  e809f22798bb`) completed and Main accepted the reviewed handoff commit
+- Status: **INTEGRATED** — Worker Session 1 (`019fc379-0c13-7ad2-a8e4-
+  e809f22798bb`) completed and Main accepted the reviewed handoff correction
   `a0ed5b01730e11db592dd86920263e19089dc939` with implementation commit
-  `a18e987007793298b69e100ede63780ce486e87e`.
+  `a18e987007793298b69e100ede63780ce486e87e`. Main integrated the worker
+  range and public barrel export through `a3f894b` on
+  `codex/integration/phase3-p3-w3-03`.
 
 ### P3-W3.4 — Operations reconciliation and two-clock integration
 
@@ -562,7 +565,8 @@ blocked; no later-Phase work is used to fill capacity.
   coalesce obsolete presentation intents across reload/reconnect/resume.
 - Repository evidence: policy and contracts exist; integration evidence is absent.
 - Dependencies: P3-W2.4, P3-W2.5, P3-W2.6, P3-W3.2, and P3-W3.3 integrated.
-- Dependency status: BLOCKED.
+- Dependency status: **SATISFIED** — all listed dependencies are integrated and
+  the readiness/granularity checks pass.
 - Parallel group: future T3 integration group.
 - Owned implementation boundary: one integration adapter module and focused tests.
 - Forbidden boundary: renderer selection, real connectors, and primary branch.
@@ -573,14 +577,14 @@ blocked; no later-Phase work is used to fill capacity.
 - Validation commands: preflight, workspace tests, `npm run check`.
 - Worker-sized scope assessment: one cross-package integration module and tests.
 - Priority: P1.
-- Status: BLOCKED.
+- Status: **READY** — promoted after `P3-W3.3` integration; this task was not
+  launched in the current invocation.
 
 ## Current-wave stop condition
 
-No second wave is launched in this invocation. After `P3-W3.3` is integrated,
-the next candidate is `P3-W3-04`, beginning with `P3-W3.4` only if all of its
-listed dependencies and Phase 3 readiness checks pass. Phase 3 remains active;
-no phase transition is authorized automatically.
+No second wave is launched in this invocation. The next candidate is
+`P3-W3-04`, beginning with READY task `P3-W3.4`. Phase 3 remains active; no
+phase transition is authorized automatically.
 
 ## Selection rule and status transitions
 
