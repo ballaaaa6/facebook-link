@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "office-replay-runtime-fixture-v1",
+  "initialState": {
+    "counter": 0,
+    "ordered": ["first", "second"],
+    "unordered": [{ "id": "b" }, { "id": "a" }]
+  },
+  "inputs": [
+    { "inputId": "input-one", "scheduledTick": 1, "kind": "increment", "payload": { "amount": 1 } },
+    { "inputId": "input-two", "scheduledTick": 2, "kind": "increment", "payload": { "amount": 2 } },
+    { "inputId": "input-three", "scheduledTick": 3, "kind": "increment", "payload": { "amount": 3 } }
+  ],
+  "unorderedPointers": ["/unordered"]
+}
