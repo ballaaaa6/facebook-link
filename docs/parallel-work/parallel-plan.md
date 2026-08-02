@@ -32,6 +32,9 @@
 - Wave name: `T2 research-closure prerequisites`
 - Selected Task IDs: `P3-RC-01`, `P3-RC-02`, `P3-RC-03`
 - Actual worker count: **3**.
+- Worker session IDs: Session 1 / `019fc0b0-acda-7142-8eb7-5af2597a2e86`
+  (Dewey), Session 2 / `019fc0b0-ad54-75e3-b734-2d322006a632`
+  (Ampere), Session 3 / `019fc0b0-addd-77d1-a888-f8cb359143f9` (Zeno).
 - Capacity rationale: exactly three compatible READY leaf tasks exist in the
   current active Phase. Each is independently executable, has a disjoint
   ownership set, and is required before the next implementation wave. No
@@ -73,9 +76,8 @@ are Main Orchestration Session integration work only.
 ## Planning and integration commits
 
 - Planning artifact commit: `fb78bc31e27b30b6a1ba57259517c63f7c684724`.
-- Worker branches will all start from one metadata-pinned planning-base commit;
-  the Main Orchestration Session records that exact branch base in the final
-  report.
+- Worker branches all start from the metadata-pinned planning-base commit
+  `de8c6e707113f89986145565a801fbe96063eb73`.
 - Integration branch: `codex/integration/phase3-t2-research-closure`
 - The Main Orchestration Session is the sole Final Integrator and Publisher.
   Workers stop after committing and handing off their individual tasks.
@@ -87,6 +89,9 @@ are Main Orchestration Session integration work only.
 | 1 | P3-RC-01 | `task/session-1-p3-rc-01-facility-queue` | `C:\Users\WINDOW XI\.codex\worktrees\phase3-rc-01-facility-queue` |
 | 2 | P3-RC-02 | `task/session-2-p3-rc-02-runtime-replay` | `C:\Users\WINDOW XI\.codex\worktrees\phase3-rc-02-runtime-replay` |
 | 3 | P3-RC-03 | `task/session-3-p3-rc-03-assignment` | `C:\Users\WINDOW XI\.codex\worktrees\phase3-rc-03-assignment` |
+
+Worker launch time: 2026-08-02T11:10+07:00. All three worktrees were clean at
+launch and resolved to the same pinned base.
 
 Worktrees will be created only for these three selected tasks. No placeholder
 worker or unused worktree is allowed.

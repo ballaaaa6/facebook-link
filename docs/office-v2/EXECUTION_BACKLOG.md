@@ -81,7 +81,7 @@ Orchestration Session owns the shared readiness/status update after review.
 - Worker-sized scope assessment: one bounded research-closure objective with
   one canonical ownership group and no runtime implementation.
 - Priority: P0 prerequisite for T2 facility/interaction work.
-- Status: **READY**.
+- Status: **IN_PROGRESS** — Worker Session 1 / Dewey
 
 ### P3-RC-02 — Runtime/presentation separation and restore evidence
 
@@ -130,7 +130,7 @@ Orchestration Session owns the shared readiness/status update after review.
 - Worker-sized scope assessment: one bounded research-closure objective with
   one runtime/presentation ownership group and no reducer implementation.
 - Priority: P0 prerequisite for T2 interaction/replay work.
-- Status: **READY**.
+- Status: **IN_PROGRESS** — Worker Session 2 / Ampere
 
 ### P3-RC-03 — Capability assignment, retries, and target revalidation
 
@@ -183,7 +183,7 @@ Orchestration Session owns the shared readiness/status update after review.
 - Worker-sized scope assessment: one bounded research-closure objective with
   one command/migration ownership group and no reducer implementation.
 - Priority: P0 prerequisite for T2 command/assignment work.
-- Status: **READY**.
+- Status: **IN_PROGRESS** — Worker Session 3 / Zeno
 
 ## Remaining Phase 3 leaf tasks after P3-W0
 
