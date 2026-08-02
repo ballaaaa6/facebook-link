@@ -1,0 +1,365 @@
+{
+  "schemaVersion": "office-operations-closure-c-fixture-v1",
+  "snapshots": [
+    {
+      "schemaVersion": "office-operations-v2",
+      "snapshotId": { "kind": "snapshot", "value": "snapshot-live" },
+      "observedAt": "2026-08-02T00:00:12.000Z",
+      "sourceRevision": "operations-revision-1",
+      "streamId": "operations-stream",
+      "streamEpoch": 1,
+      "windowStartSequence": 10,
+      "throughSequence": 11,
+      "eventDigest": "0000000000000000000000000000000000000000000000000000000000000010",
+      "freshness": "live",
+      "events": [
+        {
+          "durableEventId": { "kind": "event", "value": "event-10" },
+          "sequence": 10,
+          "payloadDigest": "0000000000000000000000000000000000000000000000000000000000000011",
+          "occurredAt": "2026-08-02T00:00:10.000Z",
+          "workflowRunId": { "kind": "workflow-run", "value": "autopost-run" },
+          "taskId": { "kind": "task", "value": "autopost-task" },
+          "jobId": "rank-job",
+          "stage": "scored",
+          "eventType": "stage-transition"
+        },
+        {
+          "durableEventId": { "kind": "event", "value": "event-11" },
+          "sequence": 11,
+          "payloadDigest": "0000000000000000000000000000000000000000000000000000000000000012",
+          "occurredAt": "2026-08-02T00:00:11.000Z",
+          "workflowRunId": { "kind": "workflow-run", "value": "autopost-run" },
+          "taskId": { "kind": "task", "value": "autopost-task" },
+          "jobId": "strategy-job",
+          "stage": "selected",
+          "eventType": "stage-transition"
+        }
+      ],
+      "agents": [
+        {
+          "agentInstanceId": { "kind": "actor", "value": "agent-market-scout" },
+          "roleId": "market-scout",
+          "displayName": "Market Scout",
+          "status": "working",
+          "freshness": "live",
+          "work": {
+            "workflowRunId": { "kind": "workflow-run", "value": "autopost-run" },
+            "taskId": { "kind": "task", "value": "autopost-task" },
+            "jobId": "market-job",
+            "stage": "discovered"
+          },
+          "reason": null,
+          "sessionHealth": { "status": "available", "observedAt": "2026-08-02T00:00:12.000Z" },
+          "featureIds": ["shopee-feed"],
+          "lastTransition": {
+            "durableEventId": { "kind": "event", "value": "event-10" },
+            "sequence": 10,
+            "payloadDigest": "0000000000000000000000000000000000000000000000000000000000000011",
+            "occurredAt": "2026-08-02T00:00:10.000Z",
+            "sourceRevision": "operations-revision-1"
+          },
+          "diagnosticOwner": "adapter",
+          "recoverability": "not-required"
+        },
+        {
+          "agentInstanceId": { "kind": "actor", "value": "agent-product-ranker" },
+          "roleId": "product-ranker",
+          "displayName": "Product Ranker",
+          "status": "working",
+          "freshness": "live",
+          "work": {
+            "workflowRunId": { "kind": "workflow-run", "value": "autopost-run" },
+            "taskId": { "kind": "task", "value": "autopost-task" },
+            "jobId": "rank-job",
+            "stage": "scored"
+          },
+          "reason": null,
+          "sessionHealth": { "status": "available", "observedAt": "2026-08-02T00:00:12.000Z" },
+          "featureIds": ["ranking-evidence"],
+          "lastTransition": null,
+          "diagnosticOwner": "adapter",
+          "recoverability": "not-required"
+        },
+        {
+          "agentInstanceId": { "kind": "actor", "value": "agent-growth-strategist" },
+          "roleId": "growth-strategist",
+          "displayName": "Growth Strategist",
+          "status": "review",
+          "freshness": "live",
+          "work": {
+            "workflowRunId": { "kind": "workflow-run", "value": "autopost-run" },
+            "taskId": { "kind": "task", "value": "autopost-task" },
+            "jobId": "strategy-job",
+            "stage": "selected"
+          },
+          "reason": { "kind": "review", "code": "winner-review", "owner": "growth-strategist", "recoverability": "human-review", "message": "Winner selection awaits human review." },
+          "sessionHealth": { "status": "available", "observedAt": "2026-08-02T00:00:12.000Z" },
+          "featureIds": ["strategy-review"],
+          "lastTransition": null,
+          "diagnosticOwner": "adapter",
+          "recoverability": "human-review"
+        },
+        {
+          "agentInstanceId": { "kind": "actor", "value": "agent-performance-analyst" },
+          "roleId": "performance-analyst",
+          "displayName": "Performance Analyst",
+          "status": "working",
+          "freshness": "live",
+          "work": {
+            "workflowRunId": { "kind": "workflow-run", "value": "autopost-run" },
+            "taskId": { "kind": "task", "value": "autopost-task" },
+            "jobId": "metrics-job",
+            "stage": "measured"
+          },
+          "reason": null,
+          "sessionHealth": { "status": "available", "observedAt": "2026-08-02T00:00:12.000Z" },
+          "featureIds": ["metrics-read"],
+          "lastTransition": null,
+          "diagnosticOwner": "adapter",
+          "recoverability": "not-required"
+        },
+        {
+          "agentInstanceId": { "kind": "actor", "value": "agent-gemini-copywriter" },
+          "roleId": "gemini-copywriter",
+          "displayName": "Gemini Copywriter",
+          "status": "unavailable",
+          "freshness": "live",
+          "work": null,
+          "reason": null,
+          "sessionHealth": { "status": "unavailable", "observedAt": "2026-08-02T00:00:12.000Z" },
+          "featureIds": ["gemini-browser"],
+          "lastTransition": null,
+          "diagnosticOwner": "adapter",
+          "recoverability": "reconnect"
+        },
+        {
+          "agentInstanceId": { "kind": "actor", "value": "agent-flow-visual-producer" },
+          "roleId": "flow-visual-producer",
+          "displayName": "Flow Visual Producer",
+          "status": "unavailable",
+          "freshness": "live",
+          "work": null,
+          "reason": null,
+          "sessionHealth": { "status": "unavailable", "observedAt": "2026-08-02T00:00:12.000Z" },
+          "featureIds": ["flow-browser"],
+          "lastTransition": null,
+          "diagnosticOwner": "adapter",
+          "recoverability": "reconnect"
+        },
+        {
+          "agentInstanceId": { "kind": "actor", "value": "agent-link-attribution" },
+          "roleId": "link-attribution",
+          "displayName": "Attribution Builder",
+          "status": "idle",
+          "freshness": "live",
+          "work": null,
+          "reason": null,
+          "sessionHealth": { "status": "unavailable", "observedAt": "2026-08-02T00:00:12.000Z" },
+          "featureIds": ["affiliate-link"],
+          "lastTransition": null,
+          "diagnosticOwner": "adapter",
+          "recoverability": "human-review"
+        },
+        {
+          "agentInstanceId": { "kind": "actor", "value": "agent-qa-editor" },
+          "roleId": "qa-editor",
+          "displayName": "QA Editor",
+          "status": "working",
+          "freshness": "live",
+          "work": {
+            "workflowRunId": { "kind": "workflow-run", "value": "autopost-run" },
+            "taskId": { "kind": "task", "value": "autopost-task" },
+            "jobId": "qa-job",
+            "stage": "qa_approved"
+          },
+          "reason": null,
+          "sessionHealth": { "status": "available", "observedAt": "2026-08-02T00:00:12.000Z" },
+          "featureIds": ["qa-console"],
+          "lastTransition": null,
+          "diagnosticOwner": "adapter",
+          "recoverability": "not-required"
+        },
+        {
+          "agentInstanceId": { "kind": "actor", "value": "agent-publisher" },
+          "roleId": "publisher",
+          "displayName": "Publisher",
+          "status": "unavailable",
+          "freshness": "live",
+          "work": null,
+          "reason": null,
+          "sessionHealth": { "status": "unavailable", "observedAt": "2026-08-02T00:00:12.000Z" },
+          "featureIds": ["publisher-api"],
+          "lastTransition": null,
+          "diagnosticOwner": "adapter",
+          "recoverability": "human-review"
+        },
+        {
+          "agentInstanceId": { "kind": "actor", "value": "agent-session-keeper" },
+          "roleId": "session-keeper",
+          "displayName": "Session Keeper",
+          "status": "working",
+          "freshness": "live",
+          "work": {
+            "workflowRunId": { "kind": "workflow-run", "value": "autopost-run" },
+            "taskId": { "kind": "task", "value": "autopost-task" },
+            "jobId": "session-job",
+            "stage": "content_queued"
+          },
+          "reason": null,
+          "sessionHealth": { "status": "available", "observedAt": "2026-08-02T00:00:12.000Z" },
+          "featureIds": ["session-health"],
+          "lastTransition": null,
+          "diagnosticOwner": "adapter",
+          "recoverability": "not-required"
+        }
+      ],
+      "features": [
+        { "featureId": "shopee-feed", "roleEnabled": true, "connectorEnabled": true, "sessionAvailable": true, "available": true, "diagnosticOwner": "adapter", "recoverability": "not-required" },
+        { "featureId": "ranking-evidence", "roleEnabled": true, "connectorEnabled": true, "sessionAvailable": true, "available": true, "diagnosticOwner": "adapter", "recoverability": "not-required" },
+        { "featureId": "strategy-review", "roleEnabled": true, "connectorEnabled": true, "sessionAvailable": true, "available": true, "diagnosticOwner": "adapter", "recoverability": "human-review" },
+        { "featureId": "metrics-read", "roleEnabled": true, "connectorEnabled": true, "sessionAvailable": true, "available": true, "diagnosticOwner": "adapter", "recoverability": "not-required" },
+        { "featureId": "gemini-browser", "roleEnabled": false, "connectorEnabled": false, "sessionAvailable": false, "available": false, "diagnosticOwner": "adapter", "recoverability": "reconnect" },
+        { "featureId": "flow-browser", "roleEnabled": false, "connectorEnabled": false, "sessionAvailable": false, "available": false, "diagnosticOwner": "adapter", "recoverability": "reconnect" },
+        { "featureId": "affiliate-link", "roleEnabled": false, "connectorEnabled": false, "sessionAvailable": false, "available": false, "diagnosticOwner": "adapter", "recoverability": "human-review" },
+        { "featureId": "qa-console", "roleEnabled": true, "connectorEnabled": true, "sessionAvailable": true, "available": true, "diagnosticOwner": "adapter", "recoverability": "not-required" },
+        { "featureId": "publisher-api", "roleEnabled": false, "connectorEnabled": false, "sessionAvailable": false, "available": false, "diagnosticOwner": "adapter", "recoverability": "human-review" },
+        { "featureId": "session-health", "roleEnabled": true, "connectorEnabled": true, "sessionAvailable": true, "available": true, "diagnosticOwner": "adapter", "recoverability": "not-required" },
+        { "featureId": "teambrain-console", "roleEnabled": true, "connectorEnabled": true, "sessionAvailable": true, "available": true, "diagnosticOwner": "adapter", "recoverability": "not-required" }
+      ],
+      "diagnostics": []
+    },
+    {
+      "schemaVersion": "office-operations-v2",
+      "snapshotId": { "kind": "snapshot", "value": "snapshot-stale" },
+      "observedAt": "2026-08-02T00:00:00.000Z",
+      "sourceRevision": "operations-revision-1",
+      "streamId": "operations-stream",
+      "streamEpoch": 1,
+      "windowStartSequence": 10,
+      "throughSequence": 10,
+      "eventDigest": "0000000000000000000000000000000000000000000000000000000000000011",
+      "freshness": "stale",
+      "events": [
+        {
+          "durableEventId": { "kind": "event", "value": "event-10" },
+          "sequence": 10,
+          "payloadDigest": "0000000000000000000000000000000000000000000000000000000000000011",
+          "occurredAt": "2026-08-02T00:00:00.000Z",
+          "workflowRunId": { "kind": "workflow-run", "value": "autopost-run" },
+          "taskId": { "kind": "task", "value": "autopost-task" },
+          "jobId": "rank-job",
+          "stage": "scored",
+          "eventType": "stage-transition"
+        }
+      ],
+      "agents": [
+        {
+          "agentInstanceId": { "kind": "actor", "value": "agent-market-scout" },
+          "roleId": "market-scout",
+          "displayName": "Market Scout",
+          "status": "working",
+          "freshness": "stale",
+          "work": null,
+          "reason": null,
+          "sessionHealth": { "status": "degraded", "observedAt": "2026-08-02T00:00:00.000Z" },
+          "featureIds": ["shopee-feed"],
+          "lastTransition": null,
+          "diagnosticOwner": "adapter",
+          "recoverability": "resync"
+        }
+      ],
+      "features": [
+        { "featureId": "shopee-feed", "roleEnabled": true, "connectorEnabled": true, "sessionAvailable": true, "available": true, "diagnosticOwner": "adapter", "recoverability": "resync" }
+      ],
+      "diagnostics": []
+    }
+  ],
+  "routing": {
+    "schemaVersion": "office-activity-routing-v1",
+    "routingRevision": 1,
+    "routes": [
+      { "roleId": "market-scout", "homeFacilityCapability": "market-desk", "allowedInteractions": ["inspect-task"], "requiredFeatures": ["shopee-feed"], "workflowStages": ["discovered"], "diagnosticOwner": "adapter" },
+      { "roleId": "product-ranker", "homeFacilityCapability": "ranking-desk", "allowedInteractions": ["inspect-task"], "requiredFeatures": ["ranking-evidence"], "workflowStages": ["scored"], "diagnosticOwner": "adapter" },
+      { "roleId": "growth-strategist", "homeFacilityCapability": "strategy-desk", "allowedInteractions": ["inspect-task", "propose-review"], "requiredFeatures": ["strategy-review"], "workflowStages": ["selected"], "diagnosticOwner": "adapter" },
+      { "roleId": "performance-analyst", "homeFacilityCapability": "metrics-desk", "allowedInteractions": ["inspect-task"], "requiredFeatures": ["metrics-read"], "workflowStages": ["measured"], "diagnosticOwner": "adapter" },
+      { "roleId": "gemini-copywriter", "homeFacilityCapability": "copy-desk", "allowedInteractions": ["inspect-task", "propose-copy"], "requiredFeatures": ["gemini-browser"], "workflowStages": ["content_queued"], "diagnosticOwner": "adapter" },
+      { "roleId": "flow-visual-producer", "homeFacilityCapability": "visual-station", "allowedInteractions": ["inspect-task", "propose-visual"], "requiredFeatures": ["flow-browser"], "workflowStages": ["content_queued"], "diagnosticOwner": "adapter" },
+      { "roleId": "link-attribution", "homeFacilityCapability": "link-desk", "allowedInteractions": ["inspect-task", "propose-link"], "requiredFeatures": ["affiliate-link"], "workflowStages": ["link_ready"], "diagnosticOwner": "adapter" },
+      { "roleId": "qa-editor", "homeFacilityCapability": "qa-desk", "allowedInteractions": ["inspect-task", "propose-review"], "requiredFeatures": ["qa-console"], "workflowStages": ["qa_approved"], "diagnosticOwner": "adapter" },
+      { "roleId": "publisher", "homeFacilityCapability": "publisher-desk", "allowedInteractions": ["inspect-task", "propose-publish"], "requiredFeatures": ["publisher-api"], "workflowStages": ["scheduled", "published"], "diagnosticOwner": "adapter" },
+      { "roleId": "session-keeper", "homeFacilityCapability": "session-console", "allowedInteractions": ["inspect-task", "propose-reconnect"], "requiredFeatures": ["session-health"], "workflowStages": ["content_queued"], "diagnosticOwner": "adapter" }
+    ],
+    "facilityCapabilities": [
+      { "capability": "market-desk", "available": true, "compatibleRoles": ["market-scout"] },
+      { "capability": "ranking-desk", "available": true, "compatibleRoles": ["product-ranker"] },
+      { "capability": "strategy-desk", "available": true, "compatibleRoles": ["growth-strategist"] },
+      { "capability": "metrics-desk", "available": true, "compatibleRoles": ["performance-analyst"] },
+      { "capability": "copy-desk", "available": true, "compatibleRoles": ["gemini-copywriter"] },
+      { "capability": "visual-station", "available": true, "compatibleRoles": ["flow-visual-producer"] },
+      { "capability": "link-desk", "available": true, "compatibleRoles": ["link-attribution"] },
+      { "capability": "qa-desk", "available": true, "compatibleRoles": ["qa-editor"] },
+      { "capability": "publisher-desk", "available": true, "compatibleRoles": ["publisher"] },
+      { "capability": "session-console", "available": true, "compatibleRoles": ["session-keeper"] }
+    ],
+    "consoleFacilities": [
+      { "facilityId": "teambrain-console", "capability": "command-console", "kind": "command-console", "allowedInteractions": ["inspect-operations", "propose-action"], "requiredFeatures": ["teambrain-console"], "agentEligible": false }
+    ]
+  },
+  "roster": {
+    "schemaVersion": "office-roster-binding-v1",
+    "rosterRevision": 1,
+    "bindings": [
+      { "bindingKind": "agent-instance", "agentInstanceId": { "kind": "actor", "value": "agent-market-scout" }, "roleId": "market-scout", "displayName": "Market Scout", "enabled": true, "characterDefinition": { "id": { "kind": "character-profile", "value": "character-market-scout" }, "version": 1 }, "sourceRevision": "roster-revision-1" },
+      { "bindingKind": "agent-instance", "agentInstanceId": { "kind": "actor", "value": "agent-product-ranker" }, "roleId": "product-ranker", "displayName": "Product Ranker", "enabled": true, "characterDefinition": null, "sourceRevision": "roster-revision-1" },
+      { "bindingKind": "agent-instance", "agentInstanceId": { "kind": "actor", "value": "agent-growth-strategist" }, "roleId": "growth-strategist", "displayName": "Growth Strategist", "enabled": true, "characterDefinition": { "id": { "kind": "character-profile", "value": "character-growth-strategist" }, "version": 1 }, "sourceRevision": "roster-revision-1" },
+      { "bindingKind": "agent-instance", "agentInstanceId": { "kind": "actor", "value": "agent-performance-analyst" }, "roleId": "performance-analyst", "displayName": "Performance Analyst", "enabled": true, "characterDefinition": null, "sourceRevision": "roster-revision-1" },
+      { "bindingKind": "agent-instance", "agentInstanceId": { "kind": "actor", "value": "agent-gemini-copywriter" }, "roleId": "gemini-copywriter", "displayName": "Gemini Copywriter", "enabled": false, "characterDefinition": null, "sourceRevision": "roster-revision-1" },
+      { "bindingKind": "agent-instance", "agentInstanceId": { "kind": "actor", "value": "agent-flow-visual-producer" }, "roleId": "flow-visual-producer", "displayName": "Flow Visual Producer", "enabled": false, "characterDefinition": null, "sourceRevision": "roster-revision-1" },
+      { "bindingKind": "agent-instance", "agentInstanceId": { "kind": "actor", "value": "agent-link-attribution" }, "roleId": "link-attribution", "displayName": "Attribution Builder", "enabled": false, "characterDefinition": null, "sourceRevision": "roster-revision-1" },
+      { "bindingKind": "agent-instance", "agentInstanceId": { "kind": "actor", "value": "agent-qa-editor" }, "roleId": "qa-editor", "displayName": "QA Editor", "enabled": true, "characterDefinition": null, "sourceRevision": "roster-revision-1" },
+      { "bindingKind": "agent-instance", "agentInstanceId": { "kind": "actor", "value": "agent-publisher" }, "roleId": "publisher", "displayName": "Publisher", "enabled": false, "characterDefinition": null, "sourceRevision": "roster-revision-1" },
+      { "bindingKind": "agent-instance", "agentInstanceId": { "kind": "actor", "value": "agent-session-keeper" }, "roleId": "session-keeper", "displayName": "Session Keeper", "enabled": true, "characterDefinition": null, "sourceRevision": "roster-revision-1" }
+    ]
+  },
+  "reconnect": {
+    "cursorBefore": {
+      "streamId": "operations-stream",
+      "streamEpoch": 1,
+      "throughSequence": 9,
+      "retentionWindowStart": 10,
+      "seenEvents": []
+    },
+    "cursorAfter": {
+      "streamId": "operations-stream",
+      "streamEpoch": 1,
+      "throughSequence": 11,
+      "retentionWindowStart": 10,
+      "seenEvents": [
+        { "durableEventId": "event-10", "payloadDigest": "0000000000000000000000000000000000000000000000000000000000000011" },
+        { "durableEventId": "event-11", "payloadDigest": "0000000000000000000000000000000000000000000000000000000000000012" }
+      ]
+    }
+  },
+  "fanOut": {
+    "requiredBranches": ["copy", "visual"],
+    "owners": { "copy": "gemini-copywriter", "visual": "flow-visual-producer" },
+    "singleBranchStage": "content_queued",
+    "join": { "stage": "content_ready", "actorType": "system", "actorId": "workflow-coordinator", "eventId": "join-event-autopost" },
+    "orders": [
+      { "name": "copy-first", "completedBranches": ["copy", "visual"], "expectedJoinEventId": "join-event-autopost" },
+      { "name": "visual-first", "completedBranches": ["visual", "copy"], "expectedJoinEventId": "join-event-autopost" }
+    ]
+  },
+  "cases": [
+    { "name": "snapshot-window-is-contiguous", "kind": "snapshot-window", "snapshotId": "snapshot-live", "expectedStatus": "live", "expectedEventCount": 2 },
+    { "name": "stale-is-visible-state", "kind": "freshness", "snapshotId": "snapshot-stale", "expectedFailure": "adapter.stale" },
+    { "name": "ten-role-roster-binds-six-enabled", "kind": "roster-binding", "expectedBindingCount": 10, "expectedEnabledCount": 6 },
+    { "name": "role-routes-to-capability-and-features", "kind": "routing-chain", "roleId": "growth-strategist", "expectedFacility": "strategy-desk", "expectedFeature": "strategy-review", "expectedInteraction": "propose-review" },
+    { "name": "disabled-feature-remains-explicit", "kind": "feature-availability", "featureId": "gemini-browser", "expectedAvailable": false, "expectedConnectorEnabled": false, "expectedSessionAvailable": false },
+    { "name": "reconnect-applies-events", "kind": "reconnect", "expectedStatus": "applied", "expectedAccepted": 2 },
+    { "name": "reconnect-duplicate-is-no-op", "kind": "reconnect-duplicate", "expectedStatus": "duplicate", "expectedDuplicateCount": 2 },
+    { "name": "copy-visual-fanout-joins", "kind": "fan-out-join", "orderName": "copy-first" },
+    { "name": "visual-copy-fanout-joins", "kind": "fan-out-join", "orderName": "visual-first" }
+  ]
+}

@@ -28,6 +28,12 @@ export function runSchemaEvidence(context, ajv) {
   for (const definition of structures) checks.push(["surface-structure.schema.json", definition, `structure ${definition.definitionId}`, "fixtures/room-structure-cutaway.json"]);
   const snapshots = read("fixtures/operations-states.json")?.snapshots ?? [];
   for (const snapshot of snapshots) checks.push(["operations-snapshot.schema.json", snapshot, `operations ${snapshot.snapshotId}`, "fixtures/operations-states.json"]);
+  const operationsClosure = read("fixtures/operations-closure-c.json");
+  if (operationsClosure) {
+    for (const snapshot of operationsClosure.snapshots ?? []) checks.push(["operations-snapshot-v2.schema.json", snapshot, `operations V2 ${snapshot.snapshotId?.value ?? "snapshot"}`, "fixtures/operations-closure-c.json"]);
+    checks.push(["activity-routing.schema.json", operationsClosure.routing, "operations activity routing", "fixtures/operations-closure-c.json"]);
+    checks.push(["roster-binding.schema.json", operationsClosure.roster, "operations roster binding", "fixtures/operations-closure-c.json"]);
+  }
   const simulation = read("fixtures/simulation-contracts-v2.json");
   if (simulation) {
     for (const [index, command] of (simulation.commands ?? []).entries()) {
@@ -76,6 +82,24 @@ export function runSchemaEvidence(context, ajv) {
     "fixtures/invalid/simulation-duplicate-resource.json",
     "fixtures/invalid/simulation-presentation-state.json",
     "fixtures/invalid/simulation-incomplete-migration.json",
+  ]) {
+    const rejected = read(path);
+    if (rejected) {
+      validateSchema(
+        context,
+        ajv,
+        rejected.schema,
+        rejected.document,
+        `${path} shape`,
+        rejected.expectedSchemaValid === true,
+        path,
+      );
+    }
+  }
+  for (const path of [
+    "fixtures/invalid/operations-snapshot-v2.json",
+    "fixtures/invalid/activity-routing.json",
+    "fixtures/invalid/roster-binding.json",
   ]) {
     const rejected = read(path);
     if (rejected) {

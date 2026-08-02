@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://affiliate-operations.example/schemas/office-v2/roster-binding.schema.json",
+  "title": "Office V2 Roster Binding",
+  "$defs": {
+    "agentBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["bindingKind", "agentInstanceId", "roleId", "displayName", "enabled", "characterDefinition", "sourceRevision"],
+      "properties": {
+        "bindingKind": { "const": "agent-instance" },
+        "agentInstanceId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/actorId" },
+        "roleId": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" },
+        "displayName": { "type": "string", "minLength": 1 },
+        "enabled": { "type": "boolean" },
+        "characterDefinition": {
+          "oneOf": [
+            { "type": "null" },
+            { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/characterProfileReference" }
+          ]
+        },
+        "sourceRevision": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/slug" }
+      }
+    },
+    "rosterDocument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "rosterRevision", "bindings"],
+      "properties": {
+        "schemaVersion": { "const": "office-roster-binding-v1" },
+        "rosterRevision": { "$ref": "https://affiliate-operations.example/schemas/office-v2/common-v2.schema.json#/$defs/positiveVersion" },
+        "bindings": { "type": "array", "items": { "$ref": "#/$defs/agentBinding" } }
+      }
+    }
+  },
+  "$ref": "#/$defs/rosterDocument"
+}

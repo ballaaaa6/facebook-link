@@ -112,6 +112,25 @@ The W1.6 gate checks these codes through bounded contract fixtures. It does not
 claim that a reducer, queue engine, browser lifecycle, or replay runner has
 emitted them in production execution; those remain T2/T3 evidence.
 
+Closure C adapter diagnostics are stable and adapter-owned:
+
+| Code | Originating rule |
+| --- | --- |
+| `adapter.stale`, `adapter.reconnecting`, `adapter.unavailable` | Snapshot freshness is visible and is never rewritten as idle. |
+| `adapter.unknown-operational-state` | An unknown status fails closed as unavailable. |
+| `adapter.reason-missing`, `adapter.reason-state-mismatch` | Structured waiting, review, blocked, and failure reasons agree with status. |
+| `adapter.sequence-gap`, `adapter.stream-epoch-changed`, `adapter.cursor-too-old`, `adapter.stream-mismatch` | The durable event window cannot be applied without ordered, current stream truth. |
+| `adapter.event-digest-conflict`, `adapter.late-event` | A duplicate durable event ID changes payload or a new event arrives behind the high-water cursor. |
+| `adapter.agent-instance-duplicate`, `adapter.role-unknown`, `adapter.routing-role-duplicate` | Roster and routing identity is not unique or resolvable. |
+| `adapter.role-facility-incompatible`, `adapter.roster-binding-missing`, `adapter.role-disabled-active` | Role, facility capability, and live agent binding do not agree. |
+| `adapter.feature-disabled`, `adapter.feature-session-unavailable`, `adapter.feature-unavailable` | Role, connector, and session facts do not permit an operational action. |
+| `adapter.snapshot-visual-binding`, `adapter.teambrain-not-agent` | Operations truth attempts to own visual/roster leakage or turns TeamBrain into an employee. |
+| `adapter.forbidden-proposal` | A proposed interaction is not allowed by the role, feature, or review policy. |
+
+These codes are not recoded as `presentation.*`. A renderer may preserve and
+display them, but cannot turn a stale stream into working, infer a missing role,
+or execute a proposal after an adapter rejection.
+
 ## Debug evidence
 
 A bug report can include the validated world definition, initial snapshot,

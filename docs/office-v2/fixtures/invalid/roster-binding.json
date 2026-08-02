@@ -1,0 +1,14 @@
+{
+  "kind": "duplicate-agent-instance",
+  "schema": "roster-binding.schema.json",
+  "document": {
+    "schemaVersion": "office-roster-binding-v1",
+    "rosterRevision": 1,
+    "bindings": [
+      { "bindingKind": "agent-instance", "agentInstanceId": { "kind": "actor", "value": "agent-one" }, "roleId": "market-scout", "displayName": "Agent One", "enabled": true, "characterDefinition": null, "sourceRevision": "roster-revision-1" },
+      { "bindingKind": "agent-instance", "agentInstanceId": { "kind": "actor", "value": "agent-one" }, "roleId": "product-ranker", "displayName": "Agent One Again", "enabled": true, "characterDefinition": null, "sourceRevision": "roster-revision-1" }
+    ]
+  },
+  "expectedSchemaValid": true,
+  "expectedFailure": "adapter.agent-instance-duplicate"
+}
