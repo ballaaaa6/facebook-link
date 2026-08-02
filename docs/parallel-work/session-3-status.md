@@ -8,8 +8,10 @@
 - Worktree: `C:\Users\WINDOW XI\.codex\worktrees\phase3-w2-lifecycle`
 - Original base commit: `925439a5f6f29580d82767e2177433a35195bc71`
 - Planning commit: `2635abb87d014240fe4992b8120f99fde0431e7e`
-- Worker session ID: `019fc106-e309-7450-abdd-f09df600df38` / Meitner
-- Status: **IN_PROGRESS — worker running**
+- Worker session IDs: initial `019fc106-e309-7450-abdd-f09df600df38` / Meitner
+  (closed without changes); replacement `019fc10c-a58d-7b13-bc49-49a2545beea4`
+  / Huygens
+- Status: **IN_PROGRESS — replacement worker running**
 
 The worker will update only this file after implementation. It must record the
 implementation commit, exact changed files, focused tests, typecheck,

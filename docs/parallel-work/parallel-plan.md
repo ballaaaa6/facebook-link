@@ -83,9 +83,17 @@ documentation remain Main-owned.
   all three worker branches begin from this exact commit.
 - Integration branch: `codex/integration/phase3-p3-w2-normalization-interaction-lifecycle`
 - Worker branches and worktrees are listed in the three task specifications.
-- Session 1: `019fc106-e20b-7f32-a744-616f7f1ab84c` / Beauvoir — `P3-W2.2`.
-- Session 2: `019fc106-e28f-7c73-988c-e12bd78f65b2` / Kepler — `P3-W2.3`.
-- Session 3: `019fc106-e309-7450-abdd-f09df600df38` / Meitner — `P3-W2.6`.
+- Initial sessions (closed after repeated non-terminal execution with no
+  implementation changes): `019fc106-e20b-7f32-a744-616f7f1ab84c` / Beauvoir
+  for `P3-W2.2`, `019fc106-e28f-7c73-988c-e12bd78f65b2` / Kepler for
+  `P3-W2.3`, and `019fc106-e309-7450-abdd-f09df600df38` / Meitner for
+  `P3-W2.6`.
+- Replacement Session 1: `019fc10c-a493-7660-90cb-2776d2f7d9e2` / Copernicus
+  — `P3-W2.2`.
+- Replacement Session 2: `019fc10c-a514-7083-beae-acc7bb6a3267` / Socrates
+  — `P3-W2.3`.
+- Replacement Session 3: `019fc10c-a58d-7b13-bc49-49a2545beea4` / Huygens
+  — `P3-W2.6`.
 - All three worker worktrees passed `npm ci --ignore-scripts`, Office V2
   preflight, and `git diff --check` at the planning base.
 

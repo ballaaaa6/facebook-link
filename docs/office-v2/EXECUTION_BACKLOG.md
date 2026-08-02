@@ -238,6 +238,11 @@ and no dependency on one another's unintegrated output.
 - `P3-W2.6` — fixed-tick lifecycle port — **IN_PROGRESS** on
   `task/session-3-p3-w2-lifecycle`.
 
+The first worker session for each selected leaf was closed after repeated
+non-terminal execution without a file change; a same-scope replacement is now
+running in the preserved worktree. This is a worker-runtime recovery, not a
+scope expansion or an additional selected task.
+
 Main owns the public barrel, shared documentation, backlog transitions,
 cross-task integration, complete validation, publication, and final reporting.
 Workers stop after their individual commit and handoff.
