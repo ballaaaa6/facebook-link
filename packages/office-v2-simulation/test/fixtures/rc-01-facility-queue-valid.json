@@ -1,0 +1,69 @@
+{
+  "fixtureVersion": "rc-01-fixture-v1",
+  "case": "valid-facility-queue",
+  "facilitySlot": {
+    "schemaVersion": "office-facility-slot-v1",
+    "facility": { "id": { "kind": "facility", "value": "review-console" }, "version": 1 },
+    "slot": { "id": { "kind": "use-slot", "value": "review-console-use" }, "version": 1 },
+    "capability": "review-content",
+    "capacity": 1,
+    "targetGeneration": 3,
+    "availability": "available",
+    "revision": 7,
+    "queuePolicyVersion": "office-queue-policy-v1"
+  },
+  "geometry": {
+    "approachCells": ["cell:floor-one-05-04"],
+    "waitingCells": ["cell:floor-one-04-04", "cell:floor-one-03-04"]
+  },
+  "activeUsers": [],
+  "queueTickets": [
+    {
+      "schemaVersion": "office-queue-ticket-v1",
+      "ticketId": { "kind": "queue-ticket", "value": "ticket-durable-a" },
+      "intentId": { "kind": "intent", "value": "intent-durable-a" },
+      "actorId": { "kind": "actor", "value": "actor-durable-a" },
+      "priorityClass": "durable",
+      "enqueueTick": 12,
+      "state": "waiting",
+      "resourceKeys": ["facility:review-console", "cell:floor-one-05-04", "socket:review-console-use"],
+      "queuePolicyVersion": "office-queue-policy-v1"
+    },
+    {
+      "schemaVersion": "office-queue-ticket-v1",
+      "ticketId": { "kind": "queue-ticket", "value": "ticket-durable-b" },
+      "intentId": { "kind": "intent", "value": "intent-durable-b" },
+      "actorId": { "kind": "actor", "value": "actor-durable-b" },
+      "priorityClass": "durable",
+      "enqueueTick": 12,
+      "state": "waiting",
+      "resourceKeys": ["facility:review-console", "cell:floor-one-04-04", "socket:review-console-use"],
+      "queuePolicyVersion": "office-queue-policy-v1"
+    },
+    {
+      "schemaVersion": "office-queue-ticket-v1",
+      "ticketId": { "kind": "queue-ticket", "value": "ticket-decorative" },
+      "intentId": { "kind": "intent", "value": "intent-decorative" },
+      "actorId": { "kind": "actor", "value": "actor-decorative" },
+      "priorityClass": "decorative",
+      "enqueueTick": 1,
+      "state": "waiting",
+      "resourceKeys": ["facility:review-console", "cell:floor-one-03-04", "socket:review-console-use"],
+      "queuePolicyVersion": "office-queue-policy-v1"
+    }
+  ],
+  "requestedResourceSets": {
+    "intent-durable-a": ["socket:review-console-use", "facility:review-console", "cell:floor-one-05-04"],
+    "intent-durable-b": ["cell:floor-one-04-04", "socket:review-console-use", "facility:review-console"]
+  },
+  "expected": {
+    "capacity": 1,
+    "approachCells": ["cell:floor-one-05-04"],
+    "waitingCells": ["cell:floor-one-04-04", "cell:floor-one-03-04"],
+    "queueOrder": ["ticket-durable-a", "ticket-durable-b", "ticket-decorative"],
+    "normalizedResourceSets": {
+      "intent-durable-a": ["cell:floor-one-05-04", "facility:review-console", "socket:review-console-use"],
+      "intent-durable-b": ["cell:floor-one-04-04", "facility:review-console", "socket:review-console-use"]
+    }
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "fixtureVersion": "rc-01-fixture-v1",
+  "case": "one-actor-cleanup",
+  "actorId": "actor-cleanup",
+  "intentId": { "kind": "intent", "value": "intent-cleanup" },
+  "terminalTrigger": "target-removed",
+  "initial": {
+    "cleanupGeneration": 0,
+    "taskClaims": [
+      { "key": "task:task-cleanup", "actorId": "actor-cleanup", "intentId": "intent-cleanup", "state": "held" }
+    ],
+    "facilityUseSlots": [
+      { "key": "use-slot:review-console-use", "actorId": "actor-cleanup", "facility": "review-console", "state": "held" }
+    ],
+    "approachWaitingCells": [
+      { "key": "cell:floor-one-05-04", "actorId": "actor-cleanup", "role": "approach", "state": "held" },
+      { "key": "cell:floor-one-04-04", "actorId": "actor-cleanup", "role": "waiting", "state": "held" }
+    ],
+    "reservations": [
+      {
+        "schemaVersion": "office-reservation-v1",
+        "reservationId": { "kind": "reservation", "value": "reservation-cleanup-approach" },
+        "intentId": { "kind": "intent", "value": "intent-cleanup" },
+        "actorId": { "kind": "actor", "value": "actor-cleanup" },
+        "resourceKind": "cell",
+        "resourceKey": "cell:floor-one-05-04",
+        "resourceVersion": 1,
+        "acquiredTick": 4,
+        "expiresTick": 40,
+        "state": "held",
+        "cleanupGeneration": 0
+      },
+      {
+        "schemaVersion": "office-reservation-v1",
+        "reservationId": { "kind": "reservation", "value": "reservation-cleanup-waiting" },
+        "intentId": { "kind": "intent", "value": "intent-cleanup" },
+        "actorId": { "kind": "actor", "value": "actor-cleanup" },
+        "resourceKind": "cell",
+        "resourceKey": "cell:floor-one-04-04",
+        "resourceVersion": 1,
+        "acquiredTick": 5,
+        "expiresTick": 40,
+        "state": "held",
+        "cleanupGeneration": 0
+      },
+      {
+        "schemaVersion": "office-reservation-v1",
+        "reservationId": { "kind": "reservation", "value": "reservation-cleanup-socket" },
+        "intentId": { "kind": "intent", "value": "intent-cleanup" },
+        "actorId": { "kind": "actor", "value": "actor-cleanup" },
+        "resourceKind": "socket",
+        "resourceKey": "socket:review-console-use",
+        "resourceVersion": 1,
+        "acquiredTick": 6,
+        "expiresTick": 40,
+        "state": "held",
+        "cleanupGeneration": 0
+      },
+      {
+        "schemaVersion": "office-reservation-v1",
+        "reservationId": { "kind": "reservation", "value": "reservation-cleanup-facility" },
+        "intentId": { "kind": "intent", "value": "intent-cleanup" },
+        "actorId": { "kind": "actor", "value": "actor-cleanup" },
+        "resourceKind": "facility-capacity",
+        "resourceKey": "facility:review-console",
+        "resourceVersion": 1,
+        "acquiredTick": 6,
+        "expiresTick": 40,
+        "state": "held",
+        "cleanupGeneration": 0
+      },
+      {
+        "schemaVersion": "office-reservation-v1",
+        "reservationId": { "kind": "reservation", "value": "reservation-cleanup-prop" },
+        "intentId": { "kind": "intent", "value": "intent-cleanup" },
+        "actorId": { "kind": "actor", "value": "actor-cleanup" },
+        "resourceKind": "held-prop",
+        "resourceKey": "held-prop:review-card",
+        "resourceVersion": 1,
+        "acquiredTick": 7,
+        "expiresTick": 40,
+        "state": "held",
+        "cleanupGeneration": 0
+      }
+    ],
+    "queueTickets": [
+      {
+        "schemaVersion": "office-queue-ticket-v1",
+        "ticketId": { "kind": "queue-ticket", "value": "ticket-cleanup" },
+        "intentId": { "kind": "intent", "value": "intent-cleanup" },
+        "actorId": { "kind": "actor", "value": "actor-cleanup" },
+        "priorityClass": "durable",
+        "enqueueTick": 5,
+        "state": "acquired",
+        "resourceKeys": ["facility:review-console", "cell:floor-one-05-04", "socket:review-console-use"],
+        "queuePolicyVersion": "office-queue-policy-v1"
+      }
+    ],
+    "heldProps": [
+      { "key": "held-prop:review-card", "actorId": "actor-cleanup", "intentId": "intent-cleanup", "policy": "return-to-source", "state": "held" }
+    ]
+  },
+  "actionQueue": {
+    "schemaVersion": "office-action-queue-v1",
+    "queueId": { "kind": "action", "value": "queue-cleanup" },
+    "actorId": { "kind": "actor", "value": "actor-cleanup" },
+    "revision": 3,
+    "actions": [
+      {
+        "actionId": { "kind": "action", "value": "action-cleanup" },
+        "intentId": { "kind": "intent", "value": "intent-cleanup" },
+        "phase": "using",
+        "progressTicks": 4,
+        "resourceKeys": ["facility:review-console", "cell:floor-one-05-04", "socket:review-console-use", "held-prop:review-card"],
+        "targetEntityId": { "kind": "entity-instance", "value": "review-console-instance" }
+      }
+    ]
+  },
+  "trace": [
+    { "tick": 1, "phase": "requested", "resourceCount": 11 },
+    { "tick": 2, "phase": "en-route", "resourceCount": 11 },
+    { "tick": 3, "phase": "waiting", "resourceCount": 11 },
+    { "tick": 4, "phase": "acquired", "resourceCount": 11 },
+    { "tick": 5, "phase": "using", "resourceCount": 11 },
+    { "tick": 6, "phase": "target-removed", "resourceCount": 11 },
+    { "tick": 7, "phase": "canceled", "resourceCount": 0 },
+    { "tick": 8, "phase": "cleanup-complete", "resourceCount": 0 }
+  ],
+  "expected": {
+    "cleanupGeneration": 1,
+    "releasedKeys": [
+      "cell:floor-one-04-04",
+      "cell:floor-one-04-04",
+      "cell:floor-one-05-04",
+      "cell:floor-one-05-04",
+      "facility:review-console",
+      "held-prop:review-card",
+      "held-prop:review-card",
+      "queue-ticket:ticket-cleanup",
+      "socket:review-console-use",
+      "task:task-cleanup",
+      "use-slot:review-console-use"
+    ]
+  }
+}

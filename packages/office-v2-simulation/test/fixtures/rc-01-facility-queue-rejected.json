@@ -1,0 +1,42 @@
+{
+  "fixtureVersion": "rc-01-fixture-v1",
+  "case": "rejected-facility-queue",
+  "facilitySlot": {
+    "schemaVersion": "office-facility-slot-v1",
+    "facility": { "id": { "kind": "facility", "value": "review-console" }, "version": 1 },
+    "slot": { "id": { "kind": "use-slot", "value": "review-console-use" }, "version": 1 },
+    "capability": "review-content",
+    "capacity": 1,
+    "targetGeneration": 3,
+    "availability": "available",
+    "revision": 7,
+    "queuePolicyVersion": "office-queue-policy-v1"
+  },
+  "geometry": {
+    "approachCells": [],
+    "waitingCells": ["cell:floor-one-04-04"]
+  },
+  "queueTickets": [
+    {
+      "schemaVersion": "office-queue-ticket-v1",
+      "ticketId": { "kind": "queue-ticket", "value": "ticket-invalid" },
+      "intentId": { "kind": "intent", "value": "intent-invalid" },
+      "actorId": { "kind": "actor", "value": "actor-invalid" },
+      "priorityClass": "durable",
+      "enqueueTick": 20,
+      "state": "waiting",
+      "resourceKeys": ["facility:review-console", "socket:review-console-use"],
+      "queuePolicyVersion": "office-queue-policy-v1"
+    }
+  ],
+  "requestedResourceSets": {
+    "intent-invalid": ["facility:review-console", "cell:floor-one-05-04", "socket:review-console-use"]
+  },
+  "partialResourceClaim": [
+    { "key": "facility:review-console", "actorId": "actor-invalid", "state": "held" }
+  ],
+  "expected": {
+    "accepted": false,
+    "rejectionReasons": ["missing-approach", "partial-resource-claim"]
+  }
+}

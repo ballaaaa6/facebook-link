@@ -1,0 +1,112 @@
+{
+  "fixtureVersion": "rc-01-fixture-v1",
+  "case": "contention-cancellation",
+  "facilitySlot": {
+    "schemaVersion": "office-facility-slot-v1",
+    "facility": { "id": { "kind": "facility", "value": "review-console" }, "version": 1 },
+    "slot": { "id": { "kind": "use-slot", "value": "review-console-use" }, "version": 1 },
+    "capability": "review-content",
+    "capacity": 1,
+    "targetGeneration": 4,
+    "availability": "available",
+    "revision": 8,
+    "queuePolicyVersion": "office-queue-policy-v1"
+  },
+  "occupiedResourceKeys": [
+    "cell:floor-one-05-04",
+    "facility:review-console",
+    "socket:review-console-use"
+  ],
+  "actors": [
+    {
+      "actorId": "actor-durable",
+      "intentId": "intent-durable",
+      "priorityClass": "durable",
+      "requestedResourceKeys": ["cell:floor-one-05-04", "facility:review-console", "socket:review-console-use"],
+      "queueTicket": {
+        "schemaVersion": "office-queue-ticket-v1",
+        "ticketId": { "kind": "queue-ticket", "value": "ticket-durable" },
+        "intentId": { "kind": "intent", "value": "intent-durable" },
+        "actorId": { "kind": "actor", "value": "actor-durable" },
+        "priorityClass": "durable",
+        "enqueueTick": 10,
+        "state": "acquired",
+        "resourceKeys": ["cell:floor-one-05-04", "facility:review-console", "socket:review-console-use"],
+        "queuePolicyVersion": "office-queue-policy-v1"
+      }
+    },
+    {
+      "actorId": "actor-canceled",
+      "intentId": "intent-canceled",
+      "priorityClass": "decorative",
+      "requestedResourceKeys": ["cell:floor-one-05-04", "facility:review-console", "socket:review-console-use"],
+      "partialResourceClaim": [],
+      "queueTicket": {
+        "schemaVersion": "office-queue-ticket-v1",
+        "ticketId": { "kind": "queue-ticket", "value": "ticket-canceled" },
+        "intentId": { "kind": "intent", "value": "intent-canceled" },
+        "actorId": { "kind": "actor", "value": "actor-canceled" },
+        "priorityClass": "decorative",
+        "enqueueTick": 9,
+        "state": "waiting",
+        "resourceKeys": ["cell:floor-one-04-04", "facility:review-console", "socket:review-console-use"],
+        "queuePolicyVersion": "office-queue-policy-v1"
+      }
+    }
+  ],
+  "cancellation": {
+    "actorId": "actor-canceled",
+    "trigger": "target-removed",
+    "beforeCleanup": {
+      "cleanupGeneration": 0,
+      "taskClaims": [
+        { "key": "task:task-canceled", "actorId": "actor-canceled", "intentId": "intent-canceled", "state": "held" }
+      ],
+      "facilityUseSlots": [],
+      "approachWaitingCells": [
+        { "key": "cell:floor-one-04-04", "actorId": "actor-canceled", "role": "waiting", "state": "held" }
+      ],
+      "reservations": [
+        {
+          "schemaVersion": "office-reservation-v1",
+          "reservationId": { "kind": "reservation", "value": "reservation-canceled-waiting" },
+          "intentId": { "kind": "intent", "value": "intent-canceled" },
+          "actorId": { "kind": "actor", "value": "actor-canceled" },
+          "resourceKind": "cell",
+          "resourceKey": "cell:floor-one-04-04",
+          "resourceVersion": 1,
+          "acquiredTick": 10,
+          "expiresTick": 30,
+          "state": "held",
+          "cleanupGeneration": 0
+        }
+      ],
+      "queueTickets": [
+        {
+          "schemaVersion": "office-queue-ticket-v1",
+          "ticketId": { "kind": "queue-ticket", "value": "ticket-canceled" },
+          "intentId": { "kind": "intent", "value": "intent-canceled" },
+          "actorId": { "kind": "actor", "value": "actor-canceled" },
+          "priorityClass": "decorative",
+          "enqueueTick": 9,
+          "state": "waiting",
+          "resourceKeys": ["cell:floor-one-04-04", "facility:review-console", "socket:review-console-use"],
+          "queuePolicyVersion": "office-queue-policy-v1"
+        }
+      ],
+      "heldProps": []
+    },
+    "expectedRemaining": {
+      "taskClaims": [],
+      "facilityUseSlots": [],
+      "approachWaitingCells": [],
+      "reservations": [],
+      "queueTickets": [],
+      "heldProps": []
+    }
+  },
+  "expected": {
+    "queueOrder": ["ticket-durable", "ticket-canceled"],
+    "winner": "actor-durable"
+  }
+}

@@ -112,3 +112,65 @@ and decoration/navigation conflict. The contract version is
 ownership, or diagnostic meaning requires a new version and an explicit
 migration rule.
 Site-envelope context cannot become a room surface, route, or placement cell.
+
+## RC-01 research closure — room prerequisites, capacity, and approach boundary
+
+Status: bounded research-closure evidence only. The observations below inform
+the existing room-template and geometry boundary; they do not promote the
+Phase 3/T2 facility implementation or add room runtime state here.
+
+### Engineering question and source rights record
+
+The bounded question was which room-level prerequisites and capacity facts must
+be true before an actor can use a facility, how approach/waiting positions are
+represented, and what target removal means for the receiving contracts. Only
+the following source pages were used:
+
+| Source page | Observed revision/date | License and rights boundary |
+| --- | --- | --- |
+| [room.lua](https://github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/room.lua) | `master`, observed 2026-08-02 (Asia/Bangkok) | The page header states the MIT license. It is an external architecture study; no code, map, game data, names, timings, or behavior table is copied. |
+| [object.lua](https://github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/object.lua) | `master`, observed 2026-08-02 (Asia/Bangkok) | MIT notice observed in the page header; no source implementation or content enters the Office runtime. |
+| [queue.lua](https://github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/queue.lua) | `master`, observed 2026-08-02 (Asia/Bangkok) | MIT notice observed in the page header; retained observations are bounded and neutral. |
+| [use_object.lua](https://github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/humanoid_actions/use_object.lua) | `master`, observed 2026-08-02 (Asia/Bangkok) | MIT notice observed in the page header; the page is not a runtime dependency or asset source. |
+
+The moving branch is recorded as an observed `master` revision with the
+observation date, not as a pinned Office dependency. The rights boundary is
+source-study attribution and clean-room separation, not code or content
+adoption.
+
+### Source observations
+
+- `room.lua` stores room bounds, a readiness/active state, a maximum patient
+  count, required-staff criteria, and a door entrance relation. Its entry check
+  rejects inactive rooms, insufficient required staff, repair state, or a full
+  patient count; queue advancement is attempted when the front entry can enter.
+- `object.lua` associates an object with an orientation-specific footprint and
+  named use-position offsets. Occupancy and passability are derived from that
+  footprint and room membership. The page does not provide Office-style
+  versioned geometry references, so no source footprint value is transferable.
+- `queue.lua` places the waiting list at a door or usable object, has expected
+  and present entries, and removes or reroutes entries when a participant or
+  target disappears. The displayed queue count is not the complete queue state.
+- `use_object.lua` approaches a target use position before attaching the user,
+  then disconnects the user during normal completion or interruption cleanup.
+  The action can observe target destruction, but its animation-driven details are
+  not spatial authority.
+
+### Office disposition and canonical ownership
+
+| Observation | Disposition | Canonical owner |
+| --- | --- | --- |
+| A room must be ready, have required support, and stay within capacity before a user enters. | Adapt: authored prerequisites, room bounds, required groups, and capacity remain in `office-room-template-v1`; runtime facility availability and capacity are checked by the facility slot. Reject source patient/staff classes, repair behavior, and source capacity values. | This document for authored room composition; `JOBS_INTENTS_ASSIGNMENT.md` and `facility-slot.schema.json` for mutable facility state. |
+| An approach/use position is part of target geometry rather than an actor sprite. | Adapt: preserve existing geometry authority, versioned use-slot reference, legal approach candidates, waiting cells, actor socket, and optional held-prop socket. Reject source tile offsets and render/animation offsets as world facts. | `ACTORS_NAVIGATION_INTERACTIONS.md`, existing geometry authority, and `interaction.schema.json`. |
+| A removed or deactivated target must not leave entrants waiting forever. | Adapt: target generation/availability changes invalidate the dependent action and enter the shared cleanup path; a waiting cell is a declared legal cell, not a presentation offset. Reject source reroute destinations and callbacks as Office policy. | `JOBS_INTENTS_ASSIGNMENT.md` cleanup matrix and `CROWD_QUEUES_AND_DEADLOCKS.md`; existing facility-slot, queue-ticket, reservation, and action-queue contracts. |
+
+Migration consequence: `office-room-template-v1` and the existing geometry
+authority remain unchanged. A V1 room or in-progress action without complete
+building/floor context, versioned geometry/use-slot identity, approach/waiting
+facts, target generation, and resource ownership follows the existing explicit
+migration path or rejects; it is never reconstructed from a source-game tile,
+actor position, or display state. No new dependency or schema is admitted.
+
+Focused acceptance command: `node --test scripts/office-v2-rc-01-evidence.test.mjs`.
+The fixture is a bounded research probe only and does not claim reducer,
+navigation, crowd, replay, or T3 evidence.

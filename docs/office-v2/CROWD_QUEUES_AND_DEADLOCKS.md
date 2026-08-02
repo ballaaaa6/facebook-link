@@ -58,3 +58,61 @@ resources.
 The W1.6 gate checks policy shape, numeric bounds, and exact failure contracts.
 It does not claim crowd execution, fairness measurements, bounded-wait replay,
 or target-floor performance. Those belong to T3.
+
+## RC-01 research closure — queue, waiting, and cancellation boundary
+
+Status: bounded research-closure evidence only. This section records the
+neutral queue and cleanup observations needed before Phase 3/T2 implementation;
+the runtime queue, wait-for graph, reducer, and crowd behavior remain deferred.
+
+### Engineering question and source rights record
+
+The bounded question was how a source system orders waiting users, distinguishes
+expected entrants from present users, handles target removal, and disconnects
+a user on completion or interruption. Only these four pages were inspected:
+
+| Source page | Observed revision/date | License and rights boundary |
+| --- | --- | --- |
+| [room.lua](https://github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/room.lua) | `master`, observed 2026-08-02 (Asia/Bangkok) | The page header states the MIT license. It is a bounded architecture study; no code, map, game data, names, timings, or behavior table is copied. |
+| [object.lua](https://github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/object.lua) | `master`, observed 2026-08-02 (Asia/Bangkok) | MIT notice observed in the page header; object implementation and content are not adopted. |
+| [queue.lua](https://github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/queue.lua) | `master`, observed 2026-08-02 (Asia/Bangkok) | MIT notice observed in the page header; only neutral observations are recorded. |
+| [use_object.lua](https://github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/humanoid_actions/use_object.lua) | `master`, observed 2026-08-02 (Asia/Bangkok) | MIT notice observed in the page header; the source is not an Office dependency or runtime asset source. |
+
+`master` is recorded as observed on the date above, not treated as a pinned
+dependency. The MIT headers define the external rights boundary for the study;
+Office V2 remains original code, data, and policy.
+
+### Source observations
+
+- `room.lua` keeps the queue on the door, tests the front entry against room
+  readiness and capacity, pops an entry when it may proceed, and retries queue
+  advancement after a participant leaves. Deactivation reroutes present and
+  expected participants and invokes registered callbacks for expected entries.
+- `queue.lua` exposes expected entries, present entries, front/pop, removal,
+  maximum size, and a source-specific priority insertion rule. It also removes
+  expected entries when a room or object is destroyed. Its displayed count is a
+  projection, not a complete durable ticket model.
+- `object.lua` tracks current users and reserved users separately and clears
+  usage/reservation state when an object is picked up or destroyed.
+- `use_object.lua` connects a user after the walk-in boundary, disconnects the
+  user on normal finish, and handles a high-priority interruption by cleaning
+  the active user or pending reservation before ending the action.
+
+### Office disposition and canonical ownership
+
+| Observation | Disposition | Canonical owner |
+| --- | --- | --- |
+| Waiting needs a stable entry identity and a declared legal waiting position. | Adapt: Office uses `office-queue-ticket-v1`, the geometry-owned waiting-cell set, and the accepted durable/decorative plus enqueue-tick plus UTF-16 ticket-ID order. Reject source array order, display count, source priority numbers, and wall-clock arrival. | This document for queue policy; `queue-ticket.schema.json` and existing geometry authority for the frozen shapes. |
+| A requested set must not be held incrementally while another resource is unavailable. | Adapt: validate and normalize the complete typed resource set, then acquire all or none; a waiting ticket does not imply partial facility/socket ownership. Reject source-specific queue capacity and insertion implementation. | Decision 0012, this document, and existing facility-slot/reservation schemas. |
+| Target removal, cancellation, interruption, completion, and queue destruction require terminal release. | Adapt: all terminal paths use one idempotent cleanup matrix for task claim, facility/use slot, approach/waiting cell, every reservation, queue ticket, and held prop. Reject source callbacks and entity lifecycle as Office runtime behavior. | `JOBS_INTENTS_ASSIGNMENT.md`, Decision 0012, and existing reservation/action-queue/interaction contracts. |
+
+Migration consequence: the frozen queue, facility, reservation, action-queue,
+interaction, and geometry interfaces are unchanged. A V1 in-progress action
+without complete queue, resource, target-generation, and held-prop context is
+rejected or migrated only through an explicit tested path; no source queue
+position or actor state is guessed. No dependency, runtime diagnostic catalog,
+or crowd promotion is introduced.
+
+Focused acceptance command: `node --test scripts/office-v2-rc-01-evidence.test.mjs`.
+This fixture-only acceptance proves bounded queue/cleanup facts and explicitly
+does not claim reducer, replay, crowd, fairness, or T3 evidence.

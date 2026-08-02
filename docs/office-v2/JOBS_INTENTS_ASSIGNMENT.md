@@ -70,6 +70,72 @@ Repeated cleanup is a no-op after the cleanup generation is recorded. Partial
 new resource acquisition is forbidden: a request is validated and acquired as
 a complete set or not acquired at all.
 
+## RC-01 research closure — facility use and terminal cleanup
+
+Status: bounded research-closure evidence only. This section records a
+clean-room study for the Phase 3/T2 facility boundary; it does not implement
+assignment, queues, a reducer, or runtime cleanup.
+
+### Engineering question and bounded source record
+
+The question was how a room/object system represents room readiness, limited
+use, approach and waiting positions, queue entry, target removal, use, and
+terminal cleanup, and which neutral constraints can inform the Office contracts.
+The source scope is limited to these four CorsixTH pages:
+
+| Source page | Observed revision/date | License and rights boundary |
+| --- | --- | --- |
+| [room.lua](https://github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/room.lua) | `master`, observed 2026-08-02 (Asia/Bangkok) | The page header states the MIT license. This is an architecture study only; no code, map, game data, names, timings, or behavior table is copied or admitted. |
+| [object.lua](https://github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/entities/object.lua) | `master`, observed 2026-08-02 (Asia/Bangkok) | MIT notice observed in the page header; source remains external reference material and is not an Office dependency or runtime asset source. |
+| [queue.lua](https://github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/queue.lua) | `master`, observed 2026-08-02 (Asia/Bangkok) | MIT notice observed in the page header; only bounded, neutral observations are retained. |
+| [use_object.lua](https://github.com/CorsixTH/CorsixTH/blob/master/CorsixTH/Lua/humanoid_actions/use_object.lua) | `master`, observed 2026-08-02 (Asia/Bangkok) | MIT notice observed in the page header; no implementation or content is imported. |
+
+The branch name and observation date are recorded rather than treating a
+moving `master` page as a vendored dependency. The source headers are a rights
+boundary for the study, not permission to copy implementation or game content.
+
+### Source observations
+
+- `room.lua` keeps room readiness and occupancy state separate from the door
+  queue. A room has a configured maximum patient count, becomes active only
+  after its room-finished path, checks required staff and occupancy before a
+  patient enters, and tries to advance the front queue entry when a user or
+  reservation no longer blocks the door. Deactivation reroutes queued or
+  expected visitors.
+- `object.lua` keeps an orientation-specific footprint and named use-position
+  offsets on the object type. The object tracks its current user separately
+  from reserved users. Destruction and pickup invoke a reset path that cancels
+  usage and denies reservations; the usage cancellation notifies users before
+  clearing those references.
+- `queue.lua` attaches a queue to a door or usable object, distinguishes
+  expected entries from present entries, exposes front/pop and removal
+  operations, and reroutes queued participants when the queue's room or object
+  is destroyed. Its priority and queue-size rules are source-specific.
+- `use_object.lua` separates approach/walk-in from use and walk-out phases.
+  Connecting the user happens at the use boundary; normal completion disconnects
+  the user, and a high-priority interruption cleans either the active user or
+  the pending reservation before ending the action. A destroyed room/object
+  suppresses follow-up work that would assume the target still exists.
+
+### Office disposition and canonical ownership
+
+| Observation | Disposition | Canonical owner |
+| --- | --- | --- |
+| Readiness, capacity, and target generation must be checked before use. | Adapt: the Office facility slot exposes versioned capacity, availability, target generation, and revision; room composition separately proves authored capacity and legal approaches. Reject source patient/staff classes and its game-specific limits. | This document for mutable facility/use-slot state; `ROOMS_SURFACES_STRUCTURES_ZONES.md` for room-template capacity; `facility-slot.schema.json` and `interaction.schema.json` for frozen shapes. |
+| A use action needs a declared approach and use position, and target removal ends the action. | Adapt: geometry remains the sole owner of approach candidates, waiting cells, sockets, and use-slot geometry; an interaction references the versioned use slot without repeating coordinates. Reject source coordinates, animation phases, and object pointers. | `ACTORS_NAVIGATION_INTERACTIONS.md` for geometry authority and interaction semantics; existing geometry and interaction contracts. |
+| Completion, interruption, pickup, and target destruction all need cleanup. | Adapt: all terminal triggers call the one idempotent Office cleanup matrix for task claim, facility/use slot, approach/waiting cell, every reservation, queue ticket, and held prop. The RC-01 fixture exercises the categories; it is not runtime reducer evidence. Reject source callback/entity behavior as an implementation dependency. | This cleanup matrix and `decisions/0012-queue-reservation-and-deadlock-policy.md`; existing reservation, queue-ticket, action-queue, and interaction schemas. |
+
+Migration consequence: no frozen interface changes. V1 forms remain immutable;
+an in-progress action cannot infer a missing target generation, use slot,
+complete resource set, queue ticket, reservation set, or held-prop owner from
+an actor position. Such input follows the existing explicit migration or
+rejects with the existing migration diagnostic. No CorsixTH dependency is
+introduced.
+
+Focused acceptance command: `node --test scripts/office-v2-rc-01-evidence.test.mjs`.
+The test is intentionally labeled research-closure fixture evidence and does
+not claim reducer, replay, crowd, or T3 execution.
+
 ## Migration and diagnostics
 
 The V1 interaction and snapshot forms remain immutable. A reader cannot infer a
