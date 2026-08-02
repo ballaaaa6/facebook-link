@@ -6,3 +6,4 @@ export * from "./queues.ts";
 export * from "./replay.ts";
 export * from "./integrated-navigation.ts";
 export * from "./integrated-runtime.ts";
+export * from "./integrated-crowd.ts";
