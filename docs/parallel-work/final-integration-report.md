@@ -117,9 +117,9 @@ Worker-reported and Main-reproduced focused evidence:
 
 - Integration commit: `0d9ff0d85bfa48607799a5c79da28684f0ccb761` (Main-only
   shared-record reconciliation atop the six worker handoff commits).
-- Pushed remote commit: pending the final report-close commit and publication;
-  the first pushed SHA will be recorded in the final report update after the
-  branch publication check.
+- Pushed remote commit: `63f573c8b99545e382fd5d23cad0cf022f76bbd6` — the first
+  published integration-branch tip. This final report update is also pushed;
+  the final branch tip is verified and reported in the Main handoff.
 - Primary branch safety: `main` remains at
   `6136d4448750bb2b519bfb7d74b45bf917785625` locally and was not merged to or
   pushed by this wave. `origin/main` remains at
