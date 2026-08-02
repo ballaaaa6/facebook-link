@@ -1,7 +1,7 @@
 # Office Engine V2 Knowledge Completeness Audit
 
 Status: audited on 2026-07-31; T0 re-audited on 2026-08-01; W0.3
-contradiction closure and W1.1–W1.5 contract slices re-audited on
+contradiction closure and W1.1–W1.6 bounded contract slices re-audited on
 2026-08-02.
 Re-audit after every Phase 1 closure wave.
 
@@ -37,12 +37,14 @@ T0 now passes, W0.3 closes the twelve decision-level P0 contradictions, and the
 bounded W1.1–W1.5 contract slices pass their schema, exact-diagnostic,
 generated-drift, pure-validator, compiler, reorder/hash, and reference-graph
 gates. The historical W1.5 record contains 114 files, 24 schemas, 37
-fixtures, 87/87 semantic cases, and 35 exact diagnostics. W1.6 Closure B now
-adds the bounded simulation contract slice; the current evidence is 147 files,
-34 schemas, 56 fixtures, 103/103 semantic cases, and 51 exact diagnostics. The
-gates report only the schema-shape, bounded semantic, exact-diagnostic, and
-resolution evidence they execute. This does not change the no-go decision for
-persistent engine work or production content; W1.6 Closures C–E remain.
+fixtures, 87/87 semantic cases, and 35 exact diagnostics. W1.6 Closure B and
+the integrated Closures C–E now pass their bounded specification evidence. The
+current integrated evidence is 186 files, 58 schemas, 66 fixtures, 184/184
+semantic cases, and 101 exact diagnostics. The gates report only the
+schema-shape, bounded semantic, exact-diagnostic, and resolution evidence they
+execute. This does not change the no-go decision for persistent engine work or
+production content; the pure Phase 2 world kernel is authorized while T2–T6
+runtime gates remain future work.
 
 ### W1.5 closure record
 
@@ -235,6 +237,27 @@ diagnostics across 147 files, 34 schemas, and 56 fixtures. This closes contract
 and bounded-probe evidence only; no reducer, crowd engine, replay hash,
 renderer, or runtime asset is admitted. Operations, visual/asset, and
 renderer/QA specification closures remain W1.6 work.
+
+### W1.6 Integrated Closure C–E record — 2026-08-02
+
+The integration branch combines the three parallel closure handoffs with
+separate merge commits and a deterministic shared contract registry. Closure C
+adds Operations Snapshot V2, routing, roster binding, event windows,
+reconnect/deduplication, and explicit copy/visual fan-out/join semantics.
+Closure D adds the measurable style profile, asset geometry/render-part split,
+provenance/export, atlas/catalog/bundle lifecycle, migration, and semantic
+variant contracts. Closure E adds renderer-port, immutable presentation
+snapshot, benchmark, accessibility, lifecycle, golden, property/model, and
+fixture-only synthetic-bundle contracts.
+
+The integrated knowledge gate inventories 186 files and 58 schemas, evidences
+66/66 fixture files, executes 184/184 declared semantic cases, and matches 101
+exact diagnostics. Generated contracts, boundaries, contradictions,
+clean-room, assets, focused C/D/E evidence, the full repository check, and
+project preflight pass. This is specification and bounded-probe evidence only:
+reducer/replay remains `0`, property/model remains `0`, asset admission is
+`basic-only`, renderer admission is `none`, and runtime asset manifests remain
+`0`.
 
 ### Semantic schema smoke test
 

@@ -34,19 +34,20 @@ fixtures fail for their declared reason.
 
 ## Phase 1 — First-floor knowledge and contract closure
 
-Status: in progress. W1.1 through W1.5 are complete for their bounded
-identity/coordinate, geometry/reference, topology, room, and scene-compiler
-slices. W1.6 is in progress: Closure B has closed the bounded simulation
-contract slice, while Operations Snapshot V2, visual/asset, and renderer/QA
-specification closures remain. The target brief and contract/compiler evidence
-exist; simulation reducer, renderer, and asset-factory implementation remain
-later work.
+Status: contract closure complete on 2026-08-02. W1.1 through W1.5 are
+complete for their bounded identity/coordinate, geometry/reference, topology,
+room, and scene-compiler slices. W1.6 now integrates Closure B plus the
+Operations Snapshot V2, visual/asset, and renderer/QA specification closures.
+The integrated knowledge run reports 186 files, 58 schemas, 66 fixtures,
+184/184 semantic cases, and 101 exact diagnostics. The target brief and
+contract/compiler evidence exist; simulation reducer, renderer, and
+asset-factory implementation remain later work.
 `KNOWLEDGE_COMPLETENESS_AUDIT.md` is the evidence inventory for this phase. Its
 P0 contradictions must close before persistent engine implementation, and its
 minimum safe-to-produce gate must pass before the large floor or any art batch.
 `READINESS_REMEDIATION_PLAN.md` owns the dependency-ordered remediation, commit
-sequence, and cross-phase T0–T6 promotion evidence. Phase 1 closes the contract
-and bounded-probe portion of that plan; later implementation remains in the
+sequence, and cross-phase T0–T6 promotion evidence. Phase 1 now authorizes the
+pure Phase 2 world kernel; later executable implementation remains in the
 phases below.
 
 ### Identity and deterministic execution

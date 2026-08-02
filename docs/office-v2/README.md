@@ -47,11 +47,11 @@ The clean-room boundary, data-free development lab, repository guards,
 machine-readable readiness pack, accepted foundation decisions, and validation
 fixtures exist. T0 passed on 2026-08-01: every declared fixture case executes,
 and the gate reports schema, semantic, and reducer/replay evidence separately.
-The current four rejected fixtures match exact diagnostics. The evidence audit
+The current rejected fixtures match exact diagnostics. The evidence audit
 remains no-go for persistent engine work, the large floor, target crowds,
-renderer integration, and production art until the named Phase 1 closures
-pass. The production Office route remains an empty V2 mount. Renderer selection
-is deliberately deferred behind the accepted benchmark decision; no production
+renderer integration, and production art until their later T2–T6 gates pass.
+The production Office route remains an empty V2 mount. Renderer selection is
+deliberately deferred behind the accepted benchmark decision; no production
 runtime art has been admitted.
 
 W0.1 completed on 2026-08-01. Decision 0007 approves the four headless Office
@@ -77,16 +77,29 @@ and bounded T1 evidence are now gated. The current evidence is 114 inventoried
 files, 24 schemas, 37 fixtures, 87/87 semantic cases, and 35 exact diagnostics.
 No persistent world or simulation behavior, renderer, runtime asset, or new
 dependency was admitted; reducer/replay and property/model evidence remain
-zero. W1.6 cross-track specification closure is the next authorized package.
-The historical W0.3 closure register remains unchanged as its pre-T1 baseline.
+zero. W1.6 cross-track Phase 1 specification closure completed on 2026-08-02
+after integrating Operations Snapshot V2, visual/asset contracts, and renderer/
+QA contracts. The historical W0.3 closure register remains unchanged as its
+pre-T1 baseline, and the Phase 2 pure world kernel is now authorized.
 
-The current W1.6 Closure B slice is recorded separately: simulation command,
+The W1.6 Closure B slice is recorded separately: simulation command,
 result, event, intent, facility-slot, queue-ticket, reservation, action-queue,
 snapshot-v2, and trace-v2 contracts now have valid/rejected fixtures and
 bounded semantic probes. The current knowledge run reports 147 inventoried
 files, 34 schemas, 56 fixtures, 103/103 executed semantic cases, and 51 exact
 diagnostics. Reducer/replay, property/model, renderer, and runtime-asset
-evidence remain zero or none; Closure C–E are still pending.
+evidence remain zero or none; this historical slice remains bounded.
+
+The integrated W1.6 record now reports 186 inventoried files, 58 schemas,
+66/66 fixture files, 184/184 semantic cases, and 101 exact diagnostics. Full
+`npm run check` and the project preflight pass. Closure C covers operations
+snapshot, routing, roster, event windows, and fan-out/join; Closure D covers
+style, asset geometry, provenance, catalog/bundle, and semantic variants; and
+Closure E covers renderer-port, benchmark, accessibility, lifecycle, golden,
+and property/model specifications. These are specification and bounded-probe
+results only: reducer/replay remains 0, property/model evidence remains 0,
+asset admission remains basic-only, renderer admission remains none, and no
+runtime asset manifest is admitted.
 
 ## Knowledge rule
 

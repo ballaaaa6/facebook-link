@@ -23,15 +23,15 @@ runtime asset.
 
 ## Executed evidence
 
-The repository knowledge gate and focused Closure D test report:
+The integrated repository knowledge gate and focused Closure D test report:
 
 | Measure | Result |
 | --- | ---: |
-| Inventoried knowledge files | 166 |
-| Loaded schemas | 47 |
-| Fixture files evidenced | 58 / 58 |
-| Declared semantic cases executed | 145 / 145 |
-| Exact diagnostics matched | 75 |
+| Inventoried knowledge files | 186 |
+| Loaded schemas | 58 |
+| Fixture files evidenced | 66 / 66 |
+| Declared semantic cases executed | 184 / 184 |
+| Exact diagnostics matched | 101 |
 | Reducer/replay evidence | 0 |
 | Property/model evidence | 0 |
 | Runtime manifests admitted | 0 |
