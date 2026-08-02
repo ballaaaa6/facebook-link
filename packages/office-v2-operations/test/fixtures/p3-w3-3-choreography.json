@@ -1,0 +1,46 @@
+{
+  "scope": {
+    "workspaceId": "workspace-one",
+    "workflowId": "workflow-one",
+    "contentGroupId": "content-group-one",
+    "traceId": "trace-one",
+    "streamId": "operations-stream"
+  },
+  "snapshot": {
+    "schemaVersion": "office-operations-v2",
+    "snapshotId": { "kind": "snapshot", "value": "snapshot-choreography" },
+    "observedAt": "2026-08-02T00:00:00.000Z",
+    "sourceRevision": "operations-revision-1",
+    "streamId": "operations-stream",
+    "streamEpoch": 1,
+    "windowStartSequence": 10,
+    "throughSequence": 10,
+    "eventDigest": "0000000000000000000000000000000000000000000000000000000000000010",
+    "freshness": "live",
+    "events": [],
+    "diagnostics": [],
+    "features": [
+      { "featureId": "live-feature", "roleEnabled": true, "connectorEnabled": true, "sessionAvailable": true, "available": true, "diagnosticOwner": "adapter", "recoverability": "not-required" },
+      { "featureId": "disabled-feature", "roleEnabled": false, "connectorEnabled": false, "sessionAvailable": false, "available": false, "diagnosticOwner": "adapter", "recoverability": "human-review" }
+    ],
+    "agents": [
+      { "agentInstanceId": { "kind": "actor", "value": "agent-live" }, "roleId": "live-role", "displayName": "Live", "status": "working", "freshness": "live", "work": { "workflowRunId": { "kind": "workflow-run", "value": "run-one" }, "taskId": { "kind": "task", "value": "task-one" }, "jobId": "job-live", "stage": "content_queued" }, "reason": null, "sessionHealth": { "status": "available", "observedAt": "2026-08-02T00:00:00.000Z" }, "featureIds": ["live-feature"], "lastTransition": null, "diagnosticOwner": "adapter", "recoverability": "not-required" },
+      { "agentInstanceId": { "kind": "actor", "value": "agent-waiting" }, "roleId": "waiting-role", "displayName": "Waiting", "status": "waiting", "freshness": "live", "work": null, "reason": { "kind": "waiting", "code": "queue.waiting", "message": "Waiting for a slot", "owner": "queue", "recoverability": "retry" }, "sessionHealth": { "status": "available", "observedAt": "2026-08-02T00:00:00.000Z" }, "featureIds": ["live-feature"], "lastTransition": null, "diagnosticOwner": "adapter", "recoverability": "retry" },
+      { "agentInstanceId": { "kind": "actor", "value": "agent-review" }, "roleId": "review-role", "displayName": "Review", "status": "review", "freshness": "live", "work": null, "reason": { "kind": "review", "code": "review.required", "message": "Human review required", "owner": "qa", "recoverability": "human-review" }, "sessionHealth": { "status": "available", "observedAt": "2026-08-02T00:00:00.000Z" }, "featureIds": ["live-feature"], "lastTransition": null, "diagnosticOwner": "adapter", "recoverability": "human-review" },
+      { "agentInstanceId": { "kind": "actor", "value": "agent-blocked" }, "roleId": "blocked-role", "displayName": "Blocked", "status": "blocked", "freshness": "live", "work": null, "reason": { "kind": "blocked", "code": "queue.blocked", "message": "No available slot", "owner": "queue", "recoverability": "retry" }, "sessionHealth": { "status": "available", "observedAt": "2026-08-02T00:00:00.000Z" }, "featureIds": ["live-feature"], "lastTransition": null, "diagnosticOwner": "adapter", "recoverability": "retry" },
+      { "agentInstanceId": { "kind": "actor", "value": "agent-failed" }, "roleId": "failed-role", "displayName": "Failed", "status": "failed", "freshness": "live", "work": null, "reason": { "kind": "failure", "code": "connector.failed", "message": "Browser session failed", "owner": "connector", "recoverability": "reconnect" }, "sessionHealth": { "status": "unavailable", "observedAt": "2026-08-02T00:00:00.000Z" }, "featureIds": ["live-feature"], "lastTransition": null, "diagnosticOwner": "adapter", "recoverability": "reconnect" },
+      { "agentInstanceId": { "kind": "actor", "value": "agent-stale" }, "roleId": "stale-role", "displayName": "Stale", "status": "working", "freshness": "stale", "work": null, "reason": null, "sessionHealth": { "status": "degraded", "observedAt": "2026-08-02T00:00:00.000Z" }, "featureIds": ["live-feature"], "lastTransition": null, "diagnosticOwner": "adapter", "recoverability": "resync" },
+      { "agentInstanceId": { "kind": "actor", "value": "agent-reconnecting" }, "roleId": "reconnecting-role", "displayName": "Reconnecting", "status": "working", "freshness": "reconnecting", "work": null, "reason": null, "sessionHealth": { "status": "reconnecting", "observedAt": "2026-08-02T00:00:00.000Z" }, "featureIds": ["live-feature"], "lastTransition": null, "diagnosticOwner": "adapter", "recoverability": "reconnect" },
+      { "agentInstanceId": { "kind": "actor", "value": "agent-unavailable" }, "roleId": "unavailable-role", "displayName": "Unavailable", "status": "unavailable", "freshness": "unavailable", "work": null, "reason": null, "sessionHealth": { "status": "unavailable", "observedAt": "2026-08-02T00:00:00.000Z" }, "featureIds": ["live-feature"], "lastTransition": null, "diagnosticOwner": "adapter", "recoverability": "reconnect" },
+      { "agentInstanceId": { "kind": "actor", "value": "agent-idle" }, "roleId": "idle-role", "displayName": "Idle", "status": "idle", "freshness": "live", "work": null, "reason": null, "sessionHealth": { "status": "available", "observedAt": "2026-08-02T00:00:00.000Z" }, "featureIds": [], "lastTransition": null, "diagnosticOwner": "adapter", "recoverability": "not-required" },
+      { "agentInstanceId": { "kind": "actor", "value": "agent-disabled" }, "roleId": "disabled-role", "displayName": "Disabled", "status": "idle", "freshness": "live", "work": null, "reason": null, "sessionHealth": { "status": "available", "observedAt": "2026-08-02T00:00:00.000Z" }, "featureIds": ["disabled-feature"], "lastTransition": null, "diagnosticOwner": "adapter", "recoverability": "human-review" }
+    ]
+  },
+  "transitions": {
+    "copy": { "schemaVersion": "office-operations-choreography-v1", "kind": "branch-completed", "branch": "copy", "attempt": 1, "artifactVersion": 1, "jobId": "copy-job", "occurredAt": "2026-08-02T00:00:02.000Z", "durableEventId": "event-copy-1", "payloadDigest": "digest-copy-1", "sourceRevision": "operations-revision-1", "workspaceId": "workspace-one", "workflowId": "workflow-one", "contentGroupId": "content-group-one", "traceId": "trace-one", "streamId": "operations-stream" },
+    "visual": { "schemaVersion": "office-operations-choreography-v1", "kind": "branch-completed", "branch": "visual", "attempt": 1, "artifactVersion": 1, "jobId": "visual-job", "occurredAt": "2026-08-02T00:00:01.000Z", "durableEventId": "event-visual-1", "payloadDigest": "digest-visual-1", "sourceRevision": "operations-revision-1", "workspaceId": "workspace-one", "workflowId": "workflow-one", "contentGroupId": "content-group-one", "traceId": "trace-one", "streamId": "operations-stream" },
+    "copyRetry": { "schemaVersion": "office-operations-choreography-v1", "kind": "branch-started", "branch": "copy", "attempt": 2, "artifactVersion": 2, "jobId": "copy-job-2", "occurredAt": "2026-08-02T00:00:03.000Z", "durableEventId": "event-copy-2-start", "payloadDigest": "digest-copy-2-start", "sourceRevision": "operations-revision-1", "workspaceId": "workspace-one", "workflowId": "workflow-one", "contentGroupId": "content-group-one", "traceId": "trace-one", "streamId": "operations-stream" },
+    "failure": { "schemaVersion": "office-operations-choreography-v1", "kind": "branch-failed", "branch": "visual", "attempt": 1, "artifactVersion": 1, "jobId": "visual-job", "occurredAt": "2026-08-02T00:00:04.000Z", "durableEventId": "event-visual-failed", "payloadDigest": "digest-visual-failed", "sourceRevision": "operations-revision-1", "workspaceId": "workspace-one", "workflowId": "workflow-one", "contentGroupId": "content-group-one", "traceId": "trace-one", "streamId": "operations-stream", "reason": { "kind": "failure", "code": "browser.session-failed", "message": "Flow session unavailable", "owner": "adapter", "recoverability": "reconnect" } },
+    "recovery": { "schemaVersion": "office-operations-choreography-v1", "kind": "branch-recovered", "branch": "visual", "attempt": 1, "artifactVersion": 1, "jobId": "visual-job", "occurredAt": "2026-08-02T00:00:05.000Z", "durableEventId": "event-visual-recovered", "payloadDigest": "digest-visual-recovered", "sourceRevision": "operations-revision-1", "workspaceId": "workspace-one", "workflowId": "workflow-one", "contentGroupId": "content-group-one", "traceId": "trace-one", "streamId": "operations-stream", "recoveredFromEventId": "event-visual-failed" }
+  }
+}
