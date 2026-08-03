@@ -19,3 +19,21 @@ Main-owned shared files:
 
 No worker may edit another worker’s owned file, cherry-pick another worker’s
 branch, integrate, push the integration branch, or start a downstream task.
+
+## First-wave execution record
+
+Main dispatched the two READY leaves in isolated worktrees from the frozen
+planning base. The initial sessions were Curie (`019fc52a-65b6-7bb0-8da3-a83e6af43b71`)
+for W5.1 and Copernicus (`019fc52a-6687-7031-b8e2-fc41a23eae37`) for W5.2.
+Neither session produced a file change or handoff within the bounded wait
+window. Main then made one replacement attempt per leaf: Sartre
+(`019fc52e-e3a3-7c62-8ecf-e41e57d63a14`) and Carson
+(`019fc52e-e423-74f3-9c0e-10f647ebf0ef`). Those sessions also remained
+unchanged and were closed. Their clean worktrees and branches are preserved
+for audit; no worker commit was accepted or cherry-picked.
+
+Main recovered the exact two owned scopes on the integration branch and
+committed `8ab0cf5` (`feat(office-v2): recover Phase 4 renderer boundary`).
+The recovery is recorded in both first-wave status files. W5.1 and W5.2 are
+now integrated and the next READY frontier is W5.3 Canvas and W5.4 PixiJS
+8.19.0. No downstream task was started by a worker.

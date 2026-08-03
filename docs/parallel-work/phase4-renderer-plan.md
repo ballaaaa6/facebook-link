@@ -1,6 +1,6 @@
 # Phase 4 Renderer Selection — Parallel Wave Plan
 
-Status: **PLANNING — first wave frozen**
+Status: **EXECUTING — first wave integrated; candidate frontier ready**
 
 Recorded: `2026-08-03` (Asia/Bangkok)
 
