@@ -37,6 +37,7 @@
     "office:v2:phase4:model": "node scripts/office-v2-phase4-model.mjs --runs 100",
     "office:v2:phase4:model:test": "node --test scripts/office-v2-phase4-model.test.mjs",
     "office:v2:phase4:golden:check": "node scripts/office-v2-phase4-golden-check.mjs",
+    "office:v2:phase4:qa:check": "node scripts/office-v2-phase4-qa-check.mjs",
     "office:v2:phase3:acceptance": "node scripts/office-v2-phase3-exit.mjs",
     "architecture:check": "node scripts/architecture-check.mjs",
     "code:health": "node scripts/code-health.mjs",
@@ -45,7 +46,7 @@
     "pilot:simulate": "node services/automation-runner/src/simulation/cli.ts",
     "deploy:dry-run": "npm run build --workspace @affiliate-ops/web && npx --yes wrangler@4.113.0 deploy --dry-run --config wrangler.jsonc",
     "deploy:cloudflare": "npm run build --workspace @affiliate-ops/web && npx --yes wrangler@4.113.0 deploy --config wrangler.jsonc",
-    "check": "npm run repo:check && npm run office:v2:clean-room:check && npm run office:v2:boundaries:check && npm run office:v2:boundaries:test && npm run office:v2:contradictions:check && npm run office:v2:contradictions:test && npm run office:v2:contracts:check && npm run office:v2:contracts:test && npm run office:v2:knowledge:check && npm run office:v2:knowledge:test && npm run office:v2:world:evidence && npm run office:v2:w1-2:evidence && npm run office:v2:assets:check && npm run office:v2:phase4:model:test && npm run office:v2:phase4:golden:check && npm run architecture:check && npm run code:health && npm run duplicate:check && npm run code:map && npm run typecheck && npm run test && npm run build"
+    "check": "npm run repo:check && npm run office:v2:clean-room:check && npm run office:v2:boundaries:check && npm run office:v2:boundaries:test && npm run office:v2:contradictions:check && npm run office:v2:contradictions:test && npm run office:v2:contracts:check && npm run office:v2:contracts:test && npm run office:v2:knowledge:check && npm run office:v2:knowledge:test && npm run office:v2:world:evidence && npm run office:v2:w1-2:evidence && npm run office:v2:assets:check && npm run office:v2:phase4:model:test && npm run office:v2:phase4:golden:check && npm run office:v2:phase4:qa:check && npm run architecture:check && npm run code:health && npm run duplicate:check && npm run code:map && npm run typecheck && npm run test && npm run build"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",
