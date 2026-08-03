@@ -80,7 +80,7 @@ export function deterministicPayloadHash(source: string): string {
     (first + 0x9e3779b9) >>> 0,
     (second + 0x7f4a7c15) >>> 0,
   ];
-  return words.map((word) => word.toString(16).padStart(8, "0")).join("");
+  return words.map((word) => (word >>> 0).toString(16).padStart(8, "0")).join("");
 }
 
 /** Build the one renderer-neutral synthetic scene consumed by both candidates. */
