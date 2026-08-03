@@ -40,3 +40,12 @@ committed `8ab0cf5` (`feat(office-v2): recover Phase 4 renderer boundary`).
 The recovery is recorded in both first-wave status files. W5.1 and W5.2 are
 now integrated and the next READY frontier is W5.3 Canvas and W5.4 PixiJS
 8.19.0. No downstream task was started by a worker.
+
+The candidate wave was then dispatched from `efb0c68` to Leibniz
+(`019fc53b-eb97-7823-a35e-fa36dcb2c806`) for W5.3 and Ampere
+(`019fc53b-ec1c-72f2-a339-4d150b934205`) for W5.4. After two bounded waits
+and a progress request, both worktrees remained unchanged and both sessions
+were closed. Main recovered the exact candidate scopes and committed
+`ac9d883` (`feat(office-v2): add Phase 4 renderer candidates`). Candidate
+status files record the recovery and its limitations. W5.5 benchmark/report
+and W5.6 semantic/QA lab are now the next READY leaves; neither has started.
