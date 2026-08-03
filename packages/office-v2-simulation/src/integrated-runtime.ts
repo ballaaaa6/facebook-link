@@ -181,6 +181,43 @@ function emitActivityEvents(state: IntegratedSimulationState, before: ActivityRu
   return { state: next, events: emitted };
 }
 
+function advanceThroughQueue(
+  state: IntegratedSimulationState,
+  activity: ActivityRuntimeState,
+  actor: IntegratedActor,
+  target: IntegratedTarget,
+  tick: number,
+): { readonly state: IntegratedSimulationState; readonly activity: ActivityRuntimeState } {
+  const existing = activeTicket(state.queue, activity.intentId);
+  let queue = state.queue;
+  if (existing === undefined) {
+    queue = enqueueQueueTicket(queue, {
+      ticketId: `${activity.intentId}:ticket`,
+      intentId: activity.intentId,
+      actorId: actor.actorId,
+      priorityClass: activity.priorityClass,
+      issuedTick: activity.tick,
+      enqueueTick: tick,
+      resourceKeys: activity.requestedResourceKeys,
+      legalYieldCells: target.facility.waitingCells,
+    }).state;
+  }
+  const ticket = queue.tickets.find((value) => value.intentId === activity.intentId && ["waiting", "acquired"].includes(value.state));
+  if (ticket === undefined) return { state, activity };
+  const acquired = acquireQueueTicket(queue, ticket.ticketId, tick);
+  queue = acquired.state;
+  const blockedResourceKeys = acquired.accepted
+    ? []
+    : acquired.blockedResourceKeys === undefined || acquired.blockedResourceKeys.length === 0
+      ? activity.requestedResourceKeys
+      : acquired.blockedResourceKeys;
+  const advanced = advanceActivityRuntime(activity, tick, { blockedResourceKeys });
+  const nextActivity = advanced.state.phase === "waiting" && advanced.state.waitingCell !== undefined
+    ? { ...advanced.state, reservedResourceKeys: advanced.state.reservedResourceKeys.filter((key) => key !== advanced.state.waitingCell) }
+    : advanced.state;
+  return { state: { ...state, queue }, activity: nextActivity };
+}
+
 function applyCommand(state: IntegratedSimulationState, command: CommandDocument, tick: number): IntegratedSimulationState {
   const intentId = command.payload.intentId.value;
   const definition = state.intents.find((intent) => intent.intentId === intentId);
@@ -239,20 +276,26 @@ function driveActivity(state: IntegratedSimulationState, activity: ActivityRunti
       }
     }
     if (currentActivity.phase !== "failed" && route.length > 0 && routeIndex < route.length - 1) {
+      const finalArrival = routeIndex + 1 === route.length - 1;
+      const wasEnRoute = currentActivity.phase === "en-route";
       routeIndex += 1;
       next = { ...next, actors: next.actors.map((value) => value.actorId === actor.actorId ? { ...value, cell: route[routeIndex]!, routeIndex } : value) };
       next = actorState(next, actor.actorId, "moving", tick).state;
-      currentActivity = advanceActivityRuntime(currentActivity, tick).state;
+      // Movement alone must not acquire the facility. An en-route activity
+      // enters the queue only after reaching its approach cell.
+      if (currentActivity.phase === "requested") currentActivity = advanceActivityRuntime(currentActivity, tick).state;
+      if (finalArrival && wasEnRoute) {
+        const queued = advanceThroughQueue(next, currentActivity, actor, target, tick);
+        next = queued.state;
+        currentActivity = queued.activity;
+      }
     } else if (currentActivity.phase !== "failed") {
-      const existing = activeTicket(next.queue, currentActivity.intentId);
-      let queue = next.queue;
-      if (existing === undefined) queue = enqueueQueueTicket(queue, { ticketId: `${currentActivity.intentId}:ticket`, intentId: currentActivity.intentId, actorId: actor.actorId, priorityClass: currentActivity.priorityClass, issuedTick: currentActivity.tick, enqueueTick: tick, resourceKeys: currentActivity.requestedResourceKeys, legalYieldCells: target.facility.waitingCells }).state;
-      const ticket = queue.tickets.find((value) => value.intentId === currentActivity.intentId && ["waiting", "acquired"].includes(value.state))!;
-      const acquired = acquireQueueTicket(queue, ticket.ticketId, tick);
-      queue = acquired.state;
-      const advanced = advanceActivityRuntime(currentActivity, tick, { blockedResourceKeys: acquired.accepted ? [] : acquired.blockedResourceKeys ?? currentActivity.requestedResourceKeys });
-      currentActivity = advanced.state;
-      next = { ...next, queue };
+      if (currentActivity.phase === "requested") currentActivity = advanceActivityRuntime(currentActivity, tick).state;
+      else {
+        const queued = advanceThroughQueue(next, currentActivity, actor, target, tick);
+        next = queued.state;
+        currentActivity = queued.activity;
+      }
     }
   }
   const activityEvents = emitActivityEvents(next, activity, currentActivity, tick);

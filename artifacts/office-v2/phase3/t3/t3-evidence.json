@@ -28,7 +28,7 @@
           "id": "mid-interaction",
           "kind": "mid-interaction",
           "tick": 5,
-          "stateHash": "96b74d6ec3c4976a87d772888958ee85d7ef30a9228d849aa7fdeaa6c83614a3",
+          "stateHash": "c5bca4198cb0b5a27f1095e49f6cc97428300575e2ce681058b7dfc1d86b26ac",
           "eventSuffixEqual": true,
           "finalHashEqual": true
         }
@@ -67,7 +67,7 @@
             "sequence": 4
           },
           {
-            "tick": 3,
+            "tick": 4,
             "kind": "activity-phase",
             "actorId": "actor-01",
             "intentId": "p3-t3-one-actor-baseline:actor-01:intent",
@@ -75,36 +75,20 @@
             "sequence": 5
           },
           {
-            "tick": 3,
-            "kind": "actor-state-changed",
+            "tick": 4,
+            "kind": "activity-phase",
             "actorId": "actor-01",
-            "state": "interacting",
             "intentId": "p3-t3-one-actor-baseline:actor-01:intent",
+            "phase": "using",
             "sequence": 6
           },
           {
             "tick": 4,
             "kind": "actor-state-changed",
             "actorId": "actor-01",
-            "state": "moving",
-            "intentId": "p3-t3-one-actor-baseline:actor-01:intent",
-            "sequence": 7
-          },
-          {
-            "tick": 4,
-            "kind": "activity-phase",
-            "actorId": "actor-01",
-            "intentId": "p3-t3-one-actor-baseline:actor-01:intent",
-            "phase": "using",
-            "sequence": 8
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-01",
             "state": "interacting",
             "intentId": "p3-t3-one-actor-baseline:actor-01:intent",
-            "sequence": 9
+            "sequence": 7
           },
           {
             "tick": 7,
@@ -119,7 +103,7 @@
               "socket:shared-review-use",
               "transit:narrow-door"
             ],
-            "sequence": 10
+            "sequence": 8
           }
         ],
         "crowd": [
@@ -144,8 +128,8 @@
         "restoredLeaks": [],
         "passed": true
       },
-      "uninterruptedFinalHash": "e7d209d3a78e16f59ed9e01be1bdbbe373da5d636bfde3e24deb9018b74a6767",
-      "restoredFinalHash": "e7d209d3a78e16f59ed9e01be1bdbbe373da5d636bfde3e24deb9018b74a6767",
+      "uninterruptedFinalHash": "af320b87ac7a6d731f46f9558ab7a008d8fdc42c1f6fdfc5baa1e13095b678ee",
+      "restoredFinalHash": "af320b87ac7a6d731f46f9558ab7a008d8fdc42c1f6fdfc5baa1e13095b678ee",
       "equality": true
     },
     {
@@ -174,7 +158,7 @@
           "id": "shared-queue",
           "kind": "shared-queue",
           "tick": 6,
-          "stateHash": "562c5f287b223345ebd4f0420119f028a4040e8855764aa83703689fa1182851",
+          "stateHash": "59809fc341ca9f85d599aef2b1c8350b9a91939c66af39090c5172594f5eb86e",
           "eventSuffixEqual": true,
           "finalHashEqual": true
         },
@@ -182,7 +166,7 @@
           "id": "deadlock-recovery",
           "kind": "deadlock-recovery",
           "tick": 6,
-          "stateHash": "562c5f287b223345ebd4f0420119f028a4040e8855764aa83703689fa1182851",
+          "stateHash": "59809fc341ca9f85d599aef2b1c8350b9a91939c66af39090c5172594f5eb86e",
           "eventSuffixEqual": true,
           "finalHashEqual": true
         },
@@ -190,7 +174,7 @@
           "id": "mid-interaction",
           "kind": "mid-interaction",
           "tick": 9,
-          "stateHash": "82600626d416d1a24d87468ac0fd5b9415a59015343151e4d863e6fda96a3a9e",
+          "stateHash": "690eae5433a962b1e880a0c0d4c7c7ae9eb7a98021e688330d7460f5355cf149",
           "eventSuffixEqual": true,
           "finalHashEqual": true
         },
@@ -198,7 +182,7 @@
           "id": "target-removal",
           "kind": "target-removal",
           "tick": 10,
-          "stateHash": "7f8894d3b7ea201b29de8136727c24cce3b66ecbd434bf7c0eb42f9fa2ba7fdb",
+          "stateHash": "73a7a6ae7f01a6235efad24890fba9beea1bf3e2d8d3c90932a508f90b4c5bf8",
           "eventSuffixEqual": true,
           "finalHashEqual": true
         }
@@ -527,515 +511,155 @@
             "sequence": 41
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "activity-phase",
             "actorId": "actor-02",
             "intentId": "p3-t3-ten-actor-contention:actor-02:intent",
-            "phase": "acquired",
+            "phase": "waiting",
             "sequence": 42
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "actor-state-changed",
             "actorId": "actor-02",
-            "state": "interacting",
+            "state": "blocked",
             "intentId": "p3-t3-ten-actor-contention:actor-02:intent",
             "sequence": 43
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "activity-phase",
             "actorId": "actor-03",
             "intentId": "p3-t3-ten-actor-contention:actor-03:intent",
-            "phase": "acquired",
+            "phase": "waiting",
             "sequence": 44
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "actor-state-changed",
             "actorId": "actor-03",
-            "state": "interacting",
+            "state": "blocked",
             "intentId": "p3-t3-ten-actor-contention:actor-03:intent",
             "sequence": 45
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "activity-phase",
             "actorId": "actor-04",
             "intentId": "p3-t3-ten-actor-contention:actor-04:intent",
-            "phase": "acquired",
+            "phase": "waiting",
             "sequence": 46
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "actor-state-changed",
             "actorId": "actor-04",
-            "state": "interacting",
+            "state": "blocked",
             "intentId": "p3-t3-ten-actor-contention:actor-04:intent",
             "sequence": 47
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "activity-phase",
             "actorId": "actor-05",
             "intentId": "p3-t3-ten-actor-contention:actor-05:intent",
-            "phase": "acquired",
+            "phase": "waiting",
             "sequence": 48
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "actor-state-changed",
             "actorId": "actor-05",
-            "state": "interacting",
+            "state": "blocked",
             "intentId": "p3-t3-ten-actor-contention:actor-05:intent",
             "sequence": 49
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "activity-phase",
             "actorId": "actor-06",
             "intentId": "p3-t3-ten-actor-contention:actor-06:intent",
-            "phase": "acquired",
+            "phase": "waiting",
             "sequence": 50
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "actor-state-changed",
             "actorId": "actor-06",
-            "state": "interacting",
+            "state": "blocked",
             "intentId": "p3-t3-ten-actor-contention:actor-06:intent",
             "sequence": 51
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "activity-phase",
             "actorId": "actor-07",
             "intentId": "p3-t3-ten-actor-contention:actor-07:intent",
-            "phase": "acquired",
+            "phase": "waiting",
             "sequence": 52
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "actor-state-changed",
             "actorId": "actor-07",
-            "state": "interacting",
+            "state": "blocked",
             "intentId": "p3-t3-ten-actor-contention:actor-07:intent",
             "sequence": 53
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "activity-phase",
             "actorId": "actor-08",
             "intentId": "p3-t3-ten-actor-contention:actor-08:intent",
-            "phase": "acquired",
+            "phase": "waiting",
             "sequence": 54
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "actor-state-changed",
             "actorId": "actor-08",
-            "state": "interacting",
+            "state": "blocked",
             "intentId": "p3-t3-ten-actor-contention:actor-08:intent",
             "sequence": 55
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "activity-phase",
             "actorId": "actor-09",
             "intentId": "p3-t3-ten-actor-contention:actor-09:intent",
-            "phase": "acquired",
+            "phase": "waiting",
             "sequence": 56
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "actor-state-changed",
             "actorId": "actor-09",
-            "state": "interacting",
+            "state": "blocked",
             "intentId": "p3-t3-ten-actor-contention:actor-09:intent",
             "sequence": 57
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "activity-phase",
             "actorId": "actor-10",
             "intentId": "p3-t3-ten-actor-contention:actor-10:intent",
-            "phase": "acquired",
+            "phase": "waiting",
             "sequence": 58
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "actor-state-changed",
             "actorId": "actor-10",
-            "state": "interacting",
+            "state": "blocked",
             "intentId": "p3-t3-ten-actor-contention:actor-10:intent",
             "sequence": 59
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-02",
-            "state": "moving",
-            "intentId": "p3-t3-ten-actor-contention:actor-02:intent",
-            "sequence": 60
-          },
-          {
-            "tick": 4,
-            "kind": "activity-phase",
-            "actorId": "actor-02",
-            "intentId": "p3-t3-ten-actor-contention:actor-02:intent",
-            "phase": "using",
-            "sequence": 61
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-02",
-            "state": "interacting",
-            "intentId": "p3-t3-ten-actor-contention:actor-02:intent",
-            "sequence": 62
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-03",
-            "state": "moving",
-            "intentId": "p3-t3-ten-actor-contention:actor-03:intent",
-            "sequence": 63
-          },
-          {
-            "tick": 4,
-            "kind": "activity-phase",
-            "actorId": "actor-03",
-            "intentId": "p3-t3-ten-actor-contention:actor-03:intent",
-            "phase": "using",
-            "sequence": 64
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-03",
-            "state": "interacting",
-            "intentId": "p3-t3-ten-actor-contention:actor-03:intent",
-            "sequence": 65
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-04",
-            "state": "moving",
-            "intentId": "p3-t3-ten-actor-contention:actor-04:intent",
-            "sequence": 66
-          },
-          {
-            "tick": 4,
-            "kind": "activity-phase",
-            "actorId": "actor-04",
-            "intentId": "p3-t3-ten-actor-contention:actor-04:intent",
-            "phase": "using",
-            "sequence": 67
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-04",
-            "state": "interacting",
-            "intentId": "p3-t3-ten-actor-contention:actor-04:intent",
-            "sequence": 68
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-05",
-            "state": "moving",
-            "intentId": "p3-t3-ten-actor-contention:actor-05:intent",
-            "sequence": 69
-          },
-          {
-            "tick": 4,
-            "kind": "activity-phase",
-            "actorId": "actor-05",
-            "intentId": "p3-t3-ten-actor-contention:actor-05:intent",
-            "phase": "using",
-            "sequence": 70
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-05",
-            "state": "interacting",
-            "intentId": "p3-t3-ten-actor-contention:actor-05:intent",
-            "sequence": 71
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-06",
-            "state": "moving",
-            "intentId": "p3-t3-ten-actor-contention:actor-06:intent",
-            "sequence": 72
-          },
-          {
-            "tick": 4,
-            "kind": "activity-phase",
-            "actorId": "actor-06",
-            "intentId": "p3-t3-ten-actor-contention:actor-06:intent",
-            "phase": "using",
-            "sequence": 73
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-06",
-            "state": "interacting",
-            "intentId": "p3-t3-ten-actor-contention:actor-06:intent",
-            "sequence": 74
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-07",
-            "state": "moving",
-            "intentId": "p3-t3-ten-actor-contention:actor-07:intent",
-            "sequence": 75
-          },
-          {
-            "tick": 4,
-            "kind": "activity-phase",
-            "actorId": "actor-07",
-            "intentId": "p3-t3-ten-actor-contention:actor-07:intent",
-            "phase": "using",
-            "sequence": 76
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-07",
-            "state": "interacting",
-            "intentId": "p3-t3-ten-actor-contention:actor-07:intent",
-            "sequence": 77
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-08",
-            "state": "moving",
-            "intentId": "p3-t3-ten-actor-contention:actor-08:intent",
-            "sequence": 78
-          },
-          {
-            "tick": 4,
-            "kind": "activity-phase",
-            "actorId": "actor-08",
-            "intentId": "p3-t3-ten-actor-contention:actor-08:intent",
-            "phase": "using",
-            "sequence": 79
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-08",
-            "state": "interacting",
-            "intentId": "p3-t3-ten-actor-contention:actor-08:intent",
-            "sequence": 80
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-09",
-            "state": "moving",
-            "intentId": "p3-t3-ten-actor-contention:actor-09:intent",
-            "sequence": 81
-          },
-          {
-            "tick": 4,
-            "kind": "activity-phase",
-            "actorId": "actor-09",
-            "intentId": "p3-t3-ten-actor-contention:actor-09:intent",
-            "phase": "using",
-            "sequence": 82
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-09",
-            "state": "interacting",
-            "intentId": "p3-t3-ten-actor-contention:actor-09:intent",
-            "sequence": 83
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-10",
-            "state": "moving",
-            "intentId": "p3-t3-ten-actor-contention:actor-10:intent",
-            "sequence": 84
-          },
-          {
-            "tick": 4,
-            "kind": "activity-phase",
-            "actorId": "actor-10",
-            "intentId": "p3-t3-ten-actor-contention:actor-10:intent",
-            "phase": "using",
-            "sequence": 85
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-10",
-            "state": "interacting",
-            "intentId": "p3-t3-ten-actor-contention:actor-10:intent",
-            "sequence": 86
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-02",
-            "state": "moving",
-            "intentId": "p3-t3-ten-actor-contention:actor-02:intent",
-            "sequence": 87
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-02",
-            "state": "interacting",
-            "intentId": "p3-t3-ten-actor-contention:actor-02:intent",
-            "sequence": 88
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-03",
-            "state": "moving",
-            "intentId": "p3-t3-ten-actor-contention:actor-03:intent",
-            "sequence": 89
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-03",
-            "state": "interacting",
-            "intentId": "p3-t3-ten-actor-contention:actor-03:intent",
-            "sequence": 90
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-04",
-            "state": "moving",
-            "intentId": "p3-t3-ten-actor-contention:actor-04:intent",
-            "sequence": 91
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-04",
-            "state": "interacting",
-            "intentId": "p3-t3-ten-actor-contention:actor-04:intent",
-            "sequence": 92
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-05",
-            "state": "moving",
-            "intentId": "p3-t3-ten-actor-contention:actor-05:intent",
-            "sequence": 93
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-05",
-            "state": "interacting",
-            "intentId": "p3-t3-ten-actor-contention:actor-05:intent",
-            "sequence": 94
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-06",
-            "state": "moving",
-            "intentId": "p3-t3-ten-actor-contention:actor-06:intent",
-            "sequence": 95
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-06",
-            "state": "interacting",
-            "intentId": "p3-t3-ten-actor-contention:actor-06:intent",
-            "sequence": 96
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-07",
-            "state": "moving",
-            "intentId": "p3-t3-ten-actor-contention:actor-07:intent",
-            "sequence": 97
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-07",
-            "state": "interacting",
-            "intentId": "p3-t3-ten-actor-contention:actor-07:intent",
-            "sequence": 98
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-08",
-            "state": "moving",
-            "intentId": "p3-t3-ten-actor-contention:actor-08:intent",
-            "sequence": 99
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-08",
-            "state": "interacting",
-            "intentId": "p3-t3-ten-actor-contention:actor-08:intent",
-            "sequence": 100
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-09",
-            "state": "moving",
-            "intentId": "p3-t3-ten-actor-contention:actor-09:intent",
-            "sequence": 101
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-09",
-            "state": "interacting",
-            "intentId": "p3-t3-ten-actor-contention:actor-09:intent",
-            "sequence": 102
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-10",
-            "state": "moving",
-            "intentId": "p3-t3-ten-actor-contention:actor-10:intent",
-            "sequence": 103
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-10",
-            "state": "interacting",
-            "intentId": "p3-t3-ten-actor-contention:actor-10:intent",
-            "sequence": 104
           },
           {
             "tick": 6,
             "kind": "command-accepted",
             "sourceCommandId": "p3-t3-ten-actor-contention:actor-02:intent:cancel-intent:6",
             "intentId": "p3-t3-ten-actor-contention:actor-02:intent",
-            "sequence": 105
+            "sequence": 60
           },
           {
             "tick": 6,
@@ -1045,46 +669,94 @@
             "phase": "failed",
             "reason": "target-removed",
             "resourceKeys": [
-              "cell:4,4",
-              "facility:shared-review",
-              "socket:shared-review-use",
-              "transit:narrow-door"
+              "1,4"
             ],
-            "sequence": 106
+            "sequence": 61
           },
           {
-            "tick": 6,
-            "kind": "interaction-completed",
+            "tick": 8,
+            "kind": "activity-phase",
             "actorId": "actor-03",
             "intentId": "p3-t3-ten-actor-contention:actor-03:intent",
-            "phase": "released",
-            "reason": "completed",
+            "phase": "acquired",
+            "sequence": 62
+          },
+          {
+            "tick": 8,
+            "kind": "actor-state-changed",
+            "actorId": "actor-03",
+            "state": "interacting",
+            "intentId": "p3-t3-ten-actor-contention:actor-03:intent",
+            "sequence": 63
+          },
+          {
+            "tick": 9,
+            "kind": "activity-phase",
+            "actorId": "actor-03",
+            "intentId": "p3-t3-ten-actor-contention:actor-03:intent",
+            "phase": "using",
+            "sequence": 64
+          },
+          {
+            "tick": 10,
+            "kind": "command-accepted",
+            "sourceCommandId": "p3-t3-ten-actor-contention:actor-03:intent:cancel-intent:10",
+            "intentId": "p3-t3-ten-actor-contention:actor-03:intent",
+            "sequence": 65
+          },
+          {
+            "tick": 10,
+            "kind": "activity-phase",
+            "actorId": "actor-03",
+            "intentId": "p3-t3-ten-actor-contention:actor-03:intent",
+            "phase": "failed",
+            "reason": "target-removed",
             "resourceKeys": [
               "cell:4,4",
               "facility:shared-review",
               "socket:shared-review-use",
               "transit:narrow-door"
             ],
-            "sequence": 107
+            "sequence": 66
           },
           {
-            "tick": 6,
-            "kind": "interaction-completed",
-            "actorId": "actor-04",
-            "intentId": "p3-t3-ten-actor-contention:actor-04:intent",
-            "phase": "released",
-            "reason": "completed",
+            "tick": 10,
+            "kind": "activity-phase",
+            "actorId": "actor-05",
+            "intentId": "p3-t3-ten-actor-contention:actor-05:intent",
+            "phase": "acquired",
+            "sequence": 67
+          },
+          {
+            "tick": 10,
+            "kind": "actor-state-changed",
+            "actorId": "actor-05",
+            "state": "interacting",
+            "intentId": "p3-t3-ten-actor-contention:actor-05:intent",
+            "sequence": 68
+          },
+          {
+            "tick": 11,
+            "kind": "activity-phase",
+            "actorId": "actor-05",
+            "intentId": "p3-t3-ten-actor-contention:actor-05:intent",
+            "phase": "using",
+            "sequence": 69
+          },
+          {
+            "tick": 12,
+            "kind": "activity-phase",
+            "actorId": "actor-06",
+            "intentId": "p3-t3-ten-actor-contention:actor-06:intent",
+            "phase": "canceled",
+            "reason": "timeout",
             "resourceKeys": [
-              "cell:4,4",
-              "facility:shared-review",
-              "held-prop:review-card",
-              "socket:shared-review-use",
-              "transit:narrow-door"
+              "1,4"
             ],
-            "sequence": 108
+            "sequence": 70
           },
           {
-            "tick": 6,
+            "tick": 13,
             "kind": "interaction-completed",
             "actorId": "actor-05",
             "intentId": "p3-t3-ten-actor-contention:actor-05:intent",
@@ -1097,25 +769,34 @@
               "socket:shared-review-use",
               "transit:narrow-door"
             ],
-            "sequence": 109
+            "sequence": 71
           },
           {
-            "tick": 6,
-            "kind": "interaction-completed",
-            "actorId": "actor-06",
-            "intentId": "p3-t3-ten-actor-contention:actor-06:intent",
-            "phase": "released",
-            "reason": "completed",
-            "resourceKeys": [
-              "cell:4,4",
-              "facility:shared-review",
-              "socket:shared-review-use",
-              "transit:narrow-door"
-            ],
-            "sequence": 110
+            "tick": 13,
+            "kind": "activity-phase",
+            "actorId": "actor-07",
+            "intentId": "p3-t3-ten-actor-contention:actor-07:intent",
+            "phase": "acquired",
+            "sequence": 72
           },
           {
-            "tick": 6,
+            "tick": 13,
+            "kind": "actor-state-changed",
+            "actorId": "actor-07",
+            "state": "interacting",
+            "intentId": "p3-t3-ten-actor-contention:actor-07:intent",
+            "sequence": 73
+          },
+          {
+            "tick": 14,
+            "kind": "activity-phase",
+            "actorId": "actor-07",
+            "intentId": "p3-t3-ten-actor-contention:actor-07:intent",
+            "phase": "using",
+            "sequence": 74
+          },
+          {
+            "tick": 16,
             "kind": "interaction-completed",
             "actorId": "actor-07",
             "intentId": "p3-t3-ten-actor-contention:actor-07:intent",
@@ -1127,25 +808,34 @@
               "socket:shared-review-use",
               "transit:narrow-door"
             ],
-            "sequence": 111
+            "sequence": 75
           },
           {
-            "tick": 6,
-            "kind": "interaction-completed",
-            "actorId": "actor-08",
-            "intentId": "p3-t3-ten-actor-contention:actor-08:intent",
-            "phase": "released",
-            "reason": "completed",
-            "resourceKeys": [
-              "cell:4,4",
-              "facility:shared-review",
-              "socket:shared-review-use",
-              "transit:narrow-door"
-            ],
-            "sequence": 112
+            "tick": 16,
+            "kind": "activity-phase",
+            "actorId": "actor-09",
+            "intentId": "p3-t3-ten-actor-contention:actor-09:intent",
+            "phase": "acquired",
+            "sequence": 76
           },
           {
-            "tick": 6,
+            "tick": 16,
+            "kind": "actor-state-changed",
+            "actorId": "actor-09",
+            "state": "interacting",
+            "intentId": "p3-t3-ten-actor-contention:actor-09:intent",
+            "sequence": 77
+          },
+          {
+            "tick": 17,
+            "kind": "activity-phase",
+            "actorId": "actor-09",
+            "intentId": "p3-t3-ten-actor-contention:actor-09:intent",
+            "phase": "using",
+            "sequence": 78
+          },
+          {
+            "tick": 19,
             "kind": "interaction-completed",
             "actorId": "actor-09",
             "intentId": "p3-t3-ten-actor-contention:actor-09:intent",
@@ -1157,10 +847,34 @@
               "socket:shared-review-use",
               "transit:narrow-door"
             ],
-            "sequence": 113
+            "sequence": 79
           },
           {
-            "tick": 6,
+            "tick": 19,
+            "kind": "activity-phase",
+            "actorId": "actor-10",
+            "intentId": "p3-t3-ten-actor-contention:actor-10:intent",
+            "phase": "acquired",
+            "sequence": 80
+          },
+          {
+            "tick": 19,
+            "kind": "actor-state-changed",
+            "actorId": "actor-10",
+            "state": "interacting",
+            "intentId": "p3-t3-ten-actor-contention:actor-10:intent",
+            "sequence": 81
+          },
+          {
+            "tick": 20,
+            "kind": "activity-phase",
+            "actorId": "actor-10",
+            "intentId": "p3-t3-ten-actor-contention:actor-10:intent",
+            "phase": "using",
+            "sequence": 82
+          },
+          {
+            "tick": 22,
             "kind": "interaction-completed",
             "actorId": "actor-10",
             "intentId": "p3-t3-ten-actor-contention:actor-10:intent",
@@ -1172,14 +886,86 @@
               "socket:shared-review-use",
               "transit:narrow-door"
             ],
-            "sequence": 114
+            "sequence": 83
           },
           {
-            "tick": 10,
-            "kind": "command-accepted",
-            "sourceCommandId": "p3-t3-ten-actor-contention:actor-03:intent:cancel-intent:10",
-            "intentId": "p3-t3-ten-actor-contention:actor-03:intent",
-            "sequence": 115
+            "tick": 23,
+            "kind": "activity-phase",
+            "actorId": "actor-04",
+            "intentId": "p3-t3-ten-actor-contention:actor-04:intent",
+            "phase": "acquired",
+            "sequence": 84
+          },
+          {
+            "tick": 23,
+            "kind": "actor-state-changed",
+            "actorId": "actor-04",
+            "state": "interacting",
+            "intentId": "p3-t3-ten-actor-contention:actor-04:intent",
+            "sequence": 85
+          },
+          {
+            "tick": 24,
+            "kind": "activity-phase",
+            "actorId": "actor-04",
+            "intentId": "p3-t3-ten-actor-contention:actor-04:intent",
+            "phase": "using",
+            "sequence": 86
+          },
+          {
+            "tick": 26,
+            "kind": "interaction-completed",
+            "actorId": "actor-04",
+            "intentId": "p3-t3-ten-actor-contention:actor-04:intent",
+            "phase": "released",
+            "reason": "completed",
+            "resourceKeys": [
+              "cell:4,4",
+              "facility:shared-review",
+              "held-prop:review-card",
+              "socket:shared-review-use",
+              "transit:narrow-door"
+            ],
+            "sequence": 87
+          },
+          {
+            "tick": 26,
+            "kind": "activity-phase",
+            "actorId": "actor-08",
+            "intentId": "p3-t3-ten-actor-contention:actor-08:intent",
+            "phase": "acquired",
+            "sequence": 88
+          },
+          {
+            "tick": 26,
+            "kind": "actor-state-changed",
+            "actorId": "actor-08",
+            "state": "interacting",
+            "intentId": "p3-t3-ten-actor-contention:actor-08:intent",
+            "sequence": 89
+          },
+          {
+            "tick": 27,
+            "kind": "activity-phase",
+            "actorId": "actor-08",
+            "intentId": "p3-t3-ten-actor-contention:actor-08:intent",
+            "phase": "using",
+            "sequence": 90
+          },
+          {
+            "tick": 29,
+            "kind": "interaction-completed",
+            "actorId": "actor-08",
+            "intentId": "p3-t3-ten-actor-contention:actor-08:intent",
+            "phase": "released",
+            "reason": "completed",
+            "resourceKeys": [
+              "cell:4,4",
+              "facility:shared-review",
+              "socket:shared-review-use",
+              "transit:narrow-door"
+            ],
+            "sequence": 91
           }
         ],
         "crowd": [
@@ -1225,67 +1011,11 @@
             "sequence": 5
           },
           {
-            "tick": 6,
-            "kind": "actor-terminal",
-            "actorId": "actor-03",
-            "reason": "completed",
-            "sequence": 6
-          },
-          {
-            "tick": 6,
-            "kind": "actor-terminal",
-            "actorId": "actor-04",
-            "reason": "completed",
-            "sequence": 7
-          },
-          {
-            "tick": 6,
-            "kind": "actor-terminal",
-            "actorId": "actor-05",
-            "reason": "completed",
-            "sequence": 8
-          },
-          {
-            "tick": 6,
-            "kind": "actor-terminal",
-            "actorId": "actor-06",
-            "reason": "completed",
-            "sequence": 9
-          },
-          {
-            "tick": 6,
-            "kind": "actor-terminal",
-            "actorId": "actor-07",
-            "reason": "completed",
-            "sequence": 10
-          },
-          {
-            "tick": 6,
-            "kind": "actor-terminal",
-            "actorId": "actor-08",
-            "reason": "completed",
-            "sequence": 11
-          },
-          {
-            "tick": 6,
-            "kind": "actor-terminal",
-            "actorId": "actor-09",
-            "reason": "completed",
-            "sequence": 12
-          },
-          {
-            "tick": 6,
-            "kind": "actor-terminal",
-            "actorId": "actor-10",
-            "reason": "completed",
-            "sequence": 13
-          },
-          {
             "tick": 8,
             "kind": "queue-acquired",
             "actorId": "actor-03",
             "ticketId": "p3-t3-ten-actor-contention:actor-03:intent:contention-ticket",
-            "sequence": 14
+            "sequence": 6
           },
           {
             "tick": 10,
@@ -1294,56 +1024,105 @@
             "targetId": "shared-review",
             "phaseBeforeRemoval": "using",
             "reason": "target-removed",
-            "sequence": 15
+            "sequence": 7
           },
           {
             "tick": 10,
             "kind": "queue-acquired",
             "actorId": "actor-05",
             "ticketId": "p3-t3-ten-actor-contention:actor-05:intent:contention-ticket",
-            "sequence": 16
+            "sequence": 8
+          },
+          {
+            "tick": 10,
+            "kind": "actor-terminal",
+            "actorId": "actor-03",
+            "reason": "target-removed",
+            "sequence": 9
           },
           {
             "tick": 12,
             "kind": "actor-terminal",
             "actorId": "actor-06",
             "reason": "timeout",
-            "sequence": 17
+            "sequence": 10
+          },
+          {
+            "tick": 13,
+            "kind": "actor-terminal",
+            "actorId": "actor-05",
+            "reason": "completed",
+            "sequence": 11
           },
           {
             "tick": 15,
             "kind": "queue-acquired",
             "actorId": "actor-07",
             "ticketId": "p3-t3-ten-actor-contention:actor-07:intent:contention-ticket",
-            "sequence": 18
+            "sequence": 12
+          },
+          {
+            "tick": 16,
+            "kind": "actor-terminal",
+            "actorId": "actor-07",
+            "reason": "completed",
+            "sequence": 13
+          },
+          {
+            "tick": 19,
+            "kind": "actor-terminal",
+            "actorId": "actor-09",
+            "reason": "completed",
+            "sequence": 14
           },
           {
             "tick": 20,
             "kind": "queue-acquired",
             "actorId": "actor-09",
             "ticketId": "p3-t3-ten-actor-contention:actor-09:intent:contention-ticket",
-            "sequence": 19
+            "sequence": 15
+          },
+          {
+            "tick": 22,
+            "kind": "actor-terminal",
+            "actorId": "actor-10",
+            "reason": "completed",
+            "sequence": 16
           },
           {
             "tick": 25,
             "kind": "queue-acquired",
             "actorId": "actor-10",
             "ticketId": "p3-t3-ten-actor-contention:actor-10:intent:contention-ticket",
-            "sequence": 20
+            "sequence": 17
+          },
+          {
+            "tick": 26,
+            "kind": "actor-terminal",
+            "actorId": "actor-04",
+            "reason": "completed",
+            "sequence": 18
+          },
+          {
+            "tick": 29,
+            "kind": "actor-terminal",
+            "actorId": "actor-08",
+            "reason": "completed",
+            "sequence": 19
           },
           {
             "tick": 30,
             "kind": "queue-acquired",
             "actorId": "actor-04",
             "ticketId": "p3-t3-ten-actor-contention:actor-04:intent:contention-ticket",
-            "sequence": 21
+            "sequence": 20
           },
           {
             "tick": 35,
             "kind": "queue-acquired",
             "actorId": "actor-08",
             "ticketId": "p3-t3-ten-actor-contention:actor-08:intent:contention-ticket",
-            "sequence": 22
+            "sequence": 21
           }
         ]
       },
@@ -1352,8 +1131,8 @@
         "restoredLeaks": [],
         "passed": true
       },
-      "uninterruptedFinalHash": "3d63edeac433ea013f5ae6b9c925fcb7fd9f9e403a69e8741d6ba8ba0ae67f58",
-      "restoredFinalHash": "3d63edeac433ea013f5ae6b9c925fcb7fd9f9e403a69e8741d6ba8ba0ae67f58",
+      "uninterruptedFinalHash": "9b8a1ff424b307e5cb97750187a43e88826323a1c687cacf90348faf3059a308",
+      "restoredFinalHash": "9b8a1ff424b307e5cb97750187a43e88826323a1c687cacf90348faf3059a308",
       "equality": true
     },
     {
@@ -1382,7 +1161,7 @@
           "id": "shared-queue",
           "kind": "shared-queue",
           "tick": 6,
-          "stateHash": "f90ddb1f4d1d32f327a0a43f730830f418431cc76cb9a7f3402689ab0029bef4",
+          "stateHash": "49287037205c71f36ccb0550f2ebda671d36b954d8649ccfea6e1da01f6ba93b",
           "eventSuffixEqual": true,
           "finalHashEqual": true
         },
@@ -1390,7 +1169,7 @@
           "id": "deadlock-recovery",
           "kind": "deadlock-recovery",
           "tick": 6,
-          "stateHash": "f90ddb1f4d1d32f327a0a43f730830f418431cc76cb9a7f3402689ab0029bef4",
+          "stateHash": "49287037205c71f36ccb0550f2ebda671d36b954d8649ccfea6e1da01f6ba93b",
           "eventSuffixEqual": true,
           "finalHashEqual": true
         },
@@ -1398,7 +1177,7 @@
           "id": "mid-interaction",
           "kind": "mid-interaction",
           "tick": 9,
-          "stateHash": "06710e207d2639d1b7381747fe81bb8ea39d245b7cae3f00bcca75f9c61ab8ea",
+          "stateHash": "80f6c1e14a0e41e840479effd8d49b30fc977bbe2a3646d17f1c6fe6285b816d",
           "eventSuffixEqual": true,
           "finalHashEqual": true
         },
@@ -1406,7 +1185,7 @@
           "id": "target-removal",
           "kind": "target-removal",
           "tick": 10,
-          "stateHash": "8456e3df50a303a40beef2e23e9d11a67b22ef57ad6afa5f04ba463869c86079",
+          "stateHash": "4f0714ccc7d7c770678170e055b2a9e632af3018ce6dae2bd46c91231a636a59",
           "eventSuffixEqual": true,
           "finalHashEqual": true
         }
@@ -1890,795 +1669,235 @@
             "sequence": 61
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "activity-phase",
             "actorId": "actor-02",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-02:intent",
-            "phase": "acquired",
+            "phase": "waiting",
             "sequence": 62
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "actor-state-changed",
             "actorId": "actor-02",
-            "state": "interacting",
+            "state": "blocked",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-02:intent",
             "sequence": 63
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "activity-phase",
             "actorId": "actor-03",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-03:intent",
-            "phase": "acquired",
+            "phase": "waiting",
             "sequence": 64
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "actor-state-changed",
             "actorId": "actor-03",
-            "state": "interacting",
+            "state": "blocked",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-03:intent",
             "sequence": 65
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "activity-phase",
             "actorId": "actor-04",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-04:intent",
-            "phase": "acquired",
+            "phase": "waiting",
             "sequence": 66
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "actor-state-changed",
             "actorId": "actor-04",
-            "state": "interacting",
+            "state": "blocked",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-04:intent",
             "sequence": 67
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "activity-phase",
             "actorId": "actor-05",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-05:intent",
-            "phase": "acquired",
+            "phase": "waiting",
             "sequence": 68
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "actor-state-changed",
             "actorId": "actor-05",
-            "state": "interacting",
+            "state": "blocked",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-05:intent",
             "sequence": 69
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "activity-phase",
             "actorId": "actor-06",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-06:intent",
-            "phase": "acquired",
+            "phase": "waiting",
             "sequence": 70
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "actor-state-changed",
             "actorId": "actor-06",
-            "state": "interacting",
+            "state": "blocked",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-06:intent",
             "sequence": 71
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "activity-phase",
             "actorId": "actor-07",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-07:intent",
-            "phase": "acquired",
+            "phase": "waiting",
             "sequence": 72
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "actor-state-changed",
             "actorId": "actor-07",
-            "state": "interacting",
+            "state": "blocked",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-07:intent",
             "sequence": 73
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "activity-phase",
             "actorId": "actor-08",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-08:intent",
-            "phase": "acquired",
+            "phase": "waiting",
             "sequence": 74
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "actor-state-changed",
             "actorId": "actor-08",
-            "state": "interacting",
+            "state": "blocked",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-08:intent",
             "sequence": 75
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "activity-phase",
             "actorId": "actor-09",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-09:intent",
-            "phase": "acquired",
+            "phase": "waiting",
             "sequence": 76
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "actor-state-changed",
             "actorId": "actor-09",
-            "state": "interacting",
+            "state": "blocked",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-09:intent",
             "sequence": 77
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "activity-phase",
             "actorId": "actor-10",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-10:intent",
-            "phase": "acquired",
+            "phase": "waiting",
             "sequence": 78
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "actor-state-changed",
             "actorId": "actor-10",
-            "state": "interacting",
+            "state": "blocked",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-10:intent",
             "sequence": 79
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "activity-phase",
             "actorId": "actor-11",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-11:intent",
-            "phase": "acquired",
+            "phase": "waiting",
             "sequence": 80
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "actor-state-changed",
             "actorId": "actor-11",
-            "state": "interacting",
+            "state": "blocked",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-11:intent",
             "sequence": 81
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "activity-phase",
             "actorId": "actor-12",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-12:intent",
-            "phase": "acquired",
+            "phase": "waiting",
             "sequence": 82
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "actor-state-changed",
             "actorId": "actor-12",
-            "state": "interacting",
+            "state": "blocked",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-12:intent",
             "sequence": 83
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "activity-phase",
             "actorId": "actor-13",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-13:intent",
-            "phase": "acquired",
+            "phase": "waiting",
             "sequence": 84
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "actor-state-changed",
             "actorId": "actor-13",
-            "state": "interacting",
+            "state": "blocked",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-13:intent",
             "sequence": 85
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "activity-phase",
             "actorId": "actor-14",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-14:intent",
-            "phase": "acquired",
+            "phase": "waiting",
             "sequence": 86
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "actor-state-changed",
             "actorId": "actor-14",
-            "state": "interacting",
+            "state": "blocked",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-14:intent",
             "sequence": 87
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "activity-phase",
             "actorId": "actor-15",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-15:intent",
-            "phase": "acquired",
+            "phase": "waiting",
             "sequence": 88
           },
           {
-            "tick": 3,
+            "tick": 5,
             "kind": "actor-state-changed",
             "actorId": "actor-15",
-            "state": "interacting",
+            "state": "blocked",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-15:intent",
             "sequence": 89
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-02",
-            "state": "moving",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-02:intent",
-            "sequence": 90
-          },
-          {
-            "tick": 4,
-            "kind": "activity-phase",
-            "actorId": "actor-02",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-02:intent",
-            "phase": "using",
-            "sequence": 91
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-02",
-            "state": "interacting",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-02:intent",
-            "sequence": 92
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-03",
-            "state": "moving",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-03:intent",
-            "sequence": 93
-          },
-          {
-            "tick": 4,
-            "kind": "activity-phase",
-            "actorId": "actor-03",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-03:intent",
-            "phase": "using",
-            "sequence": 94
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-03",
-            "state": "interacting",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-03:intent",
-            "sequence": 95
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-04",
-            "state": "moving",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-04:intent",
-            "sequence": 96
-          },
-          {
-            "tick": 4,
-            "kind": "activity-phase",
-            "actorId": "actor-04",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-04:intent",
-            "phase": "using",
-            "sequence": 97
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-04",
-            "state": "interacting",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-04:intent",
-            "sequence": 98
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-05",
-            "state": "moving",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-05:intent",
-            "sequence": 99
-          },
-          {
-            "tick": 4,
-            "kind": "activity-phase",
-            "actorId": "actor-05",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-05:intent",
-            "phase": "using",
-            "sequence": 100
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-05",
-            "state": "interacting",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-05:intent",
-            "sequence": 101
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-06",
-            "state": "moving",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-06:intent",
-            "sequence": 102
-          },
-          {
-            "tick": 4,
-            "kind": "activity-phase",
-            "actorId": "actor-06",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-06:intent",
-            "phase": "using",
-            "sequence": 103
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-06",
-            "state": "interacting",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-06:intent",
-            "sequence": 104
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-07",
-            "state": "moving",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-07:intent",
-            "sequence": 105
-          },
-          {
-            "tick": 4,
-            "kind": "activity-phase",
-            "actorId": "actor-07",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-07:intent",
-            "phase": "using",
-            "sequence": 106
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-07",
-            "state": "interacting",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-07:intent",
-            "sequence": 107
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-08",
-            "state": "moving",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-08:intent",
-            "sequence": 108
-          },
-          {
-            "tick": 4,
-            "kind": "activity-phase",
-            "actorId": "actor-08",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-08:intent",
-            "phase": "using",
-            "sequence": 109
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-08",
-            "state": "interacting",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-08:intent",
-            "sequence": 110
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-09",
-            "state": "moving",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-09:intent",
-            "sequence": 111
-          },
-          {
-            "tick": 4,
-            "kind": "activity-phase",
-            "actorId": "actor-09",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-09:intent",
-            "phase": "using",
-            "sequence": 112
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-09",
-            "state": "interacting",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-09:intent",
-            "sequence": 113
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-10",
-            "state": "moving",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-10:intent",
-            "sequence": 114
-          },
-          {
-            "tick": 4,
-            "kind": "activity-phase",
-            "actorId": "actor-10",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-10:intent",
-            "phase": "using",
-            "sequence": 115
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-10",
-            "state": "interacting",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-10:intent",
-            "sequence": 116
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-11",
-            "state": "moving",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-11:intent",
-            "sequence": 117
-          },
-          {
-            "tick": 4,
-            "kind": "activity-phase",
-            "actorId": "actor-11",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-11:intent",
-            "phase": "using",
-            "sequence": 118
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-11",
-            "state": "interacting",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-11:intent",
-            "sequence": 119
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-12",
-            "state": "moving",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-12:intent",
-            "sequence": 120
-          },
-          {
-            "tick": 4,
-            "kind": "activity-phase",
-            "actorId": "actor-12",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-12:intent",
-            "phase": "using",
-            "sequence": 121
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-12",
-            "state": "interacting",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-12:intent",
-            "sequence": 122
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-13",
-            "state": "moving",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-13:intent",
-            "sequence": 123
-          },
-          {
-            "tick": 4,
-            "kind": "activity-phase",
-            "actorId": "actor-13",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-13:intent",
-            "phase": "using",
-            "sequence": 124
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-13",
-            "state": "interacting",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-13:intent",
-            "sequence": 125
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-14",
-            "state": "moving",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-14:intent",
-            "sequence": 126
-          },
-          {
-            "tick": 4,
-            "kind": "activity-phase",
-            "actorId": "actor-14",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-14:intent",
-            "phase": "using",
-            "sequence": 127
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-14",
-            "state": "interacting",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-14:intent",
-            "sequence": 128
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-15",
-            "state": "moving",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-15:intent",
-            "sequence": 129
-          },
-          {
-            "tick": 4,
-            "kind": "activity-phase",
-            "actorId": "actor-15",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-15:intent",
-            "phase": "using",
-            "sequence": 130
-          },
-          {
-            "tick": 4,
-            "kind": "actor-state-changed",
-            "actorId": "actor-15",
-            "state": "interacting",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-15:intent",
-            "sequence": 131
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-02",
-            "state": "moving",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-02:intent",
-            "sequence": 132
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-02",
-            "state": "interacting",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-02:intent",
-            "sequence": 133
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-03",
-            "state": "moving",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-03:intent",
-            "sequence": 134
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-03",
-            "state": "interacting",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-03:intent",
-            "sequence": 135
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-04",
-            "state": "moving",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-04:intent",
-            "sequence": 136
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-04",
-            "state": "interacting",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-04:intent",
-            "sequence": 137
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-05",
-            "state": "moving",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-05:intent",
-            "sequence": 138
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-05",
-            "state": "interacting",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-05:intent",
-            "sequence": 139
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-06",
-            "state": "moving",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-06:intent",
-            "sequence": 140
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-06",
-            "state": "interacting",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-06:intent",
-            "sequence": 141
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-07",
-            "state": "moving",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-07:intent",
-            "sequence": 142
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-07",
-            "state": "interacting",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-07:intent",
-            "sequence": 143
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-08",
-            "state": "moving",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-08:intent",
-            "sequence": 144
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-08",
-            "state": "interacting",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-08:intent",
-            "sequence": 145
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-09",
-            "state": "moving",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-09:intent",
-            "sequence": 146
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-09",
-            "state": "interacting",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-09:intent",
-            "sequence": 147
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-10",
-            "state": "moving",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-10:intent",
-            "sequence": 148
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-10",
-            "state": "interacting",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-10:intent",
-            "sequence": 149
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-11",
-            "state": "moving",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-11:intent",
-            "sequence": 150
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-11",
-            "state": "interacting",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-11:intent",
-            "sequence": 151
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-12",
-            "state": "moving",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-12:intent",
-            "sequence": 152
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-12",
-            "state": "interacting",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-12:intent",
-            "sequence": 153
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-13",
-            "state": "moving",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-13:intent",
-            "sequence": 154
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-13",
-            "state": "interacting",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-13:intent",
-            "sequence": 155
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-14",
-            "state": "moving",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-14:intent",
-            "sequence": 156
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-14",
-            "state": "interacting",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-14:intent",
-            "sequence": 157
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-15",
-            "state": "moving",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-15:intent",
-            "sequence": 158
-          },
-          {
-            "tick": 5,
-            "kind": "actor-state-changed",
-            "actorId": "actor-15",
-            "state": "interacting",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-15:intent",
-            "sequence": 159
           },
           {
             "tick": 6,
             "kind": "command-accepted",
             "sourceCommandId": "p3-t3-fifteen-actor-geometric-capacity:actor-02:intent:cancel-intent:6",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-02:intent",
-            "sequence": 160
+            "sequence": 90
           },
           {
             "tick": 6,
@@ -2688,46 +1907,94 @@
             "phase": "failed",
             "reason": "target-removed",
             "resourceKeys": [
-              "cell:4,4",
-              "facility:shared-review",
-              "socket:shared-review-use",
-              "transit:narrow-door"
+              "1,4"
             ],
-            "sequence": 161
+            "sequence": 91
           },
           {
-            "tick": 6,
-            "kind": "interaction-completed",
+            "tick": 8,
+            "kind": "activity-phase",
             "actorId": "actor-03",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-03:intent",
-            "phase": "released",
-            "reason": "completed",
+            "phase": "acquired",
+            "sequence": 92
+          },
+          {
+            "tick": 8,
+            "kind": "actor-state-changed",
+            "actorId": "actor-03",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-03:intent",
+            "sequence": 93
+          },
+          {
+            "tick": 9,
+            "kind": "activity-phase",
+            "actorId": "actor-03",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-03:intent",
+            "phase": "using",
+            "sequence": 94
+          },
+          {
+            "tick": 10,
+            "kind": "command-accepted",
+            "sourceCommandId": "p3-t3-fifteen-actor-geometric-capacity:actor-03:intent:cancel-intent:10",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-03:intent",
+            "sequence": 95
+          },
+          {
+            "tick": 10,
+            "kind": "activity-phase",
+            "actorId": "actor-03",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-03:intent",
+            "phase": "failed",
+            "reason": "target-removed",
             "resourceKeys": [
               "cell:4,4",
               "facility:shared-review",
               "socket:shared-review-use",
               "transit:narrow-door"
             ],
-            "sequence": 162
+            "sequence": 96
           },
           {
-            "tick": 6,
-            "kind": "interaction-completed",
-            "actorId": "actor-04",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-04:intent",
-            "phase": "released",
-            "reason": "completed",
+            "tick": 10,
+            "kind": "activity-phase",
+            "actorId": "actor-05",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-05:intent",
+            "phase": "acquired",
+            "sequence": 97
+          },
+          {
+            "tick": 10,
+            "kind": "actor-state-changed",
+            "actorId": "actor-05",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-05:intent",
+            "sequence": 98
+          },
+          {
+            "tick": 11,
+            "kind": "activity-phase",
+            "actorId": "actor-05",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-05:intent",
+            "phase": "using",
+            "sequence": 99
+          },
+          {
+            "tick": 12,
+            "kind": "activity-phase",
+            "actorId": "actor-06",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-06:intent",
+            "phase": "canceled",
+            "reason": "timeout",
             "resourceKeys": [
-              "cell:4,4",
-              "facility:shared-review",
-              "held-prop:review-card",
-              "socket:shared-review-use",
-              "transit:narrow-door"
+              "1,4"
             ],
-            "sequence": 163
+            "sequence": 100
           },
           {
-            "tick": 6,
+            "tick": 13,
             "kind": "interaction-completed",
             "actorId": "actor-05",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-05:intent",
@@ -2740,25 +2007,34 @@
               "socket:shared-review-use",
               "transit:narrow-door"
             ],
-            "sequence": 164
+            "sequence": 101
           },
           {
-            "tick": 6,
-            "kind": "interaction-completed",
-            "actorId": "actor-06",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-06:intent",
-            "phase": "released",
-            "reason": "completed",
-            "resourceKeys": [
-              "cell:4,4",
-              "facility:shared-review",
-              "socket:shared-review-use",
-              "transit:narrow-door"
-            ],
-            "sequence": 165
+            "tick": 13,
+            "kind": "activity-phase",
+            "actorId": "actor-07",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-07:intent",
+            "phase": "acquired",
+            "sequence": 102
           },
           {
-            "tick": 6,
+            "tick": 13,
+            "kind": "actor-state-changed",
+            "actorId": "actor-07",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-07:intent",
+            "sequence": 103
+          },
+          {
+            "tick": 14,
+            "kind": "activity-phase",
+            "actorId": "actor-07",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-07:intent",
+            "phase": "using",
+            "sequence": 104
+          },
+          {
+            "tick": 16,
             "kind": "interaction-completed",
             "actorId": "actor-07",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-07:intent",
@@ -2770,25 +2046,34 @@
               "socket:shared-review-use",
               "transit:narrow-door"
             ],
-            "sequence": 166
+            "sequence": 105
           },
           {
-            "tick": 6,
-            "kind": "interaction-completed",
-            "actorId": "actor-08",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-08:intent",
-            "phase": "released",
-            "reason": "completed",
-            "resourceKeys": [
-              "cell:4,4",
-              "facility:shared-review",
-              "socket:shared-review-use",
-              "transit:narrow-door"
-            ],
-            "sequence": 167
+            "tick": 16,
+            "kind": "activity-phase",
+            "actorId": "actor-09",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-09:intent",
+            "phase": "acquired",
+            "sequence": 106
           },
           {
-            "tick": 6,
+            "tick": 16,
+            "kind": "actor-state-changed",
+            "actorId": "actor-09",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-09:intent",
+            "sequence": 107
+          },
+          {
+            "tick": 17,
+            "kind": "activity-phase",
+            "actorId": "actor-09",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-09:intent",
+            "phase": "using",
+            "sequence": 108
+          },
+          {
+            "tick": 19,
             "kind": "interaction-completed",
             "actorId": "actor-09",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-09:intent",
@@ -2800,10 +2085,34 @@
               "socket:shared-review-use",
               "transit:narrow-door"
             ],
-            "sequence": 168
+            "sequence": 109
           },
           {
-            "tick": 6,
+            "tick": 19,
+            "kind": "activity-phase",
+            "actorId": "actor-10",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-10:intent",
+            "phase": "acquired",
+            "sequence": 110
+          },
+          {
+            "tick": 19,
+            "kind": "actor-state-changed",
+            "actorId": "actor-10",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-10:intent",
+            "sequence": 111
+          },
+          {
+            "tick": 20,
+            "kind": "activity-phase",
+            "actorId": "actor-10",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-10:intent",
+            "phase": "using",
+            "sequence": 112
+          },
+          {
+            "tick": 22,
             "kind": "interaction-completed",
             "actorId": "actor-10",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-10:intent",
@@ -2815,10 +2124,34 @@
               "socket:shared-review-use",
               "transit:narrow-door"
             ],
-            "sequence": 169
+            "sequence": 113
           },
           {
-            "tick": 6,
+            "tick": 22,
+            "kind": "activity-phase",
+            "actorId": "actor-11",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-11:intent",
+            "phase": "acquired",
+            "sequence": 114
+          },
+          {
+            "tick": 22,
+            "kind": "actor-state-changed",
+            "actorId": "actor-11",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-11:intent",
+            "sequence": 115
+          },
+          {
+            "tick": 23,
+            "kind": "activity-phase",
+            "actorId": "actor-11",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-11:intent",
+            "phase": "using",
+            "sequence": 116
+          },
+          {
+            "tick": 25,
             "kind": "interaction-completed",
             "actorId": "actor-11",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-11:intent",
@@ -2830,25 +2163,34 @@
               "socket:shared-review-use",
               "transit:narrow-door"
             ],
-            "sequence": 170
+            "sequence": 117
           },
           {
-            "tick": 6,
-            "kind": "interaction-completed",
-            "actorId": "actor-12",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-12:intent",
-            "phase": "released",
-            "reason": "completed",
-            "resourceKeys": [
-              "cell:4,4",
-              "facility:shared-review",
-              "socket:shared-review-use",
-              "transit:narrow-door"
-            ],
-            "sequence": 171
+            "tick": 25,
+            "kind": "activity-phase",
+            "actorId": "actor-13",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-13:intent",
+            "phase": "acquired",
+            "sequence": 118
           },
           {
-            "tick": 6,
+            "tick": 25,
+            "kind": "actor-state-changed",
+            "actorId": "actor-13",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-13:intent",
+            "sequence": 119
+          },
+          {
+            "tick": 26,
+            "kind": "activity-phase",
+            "actorId": "actor-13",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-13:intent",
+            "phase": "using",
+            "sequence": 120
+          },
+          {
+            "tick": 28,
             "kind": "interaction-completed",
             "actorId": "actor-13",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-13:intent",
@@ -2860,10 +2202,34 @@
               "socket:shared-review-use",
               "transit:narrow-door"
             ],
-            "sequence": 172
+            "sequence": 121
           },
           {
-            "tick": 6,
+            "tick": 28,
+            "kind": "activity-phase",
+            "actorId": "actor-14",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-14:intent",
+            "phase": "acquired",
+            "sequence": 122
+          },
+          {
+            "tick": 28,
+            "kind": "actor-state-changed",
+            "actorId": "actor-14",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-14:intent",
+            "sequence": 123
+          },
+          {
+            "tick": 29,
+            "kind": "activity-phase",
+            "actorId": "actor-14",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-14:intent",
+            "phase": "using",
+            "sequence": 124
+          },
+          {
+            "tick": 31,
             "kind": "interaction-completed",
             "actorId": "actor-14",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-14:intent",
@@ -2875,10 +2241,34 @@
               "socket:shared-review-use",
               "transit:narrow-door"
             ],
-            "sequence": 173
+            "sequence": 125
           },
           {
-            "tick": 6,
+            "tick": 31,
+            "kind": "activity-phase",
+            "actorId": "actor-15",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-15:intent",
+            "phase": "acquired",
+            "sequence": 126
+          },
+          {
+            "tick": 31,
+            "kind": "actor-state-changed",
+            "actorId": "actor-15",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-15:intent",
+            "sequence": 127
+          },
+          {
+            "tick": 32,
+            "kind": "activity-phase",
+            "actorId": "actor-15",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-15:intent",
+            "phase": "using",
+            "sequence": 128
+          },
+          {
+            "tick": 34,
             "kind": "interaction-completed",
             "actorId": "actor-15",
             "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-15:intent",
@@ -2890,14 +2280,125 @@
               "socket:shared-review-use",
               "transit:narrow-door"
             ],
-            "sequence": 174
+            "sequence": 129
           },
           {
-            "tick": 10,
-            "kind": "command-accepted",
-            "sourceCommandId": "p3-t3-fifteen-actor-geometric-capacity:actor-03:intent:cancel-intent:10",
-            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-03:intent",
-            "sequence": 175
+            "tick": 35,
+            "kind": "activity-phase",
+            "actorId": "actor-04",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-04:intent",
+            "phase": "acquired",
+            "sequence": 130
+          },
+          {
+            "tick": 35,
+            "kind": "actor-state-changed",
+            "actorId": "actor-04",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-04:intent",
+            "sequence": 131
+          },
+          {
+            "tick": 36,
+            "kind": "activity-phase",
+            "actorId": "actor-04",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-04:intent",
+            "phase": "using",
+            "sequence": 132
+          },
+          {
+            "tick": 38,
+            "kind": "interaction-completed",
+            "actorId": "actor-04",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-04:intent",
+            "phase": "released",
+            "reason": "completed",
+            "resourceKeys": [
+              "cell:4,4",
+              "facility:shared-review",
+              "held-prop:review-card",
+              "socket:shared-review-use",
+              "transit:narrow-door"
+            ],
+            "sequence": 133
+          },
+          {
+            "tick": 38,
+            "kind": "activity-phase",
+            "actorId": "actor-08",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-08:intent",
+            "phase": "acquired",
+            "sequence": 134
+          },
+          {
+            "tick": 38,
+            "kind": "actor-state-changed",
+            "actorId": "actor-08",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-08:intent",
+            "sequence": 135
+          },
+          {
+            "tick": 39,
+            "kind": "activity-phase",
+            "actorId": "actor-08",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-08:intent",
+            "phase": "using",
+            "sequence": 136
+          },
+          {
+            "tick": 41,
+            "kind": "interaction-completed",
+            "actorId": "actor-08",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-08:intent",
+            "phase": "released",
+            "reason": "completed",
+            "resourceKeys": [
+              "cell:4,4",
+              "facility:shared-review",
+              "socket:shared-review-use",
+              "transit:narrow-door"
+            ],
+            "sequence": 137
+          },
+          {
+            "tick": 41,
+            "kind": "activity-phase",
+            "actorId": "actor-12",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-12:intent",
+            "phase": "acquired",
+            "sequence": 138
+          },
+          {
+            "tick": 41,
+            "kind": "actor-state-changed",
+            "actorId": "actor-12",
+            "state": "interacting",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-12:intent",
+            "sequence": 139
+          },
+          {
+            "tick": 42,
+            "kind": "activity-phase",
+            "actorId": "actor-12",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-12:intent",
+            "phase": "using",
+            "sequence": 140
+          },
+          {
+            "tick": 44,
+            "kind": "interaction-completed",
+            "actorId": "actor-12",
+            "intentId": "p3-t3-fifteen-actor-geometric-capacity:actor-12:intent",
+            "phase": "released",
+            "reason": "completed",
+            "resourceKeys": [
+              "cell:4,4",
+              "facility:shared-review",
+              "socket:shared-review-use",
+              "transit:narrow-door"
+            ],
+            "sequence": 141
           }
         ],
         "crowd": [
@@ -2942,102 +2443,11 @@
             "sequence": 5
           },
           {
-            "tick": 6,
-            "kind": "actor-terminal",
-            "actorId": "actor-03",
-            "reason": "completed",
-            "sequence": 6
-          },
-          {
-            "tick": 6,
-            "kind": "actor-terminal",
-            "actorId": "actor-04",
-            "reason": "completed",
-            "sequence": 7
-          },
-          {
-            "tick": 6,
-            "kind": "actor-terminal",
-            "actorId": "actor-05",
-            "reason": "completed",
-            "sequence": 8
-          },
-          {
-            "tick": 6,
-            "kind": "actor-terminal",
-            "actorId": "actor-06",
-            "reason": "completed",
-            "sequence": 9
-          },
-          {
-            "tick": 6,
-            "kind": "actor-terminal",
-            "actorId": "actor-07",
-            "reason": "completed",
-            "sequence": 10
-          },
-          {
-            "tick": 6,
-            "kind": "actor-terminal",
-            "actorId": "actor-08",
-            "reason": "completed",
-            "sequence": 11
-          },
-          {
-            "tick": 6,
-            "kind": "actor-terminal",
-            "actorId": "actor-09",
-            "reason": "completed",
-            "sequence": 12
-          },
-          {
-            "tick": 6,
-            "kind": "actor-terminal",
-            "actorId": "actor-10",
-            "reason": "completed",
-            "sequence": 13
-          },
-          {
-            "tick": 6,
-            "kind": "actor-terminal",
-            "actorId": "actor-11",
-            "reason": "completed",
-            "sequence": 14
-          },
-          {
-            "tick": 6,
-            "kind": "actor-terminal",
-            "actorId": "actor-12",
-            "reason": "completed",
-            "sequence": 15
-          },
-          {
-            "tick": 6,
-            "kind": "actor-terminal",
-            "actorId": "actor-13",
-            "reason": "completed",
-            "sequence": 16
-          },
-          {
-            "tick": 6,
-            "kind": "actor-terminal",
-            "actorId": "actor-14",
-            "reason": "completed",
-            "sequence": 17
-          },
-          {
-            "tick": 6,
-            "kind": "actor-terminal",
-            "actorId": "actor-15",
-            "reason": "completed",
-            "sequence": 18
-          },
-          {
             "tick": 8,
             "kind": "queue-acquired",
             "actorId": "actor-03",
             "ticketId": "p3-t3-fifteen-actor-geometric-capacity:actor-03:intent:contention-ticket",
-            "sequence": 19
+            "sequence": 6
           },
           {
             "tick": 10,
@@ -3046,91 +2456,175 @@
             "targetId": "shared-review",
             "phaseBeforeRemoval": "using",
             "reason": "target-removed",
-            "sequence": 20
+            "sequence": 7
           },
           {
             "tick": 10,
             "kind": "queue-acquired",
             "actorId": "actor-05",
             "ticketId": "p3-t3-fifteen-actor-geometric-capacity:actor-05:intent:contention-ticket",
-            "sequence": 21
+            "sequence": 8
+          },
+          {
+            "tick": 10,
+            "kind": "actor-terminal",
+            "actorId": "actor-03",
+            "reason": "target-removed",
+            "sequence": 9
           },
           {
             "tick": 12,
             "kind": "actor-terminal",
             "actorId": "actor-06",
             "reason": "timeout",
-            "sequence": 22
+            "sequence": 10
+          },
+          {
+            "tick": 13,
+            "kind": "actor-terminal",
+            "actorId": "actor-05",
+            "reason": "completed",
+            "sequence": 11
           },
           {
             "tick": 15,
             "kind": "queue-acquired",
             "actorId": "actor-07",
             "ticketId": "p3-t3-fifteen-actor-geometric-capacity:actor-07:intent:contention-ticket",
-            "sequence": 23
+            "sequence": 12
+          },
+          {
+            "tick": 16,
+            "kind": "actor-terminal",
+            "actorId": "actor-07",
+            "reason": "completed",
+            "sequence": 13
+          },
+          {
+            "tick": 19,
+            "kind": "actor-terminal",
+            "actorId": "actor-09",
+            "reason": "completed",
+            "sequence": 14
           },
           {
             "tick": 20,
             "kind": "queue-acquired",
             "actorId": "actor-09",
             "ticketId": "p3-t3-fifteen-actor-geometric-capacity:actor-09:intent:contention-ticket",
-            "sequence": 24
+            "sequence": 15
+          },
+          {
+            "tick": 22,
+            "kind": "actor-terminal",
+            "actorId": "actor-10",
+            "reason": "completed",
+            "sequence": 16
           },
           {
             "tick": 25,
             "kind": "queue-acquired",
             "actorId": "actor-10",
             "ticketId": "p3-t3-fifteen-actor-geometric-capacity:actor-10:intent:contention-ticket",
-            "sequence": 25
+            "sequence": 17
+          },
+          {
+            "tick": 25,
+            "kind": "actor-terminal",
+            "actorId": "actor-11",
+            "reason": "completed",
+            "sequence": 18
+          },
+          {
+            "tick": 28,
+            "kind": "actor-terminal",
+            "actorId": "actor-13",
+            "reason": "completed",
+            "sequence": 19
           },
           {
             "tick": 30,
             "kind": "queue-acquired",
             "actorId": "actor-11",
             "ticketId": "p3-t3-fifteen-actor-geometric-capacity:actor-11:intent:contention-ticket",
-            "sequence": 26
+            "sequence": 20
+          },
+          {
+            "tick": 31,
+            "kind": "actor-terminal",
+            "actorId": "actor-14",
+            "reason": "completed",
+            "sequence": 21
+          },
+          {
+            "tick": 34,
+            "kind": "actor-terminal",
+            "actorId": "actor-15",
+            "reason": "completed",
+            "sequence": 22
           },
           {
             "tick": 35,
             "kind": "queue-acquired",
             "actorId": "actor-13",
             "ticketId": "p3-t3-fifteen-actor-geometric-capacity:actor-13:intent:contention-ticket",
-            "sequence": 27
+            "sequence": 23
+          },
+          {
+            "tick": 38,
+            "kind": "actor-terminal",
+            "actorId": "actor-04",
+            "reason": "completed",
+            "sequence": 24
           },
           {
             "tick": 40,
             "kind": "queue-acquired",
             "actorId": "actor-14",
             "ticketId": "p3-t3-fifteen-actor-geometric-capacity:actor-14:intent:contention-ticket",
-            "sequence": 28
+            "sequence": 25
+          },
+          {
+            "tick": 41,
+            "kind": "actor-terminal",
+            "actorId": "actor-08",
+            "reason": "completed",
+            "sequence": 26
+          },
+          {
+            "tick": 44,
+            "kind": "actor-terminal",
+            "actorId": "actor-12",
+            "reason": "completed",
+            "sequence": 27
           },
           {
             "tick": 45,
             "kind": "queue-acquired",
             "actorId": "actor-15",
             "ticketId": "p3-t3-fifteen-actor-geometric-capacity:actor-15:intent:contention-ticket",
-            "sequence": 29
+            "sequence": 28
           },
           {
             "tick": 50,
             "kind": "queue-acquired",
             "actorId": "actor-04",
             "ticketId": "p3-t3-fifteen-actor-geometric-capacity:actor-04:intent:contention-ticket",
-            "sequence": 30
+            "sequence": 29
           },
           {
             "tick": 55,
             "kind": "queue-acquired",
             "actorId": "actor-08",
             "ticketId": "p3-t3-fifteen-actor-geometric-capacity:actor-08:intent:contention-ticket",
-            "sequence": 31
+            "sequence": 30
           },
           {
             "tick": 60,
             "kind": "queue-acquired",
             "actorId": "actor-12",
             "ticketId": "p3-t3-fifteen-actor-geometric-capacity:actor-12:intent:contention-ticket",
-            "sequence": 32
+            "sequence": 31
           }
         ]
       },
@@ -3139,8 +2633,8 @@
         "restoredLeaks": [],
         "passed": true
       },
-      "uninterruptedFinalHash": "f21580e0c256579ffb9a0dcd1d5e04615d28e6acc0fe313e013164bdc349ebf5",
-      "restoredFinalHash": "f21580e0c256579ffb9a0dcd1d5e04615d28e6acc0fe313e013164bdc349ebf5",
+      "uninterruptedFinalHash": "57ee9af17cf19046ee60d7cb22d4e1d09896d3cb5e012222d758b2287a24af67",
+      "restoredFinalHash": "57ee9af17cf19046ee60d7cb22d4e1d09896d3cb5e012222d758b2287a24af67",
       "equality": true
     }
   ]

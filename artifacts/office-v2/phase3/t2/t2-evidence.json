@@ -244,7 +244,7 @@
       ],
       "checkpoint": {
         "tick": 3,
-        "stateHash": "ef38ddc3248430d403c16b687cf52cf530dc733bf53322ead26a28b7c7e204ea",
+        "stateHash": "220c9ce2635d0298fd2f16fb50670301b7b21f3079feb73047df81192bff43b6",
         "completeTick": true
       },
       "replayResult": {
