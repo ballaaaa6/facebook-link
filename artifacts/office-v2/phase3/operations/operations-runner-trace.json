@@ -29,91 +29,39 @@
     "retryTrace": [
       {
         "name": "failure",
-        "source": {
-          "schemaVersion": "office-operations-choreography-v1",
-          "kind": "branch-failed",
-          "branch": "visual",
-          "attempt": 1,
-          "artifactVersion": 1,
-          "jobId": "visual-job",
-          "occurredAt": "2026-08-02T00:00:04.000Z",
-          "durableEventId": "event-visual-failed",
-          "payloadDigest": "digest-visual-failed",
-          "sourceRevision": "operations-revision-1",
-          "workspaceId": "workspace-one",
-          "workflowId": "workflow-one",
-          "contentGroupId": "content-group-one",
-          "traceId": "trace-one",
-          "streamId": "operations-stream",
-          "reason": {
-            "kind": "failure",
-            "code": "browser.session-failed",
-            "message": "Flow session unavailable",
-            "owner": "adapter",
-            "recoverability": "reconnect"
-          }
-        }
+        "sequence": 6,
+        "durableEventId": "event-visual-failed",
+        "payloadDigest": "198fbd5c39baf53363f356ec16784cb44beb114546bc4209e439ab770a435e46",
+        "jobId": "phase3-autopost-workflow-job-flow-visual-producer-visual-attempt-1",
+        "stage": "content_queued",
+        "eventType": "task-update"
       },
       {
         "name": "recovery",
-        "source": {
-          "schemaVersion": "office-operations-choreography-v1",
-          "kind": "branch-recovered",
-          "branch": "visual",
-          "attempt": 1,
-          "artifactVersion": 1,
-          "jobId": "visual-job",
-          "occurredAt": "2026-08-02T00:00:05.000Z",
-          "durableEventId": "event-visual-recovered",
-          "payloadDigest": "digest-visual-recovered",
-          "sourceRevision": "operations-revision-1",
-          "workspaceId": "workspace-one",
-          "workflowId": "workflow-one",
-          "contentGroupId": "content-group-one",
-          "traceId": "trace-one",
-          "streamId": "operations-stream",
-          "recoveredFromEventId": "event-visual-failed"
-        }
+        "sequence": 7,
+        "durableEventId": "event-visual-recovered",
+        "payloadDigest": "dabec6dc7e3d77c1946955190073f760a944a2b196935d52d6089e488e4a019e",
+        "jobId": "phase3-autopost-workflow-job-flow-visual-producer-visual-attempt-1",
+        "stage": "content_queued",
+        "eventType": "session-updated"
       },
       {
-        "name": "copyRetry",
-        "source": {
-          "schemaVersion": "office-operations-choreography-v1",
-          "kind": "branch-started",
-          "branch": "copy",
-          "attempt": 2,
-          "artifactVersion": 2,
-          "jobId": "copy-job-2",
-          "occurredAt": "2026-08-02T00:00:03.000Z",
-          "durableEventId": "event-copy-2-start",
-          "payloadDigest": "digest-copy-2-start",
-          "sourceRevision": "operations-revision-1",
-          "workspaceId": "workspace-one",
-          "workflowId": "workflow-one",
-          "contentGroupId": "content-group-one",
-          "traceId": "trace-one",
-          "streamId": "operations-stream"
-        }
+        "name": "retry-started",
+        "sequence": 8,
+        "durableEventId": "event-visual-retry-started",
+        "payloadDigest": "2436d7adec2c53d6dfc83e3c69164b4f4bd4faf8603ce59634ac557c45b36788",
+        "jobId": "phase3-autopost-workflow-job-flow-visual-producer-visual-attempt-2",
+        "stage": "content_queued",
+        "eventType": "task-update"
       },
       {
-        "name": "visual",
-        "source": {
-          "schemaVersion": "office-operations-choreography-v1",
-          "kind": "branch-completed",
-          "branch": "visual",
-          "attempt": 1,
-          "artifactVersion": 1,
-          "jobId": "visual-job",
-          "occurredAt": "2026-08-02T00:00:01.000Z",
-          "durableEventId": "event-visual-1",
-          "payloadDigest": "digest-visual-1",
-          "sourceRevision": "operations-revision-1",
-          "workspaceId": "workspace-one",
-          "workflowId": "workflow-one",
-          "contentGroupId": "content-group-one",
-          "traceId": "trace-one",
-          "streamId": "operations-stream"
-        }
+        "name": "retry-completed",
+        "sequence": 9,
+        "durableEventId": "event-visual-completed",
+        "payloadDigest": "b64c3586b794ec8d54ae6065db25e47c52506611f953170d9527385a1fce5d91",
+        "jobId": "phase3-autopost-workflow-job-flow-visual-producer-visual-attempt-2",
+        "stage": "content_queued",
+        "eventType": "branch-completed"
       }
     ]
   },
@@ -497,7 +445,7 @@
     "streamEpoch": 1,
     "windowStartSequence": 1,
     "throughSequence": 15,
-    "eventDigest": "phase3-event-window000000000000000000000000000000000000000000000",
+    "eventDigest": "ea7c54b4ab7acb97ead190118c9d1959f0d5dae1eab0ec717f483addf8dc6ba1",
     "freshness": "live",
     "events": [
       {
@@ -506,7 +454,7 @@
           "value": "event-discovered"
         },
         "sequence": 1,
-        "payloadDigest": "phase3-event-discovered00000000000000000000000000000000000000000",
+        "payloadDigest": "e974f5a2512264049981c05ade95e9c8e0a923f80a0802bc192ffc5c58415367",
         "occurredAt": "2026-08-03T00:00:00.000Z",
         "workflowRunId": {
           "kind": "workflow-run",
@@ -526,7 +474,7 @@
           "value": "event-scored"
         },
         "sequence": 2,
-        "payloadDigest": "phase3-event-scored000000000000000000000000000000000000000000000",
+        "payloadDigest": "0d0bdffc116aeda5f9432eb6b4f0150bc9511336b261b89fb951ae5bdfbd8d0a",
         "occurredAt": "2026-08-03T00:00:00.000Z",
         "workflowRunId": {
           "kind": "workflow-run",
@@ -546,7 +494,7 @@
           "value": "event-selected"
         },
         "sequence": 3,
-        "payloadDigest": "phase3-event-selected0000000000000000000000000000000000000000000",
+        "payloadDigest": "f16d48aef90d2b75b6cc16779c39747d5651ac94e47f71cb773bdba6271cb426",
         "occurredAt": "2026-08-03T00:00:00.000Z",
         "workflowRunId": {
           "kind": "workflow-run",
@@ -566,7 +514,7 @@
           "value": "event-link-ready"
         },
         "sequence": 4,
-        "payloadDigest": "phase3-event-link-ready00000000000000000000000000000000000000000",
+        "payloadDigest": "73ff74162d4cb855cbd15a6efbefc459354e00e9bc46602325eed073ed435f45",
         "occurredAt": "2026-08-03T00:00:00.000Z",
         "workflowRunId": {
           "kind": "workflow-run",
@@ -586,7 +534,7 @@
           "value": "event-copy-completed"
         },
         "sequence": 5,
-        "payloadDigest": "phase3-event-copy-completed0000000000000000000000000000000000000",
+        "payloadDigest": "6690a1cdfedb23e171858f2a716aab19d4788bdf27cb21b1be67c3a03edb761e",
         "occurredAt": "2026-08-03T00:00:00.000Z",
         "workflowRunId": {
           "kind": "workflow-run",
@@ -606,7 +554,7 @@
           "value": "event-visual-failed"
         },
         "sequence": 6,
-        "payloadDigest": "phase3-event-visual-failed00000000000000000000000000000000000000",
+        "payloadDigest": "198fbd5c39baf53363f356ec16784cb44beb114546bc4209e439ab770a435e46",
         "occurredAt": "2026-08-03T00:00:00.000Z",
         "workflowRunId": {
           "kind": "workflow-run",
@@ -626,7 +574,7 @@
           "value": "event-visual-recovered"
         },
         "sequence": 7,
-        "payloadDigest": "phase3-event-visual-recovered00000000000000000000000000000000000",
+        "payloadDigest": "dabec6dc7e3d77c1946955190073f760a944a2b196935d52d6089e488e4a019e",
         "occurredAt": "2026-08-03T00:00:00.000Z",
         "workflowRunId": {
           "kind": "workflow-run",
@@ -646,7 +594,7 @@
           "value": "event-visual-retry-started"
         },
         "sequence": 8,
-        "payloadDigest": "phase3-event-visual-retry-started0000000000000000000000000000000",
+        "payloadDigest": "2436d7adec2c53d6dfc83e3c69164b4f4bd4faf8603ce59634ac557c45b36788",
         "occurredAt": "2026-08-03T00:00:00.000Z",
         "workflowRunId": {
           "kind": "workflow-run",
@@ -666,7 +614,7 @@
           "value": "event-visual-completed"
         },
         "sequence": 9,
-        "payloadDigest": "phase3-event-visual-completed00000000000000000000000000000000000",
+        "payloadDigest": "b64c3586b794ec8d54ae6065db25e47c52506611f953170d9527385a1fce5d91",
         "occurredAt": "2026-08-03T00:00:00.000Z",
         "workflowRunId": {
           "kind": "workflow-run",
@@ -686,7 +634,7 @@
           "value": "event-content-ready"
         },
         "sequence": 10,
-        "payloadDigest": "phase3-event-content-ready00000000000000000000000000000000000000",
+        "payloadDigest": "48123f04022e2aedfe57a68f8608780d8736a69c324632d534d0099ba31d5503",
         "occurredAt": "2026-08-03T00:00:00.000Z",
         "workflowRunId": {
           "kind": "workflow-run",
@@ -706,7 +654,7 @@
           "value": "event-qa-review-rejected"
         },
         "sequence": 11,
-        "payloadDigest": "phase3-event-qa-review-rejected000000000000000000000000000000000",
+        "payloadDigest": "55f0b3873430671d6ee847a91659048fd8cdae3f01e266c13902ddecde28fcd3",
         "occurredAt": "2026-08-03T00:00:00.000Z",
         "workflowRunId": {
           "kind": "workflow-run",
@@ -726,7 +674,7 @@
           "value": "event-qa-approved"
         },
         "sequence": 12,
-        "payloadDigest": "phase3-event-qa-approved0000000000000000000000000000000000000000",
+        "payloadDigest": "0e36669ad7352be81632b5318bfc0030592b39784ee0cdff2e17d06650277c77",
         "occurredAt": "2026-08-03T00:00:00.000Z",
         "workflowRunId": {
           "kind": "workflow-run",
@@ -746,7 +694,7 @@
           "value": "event-scheduled"
         },
         "sequence": 13,
-        "payloadDigest": "phase3-event-scheduled000000000000000000000000000000000000000000",
+        "payloadDigest": "68636500160ec8fb9b38fc4ec877ce02b49ec81e0d0f793067911659cf51daae",
         "occurredAt": "2026-08-03T00:00:00.000Z",
         "workflowRunId": {
           "kind": "workflow-run",
@@ -766,7 +714,7 @@
           "value": "event-published"
         },
         "sequence": 14,
-        "payloadDigest": "phase3-event-published000000000000000000000000000000000000000000",
+        "payloadDigest": "b8ea6c22a39a40990c61aa035ef886db42c4336be950758d693d1b6facce0773",
         "occurredAt": "2026-08-03T00:00:00.000Z",
         "workflowRunId": {
           "kind": "workflow-run",
@@ -786,7 +734,7 @@
           "value": "event-measured"
         },
         "sequence": 15,
-        "payloadDigest": "phase3-event-measured0000000000000000000000000000000000000000000",
+        "payloadDigest": "1cd0d0b01bb9b27f3ae5256c50be04a3f1b8a03b69939a6c6f293e4b41f5c814",
         "occurredAt": "2026-08-03T00:00:00.000Z",
         "workflowRunId": {
           "kind": "workflow-run",
@@ -804,23 +752,62 @@
   },
   "persistence": {
     "first": {
-      "workflowId": "workflow-2026-08-03",
-      "jobs": 8,
-      "agentRuns": 8,
-      "auditEvents": 9
+      "workflowId": "phase3-autopost-workflow",
+      "jobs": 9,
+      "agentRuns": 9,
+      "auditEvents": 10
     },
     "second": {
-      "workflowId": "workflow-2026-08-03",
-      "jobs": 8,
-      "agentRuns": 8,
-      "auditEvents": 9
+      "workflowId": "phase3-autopost-workflow",
+      "jobs": 9,
+      "agentRuns": 9,
+      "auditEvents": 10
     },
     "counts": {
-      "jobs": 8,
-      "agent_runs": 8,
-      "audit_events": 9,
-      "job_outbox": 8
+      "jobs": 9,
+      "agent_runs": 9,
+      "audit_events": 10,
+      "job_outbox": 9
     },
+    "sourceWorkflowId": "phase3-autopost-workflow",
+    "sourceJobIds": [
+      "phase3-autopost-workflow-job-market-scout-discovered-attempt-1",
+      "phase3-autopost-workflow-job-product-ranker-scored-attempt-1",
+      "phase3-autopost-workflow-job-growth-strategist-selected-attempt-1",
+      "phase3-autopost-workflow-job-link-attribution-link_ready-attempt-1",
+      "phase3-autopost-workflow-job-gemini-copywriter-copy-attempt-1",
+      "phase3-autopost-workflow-job-flow-visual-producer-visual-attempt-2",
+      "phase3-autopost-workflow-job-qa-editor-qa_approved-attempt-1",
+      "phase3-autopost-workflow-job-publisher-scheduled-attempt-1",
+      "phase3-autopost-workflow-job-session-keeper-content_queued-attempt-1",
+      "phase3-autopost-workflow-job-performance-analyst-measured-attempt-1"
+    ],
+    "persistedWorkflowId": "phase3-autopost-workflow",
+    "persistedJobIds": [
+      "phase3-autopost-workflow-job-market-scout-discovered-attempt-1",
+      "phase3-autopost-workflow-job-product-ranker-scored-attempt-1",
+      "phase3-autopost-workflow-job-growth-strategist-selected-attempt-1",
+      "phase3-autopost-workflow-job-link-attribution-link_ready-attempt-1",
+      "phase3-autopost-workflow-job-gemini-copywriter-copy-attempt-1",
+      "phase3-autopost-workflow-job-flow-visual-producer-visual-attempt-2",
+      "phase3-autopost-workflow-job-qa-editor-qa_approved-attempt-1",
+      "phase3-autopost-workflow-job-publisher-scheduled-attempt-1",
+      "phase3-autopost-workflow-job-performance-analyst-measured-attempt-1"
+    ],
+    "persistedRoleIds": [
+      "market-scout",
+      "product-ranker",
+      "growth-strategist",
+      "link-attribution",
+      "gemini-copywriter",
+      "flow-visual-producer",
+      "qa-editor",
+      "publisher",
+      "performance-analyst"
+    ],
+    "omittedRoleIds": [
+      "session-keeper"
+    ],
     "systemJoinAuditCount": 1
   }
 }

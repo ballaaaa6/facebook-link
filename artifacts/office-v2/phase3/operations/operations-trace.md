@@ -3,7 +3,7 @@
 - Scenario count: 10
 - Roles: market-scout, product-ranker, growth-strategist, performance-analyst, gemini-copywriter, flow-visual-producer, link-attribution, qa-editor, publisher, session-keeper
 - Final authoritative equals projected: true
-- Evidence hash: b7e91668b1f1782834140a03b332de4eabf8b25dc0ea972160bb30577c340892
+- Evidence hash: c6674b307d8077d3a021f2fe211dc5f09be110687e095bd6ca81c27b50150664
 
 ## Ten-role choreography
 

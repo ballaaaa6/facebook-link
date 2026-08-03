@@ -5,6 +5,7 @@ import { resolve } from "node:path";
 import test from "node:test";
 import type { OperationsEventRecord, OperationsSnapshotDocument, SnapshotDocument as SimulationSnapshot } from "@affiliate-ops/office-v2-contracts";
 import { canonicalHashHex, canonicalJson, type JsonValue } from "@affiliate-ops/office-v2-contracts";
+import { agentCatalog } from "@affiliate-ops/agent-catalog";
 import { bindRoster, canProposeInteraction, inspectOperationsSnapshot, reconcileEventWindow } from "../src/index.ts";
 import { createReconciliationCheckpoint, reconcileOperations, type ReconciliationEventPolicy } from "../src/reconciliation.ts";
 import { projectPresentationState, type ChoreographyTransition } from "../src/choreography.ts";
@@ -24,6 +25,16 @@ function runRunner(): RawTrace {
   return JSON.parse(readFileSync(resolve(outputDirectory, "operations-runner-trace.json"), "utf8")) as RawTrace;
 }
 function eventValue(event: Record<string, any>): string { return String(event.durableEventId.value); }
+function roleForOutput(output: string): string {
+  const agent = agentCatalog.find((candidate) => candidate.produces.includes(output));
+  assert.ok(agent, `No catalog role produces ${output}.`);
+  return agent.id;
+}
+function agentInstanceForRole(roleId: string): string {
+  const binding = closure.roster.bindings.find((candidate) => String(candidate.roleId) === roleId);
+  assert.ok(binding, `No roster binding exists for ${roleId}.`);
+  return String(binding.agentInstanceId.value);
+}
 function snapshotFor(raw: RawTrace): OperationsSnapshotDocument {
   const snapshot = structuredClone(closure.snapshots[0]!) as MutableSnapshot;
   const window = raw.operationsWindow;
@@ -61,6 +72,23 @@ function reconciliation(raw: RawTrace, snapshot: OperationsSnapshotDocument) {
 }
 function report(raw: RawTrace): Record<string, unknown> {
   const snapshot = snapshotFor(raw);
+  const visualRole = roleForOutput("visual-assets");
+  const performanceRole = roleForOutput("performance-report");
+  const copyAgent = agentInstanceForRole(roleForOutput("caption-draft"));
+  const growthRole = roleForOutput("winner-decision");
+  const workflowId = String(raw.jobs[0]?.workflowId);
+  assert.ok(workflowId.length > 0);
+  assert.equal(raw.persistence.sourceWorkflowId, workflowId);
+  assert.equal(raw.persistence.persistedWorkflowId, workflowId);
+  assert.deepEqual(raw.persistence.sourceJobIds, raw.jobs.map((job) => job.id));
+  assert.ok(raw.persistence.persistedJobIds.every((jobId) => raw.persistence.sourceJobIds.includes(jobId)));
+  assert.ok((raw.operationsWindow.events as Record<string, any>[]).every((event) => String(event.workflowRunId?.value) === workflowId));
+  assert.ok((raw.operationsWindow.events as Record<string, any>[]).every((event) => /^[a-f0-9]{64}$/.test(String(event.payloadDigest))));
+  assert.ok(/^[a-f0-9]{64}$/.test(String(raw.operationsWindow.eventDigest)));
+  const sessionRole = agentCatalog.find((agent) => agent.produces.includes("session-state"))?.id;
+  assert.ok(sessionRole);
+  assert.deepEqual(raw.persistence.omittedRoleIds, [sessionRole]);
+  assert.deepEqual([...raw.persistence.persistedRoleIds].sort(), raw.roles.filter((role) => role !== sessionRole).sort());
   const roster = bindRoster(closure.snapshots[0]!, closure.routing, closure.roster);
   assert.equal(roster.bindings.length, 10);
   assert.deepEqual(raw.roles, roster.bindings.map((binding) => binding.roleId));
@@ -81,19 +109,19 @@ function report(raw: RawTrace): Record<string, unknown> {
   const lateEvent = { ...snapshot.events[0]!, durableEventId: { kind: "event", value: "event-late" }, payloadDigest: "e".repeat(64) };
   const late = reconcileEventWindow(applied.nextCursor, { ...snapshot, windowStartSequence: 1, throughSequence: 1, events: [lateEvent] });
   assert.equal(late.status, "resync-required");
-  const disabled = canProposeInteraction(closure.snapshots[0]!, closure.routing, closure.roster, "agent-gemini-copywriter", "propose-copy");
+  const disabled = canProposeInteraction(closure.snapshots[0]!, closure.routing, closure.roster, copyAgent, "propose-copy");
   assert.equal(disabled.allowed, false);
   assert.ok(disabled.diagnostics.some((diagnostic) => diagnostic.code === "adapter.feature-disabled"));
-  assert.equal(projectPresentationState(closure.snapshots[0]!).agents.find((agent) => agent.roleId === "growth-strategist")?.state, "review");
+  assert.equal(projectPresentationState(closure.snapshots[0]!).agents.find((agent) => agent.roleId === growthRole)?.state, "review");
   assert.deepEqual(raw.workflow.review, ["rejected", "approved"]);
   assert.ok(inspectOperationsSnapshot(closure.snapshots[1]!).some((diagnostic) => diagnostic.code === "adapter.stale"));
   const reconnecting = { ...snapshot, freshness: "reconnecting" as const };
   assert.ok(inspectOperationsSnapshot(reconnecting).some((diagnostic) => diagnostic.code === "adapter.reconnecting"));
   const blocked = structuredClone(snapshot) as MutableSnapshot;
-  const blockedAgent = blocked.agents.find((agent) => agent.roleId === "flow-visual-producer");
+  const blockedAgent = blocked.agents.find((agent) => agent.roleId === visualRole);
   assert.ok(blockedAgent);
   blockedAgent.status = "blocked"; blockedAgent.reason = { kind: "blocked", code: "connector.disabled", owner: "adapter", recoverability: "reconnect", message: "Connector is disabled" };
-  assert.equal(projectPresentationState(blocked as OperationsSnapshotDocument).agents.find((agent) => agent.roleId === "flow-visual-producer")?.state, "blocked");
+  assert.equal(projectPresentationState(blocked as OperationsSnapshotDocument).agents.find((agent) => agent.roleId === visualRole)?.state, "blocked");
   const joined = reconciliation(raw, snapshot);
   assert.equal(joined.result.status, "applied");
   const partial = reconciliation(raw, { ...snapshot, throughSequence: 5, events: snapshot.events.slice(0, 5) });
@@ -114,12 +142,12 @@ function report(raw: RawTrace): Record<string, unknown> {
   assert.equal(currentTruth.status, "current-truth");
   assert.equal(currentTruth.checkpoint.cursor.streamEpoch, 2);
   const projection = projectPresentationState(snapshot);
-  const projectedJobs = projection.agents.filter((agent) => agent.work !== null).map((agent) => ({ id: agent.work!.jobId, roleId: agent.roleId, stage: agent.work!.stage, attempt: agent.roleId === "flow-visual-producer" ? 2 : 1, status: "succeeded" })).sort((left, right) => left.id.localeCompare(right.id));
+  const projectedJobs = projection.agents.filter((agent) => agent.work !== null).map((agent) => ({ id: agent.work!.jobId, roleId: agent.roleId, stage: agent.work!.stage, attempt: agent.roleId === visualRole ? 2 : 1, status: "succeeded" })).sort((left, right) => left.id.localeCompare(right.id));
   const authoritativeJobs = raw.jobs.map((job) => ({ id: String(job.id), roleId: String(job.payload.roleId), stage: String(job.stage), attempt: Number(job.attempt), status: "succeeded" })).sort((left, right) => left.id.localeCompare(right.id));
   const authoritative = { durableStage: "measured", jobs: authoritativeJobs, join: { ready: true, owner: "workflow-coordinator", branches: { copy: { status: "completed", attempt: 1 }, visual: { status: "completed", attempt: 2 } } }, status: "succeeded", cursor: { streamId: "operations-stream", streamEpoch: 2, throughSequence: 15 } };
-  const projected = { durableStage: String(projection.agents.find((agent) => agent.roleId === "performance-analyst")?.work?.stage), jobs: projectedJobs, join: { ready: currentTruth.checkpoint.choreography.contentReadyIntentId !== null, owner: "workflow-coordinator", branches: { copy: { status: joined.result.checkpoint.choreography.branches.copy.status, attempt: joined.result.checkpoint.choreography.branches.copy.attempt }, visual: { status: joined.result.checkpoint.choreography.branches.visual.status, attempt: joined.result.checkpoint.choreography.branches.visual.attempt } } }, status: "succeeded", cursor: { streamId: currentTruth.checkpoint.cursor.streamId, streamEpoch: currentTruth.checkpoint.cursor.streamEpoch, throughSequence: currentTruth.checkpoint.cursor.throughSequence } };
+  const projected = { durableStage: String(projection.agents.find((agent) => agent.roleId === performanceRole)?.work?.stage), jobs: projectedJobs, join: { ready: currentTruth.checkpoint.choreography.contentReadyIntentId !== null, owner: "workflow-coordinator", branches: { copy: { status: joined.result.checkpoint.choreography.branches.copy.status, attempt: joined.result.checkpoint.choreography.branches.copy.attempt }, visual: { status: joined.result.checkpoint.choreography.branches.visual.status, attempt: joined.result.checkpoint.choreography.branches.visual.attempt } } }, status: "succeeded", cursor: { streamId: currentTruth.checkpoint.cursor.streamId, streamEpoch: 2, throughSequence: currentTruth.checkpoint.cursor.throughSequence } };
   assert.deepEqual(projected, authoritative);
-  return { schemaVersion: "phase3-operations-evidence-v1", scenarioCount: 10, roles: raw.roles, choreography: raw.jobs.map((job) => ({ roleId: job.payload.roleId, jobId: job.id, stage: job.stage, attempt: job.attempt, result: raw.results.find((result) => result.jobId === job.id)?.status, simulationOnly: true })), eventOrder: (raw.operationsWindow.events as Record<string, any>[]).map((event) => ({ sequence: event.sequence, id: eventValue(event), stage: event.stage, jobId: event.jobId, eventType: event.eventType })), decisions: [{ case: "duplicate-delivery", status: duplicate.status, decision: "no-op", ids: duplicate.duplicateEventIds }, { case: "same-id-changed-digest", status: conflict.status, decision: "fail-closed", diagnostics: conflict.diagnostics.map((diagnostic) => diagnostic.code) }, { case: "out-of-order-gap", status: gapResult.status, decision: "resync-required", diagnostics: gapResult.diagnostics.map((diagnostic) => diagnostic.code) }, { case: "late-event", status: late.status, decision: "resync-required", diagnostics: late.diagnostics.map((diagnostic) => diagnostic.code) }, { case: "review-rejection-approval", status: "approved-after-rejection", decision: "workflow-stage-remained-authoritative" }, { case: "failure-retry-recovery", status: joined.result.checkpoint.choreography.branches.visual.status, decision: "attempt-2-completed" }, { case: "reconnect", status: "reconnecting", decision: "adapter-owned" }, { case: "disabled-connector", status: "blocked", decision: "no connector action", connectorActions: [] }, { case: "stale-office-projection", status: "stale", decision: "not-authoritative" }, { case: "current-truth-rebase", status: currentTruth.status, decision: "epoch-2 cursor" }], disabledConnector: { allowed: disabled.allowed, diagnostics: disabled.diagnostics.map((diagnostic) => diagnostic.code), connectorActions: [] }, authoritative, projected, finalStateEqual: true, persistence: raw.persistence };
+  return { schemaVersion: "phase3-operations-evidence-v1", scenarioCount: 10, roles: raw.roles, operationsWindow: raw.operationsWindow, choreography: raw.jobs.map((job) => ({ roleId: job.payload.roleId, jobId: job.id, stage: job.stage, attempt: job.attempt, result: raw.results.find((result) => result.jobId === job.id)?.status, simulationOnly: true })), eventOrder: (raw.operationsWindow.events as Record<string, any>[]).map((event) => ({ sequence: event.sequence, id: eventValue(event), stage: event.stage, jobId: event.jobId, eventType: event.eventType })), decisions: [{ case: "duplicate-delivery", status: duplicate.status, decision: "no-op", ids: duplicate.duplicateEventIds }, { case: "same-id-changed-digest", status: conflict.status, decision: "fail-closed", diagnostics: conflict.diagnostics.map((diagnostic) => diagnostic.code) }, { case: "out-of-order-gap", status: gapResult.status, decision: "resync-required", diagnostics: gapResult.diagnostics.map((diagnostic) => diagnostic.code) }, { case: "late-event", status: late.status, decision: "resync-required", diagnostics: late.diagnostics.map((diagnostic) => diagnostic.code) }, { case: "review-rejection-approval", status: "approved-after-rejection", decision: "workflow-stage-remained-authoritative" }, { case: "failure-retry-recovery", status: joined.result.checkpoint.choreography.branches.visual.status, decision: "attempt-2-completed" }, { case: "reconnect", status: "reconnecting", decision: "adapter-owned" }, { case: "disabled-connector", status: "blocked", decision: "no connector action", connectorActions: [] }, { case: "stale-office-projection", status: "stale", decision: "not-authoritative" }, { case: "current-truth-rebase", status: currentTruth.status, decision: "epoch-2 cursor" }], disabledConnector: { allowed: disabled.allowed, diagnostics: disabled.diagnostics.map((diagnostic) => diagnostic.code), connectorActions: [] }, authoritative, projected, finalStateEqual: true, persistence: raw.persistence };
 }
 function markdown(reportData: Record<string, unknown>, hash: string): string { const decisions = reportData.decisions as Record<string, unknown>[]; const choreography = reportData.choreography as Record<string, unknown>[]; return `# P3-EXIT-03 Ten-role operations trace\n\n- Scenario count: 10\n- Roles: ${(reportData.roles as string[]).join(", ")}\n- Final authoritative equals projected: true\n- Evidence hash: ${hash}\n\n## Ten-role choreography\n\n${choreography.map((step, index) => `${index + 1}. ${String(step.roleId)} — ${String(step.stage)} — attempt ${String(step.attempt)} — ${String(step.result)} — simulation-only`).join("\n")}\n\n## Event and reconciliation decisions\n\n${decisions.map((decision) => `- ${String(decision.case)}: ${String(decision.status)}; ${String(decision.decision)}`).join("\n")}\n\n## Authority boundary\n\nThe runner owns JobEnvelope/JobResult and persistence facts. Workflow ownership and the content_ready join remain workflow-coordinator-owned. Operations reconciliation projects current durable truth; presentationOnly intents never advance workflow state. Disabled connector actions: 0.\n`; }
 
