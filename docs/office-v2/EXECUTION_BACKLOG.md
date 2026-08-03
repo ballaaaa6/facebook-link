@@ -199,7 +199,7 @@ executable leaf tasks and their current status.
   clean builds are byte-identical, all exact negative diagnostics pass, and
   the full repository check is green.
 - Planning artifact: `docs/parallel-work/phase5-asset-factory-plan.md`.
-- Current integration base: `c763844` (`docs(office-v2): select Phase 5 wave 2`).
+- Current integration base: `ade9348` (`chore(office-v2): lock Phase 5 wave 2`).
 - Initial gaps: no `assets/office-v2` source, recipe, runtime, manifest, or
   report family; `office:v2:assets:check` validates only basic PNG headers,
   dimensions, hashes, and the frozen V1 manifest shape; no deterministic source

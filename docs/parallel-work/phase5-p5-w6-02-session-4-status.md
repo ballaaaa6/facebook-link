@@ -2,7 +2,7 @@
 
 - Task: `P5-W6.4` — atlas/catalog/scene-bundle compiler and runtime registry
 - Status: `READY FOR DISPATCH`
-- Base commit: `c763844`
+- Base commit: `ade9348`
 - Branch/worktree: recorded by Main at dispatch
 
 ## Scope lock
