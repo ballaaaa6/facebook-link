@@ -22,6 +22,9 @@ export const approvedOfficePackageDirectories = Object.freeze([
 ]);
 export const allowedOfficePaths = Object.freeze([
   ".agents/skills/build-office-v2-engine/",
+  ".agents/skills/author-office-v2-asset-family/",
+  ".agents/skills/compose-office-v2-room/",
+  ".agents/skills/review-office-v2-visuals/",
   "apps/web/src/features/office-v2/",
   "assets/office-v2/",
   "artifacts/office-v2/phase3/",

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Author Office V2 Asset Family"
+  short_description: "Build deterministic Office V2 asset families"
+  default_prompt: "Use $author-office-v2-asset-family to build and validate an Office V2 asset family."

@@ -321,4 +321,8 @@ test("clean-room roots use exact directory boundaries", () => {
   assert.equal(isAllowedOfficePath("packages/office-v2-world/src/index.ts"), true);
   assert.equal(isAllowedOfficePath("packages/office-v2-world-copy/src/index.ts"), false);
   assert.equal(isAllowedOfficePath("apps/web/src/features/office-v2/foundation.ts"), true);
+  assert.equal(isAllowedOfficePath(".agents/skills/author-office-v2-asset-family/SKILL.md"), true);
+  assert.equal(isAllowedOfficePath(".agents/skills/compose-office-v2-room/SKILL.md"), true);
+  assert.equal(isAllowedOfficePath(".agents/skills/review-office-v2-visuals/SKILL.md"), true);
+  assert.equal(isAllowedOfficePath(".agents/skills/author-office-v2-asset-family-copy/SKILL.md"), false);
 });

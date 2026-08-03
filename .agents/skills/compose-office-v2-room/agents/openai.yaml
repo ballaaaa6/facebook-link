@@ -1,0 +1,4 @@
+interface:
+  display_name: "Compose Office V2 Room"
+  short_description: "Compose rooms from canonical Office V2 contracts"
+  default_prompt: "Use $compose-office-v2-room to compose a room from authoritative Office V2 world and geometry contracts."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review Office V2 Visuals"
+  short_description: "Review Office V2 boards without inferring approval"
+  default_prompt: "Use $review-office-v2-visuals to inspect Office V2 review boards and record explicit outcomes."
