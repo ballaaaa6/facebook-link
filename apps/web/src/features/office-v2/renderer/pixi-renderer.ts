@@ -45,10 +45,12 @@ export class PixiRendererBackend implements RendererBackend {
   private viewport: Readonly<{ width: number; height: number }> = Object.freeze({ width: 800, height: 600 });
   private readonly diagnostics: RendererDiagnostic[] = [];
   private readonly resources = new Map<string, RendererBundleResource>();
+  private mountGeneration = 0;
 
   async mount(container: HTMLElement): Promise<void> {
     if (this.application) return;
     if (typeof document === "undefined") throw new Error("presentation.pixi-dom-unavailable: PixiJS requires a browser document");
+    const generation = ++this.mountGeneration;
     const application = new Application();
     await application.init({
       width: this.viewport.width,
@@ -60,6 +62,10 @@ export class PixiRendererBackend implements RendererBackend {
       preference: "webgl",
       resolution: 1,
     });
+    if (generation !== this.mountGeneration) {
+      application.destroy({ removeView: true }, { children: true, texture: true, textureSource: true });
+      return;
+    }
     application.canvas.dataset.renderer = "pixijs-8.19.0";
     application.canvas.setAttribute("aria-label", "Office Engine V2 PixiJS renderer");
     application.canvas.setAttribute("role", "img");
@@ -134,6 +140,7 @@ export class PixiRendererBackend implements RendererBackend {
   }
 
   teardown(): void {
+    this.mountGeneration += 1;
     this.destroyApplication();
     this.container = undefined;
     this.camera = undefined;
