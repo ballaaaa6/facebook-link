@@ -6,7 +6,7 @@
 - Branch: `task/phase5-p5-w6-1-admission`
 - Worktree: pending worker handoff
 - Integrated base: `871546e3637c8e35b5823241c4c595fa42c1ecd0`
-- Planning commit: pending Main dispatch commit
+- Planning commit: `600f9e3` (planning artifacts; lock commit follows)
 - Started: pending
 - Completed: pending
 

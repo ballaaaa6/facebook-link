@@ -13,6 +13,9 @@ Recorded: `2026-08-03` (Asia/Bangkok)
 - Integration worktree: `C:\Users\WINDOW XI\.codex\worktrees\phase5-asset-factory`
 - Initial Git status: clean; no project server or long-running process was
   started by this phase.
+- Planning artifacts commit: `600f9e3` (`docs(office-v2): plan Phase 5 asset
+  factory wave`). A coordinator-only lock commit will freeze the worker base
+  immediately before dispatch.
 - Office V2 preflight: PASS.
 - Baseline `npm run check`: PASS at the planning base.
 - Existing Phase 4 and historical worktrees are preserved and are not reused.

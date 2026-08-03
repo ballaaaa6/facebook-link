@@ -10,7 +10,7 @@
 - Assigned worktree: worker-owned isolated worktree; report its absolute path
   in the handoff and status file
 - Integrated base commit: `871546e3637c8e35b5823241c4c595fa42c1ecd0`
-- Planning commit: recorded by Main immediately before dispatch
+- Planning commit: `600f9e3` (planning artifacts; lock commit follows)
 - Status file: `docs/parallel-work/phase5-p5-w6-01-session-1-status.md`
 
 ## Objective
