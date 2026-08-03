@@ -23,11 +23,12 @@ checker, backlog, phase report, renderer, or other worker output may be changed.
 - Diff/ownership review: PASS; factory modules/tests and this status file only
 - `npm run office:v2:assets:check`: PASS (zero-manifest foundation state)
 - `npm run check`: PASS
-- Commit: pending Main recovery commit
-- Clean worktree: pending Main recovery commit
+- Implementation commit: `0441495`
+- Clean worktree: PASS after `0441495`
 
 ## Handoff
 
 The replacement worker was shut down after repeated bounded waits. Main retained
 the refactored exact scope, independently ran focused tests, preflight, asset
-check, and full `npm run check`, and will record the commit hash after review.
+check, and full `npm run check`. Main exact-scope recovery commit: `0441495`.
+The worktree is clean and ready for independent review and cherry-pick.
