@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "office-workstation-visual-contract-v1",
+  "contractId": "workstation-basic-v2-visual",
+  "contractVersion": 1,
+  "familyId": "workstation-basic",
+  "familyVersion": 2,
+  "status": "frozen-for-rework",
+  "projection": {
+    "id": "office-projection-v1",
+    "ratio": "2:1",
+    "cameraRotation": 0,
+    "cameraQuadrant": "southeast",
+    "visibleFaces": ["top", "south", "east"],
+    "axisScreenVectorsPerCell": {
+      "east": [32, 16],
+      "south": [-32, 16],
+      "west": [-32, -16],
+      "north": [32, -16]
+    },
+    "worldFacingToScreenFacing": {
+      "north": "north-east",
+      "east": "south-east",
+      "south": "south-west",
+      "west": "north-west"
+    }
+  },
+  "native": {
+    "tileWidthPx": 64,
+    "tileHeightPx": 32,
+    "elevationHeightPx": 16,
+    "subCellUnits": 4,
+    "filter": "nearest",
+    "canvas": { "widthPx": 176, "heightPx": 96, "transparentMarginPx": 8 },
+    "footprint": { "widthCells": 2, "depthCells": 1 },
+    "clearance": { "widthCells": 3, "depthCells": 2 },
+    "spriteOriginPx": { "x": 40, "y": 24 },
+    "visualHeightPx": 48,
+    "footprintCornersPx": {
+      "north": { "x": 40, "y": 24 },
+      "east": { "x": 168, "y": 56 },
+      "south": { "x": 136, "y": 72 },
+      "west": { "x": 8, "y": 40 }
+    },
+    "groundContactPx": { "x": 136, "y": 72 },
+    "seatedSocket": {
+      "worldSubCell": { "x": 4, "y": 4, "elevation": 0 },
+      "spritePx": { "x": 40, "y": 56 },
+      "id": "seated"
+    }
+  },
+  "slopes": {
+    "topPlaneEast": { "risePx": 1, "runPx": 2 },
+    "topPlaneWest": { "risePx": 1, "runPx": -2 },
+    "sidePlaneVertical": "infinite"
+  },
+  "lighting": {
+    "direction": "northwest",
+    "topPlane": "top-light",
+    "southFace": "south-shadow",
+    "eastFace": "east-mid"
+  },
+  "connectivity": {
+    "bitDirections": { "north": 1, "east": 2, "south": 4, "west": 8 },
+    "supportedMasks": [0, 2, 8, 10],
+    "westSeam": { "from": { "x": 40, "y": 24 }, "to": { "x": 8, "y": 40 } },
+    "eastSeam": { "from": { "x": 168, "y": 56 }, "to": { "x": 136, "y": 72 } },
+    "maskVisuals": {
+      "0": "both-end-caps",
+      "2": "east-seam-open-west-cap",
+      "8": "west-seam-open-east-cap",
+      "10": "both-seams-open"
+    }
+  },
+  "palette": {
+    "backgrounds": {
+      "light": [245, 242, 234, 255],
+      "dark": [24, 28, 36, 255]
+    },
+    "roles": ["transparent", "outline", "top-light", "wood-mid", "south-shadow", "east-mid", "metal", "accent", "actor-skin", "actor-cloth", "contact-highlight"]
+  },
+  "prohibitions": ["scene-specific-offset", "reference-pixels", "legacy-pixels", "orthographic-front-facing-substitute", "runtime-fallback"]
+}
