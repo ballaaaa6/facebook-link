@@ -16,8 +16,9 @@ executable leaf tasks and their current status.
   property/model gates pass; generated contracts, boundaries, and Office
   preflight pass at the Phase 5 planning base.
 - Phase status before execution: **NOT STARTED / INCOMPLETE**.
-- Phase status during execution: **ACTIVE — technical asset-factory work is
-  being decomposed; no runtime family has yet been admitted**.
+- Phase status during execution: **ACTIVE — Wave P5-W6-01 is integrated; Wave
+  P5-W6-02 is selected for the next READY frontier; no runtime family has yet
+  been admitted**.
 - Previous Phase status: **COMPLETE — Phase 3 unified gate reverified on
   2026-08-03 at gate-evaluation HEAD `8acd2af6ff524eaf2d7b02e5c4bd97d9a03c98af`**.
 - Phase exit criteria: unchanged source rebuilds byte-identically; provenance,
@@ -198,7 +199,7 @@ executable leaf tasks and their current status.
   clean builds are byte-identical, all exact negative diagnostics pass, and
   the full repository check is green.
 - Planning artifact: `docs/parallel-work/phase5-asset-factory-plan.md`.
-- Current integration base: `871546e` (`docs(office-v2): close Phase 4 renderer selection`).
+- Current integration base: `812c3c7` (`docs(office-v2): record asset factory handoff`).
 - Initial gaps: no `assets/office-v2` source, recipe, runtime, manifest, or
   report family; `office:v2:assets:check` validates only basic PNG headers,
   dimensions, hashes, and the frozen V1 manifest shape; no deterministic source
@@ -244,7 +245,8 @@ publication.
   unapproved runtime admission fail before import; `npm run office:v2:assets:check`
   remains green with zero manifests.
 - Priority: P0 critical path; unlocks catalog compilation and family admission.
-- Status: **READY — selected in Wave P5-W6-01**.
+- Status: **INTEGRATED — admission hardening accepted by Main; implementation
+  `9aa8cf0`, handoff `33d1e80`**.
 
 ### P5-W6.2 — Deterministic source/export and PNG foundation
 
@@ -263,7 +265,8 @@ publication.
   exact failure diagnostics for malformed recipes and overwrite/path escape.
 - Priority: P0 critical path; unlocks boards, catalog compilation, and the
   proof-family source/export slice.
-- Status: **READY — selected in Wave P5-W6-01**.
+- Status: **INTEGRATED — deterministic factory accepted by Main; implementation
+  `edb2ef0`, handoff `812c3c7`**.
 
 ### P5-W6.3 — Neutral geometry, alpha, palette, and review-board generator
 
@@ -280,7 +283,7 @@ publication.
 - Acceptance: board hashes are stable across clean runs; boards expose source,
   geometry, contacts, masks, palette/light policy, and review state; missing or
   inconsistent metadata fails closed.
-- Status: **BLOCKED_BY_TASK — waits for P5-W6.1 and P5-W6.2 integration**.
+- Status: **READY — selected in Wave P5-W6-02**.
 
 ### P5-W6.4 — Atlas/catalog/scene-bundle compiler and runtime registry
 
@@ -295,7 +298,7 @@ publication.
 - Acceptance: stable ordering and hashes; exact `latest`, orphan, duplicate,
   missing reference, incompatible version, and runtime-path diagnostics; output
   is reproducible and consumes the immutable family metadata.
-- Status: **BLOCKED_BY_TASK — waits for P5-W6.1 and P5-W6.2 integration**.
+- Status: **READY — selected in Wave P5-W6-02**.
 
 ### P5-W6.5 — Connected-workstation proof family
 

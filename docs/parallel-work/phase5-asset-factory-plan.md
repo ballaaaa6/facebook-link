@@ -14,8 +14,8 @@ Recorded: `2026-08-03` (Asia/Bangkok)
 - Initial Git status: clean; no project server or long-running process was
   started by this phase.
 - Planning artifacts commit: `600f9e3` (`docs(office-v2): plan Phase 5 asset
-  factory wave`). A coordinator-only lock commit will freeze the worker base
-  immediately before dispatch.
+  factory wave`). Wave 1 lock: `861ddef`; Wave 2 selection lock is the
+  coordinator commit immediately before dispatch.
 - Office V2 preflight: PASS.
 - Baseline `npm run check`: PASS at the planning base.
 - Existing Phase 4 and historical worktrees are preserved and are not reused.
@@ -28,7 +28,8 @@ Recorded: `2026-08-03` (Asia/Bangkok)
 - Objective: implement deterministic source/export, provenance, PNG and review
   evidence, atlas/catalog/scene-bundle closure, runtime registry generation,
   and one original connected-workstation family from source to runtime.
-- Status before execution: **NOT STARTED / INCOMPLETE**.
+- Status before execution: **NOT STARTED / INCOMPLETE**; Wave 1 is now
+  integrated and Wave 2 is the active selected frontier.
 - Entry criteria: Phase 4/T4 is complete at `871546e`; Canvas 2D is selected;
   Closure D asset contracts and generated types are integrated; clean-room,
   boundaries, contradictions, knowledge, assets, and full repository checks
@@ -109,14 +110,36 @@ unblocker and joins the catalog/family critical path.
   assets, status, or final report.
 - Expected unlocks: W6.1/W6.2 integration makes W6.3 and W6.4 READY.
 
+### Wave `P5-W6-01` outcome — accepted and integrated
+
+- Main review accepted both exact-scope recoveries after their replacement
+  workers were shut down following repeated bounded waits. The retained diffs
+  passed focused tests, Office preflight, `office:v2:assets:check`, diff
+  hygiene, and full `npm run check` in isolated worktrees.
+- P5-W6.1 implementation `a401647` integrated as `9aa8cf0`; its handoff record
+  integrated as `33d1e80`.
+- P5-W6.2 implementation `0441495` integrated as `edb2ef0`; its handoff record
+  integrated as `812c3c7`.
+- The integration worktree was repaired with `npm install --ignore-scripts`
+  because its isolated dependency tree did not yet contain `ajv`; this changed
+  no tracked files. Integrated focused suites pass 9/9 and 11/11, and the
+  zero-manifest asset gate remains green.
+- The accepted interfaces are the pure admission helpers in
+  `scripts/office-v2-asset-admission*.mjs` and the deterministic source/export
+  helpers in `scripts/office-v2-asset-factory*.mjs`.
+
 ### Wave `P5-W6-02` — evidence and closure compilers
 
-- Forecast READY frontier: `P5-W6.3`, `P5-W6.4` after Wave 1 integration.
-- Forecast worker count: **2**, subject to fresh review of ownership and
-  interface stability after integration.
+- READY frontier after Wave 1 integration: `P5-W6.3`, `P5-W6.4`.
+- Selected worker count: **2** after fresh ownership/interface review.
 - W6.3 consumes the factory's deterministic PNG/output interface; W6.4
   consumes the admission and output metadata interface. They own disjoint
   modules and tests.
+- Selection lock: `pending coordinator commit` immediately before dispatch.
+- W6.3 owns `scripts/office-v2-asset-boards.mjs`, its focused test, and its
+  status record. W6.4 owns `scripts/office-v2-asset-registry.mjs`, its focused
+  test, and its status record. Neither worker may edit assets, schemas,
+  manifests, package metadata, the backlog, or the final report.
 
 ### Wave `P5-W6-03` — proof family and repeatable skills
 
