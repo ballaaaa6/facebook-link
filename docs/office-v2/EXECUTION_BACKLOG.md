@@ -190,8 +190,10 @@ executable leaf tasks and their current status.
 ## Current Phase 5 execution state — P5-W6 reproducible asset factory
 
 - Phase: **Phase 5 — Reproducible asset factory**
-- Status: **EXTERNAL_BLOCKER — technical evidence is integrated; explicit
-  geometry, visual, and commercial owner review is missing**.
+- Status: **EXTERNAL_BLOCKER — the original workstation-basic/v1 candidate is
+  explicitly rejected for the required 2:1 dimetric/isometric direction;
+  bounded rework P5-W6.5-R1 produced a new v2 spec-only proof candidate, and
+  independent v2 owner review is still pending**.
 - Parent milestone: M2 — Office Engine V2 foundation and first-floor path.
 - Entry criteria: Phase 4/T4 closure, Canvas 2D selection, Closure D asset
   contracts, generated schema drift gate, clean-room boundary, and passing
@@ -314,17 +316,35 @@ publication.
   provenance, deterministic recipe, generated PNGs, boards, catalog/bundle
   references, and admission evidence consumed by the selected renderer.
 - Dependencies: P5-W6.1, P5-W6.2, P5-W6.3, and P5-W6.4 integrated.
-- Owned boundary: `assets/office-v2/sources`, `recipes`, `runtime`,
-  `manifests`, `reports`, and family-specific fixture metadata.
+- Owned boundary: versioned `assets/office-v2/sources`, `recipes`, and
+  `reports`; runtime and manifest roots remain closed until approval.
 - Forbidden: copied/reference pixels, V1/legacy assets, scene offsets, renderer
   geometry, unapproved commercial status, unrelated families, and Phase 6.
 - Acceptance: two clean builds are byte-identical; all four masks pass and
   unsupported masks fail; geometry/socket/contacts/alpha/seam/provenance/
   catalog/bundle/registry checks pass; owner review is explicit; runtime import
   fails closed on any altered, missing, orphaned, or unapproved material.
-- Status: **EXTERNAL_BLOCKER — technical proof family is complete and
-  reproducible; explicit geometry, visual, and commercial owner review is
-  still required before runtime admission**.
+- Status: **EXTERNAL_BLOCKER — v1 owner review is recorded as geometry
+  `rework-required`, visual `rejected`, and commercial `pending`; bounded
+  rework `P5-W6.5-R1` generated `workstation-basic/v2` with deterministic
+  technical evidence, but independent v2 geometry, visual, and commercial
+  owner review is still required before runtime admission**.
+
+#### P5-W6.5-R1 — 2:1 dimetric workstation proof family
+
+- The visual contract was frozen before pixels at
+  `docs/office-v2/WORKSTATION_BASIC_V2_VISUAL_CONTRACT.md` and
+  `assets/office-v2/contracts/workstation-basic/v2/visual-contract.json`.
+- v1 owner review is recorded in
+  `docs/parallel-work/phase5-p5-w6-5-v1-owner-review.md`; its source, recipe,
+  reports, hashes, and generated evidence were not rewritten.
+- v2 evidence is under the versioned source, recipe, and report roots. It uses
+  the accepted factory, admission, boards, and registry tools and emits masks
+  `0/2/8/10`, enlarged native-scale/connectivity boards, `[2,10,8]` seam
+  composition, seated contact overlay, light/dark previews, and two
+  byte-identical builds.
+- Status: **EXTERNAL_BLOCKER — v2 remains spec-only pending independent owner
+  review; Phase 6 has not started**.
 
 ### P5-W6.6 — Project workflow skills
 
@@ -354,8 +374,8 @@ publication.
   `READINESS_REMEDIATION_PLAN.md`, this backlog, and the final integration
   report, then publish the validated integration branch without changing
   `main`.
-- Status: **EXTERNAL_BLOCKER — Main-only technical closure is complete, but
-  explicit geometry, visual, and commercial review is absent; T5 is not
+- Status: **EXTERNAL_BLOCKER — Main-only closure is blocked by the recorded v1
+  rejection and pending v2 geometry/visual/commercial owner review; T5 is not
   claimed and Phase 6 is not started**.
 
 ## Phase 5 selection rule

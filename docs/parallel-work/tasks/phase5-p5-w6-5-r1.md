@@ -1,7 +1,7 @@
 # P5-W6.5-R1 — 2:1 Dimetric Workstation Proof Family
 
-Status: **IN PROGRESS — visual contract frozen; pixel rework not yet
-integrated**
+Status: **EXTERNAL_BLOCKER — v2 technical evidence generated; pending
+independent geometry, visual, and commercial owner review**
 
 ## Purpose
 
@@ -15,10 +15,10 @@ delete, regenerate in place, or copy its outputs into v2.
 
 ## Contract lock
 
-Pixel production is permitted only after the frozen contract in
+Pixel production was permitted only after the frozen contract in
 `docs/office-v2/WORKSTATION_BASIC_V2_VISUAL_CONTRACT.md` and its machine-readable
 counterpart at
-`assets/office-v2/contracts/workstation-basic/v2/visual-contract.json` are
+`assets/office-v2/contracts/workstation-basic/v2/visual-contract.json` was
 integrated. The contract locks projection, camera quadrant, visible faces,
 axis vectors, canvas/tile relation, slopes, contacts, socket projection,
 lighting, seams, masks, nearest-neighbor rendering, and prohibited sources.

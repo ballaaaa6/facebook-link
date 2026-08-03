@@ -168,7 +168,7 @@ unblocker and joins the catalog/family critical path.
   integrated tools but do not edit their implementation.
 - Selection lock: `e8f5555` (`docs(office-v2): select Phase 5 wave 3`).
 
-### Wave `P5-W6-03` outcome — technical evidence complete; external blocker
+### Wave `P5-W6-03` outcome — historical v1 evidence preserved; rework required
 
 - W6.6 was completed by the worker and integrated as `677af66`; the three
   project skills pass their focused validators, use real repository tools, and
@@ -177,20 +177,32 @@ unblocker and joins the catalog/family critical path.
   was shut down without partial files. Main recovered only the locked proof
   family scope and integrated it as `c217d93`, then refreshed the committed
   evidence after proving the seated contact pixel is opaque.
-- The candidate source and recipe are under
+- The historical candidate source and recipe are under
   `assets/office-v2/sources/workstation-basic/v1/` and
   `assets/office-v2/recipes/workstation-basic/v1/`. Two clean builds, four
   masks (`0/2/8/10`), seated socket/contact evidence, twenty review boards,
   atlas/catalog/scene-bundle/registry reports, and candidate manifests are
-  under `assets/office-v2/reports/workstation-basic/v1/`.
-- Focused proof tests pass 2/2. Wave 3 technical validation passes Office
-  preflight, the zero-manifest assets gate, diff hygiene, and full
-  `npm run check`. The candidate remains `spec-only` and
-  `pending-owner-review`; no runtime manifest was admitted.
-- The phase is proven blocked at `P5-EXIT-01` because explicit geometry,
-  visual, and commercial owner approval is an external condition that cannot
-  be inferred from generated pixels or passing automation. Phase 6 was not
-  started.
+  under `assets/office-v2/reports/workstation-basic/v1/`. The separate owner
+  review records geometry `rework-required`, visual `rejected`, and commercial
+  `pending`; those v1 files and hashes remain untouched.
+
+### Bounded rework `P5-W6.5-R1` — 2:1 dimetric workstation proof family
+
+- The visual contract was frozen before pixel generation and explicitly binds
+  `office-projection-v1`, the southeast camera quadrant, visible top/south/east
+  faces, axis vectors, native 64x32 tile relation, 2:1 slopes, socket/contact,
+  seams, masks, nearest-neighbor filtering, and no scene-specific offsets or
+  reference/legacy pixels.
+- `workstation-basic/v2` is under the versioned source, recipe, and report
+  roots. The accepted factory, admission validator, review-board generator,
+  and registry tools were reused without modification.
+- The v2 report contains masks `0/2/8/10`, 20 native review boards plus
+  enlarged native-scale/connectivity boards, light/dark previews, the
+  `[2,10,8]` three-workstation seam composition, seated actor/contact overlay,
+  and two byte-identical factory builds.
+- Focused v2 proof tests pass 2/2. V2 remains `spec-only`, with no files under
+  `assets/office-v2/runtime/` or `assets/office-v2/manifests/`; owner approval
+  is still pending and Phase 6 has not started.
 
 ### Main-only T5 closure
 
@@ -199,9 +211,9 @@ independently runs every exit gate, records exact evidence, reconciles remote
 `main`, updates authoritative status, pushes the integration branch, and
 leaves `main` unchanged. Visual/commercial approval is an external acceptance
 condition; it will be recorded explicitly and never inferred from a generated
-image or a passing technical check. Result for this run: technical closure is
-complete, but `P5-EXIT-01` is `EXTERNAL_BLOCKER` until that owner review is
-recorded; T5 is not claimed.
+image or a passing technical check. Result for this run: v1 is explicitly
+rejected, v2 rework evidence is available for owner review, and `P5-EXIT-01`
+remains `EXTERNAL_BLOCKER`; T5 is not claimed and Phase 6 is not started.
 
 ## Frozen interfaces for Wave 1
 

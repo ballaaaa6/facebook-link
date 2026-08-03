@@ -28,16 +28,18 @@ source and reports remain immutable rejected historical evidence.
 - Family footprint: `2x1` world cells; declared clearance remains `3x2` cells.
 - Native sprite canvas: `176x96` pixels with an 8-pixel transparent safety
   margin around the projected footprint and visible height.
-- Sprite origin: `(40,24)` is the screen pixel for the ground projection of the
+- Sprite origin: `(56,24)` is the screen pixel for the ground projection of the
   footprint's north corner `(worldX=0, worldY=0)`.
-- Projected footprint corners are fixed to `(40,24)`, `(168,56)`, `(136,72)`,
-  and `(8,40)` in clockwise north/east/south/west order.
+- Projected footprint corners are fixed to `(56,24)`, `(120,56)`, `(88,72)`,
+  and `(24,40)` in clockwise north/east/south/west order. These coordinates
+  are the projection of the declared `2x1` footprint using the frozen world
+  axis vectors, so every edge retains the same 2:1 raster slope.
 - Visual height: `48` pixels from the top-plane crest to the lowest ground
   contact; the asset owns only sprite-pixel facts and references the
   authoritative world geometry.
-- Ground contact: the south-east footprint corner at `(136,72)`.
+- Ground contact: the south-east footprint corner at `(88,72)`.
 - Seated socket: world sub-cell `(4,4)` at zero elevation projects to sprite
-  pixel `(40,56)`. The seated actor overlay must use that exact contact and may
+  pixel `(56,56)`. The seated actor overlay must use that exact contact and may
   not add a scene-specific offset.
 
 ## Pixel construction rules
@@ -73,7 +75,7 @@ family supports only the accepted east-west set:
 
 The top-plane footprint, sprite origin, ground contact, and seated socket are
 identical across all four masks. The seams are fixed to the projected end
-edges: west seam `(40,24)->(8,40)` and east seam `(168,56)->(136,72)`. North,
+edges: west seam `(56,24)->(24,40)` and east seam `(120,56)->(88,72)`. North,
 south, corner, tee, cross, and vertical-middle masks remain rejected.
 
 ## Composition evidence

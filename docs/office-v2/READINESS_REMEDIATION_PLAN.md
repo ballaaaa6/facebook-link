@@ -140,6 +140,19 @@ build contains no Pixi reference. Phase 5 asset-factory technical evidence is
 integrated, but T5 remains blocked pending explicit geometry, visual, and
 commercial owner review; T6 is not started.
 
+### Current Phase 5 rework record — P5-W6.5-R1
+
+The original `workstation-basic/v1` candidate is preserved as immutable
+historical evidence, with owner outcomes geometry `rework-required`, visual
+`rejected`, and commercial `pending`. The bounded rework task freezes a new
+2:1 dimetric/isometric contract before pixels and generates
+`workstation-basic/v2` through the accepted deterministic factory, admission,
+review-board, and registry tools. V2 includes masks `0/2/8/10`, native-scale
+and connectivity review boards, a `[2,10,8]` seam composition, a seated
+contact overlay, and light/dark previews. It remains spec-only outside runtime
+and manifest roots until explicit v2 owner approval. T5 remains blocked and
+Phase 6 is not started.
+
 ## Working decisions to ratify
 
 These are the recommended defaults that remove the known contradictions. Each

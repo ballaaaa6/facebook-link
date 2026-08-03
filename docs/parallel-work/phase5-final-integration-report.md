@@ -5,9 +5,12 @@ Recorded: `2026-08-03` (Asia/Bangkok)
 ## Decision
 
 - Active phase: **Phase 5 — Reproducible asset factory**.
-- Result: **EXTERNAL_BLOCKER**. The technical slice is integrated and
-  reproducible, but `P5-EXIT-01` cannot claim T5 without explicit geometry,
-  visual, and commercial owner review of the connected-workstation family.
+- Result: **EXTERNAL_BLOCKER**. The original `workstation-basic/v1` candidate
+  is explicitly rejected for the required 2:1 dimetric/isometric direction
+  (`geometry: rework-required`, `visual: rejected`, `commercial: pending`).
+  Bounded rework `P5-W6.5-R1` now provides a new `workstation-basic/v2`
+  spec-only proof candidate, but `P5-EXIT-01` cannot claim T5 without
+  independent v2 geometry, visual, and commercial owner outcomes.
 - Integration target: `codex/integration/phase5-asset-factory`.
 - Primary branch: `main` remains unchanged at the Phase 4 closure point
   `871546e3637c8e35b5823241c4c595fa42c1ecd0`.
@@ -27,7 +30,12 @@ ran the same focused and repository gates before integration.
   integrated as `3a93d10` and `8149c0f`, with handoffs `ed232f7` and `1a020ac`.
 - Wave `P5-W6-03`: the three workflow skills integrated as `677af66`; Main
   recovered the connected-workstation proof family as `c217d93` and refreshed
-  its generated evidence after closing the seated-contact alpha gap.
+  its generated evidence after closing the seated-contact alpha gap. That v1
+  family is preserved as rejected historical evidence; it is not promoted.
+- Rework `P5-W6.5-R1`: the visual contract, v1 owner-review record, v2 source,
+  recipe, deterministic runner, tests, and report evidence are added on the
+  integration branch. No accepted factory, validator, board, registry, or
+  workflow skill was modified.
 
 ## Delivered evidence
 
@@ -54,30 +62,47 @@ ran the same focused and repository gates before integration.
   `review-office-v2-visuals`; the clean-room allowance admits only those exact
   roots.
 
+### Rework evidence
+
+- The frozen v2 contract is
+  `docs/office-v2/WORKSTATION_BASIC_V2_VISUAL_CONTRACT.md` with machine form
+  at `assets/office-v2/contracts/workstation-basic/v2/visual-contract.json`.
+- The v2 source/recipe are under the versioned `v2` roots and the generated
+  report is `assets/office-v2/reports/workstation-basic/v2/family.json`.
+- V2 produces true 2:1 dimetric raster planes, fixed southeast camera
+  visibility, common socket/contact `(56,56)`, masks `0/2/8/10`, enlarged
+  native/connectivity boards, `[2,10,8]` seam composition, seated overlay,
+  light/dark previews, and two byte-identical builds.
+- V2 registry and candidate manifest remain `spec-only`; no runtime PNG or
+  manifest was written.
+
 ## Validation
 
 - Focused admission tests: 9/9.
 - Focused factory tests: 11/11.
 - Focused review-board tests: 6/6.
 - Focused registry tests: 5/5.
-- Focused proof-family tests: 2/2, including source-change hash divergence.
+- Focused proof-family tests: v1 2/2 and v2 2/2, including source-change hash
+  divergence.
 - Two clean proof-family builds: byte-identical output and reports.
 - Office preflight, boundaries, clean-room, contradictions, knowledge,
   contracts, assets, architecture, code health, duplicate, typecheck, tests,
   build, and full `npm run check`: pass.
 - `office:v2:assets:check`: pass with zero admitted runtime manifests.
-- Technical visual inspection confirmed the generated candidate is renderable;
-  this is not owner geometry/visual/commercial approval.
+- Technical visual inspection confirmed the generated v1 candidate is
+  renderable; this is not owner geometry/visual/commercial approval. The
+  separate owner-review record rejects v1 for the project direction.
 
 ## Blocker and handoff
 
-The generated review records remain `pending-owner-review` for geometry,
-visual, and commercial decisions, and the candidate registry remains
-`spec-only`. No approval is inferred from procedural generation, image
-inspection, hashes, or automated gates. The next authorized action is for the
-owner to record those three review outcomes; Main must then rerun the complete
-Phase 5 exit sequence before any runtime manifest is admitted or Phase 6 is
-selected.
+The v1 review is explicitly recorded as geometry `rework-required`, visual
+`rejected`, and commercial `pending`; its source, recipe, reports, hashes, and
+evidence remain immutable historical material. The v2 review remains
+`pending-owner-review` for geometry, visual, and commercial decisions, and its
+registry remains `spec-only`. No approval is inferred from procedural
+generation, image inspection, hashes, or automated gates. Main must rerun the
+complete Phase 5 exit sequence after explicit v2 outcomes before any runtime
+manifest is admitted or Phase 6 is selected.
 
 The integration branch is the only publication target. It is pushed without
 force after final validation; `main` is not merged, rewritten, or pushed by

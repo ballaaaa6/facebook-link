@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "office-source-procedural-v1",
+  "familyId": "workstation-basic",
+  "familyVersion": 2,
+  "sourceId": "workstation-basic-procedural-v2",
+  "authoring": "project-owned-procedural",
+  "licenseStatus": "project-owned",
+  "commercialStatus": "pending-owner-review",
+  "reviewState": "pending-owner-review",
+  "algorithm": "office-projection-v1-2-to-1-dimetric-workstation-v2",
+  "projectionId": "office-projection-v1",
+  "visualContract": { "id": "workstation-basic-v2-visual", "version": 1 },
+  "geometryRef": { "id": "workstation-geometry", "version": 1 },
+  "footprint": { "widthCells": 2, "depthCells": 1 },
+  "clearance": { "widthCells": 3, "depthCells": 2 },
+  "nativeCanvas": { "widthPx": 176, "heightPx": 96, "filter": "nearest" },
+  "supportedMasks": [0, 2, 8, 10],
+  "paletteRoles": ["transparent", "outline", "top-light", "wood-mid", "south-shadow", "east-mid", "metal", "accent", "actor-skin", "actor-cloth", "contact-highlight"],
+  "lightDirection": "northwest",
+  "frames": [
+    { "frameId": "mask-0", "variant": "isolated", "mask": 0, "accent": [74, 157, 161, 255], "contacts": [{ "id": "seated", "xPx": 56, "yPx": 56, "requiredAlpha": "opaque" }], "socket": "seated" },
+    { "frameId": "mask-2", "variant": "east-end", "mask": 2, "accent": [74, 157, 161, 255], "contacts": [{ "id": "seated", "xPx": 56, "yPx": 56, "requiredAlpha": "opaque" }], "socket": "seated" },
+    { "frameId": "mask-8", "variant": "west-end", "mask": 8, "accent": [74, 157, 161, 255], "contacts": [{ "id": "seated", "xPx": 56, "yPx": 56, "requiredAlpha": "opaque" }], "socket": "seated" },
+    { "frameId": "mask-10", "variant": "middle", "mask": 10, "accent": [74, 157, 161, 255], "contacts": [{ "id": "seated", "xPx": 56, "yPx": 56, "requiredAlpha": "opaque" }], "socket": "seated" }
+  ]
+}

@@ -33,18 +33,18 @@
     "canvas": { "widthPx": 176, "heightPx": 96, "transparentMarginPx": 8 },
     "footprint": { "widthCells": 2, "depthCells": 1 },
     "clearance": { "widthCells": 3, "depthCells": 2 },
-    "spriteOriginPx": { "x": 40, "y": 24 },
+    "spriteOriginPx": { "x": 56, "y": 24 },
     "visualHeightPx": 48,
     "footprintCornersPx": {
-      "north": { "x": 40, "y": 24 },
-      "east": { "x": 168, "y": 56 },
-      "south": { "x": 136, "y": 72 },
-      "west": { "x": 8, "y": 40 }
+      "north": { "x": 56, "y": 24 },
+      "east": { "x": 120, "y": 56 },
+      "south": { "x": 88, "y": 72 },
+      "west": { "x": 24, "y": 40 }
     },
-    "groundContactPx": { "x": 136, "y": 72 },
+    "groundContactPx": { "x": 88, "y": 72 },
     "seatedSocket": {
       "worldSubCell": { "x": 4, "y": 4, "elevation": 0 },
-      "spritePx": { "x": 40, "y": 56 },
+      "spritePx": { "x": 56, "y": 56 },
       "id": "seated"
     }
   },
@@ -62,8 +62,8 @@
   "connectivity": {
     "bitDirections": { "north": 1, "east": 2, "south": 4, "west": 8 },
     "supportedMasks": [0, 2, 8, 10],
-    "westSeam": { "from": { "x": 40, "y": 24 }, "to": { "x": 8, "y": 40 } },
-    "eastSeam": { "from": { "x": 168, "y": 56 }, "to": { "x": 136, "y": 72 } },
+    "westSeam": { "from": { "x": 56, "y": 24 }, "to": { "x": 24, "y": 40 } },
+    "eastSeam": { "from": { "x": 120, "y": 56 }, "to": { "x": 88, "y": 72 } },
     "maskVisuals": {
       "0": "both-end-caps",
       "2": "east-seam-open-west-cap",
