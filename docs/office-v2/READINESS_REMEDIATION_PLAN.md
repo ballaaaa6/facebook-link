@@ -36,9 +36,12 @@ in Phases 2–5 respectively. This plan keeps their downstream acceptance visibl
 so a Phase 1 choice cannot defer rework into a later phase.
 
 The current status remains **no-go** for the large visual floor, bulk furniture,
-ten character identities, persistent simulation, and renderer integration. The
-only authorized implementation work is the closure sequence and the narrow test
-probes named below.
+ten character identities, persistent simulation, runtime assets, and full-floor
+visual integration. The synthetic Phase 4 renderer/T4 gate is complete: Canvas
+2D is selected through the Main-owned benchmark, lifecycle, accessibility,
+responsive, golden, and property/model evidence. The only authorized work after
+this closure is the dependency-ordered Phase 5 asset-factory sequence and its
+narrow test probes.
 
 ## The next test, precisely
 
@@ -122,6 +125,17 @@ The pure Phase 2 world kernel is authorized. The Phase 3 `P3-W0` wave has now
 accepted bounded RC-01/02/03 research closure records, but T2–T6 implementation
 gates remain future work; no reducer, replay runner, or reducer-produced hash
 is promoted by that prerequisite wave.
+
+### Current Phase 4/T4 promotion record — 2026-08-03
+
+The Main integration branch completed the renderer selection gate with the
+source-pinned exact Canvas 2D versus PixiJS 8.19.0 matrix: 300/300 valid runs,
+three no-rewrite Canvas golden captures, four browser QA checks, and seeded
+independent model evidence at 100 CI and 1,000 exploration runs. Canvas 2D is
+the selected presentation candidate. PixiJS remains only in the development
+benchmark lab so the losing proof/report remains auditable; the production
+build contains no Pixi reference. Phase 5 asset-factory work and T5/T6 remain
+not started.
 
 ## Working decisions to ratify
 

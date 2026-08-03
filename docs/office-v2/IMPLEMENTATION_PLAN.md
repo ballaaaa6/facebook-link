@@ -192,9 +192,9 @@ The Phase 3 exit closure was reverified on 2026-08-03 at gate-evaluation HEAD
 `8acd2af6ff524eaf2d7b02e5c4bd97d9a03c98af`. The unified command
 `npm run office:v2:phase3:acceptance` passed 15/15 checks twice, validator tests
 passed 4/4, and `npm run check` passed. T2, T3, and the complete ten-role
-Operations trace are integrated and Phase 3 is complete. This is headless and
-renderer-neutral; Phase 4 renderer selection and later T4–T6 evidence remain
-deferred.
+Operations trace are integrated and Phase 3 is complete. This remains the
+headless prerequisite for the now-completed Phase 4 renderer selection; later
+asset-factory T5/T6 evidence remains deferred.
 
 - Build one geometric room with one actor, one workstation, one target, blocked
   cells, one waiting position, and one unreachable case.
@@ -209,16 +209,28 @@ cancel or timeout, exposes an unreachable reason, and replays identically.
 
 ## Phase 4 — Renderer benchmark and selection
 
+Status: **complete on 2026-08-03**. Main integrated the Closure E renderer
+port, immutable snapshot/camera/picking boundary, identical Canvas 2D and
+PixiJS 8.19.0 synthetic candidates, deterministic benchmark collector, semantic
+QA lab, seeded property/model models, golden captures, and browser QA evidence.
+The exact matrix produced 300/300 valid runs. Canvas 2D was selected by lower
+render/tick p95 and materially lower context-recovery/remount latency. PixiJS
+is retained only in the development benchmark lab and is absent from the
+production build; no world, simulation, operations, or runtime asset state
+crosses the selected presentation boundary. Phase 5 has not started.
+
 - Define one renderer port for mount, snapshot render, camera, picking, resize,
   resource load, context recovery, diagnostics, and teardown.
 - Benchmark a minimal Canvas 2D implementation against the pinned PixiJS 8
   candidate using identical geometric scenes at 1, 10, 15, 25, and 50 actors.
 - Measure frame time, draw calls, textures, decoded memory, bundle contribution,
   load time, picking latency, responsive behavior, and cleanup.
-- Select one renderer by superseding decision 0002 and remove the losing proof.
+- Select one renderer by superseding decision 0002 and retain the losing
+  benchmark proof outside the production bundle.
 
-Exit: desktop, compact, and phone evidence passes, the numeric budget is
-recorded, and no renderer component owns world or simulation state.
+Exit: desktop, compact, and phone evidence passes, the numeric budget and
+selection are recorded, the losing candidate is absent from the production
+bundle, and no renderer component owns world or simulation state.
 
 ## Phase 5 — Reproducible asset factory
 

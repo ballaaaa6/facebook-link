@@ -33,7 +33,8 @@ export const expectedKnowledge = {
     "decisions/0011-canonical-serialization-and-hashing.md",
     "decisions/0012-queue-reservation-and-deadlock-policy.md",
     "decisions/0013-render-parts-and-proof-workstation.md", "decisions/0014-v2-runtime-world-format.md",
-    "decisions/0015-visual-style-and-asset-contracts.md", "decisions/TEMPLATE.md",
+    "decisions/0015-visual-style-and-asset-contracts.md",
+    "decisions/0016-canvas-2d-renderer-selection.md", "decisions/TEMPLATE.md",
   ],
   schemas: [
     "schemas/action-queue.schema.json", "schemas/activity-intent.schema.json",

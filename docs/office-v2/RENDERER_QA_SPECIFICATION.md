@@ -3,16 +3,21 @@
 ## Purpose and ownership
 
 This document owns the W1.6 Closure E specification for presentation and QA.
-It defines renderer-neutral data contracts and harness boundaries; it does not
-implement a renderer, choose Canvas 2D or PixiJS, admit assets, or claim
-benchmark, browser, accessibility, lifecycle, visual, property, or model
-evidence. The owning runtime boundary remains
+It defines renderer-neutral data contracts and harness boundaries. The
+pre-selection contract text below does not itself implement a renderer,
+admit assets, or substitute for the Phase 4 evidence gates. The owning runtime
+boundary remains
 `apps/web/src/features/office-v2`.
 
-Decision 0002 remains accepted and deliberately deferred. The Phase 4
-experiment must compare Canvas 2D with exactly PixiJS 8.19.0 using the same
-geometric scene, immutable snapshot, camera, semantic picking, viewport matrix,
-and cleanup protocol before any winner is recorded.
+Decision 0002 was accepted at this specification closure and is superseded for
+candidate selection by Decision 0016. Phase 4 compared Canvas 2D with exactly
+PixiJS 8.19.0 using the same geometric scene, immutable snapshot, camera,
+semantic picking, viewport matrix, and cleanup protocol. The current evidence
+is pinned to 300 valid benchmark runs, four browser-QA checks, three Canvas
+goldens, and passing property/model gates. Canvas 2D is selected for the
+synthetic Phase 4 renderer boundary; PixiJS remains development-lab proof and
+is absent from the production bundle. Asset admission and Phase 5 remain
+deferred.
 
 ## Versioned contracts
 
@@ -115,5 +120,8 @@ normal checks never rewrite goldens.
 The property/model profile pins fast-check 4.9.0, MIT license,
 `xorshift128plus`, CI seed `20260801`, 100 CI runs, 1000 exploration runs,
 shrink-path retention, counterexample promotion, and independent depth,
-picking, and lifecycle models. It is a profile only: fast-check is not
-installed or admitted and this closure claims zero property/model evidence.
+picking, and lifecycle models. At W1.6 this was a profile-only
+specification. Phase 4 admitted fast-check 4.9.0 under the dependency ledger
+and executed the pinned model gates; the accepted report is
+`artifacts/office-v2/phase4/property-model-evidence.json`. Later profile or
+model changes require a new version and a new acceptance run.

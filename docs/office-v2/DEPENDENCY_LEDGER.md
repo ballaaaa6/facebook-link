@@ -5,8 +5,8 @@ an exact version in the lockfile and records a decision.
 
 | Candidate | Observed version | License | Status | Purpose and boundary |
 | --- | --- | --- | --- | --- |
-| PixiJS | 8.19.0 | MIT | **Admitted for Phase 4 benchmark only** | Presentation-only candidate; exact package integrity `sha512-pq1O6emA/GFjjeF+8d3Pb5t7knD8FsnfWGqQcRjYjsqFZ7QdzG1XgjLDUu0DFJRbafjV5+g8iNLFBx0b9649lg==`; remove from production if Canvas wins; never owns simulation |
-| Canvas 2D | browser platform | platform | Benchmark in Phase 4 | Zero-library renderer baseline |
+| PixiJS | 8.19.0 | MIT | **Development-only Phase 4 proof; not selected** | Presentation-only comparison candidate; exact package integrity `sha512-pq1O6emA/GFjjeF+8d3Pb5t7knD8FsnfWGqQcRjYjsqFZ7QdzG1XgjLDUu0DFJRbafjV5+g8iNLFBx0b9649lg==`; retained for reproducible audit evidence, absent from the production bundle, and never owns simulation |
+| Canvas 2D | browser platform | platform | **Selected for synthetic Phase 4/T4 presentation** | Zero-library renderer baseline and current selected renderer; world and simulation truth remain external |
 | Ajv | 8.20.0 | MIT | Accepted for knowledge gates | Draft 2020-12 schema validation |
 | ajv-formats | 3.0.1 | MIT | Accepted for knowledge gates | Date-time format validation for snapshots and provenance |
 | fast-check | 4.9.0 | MIT | **Admitted for Phase 4 property/model evidence** | Exact integrity `sha512-7ms6T7SybUev/PQITciI0yLM2pOSFy5zpG8Ty7tQofcVaQUvrMXp6CBwqF6fThLCLOrfBtuHAtwq6Yu4XPCllg==`; Node `>=12.17.0` (repository Node `>=24`), 1.43 MB unpacked test-only cost, no browser bundle; Main-owned seeded QA only |
@@ -42,8 +42,10 @@ renderer decision. The repository skill at
 authority for any renderer-specific skill.
 
 Phase 4 admission record (2026-08-03): the exact PixiJS, Playwright, and
-fast-check package versions above are installed only to execute the frozen
+fast-check package versions above were installed only to execute the frozen
 renderer comparison, browser evidence, and seeded property/model evidence.
-PixiJS remains a losing-proof candidate until the Main-owned
-numeric/lifecycle/semantic decision is recorded; the selected renderer must be
-the only renderer dependency retained by the final production branch.
+Decision 0016 records Canvas 2D as the selected renderer. PixiJS remains only
+as development-lab proof for auditability and is absent from the production
+bundle; Playwright and fast-check remain test/evidence dependencies and are
+not shipped. A future cleanup may remove the losing proof candidate and its
+dev-only dependency together without changing the accepted Canvas decision.

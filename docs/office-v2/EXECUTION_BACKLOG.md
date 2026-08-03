@@ -7,7 +7,7 @@ executable leaf tasks and their current status.
 
 ## Current execution state
 
-- Active Phase: **Phase 4 — Renderer benchmark and selection**
+- Active Phase: **Phase 4 — Renderer benchmark and selection (complete; Phase 5 not started)**
 - Phase objective: implement the shared presentation port, immutable snapshot,
   bounded camera/picking, identical Canvas 2D and PixiJS 8.19.0 candidates,
   deterministic benchmark evidence, and T4 lifecycle/accessibility/responsive
@@ -16,8 +16,8 @@ executable leaf tasks and their current status.
   twice, Closure E freezes the renderer QA contracts, and generated contracts,
   boundaries, and Office preflight pass at the Phase 4 planning base.
 - Phase status before execution: **NOT STARTED / INCOMPLETE**.
-- Phase status during execution: **ACTIVE — first wave planned; no renderer
-  candidate or winner has been accepted**.
+- Phase status during execution: **COMPLETE — Canvas 2D selected by Main-owned
+  evidence; Phase 5 remains not started**.
 - Previous Phase status: **COMPLETE — Phase 3 unified gate reverified on
   2026-08-03 at gate-evaluation HEAD `8acd2af6ff524eaf2d7b02e5c4bd97d9a03c98af`**.
 - Phase exit criteria: the exact renderer port is implemented; Canvas 2D and
@@ -58,9 +58,9 @@ executable leaf tasks and their current status.
 ## Current Phase 4 execution state — P4-W5 renderer and UX proof
 
 - Phase: **Phase 4 — Renderer benchmark and selection**
-- Status: **ACTIVE / INCOMPLETE**.
+- Status: **COMPLETE — P4-EXIT-01 accepted on the integration branch**.
 - Entry criteria: satisfied by the Phase 3 closure, Closure E contract pack,
-  accepted renderer decision 0002, and the passing Office preflight.
+  superseded renderer decision 0002, and the passing Office preflight.
 - Exit gate: `P4-EXIT-01` Main-owned T4 closure after all P4-W5 leaves pass;
   it must record the exact benchmark protocol, environment, hashes, numeric
   budgets, lifecycle/accessibility/responsive evidence, selected renderer,
@@ -89,7 +89,7 @@ executable leaf tasks and their current status.
   deterministic bounded camera/fit/zoom/projection; edge/tie semantic picking;
   input immutability; focused Web typecheck/test and Office preflight.
 - Priority/risk: P0 critical-path; medium risk from coordinate-type misuse.
-- Status: **READY — selected for first wave**.
+- Status: **COMPLETE — Main-integrated renderer boundary and evidence pass**.
 
 ### P4-W5.2 — Shared renderer port lifecycle and resource handles
 
@@ -108,7 +108,7 @@ executable leaf tasks and their current status.
   zero resources after teardown; idempotent loads/unloads/remount; focused Web
   typecheck/test and Office preflight.
 - Priority/risk: P0 critical-path; medium risk from async cleanup.
-- Status: **READY — selected for first wave**.
+- Status: **COMPLETE — Main-integrated renderer port/lifecycle and evidence pass**.
 
 ### P4-W5.3 — Canvas 2D candidate
 
@@ -117,7 +117,7 @@ executable leaf tasks and their current status.
   port with geometric fixture-only rendering, depth ordering, picking, capture,
   and lifecycle smoke evidence.
 - Downstream: P4-W5.5, P4-W5.6, P4-W5.7.
-- Status: **BLOCKED_BY_TASK — P4-W5.1, P4-W5.2**.
+- Status: **COMPLETE — Canvas 2D candidate accepted for the comparison**.
 
 ### P4-W5.4 — PixiJS 8.19.0 candidate
 
@@ -126,7 +126,8 @@ executable leaf tasks and their current status.
 - Objective: implement the identical PixiJS candidate and lifecycle smoke
   against the same fixture-only bundle and snapshot.
 - Downstream: P4-W5.5, P4-W5.6, P4-W5.7.
-- Status: **BLOCKED_BY_TASK — P4-W5.1, P4-W5.2 and dependency admission**.
+- Status: **COMPLETE — PixiJS 8.19.0 comparison candidate accepted as retained
+  development-only proof**.
 
 ### P4-W5.5 — Deterministic benchmark and report harness
 
@@ -135,7 +136,7 @@ executable leaf tasks and their current status.
   required metrics and hashes, fail closed on invalid runs, and generate
   reproducible Phase 4 evidence.
 - Downstream: P4-W5.7 and P4-EXIT-01.
-- Status: **BLOCKED_BY_TASK — candidate implementations**.
+- Status: **COMPLETE — Main recovery and browser evidence accepted**.
 
 ### P4-W5.6 — Semantic DOM, responsive, and lifecycle QA lab
 
@@ -144,7 +145,7 @@ executable leaf tasks and their current status.
   focus refresh/removal, non-color/reduced-motion/forced-colors behavior,
   viewport matrix, hidden/resume, remount, and context recovery.
 - Downstream: P4-W5.7 and P4-EXIT-01.
-- Status: **BLOCKED_BY_TASK — candidate implementations**.
+- Status: **COMPLETE — Main recovery and browser evidence accepted**.
 
 ### P4-W5.7 — Property/model, golden, and T4 evidence consolidation
 
@@ -152,7 +153,8 @@ executable leaf tasks and their current status.
 - Objective: run the pinned independent depth/picking/lifecycle models and
   pinned golden manifest checks, then consolidate evidence for the final gate.
 - Downstream: P4-EXIT-01.
-- Status: **BLOCKED_BY_TASK — benchmark and QA evidence**.
+- Status: **COMPLETE — 100 CI and 1,000 exploration model runs; golden and QA
+  checks accepted**.
 
 ### P4-EXIT-01 — Main-owned T4 closure and renderer decision
 
@@ -161,7 +163,27 @@ executable leaf tasks and their current status.
 - Objective: review/integrate evidence, supersede Decision 0002 with the numeric
   winner, remove the losing production code/dependency, update status and final
   report, run complete validation, and push the integration branch.
-- Status: **BLOCKED_BY_TASK — all Phase 4 leaves**.
+- Status: **COMPLETE — Canvas 2D selected; Pixi retained only as development
+  benchmark proof and is absent from the production bundle**.
+
+## Phase 4 exit closure — 2026-08-03
+
+- Source-pinned evidence revision: `f1778ae81034920b89de766423ce086629a65103`;
+  browser: Chromium 151.0.7922.34; fixture bundle SHA-256 is recorded in the
+  benchmark and golden artifacts.
+- Exact matrix: 300/300 valid runs, 0 invalid runs, 120 warmup frames, 300
+  samples, five repetitions, cold and warm runs, both candidates, five actor
+  profiles, and three viewports.
+- Canvas 2D matrix mean render/tick p95: 0.2429 ms (maximum 0.5 ms), context
+  recovery p95 mean 0.1553 ms, remount/cleanup p95 mean 1.596 ms. PixiJS 8.19.0
+  measured 1.2389 ms render/tick p95 mean (maximum 3.805 ms), 253.5733 ms
+  context recovery p95 mean, and 34.8353 ms remount/cleanup p95 mean.
+- Three no-rewrite Canvas golden captures and the seeded independent model
+  evidence pass; the browser QA artifact has four passing candidate/viewport
+  checks covering semantics, accessibility, responsive behavior, and lifecycle.
+- Canvas 2D is the selected renderer. PixiJS remains only in the development
+  evidence lab and dev-only proof dependency; the production build contains no
+  Pixi reference. Phase 5 asset-factory work has not started.
 
 ## Historical wave: P3-W0 — T2 research-closure prerequisites
 

@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "office-property-model-evidence-v1",
+  "sourceRevision": "f1778ae81034920b89de766423ce086629a65103",
+  "profile": {
+    "schemaVersion": "office-property-model-profile-v1",
+    "randomType": "xorshift128plus",
+    "ciSeed": 20260801,
+    "ciRuns": 100,
+    "explorationRuns": 1000,
+    "shrinkPath": "retain-in-failure-artifact",
+    "counterexamplePromotion": "minimized-failure-becomes-versioned-fixture"
+  },
+  "library": {
+    "name": "fast-check",
+    "version": "4.9.0",
+    "license": "MIT",
+    "admitted": true
+  },
+  "models": [
+    {
+      "kind": "depth",
+      "reference": "independent-depth-sort-model-v1",
+      "independent": true
+    },
+    {
+      "kind": "picking",
+      "reference": "independent-semantic-picking-model-v1",
+      "independent": true
+    },
+    {
+      "kind": "lifecycle",
+      "reference": "independent-renderer-lifecycle-model-v1",
+      "independent": true
+    }
+  ],
+  "evidence": [
+    {
+      "passed": true,
+      "runs": 100,
+      "results": [
+        {
+          "name": "depth-and-semantic-picking-model",
+          "passed": true,
+          "runs": 100
+        },
+        {
+          "name": "renderer-lifecycle-model",
+          "passed": true,
+          "runs": 100
+        }
+      ]
+    },
+    {
+      "passed": true,
+      "runs": 1000,
+      "results": [
+        {
+          "name": "depth-and-semantic-picking-model",
+          "passed": true,
+          "runs": 1000
+        },
+        {
+          "name": "renderer-lifecycle-model",
+          "passed": true,
+          "runs": 1000
+        }
+      ]
+    }
+  ]
+}

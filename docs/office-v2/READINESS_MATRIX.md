@@ -5,8 +5,9 @@ topic is ready only when its decision, contract, examples, automated evidence,
 and migration rule all exist. Prose alone never marks a row ready.
 
 `KNOWLEDGE_COMPLETENESS_AUDIT.md` records the evidence-level audit behind this
-matrix. Its current verdict is no-go for the large floor, bulk art, and
-renderer integration; the separate Phase 3 headless crowd exit does not admit
+matrix. Its current verdict remains no-go for the large floor, bulk art, and
+production asset integration; the synthetic Phase 4 renderer T4 gate is now
+complete, while the separate Phase 3 headless crowd exit does not admit full
 visual or load/performance crowd readiness. A `Ready for Phase` label below
 authorizes only
 the narrow behavior named in that row; it does not imply target readiness.
@@ -28,12 +29,21 @@ its entry and exit evidence. Visual production remains separately gated by
 [STYLE_PROFILE_APPROVAL.md](STYLE_PROFILE_APPROVAL.md), with pre-registered
 proof risks in [VISUAL_PROOF_RISK_REGISTER.md](VISUAL_PROOF_RISK_REGISTER.md).
 
+Phase 4/T4 closed on 2026-08-03 in the Main integration branch. The exact
+Canvas 2D versus PixiJS 8.19.0 benchmark matrix produced 300 valid runs; the
+source-pinned browser QA artifact covers semantic parity, accessibility,
+responsive overflow, reduced motion, forced colors, hidden/resume, context
+recovery, and remount cleanup; three no-rewrite Canvas goldens and the seeded
+property/model evidence pass. Canvas 2D is selected for the synthetic
+presentation boundary. Phase 5 asset-factory work and the full first-floor
+visual acceptance have not started.
+
 | Topic | Decision | Contract | Fixtures | Automated evidence | Status |
 | --- | --- | --- | --- | --- | --- |
 | Package ownership and import direction | `decisions/0007-package-ownership-and-import-boundaries.md` | four package manifests, generated-type boundary, and Web composition root | positive graph plus bare, manifest, relative, forbidden-import, generated-boundary, fake-root, and reverse-consumer negatives | `office:v2:boundaries:test` executes the negative matrix; boundary, architecture, clean-room, and generated-contract gates enforce the current tree | W0.1, W0.3, and the W1.1 contract slice complete; no persistent engine behavior authorized |
 | Forward projection | `decisions/0001-projection-grid.md` | projection section and common types | five integer cases in `projection-roundtrip.json` | T0 gate executes 5/5 bounded cases | Ready for a bounded pure-function probe |
 | Sub-cell projection, inverse picking, and camera | `decisions/0008-coordinate-and-facing-semantics.md` | V2 branded coordinate types plus named facing and cell/sub-cell transforms; full camera contract pending | common V2 valid/rejected cases plus projection round-trip and inverse-picking boundary tests; no zoom, crop, or camera fixture | schema/diagnostic, generated-drift, compile-time, pure transform, projection, and inverse-picking tests pass; property and viewport tests remain missing | Phase 2 bounded projection and inverse picking passed; camera and viewport behavior remain deferred |
-| Renderer boundary | `decisions/0002-renderer.md` | `renderer-port.schema.json`, `presentation-snapshot.schema.json` and renderer QA contracts | renderer QA, lifecycle, accessibility, golden, and synthetic benchmark fixtures | W1.6 Closure E bounded contract evidence; Phase 4 benchmark remains pending | W1.6 specification complete; renderer implementation and selection intentionally deferred |
+| Renderer boundary | `decisions/0016-canvas-2d-renderer-selection.md` supersedes `decisions/0002-renderer.md` | `renderer-port.schema.json`, `presentation-snapshot.schema.json`, benchmark, lifecycle, accessibility, golden, and property/model contracts | source-pinned Canvas/Pixi benchmark, renderer QA evidence, three Canvas goldens, seeded independent models, and the fixture-only bundle | `npm run check`; 300/300 valid renderer runs; 100 CI/1,000 exploration model runs; four browser QA checks; golden validator | **Phase 4/T4 COMPLETE — Canvas 2D selected for synthetic presentation; production assets and full-floor acceptance remain later gates** |
 | Canonical JSON map shape | `decisions/0003-map-authoring.md` | current world and structure schemas | minimal hand-authored office and structures | schema-shape evidence reported separately | Ready for a bounded data probe |
 | Editor import and scene compilation | `decisions/0014-v2-runtime-world-format.md` | `scene-plan.schema.json`, `world-v2.schema.json`, `compiled-building.schema.json`, and `compilation-report.schema.json` | target-floor, reorder/hash, and five fail-closed compiler cases | canonical bytes/hashes, reference graph, schema, compiler, and exact-diagnostic gates | W1.5/T1 bounded evidence complete; no persistent world or renderer |
 | Single-actor four-way navigation | `decisions/0004-navigation-movement.md` | current snapshot contract | preserved V1 path plus V2 six-step/cost-600 oracle | T0 gate uses cardinal and heuristic units of 100 | Ready for a bounded algorithm probe only |

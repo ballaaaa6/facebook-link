@@ -1,0 +1,190 @@
+{
+  "schemaVersion": "office-golden-manifest-set-v1",
+  "generatedBy": "scripts/office-v2-phase4-golden.mjs",
+  "sourceRevision": "f1778ae81034920b89de766423ce086629a65103",
+  "winner": "canvas-2d",
+  "fixture": {
+    "path": "docs/office-v2/fixtures/lab/renderer-benchmark-bundle-v1.json",
+    "sha256": "1a835cb9b957ad49fae1ad4374044d2c9082d4e3a2bd9796222dbefbe2b4a91d"
+  },
+  "environment": {
+    "browser": "chromium-151.0.7922.34",
+    "deviceScaleFactor": 1,
+    "locale": "en-US",
+    "forcedColor": "none",
+    "reducedMotion": "no-preference",
+    "osImage": "windows-pilot-image-2026-08-03"
+  },
+  "manifests": [
+    {
+      "schemaVersion": "office-golden-manifest-v1",
+      "manifestId": "office-golden-manifest-v1",
+      "browser": "chromium-151.0.7922.34",
+      "fontSet": "system-monospace-v1",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "camera": "lab-fit-camera-v1|1440x900",
+      "tick": 42,
+      "seed": 20260801,
+      "animationTime": 0,
+      "worldHash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "snapshotHash": "3287e732181b74ed26eff676a67d29d412b182078a9d1970b3ac751e94c894e1",
+      "projectionProfile": "office-projection-v1",
+      "styleProfile": "office-synthetic-geometric-style-v1",
+      "testFamily": "synthetic-geometric-family-v1",
+      "testAtlas": "synthetic-test-atlas-v1",
+      "testCatalog": "synthetic-test-catalog-v1",
+      "testBundle": "office-renderer-benchmark-bundle-v1",
+      "rendererRevision": "canvas-2d-v1",
+      "osImage": "windows-pilot-image-2026-08-03",
+      "locale": "en-US",
+      "dpr": 1,
+      "fontHashes": [
+        "1e1bdc241fcaa6da3c9d884a0a9af5a3212b76956d6969f4afe2c4fc75ef8d29"
+      ],
+      "forcedColor": "none",
+      "reducedMotion": "no-preference",
+      "threshold": {
+        "pixelDifference": 0.01,
+        "reviewRequired": true
+      },
+      "reviewer": "Main Orchestration Session",
+      "updatePolicy": "normal-checks-never-rewrite",
+      "geometryIndependent": true,
+      "migration": {
+        "fromVersion": "office-golden-manifest-v0",
+        "effect": "new-reviewed-golden-set"
+      }
+    },
+    {
+      "schemaVersion": "office-golden-manifest-v1",
+      "manifestId": "office-golden-manifest-v1",
+      "browser": "chromium-151.0.7922.34",
+      "fontSet": "system-monospace-v1",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "camera": "lab-fit-camera-v1|1024x768",
+      "tick": 42,
+      "seed": 20260801,
+      "animationTime": 0,
+      "worldHash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "snapshotHash": "3287e732181b74ed26eff676a67d29d412b182078a9d1970b3ac751e94c894e1",
+      "projectionProfile": "office-projection-v1",
+      "styleProfile": "office-synthetic-geometric-style-v1",
+      "testFamily": "synthetic-geometric-family-v1",
+      "testAtlas": "synthetic-test-atlas-v1",
+      "testCatalog": "synthetic-test-catalog-v1",
+      "testBundle": "office-renderer-benchmark-bundle-v1",
+      "rendererRevision": "canvas-2d-v1",
+      "osImage": "windows-pilot-image-2026-08-03",
+      "locale": "en-US",
+      "dpr": 1,
+      "fontHashes": [
+        "1e1bdc241fcaa6da3c9d884a0a9af5a3212b76956d6969f4afe2c4fc75ef8d29"
+      ],
+      "forcedColor": "none",
+      "reducedMotion": "no-preference",
+      "threshold": {
+        "pixelDifference": 0.01,
+        "reviewRequired": true
+      },
+      "reviewer": "Main Orchestration Session",
+      "updatePolicy": "normal-checks-never-rewrite",
+      "geometryIndependent": true,
+      "migration": {
+        "fromVersion": "office-golden-manifest-v0",
+        "effect": "new-reviewed-golden-set"
+      }
+    },
+    {
+      "schemaVersion": "office-golden-manifest-v1",
+      "manifestId": "office-golden-manifest-v1",
+      "browser": "chromium-151.0.7922.34",
+      "fontSet": "system-monospace-v1",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "camera": "lab-fit-camera-v1|390x844",
+      "tick": 42,
+      "seed": 20260801,
+      "animationTime": 0,
+      "worldHash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "snapshotHash": "3287e732181b74ed26eff676a67d29d412b182078a9d1970b3ac751e94c894e1",
+      "projectionProfile": "office-projection-v1",
+      "styleProfile": "office-synthetic-geometric-style-v1",
+      "testFamily": "synthetic-geometric-family-v1",
+      "testAtlas": "synthetic-test-atlas-v1",
+      "testCatalog": "synthetic-test-catalog-v1",
+      "testBundle": "office-renderer-benchmark-bundle-v1",
+      "rendererRevision": "canvas-2d-v1",
+      "osImage": "windows-pilot-image-2026-08-03",
+      "locale": "en-US",
+      "dpr": 1,
+      "fontHashes": [
+        "1e1bdc241fcaa6da3c9d884a0a9af5a3212b76956d6969f4afe2c4fc75ef8d29"
+      ],
+      "forcedColor": "none",
+      "reducedMotion": "no-preference",
+      "threshold": {
+        "pixelDifference": 0.01,
+        "reviewRequired": true
+      },
+      "reviewer": "Main Orchestration Session",
+      "updatePolicy": "normal-checks-never-rewrite",
+      "geometryIndependent": true,
+      "migration": {
+        "fromVersion": "office-golden-manifest-v0",
+        "effect": "new-reviewed-golden-set"
+      }
+    }
+  ],
+  "captures": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "actorCount": 15,
+      "rendererRevision": "canvas-2d-v1",
+      "sceneHash": "ad2cfdedbd9f1af110b3e71c48581e1da7ce9ca8e13828934b6477a63ce99706",
+      "width": 1440,
+      "height": 900,
+      "payloadHash": "c8892a4e6931d057a1b8fa19afeac082148e054f4a592f9566c0a407e87c4c6c",
+      "pngSha256": "2e5698826b0094a82bb045ae44f7cc941a58da17b5e151aad2503410bf718e9d",
+      "path": "artifacts/office-v2/phase4/goldens/canvas-2d-15-1440x900.png"
+    },
+    {
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "actorCount": 15,
+      "rendererRevision": "canvas-2d-v1",
+      "sceneHash": "62105d801e66dd407c7680c0e5cee000476a9581a30a0e920047d7399db15955",
+      "width": 1024,
+      "height": 768,
+      "payloadHash": "d2298f44b56f78216746f765c4ff57c47854148d4901b963706108fd34b9f436",
+      "pngSha256": "9a3aab9203b2e1f243b4894bd26c74a01421ffe8ac5299b46940381d6ea0bc88",
+      "path": "artifacts/office-v2/phase4/goldens/canvas-2d-15-1024x768.png"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "actorCount": 15,
+      "rendererRevision": "canvas-2d-v1",
+      "sceneHash": "5796bbbc7e12ade9298416555046ea1c3b513d651c1fc62bf5ce3575fd5d29fe",
+      "width": 390,
+      "height": 844,
+      "payloadHash": "1996238f0a47ab5813d188d78805be28e1ff23624f2adb0ab7cd9d488992276d",
+      "pngSha256": "be5abd612910807f4e5e08f9ed11fc4dfea96f06f3f2002aa4fb9897e55de6a5",
+      "path": "artifacts/office-v2/phase4/goldens/canvas-2d-15-390x844.png"
+    }
+  ]
+}

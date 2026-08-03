@@ -1,6 +1,6 @@
 # Phase 4 Renderer Selection — Parallel Wave Plan
 
-Status: **EXECUTING — first wave integrated; candidate frontier ready**
+Status: **COMPLETE — Canvas 2D selected; Phase 5 not started**
 
 Recorded: `2026-08-03` (Asia/Bangkok)
 
@@ -103,3 +103,19 @@ available at that point, and recalculates the graph before the next wave.
 The integration branch will be reconciled with remote `main` before final
 publication. `main` remains unchanged and no pull request is claimed unless a
 supported authenticated mechanism is available.
+
+## Wave execution summary
+
+- Wave `P4-W5-01`: two workers were dispatched for W5.1/W5.2; both initial
+  sessions and both bounded replacement sessions stalled without commits. Main
+  recovered the exact scopes in `8ab0cf5`.
+- Wave `P4-W5-02`: two workers were dispatched for W5.3/W5.4; both sessions
+  stalled without commits. Main recovered the exact candidate scopes in
+  `ac9d883`.
+- Wave `P4-W5-03`: two workers were dispatched for W5.5/W5.6; both sessions
+  stalled without commits. Main recovered the evidence harness and QA lab in
+  `ff435b6`, then added the admitted property/golden gates and QA evidence.
+- Main-only W5.7 completed the 300-run benchmark, 1,000-run exploration
+  profile, three pinned Canvas goldens, and four browser QA checks. P4-EXIT-01
+  is Main-closed by the decision/readiness/final-report commit; the integration
+  branch is the only publication target and `main` remains unchanged.

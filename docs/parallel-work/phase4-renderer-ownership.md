@@ -10,6 +10,7 @@ Planning base: recorded after the Phase 4 planning artifacts are committed.
 | 4 | `P4-W5.4` PixiJS 8.19.0 candidate | `apps/web/src/features/office-v2/renderer/pixi-renderer.ts`; `apps/web/test/pixi-renderer.test.ts`; `docs/parallel-work/phase4-session-4-status.md` | Canvas candidate, shared scene/camera/port files, package manifests/lockfiles, page composition, benchmark/QA/final reports, schemas/generated files, simulation/world/operations producers, assets |
 | 5 | `P4-W5.5` Deterministic benchmark harness and collector | `apps/web/src/features/office-v2/renderer/benchmark-harness.ts`; `apps/web/test/renderer-benchmark.test.ts`; `scripts/office-v2-phase4-benchmark.mjs`; `scripts/office-v2-phase4-benchmark.test.mjs`; `docs/parallel-work/phase4-session-5-status.md` | Candidate implementations, QA page/CSS, package manifests/lockfiles, generated reports/artifacts, final winner/decision/readiness docs, schemas/generated files, simulation/world/operations producers, assets |
 | 6 | `P4-W5.6` Semantic DOM, responsive, and lifecycle QA lab | `apps/web/src/features/office-v2/OfficeEngineV2LabPage.tsx`; `apps/web/src/features/office-v2/officeEngineV2Lab.css`; `apps/web/src/features/office-v2/renderer/lab-fixture.ts`; `apps/web/test/renderer-lab.test.ts`; `docs/parallel-work/phase4-session-6-status.md` | Benchmark harness/script, candidate implementations, package manifests/lockfiles, generated reports/artifacts, final winner/decision/readiness docs, schemas/generated files, simulation/world/operations producers, assets |
+| Main | `P4-W5.7` Property/model, golden, and T4 evidence consolidation | `scripts/office-v2-phase4-model.mjs`; `scripts/office-v2-phase4-model.test.mjs`; `scripts/office-v2-phase4-golden.mjs`; `scripts/office-v2-phase4-golden-check.mjs`; `scripts/office-v2-phase4-qa.mjs`; `scripts/office-v2-phase4-qa-check.mjs`; `artifacts/office-v2/phase4/`; `docs/parallel-work/phase4-session-7-status.md` | Worker-owned implementation scopes, world/simulation/operations producers, assets, schemas/generated files; final winner/decision/closure remains Main-only |
 
 Main-owned shared files:
 
@@ -50,4 +51,14 @@ and a progress request, both worktrees remained unchanged and both sessions
 were closed. Main recovered the exact candidate scopes and committed
 `ac9d883` (`feat(office-v2): add Phase 4 renderer candidates`). Candidate
 status files record the recovery and its limitations. W5.5 benchmark/report
-and W5.6 semantic/QA lab are now the next READY leaves; neither has started.
+and W5.6 semantic/QA lab were then dispatched from `3eda964` to Feynman
+(`019fc543-97f4-7593-a957-f1f800f136c0`) and Franklin
+(`019fc543-9879-7431-bc0f-acc83d432158`). Both sessions stalled after bounded
+waits and produced no commits. Main recovered both exact scopes in `ff435b6`.
+The browser evidence runner then found and fixed the Pixi StrictMode async mount
+duplication before acceptance; the final source-pinned benchmark/golden/model
+evidence uses `f1778ae`.
+
+W5.7 was deliberately Main-only after both evidence leaves were integrated.
+It admitted fast-check 4.9.0, generated the pinned evidence artifacts, and did
+not delegate winner selection, loser handling, or closure documentation.

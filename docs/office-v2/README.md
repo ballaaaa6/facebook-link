@@ -161,6 +161,22 @@ The Phase 1 exit handoff, Phase 2 acceptance record, visual style approval
 record, and visual proof risk register were added afterward as administrative
 controls. They do not add semantic cases or claim runtime evidence.
 
+## Current Phase 4 closure — 2026-08-03
+
+Phase 4/T4 is complete on the Main integration branch. The exact Canvas 2D
+versus PixiJS 8.19.0 synthetic benchmark produced 300/300 valid runs across
+the frozen actor, viewport, cold/warm, repetition, and metric matrix. Canvas 2D
+was selected by the recorded numeric and lifecycle evidence. The selected
+renderer remains presentation-only; the Pixi candidate and dependency remain
+only in the development evidence lab, and the production build contains no
+Pixi reference.
+
+The closure also includes four executable browser QA checks, three pinned
+no-rewrite Canvas goldens, and seeded independent depth/picking/lifecycle model
+evidence at the 100-run CI and 1,000-run exploration profiles. Phase 5 asset
+factory work, runtime asset admission, and full first-floor visual acceptance
+are not started.
+
 ## Knowledge rule
 
 Documentation is not accepted as a rule by itself. A production rule must have
