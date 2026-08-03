@@ -16,9 +16,9 @@ executable leaf tasks and their current status.
   property/model gates pass; generated contracts, boundaries, and Office
   preflight pass at the Phase 5 planning base.
 - Phase status before execution: **NOT STARTED / INCOMPLETE**.
-- Phase status during execution: **ACTIVE — Wave P5-W6-01 is integrated; Wave
-  P5-W6-02 is selected for the next READY frontier; no runtime family has yet
-  been admitted**.
+- Phase status during execution: **ACTIVE — Waves P5-W6-01 and P5-W6-02 are
+  integrated; Wave P5-W6-03 is selected for the final technical frontier; no
+  runtime family has yet been admitted**.
 - Previous Phase status: **COMPLETE — Phase 3 unified gate reverified on
   2026-08-03 at gate-evaluation HEAD `8acd2af6ff524eaf2d7b02e5c4bd97d9a03c98af`**.
 - Phase exit criteria: unchanged source rebuilds byte-identically; provenance,
@@ -199,7 +199,7 @@ executable leaf tasks and their current status.
   clean builds are byte-identical, all exact negative diagnostics pass, and
   the full repository check is green.
 - Planning artifact: `docs/parallel-work/phase5-asset-factory-plan.md`.
-- Current integration base: `e419fc5` (`docs(office-v2): finalize Phase 5 wave 2 lock`).
+- Current integration base: `1a020ac` (`docs(office-v2): record registry handoff`).
 - Initial gaps: no `assets/office-v2` source, recipe, runtime, manifest, or
   report family; `office:v2:assets:check` validates only basic PNG headers,
   dimensions, hashes, and the frozen V1 manifest shape; no deterministic source
@@ -283,7 +283,8 @@ publication.
 - Acceptance: board hashes are stable across clean runs; boards expose source,
   geometry, contacts, masks, palette/light policy, and review state; missing or
   inconsistent metadata fails closed.
-- Status: **READY — selected in Wave P5-W6-02**.
+- Status: **INTEGRATED — deterministic review boards accepted by Main;
+  implementation `3a93d10`, handoff `ed232f7`**.
 
 ### P5-W6.4 — Atlas/catalog/scene-bundle compiler and runtime registry
 
@@ -298,7 +299,8 @@ publication.
 - Acceptance: stable ordering and hashes; exact `latest`, orphan, duplicate,
   missing reference, incompatible version, and runtime-path diagnostics; output
   is reproducible and consumes the immutable family metadata.
-- Status: **READY — selected in Wave P5-W6-02**.
+- Status: **INTEGRATED — atlas/catalog/bundle registry accepted by Main;
+  implementation `8149c0f`, handoff `1a020ac`**.
 
 ### P5-W6.5 — Connected-workstation proof family
 
@@ -316,7 +318,7 @@ publication.
   unsupported masks fail; geometry/socket/contacts/alpha/seam/provenance/
   catalog/bundle/registry checks pass; owner review is explicit; runtime import
   fails closed on any altered, missing, orphaned, or unapproved material.
-- Status: **BLOCKED_BY_TASK — waits for P5-W6.3 and P5-W6.4 integration**.
+- Status: **READY — selected in Wave P5-W6-03**.
 
 ### P5-W6.6 — Project workflow skills
 
@@ -333,7 +335,7 @@ publication.
 - Acceptance: each skill passes the skill creator validator, uses imperative
   concise instructions, points to real repository tools/contracts, and has no
   extraneous README or installation guide.
-- Status: **BLOCKED_BY_TASK — waits for integrated tool interfaces**.
+- Status: **READY — selected in Wave P5-W6-03**.
 
 ### P5-EXIT-01 — Main-owned T5 closure
 

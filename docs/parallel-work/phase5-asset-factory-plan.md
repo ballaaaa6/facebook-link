@@ -28,8 +28,8 @@ Recorded: `2026-08-03` (Asia/Bangkok)
 - Objective: implement deterministic source/export, provenance, PNG and review
   evidence, atlas/catalog/scene-bundle closure, runtime registry generation,
   and one original connected-workstation family from source to runtime.
-- Status before execution: **NOT STARTED / INCOMPLETE**; Wave 1 is now
-  integrated and Wave 2 is the active selected frontier.
+- Status before execution: **NOT STARTED / INCOMPLETE**; Waves 1 and 2 are now
+  integrated and Wave 3 is the active selected frontier.
 - Entry criteria: Phase 4/T4 is complete at `871546e`; Canvas 2D is selected;
   Closure D asset contracts and generated types are integrated; clean-room,
   boundaries, contradictions, knowledge, assets, and full repository checks
@@ -141,13 +141,30 @@ unblocker and joins the catalog/family critical path.
   test, and its status record. Neither worker may edit assets, schemas,
   manifests, package metadata, the backlog, or the final report.
 
+### Wave `P5-W6-02` outcome — accepted and integrated
+
+- The dispatched W6.3 and W6.4 sessions remained at the frozen base after
+  repeated bounded waits and were shut down without partial files. Main
+  recovered only their locked scopes, then independently ran focused tests,
+  Office preflight, the zero-manifest asset gate, diff hygiene, and full
+  `npm run check` before committing.
+- P5-W6.3 implementation `3a93d10` integrated with handoff `ed232f7`; it
+  produces deterministic geometry, alpha, palette, connectivity, and
+  native-scale review boards without changing review state.
+- P5-W6.4 implementation `8149c0f` integrated with handoff `1a020ac`; it
+  compiles schema-shaped atlas/catalog/scene-bundle documents and a fail-closed
+  deterministic registry with explicit spec-only/runtime-approved admission.
+- Integrated focused evidence is 6/6 board tests and 5/5 registry tests. No
+  runtime manifest is admitted and no owner approval has been inferred.
+
 ### Wave `P5-W6-03` — proof family and repeatable skills
 
-- Forecast READY frontier: `P5-W6.5`, `P5-W6.6` after Wave 2 integration.
-- Forecast worker count: **2**, subject to a fresh frontier calculation.
+- READY frontier after Wave 2 integration: `P5-W6.5`, `P5-W6.6`.
+- Selected worker count: **2** after fresh frontier and ownership review.
 - W6.5 owns only the connected-workstation asset family and evidence; W6.6
   owns only the three skill directories and their metadata. Skills may call
   integrated tools but do not edit their implementation.
+- Selection lock: `pending coordinator commit` immediately before dispatch.
 
 ### Main-only T5 closure
 
