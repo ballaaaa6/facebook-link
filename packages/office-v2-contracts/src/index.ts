@@ -94,6 +94,25 @@ export type {
   CompiledFloor,
 } from "./generated/compiled-building.ts";
 export type {
+  Entity as PresentationEntity,
+  SnapshotDocument as PresentationSnapshotDocument,
+  Transform as PresentationTransform,
+} from "./generated/presentation-snapshot.ts";
+export type {
+  Diagnostic as RendererPortDiagnostic,
+  Operation as RendererPortOperation,
+  PortDocument as RendererPortDocument,
+} from "./generated/renderer-port.ts";
+export type {
+  BenchmarkDocument as RendererBenchmarkDocument,
+  SamplePlan as RendererBenchmarkSamplePlan,
+  Viewport as RendererBenchmarkViewport,
+} from "./generated/renderer-benchmark.ts";
+export type {
+  BundleDocument as RendererBenchmarkBundleDocument,
+  Profile as RendererBenchmarkProfile,
+} from "./generated/renderer-benchmark-bundle.ts";
+export type {
   Diagnostic as CompilationDiagnostic,
   ReferenceEdge,
   ReferenceGraph,

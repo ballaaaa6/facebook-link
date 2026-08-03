@@ -7,25 +7,25 @@ executable leaf tasks and their current status.
 
 ## Current execution state
 
-- Active Phase: **Phase 3 — Headless operational vertical slice (closed)**
-- Phase objective: produce the first deterministic, headless actor slice with
-  fixed ticks, commands, facilities, interaction cleanup, restore/replay, and
-  later AutoPost operations choreography.
-- Phase entry evidence: Phase 2 executable world-kernel acceptance passed at
-  `e4829b68619696651c73ba6b5dced73cc28beaa0`; the pure world package is
-  renderer-neutral and exports projection, placement, topology, depth, and
-  canonical-world behavior.
-- Pre-exit state: the bounded RC-01, RC-02, and RC-03 research prerequisite was
-  integrated. The W2 command, hash, one-actor interaction, lifecycle, queue,
-  and replay slices were bounded implementations before the exit wave.
-- Historical pre-exit status: **ACTIVE — P3-W3.4 integrated; T2/T3 exit
-  evidence remained incomplete**.
-- Current Phase status: **COMPLETE — the P3-EXIT-04 unified gate was
-  reverified on 2026-08-03 at gate-evaluation HEAD
-  `8acd2af6ff524eaf2d7b02e5c4bd97d9a03c98af`**.
-- Phase exit criteria: T2 one-actor reach/use/cancel/restore/replay evidence,
-  T3 crowd/queue/deadlock evidence, and the complete operations choreography
-  evidence pass without renderer or asset leakage.
+- Active Phase: **Phase 4 — Renderer benchmark and selection**
+- Phase objective: implement the shared presentation port, immutable snapshot,
+  bounded camera/picking, identical Canvas 2D and PixiJS 8.19.0 candidates,
+  deterministic benchmark evidence, and T4 lifecycle/accessibility/responsive
+  acceptance.
+- Phase entry evidence: Phase 3 is complete; the unified gate passed 15/15
+  twice, Closure E freezes the renderer QA contracts, and generated contracts,
+  boundaries, and Office preflight pass at the Phase 4 planning base.
+- Phase status before execution: **NOT STARTED / INCOMPLETE**.
+- Phase status during execution: **ACTIVE — first wave planned; no renderer
+  candidate or winner has been accepted**.
+- Previous Phase status: **COMPLETE — Phase 3 unified gate reverified on
+  2026-08-03 at gate-evaluation HEAD `8acd2af6ff524eaf2d7b02e5c4bd97d9a03c98af`**.
+- Phase exit criteria: the exact renderer port is implemented; Canvas 2D and
+  PixiJS 8.19.0 execute identical frozen benchmark scenes; required numeric,
+  lifecycle, semantic, accessibility, responsive, golden, and property/model
+  evidence passes; one renderer is selected by recorded evidence and the loser
+  is removed from production dependencies/code without changing world or
+  simulation truth.
 
 ## Phase 3 exit closure — P3-EXIT-01 through P3-EXIT-05
 
@@ -54,6 +54,114 @@ executable leaf tasks and their current status.
   `0c2e5ef`, `f2dd897`, and boundary repair `8acd2af`.
 - Phase 4 renderer work, production assets, and later visual/asset gates remain
   deferred; this closure authorizes no external connector actions.
+
+## Current Phase 4 execution state — P4-W5 renderer and UX proof
+
+- Phase: **Phase 4 — Renderer benchmark and selection**
+- Status: **ACTIVE / INCOMPLETE**.
+- Entry criteria: satisfied by the Phase 3 closure, Closure E contract pack,
+  accepted renderer decision 0002, and the passing Office preflight.
+- Exit gate: `P4-EXIT-01` Main-owned T4 closure after all P4-W5 leaves pass;
+  it must record the exact benchmark protocol, environment, hashes, numeric
+  budgets, lifecycle/accessibility/responsive evidence, selected renderer,
+  superseding decision, losing-proof removal, and final `npm run check`.
+- Planning artifacts: `docs/parallel-work/phase4-renderer-plan.md`,
+  `phase4-renderer-interfaces.md`, and `phase4-renderer-ownership.md`.
+- First READY frontier: `P4-W5.1`, `P4-W5.2`.
+- First-wave worker count: **2**. The leaves are independent, disjoint, and
+  independently testable; no third stable Phase 4 leaf exists before this
+  shared boundary is integrated.
+
+### P4-W5.1 — Immutable presentation snapshot, camera, and semantic picking
+
+- Parent milestone: M2 — Office Engine V2 foundation and first-floor path.
+- Parent Phase/workstream: Phase 4 / W5.1 shared presentation boundary.
+- Objective: build immutable snapshot construction/validation, bounded camera
+  transforms using `office-projection-v1`, and deterministic semantic picking.
+- Dependencies: Phase 3 complete; Closure E snapshot/camera/picking contracts.
+- Downstream: P4-W5.3, P4-W5.4, P4-W5.5, P4-W5.6, P4-W5.7.
+- Owned files: `apps/web/src/features/office-v2/renderer/presentation-snapshot.ts`,
+  `camera.ts`, `semantic-picking.ts`, and its focused test/status files.
+- Forbidden boundary: renderer candidates, lifecycle/port, schemas/generated
+  files, package manifests/lockfiles, world/simulation/operations producers,
+  assets, backlog, and final report.
+- Acceptance/tests: deep immutable snapshot with forbidden-state rejection;
+  deterministic bounded camera/fit/zoom/projection; edge/tie semantic picking;
+  input immutability; focused Web typecheck/test and Office preflight.
+- Priority/risk: P0 critical-path; medium risk from coordinate-type misuse.
+- Status: **READY — selected for first wave**.
+
+### P4-W5.2 — Shared renderer port lifecycle and resource handles
+
+- Parent milestone: M2 — Office Engine V2 foundation and first-floor path.
+- Parent Phase/workstream: Phase 4 / W5.1 renderer port and lifecycle.
+- Objective: implement the exact Closure E renderer-port operation set with
+  abortable/reference-counted loads, fail-closed missing assets, recovery,
+  teardown, and remount semantics.
+- Dependencies: Phase 3 complete; Closure E renderer-port/lifecycle contracts.
+- Downstream: P4-W5.3, P4-W5.4, P4-W5.5, P4-W5.6, P4-W5.7.
+- Owned files: `renderer-port.ts`, `lifecycle.ts`, focused test/status files.
+- Forbidden boundary: snapshot/camera/picking files, renderer candidates,
+  schemas/generated files, package manifests/lockfiles, world/simulation/
+  operations producers, assets, backlog, and final report.
+- Acceptance/tests: exact 13-operation surface; every lifecycle fixture event;
+  zero resources after teardown; idempotent loads/unloads/remount; focused Web
+  typecheck/test and Office preflight.
+- Priority/risk: P0 critical-path; medium risk from async cleanup.
+- Status: **READY — selected for first wave**.
+
+### P4-W5.3 — Canvas 2D candidate
+
+- Dependencies: P4-W5.1 and P4-W5.2 integrated.
+- Objective: implement the deterministic Canvas 2D candidate against the shared
+  port with geometric fixture-only rendering, depth ordering, picking, capture,
+  and lifecycle smoke evidence.
+- Downstream: P4-W5.5, P4-W5.6, P4-W5.7.
+- Status: **BLOCKED_BY_TASK — P4-W5.1, P4-W5.2**.
+
+### P4-W5.4 — PixiJS 8.19.0 candidate
+
+- Dependencies: P4-W5.1 and P4-W5.2 integrated plus Main-owned exact PixiJS
+  dependency admission.
+- Objective: implement the identical PixiJS candidate and lifecycle smoke
+  against the same fixture-only bundle and snapshot.
+- Downstream: P4-W5.5, P4-W5.6, P4-W5.7.
+- Status: **BLOCKED_BY_TASK — P4-W5.1, P4-W5.2 and dependency admission**.
+
+### P4-W5.5 — Deterministic benchmark and report harness
+
+- Dependencies: P4-W5.3 and P4-W5.4 integrated.
+- Objective: execute the frozen actor/profile/viewport/sample protocol, collect
+  required metrics and hashes, fail closed on invalid runs, and generate
+  reproducible Phase 4 evidence.
+- Downstream: P4-W5.7 and P4-EXIT-01.
+- Status: **BLOCKED_BY_TASK — candidate implementations**.
+
+### P4-W5.6 — Semantic DOM, responsive, and lifecycle QA lab
+
+- Dependencies: P4-W5.3 and P4-W5.4 integrated.
+- Objective: exercise shared semantic inspector, keyboard/pointer parity,
+  focus refresh/removal, non-color/reduced-motion/forced-colors behavior,
+  viewport matrix, hidden/resume, remount, and context recovery.
+- Downstream: P4-W5.7 and P4-EXIT-01.
+- Status: **BLOCKED_BY_TASK — candidate implementations**.
+
+### P4-W5.7 — Property/model, golden, and T4 evidence consolidation
+
+- Dependencies: P4-W5.5 and P4-W5.6 integrated; Main has selected the winner.
+- Objective: run the pinned independent depth/picking/lifecycle models and
+  pinned golden manifest checks, then consolidate evidence for the final gate.
+- Downstream: P4-EXIT-01.
+- Status: **BLOCKED_BY_TASK — benchmark and QA evidence**.
+
+### P4-EXIT-01 — Main-owned T4 closure and renderer decision
+
+- Dependencies: P4-W5.7 and every mandatory Phase 4 criterion.
+- Owner: Main Orchestration Session; no worker assignment.
+- Objective: review/integrate evidence, supersede Decision 0002 with the numeric
+  winner, remove the losing production code/dependency, update status and final
+  report, run complete validation, and push the integration branch.
+- Status: **BLOCKED_BY_TASK — all Phase 4 leaves**.
 
 ## Historical wave: P3-W0 — T2 research-closure prerequisites
 
