@@ -1,32 +1,36 @@
-# P5-W6.1 Worker Status
+# P5-W6.1 Session 1 Status
 
-- Task: `P5-W6.1` — Runtime asset admission gate hardening
-- Worker: Session 1
-- Status: **READY**
-- Branch: `task/phase5-p5-w6-1-admission`
-- Worktree: pending worker handoff
-- Integrated base: `871546e3637c8e35b5823241c4c595fa42c1ecd0`
-- Planning commit: `600f9e3` (planning artifacts; lock commit follows)
-- Started: pending
-- Completed: pending
+- Task: `P5-W6.1`
+- Status: `RECOVERED COMPLETE`
+- Branch: `task/session-1-p5-w6-1-admission`
+- Worktree: `C:\Users\WINDOW XI\.codex\worktrees\phase5-p5-w6-1-admission`
+- Base commit: `861ddefd0f7e1dad1ed8430cacdd5c5a109d5522`
+- Current commit: `pending Main exact-scope recovery commit`
 
-## Scope lock
+## Progress
 
-Owned files are the admission module, existing asset-check adapter, focused
-admission tests, and this status file. No assets, schemas, generated files,
-package manifests, backlog, phase report, renderer, or other worker output may
-be changed.
+- Read the assigned repository, Office V2, asset-pipeline, schema, Phase 5,
+  routing, readiness, and task-spec sources.
+- Created and isolated this worker worktree from the requested planning base;
+  Main and peer worktrees remain untouched.
+- Required project preflight initially found only a missing untracked `ajv`
+  installation in the fresh worktree; `npm install --ignore-scripts` repaired
+  the worker environment without changing tracked files, and preflight now
+  passes.
+- Decoder, pixel inspection, manifest/resource admission, focused tests, and
+  checker integration are complete. The replacement worker was shut down after
+  repeated bounded waits; Main retained and validated its exact locked scope.
 
-## Evidence
+## Validation so far
 
-- Focused test: pending
-- Office preflight: pending
-- Asset check: pending
-- Diff/ownership review: pending
-- Commit: pending
-- Clean worktree: pending
+- `node .agents/skills/build-office-v2-engine/scripts/preflight.mjs`: PASS
+- Focused admission tests: PASS (9/9)
+- `npm run office:v2:assets:check`: PASS (zero-manifest foundation state)
+- `git diff --check`: PASS
+- `npm run check`: PASS
 
-## Handoff
+## Handoff state
 
-Main will fill this section after independent review. The worker must stop after
-reporting its structured handoff.
+Main recovery commit is pending. Changed files are limited to the admission
+modules, focused tests, checker integration, and this status record. Main will
+record the commit hash after independent review and cherry-pick integration.
