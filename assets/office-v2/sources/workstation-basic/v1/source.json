@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "office-source-procedural-v1",
+  "familyId": "workstation-basic",
+  "familyVersion": 1,
+  "sourceId": "workstation-basic-procedural-v1",
+  "authoring": "project-owned-procedural",
+  "licenseStatus": "project-owned",
+  "commercialStatus": "pending-owner-review",
+  "reviewState": "pending-owner-review",
+  "algorithm": "16px-nearest-workstation-v1",
+  "geometryRef": { "id": "workstation-geometry", "version": 1 },
+  "supportedMasks": [0, 2, 8, 10],
+  "frames": [
+    { "frameId": "mask-0", "variant": "isolated", "mask": 0, "contacts": [{ "id": "seated", "xPx": 7, "yPx": 12, "requiredAlpha": "opaque" }], "socket": "seated" },
+    { "frameId": "mask-2", "variant": "east-end", "mask": 2, "contacts": [{ "id": "seated", "xPx": 7, "yPx": 12, "requiredAlpha": "opaque" }], "socket": "seated" },
+    { "frameId": "mask-8", "variant": "west-end", "mask": 8, "contacts": [{ "id": "seated", "xPx": 7, "yPx": 12, "requiredAlpha": "opaque" }], "socket": "seated" },
+    { "frameId": "mask-10", "variant": "middle", "mask": 10, "contacts": [{ "id": "seated", "xPx": 7, "yPx": 12, "requiredAlpha": "opaque" }], "socket": "seated" }
+  ]
+}

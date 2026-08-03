@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "office-export-recipe-v1",
+  "recipeId": "workstation-basic-export",
+  "recipeVersion": 1,
+  "familyId": "workstation-basic",
+  "familyVersion": 1,
+  "overwritePolicy": "fail",
+  "cleanOutputDirectory": "candidate-runtime",
+  "determinism": { "twoCleanBuilds": "required", "byteEquality": "required", "stableInputOrder": "declared" },
+  "outputs": [
+    { "kind": "png", "path": "candidate-runtime/mask-0.png", "frameId": "mask-0" },
+    { "kind": "png", "path": "candidate-runtime/mask-2.png", "frameId": "mask-2" },
+    { "kind": "png", "path": "candidate-runtime/mask-8.png", "frameId": "mask-8" },
+    { "kind": "png", "path": "candidate-runtime/mask-10.png", "frameId": "mask-10" },
+    { "kind": "metadata", "path": "candidate-runtime/metadata.json" }
+  ],
+  "metadata": { "filter": "nearest", "colorSpace": "srgb", "reviewState": "pending-owner-review" }
+}
