@@ -7,25 +7,25 @@ executable leaf tasks and their current status.
 
 ## Current execution state
 
-- Active Phase: **Phase 4 — Renderer benchmark and selection (complete; Phase 5 not started)**
-- Phase objective: implement the shared presentation port, immutable snapshot,
-  bounded camera/picking, identical Canvas 2D and PixiJS 8.19.0 candidates,
-  deterministic benchmark evidence, and T4 lifecycle/accessibility/responsive
-  acceptance.
-- Phase entry evidence: Phase 3 is complete; the unified gate passed 15/15
-  twice, Closure E freezes the renderer QA contracts, and generated contracts,
-  boundaries, and Office preflight pass at the Phase 4 planning base.
+- Active Phase: **Phase 5 — Reproducible asset factory**
+- Phase objective: build deterministic source/export, provenance, PNG and
+  review-board tooling, atlas/catalog/bundle closure, runtime admission, and
+  the first connected-workstation family without scene-specific offsets.
+- Phase entry evidence: Phase 4/T4 is complete; Canvas 2D was selected by
+  Main-owned evidence at `871546e`; the Phase 4 benchmark, QA, golden, and
+  property/model gates pass; generated contracts, boundaries, and Office
+  preflight pass at the Phase 5 planning base.
 - Phase status before execution: **NOT STARTED / INCOMPLETE**.
-- Phase status during execution: **COMPLETE — Canvas 2D selected by Main-owned
-  evidence; Phase 5 remains not started**.
+- Phase status during execution: **ACTIVE — technical asset-factory work is
+  being decomposed; no runtime family has yet been admitted**.
 - Previous Phase status: **COMPLETE — Phase 3 unified gate reverified on
   2026-08-03 at gate-evaluation HEAD `8acd2af6ff524eaf2d7b02e5c4bd97d9a03c98af`**.
-- Phase exit criteria: the exact renderer port is implemented; Canvas 2D and
-  PixiJS 8.19.0 execute identical frozen benchmark scenes; required numeric,
-  lifecycle, semantic, accessibility, responsive, golden, and property/model
-  evidence passes; one renderer is selected by recorded evidence and the loser
-  is removed from production dependencies/code without changing world or
-  simulation truth.
+- Phase exit criteria: unchanged source rebuilds byte-identically; provenance,
+  deterministic recipes, PNG/alpha/palette/contact/socket/seam checks, review
+  boards, atlas/catalog/scene-bundle closure, registry generation, orphan and
+  missing-material failures, and one approved connected-workstation family all
+  pass; the family is admitted only after geometry, visual, and commercial
+  review; no fallback, scene offset, or renderer-specific geometry is used.
 
 ## Phase 3 exit closure — P3-EXIT-01 through P3-EXIT-05
 
@@ -184,6 +184,173 @@ executable leaf tasks and their current status.
 - Canvas 2D is the selected renderer. PixiJS remains only in the development
   evidence lab and dev-only proof dependency; the production build contains no
   Pixi reference. Phase 5 asset-factory work has not started.
+
+## Current Phase 5 execution state — P5-W6 reproducible asset factory
+
+- Phase: **Phase 5 — Reproducible asset factory**
+- Status: **ACTIVE — planning base established; first wave selected**.
+- Parent milestone: M2 — Office Engine V2 foundation and first-floor path.
+- Entry criteria: Phase 4/T4 closure, Canvas 2D selection, Closure D asset
+  contracts, generated schema drift gate, clean-room boundary, and passing
+  Office preflight.
+- Exit gate: `P5-EXIT-01` Main-owned T5 closure after every mandatory leaf is
+  integrated, the connected-workstation family is approved and admitted, two
+  clean builds are byte-identical, all exact negative diagnostics pass, and
+  the full repository check is green.
+- Planning artifact: `docs/parallel-work/phase5-asset-factory-plan.md`.
+- Current integration base: `871546e` (`docs(office-v2): close Phase 4 renderer selection`).
+- Initial gaps: no `assets/office-v2` source, recipe, runtime, manifest, or
+  report family; `office:v2:assets:check` validates only basic PNG headers,
+  dimensions, hashes, and the frozen V1 manifest shape; no deterministic source
+  exporter, real RGBA/palette/contact validator, board generator,
+  atlas/catalog/bundle compiler, runtime registry, or project workflow skill
+  exists.
+
+### Phase 5 leaf graph
+
+```text
+P5-W6.1 admission-gate core ───────────────┐
+                                            ├─> P5-W6.4 catalog/bundle compiler ─┐
+P5-W6.2 deterministic export foundation ─> P5-W6.3 review-board generator ─────┼─> P5-W6.5 workstation proof family ─> P5-EXIT-01
+                                            └─> P5-W6.4 catalog/bundle compiler ─┘
+                                                                  └─> P5-W6.6 project workflow skills ────────────────┘
+```
+
+Edges mean integrated output is required; same-wave output never satisfies a
+dependency. `P5-W6.1` and `P5-W6.2` have disjoint files and stable existing
+schemas, so they are the first READY frontier. `P5-W6.3` and `P5-W6.4` become
+READY only after that shared foundation is integrated. `P5-W6.5` and `P5-W6.6`
+are independently owned in the third wave; the former produces the proof
+family and the latter consumes the integrated CLI contracts. `P5-EXIT-01` is
+Main-only and owns approval status, final evidence, status documents, and
+publication.
+
+### P5-W6.1 — Runtime asset admission gate hardening
+
+- Parent workstream: W6.4 asset validation and runtime admission.
+- Objective: replace the basic-only asset check with a pure, fail-closed
+  validator for PNG integrity, RGBA/alpha policy, dimensions, unique output
+  hashes, provenance/recipe closure, approved commercial status, and orphan
+  material while preserving the frozen V1 schema and no-manifest behavior.
+- Dependencies: none beyond Phase 4/T4 and existing `asset.schema.json`.
+- Owned boundary: `scripts/office-v2-asset-admission.mjs`,
+  `scripts/office-v2-asset-check.mjs`, and focused asset-admission tests.
+- Forbidden: source/export generator, board generator, atlas/catalog compiler,
+  runtime asset files, schemas/generated files, Office world/simulation/
+  operations, final status documents, and integration publication.
+- Acceptance: valid and rejected pixel/provenance/orphan cases return stable
+  family/version diagnostics; malformed CRC/IDAT, unsupported PNG color type,
+  alpha edge violations, dimension/hash mismatch, duplicate material, and
+  unapproved runtime admission fail before import; `npm run office:v2:assets:check`
+  remains green with zero manifests.
+- Priority: P0 critical path; unlocks catalog compilation and family admission.
+- Status: **READY — selected in Wave P5-W6-01**.
+
+### P5-W6.2 — Deterministic source/export and PNG foundation
+
+- Parent workstream: W6.3 source-neutral export and reproducible output.
+- Objective: add a dependency-free, source-neutral factory runner that reads a
+  versioned JSON recipe/source description, writes deterministic RGBA PNG and
+  metadata output, computes hashes, rejects overwrite/path escape, and proves
+  two clean builds are byte-identical.
+- Dependencies: none beyond existing export/source contracts and Node built-ins.
+- Owned boundary: `scripts/office-v2-asset-factory.mjs` and its focused tests;
+  no edits to the admission checker or generated contracts.
+- Forbidden: review approval, runtime manifest admission, catalog/bundle
+  registry, source pixels from references/legacy, renderer/UI, and final report.
+- Acceptance: deterministic color/pixel input order, stable PNG chunk order and
+  CRCs, safe stage paths, clean output isolation, declared output hashes, and
+  exact failure diagnostics for malformed recipes and overwrite/path escape.
+- Priority: P0 critical path; unlocks boards, catalog compilation, and the
+  proof-family source/export slice.
+- Status: **READY — selected in Wave P5-W6-01**.
+
+### P5-W6.3 — Neutral geometry, alpha, palette, and review-board generator
+
+- Parent workstream: W6.1/W6.2 visual evidence production.
+- Objective: generate reproducible JSON/PNG neutral geometry, alpha-edge,
+  palette/light-shadow, connectivity/contact, and light/dark review boards from
+  the accepted style/profile and family metadata without inventing geometry or
+  marking owner review as approved.
+- Dependencies: P5-W6.2 integrated; P5-W6.1 for admission-compatible output.
+- Owned boundary: board generator module/tests and generated review evidence
+  under the family report stage.
+- Forbidden: catalog compiler, world geometry edits, owner approval mutation,
+  runtime registry, renderer state, and production manifest admission.
+- Acceptance: board hashes are stable across clean runs; boards expose source,
+  geometry, contacts, masks, palette/light policy, and review state; missing or
+  inconsistent metadata fails closed.
+- Status: **BLOCKED_BY_TASK — waits for P5-W6.1 and P5-W6.2 integration**.
+
+### P5-W6.4 — Atlas/catalog/scene-bundle compiler and runtime registry
+
+- Parent workstream: W6.4 lifecycle closure and runtime registry.
+- Objective: compile exact family/frame/atlas/catalog/scene-bundle references,
+  detect duplicates/orphans/missing assets, emit deterministic registry data,
+  and preserve fail-closed missing-asset and world-hash policies.
+- Dependencies: P5-W6.1 and P5-W6.2 integrated.
+- Owned boundary: compiler/registry module and focused closure tests.
+- Forbidden: PNG export implementation, board generation, source pixels,
+  world/simulation producers, renderer candidates, and final Phase status.
+- Acceptance: stable ordering and hashes; exact `latest`, orphan, duplicate,
+  missing reference, incompatible version, and runtime-path diagnostics; output
+  is reproducible and consumes the immutable family metadata.
+- Status: **BLOCKED_BY_TASK — waits for P5-W6.1 and P5-W6.2 integration**.
+
+### P5-W6.5 — Connected-workstation proof family
+
+- Parent workstream: W6.1 proof-family end-to-end admission.
+- Objective: create one original procedural workstation source family with
+  isolated/east-end/west-end/middle masks `0/2/8/10`, seated interaction socket,
+  provenance, deterministic recipe, generated PNGs, boards, catalog/bundle
+  references, and admission evidence consumed by the selected renderer.
+- Dependencies: P5-W6.1, P5-W6.2, P5-W6.3, and P5-W6.4 integrated.
+- Owned boundary: `assets/office-v2/sources`, `recipes`, `runtime`,
+  `manifests`, `reports`, and family-specific fixture metadata.
+- Forbidden: copied/reference pixels, V1/legacy assets, scene offsets, renderer
+  geometry, unapproved commercial status, unrelated families, and Phase 6.
+- Acceptance: two clean builds are byte-identical; all four masks pass and
+  unsupported masks fail; geometry/socket/contacts/alpha/seam/provenance/
+  catalog/bundle/registry checks pass; owner review is explicit; runtime import
+  fails closed on any altered, missing, orphaned, or unapproved material.
+- Status: **BLOCKED_BY_TASK — waits for P5-W6.3 and P5-W6.4 integration**.
+
+### P5-W6.6 — Project workflow skills
+
+- Parent workstream: W6.3 repeatable asset workflow.
+- Objective: create the three concise repository skills
+  `author-office-v2-asset-family`, `compose-office-v2-room`, and
+  `review-office-v2-visuals`, each calling the integrated real tools and
+  routing to canonical contracts instead of duplicating prose.
+- Dependencies: P5-W6.1 through P5-W6.4 integrated.
+- Owned boundary: `.agents/skills/<skill-name>/SKILL.md` and required generated
+  metadata only.
+- Forbidden: runtime assets, source pixels, app code, schema changes, and
+  claims of approval or Phase closure.
+- Acceptance: each skill passes the skill creator validator, uses imperative
+  concise instructions, points to real repository tools/contracts, and has no
+  extraneous README or installation guide.
+- Status: **BLOCKED_BY_TASK — waits for integrated tool interfaces**.
+
+### P5-EXIT-01 — Main-owned T5 closure
+
+- Owner: Main Orchestration Session; no worker assignment.
+- Dependencies: P5-W6.5, P5-W6.6, all Phase 5 exit criteria, and explicit
+  geometry/visual/commercial review outcome.
+- Objective: review every diff and evidence artifact, run the complete Phase 5
+  exit sequence, update `README.md`, `READINESS_MATRIX.md`,
+  `READINESS_REMEDIATION_PLAN.md`, this backlog, and the final integration
+  report, then publish the validated integration branch without changing
+  `main`.
+- Status: **BLOCKED_BY_TASK — Main-only closure remains pending**.
+
+## Phase 5 selection rule
+
+Only READY Phase 5 leaves may enter a wave. The allowed flow is
+`READY → IN_PROGRESS → COMPLETED → ACCEPTED → INTEGRATED`; review failures use
+`REVIEW_FAILED`, dependency failures use `BLOCKED_BY_TASK`, and external review
+uses `EXTERNAL_BLOCKER`. Main updates shared backlog/status and owns all
+integration, exit validation, and publication.
 
 ## Historical wave: P3-W0 — T2 research-closure prerequisites
 
