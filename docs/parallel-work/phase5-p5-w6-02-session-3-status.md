@@ -1,9 +1,10 @@
 # P5-W6.3 Session 3 Status
 
 - Task: `P5-W6.3` — neutral review-board generator
-- Status: `READY FOR DISPATCH`
+- Status: `RECOVERED COMPLETE`
 - Base commit: `e419fc5`
-- Branch/worktree: recorded by Main at dispatch
+- Branch/worktree: Main integration recovery; original session was shut down
+  after repeated bounded waits with no file changes
 
 ## Scope lock
 
@@ -13,4 +14,6 @@ report are forbidden.
 
 ## Handoff
 
-Worker fills validation and commit evidence, then stops after handoff.
+Main recovered only the locked board module/test/status scope. Focused tests,
+Office preflight, asset gate, diff hygiene, and full repository validation are
+recorded in the Phase 5 plan after review.
