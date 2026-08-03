@@ -5,7 +5,7 @@
 - Branch: `task/session-1-p5-w6-1-admission`
 - Worktree: `C:\Users\WINDOW XI\.codex\worktrees\phase5-p5-w6-1-admission`
 - Base commit: `861ddefd0f7e1dad1ed8430cacdd5c5a109d5522`
-- Current commit: `pending Main exact-scope recovery commit`
+- Current implementation commit: `a401647`
 
 ## Progress
 
@@ -31,6 +31,7 @@
 
 ## Handoff state
 
-Main recovery commit is pending. Changed files are limited to the admission
-modules, focused tests, checker integration, and this status record. Main will
-record the commit hash after independent review and cherry-pick integration.
+Main exact-scope recovery commit: `a401647`. Changed files are limited to the
+admission modules, focused tests, checker integration, and this status record.
+The worktree is clean after the implementation commit; Main will independently
+review and cherry-pick it into the integration branch.
