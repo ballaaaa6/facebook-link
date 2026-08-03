@@ -25,6 +25,7 @@ export const allowedOfficePaths = Object.freeze([
   "apps/web/src/features/office-v2/",
   "assets/office-v2/",
   "artifacts/office-v2/phase3/",
+  "artifacts/office-v2/phase4/",
   "docs/office-v2/",
   "packages/office-v2-contracts/",
   "packages/office-v2-world/",

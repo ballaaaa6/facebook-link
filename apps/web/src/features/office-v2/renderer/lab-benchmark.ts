@@ -10,13 +10,14 @@ import {
 import { fitCameraToWorld, projectCameraPosition, type CameraState } from "./camera.ts";
 import { buildSyntheticScene } from "./candidate-scene.ts";
 import { LAB_BOUNDS, LAB_FLOOR } from "./lab-fixture.ts";
-import type { RendererPort } from "./renderer-port.ts";
+import type { RendererCapture, RendererPort } from "./renderer-port.ts";
 
 type MutableRef<T> = { current: T };
 
 export type LabApi = {
   readonly ready: boolean;
   getState: () => Readonly<Record<string, unknown>>;
+  captureDeterministic: () => RendererCapture;
   runBenchmarkRun: (descriptor: BenchmarkRunDescriptor) => Promise<BenchmarkRunResult>;
 };
 
@@ -55,6 +56,11 @@ export function createLabApi(options: LabBenchmarkOptions): LabApi {
   return {
     get ready() { return options.readyRef.current; },
     getState: options.getState,
+    captureDeterministic: () => {
+      const port = options.portRef.current;
+      if (!port || !options.readyRef.current) throw new Error("presentation.golden-page-unavailable: lab is not ready");
+      return port.captureDeterministic();
+    },
     runBenchmarkRun: async (descriptor) => {
       const port = options.portRef.current;
       const host = options.hostRef.current;

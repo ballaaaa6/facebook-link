@@ -9,7 +9,7 @@ an exact version in the lockfile and records a decision.
 | Canvas 2D | browser platform | platform | Benchmark in Phase 4 | Zero-library renderer baseline |
 | Ajv | 8.20.0 | MIT | Accepted for knowledge gates | Draft 2020-12 schema validation |
 | ajv-formats | 3.0.1 | MIT | Accepted for knowledge gates | Date-time format validation for snapshots and provenance |
-| fast-check | 4.9.0 | MIT | Profile-pinned; not installed or admitted | Future seeded property and model tests only; no T0 evidence |
+| fast-check | 4.9.0 | MIT | **Admitted for Phase 4 property/model evidence** | Exact integrity `sha512-7ms6T7SybUev/PQITciI0yLM2pOSFy5zpG8Ty7tQofcVaQUvrMXp6CBwqF6fThLCLOrfBtuHAtwq6Yu4XPCllg==`; Node `>=12.17.0` (repository Node `>=24`), 1.43 MB unpacked test-only cost, no browser bundle; Main-owned seeded QA only |
 | XState | 5.32.5 | MIT | Reference only | No dependency until reducer evidence fails |
 | EasyStar.js | 0.4.4 | MIT | Reference only | A* comparison; first planner remains internal |
 | Playwright | 1.62.1 | Apache-2.0 | **Admitted for Phase 4 evidence** | Exact package integrity `sha512-0M+L3LAD8/nm554LOla9Ayx0j0tmFZ0FBcoQ7F1VuVHpM/XpiC8RcDzBQB8W5+hA8L22THxELzeF+2WcUzvcLg==`; browser-only evidence runner, not shipped to production |
@@ -23,13 +23,16 @@ Record the exact version, integrity, license, maintenance activity, browser or
 Node support, bundle/runtime cost, alternatives, decision owner, and removal
 path. A research link or agent skill is not dependency approval.
 
-The `fast-check` test profile is pinned in
-`TESTING_ACCEPTANCE_BUDGETS.md`, but that pin is not executable admission. Before
-the first property or model test imports it, record its exact package integrity,
-current maintenance state, supported Node/browser matrix, test-time and bundle
-cost, evaluated alternatives, decision owner, and removal path, then install
-the exact version through the repository lockfile. Until that record is
-complete, the gate must report zero property/model evidence.
+The `fast-check` profile is now executable for the Phase 4 QA slice. The exact
+package was inspected on 2026-08-03: MIT license, repository
+`github.com/dubzzz/fast-check`, latest package metadata modified 2026-07-08,
+Node `>=12.17.0`, and 1.43 MB unpacked test-time cost. The evaluated
+alternative was a handwritten seeded generator; it remains useful for the
+independent model implementation, but cannot replace the pinned profile's
+shrink-path evidence. Main owns the admission and QA runs. If the Phase 4
+renderer decision is reverted or the property harness is retired, remove the
+root dev dependency, lockfile entry, and Phase 4 property scripts together;
+no production bundle imports it.
 
 ## Agent skills
 
@@ -38,8 +41,9 @@ renderer decision. The repository skill at
 `.agents/skills/build-office-v2-engine` owns project rules and remains the first
 authority for any renderer-specific skill.
 
-Phase 4 admission record (2026-08-03): the exact PixiJS and Playwright package
-versions above are installed only to execute the frozen renderer comparison and
-browser evidence. PixiJS remains a losing-proof candidate until the Main-owned
+Phase 4 admission record (2026-08-03): the exact PixiJS, Playwright, and
+fast-check package versions above are installed only to execute the frozen
+renderer comparison, browser evidence, and seeded property/model evidence.
+PixiJS remains a losing-proof candidate until the Main-owned
 numeric/lifecycle/semantic decision is recorded; the selected renderer must be
 the only renderer dependency retained by the final production branch.
