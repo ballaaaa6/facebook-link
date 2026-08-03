@@ -2,7 +2,7 @@
 
 - Task: `P5-W6.3` — neutral review-board generator
 - Status: `READY FOR DISPATCH`
-- Base commit: `ade9348`
+- Base commit: `e419fc5`
 - Branch/worktree: recorded by Main at dispatch
 
 ## Scope lock
