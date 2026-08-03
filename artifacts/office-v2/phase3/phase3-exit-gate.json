@@ -2,7 +2,7 @@
   "schemaVersion": "office-v2-phase3-exit-gate-v1",
   "status": "passed",
   "generatedAtPolicy": "omitted; deterministic for a checked-out git HEAD and deterministic evidence",
-  "gitHead": "b3115669ce0eb45f4440f228560d4ac7a0bcf26c",
+  "gitHead": "8acd2af6ff524eaf2d7b02e5c4bd97d9a03c98af",
   "evidence": {
     "t2": [
       {
@@ -13,7 +13,7 @@
       {
         "path": "artifacts/office-v2/phase3/t2/t2-evidence.json",
         "present": true,
-        "sha256": "823031dc00d7ad32d12cf62ec0f6a64bacb2d1fd09c42da008591d524be53d2a"
+        "sha256": "76c76e4657ece0f5f40c18cde3006045fb64c5ba3fcc67221da969bf13945438"
       },
       {
         "path": "artifacts/office-v2/phase3/t2/t2-evidence.md",
@@ -30,29 +30,29 @@
       {
         "path": "artifacts/office-v2/phase3/t3/t3-evidence.json",
         "present": true,
-        "sha256": "7a40dc167e62fc08c8d72411cb8ae329d51c2bb13169026f57ed8726d984041f"
+        "sha256": "43ee849a207f7f9ea723d8167155ee09774c03002687abec3a625c6778e57649"
       },
       {
         "path": "artifacts/office-v2/phase3/t3/t3-evidence.md",
         "present": true,
-        "sha256": "4000472c47435f44465e78e3f270f0ea3a8998d5e78ea4cda0f7841a2d7b34ab"
+        "sha256": "344c2263ead558f0b65779489ae8d17ec1063e5b6cbaf4bf0c4b915abd7aa337"
       }
     ],
     "operations": [
       {
         "path": "artifacts/office-v2/phase3/operations/operations-runner-trace.json",
         "present": true,
-        "sha256": "6246f53d9edfd3e089f5e202f855724463c06f9e2e2d1fc9d7dfaa6dc82b81b9"
+        "sha256": "38bacc50cff1272ff71d3e4f767fabfa54126cba25e121213eb13c1460644cce"
       },
       {
         "path": "artifacts/office-v2/phase3/operations/operations-trace.json",
         "present": true,
-        "sha256": "b4cff947d02007fe722a414455538b32bffafbe2c25843e1d904de67944c8d19"
+        "sha256": "3e26ed01cca9689fbe2c6ae59180907ff34f1cfc43d4f2f25a9498bcac4ddada"
       },
       {
         "path": "artifacts/office-v2/phase3/operations/operations-trace.md",
         "present": true,
-        "sha256": "3a621b7b94d2c09cf36dc6174aa23558503ffe4ba1fec6ac60fdb507364bc834"
+        "sha256": "eca9136f15e97a5851f3d24ec7af515061923e2fa1b75e443134631bc68f75ef"
       }
     ]
   },

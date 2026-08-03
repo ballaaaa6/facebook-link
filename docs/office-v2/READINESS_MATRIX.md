@@ -53,7 +53,7 @@ proof risks in [VISUAL_PROOF_RISK_REGISTER.md](VISUAL_PROOF_RISK_REGISTER.md).
 | Runtime asset bundle | `decisions/0006-asset-authoring-export.md` plus `decisions/0015-visual-style-and-asset-contracts.md` | source-set, export-recipe, atlas, asset-catalog, scene-bundle, review, and migration contracts | Closure D valid/rejected asset pipeline fixture | basic asset gate plus bounded Closure D semantic evidence; no runtime manifests | W1.6 asset specification complete; runtime asset factory and T5 proof remain not ready |
 | Environment and character kits | production bibles plus `decisions/0015-visual-style-and-asset-contracts.md` | character-definition and semantic-variant contracts with render-part references | Closure D semantic variant and render-part fixtures; no production pixels | knowledge and clean-room gates | W1.6 semantic contract complete; no runtime art or family admission |
 | Phase 3 research-closure prerequisites | `RESEARCH.md` RC-01/02/03 plus their canonical receiving documents | existing facility, queue, interaction, command, snapshot, trace, and migration contracts; no version changes | RC-01 valid/rejected facility and cleanup fixtures; RC-02 presentation-disabled, restore, and invalid-state fixtures; RC-03 assignment, target, retry, cancellation, and restore-input fixtures | focused probes pass 5/5, 4/4, and 1/1; preflight, boundaries, knowledge, and full repository checks pass; Phase 3 exit evidence is tracked separately below | P3-W0 bounded research closure accepted; it is a prerequisite record, not the final Phase 3 status |
-| Phase 3 exit evidence | `docs/parallel-work/phase3-final-integration-report.md` and `scripts/office-v2-phase3-exit.mjs` | integrated reducer, crowd, operations, replay/restore, and audit-safe evidence contracts | T2 nine-scenario one-actor evidence; T3 exact 1/10/15 crowd matrix with 12 restore checkpoints; ten-role operations trace; deterministic unified gate report | `npm run office:v2:phase3:acceptance` passes 15/15 twice; validator tests 4/4; repeated reports byte-identical; full `npm run check` passes | **COMPLETE** on 2026-08-03 at gate-evaluation HEAD `b3115669ce0eb45f4440f228560d4ac7a0bcf26c`; Phase 4 renderer/assets work remains deferred |
+| Phase 3 exit evidence | `docs/parallel-work/phase3-final-integration-report.md` and `scripts/office-v2-phase3-exit.mjs` | integrated reducer, crowd, operations, replay/restore, and audit-safe evidence contracts | T2 nine-scenario one-actor evidence; T3 exact 1/10/15 crowd matrix with 12 restore checkpoints; ten-role operations trace; deterministic unified gate report | `npm run office:v2:phase3:acceptance` passes 15/15 twice; validator tests 4/4; repeated reports byte-identical; full `npm run check` passes | **COMPLETE** on 2026-08-03 at gate-evaluation HEAD `8acd2af6ff524eaf2d7b02e5c4bd97d9a03c98af`; Phase 4 renderer/assets work remains deferred |
 
 ## Blocking policy
 
@@ -101,6 +101,8 @@ and canonicalization rows. Renderer, runtime asset, property/model, and visual
 evidence remain closed by later gates.
 
 The Phase 3 headless exit is complete on 2026-08-03. The unified gate passed
-15/15 twice with T2 nine-scenario one-actor evidence, T3 exact 1/10/15
-evidence, and the complete ten-role operations trace. This row-level closure
-does not start Phase 4 or admit production assets.
+15/15 twice at gate-evaluation HEAD
+`8acd2af6ff524eaf2d7b02e5c4bd97d9a03c98af` with T2 nine-scenario one-actor
+evidence, T3 exact 1/10/15 evidence, and the complete ten-role operations
+trace. This row-level closure does not start Phase 4 or admit production
+assets.

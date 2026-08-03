@@ -20,19 +20,22 @@ executable leaf tasks and their current status.
   and replay slices were bounded implementations before the exit wave.
 - Historical pre-exit status: **ACTIVE — P3-W3.4 integrated; T2/T3 exit
   evidence remained incomplete**.
-- Current Phase status: **COMPLETE — the P3-EXIT-04 unified gate passed on
-  2026-08-03 at `b3115669ce0eb45f4440f228560d4ac7a0bcf26c`**.
+- Current Phase status: **COMPLETE — the P3-EXIT-04 unified gate was
+  reverified on 2026-08-03 at gate-evaluation HEAD
+  `8acd2af6ff524eaf2d7b02e5c4bd97d9a03c98af`**.
 - Phase exit criteria: T2 one-actor reach/use/cancel/restore/replay evidence,
   T3 crowd/queue/deadlock evidence, and the complete operations choreography
   evidence pass without renderer or asset leakage.
 
 ## Phase 3 exit closure — P3-EXIT-01 through P3-EXIT-05
 
-- Closure status: **COMPLETE** on 2026-08-03 on
-  `codex/phase3-exit-integration`.
+- Closure status: **COMPLETE** on 2026-08-03 on `main`; the published
+  integration branch is `codex/phase3-exit-integration`.
 - Unified gate: `npm run office:v2:phase3:acceptance`; 15/15 checks passed
-  twice, validator tests passed 4/4, and the deterministic JSON/Markdown gate
-  reports were byte-identical on the same checkout.
+  twice at gate-evaluation HEAD `8acd2af6ff524eaf2d7b02e5c4bd97d9a03c98af`,
+  validator tests passed 4/4, the deterministic JSON/Markdown gate reports
+  were byte-identical on the same checkout, and the full `npm run check`
+  passed.
 - T2 evidence: nine reducer-backed one-actor scenarios with real final and
   restored SHA-256 equality and zero uninterrupted/restored leaks under
   `artifacts/office-v2/phase3/t2/`.
@@ -44,6 +47,11 @@ executable leaf tasks and their current status.
   runner, persistence, reconciliation, retry/recovery, reconnect, disabled
   connector, and authoritative/projected truth checks under
   `artifacts/office-v2/phase3/operations/`.
+- Coordinator re-verification repaired two integration gaps before this
+  closure: activity remains `en-route` until queue arrival, and the operations
+  trace derives roles, event digests, and persisted results from authoritative
+  contracts and the actual runner output. The accepted coordinator commits are
+  `0c2e5ef`, `f2dd897`, and boundary repair `8acd2af`.
 - Phase 4 renderer work, production assets, and later visual/asset gates remain
   deferred; this closure authorizes no external connector actions.
 

@@ -668,8 +668,16 @@ scope.
 
 Phase 3 is **COMPLETE** after the reducer-integrated T2/T3 evidence and the
 complete ten-role operations trace passed the unified gate on
-`codex/phase3-exit-integration` at gate-evaluation HEAD
-`b3115669ce0eb45f4440f228560d4ac7a0bcf26c`.
+the `main` integration checkout at gate-evaluation HEAD
+`8acd2af6ff524eaf2d7b02e5c4bd97d9a03c98af`.
+
+The coordinator reverified the previously published closure from clean
+checkout `f00e98d`. Review found and accepted a reducer ordering correction
+(`0c2e5ef`) and an authoritative operations-trace correction (`f2dd897`),
+then repaired an Office package-boundary violation in the operations test
+(`8acd2af`). The replacement audit wave independently confirmed the T2/T3
+invariants, ten-role operations assertions, and fail-closed validator; no
+renderer, asset, or Phase 4 work was introduced.
 
 - T2 records nine one-actor scenarios through command acceptance,
   navigation/movement, activity, queues/resources, cancellation, timeout,
@@ -683,8 +691,9 @@ complete ten-role operations trace passed the unified gate on
   handling, disabled connector safety, persistence idempotency, reconciliation,
   and authoritative/projected truth equality.
 - Gate command: `npm run office:v2:phase3:acceptance`. It passed 15/15 checks
-  twice; validator tests passed 4/4; repeated JSON/Markdown reports were
-  byte-identical. Full `npm run check` passed within the gate.
+  twice at the gate-evaluation HEAD above; validator tests passed 4/4;
+  repeated JSON/Markdown reports were byte-identical; and full
+  `npm run check` passed.
 - Machine and human evidence are under
   `artifacts/office-v2/phase3/t2/`, `t3/`, `operations/`, and the unified
   `phase3-exit-gate.json`/`.md` reports.

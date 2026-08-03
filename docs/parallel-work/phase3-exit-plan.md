@@ -1,15 +1,24 @@
 # Phase 3 Exit Execution Plan
 
-## Repository-grounded starting point
+## Historical repository-grounded starting point
 
 - Repository: `D:\antigravity\shopee link`
 - Starting branch: `main`
 - Starting HEAD: `351dd4866e4d65efb93e455fa50db5e557b2da82`
 - Starting worktree: clean; Office V2 preflight passes.
-- Current Phase 3 status: `ACTIVE`.
+- Historical Phase 3 status at original plan start: `ACTIVE`.
 - Integrated bounded evidence: P3-W2.1 through P3-W2.6, P3-W3.1 through
   P3-W3.4; simulation-focused tests are 50/50 and operations-focused tests are
   29/29.
+
+## Coordinator re-verification starting point
+
+The coordinator received this plan after the original exit wave had already
+published a closure at `f00e98d`. The re-verification checkout was clean, the
+Office V2 preflight passed, and the task scope was narrowed to audit/recovery,
+fresh evidence generation, unified-gate reruns, status synchronization, and
+publication. The original gap list and worker graph below remain the historical
+execution contract; the current result is recorded at the end of this plan.
 
 ## Exact remaining gaps
 
@@ -112,20 +121,21 @@ the current checkout.
 
 ## Execution result
 
-The plan completed on 2026-08-03. Main integrated the accepted worker commits
-in dependency order on `codex/phase3-exit-integration`: T2 `3c4d73d`,
-operations `4bdfbc0`, T3 `e9f280f`, and the unified gate `009ff74e`; the final
-branch also contains coordinator integration commits `0aefab8`, `e8c04e9`,
-`78f09cb`, `4925edf`, and `b311566`. The gate was rerun twice from the final
-pre-publication checkout with 15/15 commands passing each time, validator tests
-passing 4/4, and byte-identical gate reports.
+The original exit wave completed on 2026-08-03 and is preserved in the prior
+integration history. The coordinator's final re-verification started from
+clean checkout `f00e98d` (which already published the earlier closure), then
+ran a fresh three-track audit/recovery wave. The first audit workers for T2/T3,
+operations, and the gate stalled before handoff; Main closed those attempts,
+inspected their isolated diffs, and recovered only two scoped drafts.
 
-Coordinator recovery was required for the clean-room allowlist conflict when
-the operations commit was cherry-picked: Main retained the narrower
-`artifacts/office-v2/phase3/` admission. Main also exported the T3 crowd
-adapter through the simulation barrel after review. The T3 worker corrected an
-initial target-removal schedule assertion so the accepted phases are exactly
-`en-route`, `waiting`, and `using`; the failed draft was not accepted.
+Main accepted the reducer ordering correction as `0c2e5ef`, accepted the
+authoritative operations workflow/runner/persistence trace as `f2dd897`, and
+then repaired the operations test's package-boundary import as `8acd2af`.
+Replacement auditors independently confirmed the T2/T3 invariants, exact ten
+role assertions, and fail-closed validator; the gate auditor found no further
+defect. The gate was run twice from `8acd2af` with 15/15 commands passing each
+time, validator tests passing 4/4, byte-identical reports, and full
+`npm run check` passing. Status publication follows this gate evaluation.
 
 P3-EXIT-05 status publication and the final integration report are Main-owned
 and occur only after the unified gate. Renderer selection, production assets,

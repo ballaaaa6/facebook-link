@@ -188,13 +188,13 @@ respectively; the W3.4 reconciliation suite passes 12/12, and the operations
 package passes 29/29. These were the bounded simulation/adapter/operations
 modules that preceded the Phase 3 exit closure.
 
-The Phase 3 exit closure passed on 2026-08-03 at gate-evaluation HEAD
-`b3115669ce0eb45f4440f228560d4ac7a0bcf26c`. The unified command
+The Phase 3 exit closure was reverified on 2026-08-03 at gate-evaluation HEAD
+`8acd2af6ff524eaf2d7b02e5c4bd97d9a03c98af`. The unified command
 `npm run office:v2:phase3:acceptance` passed 15/15 checks twice, validator tests
-passed 4/4, and `npm run check` passed within the gate. T2, T3, and the complete
-ten-role Operations trace are now integrated and Phase 3 is complete. This is
-headless and renderer-neutral; Phase 4 renderer selection and later T4–T6
-evidence remain deferred.
+passed 4/4, and `npm run check` passed. T2, T3, and the complete ten-role
+Operations trace are integrated and Phase 3 is complete. This is headless and
+renderer-neutral; Phase 4 renderer selection and later T4–T6 evidence remain
+deferred.
 
 - Build one geometric room with one actor, one workstation, one target, blocked
   cells, one waiting position, and one unreachable case.

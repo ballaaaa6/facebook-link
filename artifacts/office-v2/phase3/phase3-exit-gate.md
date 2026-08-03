@@ -1,7 +1,7 @@
 # Office V2 Phase 3 exit gate
 
 - Status: PASSED
-- Git HEAD: b3115669ce0eb45f4440f228560d4ac7a0bcf26c
+- Git HEAD: 8acd2af6ff524eaf2d7b02e5c4bd97d9a03c98af
 - Generated-at policy: omitted; deterministic for a checked-out git HEAD and deterministic evidence
 
 ## Evidence
@@ -9,14 +9,14 @@
 | Area | Path | SHA-256 | Present |
 | --- | --- | --- | --- |
 | evidence | artifacts/office-v2/phase3/t2/executed-scenarios.json | 2a014947d2b06e3d4f5bba6b46a15dcb71571eb182c2719ae6a25c2c5eff805d | yes |
-| evidence | artifacts/office-v2/phase3/t2/t2-evidence.json | 823031dc00d7ad32d12cf62ec0f6a64bacb2d1fd09c42da008591d524be53d2a | yes |
+| evidence | artifacts/office-v2/phase3/t2/t2-evidence.json | 76c76e4657ece0f5f40c18cde3006045fb64c5ba3fcc67221da969bf13945438 | yes |
 | evidence | artifacts/office-v2/phase3/t2/t2-evidence.md | 8b9d06dc853c4b8fce9a963419404172098de6a92fcb3f0835a416a946c53231 | yes |
 | evidence | artifacts/office-v2/phase3/t3/executed-scenarios.json | 70e5e26763b840b94f9be7fbf83e78877d007b92cbc34778ddd6412cad8cfe00 | yes |
-| evidence | artifacts/office-v2/phase3/t3/t3-evidence.json | 7a40dc167e62fc08c8d72411cb8ae329d51c2bb13169026f57ed8726d984041f | yes |
-| evidence | artifacts/office-v2/phase3/t3/t3-evidence.md | 4000472c47435f44465e78e3f270f0ea3a8998d5e78ea4cda0f7841a2d7b34ab | yes |
-| evidence | artifacts/office-v2/phase3/operations/operations-runner-trace.json | 6246f53d9edfd3e089f5e202f855724463c06f9e2e2d1fc9d7dfaa6dc82b81b9 | yes |
-| evidence | artifacts/office-v2/phase3/operations/operations-trace.json | b4cff947d02007fe722a414455538b32bffafbe2c25843e1d904de67944c8d19 | yes |
-| evidence | artifacts/office-v2/phase3/operations/operations-trace.md | 3a621b7b94d2c09cf36dc6174aa23558503ffe4ba1fec6ac60fdb507364bc834 | yes |
+| evidence | artifacts/office-v2/phase3/t3/t3-evidence.json | 43ee849a207f7f9ea723d8167155ee09774c03002687abec3a625c6778e57649 | yes |
+| evidence | artifacts/office-v2/phase3/t3/t3-evidence.md | 344c2263ead558f0b65779489ae8d17ec1063e5b6cbaf4bf0c4b915abd7aa337 | yes |
+| evidence | artifacts/office-v2/phase3/operations/operations-runner-trace.json | 38bacc50cff1272ff71d3e4f767fabfa54126cba25e121213eb13c1460644cce | yes |
+| evidence | artifacts/office-v2/phase3/operations/operations-trace.json | 3e26ed01cca9689fbe2c6ae59180907ff34f1cfc43d4f2f25a9498bcac4ddada | yes |
+| evidence | artifacts/office-v2/phase3/operations/operations-trace.md | eca9136f15e97a5851f3d24ec7af515061923e2fa1b75e443134631bc68f75ef | yes |
 
 ## Validation
 

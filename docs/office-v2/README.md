@@ -146,15 +146,15 @@ epoch changes, and expired retention. Its focused suite passes 12/12 and the
 operations package passes 29/29. This is bounded two-clock/reconnect evidence;
 the exit gate below is the later closure record.
 
-The Phase 3 exit gate passed on 2026-08-03 at gate-evaluation HEAD
-`b3115669ce0eb45f4440f228560d4ac7a0bcf26c`. It records Phase 3 as **COMPLETE**:
-T2 has nine reducer-backed one-actor scenarios, T3 has exactly 1/10/15 actors
-with synthetic-capacity disclosure for the 15-actor case and 12 equal restore
-checkpoints, and Operations has the complete ten-role trace. The command
-`npm run office:v2:phase3:acceptance` passed 15/15 checks twice, its validator
-tests passed 4/4, and repeated reports were byte-identical. Evidence is under
-`artifacts/office-v2/phase3/`; this is headless and renderer-neutral, and does
-not start Phase 4.
+The Phase 3 exit gate was reverified on 2026-08-03 at gate-evaluation HEAD
+`8acd2af6ff524eaf2d7b02e5c4bd97d9a03c98af`. It records Phase 3 as
+**COMPLETE**: T2 has nine reducer-backed one-actor scenarios, T3 has exactly
+1/10/15 actors with synthetic-capacity disclosure for the 15-actor case and
+12 equal restore checkpoints, and Operations has the complete ten-role trace.
+The command `npm run office:v2:phase3:acceptance` passed 15/15 checks twice,
+its validator tests passed 4/4, repeated reports were byte-identical, and the
+full `npm run check` passed. Evidence is under `artifacts/office-v2/phase3/`;
+this is headless and renderer-neutral, and does not start Phase 4.
 
 The historical 186-file W1.6 number is closure evidence at the handoff commit.
 The Phase 1 exit handoff, Phase 2 acceptance record, visual style approval
