@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "office-export-recipe-v1",
+  "recipeId": "workstation-basic-v3-export",
+  "recipeVersion": 1,
+  "familyId": "workstation-basic",
+  "familyVersion": 3,
+  "overwritePolicy": "fail",
+  "cleanOutputDirectory": "candidate-proof",
+  "determinism": {
+    "twoCleanBuilds": "required",
+    "byteEquality": "required",
+    "stableInputOrder": "declared"
+  },
+  "outputs": [
+    { "kind": "png", "path": "candidate-proof/mask-0.png", "frameId": "mask-0" },
+    { "kind": "png", "path": "candidate-proof/mask-2.png", "frameId": "mask-2" },
+    { "kind": "png", "path": "candidate-proof/mask-8.png", "frameId": "mask-8" },
+    { "kind": "png", "path": "candidate-proof/mask-10.png", "frameId": "mask-10" },
+    { "kind": "metadata", "path": "candidate-proof/metadata.json" }
+  ],
+  "metadata": {
+    "filter": "nearest",
+    "colorSpace": "srgb",
+    "projectionId": "office-projection-v1",
+    "visualContract": "workstation-basic-v3-visual@1",
+    "selectedConcept": 3,
+    "reviewState": "pending-owner-review",
+    "admission": "spec-only"
+  }
+}

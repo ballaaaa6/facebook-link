@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "office-source-procedural-v1",
+  "familyId": "workstation-basic",
+  "familyVersion": 3,
+  "sourceId": "workstation-basic-selected-concept-3-v3",
+  "authoring": "project-owned-procedural-reconstruction",
+  "licenseStatus": "project-owned",
+  "commercialStatus": "pending-owner-review",
+  "reviewState": "pending-owner-review",
+  "algorithm": "office-projection-v1-2-to-1-dimetric-workstation-selected-concept-3-v3",
+  "projectionId": "office-projection-v1",
+  "visualContract": { "id": "workstation-basic-v3-visual", "version": 1 },
+  "geometryRef": { "id": "workstation-geometry", "version": 1 },
+  "footprint": { "widthCells": 2, "depthCells": 1 },
+  "clearance": { "widthCells": 3, "depthCells": 2 },
+  "nativeCanvas": { "widthPx": 176, "heightPx": 96, "filter": "nearest" },
+  "selectedConcept": 3,
+  "supportedMasks": [0, 2, 8, 10],
+  "paletteRoles": ["transparent", "outline", "top-light", "wood-mid", "south-shadow", "east-mid", "metal", "accent", "wood-grain", "contact-highlight"],
+  "lightDirection": "northwest",
+  "componentContract": {
+    "repeatable": ["desktop-core", "privacy-panel", "slatted-frame", "frame-rail", "under-support", "shadow"],
+    "westEndOnly": ["west-frame-post", "west-storage"],
+    "eastEndOnly": ["east-frame-post", "east-storage", "east-planter"],
+    "deferredProps": ["keyboard", "monitor", "chair", "character", "loose-decorations"]
+  },
+  "frames": [
+    {
+      "frameId": "mask-0",
+      "variant": "isolated",
+      "mask": 0,
+      "contacts": [{ "id": "workstation-dock", "xPx": 56, "yPx": 56, "requiredAlpha": "any", "role": "chair-dock" }],
+      "socket": "workstation-dock"
+    },
+    {
+      "frameId": "mask-2",
+      "variant": "east-end",
+      "mask": 2,
+      "contacts": [{ "id": "workstation-dock", "xPx": 56, "yPx": 56, "requiredAlpha": "any", "role": "chair-dock" }],
+      "socket": "workstation-dock"
+    },
+    {
+      "frameId": "mask-8",
+      "variant": "west-end",
+      "mask": 8,
+      "contacts": [{ "id": "workstation-dock", "xPx": 56, "yPx": 56, "requiredAlpha": "any", "role": "chair-dock" }],
+      "socket": "workstation-dock"
+    },
+    {
+      "frameId": "mask-10",
+      "variant": "middle",
+      "mask": 10,
+      "contacts": [{ "id": "workstation-dock", "xPx": 56, "yPx": 56, "requiredAlpha": "any", "role": "chair-dock" }],
+      "socket": "workstation-dock"
+    }
+  ]
+}

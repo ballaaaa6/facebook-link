@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "office-workstation-visual-contract-v1",
+  "contractId": "workstation-basic-v3-visual",
+  "familyId": "workstation-basic",
+  "familyVersion": 3,
+  "status": "selected-concept-frozen",
+  "selectedConcept": 3,
+  "projection": {
+    "id": "office-projection-v1",
+    "ratio": "2:1",
+    "cameraQuadrant": "southeast",
+    "visibleFaces": ["top", "south", "east"],
+    "axisVectors": {
+      "east": { "x": 32, "y": 16 },
+      "south": { "x": -32, "y": 16 }
+    }
+  },
+  "native": {
+    "tile": { "widthPx": 64, "heightPx": 32 },
+    "canvas": { "widthPx": 176, "heightPx": 96 },
+    "pixelDensity": 1,
+    "filter": "nearest",
+    "visualHeightPx": 48
+  },
+  "geometry": {
+    "geometryRef": { "id": "workstation-geometry", "version": 1 },
+    "footprint": { "widthCells": 2, "depthCells": 1 },
+    "clearance": { "widthCells": 3, "depthCells": 2 },
+    "spriteOriginPx": { "x": 56, "y": 24 },
+    "groundContactPx": { "x": 88, "y": 72 },
+    "footprintCornersPx": [
+      { "x": 56, "y": 24 },
+      { "x": 120, "y": 56 },
+      { "x": 88, "y": 72 },
+      { "x": 24, "y": 40 }
+    ]
+  },
+  "interaction": {
+    "workstationDock": {
+      "worldSubCell": { "x": 4, "y": 4, "elevation": 0 },
+      "spritePx": { "x": 56, "y": 56 },
+      "role": "chair-dock"
+    },
+    "ownedFacts": ["working-side", "chair-docking-region", "clearance", "work-surface-target"],
+    "deferredFacts": ["chair-seat-socket", "character-pelvis", "seated-pose", "hand-effectors", "foot-effectors"]
+  },
+  "connectivity": {
+    "bitDirections": { "north": 1, "east": 2, "south": 4, "west": 8 },
+    "supportedMasks": [0, 2, 8, 10],
+    "westSeam": { "from": { "x": 56, "y": 24 }, "to": { "x": 24, "y": 40 } },
+    "eastSeam": { "from": { "x": 120, "y": 56 }, "to": { "x": 88, "y": 72 } },
+    "maskRoles": {
+      "0": "isolated",
+      "2": "east-end",
+      "8": "west-end",
+      "10": "middle"
+    }
+  },
+  "visual": {
+    "lightDirection": "northwest",
+    "paletteRoles": ["transparent", "outline", "top-light", "wood-mid", "south-shadow", "east-mid", "metal", "accent", "wood-grain", "contact-highlight"],
+    "components": {
+      "repeatable": ["desktop-core", "privacy-panel", "slatted-frame", "frame-rail", "under-support", "shadow"],
+      "westEndOnly": ["west-frame-post", "west-storage"],
+      "eastEndOnly": ["east-frame-post", "east-storage", "east-planter"],
+      "deferredProps": ["keyboard", "monitor", "chair", "character", "loose-decorations"]
+    }
+  },
+  "prohibited": ["reference-pixels", "legacy-pixels", "renderer-pixels", "orthographic-substitute", "front-facing-substitute", "scene-specific-offsets", "runtime-fallbacks"]
+}
