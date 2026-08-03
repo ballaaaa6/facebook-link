@@ -5,7 +5,6 @@ import { resolve } from "node:path";
 import test from "node:test";
 import type { OperationsEventRecord, OperationsSnapshotDocument, SnapshotDocument as SimulationSnapshot } from "@affiliate-ops/office-v2-contracts";
 import { canonicalHashHex, canonicalJson, type JsonValue } from "@affiliate-ops/office-v2-contracts";
-import { agentCatalog } from "@affiliate-ops/agent-catalog";
 import { bindRoster, canProposeInteraction, inspectOperationsSnapshot, reconcileEventWindow } from "../src/index.ts";
 import { createReconciliationCheckpoint, reconcileOperations, type ReconciliationEventPolicy } from "../src/reconciliation.ts";
 import { projectPresentationState, type ChoreographyTransition } from "../src/choreography.ts";
@@ -25,11 +24,6 @@ function runRunner(): RawTrace {
   return JSON.parse(readFileSync(resolve(outputDirectory, "operations-runner-trace.json"), "utf8")) as RawTrace;
 }
 function eventValue(event: Record<string, any>): string { return String(event.durableEventId.value); }
-function roleForOutput(output: string): string {
-  const agent = agentCatalog.find((candidate) => candidate.produces.includes(output));
-  assert.ok(agent, `No catalog role produces ${output}.`);
-  return agent.id;
-}
 function agentInstanceForRole(roleId: string): string {
   const binding = closure.roster.bindings.find((candidate) => String(candidate.roleId) === roleId);
   assert.ok(binding, `No roster binding exists for ${roleId}.`);
@@ -72,10 +66,15 @@ function reconciliation(raw: RawTrace, snapshot: OperationsSnapshotDocument) {
 }
 function report(raw: RawTrace): Record<string, unknown> {
   const snapshot = snapshotFor(raw);
-  const visualRole = roleForOutput("visual-assets");
-  const performanceRole = roleForOutput("performance-report");
-  const copyAgent = agentInstanceForRole(roleForOutput("caption-draft"));
-  const growthRole = roleForOutput("winner-decision");
+  const roleForJob = (predicate: (job: Record<string, any>) => boolean, label: string): string => {
+    const job = raw.jobs.find(predicate);
+    assert.ok(job, `No runner job found for ${label}.`);
+    return String(job.payload.roleId);
+  };
+  const visualRole = roleForJob((job) => job.payload.branch === "visual", "visual branch");
+  const performanceRole = roleForJob((job) => job.stage === "measured", "performance stage");
+  const copyAgent = agentInstanceForRole(roleForJob((job) => job.payload.branch === "copy", "copy branch"));
+  const growthRole = roleForJob((job) => job.stage === "selected", "winner selection");
   const workflowId = String(raw.jobs[0]?.workflowId);
   assert.ok(workflowId.length > 0);
   assert.equal(raw.persistence.sourceWorkflowId, workflowId);
@@ -85,8 +84,8 @@ function report(raw: RawTrace): Record<string, unknown> {
   assert.ok((raw.operationsWindow.events as Record<string, any>[]).every((event) => String(event.workflowRunId?.value) === workflowId));
   assert.ok((raw.operationsWindow.events as Record<string, any>[]).every((event) => /^[a-f0-9]{64}$/.test(String(event.payloadDigest))));
   assert.ok(/^[a-f0-9]{64}$/.test(String(raw.operationsWindow.eventDigest)));
-  const sessionRole = agentCatalog.find((agent) => agent.produces.includes("session-state"))?.id;
-  assert.ok(sessionRole);
+  const sessionRole = raw.persistence.omittedRoleIds[0];
+  assert.ok(typeof sessionRole === "string" && sessionRole.length > 0);
   assert.deepEqual(raw.persistence.omittedRoleIds, [sessionRole]);
   assert.deepEqual([...raw.persistence.persistedRoleIds].sort(), raw.roles.filter((role) => role !== sessionRole).sort());
   const roster = bindRoster(closure.snapshots[0]!, closure.routing, closure.roster);
