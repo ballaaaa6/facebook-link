@@ -34,6 +34,7 @@ function pixelCanvas(frame) {
   for (let x = 2; x <= 13; x += 1) put(x, 4, COLORS.edge);
   for (let x = 2; x <= 13; x += 1) put(x, 10, COLORS.shadow);
   for (const x of [3, 12]) for (let y = 10; y <= 13; y += 1) put(x, y, COLORS.metal);
+  put(7, 12, COLORS.metal);
   put(7, 6, frame.tint ?? COLORS.accent); put(8, 6, frame.tint ?? COLORS.accent);
   if (frame.mask & 2) for (let y = 6; y <= 9; y += 1) put(13, y, COLORS.edge);
   if (frame.mask & 8) for (let y = 6; y <= 9; y += 1) put(2, y, COLORS.edge);

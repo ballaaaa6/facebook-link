@@ -41,7 +41,9 @@ visual integration. The synthetic Phase 4 renderer/T4 gate is complete: Canvas
 2D is selected through the Main-owned benchmark, lifecycle, accessibility,
 responsive, golden, and property/model evidence. The only authorized work after
 this closure is the dependency-ordered Phase 5 asset-factory sequence and its
-narrow test probes.
+narrow test probes. That technical sequence is now integrated on the dedicated
+Phase 5 branch; T5 remains blocked because the connected-workstation candidate
+has not received explicit geometry, visual, and commercial owner approval.
 
 ## The next test, precisely
 
@@ -134,8 +136,9 @@ three no-rewrite Canvas golden captures, four browser QA checks, and seeded
 independent model evidence at 100 CI and 1,000 exploration runs. Canvas 2D is
 the selected presentation candidate. PixiJS remains only in the development
 benchmark lab so the losing proof/report remains auditable; the production
-build contains no Pixi reference. Phase 5 asset-factory work and T5/T6 remain
-not started.
+build contains no Pixi reference. Phase 5 asset-factory technical evidence is
+integrated, but T5 remains blocked pending explicit geometry, visual, and
+commercial owner review; T6 is not started.
 
 ## Working decisions to ratify
 

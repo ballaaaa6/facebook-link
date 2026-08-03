@@ -15,10 +15,10 @@ executable leaf tasks and their current status.
   Main-owned evidence at `871546e`; the Phase 4 benchmark, QA, golden, and
   property/model gates pass; generated contracts, boundaries, and Office
   preflight pass at the Phase 5 planning base.
-- Phase status before execution: **NOT STARTED / INCOMPLETE**.
-- Phase status during execution: **ACTIVE — Waves P5-W6-01 and P5-W6-02 are
-  integrated; Wave P5-W6-03 is selected for the final technical frontier; no
-  runtime family has yet been admitted**.
+- Phase status before execution: **NOT STARTED / INCOMPLETE** (historical).
+- Phase status after execution: **EXTERNAL_BLOCKER — Waves P5-W6-01,
+  P5-W6-02, and P5-W6-03 technical outputs are integrated; the candidate
+  family is spec-only and no runtime family has been admitted**.
 - Previous Phase status: **COMPLETE — Phase 3 unified gate reverified on
   2026-08-03 at gate-evaluation HEAD `8acd2af6ff524eaf2d7b02e5c4bd97d9a03c98af`**.
 - Phase exit criteria: unchanged source rebuilds byte-identically; provenance,
@@ -184,12 +184,14 @@ executable leaf tasks and their current status.
   checks covering semantics, accessibility, responsive behavior, and lifecycle.
 - Canvas 2D is the selected renderer. PixiJS remains only in the development
   evidence lab and dev-only proof dependency; the production build contains no
-  Pixi reference. Phase 5 asset-factory work has not started.
+  Pixi reference. Phase 5 technical asset-factory evidence is integrated on
+  the dedicated branch; T5 remains blocked pending explicit owner review.
 
 ## Current Phase 5 execution state — P5-W6 reproducible asset factory
 
 - Phase: **Phase 5 — Reproducible asset factory**
-- Status: **ACTIVE — planning base established; first wave selected**.
+- Status: **EXTERNAL_BLOCKER — technical evidence is integrated; explicit
+  geometry, visual, and commercial owner review is missing**.
 - Parent milestone: M2 — Office Engine V2 foundation and first-floor path.
 - Entry criteria: Phase 4/T4 closure, Canvas 2D selection, Closure D asset
   contracts, generated schema drift gate, clean-room boundary, and passing
@@ -199,7 +201,9 @@ executable leaf tasks and their current status.
   clean builds are byte-identical, all exact negative diagnostics pass, and
   the full repository check is green.
 - Planning artifact: `docs/parallel-work/phase5-asset-factory-plan.md`.
-- Current integration base: `1a020ac` (`docs(office-v2): record registry handoff`).
+- Current integration branch: `codex/integration/phase5-asset-factory`; the
+  final published HEAD and evidence are recorded in the Phase 5 integration
+  report.
 - Initial gaps: no `assets/office-v2` source, recipe, runtime, manifest, or
   report family; `office:v2:assets:check` validates only basic PNG headers,
   dimensions, hashes, and the frozen V1 manifest shape; no deterministic source
@@ -318,7 +322,9 @@ publication.
   unsupported masks fail; geometry/socket/contacts/alpha/seam/provenance/
   catalog/bundle/registry checks pass; owner review is explicit; runtime import
   fails closed on any altered, missing, orphaned, or unapproved material.
-- Status: **READY — selected in Wave P5-W6-03**.
+- Status: **EXTERNAL_BLOCKER — technical proof family is complete and
+  reproducible; explicit geometry, visual, and commercial owner review is
+  still required before runtime admission**.
 
 ### P5-W6.6 — Project workflow skills
 
@@ -335,7 +341,8 @@ publication.
 - Acceptance: each skill passes the skill creator validator, uses imperative
   concise instructions, points to real repository tools/contracts, and has no
   extraneous README or installation guide.
-- Status: **READY — selected in Wave P5-W6-03**.
+- Status: **INTEGRATED — implementation `677af66`; the three skills and their
+  exact clean-room allowance pass the project gates**.
 
 ### P5-EXIT-01 — Main-owned T5 closure
 
@@ -347,7 +354,9 @@ publication.
   `READINESS_REMEDIATION_PLAN.md`, this backlog, and the final integration
   report, then publish the validated integration branch without changing
   `main`.
-- Status: **BLOCKED_BY_TASK — Main-only closure remains pending**.
+- Status: **EXTERNAL_BLOCKER — Main-only technical closure is complete, but
+  explicit geometry, visual, and commercial review is absent; T5 is not
+  claimed and Phase 6 is not started**.
 
 ## Phase 5 selection rule
 

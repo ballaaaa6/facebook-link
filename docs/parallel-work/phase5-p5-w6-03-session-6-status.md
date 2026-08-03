@@ -1,11 +1,13 @@
 # P5-W6.6 Session 6 Status
 
 - Task: `P5-W6.6` — project workflow skills
-- Status: `BLOCKED FOR MAIN REVIEW` — the requested skills are complete, but
-  the required project gates reject their mandated `.agents/skills/` paths.
+- Status: `INTEGRATED` — the requested skills and their exact clean-room
+  allowlist admission are complete.
 - Base commit: `e8f5555` (`docs(office-v2): select Phase 5 wave 3`)
 - Branch/worktree: `task/session-6-p5-w6-6-skills` /
   `C:\Users\WINDOW XI\.codex\worktrees\phase5-p5-w6-6-skills`
+- Worker commit: `f314841`
+- Integrated commit: `677af66` (skills plus exact clean-room allowlist admission)
 
 ## Scope lock
 
@@ -80,21 +82,14 @@ Repository structure OK: 725 files, 10 agents, 0 validated assets.
 
 Exit code: `1` at `office:v2:clean-room:check`.
 
-## Blocker
-
-`scripts/office-v2-clean-room-check.mjs` allows only
-`.agents/skills/build-office-v2-engine/` under `.agents/skills/`. The required
-skill names necessarily contain `office-v2` and therefore trigger its exact
-path rule. Resolving this requires Main to approve an allowlist/Decision 0007
-change outside this worker's locked scope, then rerun preflight and
-`npm run check`. Do not weaken or bypass the gate in this branch.
-
 ## Handoff
 
-The three skills and all scaffold metadata pass their individual validators;
-no approval or Phase 5 closure is claimed. Stage and commit only the three
-skill directories and this status record after the final staged diff check,
-then report the commit and the clean/blocked gate evidence to Main.
+The three skills and all scaffold metadata pass their individual validators.
+The worker’s first preflight/full-check run correctly exposed the missing exact
+allowlist roots; Main admitted the three narrow roots in the same integration
+commit as the skill files, then reran boundary tests, project preflight, assets
+check, and full `npm run check` successfully. The worker worktree was clean at
+handoff; no approval or Phase closure is inferred.
 
 Final staged scope check:
 

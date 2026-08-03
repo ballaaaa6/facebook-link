@@ -173,9 +173,13 @@ Pixi reference.
 
 The closure also includes four executable browser QA checks, three pinned
 no-rewrite Canvas goldens, and seeded independent depth/picking/lifecycle model
-evidence at the 100-run CI and 1,000-run exploration profiles. Phase 5 asset
-factory work, runtime asset admission, and full first-floor visual acceptance
-are not started.
+evidence at the 100-run CI and 1,000-run exploration profiles. The Phase 5
+technical asset-factory slice is integrated on the dedicated integration
+branch: deterministic export, admission, review boards, registry closure, a
+procedural workstation candidate, and the three project workflow skills are
+present and gated. The candidate remains `spec-only` and
+`pending-owner-review`; no runtime manifest has been admitted, so T5 and full
+first-floor visual acceptance remain blocked.
 
 ## Knowledge rule
 

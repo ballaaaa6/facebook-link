@@ -28,8 +28,10 @@ Recorded: `2026-08-03` (Asia/Bangkok)
 - Objective: implement deterministic source/export, provenance, PNG and review
   evidence, atlas/catalog/scene-bundle closure, runtime registry generation,
   and one original connected-workstation family from source to runtime.
-- Status before execution: **NOT STARTED / INCOMPLETE**; Waves 1 and 2 are now
-  integrated and Wave 3 is the active selected frontier.
+- Status before execution: **NOT STARTED / INCOMPLETE** (historical). Waves 1,
+  2, and 3 technical outputs are now integrated; the phase is
+  **EXTERNAL_BLOCKER** pending explicit geometry, visual, and commercial owner
+  review of the candidate family.
 - Entry criteria: Phase 4/T4 is complete at `871546e`; Canvas 2D is selected;
   Closure D asset contracts and generated types are integrated; clean-room,
   boundaries, contradictions, knowledge, assets, and full repository checks
@@ -51,7 +53,7 @@ Recorded: `2026-08-03` (Asia/Bangkok)
      geometry, hidden fallback, or disabled connector action enters runtime;
   8. all required Office gates and `npm run check` pass on the final branch.
 
-## Initial gaps from executable evidence
+## Initial gaps from executable evidence (before this phase)
 
 - `assets/office-v2` contains only its README; no source, recipe, runtime PNG,
   manifest, or report family exists.
@@ -164,7 +166,31 @@ unblocker and joins the catalog/family critical path.
 - W6.5 owns only the connected-workstation asset family and evidence; W6.6
   owns only the three skill directories and their metadata. Skills may call
   integrated tools but do not edit their implementation.
-- Selection lock: `pending coordinator commit` immediately before dispatch.
+- Selection lock: `e8f5555` (`docs(office-v2): select Phase 5 wave 3`).
+
+### Wave `P5-W6-03` outcome — technical evidence complete; external blocker
+
+- W6.6 was completed by the worker and integrated as `677af66`; the three
+  project skills pass their focused validators, use real repository tools, and
+  have the exact narrow clean-room allowance required by the project gate.
+- The dispatched W6.5 worker remained at its frozen base after bounded waits and
+  was shut down without partial files. Main recovered only the locked proof
+  family scope and integrated it as `c217d93`, then refreshed the committed
+  evidence after proving the seated contact pixel is opaque.
+- The candidate source and recipe are under
+  `assets/office-v2/sources/workstation-basic/v1/` and
+  `assets/office-v2/recipes/workstation-basic/v1/`. Two clean builds, four
+  masks (`0/2/8/10`), seated socket/contact evidence, twenty review boards,
+  atlas/catalog/scene-bundle/registry reports, and candidate manifests are
+  under `assets/office-v2/reports/workstation-basic/v1/`.
+- Focused proof tests pass 2/2. Wave 3 technical validation passes Office
+  preflight, the zero-manifest assets gate, diff hygiene, and full
+  `npm run check`. The candidate remains `spec-only` and
+  `pending-owner-review`; no runtime manifest was admitted.
+- The phase is proven blocked at `P5-EXIT-01` because explicit geometry,
+  visual, and commercial owner approval is an external condition that cannot
+  be inferred from generated pixels or passing automation. Phase 6 was not
+  started.
 
 ### Main-only T5 closure
 
@@ -173,7 +199,9 @@ independently runs every exit gate, records exact evidence, reconciles remote
 `main`, updates authoritative status, pushes the integration branch, and
 leaves `main` unchanged. Visual/commercial approval is an external acceptance
 condition; it will be recorded explicitly and never inferred from a generated
-image or a passing technical check.
+image or a passing technical check. Result for this run: technical closure is
+complete, but `P5-EXIT-01` is `EXTERNAL_BLOCKER` until that owner review is
+recorded; T5 is not claimed.
 
 ## Frozen interfaces for Wave 1
 
