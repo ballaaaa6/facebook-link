@@ -58,7 +58,11 @@ function floorCorners(camera: CameraState): readonly ScreenPoint[] {
 }
 
 function hashScene(commands: readonly SyntheticSceneCommand[]): string {
-  const source = JSON.stringify(commands);
+  return deterministicPayloadHash(JSON.stringify(commands));
+}
+
+/** Stable non-cryptographic evidence hash for deterministic in-browser captures. */
+export function deterministicPayloadHash(source: string): string {
   let first = 0x811c9dc5;
   let second = 0x9e3779b1;
   for (let index = 0; index < source.length; index += 1) {
@@ -66,7 +70,16 @@ function hashScene(commands: readonly SyntheticSceneCommand[]): string {
     first = Math.imul(first ^ code, 0x01000193) >>> 0;
     second = Math.imul(second ^ (code + index), 0x85ebca6b) >>> 0;
   }
-  const words = [first, second, first ^ second, Math.imul(first, second) >>> 0];
+  const words = [
+    first,
+    second,
+    first ^ second,
+    Math.imul(first, second) >>> 0,
+    Math.imul(first ^ 0xa5a5a5a5, 0x27d4eb2d) >>> 0,
+    Math.imul(second ^ 0x3c6ef372, 0x165667b1) >>> 0,
+    (first + 0x9e3779b9) >>> 0,
+    (second + 0x7f4a7c15) >>> 0,
+  ];
   return words.map((word) => word.toString(16).padStart(8, "0")).join("");
 }
 
