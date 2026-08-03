@@ -4,7 +4,7 @@
 
 - Phase: **Phase 5 — Reproducible asset factory**
 - Wave: `P5-W6-02`
-- Base commit: `812c3c7`
+- Base commit: `c763844`
 - Worker: Session 3; Main records the generated branch/worktree at dispatch.
 - Objective: generate deterministic review-board PNG/metadata outputs from
   immutable source pixels and declared family metadata, without changing

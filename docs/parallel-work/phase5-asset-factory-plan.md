@@ -135,7 +135,7 @@ unblocker and joins the catalog/family critical path.
 - W6.3 consumes the factory's deterministic PNG/output interface; W6.4
   consumes the admission and output metadata interface. They own disjoint
   modules and tests.
-- Selection lock: `pending coordinator commit` immediately before dispatch.
+- Selection lock: `c763844` (`docs(office-v2): select Phase 5 wave 2`).
 - W6.3 owns `scripts/office-v2-asset-boards.mjs`, its focused test, and its
   status record. W6.4 owns `scripts/office-v2-asset-registry.mjs`, its focused
   test, and its status record. Neither worker may edit assets, schemas,
