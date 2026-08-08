@@ -11,10 +11,19 @@ Recorded: `2026-08-03` (Asia/Bangkok)
   Bounded rework `P5-W6.5-R1` now provides a new `workstation-basic/v2`
   spec-only proof candidate, but `P5-EXIT-01` cannot claim T5 without
   independent v2 geometry, visual, and commercial owner outcomes.
-- Integration target: `codex/integration/phase5-asset-factory`.
-- Primary branch: `main` remains unchanged at the Phase 4 closure point
-  `871546e3637c8e35b5823241c4c595fa42c1ecd0`.
+- Integration target at report time: `codex/integration/phase5-asset-factory`.
+- Primary branch at report time: `main` remained unchanged at the Phase 4
+  closure point `871546e3637c8e35b5823241c4c595fa42c1ecd0`.
 - Phase 6 was not started.
+
+## Consolidation onto main — 2026-08-08
+
+The committed Phase 5 technical line was fast-forwarded onto `main` so the
+repository has one active source-of-truth line. The consolidation includes
+P5-W6.1 through P5-W6.4, P5-W6.6, and the committed v4 concept3
+decomposition record. The result remains **EXTERNAL_BLOCKER**: v2/v3 remain
+spec-only, no runtime manifest is admitted, and P5-EXIT-01/T5 plus Phase 6
+remain blocked pending explicit geometry, visual, and commercial owner review.
 
 ## Wave closure
 
@@ -104,6 +113,7 @@ generation, image inspection, hashes, or automated gates. Main must rerun the
 complete Phase 5 exit sequence after explicit v2 outcomes before any runtime
 manifest is admitted or Phase 6 is selected.
 
-The integration branch is the only publication target. It is pushed without
-force after final validation; `main` is not merged, rewritten, or pushed by
-this phase.
+At report time, the integration branch was the only publication target and was
+pushed without force after final validation. The committed technical line has
+since been consolidated onto `main`; no runtime manifest or Phase 6 claim was
+added by that consolidation.

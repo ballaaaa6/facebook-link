@@ -41,8 +41,8 @@ visual integration. The synthetic Phase 4 renderer/T4 gate is complete: Canvas
 2D is selected through the Main-owned benchmark, lifecycle, accessibility,
 responsive, golden, and property/model evidence. The only authorized work after
 this closure is the dependency-ordered Phase 5 asset-factory sequence and its
-narrow test probes. That technical sequence is now integrated on the dedicated
-Phase 5 branch; T5 remains blocked because the connected-workstation candidate
+narrow test probes. That technical sequence is now consolidated on `main`; T5
+remains blocked because the connected-workstation candidate
 has not received explicit geometry, visual, and commercial owner approval.
 
 ## The next test, precisely

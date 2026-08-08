@@ -174,8 +174,8 @@ Pixi reference.
 The closure also includes four executable browser QA checks, three pinned
 no-rewrite Canvas goldens, and seeded independent depth/picking/lifecycle model
 evidence at the 100-run CI and 1,000-run exploration profiles. The Phase 5
-technical asset-factory slice is integrated on the dedicated integration
-branch. The original `workstation-basic/v1` candidate is now explicitly
+technical asset-factory slice is now consolidated on `main`. The original
+`workstation-basic/v1` candidate is now explicitly
 recorded as geometry `rework-required`, visual `rejected`, and commercial
 `pending` because it was front-facing rather than the required 2:1
 dimetric/isometric direction. Its hashes and reports remain immutable

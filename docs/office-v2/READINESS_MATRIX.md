@@ -35,8 +35,8 @@ source-pinned browser QA artifact covers semantic parity, accessibility,
 responsive overflow, reduced motion, forced colors, hidden/resume, context
 recovery, and remount cleanup; three no-rewrite Canvas goldens and the seeded
 property/model evidence pass. Canvas 2D is selected for the synthetic
-presentation boundary. Phase 5 technical asset-factory evidence is integrated
-on its dedicated integration branch. The original `workstation-basic/v1`
+presentation boundary. Phase 5 technical asset-factory evidence is now
+consolidated on `main`. The original `workstation-basic/v1`
 candidate is recorded as geometry `rework-required`, visual `rejected`, and
 commercial `pending` and is preserved as historical evidence. Bounded rework
 `P5-W6.5-R1` produces a 2:1 dimetric `workstation-basic/v2` candidate, which

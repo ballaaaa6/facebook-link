@@ -217,7 +217,9 @@ The exact matrix produced 300/300 valid runs. Canvas 2D was selected by lower
 render/tick p95 and materially lower context-recovery/remount latency. PixiJS
 is retained only in the development benchmark lab and is absent from the
 production build; no world, simulation, operations, or runtime asset state
-crosses the selected presentation boundary. Phase 5 has not started.
+crosses the selected presentation boundary. Phase 5 technical asset-factory
+work is now consolidated on `main`, but T5 remains blocked pending explicit
+owner review and no runtime asset admission has occurred.
 
 - Define one renderer port for mount, snapshot render, camera, picking, resize,
   resource load, context recovery, diagnostics, and teardown.

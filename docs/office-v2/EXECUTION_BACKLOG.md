@@ -184,8 +184,8 @@ executable leaf tasks and their current status.
   checks covering semantics, accessibility, responsive behavior, and lifecycle.
 - Canvas 2D is the selected renderer. PixiJS remains only in the development
   evidence lab and dev-only proof dependency; the production build contains no
-  Pixi reference. Phase 5 technical asset-factory evidence is integrated on
-  the dedicated branch; T5 remains blocked pending explicit owner review.
+  Pixi reference. Phase 5 technical asset-factory evidence is now consolidated
+  on `main`; T5 remains blocked pending explicit owner review.
 
 ## Current Phase 5 execution state — P5-W6 reproducible asset factory
 
@@ -203,10 +203,10 @@ executable leaf tasks and their current status.
   clean builds are byte-identical, all exact negative diagnostics pass, and
   the full repository check is green.
 - Planning artifact: `docs/parallel-work/phase5-asset-factory-plan.md`.
-- Current integration branch: `codex/integration/phase5-asset-factory`; the
-  final published HEAD and evidence are recorded in the Phase 5 integration
-  report.
-- Initial gaps: no `assets/office-v2` source, recipe, runtime, manifest, or
+- Consolidated source of truth: `main`; the final published technical line and
+  evidence are recorded in the Phase 5 integration report.
+- Historical initial gaps (closed by P5-W6.1 through P5-W6.4): no
+  `assets/office-v2` source, recipe, runtime, manifest, or
   report family; `office:v2:assets:check` validates only basic PNG headers,
   dimensions, hashes, and the frozen V1 manifest shape; no deterministic source
   exporter, real RGBA/palette/contact validator, board generator,
@@ -372,8 +372,7 @@ publication.
 - Objective: review every diff and evidence artifact, run the complete Phase 5
   exit sequence, update `README.md`, `READINESS_MATRIX.md`,
   `READINESS_REMEDIATION_PLAN.md`, this backlog, and the final integration
-  report, then publish the validated integration branch without changing
-  `main`.
+  report, then publish the validated consolidated `main` line.
 - Status: **EXTERNAL_BLOCKER — Main-only closure is blocked by the recorded v1
   rejection and pending v2 geometry/visual/commercial owner review; T5 is not
   claimed and Phase 6 is not started**.
