@@ -33,6 +33,16 @@ Cloudflare coordinates work. It does not run Playwright browser sessions. The au
 11. No connector may execute real external actions while its feature flag is disabled.
 12. After completing a requested change and passing the relevant checks, commit the change and push the current branch to its configured remote so the deployed/source-of-truth view is updated. Skip the push only when the user explicitly requests local-only work or provides a different delivery target.
 
+## Planning and orchestration
+
+- Use `.agents/skills/deep-operations-planner/SKILL.md` for detailed planning, strategy, investigation, tracing, audit, comparison, deep research, contingency design, or explicit subagent/delegation requests.
+- Do not present a first-draft plan as final. Complete discovery, decomposition, feasibility, alternatives, dependencies, risks, contingencies, rollback, acceptance criteria, verification, and an independent red-team pass first.
+- Use the installed Superpowers workflow for approved implementation plans: brainstorming for unclear or new behavior, writing-plans for bite-sized tasks, subagent-driven development when available, executing-plans otherwise, and branch completion after verification.
+- The main agent owns the master plan, task routing, integration, final checks, and completion claim. Subagents receive self-contained task packets and disjoint write scopes; never parallelize overlapping file, migration, schema, or shared-state writes.
+- If blocked, report the evidence, attempted paths, direct and fallback options, reduced-scope route, required user action, and recovery checkpoint. Do not stop at an unsupported "cannot".
+- Report `READY`, `CONDITIONAL`, or `BLOCKED` and claim only the best-supported result under the available evidence, tools, permissions, time, and constraints. Re-plan when new evidence invalidates an assumption.
+- Keep external publishing, credential changes, irreversible actions, feature flags, human review, clean-room boundaries, and migration rules enforced regardless of delegation.
+
 ## Source-of-truth files
 
 - Product scope: `docs/PRODUCT.md`
@@ -47,6 +57,7 @@ Cloudflare coordinates work. It does not run Playwright browser sessions. The au
 - TeamBrain: `docs/TEAM_BRAIN.md`
 - Code health: `docs/CODE_STANDARDS.md`
 - Delivery sequence: `docs/ROADMAP.md`
+- Durable planning artifacts: `.agents/skills/deep-operations-planner/` and `docs/plans/` when a plan must persist
 - Repository file ownership: `docs/REPOSITORY_LAYOUT.md`
 - Office Engine boundary: `docs/office-v2/README.md`
 - Office Engine foundations: `docs/office-v2/FOUNDATIONS.md`
@@ -61,6 +72,8 @@ Cloudflare coordinates work. It does not run Playwright browser sessions. The au
 npm install
 npm run dev
 npm run check
+npm run planning:validate -- docs/plans/<plan-file>.md
+npm run planning:validate:test
 ```
 
 `npm run check` is the required pre-commit gate. Never bypass architecture, file-size, or duplication failures by weakening a rule without documenting the architectural reason.

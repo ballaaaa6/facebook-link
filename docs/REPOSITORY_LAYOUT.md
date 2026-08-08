@@ -16,7 +16,12 @@ Committed files used by the current product belong in these roots:
 - `prompts/`: versioned prompt product artifacts;
 - `infrastructure/`: deployment examples and runbooks;
 - `scripts/`: repository validation and maintenance tools;
+- `.agents/skills/`: repository-scoped agent workflows and validation resources;
 - `docs/`: current product and engineering authority.
+
+Durable planning artifacts belong in `docs/plans/` and must use the
+`deep-operations-planner` template and validator. Do not store credentials,
+cookies, browser profiles, or other secrets in plans or evidence ledgers.
 
 Office code on `main` is V2-only. Decision 0007 approves these exact code roots:
 

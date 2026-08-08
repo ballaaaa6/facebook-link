@@ -1,0 +1,7 @@
+interface:
+  display_name: "Deep Operations Planner"
+  short_description: "Plan, research, and orchestrate work with evidence."
+  default_prompt: "Use $deep-operations-planner to produce a verified plan with contingencies and execution gates."
+
+policy:
+  allow_implicit_invocation: true
